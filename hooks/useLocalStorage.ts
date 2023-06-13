@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 
 const useLocalStorage = (key: string, initialValue: string) => {
@@ -7,6 +5,7 @@ const useLocalStorage = (key: string, initialValue: string) => {
   // Pass initial state function to useState so logic is only executed once
   const [storedValue, setStoredValue] = useState(() => {
     try {
+      if (typeof window === "undefined") return initialValue;
       // Get from local storage by key
       const item = window.localStorage.getItem(key);
       // Parse stored json or if none return initialValue
@@ -21,6 +20,7 @@ const useLocalStorage = (key: string, initialValue: string) => {
   // useEffect to update local storage when the state changes
   useEffect(() => {
     try {
+      if (typeof window === "undefined") return;
       // Allow value to be a function so we have same API as useState
       const valueToStore =
         typeof storedValue === "function"

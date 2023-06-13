@@ -21,6 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} dark:bg-black dark:text-white`}>
         <Providers>
+          <Navigation />
           <div className="pt-20">{children}</div>
           <ClientToast />
         </Providers>

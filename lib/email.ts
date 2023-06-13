@@ -1,5 +1,5 @@
 function html({ url, host, theme }: { url: string; host: string; theme: any }) {
-  const escapedHost = "smurf.io"
+  const escapedHost = "leafbase.io"
 
   const brandColor = theme.brandColor || "#346df1";
   const color = {

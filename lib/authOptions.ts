@@ -2,6 +2,7 @@ import DiscordProvider from "next-auth/providers/discord";
 import EmailProvider from "next-auth/providers/email";
 import GoogleProvider from "next-auth/providers/google";
 import TwitchProvider from "next-auth/providers/twitch";
+import GitHubProvider from "next-auth/providers/github";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { html } from "@/lib/email";
 import { createTransport } from "nodemailer";
@@ -27,6 +28,10 @@ const authOptions: NextAuthOptions = {
       clientId: process.env.TWITCH_CLIENT_ID || "",
       clientSecret: process.env.TWITCH_CLIENT_SECRET || "",
     }),
+    GitHubProvider({
+      clientId: process.env.GITHUB_CLIENT_ID || "",
+      clientSecret: process.env.GITHUB_CLIENT_SECRET || "",
+    }),
     EmailProvider({
       server: process.env.EMAIL_SERVER,
       from: process.env.EMAIL_FROM,
@@ -38,8 +43,8 @@ const authOptions: NextAuthOptions = {
         const result = await transport.sendMail({
           to: identifier,
           from: provider.from,
-          subject: "Sign in to smurf.io",
-          text: "Sign in to smurf.io",
+          subject: "Sign in to leafbase.io",
+          text: "Sign in to leafbase.io",
           html: html({ url, host, theme }),
         });
         const failed = result.rejected.concat(result.pending).filter(Boolean);

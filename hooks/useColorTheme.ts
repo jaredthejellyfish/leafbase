@@ -10,17 +10,21 @@ const useColorTheme = (): {
   const [colorTheme, setColorTheme] = useLocalStorage("color-theme", "light");
 
   useEffect(() => {
-    const className: string = "dark";
-    const htmlClass = window.document.documentElement.classList;
-    const bodyClass = window.document.body.classList;
+    try {
+      const className: string = "dark";
+      const htmlClass = window.document.documentElement.classList;
+      const bodyClass = window.document.body.classList;
 
-    colorTheme === "dark"
-      ? htmlClass.add(className)
-      : htmlClass.remove(className);
+      colorTheme === "dark"
+        ? htmlClass.add(className)
+        : htmlClass.remove(className);
 
-    colorTheme === "dark"
-      ? bodyClass.add(className)
-      : bodyClass.remove(className);
+      colorTheme === "dark"
+        ? bodyClass.add(className)
+        : bodyClass.remove(className);
+    } catch (error) {
+      console.log(error);
+    }
   }, [colorTheme]);
 
   return { colorTheme, setColorTheme };

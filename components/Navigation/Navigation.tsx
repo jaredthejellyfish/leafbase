@@ -47,7 +47,7 @@ const Navigation = (props: Props) => {
     container: {
       open: {
         display: "block",
-        height: "23vh",
+        height: 200,
         y: 0,
         transition: {
           y: { duration: 0 },
@@ -87,8 +87,8 @@ const Navigation = (props: Props) => {
   const avatar = {};
 
   return (
-    <nav className="absolute w-screen h-16 text-black dark:text-white">
-      <div className="relative grid grid-cols-3 grid-rows-1 gap-0 px-8 h-full z-20 bg-slate-100 dark:bg-zinc-900">
+    <nav className="drop-shadow-lg absolute w-screen h-16 text-black dark:text-white z-50">
+      <div className="relative grid grid-cols-3 grid-rows-1 gap-0 px-6 md:px-16 h-full z-20 bg-gray-100 dark:bg-zinc-900">
         <div className="col-span-1 flex justify-start items-center">
           <Link
             href="/"
@@ -104,7 +104,7 @@ const Navigation = (props: Props) => {
           </Link>
         </div>
         <div className="flex justify-end items-center gap-4 col-span-2">
-          <div className="pl-2 py-1 pr-2 flex-row items-center justify-center gap-3 bg-white rounded text-black hidden md:flex dark:bg-zinc-800">
+          <div className="pl-2 py-1.5 pr-2 flex-row items-center justify-center gap-3 bg-white rounded text-black hidden md:flex dark:bg-zinc-800">
             <BsSearch
               className="text-zinc-400/80 dark:text-gray-400"
               size={20}
@@ -112,7 +112,7 @@ const Navigation = (props: Props) => {
             <input
               value={search}
               placeholder="Search..."
-              className=" focus:outline-none bg-transparent dark:text-white"
+              className=" focus:outline-none bg-transparent dark:text-white md:w-48 xl:w-80"
               onChange={(e) => setSearch(e.target.value)}
             ></input>
           </div>
@@ -139,7 +139,10 @@ const Navigation = (props: Props) => {
           <Link href="/profile">
             <Avatar
               className="rounded-full"
-              src={(session?.user?.image && session.user.image) || undefined}
+              src={
+                (session?.user?.image && session.user.image) ||
+                `https://www.gravatar.com/avatar/${session?.user?.name}?d=identicon`
+              }
               alt="profile"
               size="32px"
             />
@@ -175,7 +178,7 @@ const Navigation = (props: Props) => {
         </div>
       </div>
       <motion.div
-        className="absolute w-full bg-slate-200 dark:bg-zinc-800/100 divide-y divide-dashed pl-5 pr-5 divide-slate-400/25 pt-5 top-16 left-0 z-10"
+        className="absolute w-full bg-slate-200 dark:bg-zinc-800/100 divide-y divide-dashed pl-5 pr-5 divide-slate-400/25 pt-5 top-16 left-0 z-50 h-52"
         variants={navigationMenu.container}
         initial="closed"
         animate={isOpen ? "open" : "closed"}
@@ -186,7 +189,9 @@ const Navigation = (props: Props) => {
           initial="closed"
           animate={isOpen ? "open" : "closed"}
         >
-          <Link href="/strains" onClick={() => setIsOpen(false)}>Strains</Link>
+          <Link href="/strains" onClick={() => setIsOpen(false)}>
+            Strains
+          </Link>
         </motion.div>
         <motion.div
           className="w-full h-10 flex justify-start items-center pl-10 p-5 font-medium text-lg cursor-pointer"

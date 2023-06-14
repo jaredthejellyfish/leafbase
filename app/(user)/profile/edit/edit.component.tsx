@@ -1,10 +1,10 @@
 import React from "react";
-import { MdLocationPin } from "react-icons/md";
 import Link from "next/link";
+import { MdLocationPin } from "react-icons/md";
 
 type Props = {};
 
-async function UserProfileLoading({}: Props) {
+const EditSkeleton = (props: Props) => {
   return (
     <div className="flex flex-col px-6 md:px-16">
       <nav className="flex ml-1" aria-label="Breadcrumb">
@@ -41,8 +41,30 @@ async function UserProfileLoading({}: Props) {
                   clipRule="evenodd"
                 ></path>
               </svg>
+              <Link href={"/profile"}>
+                <div className="ml-1 text-lg font-medium text-gray-700 hover:text-green-600 md:ml-2 dark:text-gray-400 dark:hover:text-green-400">
+                  Profile
+                </div>
+              </Link>
+            </div>
+          </li>
+          <li>
+            <div className="flex items-center">
+              <svg
+                aria-hidden="true"
+                className="w-6 h-6 text-gray-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
               <div className="ml-1 text-lg font-medium text-gray-700 hover:text-green-600 md:ml-2 dark:text-gray-400 dark:hover:text-green-400">
-                Profile
+                Edit
               </div>
             </div>
           </li>
@@ -72,7 +94,7 @@ async function UserProfileLoading({}: Props) {
               disabled
               className="mt-5 text-white bg-green-400 transition-all focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-400 focus:outline-none "
             >
-              Log Out
+              Save
             </button>
           </div>
         </div>
@@ -103,6 +125,6 @@ async function UserProfileLoading({}: Props) {
       </div>
     </div>
   );
-}
+};
 
-export default UserProfileLoading;
+export default EditSkeleton;

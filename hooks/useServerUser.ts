@@ -3,16 +3,23 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/authOptions";
 
 const getUser = async (email: string) => {
-  const user = await prisma.user.findUnique({
-    where: {
-      email: email,
-    },
-    include: {
-      accounts: true,
-    },
-  });
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        email: email,
+      },
+      include: {
+        accounts: true,
+      },
+    });
 
-  return user;
+    return user;
+  } catch (error) {
+    console.log(error);
+    return null;
+  } finally {
+    await prisma.$disconnect();
+  }
 };
 
 export default async function useServerUser() {

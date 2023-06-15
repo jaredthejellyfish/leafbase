@@ -20,8 +20,7 @@ model Account {
   scope             String?
   id_token          String? @db.String
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@map("accounts")
@@ -50,8 +49,39 @@ model User {
   location      String?
   accounts      Account[]
   sessions      Session[]
+  Like          Like[]
 
   @@map("users")
+}
+
+model Strain {
+  id               String  @id @default(auto()) @map("_id") @db.ObjectId
+  slug             String  @unique
+  name             String?
+  subtitle         String?
+  category         String?
+  phenotype        String?
+  averageRating    Float?
+  shortDescription String?
+  nugImage         String?
+  flowerImageSvg   String?
+  topTerpene       String?
+  thcPercent       Float?
+  topEffect        String?
+  cannabinoids     Json?
+  effects          Json?
+  terps            Json?
+  Like             Like[]
+
+  @@map("strains")
+}
+
+model Like {
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  userId   String @db.ObjectId
+  strainId String @db.ObjectId
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  strain   Strain @relation(fields: [strainId], references: [id], onDelete: Cascade)
 }
 
 model VerificationToken {

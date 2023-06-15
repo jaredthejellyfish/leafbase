@@ -6,7 +6,7 @@ import Link from "next/link";
 import SingOutButton from "@/components/SingOutButton/SingOutButton";
 import { AiFillEdit } from "react-icons/ai";
 import moment from "moment";
-import ProfileRevalidator from "./profile.component";
+import ProfileRevalidator from "@/components/ProfileRevalidator/ProfileRevalidator";
 
 type Props = {};
 
@@ -94,34 +94,30 @@ async function UserProfile({}: Props) {
             <h1 className="text-xl font-bold">General information</h1>
             <h2 className="text-lg mt-4">About me</h2>
             <p className="text-sm text-zinc-400 lg:w-4/5 mt-1">
-              {user?.aboutMe || "No information"}
+              {user?.aboutMe}
             </p>
 
             <div className="flex flex-row justify-between md:w-4/5 mt-6">
-              {user?.birthDate && (
-                <span className="mt-3 text-sm dark:text-white">
-                  Birthday:
-                  <p className="text-gray-400">
-                    {`${moment(user.birthDate).format("LL")} - (${Math.ceil(
-                      moment
-                        .duration(
-                          moment()
-                            .year(moment().year())
-                            .month(moment(user.birthDate).month())
-                            .date(moment(user.birthDate).date())
-                            .diff(moment())
-                        )
-                        .asDays()
-                    )} days)`}
-                  </p>
-                </span>
-              )}
-              {user?.languages && (
-                <span className="mt-3 text-sm dark:text-white">
-                  Languages:
-                  <p className="text-gray-400 ">{user?.languages}</p>
-                </span>
-              )}
+              <span className="mt-3 text-sm dark:text-white">
+                Birthday:
+                <p className="text-gray-400 w-60">
+                  {`${moment(user?.birthDate).format("LL")} - (${Math.ceil(
+                    moment
+                      .duration(
+                        moment()
+                          .year(moment().year())
+                          .month(moment(user?.birthDate).month())
+                          .date(moment(user?.birthDate).date())
+                          .diff(moment())
+                      )
+                      .asDays()
+                  )} days)`}
+                </p>
+              </span>
+              <span className="mt-3 text-sm dark:text-white">
+                Languages:
+                <p className="text-gray-400 w-60">{user?.languages}</p>
+              </span>
             </div>
           </div>
         </div>

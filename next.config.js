@@ -8,7 +8,11 @@ const nextConfig = {
       "www.fredmiranda.com",
       "img.freepik.com",
       "www.gravatar.com",
-      "petmeshop.com"
+      "petmeshop.com",
+      "companieslogo.com",
+      "leafly-public.s3-us-west-2.amazonaws.com",
+      "s3-us-west-2.amazonaws.com",
+      "images.leafly.com"
     ],
   },
 };

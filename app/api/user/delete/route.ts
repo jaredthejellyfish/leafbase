@@ -9,14 +9,14 @@ export async function GET(request: Request) {
     if (!session?.user?.email)
       throw new Error("User is not logged in or session expired.");
 
-    const user = await prisma.user.findUnique({
+    const user = await prisma.user.delete({
       where: {
         email: session?.user?.email,
       },
     });
     if (!user) throw new Error("User not found.");
 
-    return NextResponse.json({ user: user });
+    return NextResponse.json({ result: "success" });
   } catch (error) {
     console.log(error);
     return NextResponse.json({ error: error });

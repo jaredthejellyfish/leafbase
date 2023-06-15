@@ -1,0 +1,189 @@
+{
+  "id": 174127,
+  "averageRating": 4.59775571860164,
+  "category": "Hybrid",
+  "flowerImageSvg": "https://public.leafly.com/strains/flowers/gelato-flower.svg",
+  "name": "Gelato",
+  "nugImage": "https://s3-us-west-2.amazonaws.com/leafly-images/flower-images/gelato.jpg",
+  "phenotype": "Hybrid",
+  "reviewCount": 2317,
+  "shortDescriptionPlain": null,
+  "slug": "gelato",
+  "strainTopTerp": "caryophyllene",
+  "subtitle": "aka Gelato 42, Larry Bird, Zelato",
+  "thc": 17,
+  "topEffect": "Euphoric",
+  "cannabinoids": {
+    "cbc": {
+      "displayName": "CBC",
+      "order": 3,
+      "percentile25": null,
+      "percentile50": 0,
+      "percentile75": null
+    },
+    "cbd": {
+      "displayName": "CBD",
+      "order": 2,
+      "percentile25": 0,
+      "percentile50": 0,
+      "percentile75": 0
+    },
+    "cbg": {
+      "displayName": "CBG",
+      "order": 4,
+      "percentile25": null,
+      "percentile50": 0,
+      "percentile75": null
+    },
+    "thc": {
+      "displayName": "THC",
+      "order": 1,
+      "percentile25": 14,
+      "percentile50": 17,
+      "percentile75": 21
+    },
+    "thcv": {
+      "displayName": "THCV",
+      "order": 5,
+      "percentile25": null,
+      "percentile50": 0,
+      "percentile75": null
+    }
+  },
+  "effects": {
+    "aroused": {
+      "name": "aroused",
+      "icon": null,
+      "score": 0.517348287340451,
+      "type": null,
+      "votes": null
+    },
+    "creative": {
+      "name": "creative",
+      "icon": null,
+      "score": 0.269634172989572,
+      "type": null,
+      "votes": null
+    },
+    "energetic": {
+      "name": "energetic",
+      "icon": null,
+      "score": -0.186338574042569,
+      "type": null,
+      "votes": null
+    },
+    "euphoric": {
+      "name": "euphoric",
+      "icon": null,
+      "score": 0.599062562304231,
+      "type": null,
+      "votes": null
+    },
+    "focused": {
+      "name": "focused",
+      "icon": null,
+      "score": -0.0682614689586545,
+      "type": null,
+      "votes": null
+    },
+    "giggly": {
+      "name": "giggly",
+      "icon": null,
+      "score": 0.217973311503666,
+      "type": null,
+      "votes": null
+    },
+    "happy": {
+      "name": "happy",
+      "icon": null,
+      "score": 0.459186031028178,
+      "type": null,
+      "votes": null
+    },
+    "hungry": {
+      "name": "hungry",
+      "icon": null,
+      "score": 0.276231338241683,
+      "type": null,
+      "votes": null
+    },
+    "relaxed": {
+      "name": "relaxed",
+      "icon": null,
+      "score": 0.375242171295486,
+      "type": null,
+      "votes": null
+    },
+    "sleepy": {
+      "name": "sleepy",
+      "icon": null,
+      "score": -0.0491395168132737,
+      "type": null,
+      "votes": null
+    },
+    "talkative": {
+      "name": "talkative",
+      "icon": null,
+      "score": 0.176345736478374,
+      "type": null,
+      "votes": null
+    },
+    "tingly": {
+      "name": "tingly",
+      "icon": null,
+      "score": 0.089435252592079,
+      "type": null,
+      "votes": null
+    },
+    "uplifted": {
+      "name": "uplifted",
+      "icon": null,
+      "score": 0.264903507374636,
+      "type": null,
+      "votes": null
+    }
+  },
+  "terps": {
+    "caryophyllene": {
+      "name": "caryophyllene",
+      "description": null,
+      "score": 0.574328018699739
+    },
+    "humulene": {
+      "name": "humulene",
+      "description": null,
+      "score": 0.188456992587631
+    },
+    "limonene": {
+      "name": "limonene",
+      "description": null,
+      "score": 0.37741260630906
+    },
+    "linalool": {
+      "name": "linalool",
+      "description": null,
+      "score": 0.150228738669604
+    },
+    "myrcene": {
+      "name": "myrcene",
+      "description": null,
+      "score": 0.132506371099503
+    },
+    "ocimene": {
+      "name": "ocimene",
+      "description": null,
+      "score": 0.0246977273378624
+    },
+    "pinene": {
+      "name": "pinene",
+      "description": null,
+      "score": 0.133394340921237
+    },
+    "terpinolene": {
+      "name": "terpinolene",
+      "description": null,
+      "score": 0.0172766813186813
+    }
+  },
+  "distanceMi": 0.6302959314649338
+}

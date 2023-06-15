@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/lib/authOptions";
+import { authOptions } from "@/auth/authOptions";
 import moment from "moment";
 
 export async function POST(request: Request) {
@@ -29,6 +29,7 @@ export async function POST(request: Request) {
         },
       })
       .then((user) => {
+        console.log("User updated successfully.");
         return user;
       });
   } catch (error) {

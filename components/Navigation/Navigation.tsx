@@ -87,15 +87,15 @@ const Navigation = (props: Props) => {
   const avatar = {};
 
   return (
-    <nav className="drop-shadow-lg absolute w-screen h-16 text-black dark:text-white z-50">
-      <div className="relative grid grid-cols-3 grid-rows-1 gap-0 px-6 md:px-16 h-full z-20 bg-gray-100 dark:bg-zinc-900">
+    <nav className="absolute drop-shadow-lg w-screen h-16 text-black dark:text-white z-50">
+      <div className="z-50 relative grid grid-cols-3 grid-rows-1 gap-0 px-6 md:px-16 h-full bg-gray-100 dark:bg-zinc-900">
         <div className="col-span-1 flex justify-start items-center">
           <Link
             href="/"
             className="flex justify-start items-center gap-5 text-xl"
           >
             <Image
-              src="https://flowbite.com/docs/images/logo.svg"
+              src="https://companieslogo.com/img/orig/LFLY-e243e87c.png?t=1676454310"
               alt="logo"
               width={38}
               height={38}
@@ -140,8 +140,9 @@ const Navigation = (props: Props) => {
             <Avatar
               className="rounded-full"
               src={
-                (session?.user?.image && session.user.image) ||
-                `https://www.gravatar.com/avatar/${session?.user?.name}?d=identicon`
+                session?.user?.image
+                  ? session?.user?.image
+                  : `https://www.gravatar.com/avatar/${session?.user?.name}?d=identicon`
               }
               alt="profile"
               size="32px"
@@ -178,7 +179,7 @@ const Navigation = (props: Props) => {
         </div>
       </div>
       <motion.div
-        className="absolute w-full bg-slate-200 dark:bg-zinc-800/100 divide-y divide-dashed pl-5 pr-5 divide-slate-400/25 pt-5 top-16 left-0 z-50 h-52"
+        className=" w-full bg-slate-200 dark:bg-zinc-800/100 divide-y divide-dashed pl-5 pr-5 divide-slate-400/25 pt-5 top-16 left-0 h-52"
         variants={navigationMenu.container}
         initial="closed"
         animate={isOpen ? "open" : "closed"}

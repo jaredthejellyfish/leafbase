@@ -4,7 +4,7 @@ import Link from "next/link";
 
 type Props = {};
 
-async function UserProfileLoading({}: Props) {
+async function UserProfileLoading(props: Props) {
   return (
     <div className="flex flex-col px-6 md:px-16">
       <nav className="flex ml-1" aria-label="Breadcrumb">
@@ -70,9 +70,9 @@ async function UserProfileLoading({}: Props) {
             <button
               type="button"
               disabled
-              className="mt-5 text-white bg-green-400 transition-all focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-400 focus:outline-none "
+              className="mt-5 text-white bg-green-700 transition-all focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-700 focus:outline-none "
             >
-              Log Out
+              ...
             </button>
           </div>
         </div>
@@ -88,14 +88,14 @@ async function UserProfileLoading({}: Props) {
               <div className="w-2/3 h-3 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse rounded-md"></div>
               <div className="w-2/4 h-3 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse rounded-md"></div>
             </div>
-            <div className="flex flex-row justify-between md:w-3/5 mt-6">
+            <div className="flex flex-row justify-between md:w-4/5 mt-6">
               <span className="mt-3 text-sm dark:text-white">
                 Birthday:
-                <div className="h-3 w-24 mt-1 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse rounded-md"></div>
+                <div className="h-3 mt-1 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse rounded-md w-60"></div>
               </span>
               <span className="mt-3 text-sm dark:text-white">
                 Languages:
-                <div className="h-3 w-44 mt-1 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse rounded-md"></div>
+                <div className="h-3 mt-1 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse rounded-md w-60"></div>
               </span>
             </div>
           </div>

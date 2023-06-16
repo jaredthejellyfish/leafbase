@@ -2,9 +2,7 @@ import React from "react";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
-type Props = {};
-
-const DeleteAccount = (props: Props) => {
+const DeleteAccount = () => {
   const router = useRouter();
   const deleteUser = async () => {
     const result = window.confirm(
@@ -26,7 +24,7 @@ const DeleteAccount = (props: Props) => {
   return (
     <button
       type="button"
-      className="w-1/2 mt-4 text-white bg-green-700 hover:bg-green-800 transition-all focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mr-2 dark:bg-green-700 dark:hover:bg-green-800 focus:outline-none dark:focus:ring-blue-800"
+      className="w-1/2 mt-4 text-white border border-gray-400 transition-all focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mr-2 hover:dark:bg-gray-50/10 focus:outline-none dark:focus:ring-blue-800"
       onClick={() => deleteUser()}
     >
       Delete Account

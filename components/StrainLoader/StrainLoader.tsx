@@ -27,39 +27,30 @@ const fetchStrains = async ({ pageParam = 1 }) => {
 const StrainLoader = (props: Props) => {
   const { ref, inView, entry } = useInView();
 
-  const {
-    data,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetching,
-    isFetchingNextPage,
-    status,
-  } = useInfiniteQuery({
-    queryKey: ["strains"],
-    queryFn: fetchStrains,
-    getNextPageParam: (lastPage, _pages) => {
-      const totalPages = lastPage.totalPages;
-      const lastPageNumber = lastPage.page;
+  const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery({
+      queryKey: ["strains"],
+      queryFn: fetchStrains,
+      getNextPageParam: (lastPage, _pages) => {
+        const totalPages = lastPage.totalPages;
+        const lastPageNumber = lastPage.page;
 
-      if (lastPageNumber < totalPages) {
-        return lastPageNumber + 1;
-      } else {
-        return undefined;
-      }
-    },
-  });
-
-  const loadMoreCallback = () => {
-    fetchNextPage();
-  };
+        if (lastPageNumber < totalPages) {
+          return lastPageNumber + 1;
+        } else {
+          return undefined;
+        }
+      },
+    });
 
   useEffect(() => {
+    const loadMoreCallback = () => {
+      fetchNextPage();
+    };
     if (inView) {
-      console.log("in view");
       loadMoreCallback();
     }
-  }, [inView]);
+  }, [inView, fetchNextPage]);
 
   return (
     <>
@@ -88,8 +79,16 @@ const StrainLoader = (props: Props) => {
               liked={true}
             />
           ))}
-      <div ref={ref} className="flex w-full h-10 bg-green-700 rounded items-center justify-center m-5 text-white">
-        {isFetchingNextPage ? "Loading more..." : hasNextPage ? "Load more" : "Nothing more to load"}
+      <div className="flex w-full h-10 rounded items-center justify-center mt-2 text-white"></div>
+      <div
+        ref={ref}
+        className="flex w-full h-10 bg-green-700 rounded items-center justify-center mt-10 mb-4 text-white"
+      >
+        {isFetchingNextPage
+          ? "Loading more..."
+          : hasNextPage
+          ? "Load more"
+          : "Nothing more to load"}
       </div>
     </>
   );

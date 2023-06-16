@@ -63,6 +63,7 @@ model Strain {
   phenotype        String?
   averageRating    Float?
   shortDescription String?
+  description      String?
   nugImage         String?
   flowerImageSvg   String?
   topTerpene       String?

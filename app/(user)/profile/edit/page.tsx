@@ -9,7 +9,6 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { AiOutlineClose } from "react-icons/ai";
 import moment from "moment";
-import { useBeforeunload } from "react-beforeunload";
 import Modal from "@/components/Modal/Modal";
 import UserProfileLoading from "../loading";
 import DeleteAccount from "@/components/DeleteAccount/DeleteAccount";
@@ -63,11 +62,6 @@ const EditProfile = (props: Props) => {
     user?.location,
   ]);
 
-  useBeforeunload((event: BeforeUnloadEvent) => {
-    event.preventDefault();
-    return "Are you sure you want to leave this page?";
-  });
-
   const hasChanges = () => {
     return (
       name !== user?.name ||
@@ -103,7 +97,7 @@ const EditProfile = (props: Props) => {
     } catch (err) {
       console.log("error!", err);
     } finally {
-      queryClient.invalidateQueries("user-profile");
+      queryClient.invalidateQueries({ queryKey: ["user-profile"] });
     }
   };
 

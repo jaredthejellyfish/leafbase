@@ -20,6 +20,7 @@ type Props = {
   effects: any | undefined;
   terps: any | undefined;
   liked: boolean | undefined;
+  priority: boolean | undefined;
 };
 
 const StarRating = (props: { rating: number }) => {
@@ -49,25 +50,29 @@ const StarRating = (props: { rating: number }) => {
 
 const StrainCard = (props: Props) => {
   return (
-    <div className="mt-4 p-5 rounded-xl shadow dark:bg-zinc-900 flex md:flex-wrap flex-nowrap gap-5">
+    <div className="mt-4 p-5 rounded-xl shadow dark:bg-zinc-900 flex md:flex-wrap flex-nowrap gap-5 md:max-w-xs dark:border-opacity-0 border border-zinc-100">
       {props.nugImage && props.name && (
-        <div className="md:w-full w-1/2 flex rounded-lg bg-white items-center justify-center aspect-square">
+        <div className=" w-1/2 flex rounded-lg items-center justify-center md:w-full dark:border-opacity-0 border border-zinc-100">
           <Image
-            className="rounded-lg w-full dark:shadow"
+            style={{ maxHeight: "250px" }}
+            className="rounded-lg w-full h-full object-cover bg-white aspect-square py-5"
             src={props.nugImage}
             alt={props.name}
-            width={130}
-            height={130}
+            width={350}
+            height={350}
+            priority={props.priority}
           />
         </div>
       )}
       <div className="md:w-full w-1/2">
-        <div className="mt-2 bg-gray-200 dark:shadow rounded px-2 py-1 text-xs font-medium dark:bg-zinc-700 inline-block">
+        <div className="bg-gray-200 dark:shadow rounded px-2 py-1 text-xs font-medium dark:bg-zinc-700 inline-block">
           {props.phenotype}
         </div>
         <p className="px-1 font-medium mt-1">{props.name}</p>
-        <p className="px-1 text-sm font-normal text-gray-500 h-14">
-          {props.subtitle}
+        <p className="px-1 text-sm font-normal text-gray-500 h-14 line-clamp-3">
+          {props.subtitle
+            ? props.subtitle
+            : `No description found for ${props.name}`}
         </p>
         <div className="flex flex-row text-sm items-center p-1 gap-1 mt-2">
           <span className="h-4 w-6 flex justify-center items-center">
@@ -77,9 +82,11 @@ const StrainCard = (props: Props) => {
         </div>
         <div className="flex flex-row text-zinc-500 dark:text-zinc-300 text-xs px-1 gap-4">
           <span className="">THC {props.thcPercent && props.thcPercent}%</span>
-          <span className="">CBD 0%</span>
+          <span className="">
+            CBD: {props.cannabinoids && props.cannabinoids.cbd.percentile50}%
+          </span>
         </div>
-        <div className="flex flex-row gap-3 px-1 font-medium mt-2 text-xs capitalize items-center">
+        <div className="flex flex-col md:flex-row md:gap-3 px-1 font-medium mt-2 text-xs capitalize md:items-center">
           <span>O {props.topEffect}</span>
           <span>O {props.topTerpene}</span>
         </div>

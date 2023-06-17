@@ -56,7 +56,7 @@ const Strains = async (props: Props) => {
                   cannabinoids={strain.cannabinoids || undefined}
                   effects={strain.effects || undefined}
                   terps={strain.terps || undefined}
-                  liked={true}
+                  liked={strain.Like.length > 0}
                   priority={true}
                 />
               ))}

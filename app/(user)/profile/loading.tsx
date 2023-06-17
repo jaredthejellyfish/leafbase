@@ -1,6 +1,7 @@
 import React from "react";
 import { MdLocationPin } from "react-icons/md";
 import Link from "next/link";
+import Skeleton from "react-loading-skeleton";
 
 type Props = {};
 
@@ -97,6 +98,56 @@ async function UserProfileLoading(props: Props) {
                 Languages:
                 <div className="h-3 mt-1 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse rounded-md w-60"></div>
               </span>
+            </div>
+          </div>
+          <div className="flex flex-col p-7 rounded-xl shadow-md w-full dark:bg-zinc-900">
+            <span className="text-xl font-bold ">Liked Strains </span>
+            <div className="flex flex-row flex-wrap items-center justify-center md:justify-start mt-3 gap-y-3">
+              <div className="mr-3 border p-2 flex flex-col gap-2 rounded shadow dark:border-zinc-600">
+                <div
+                  style={{ maxHeight: "90px", maxWidth: "90px" }}
+                  className="aspect-square bg-white flex items-center justify-center rounded-md w-24"
+                ></div>
+                <h1 className="text-semi text-sm">
+                  <div className="h-3 w-20 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse rounded-md"></div>
+                </h1>
+              </div>
+              <div className="mr-3 border p-2 flex flex-col gap-2 rounded shadow dark:border-zinc-600">
+                <div
+                  style={{ maxHeight: "90px", maxWidth: "90px" }}
+                  className="aspect-square bg-white flex items-center justify-center rounded-md w-24"
+                ></div>
+                <h1 className="text-semi text-sm">
+                  <div className="h-3 w-20 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse rounded-md"></div>
+                </h1>
+              </div>
+              <div className="mr-3 border p-2 flex flex-col gap-2 rounded shadow dark:border-zinc-600">
+                <div
+                  style={{ maxHeight: "90px", maxWidth: "90px" }}
+                  className="aspect-square bg-white flex items-center justify-center rounded-md w-24"
+                ></div>
+                <h1 className="text-semi text-sm">
+                  <div className="h-3 w-20 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse rounded-md"></div>
+                </h1>
+              </div>
+              <div className="mr-3 border p-2 flex flex-col gap-2 rounded shadow dark:border-zinc-600">
+                <div
+                  style={{ maxHeight: "90px", maxWidth: "90px" }}
+                  className="aspect-square bg-white flex items-center justify-center rounded-md w-24"
+                ></div>
+                <h1 className="text-semi text-sm">
+                  <div className="h-3 w-20 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse rounded-md"></div>
+                </h1>
+              </div>
+              <div className="mr-3 border p-2 flex flex-col gap-2 rounded shadow dark:border-zinc-600">
+                <div
+                  style={{ maxHeight: "90px", maxWidth: "90px" }}
+                  className="aspect-square bg-white flex items-center justify-center rounded-md w-24"
+                ></div>
+                <h1 className="text-semi text-sm">
+                  <div className="h-3 w-20 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse rounded-md"></div>
+                </h1>
+              </div>
             </div>
           </div>
         </div>

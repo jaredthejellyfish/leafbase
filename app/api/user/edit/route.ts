@@ -29,7 +29,6 @@ export async function POST(request: Request) {
         },
       })
       .then((user) => {
-        console.log("User updated successfully.");
         return user;
       });
   } catch (error) {

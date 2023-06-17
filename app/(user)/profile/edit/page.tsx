@@ -94,8 +94,8 @@ const EditProfile = (props: Props) => {
         }),
       });
       router.push("/profile?revalidate=true");
-    } catch (err) {
-      console.log("error!", err);
+    } catch (error) {
+      console.log(error);
     } finally {
       queryClient.invalidateQueries({ queryKey: ["user-profile"] });
     }
@@ -106,8 +106,8 @@ const EditProfile = (props: Props) => {
       const res = await fetch("https://ipapi.co/json/");
       const data = await res.json();
       setLocation(data.city + ", " + data.country_name);
-    } catch (err) {
-      console.log("error!", err);
+    } catch (error) {
+      console.log(error);
     }
   };
 

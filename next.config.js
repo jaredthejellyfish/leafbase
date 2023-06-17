@@ -12,7 +12,8 @@ const nextConfig = {
       "companieslogo.com",
       "leafly-public.s3-us-west-2.amazonaws.com",
       "s3-us-west-2.amazonaws.com",
-      "images.leafly.com"
+      "images.leafly.com",
+      "avatars.githubusercontent.com"
     ],
   },
 };

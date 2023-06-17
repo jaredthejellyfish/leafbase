@@ -7,6 +7,7 @@ import SingOutButton from "@/components/SingOutButton/SingOutButton";
 import { AiFillEdit } from "react-icons/ai";
 import moment from "moment";
 import ProfileRevalidator from "@/components/ProfileRevalidator/ProfileRevalidator";
+import LikedStrains from "@/components/LikedStrains/LikedStrains";
 
 type Props = {};
 
@@ -119,6 +120,9 @@ async function UserProfile({}: Props) {
                 <p className="text-gray-400 w-60">{user?.languages}</p>
               </span>
             </div>
+          </div>
+          <div className="flex flex-col p-7 rounded-xl shadow-md w-full dark:bg-zinc-900">
+            <LikedStrains />
           </div>
         </div>
       </div>

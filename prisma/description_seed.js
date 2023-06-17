@@ -17,7 +17,7 @@ async function processPage(slug) {
       );
       await button.click();
       await page.screenshot({ path: `./scrapingbee_homepage.jpg` });
-    } catch (err) {}
+    } catch (error) {}
 
     var element = await page.waitForXPath(
       '//*[@id="__next"]/div[15]/main/div[1]/div[2]/section[1]/section/div[2]/div/div/div/p',
@@ -25,7 +25,7 @@ async function processPage(slug) {
     );
 
     var text = await page.evaluate((element) => element.textContent, element);
-  } catch (err) {
+  } catch (error) {
     console.log(`Error: ${err.message}`);
   } finally {
     await browser.close();

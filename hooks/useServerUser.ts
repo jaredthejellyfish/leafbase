@@ -8,9 +8,6 @@ const getUser = async (email: string) => {
       where: {
         email: email,
       },
-      include: {
-        accounts: true,
-      },
     });
 
     return user;

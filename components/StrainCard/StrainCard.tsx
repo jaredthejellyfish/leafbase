@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import StrainLikeButton from "@/components/StrainLikeButton/StrainLikeButton";
+import StarRating from "@/components/StarRating/StarRating";
 
 type Props = {
   id: string | undefined;
@@ -23,39 +25,15 @@ type Props = {
   priority: boolean | undefined;
 };
 
-const StarRating = (props: { rating: number }) => {
-  const rating = props.rating;
-  const stars = [];
-  for (let i = 0; i < 5; i++) {
-    if (i < rating) {
-      stars.push(
-        <span className="h-4 w-4 flex justify-center items-center" key={i}>
-          ★
-        </span>
-      );
-    } else {
-      stars.push(
-        <span className="h-4 w-4 flex justify-center items-center" key={i}>
-          ☆
-        </span>
-      );
-    }
-  }
-  return (
-    <div className="flex flex-row gap-1 text-black dark:text-zinc-400 dark:tex-white">
-      {stars}
-    </div>
-  );
-};
-
 const StrainCard = (props: Props) => {
   return (
-    <div className="mt-4 p-5 rounded-xl shadow dark:bg-zinc-900 flex md:flex-wrap flex-nowrap gap-5 md:max-w-xs dark:border-opacity-0 border border-zinc-100">
+    <div className="relative mt-4 p-5 rounded-xl shadow dark:bg-zinc-900 flex md:flex-wrap flex-nowrap gap-5 md:max-w-xs dark:border-opacity-0 border border-zinc-100">
+      <StrainLikeButton liked={props.liked} id={props.id} />
       {props.nugImage && props.name && (
-        <div className=" w-1/2 flex rounded-lg items-center justify-center md:w-full dark:border-opacity-0 border border-zinc-100">
+        <div className="w-1/2 flex rounded-lg items-center justify-center md:w-full dark:border-opacity-0 border border-zinc-200">
           <Image
             style={{ maxHeight: "250px" }}
-            className="rounded-lg w-full h-full object-cover bg-white aspect-square py-5"
+            className="rounded-lg w-full h-full object-contain border border-white bg-white aspect-square"
             src={props.nugImage}
             alt={props.name}
             width={350}
@@ -90,14 +68,13 @@ const StrainCard = (props: Props) => {
           <span>O {props.topEffect}</span>
           <span>O {props.topTerpene}</span>
         </div>
-        <div className="w-full text-sm py-2 mt-3 border rounded border-green-700 text-green-700 dark:border-zinc-500 dark:text-zinc-500">
-          <Link
-            className="flex items-center justify-center"
-            href={`/strains/${props.slug}`}
-          >
-            Learn More
-          </Link>
-        </div>
+
+        <Link
+          className="flex items-center justify-center w-full text-sm py-2 mt-3 border rounded border-green-700 text-green-700 dark:hover:bg-zinc-500 dark:hover:text-white hover:bg-green-700 hover:text-white transition dark:border-zinc-500 dark:text-zinc-500"
+          href={`/strains/${props.slug}`}
+        >
+          Learn More
+        </Link>
       </div>
     </div>
   );

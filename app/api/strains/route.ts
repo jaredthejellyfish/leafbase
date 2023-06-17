@@ -56,7 +56,7 @@ export async function POST(request: Request) {
     const count = await getCount();
     if (count === null) return new Error("Error fetching count.");
 
-    const strains = await getStrains((page - 1) * take, take, user.id);
+    const strains = await getStrains((page - 1) * take, take, user?.id);
     if (strains === null) throw new Error("Error fetching strains.");
 
     const totalPages = Math.ceil(count / take);

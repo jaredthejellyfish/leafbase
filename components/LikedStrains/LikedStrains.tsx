@@ -7,6 +7,13 @@ import Link from "next/link";
 
 type Props = {};
 
+type Strain = {
+  id: string;
+  slug: string;
+  nugImage: string;
+  name: string;
+};
+
 const LikedStrains = (props: Props) => {
   const { strains, isLoading, isFetching, error } = useLikedStrains();
   return (
@@ -51,7 +58,7 @@ const LikedStrains = (props: Props) => {
       ) : (
         <div className="flex flex-row flex-wrap items-center justify-center md:justify-start mt-3 gap-y-3">
           {strains &&
-            strains.map((strain) => (
+            strains.map((strain: Strain) => (
               <Link
                 key={strain.id}
                 className="mr-3 border p-2 flex flex-col gap-2 rounded shadow dark:border-zinc-600"

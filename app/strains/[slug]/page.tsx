@@ -8,10 +8,45 @@ import Link from "next/link";
 
 type Props = { params: { slug: string } };
 
+type Colors = {
+  [key: string]: string;
+};
+
+const terpenes: Colors = {
+  myrcene: "#7EBF73",
+  caryophyllene: "#B25C52",
+  terpinolene: "#4A7597",
+  linalool: "#9A67B5",
+  pinene: "#3B8A5A",
+  limonene: "#F9B122",
+  ocimene: "#2AA39F",
+};
+
+const effects: Colors = {
+  Hungry: "#FF8C00",
+  Giggly: "#FF69B4",
+  Euphoric: "#9370DB",
+  Energetic: "#F5A623",
+  Uplifted: "#20B2AA",
+  Aroused: "#FF4500",
+  Tingly: "#BA55D3",
+  Happy: "#00FF00",
+  Focused: "#FFD700",
+  null: "#778899",
+  Talkative: "#4682B4",
+  Creative: "#FFA07A",
+  Relaxed: "#8B4513",
+  Sleepy: "#1E90FF",
+};
+
 export async function generateStaticParams() {
   const strains = await prisma.strain.findMany({});
 
-  return strains.map((strain) => ({
+  const filteredStrains = strains.filter(
+    (strain) => strain.description && strain.description.length > 1
+  );
+
+  return filteredStrains.map((strain) => ({
     slug: strain.slug,
   }));
 }
@@ -150,8 +185,20 @@ const StrainPage = async (props: Props) => {
               <StarRating rating={strain.averageRating || 0} />
             </span>
             <div className="flex flex-row mt-1 text-sm gap-3 font-medium capitalize">
-              <span>O {strain.topEffect}</span>
-              <span>O {strain.topTerpene}</span>
+              <span className="flex flex-row items-center gap-1">
+                <div
+                  style={{ backgroundColor: effects[strain.topEffect] }}
+                  className="rounded-full w-2.5 h-2.5"
+                ></div>
+                <p className="p-0">{strain.topEffect}</p>
+              </span>
+              <span className="flex flex-row items-center gap-1">
+                <div
+                  style={{ backgroundColor: terpenes[strain.topTerpene] }}
+                  className="rounded-full w-2.5 h-2.5"
+                ></div>
+                <p className="p-0">{strain.topTerpene}</p>
+              </span>
             </div>
           </div>
         </div>

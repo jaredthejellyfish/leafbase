@@ -5,24 +5,55 @@ import StrainLikeButton from "@/components/StrainLikeButton/StrainLikeButton";
 import StarRating from "@/components/StarRating/StarRating";
 
 type Props = {
-  id: string | undefined;
-  slug: string | undefined;
-  name: string | undefined;
-  subtitle: string | undefined;
-  category: string | undefined;
-  phenotype: string | undefined;
-  averageRating: number | undefined;
-  shortDescription: string | undefined;
-  nugImage: string | undefined;
-  flowerImageSvg: string | undefined;
-  topTerpene: string | undefined;
-  thcPercent: number | undefined;
-  topEffect: string | undefined;
-  cannabinoids: any | undefined;
-  effects: any | undefined;
-  terps: any | undefined;
-  liked: boolean | undefined;
-  priority: boolean | undefined;
+  id: string;
+  slug: string;
+  name: string;
+  subtitle: string;
+  category: string;
+  phenotype: string;
+  averageRating: number;
+  shortDescription: string;
+  nugImage: string;
+  flowerImageSvg: string;
+  topTerpene: string;
+  thcPercent: number;
+  topEffect: string;
+  cannabinoids: any;
+  effects: any;
+  terps: any;
+  liked: boolean;
+  priority: boolean;
+};
+
+type Colors = {
+  [key: string]: string;
+};
+
+const terpenes: Colors = {
+  myrcene: "#7EBF73",
+  caryophyllene: "#B25C52",
+  terpinolene: "#4A7597",
+  linalool: "#9A67B5",
+  pinene: "#3B8A5A",
+  limonene: "#F9B122",
+  ocimene: "#2AA39F",
+};
+
+const effects: Colors = {
+  Hungry: "#FF8C00",
+  Giggly: "#FF69B4",
+  Euphoric: "#9370DB",
+  Energetic: "#F5A623",
+  Uplifted: "#20B2AA",
+  Aroused: "#FF4500",
+  Tingly: "#BA55D3",
+  Happy: "#00FF00",
+  Focused: "#FFD700",
+  null: "#778899",
+  Talkative: "#4682B4",
+  Creative: "#FFA07A",
+  Relaxed: "#8B4513",
+  Sleepy: "#1E90FF",
 };
 
 const StrainCard = (props: Props) => {
@@ -65,8 +96,22 @@ const StrainCard = (props: Props) => {
           </span>
         </div>
         <div className="flex flex-col md:flex-row md:gap-3 px-1 font-medium mt-2 text-xs capitalize md:items-center">
-          <span>O {props.topEffect}</span>
-          <span>O {props.topTerpene}</span>
+          <span
+            className="flex flex-row items-center gap-1"
+          >
+            <div
+              style={{ backgroundColor: effects[props.topEffect] }}
+              className="rounded-full w-2.5 h-2.5"
+            ></div>
+             <p className="p-0">{props.topEffect}</p>
+          </span>
+          <span className="flex flex-row items-center gap-1">
+            <div
+              style={{ backgroundColor: terpenes[props.topTerpene] }}
+              className="rounded-full w-2.5 h-2.5"
+            ></div>
+            <p className="p-0">{props.topTerpene}</p>
+          </span>
         </div>
 
         <Link

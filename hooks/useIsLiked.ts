@@ -2,22 +2,10 @@ import prisma from "@/lib/prisma";
 import useServerUser from "./useServerUser";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/auth/authOptions";
+import { Strain } from "@prisma/client";
 
 type Props = {
   strainID: string;
-};
-
-type Strain = {
-  id: string;
-  slug: string;
-  name: string;
-};
-
-type Like = {
-  id: string;
-  strainId: string;
-  userId: string;
-  strain: Strain;
 };
 
 const getIsLiked = async (user: any, strainID: string) => {
@@ -30,7 +18,7 @@ const getIsLiked = async (user: any, strainID: string) => {
         strain: true,
       },
     });
-    const likedStrains = likes.map((strain: Like) => strain.strain);
+    const likedStrains = likes.map((like) => like.strain);
     const isLiked = likedStrains.some(
       (strain: Strain) => strain.id === strainID
     );

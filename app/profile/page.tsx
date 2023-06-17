@@ -11,6 +11,10 @@ import LikedStrains from "@/components/LikedStrains/LikedStrains";
 
 type Props = {};
 
+export const metadata = {
+  title: "Profile - Strainbase",
+};
+
 async function UserProfile({}: Props) {
   const user = await useServerUser();
 

@@ -5,6 +5,8 @@ import StarRating from "@/components/StarRating/StarRating";
 import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
 import { TbMedicalCross } from "react-icons/tb";
 import Link from "next/link";
+import StrainLikeButton from "@/components/StrainLikeButton/StrainLikeButton";
+import { Metadata } from "next/types";
 
 type Props = { params: { slug: string } };
 
@@ -51,6 +53,20 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const slug = params.slug;
+
+  const strain = await prisma.strain.findUnique({
+    where: {
+      slug: slug,
+    },
+  });
+
+  return {
+    title: `${strain?.name} - Strainbase` || "Strain",
+  };
+}
+
 const getStrainBySlug = async (slug: string) => {
   try {
     const strain = await prisma.strain.findUnique({
@@ -71,6 +87,7 @@ const getStrainBySlug = async (slug: string) => {
 const StrainPage = async (props: Props) => {
   const strain = await getStrainBySlug(props.params.slug);
   if (!strain) return <div>Error not found</div>;
+  // TODO: Iplement useIsLiked hook
 
   return (
     <div className="flex flex-col items-center justify-center px-4 md:px-1/4">
@@ -140,8 +157,11 @@ const StrainPage = async (props: Props) => {
       </nav>
       <div
         id="card"
-        className="md:w-4/5 flex flex-col items-center justify-center border-zinc-300 dark:border-transparent dark:bg-zinc-900 shadow border rounded pb-8"
+        className="relative md:w-4/5 flex flex-col items-center justify-center border-zinc-300 dark:border-transparent dark:bg-zinc-900 shadow border rounded pb-8"
       >
+        <div className="absolute top-5 right-5 md:right-10 transform scale-125">
+          <StrainLikeButton liked={true} id={strain.id} />
+        </div>
         <div
           id="header"
           className="flex items-center justify-center md:flex-row flex-col gap-8 pt-8 px-5 md:px-8 w-full"
@@ -187,14 +207,20 @@ const StrainPage = async (props: Props) => {
             <div className="flex flex-row mt-1 text-sm gap-3 font-medium capitalize">
               <span className="flex flex-row items-center gap-1">
                 <div
-                  style={{ backgroundColor: effects[strain.topEffect] }}
+                  style={{
+                    backgroundColor:
+                      effects[strain.topEffect || "rgb(70, 130, 180)"],
+                  }}
                   className="rounded-full w-2.5 h-2.5"
                 ></div>
                 <p className="p-0">{strain.topEffect}</p>
               </span>
               <span className="flex flex-row items-center gap-1">
                 <div
-                  style={{ backgroundColor: terpenes[strain.topTerpene] }}
+                  style={{
+                    backgroundColor:
+                      terpenes[strain.topTerpene || "rgb(70, 130, 180)"],
+                  }}
                   className="rounded-full w-2.5 h-2.5"
                 ></div>
                 <p className="p-0">{strain.topTerpene}</p>

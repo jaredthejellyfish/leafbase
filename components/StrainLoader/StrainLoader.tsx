@@ -82,7 +82,7 @@ const StrainLoader = (props: Props) => {
                 cannabinoids={strain.cannabinoids || undefined}
                 effects={strain.effects || undefined}
                 terps={strain.terps || undefined}
-                liked={strain.Like.length > 0}
+                liked={strain.likes.length > 0}
                 priority={false}
               />
             ) : null

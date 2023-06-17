@@ -50,9 +50,8 @@ const Navigation = (props: Props) => {
         height: 200,
         y: 0,
         transition: {
-          y: { duration: 0 },
+          y: { duration: 0.2, when: "beforeChildren" },
         },
-        when: "beforeChildren",
       },
       closed: {
         height: 0,

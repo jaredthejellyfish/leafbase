@@ -51,14 +51,15 @@ model User {
   updatedAt     DateTime  @updatedAt
   accounts      Account[]
   sessions      Session[]
-  Like          Like[]
+  likes          Like[]
+  reviews        Review[]
 
   @@map("users")
 }
 
 model Strain {
-  id               String  @id @default(auto()) @map("_id") @db.ObjectId
-  slug             String  @unique
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  slug             String   @unique
   name             String?
   subtitle         String?
   category         String?
@@ -74,9 +75,24 @@ model Strain {
   cannabinoids     Json?
   effects          Json?
   terps            Json?
-  Like             Like[]
+  likes            Like[]
+  reviews          Review[]
 
   @@map("strains")
+}
+
+model Review {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  strainId  String   @db.ObjectId
+  rating    Float
+  title     String?
+  body      String?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  strain    Strain   @relation(fields: [strainId], references: [id], onDelete: Cascade)
+
+  @@map("reviews")
 }
 
 model Like {

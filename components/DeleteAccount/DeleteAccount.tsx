@@ -24,7 +24,7 @@ const DeleteAccount = () => {
   return (
     <button
       type="button"
-      className="w-1/2 mt-4 text-white border border-gray-400 transition-all focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mr-2 hover:dark:bg-gray-50/10 focus:outline-none dark:focus:ring-blue-800"
+      className="w-1/2 mt-4 dark:text-white border border-gray-400 transition-all focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mr-2 hover:dark:bg-gray-50/10 focus:outline-none dark:focus:ring-blue-800"
       onClick={() => deleteUser()}
     >
       Delete Account

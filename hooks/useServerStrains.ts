@@ -1,9 +1,7 @@
 import prisma from "@/lib/prisma";
 import useServerUser from "./useServerUser";
 
-type User = {
-  id: string;
-};
+
 
 const getStrains = async (skip: number, take: number, userId: string) => {
   try {
@@ -11,7 +9,7 @@ const getStrains = async (skip: number, take: number, userId: string) => {
       skip: skip,
       take: take,
       include: {
-        Like: {
+        likes: {
           where: {
             userId: userId,
           },

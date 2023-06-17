@@ -6,6 +6,10 @@ import StrainLoader from "@/components/StrainLoader/StrainLoader";
 
 type Props = {};
 
+export const metadata = {
+  title: "Strains - Strainbase",
+};
+
 const Strains = async (props: Props) => {
   const { strains, count, error } = await useServerStrains(1, 9);
   if (error) {
@@ -42,21 +46,21 @@ const Strains = async (props: Props) => {
                   key={strain.slug}
                   id={strain.id}
                   slug={strain.slug}
-                  name={strain.name || undefined}
-                  subtitle={strain.subtitle || undefined}
-                  category={strain.category || undefined}
-                  phenotype={strain.phenotype || undefined}
-                  averageRating={strain.averageRating || undefined}
-                  shortDescription={strain.shortDescription || undefined}
-                  nugImage={strain.nugImage || undefined}
-                  flowerImageSvg={strain.flowerImageSvg || undefined}
-                  topTerpene={strain.topTerpene || undefined}
-                  thcPercent={strain.thcPercent || undefined}
-                  topEffect={strain.topEffect || undefined}
-                  cannabinoids={strain.cannabinoids || undefined}
-                  effects={strain.effects || undefined}
-                  terps={strain.terps || undefined}
-                  liked={strain.Like.length > 0}
+                  name={strain.name || "Unknown"}
+                  subtitle={strain.subtitle || "Unknown"}
+                  category={strain.category || "Unknown"}
+                  phenotype={strain.phenotype || "Unknown"}
+                  averageRating={strain.averageRating || 0}
+                  shortDescription={strain.shortDescription || "Unknown"}
+                  nugImage={strain.nugImage || "Unknown"}
+                  flowerImageSvg={strain.flowerImageSvg || "Unknown"}
+                  topTerpene={strain.topTerpene || "Unknown"}
+                  thcPercent={strain.thcPercent || 0}
+                  topEffect={strain.topEffect || "Unknown"}
+                  cannabinoids={strain.cannabinoids || "Unknown"}
+                  effects={strain.effects || "Unknown"}
+                  terps={strain.terps || "Unknown"}
+                  liked={strain.likes.length > 0}
                   priority={true}
                 />
               ))}

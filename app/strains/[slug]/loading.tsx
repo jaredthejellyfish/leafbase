@@ -1,14 +1,12 @@
-import React from 'react'
+import React from "react";
 
-const StrainPageLoading = () => {
+const LoadingStrainPage = () => {
   return (
     <div className="flex flex-col items-center justify-center px-4 md:px-1/4">
       <nav className="flex ml-1 w-full md:w-4/5 mb-2" aria-label="Breadcrumb">
         <ol className="inline-flex items-center space-x-1 md:space-x-3">
           <li className="inline-flex items-center">
-            <div
-              className="inline-flex items-center text-lg font-medium text-gray-700 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-400"
-            >
+            <div className="inline-flex items-center text-lg font-medium text-gray-700 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-400">
               <svg
                 aria-hidden="true"
                 className="w-4 h-4 mr-2"
@@ -36,9 +34,7 @@ const StrainPageLoading = () => {
                   clipRule="evenodd"
                 ></path>
               </svg>
-              <div
-                className="ml-1 text-lg font-medium text-gray-700 hover:text-green-600 md:ml-2 dark:text-gray-400 dark:hover:text-green-400"
-              >
+              <div className="ml-1 text-lg font-medium text-gray-700 hover:text-green-600 md:ml-2 dark:text-gray-400 dark:hover:text-green-400">
                 Strains
               </div>
             </div>
@@ -113,4 +109,4 @@ const StrainPageLoading = () => {
   );
 };
 
-export default StrainPageLoading;
+export default LoadingStrainPage;

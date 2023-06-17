@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 type Props = {
   liked: boolean | undefined;
   id: string | undefined;
+  className?: string;
 };
 
 const StrainLikeButton = (props: Props) => {
@@ -68,7 +69,9 @@ const StrainLikeButton = (props: Props) => {
 
   return (
     <motion.button
-      className="absolute top-1.5 right-2 border bg-white dark:bg-zinc-800 text-zinc-400/75 dark:border-zinc-700 rounded-full p-1.5 dark:text-zinc-400"
+      className={`absolute top-1.5 right-2 border bg-white dark:bg-zinc-800 text-zinc-400/75 transition-colors rounded-full p-1.5 dark:text-zinc-400 ${
+        liked ? "border-green-600/40" : "dark:border-zinc-700"
+      }`}
       onClick={() => handleLike()}
       variants={likeButtonVariants}
       whileHover="hover"
@@ -77,7 +80,7 @@ const StrainLikeButton = (props: Props) => {
       animate={liked ? "like" : "initial"}
     >
       {liked ? (
-        <AiFillHeart className="text-green-700/75" />
+        <AiFillHeart className="text-green-600/75" />
       ) : (
         <AiOutlineHeart />
       )}

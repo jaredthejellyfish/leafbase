@@ -42,17 +42,17 @@ const effects: Colors = {
   Sleepy: "#1E90FF",
 };
 
-export async function generateStaticParams() {
-  const strains = await prisma.strain.findMany({});
+// export async function generateStaticParams() {
+//   const strains = await prisma.strain.findMany({});
 
-  const filteredStrains = strains.filter(
-    (strain) => strain.description && strain.description.length > 1
-  );
+//   const filteredStrains = strains.filter(
+//     (strain) => strain.description && strain.description.length > 1
+//   );
 
-  return filteredStrains.map((strain) => ({
-    slug: strain.slug,
-  }));
-}
+//   return filteredStrains.map((strain) => ({
+//     slug: strain.slug,
+//   }));
+// }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.slug;

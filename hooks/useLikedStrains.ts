@@ -20,7 +20,7 @@ const useLikedStrains = () => {
   } = useQuery({
     queryKey: ["liked-strains"],
     queryFn: () => getUser(),
-    cacheTime: 0,
+    cacheTime: 3000,
     enabled: !!session?.user,
   });
 

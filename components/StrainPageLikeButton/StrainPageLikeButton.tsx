@@ -1,17 +1,40 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { motion } from "framer-motion";
+import { useQuery } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
+import { Strain } from "@prisma/client";
 
 type Props = {
-  liked: boolean | undefined;
-  id: string | undefined;
+  id: string;
   className?: string;
 };
 
-const StrainLikeButton = (props: Props) => {
-  const [liked, setLiked] = useState(props.liked);
+const getLikedStatus = async (id: string) => {
+  const response = await fetch("/api/strains/liked");
+  const data = await response.json();
+  return data.strains.map((strain: Strain) => strain.id).includes(id);
+};
+
+const StrainPageLikeButton = (props: Props) => {
+  const [liked, setLiked] = useState(false);
+  const { data: session } = useSession();
+
+  const { data } = useQuery({
+    queryKey: ["user-profile"],
+    queryFn: () => getLikedStatus(props.id),
+    enabled: !!session?.user,
+    cacheTime: 0,
+  });
+
+  useEffect(() => {
+    if (data) {
+      console.log(data);
+      setLiked(data);
+    }
+  }, [data]);
 
   const likeStrain = async () => {
     await fetch("/api/strains/like", {
@@ -88,4 +111,4 @@ const StrainLikeButton = (props: Props) => {
   );
 };
 
-export default StrainLikeButton;
+export default StrainPageLikeButton;

@@ -51,8 +51,8 @@ model User {
   updatedAt     DateTime  @updatedAt
   accounts      Account[]
   sessions      Session[]
-  likes          Like[]
-  reviews        Review[]
+  likes         Like[]
+  reviews       Review[]
 
   @@map("users")
 }

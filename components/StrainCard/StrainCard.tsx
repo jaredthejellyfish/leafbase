@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import StrainLikeButton from "@/components/StrainLikeButton/StrainLikeButton";
+import StrainCardLikeButton from "@/components/StrainCardLikeButton/StrainCardLikeButton";
 import StarRating from "@/components/StarRating/StarRating";
 
 type Props = {
@@ -59,7 +59,7 @@ const effects: Colors = {
 const StrainCard = (props: Props) => {
   return (
     <div className="relative mt-4 p-5 rounded-xl shadow dark:bg-zinc-900 flex md:flex-wrap flex-nowrap gap-5 md:max-w-xs dark:border-opacity-0 border border-zinc-100">
-      <StrainLikeButton liked={props.liked} id={props.id} />
+      <StrainCardLikeButton liked={props.liked} id={props.id} />
       {props.nugImage && props.name && (
         <div className="w-1/2 flex rounded-lg items-center justify-center md:w-full dark:border-opacity-0 border border-zinc-200">
           <Image

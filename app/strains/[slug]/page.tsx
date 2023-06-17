@@ -5,8 +5,9 @@ import StarRating from "@/components/StarRating/StarRating";
 import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
 import { TbMedicalCross } from "react-icons/tb";
 import Link from "next/link";
-import StrainLikeButton from "@/components/StrainLikeButton/StrainLikeButton";
 import { Metadata } from "next/types";
+import StrainPageLikeButton from "@/components/StrainPageLikeButton/StrainPageLikeButton";
+import { Strain } from "@prisma/client";
 
 type Props = { params: { slug: string } };
 
@@ -87,7 +88,8 @@ const getStrainBySlug = async (slug: string) => {
 const StrainPage = async (props: Props) => {
   const strain = await getStrainBySlug(props.params.slug);
   if (!strain) return <div>Error not found</div>;
-  // TODO: Iplement useIsLiked hook
+
+  const cannabinoids = strain.cannabinoids as any;
 
   return (
     <div className="flex flex-col items-center justify-center px-4 md:px-1/4">
@@ -160,7 +162,7 @@ const StrainPage = async (props: Props) => {
         className="relative md:w-4/5 flex flex-col items-center justify-center border-zinc-300 dark:border-transparent dark:bg-zinc-900 shadow border rounded pb-8"
       >
         <div className="absolute top-5 right-5 md:right-10 transform scale-125">
-          <StrainLikeButton liked={true} id={strain.id} />
+          <StrainPageLikeButton id={strain.id} />
         </div>
         <div
           id="header"
@@ -191,7 +193,7 @@ const StrainPage = async (props: Props) => {
                 </span>
                 <span className="">
                   CBD:{" "}
-                  {strain.cannabinoids && strain.cannabinoids.cbd.percentile50}%
+                  {cannabinoids && cannabinoids.cbd.percentile50}%
                 </span>
               </div>
             </div>

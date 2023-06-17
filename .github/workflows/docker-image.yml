@@ -7,7 +7,7 @@ on:
     branches: master
 
 env:
-  IMAGE_NAME: jaredthejellyfish/discord-danielgpt
+  IMAGE_NAME: jaredthejellyfish/leafbase
   REGISTRY: ghcr.io
   DOCKER_USERNAME: ${{ github.actor }}
 

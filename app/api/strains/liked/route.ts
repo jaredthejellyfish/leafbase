@@ -2,6 +2,11 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/auth/authOptions";
+import { Like, Strain } from "@prisma/client";
+
+interface LikeStrain extends Like {
+strain: Strain
+}
 
 export async function GET(request: Request) {
   try {
@@ -23,7 +28,7 @@ export async function GET(request: Request) {
         strain: true,
       },
     });
-    const likedStrains = likes.map((like) => like.strain);
+    const likedStrains = likes.map((like: LikeStrain) => like.strain);
 
     return NextResponse.json({ strains: likedStrains });
   } catch (error) {

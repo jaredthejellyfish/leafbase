@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -14,7 +14,6 @@
     "@reduxjs/toolkit": "^1.9.5",
     "@tanstack/react-query": "^4.29.13",
     "@tanstack/react-query-devtools": "^4.29.13",
-    "@testing-library/react": "^14.0.0",
     "@types/node": "20.3.0",
     "@types/react": "18.2.11",
     "@types/react-dom": "18.2.4",
@@ -50,6 +49,7 @@
     "prisma": "^4.15.0",
     "puppeteer": "^20.7.1",
     "request": "^2.88.2",
-    "request-promise": "^4.2.6"
+    "request-promise": "^4.2.6",
+    "@testing-library/react": "^14.0.0"
   }
 }

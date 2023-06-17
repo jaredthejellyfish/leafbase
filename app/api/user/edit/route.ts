@@ -38,3 +38,5 @@ export async function POST(request: Request) {
     await prisma.$disconnect();
   }
 }
+
+export const dynamic = "force-dynamic";

@@ -102,7 +102,7 @@ async function UserProfile({}: Props) {
               {user?.aboutMe}
             </p>
 
-            <div className="flex flex-row justify-between mt-6 md:w-4/5">
+            <div className="flex flex-col justify-between mt-6 md:flex-row md:w-4/5">
               <span className="mt-3 text-sm dark:text-white">
                 Birthday:
                 <p className="text-gray-400 w-60">

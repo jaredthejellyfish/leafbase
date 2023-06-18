@@ -36,7 +36,7 @@ const positiveEffects: Effect = {
   energetic: "fatigue",
   euphoric: "depression",
   focused: "ADD",
-  giggly: "seriousness",
+  giggly: "apathy",
   happy: "sadness",
   hungry: "loss of appetite",
   relaxed: "anxiety",

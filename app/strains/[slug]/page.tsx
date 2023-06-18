@@ -5,8 +5,9 @@ import StarRating from "@/components/StarRating/StarRating";
 import Link from "next/link";
 import { Metadata } from "next/types";
 import StrainPageLikeButton from "@/components/StrainPageLikeButton/StrainPageLikeButton";
-import { StrainExtended } from "@/types/interfaces";
+import { Review, StrainExtended } from "@/types/interfaces";
 import StrainSoma from "@/components/StrainSoma/StrainSoma";
+import ReviewCard from "@/components/ReviewCard/ReviewCard";
 
 type Props = { params: { slug: string } };
 
@@ -48,6 +49,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     where: {
       slug: slug,
     },
+    select: {
+      name: true,
+    },
   });
 
   return {
@@ -61,6 +65,19 @@ const getStrainBySlug = async (slug: string) => {
       where: {
         slug: slug,
       },
+      include: {
+        reviews: {
+          include: {
+            user: {
+              select: {
+                name: true,
+                image: true,
+                location: true,
+              },
+            },
+          },
+        },
+      },
     });
 
     return strain;
@@ -73,7 +90,10 @@ const getStrainBySlug = async (slug: string) => {
 };
 
 const StrainPage = async (props: Props) => {
-  const strain = (await getStrainBySlug(props.params.slug)) as StrainExtended;
+  const strain = (await getStrainBySlug(
+    props.params.slug
+  )) as unknown as StrainExtended;
+
   if (!strain) return <div>Error not found</div>;
 
   return (
@@ -222,6 +242,19 @@ const StrainPage = async (props: Props) => {
             <StrainSoma strain={strain} />
           </div>
           <div className="md:w-2/3">{strain.description}</div>
+        </div>
+      </div>
+      <div className="flex flex-col w-full gap-3 mb-2 ml-1 md:w-4/5">
+
+        <h1 className="flex flex-row items-center mt-6 text-2xl font-bold">
+          Reviews for {strain.name}:
+        </h1>
+        <div className="flex flex-col w-full">
+          {strain.reviews &&
+            strain.reviews.length > 0 &&
+            strain.reviews.map((review: Review) => (
+              <ReviewCard key={review.id} review={review} />
+            ))}
         </div>
       </div>
     </div>

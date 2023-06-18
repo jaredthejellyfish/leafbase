@@ -86,7 +86,6 @@ model Review {
   userId    String   @db.ObjectId
   strainId  String   @db.ObjectId
   rating    Float
-  title     String?
   body      String?
   createdAt DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)

@@ -1,4 +1,4 @@
-import { Strain } from "@prisma/client";
+import { Strain, User } from "@prisma/client";
 
 export interface StrainExtended extends Strain {
   id: string;
@@ -40,6 +40,19 @@ export interface StrainExtended extends Strain {
       score: number;
     };
   };
+  reviews?: Review[];
+}
+
+export interface Review {
+  id: string;
+  userId: string;
+  strainId: string;
+  rating: number;
+  title: string;
+  body: string;
+  createdAt: string;
+  user: User;
+  strain: StrainExtended;
 }
 
 export interface Like {

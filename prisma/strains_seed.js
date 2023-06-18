@@ -1,5 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const axios = require("axios");
+
 const prisma = new PrismaClient();
 
 async function getStrains(page = 0, take = 60) {

@@ -184,9 +184,9 @@ const EditProfile = (props: Props) => {
         </ol>
       </nav>
 
-      <div className="flex flex-col lg:flex-row gap-6 mt-3">
+      <div className="flex flex-col gap-6 mt-3 lg:flex-row">
         <div id="vertical 1" className="flex flex-col gap-4 lg:w-1/3">
-          <div className="relative z-0 flex flex-col p-7 rounded-xl shadow-md dark:bg-zinc-900 w-full">
+          <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
             <button onClick={() => handleOpen()}>
               <AiOutlineClose size={20} className="absolute top-6 right-6" />
             </button>
@@ -200,7 +200,7 @@ const EditProfile = (props: Props) => {
               width={80}
               height={80}
             />
-            <p className="text-lg font-bold mt-2 ">
+            <p className="mt-2 text-lg font-bold ">
               <input
                 className="bg-transparent"
                 value={name}
@@ -208,7 +208,7 @@ const EditProfile = (props: Props) => {
               ></input>
             </p>
             <button
-              className="text-zinc-300 text-sm flex-row flex items-center justiffy-center gap-1"
+              className="flex flex-row items-center gap-1 text-sm text-zinc-300 justiffy-center"
               onClick={() => updateLocation()}
             >
               <MdLocationPin />
@@ -236,7 +236,7 @@ const EditProfile = (props: Props) => {
                 ></input>
               </p>
             </span>
-            <div className="h-fit flex">
+            <div className="flex h-fit">
               <button
                 type="button"
                 className="w-1/2 mt-4 text-white bg-green-700 hover:bg-green-800 transition-all focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mr-2 dark:bg-green-700 dark:hover:bg-green-800 focus:outline-none dark:focus:ring-blue-800"
@@ -249,18 +249,18 @@ const EditProfile = (props: Props) => {
           </div>
         </div>
         <div id="vertical 2" className="flex flex-col gap-4 lg:w-2/3">
-          <div className="flex flex-col p-7 rounded-xl shadow-md w-full dark:bg-zinc-900">
+          <div className="flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
             <h1 className="text-xl font-bold">General information</h1>
-            <h2 className="text-lg mt-4">About me</h2>
-            <p className="text-sm text-zinc-400 lg:w-4/5 mt-1">
+            <h2 className="mt-4 text-lg">About me</h2>
+            <p className="mt-1 text-sm text-zinc-400 lg:w-4/5">
               <TextareaAutosize
-                className="bg-transparent w-full"
+                className="w-full bg-transparent"
                 value={aboutMe}
                 onChange={(e) => setAboutMe(e.target.value)}
               ></TextareaAutosize>
             </p>
 
-            <div className="flex flex-row justify-between md:w-4/5 mt-6">
+            <div className="flex flex-row justify-between mt-6 md:w-4/5">
               <span className="mt-3 text-sm dark:text-white">
                 Birthday:
                 <p className="text-gray-400">

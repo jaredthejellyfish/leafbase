@@ -8,7 +8,7 @@ interface SquareProps {
 const Square: React.FC<SquareProps> = ({ name, color }) => {
   return (
     <div
-      className="w-20 h-20 bg-gray-100 text-center flex items-center justify-center m-2"
+      className="flex items-center justify-center w-20 h-20 m-2 text-center bg-gray-100"
       style={{ backgroundColor: color }}
     >
       <span className="text-xs font-bold">{name}</span>
@@ -45,7 +45,7 @@ const ColorGrid: React.FC = () => {
 
 export default async function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 pt-16">
+    <main className="flex flex-col items-center justify-between min-h-screen p-24 pt-16">
       <ColorGrid />
     </main>
   );

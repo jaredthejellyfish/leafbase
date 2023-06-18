@@ -24,7 +24,7 @@ const Modal = (props: Props) => {
       id="popup-modal"
       className="fixed left-0 w-screen bg-black/60 flex justify-center z-50 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full"
     >
-      <div className="absolute top-1/3 w-full max-w-md max-h-full">
+      <div className="absolute w-full max-w-md max-h-full top-1/3">
         <div className="relative bg-white rounded-lg shadow dark:bg-zinc-800">
           <button
             type="button"

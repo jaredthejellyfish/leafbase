@@ -8,19 +8,19 @@ const StarRating = (props: { rating: number }) => {
   for (let i = 0; i < 5; i++) {
     if (i < Math.floor(rating)) {
       stars.push(
-        <span className="h-4 w-4 flex justify-center items-center" key={i}>
+        <span className="flex items-center justify-center w-4 h-4" key={i}>
           <FaStar />
         </span>
       );
     } else if (i === Math.floor(rating) && rating % 1 !== 0) {
       stars.push(
-        <span className="h-4 w-4 flex justify-center items-center" key={i}>
+        <span className="flex items-center justify-center w-4 h-4" key={i}>
           <FaStarHalfAlt />
         </span>
       );
     } else {
       stars.push(
-        <span className="h-4 w-4 flex justify-center items-center" key={i}>
+        <span className="flex items-center justify-center w-4 h-4" key={i}>
           <FaRegStar />
         </span>
       );

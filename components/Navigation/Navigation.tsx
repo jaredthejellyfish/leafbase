@@ -86,12 +86,12 @@ const Navigation = (props: Props) => {
   const avatar = {};
 
   return (
-    <nav className="absolute drop-shadow-lg w-screen h-16 text-black dark:text-white z-50">
-      <div className="z-50 relative grid grid-cols-3 grid-rows-1 gap-0 px-6 md:px-16 h-full bg-gray-100 dark:bg-zinc-900">
-        <div className="col-span-1 flex justify-start items-center">
+    <nav className="fixed z-50 w-screen h-16 text-black drop-shadow-lg dark:text-white">
+      <div className="relative z-50 grid h-full grid-cols-3 grid-rows-1 gap-0 px-6 bg-gray-100 md:px-16 dark:bg-zinc-900">
+        <div className="flex items-center justify-start col-span-1">
           <Link
             href="/"
-            className="flex justify-start items-center gap-5 text-xl"
+            className="flex items-center justify-start gap-5 text-xl"
           >
             <Image
               src="https://companieslogo.com/img/orig/LFLY-e243e87c.png?t=1676454310"
@@ -102,7 +102,7 @@ const Navigation = (props: Props) => {
             <span className="font-medium ">Strainbase</span>
           </Link>
         </div>
-        <div className="flex justify-end items-center gap-4 col-span-2">
+        <div className="flex items-center justify-end col-span-2 gap-4">
           <div className="pl-2 py-1.5 pr-2 flex-row items-center justify-center gap-3 bg-white rounded text-black hidden md:flex dark:bg-zinc-800">
             <BsSearch
               className="text-zinc-400/80 dark:text-gray-400"
@@ -111,7 +111,7 @@ const Navigation = (props: Props) => {
             <input
               value={search}
               placeholder="Search..."
-              className=" focus:outline-none bg-transparent dark:text-white md:w-48 xl:w-80"
+              className="bg-transparent focus:outline-none dark:text-white md:w-48 xl:w-80"
               onChange={(e) => setSearch(e.target.value)}
             ></input>
           </div>
@@ -119,7 +119,7 @@ const Navigation = (props: Props) => {
             xmlns="http://www.w3.org/2000/svg"
             width="10"
             height="20"
-            className="stroke-black dark:stroke-white hidden md:block"
+            className="hidden stroke-black dark:stroke-white md:block"
           >
             <line x1="5" y1="0" x2="5" y2="200" strokeWidth="1.3" />
           </svg>
@@ -178,13 +178,13 @@ const Navigation = (props: Props) => {
         </div>
       </div>
       <motion.div
-        className=" w-full bg-slate-200 dark:bg-zinc-800/100 divide-y divide-dashed pl-5 pr-5 divide-slate-400/25 pt-5 top-16 left-0 h-52"
+        className="left-0 w-full pt-5 pl-5 pr-5 divide-y bg-slate-200 dark:bg-zinc-800/100 divide-dashed divide-slate-400/25 top-16 h-52"
         variants={navigationMenu.container}
         initial="closed"
         animate={isOpen ? "open" : "closed"}
       >
         <motion.div
-          className="w-full h-10 flex justify-start items-center pl-10 p-5 font-medium text-lg cursor-pointer hover:background-slate-200 dark:hover:bg-zinc-800 transition-colors"
+          className="flex items-center justify-start w-full h-10 p-5 pl-10 text-lg font-medium transition-colors cursor-pointer hover:background-slate-200 dark:hover:bg-zinc-800"
           variants={navigationMenu.child}
           initial="closed"
           animate={isOpen ? "open" : "closed"}
@@ -194,7 +194,7 @@ const Navigation = (props: Props) => {
           </Link>
         </motion.div>
         <motion.div
-          className="w-full h-10 flex justify-start items-center pl-10 p-5 font-medium text-lg cursor-pointer"
+          className="flex items-center justify-start w-full h-10 p-5 pl-10 text-lg font-medium cursor-pointer"
           variants={navigationMenu.child}
           initial="closed"
           animate={isOpen ? "open" : "closed"}
@@ -202,7 +202,7 @@ const Navigation = (props: Props) => {
           Company
         </motion.div>
         <motion.div
-          className="w-full h-10 flex justify-start items-center pl-10 p-5 font-medium text-lg cursor-pointer"
+          className="flex items-center justify-start w-full h-10 p-5 pl-10 text-lg font-medium cursor-pointer"
           variants={navigationMenu.child}
           initial="closed"
           animate={isOpen ? "open" : "closed"}
@@ -210,7 +210,7 @@ const Navigation = (props: Props) => {
           Marketplace
         </motion.div>
         <motion.div
-          className="w-full h-10 flex justify-start items-center pl-10 p-5 font-medium text-lg cursor-pointer"
+          className="flex items-center justify-start w-full h-10 p-5 pl-10 text-lg font-medium cursor-pointer"
           variants={navigationMenu.child}
           initial="closed"
           animate={isOpen ? "open" : "closed"}

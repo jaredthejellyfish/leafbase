@@ -58,52 +58,53 @@ const effects: Colors = {
 
 const StrainCard = (props: Props) => {
   return (
-    <div className="relative mt-4 p-5 rounded-xl shadow dark:bg-zinc-900 flex md:flex-wrap flex-nowrap gap-5 md:max-w-xs dark:border-opacity-0 border border-zinc-100">
+    <div className="relative z-10 flex gap-5 p-5 mt-4 border shadow rounded-xl dark:bg-zinc-900 md:flex-wrap flex-nowrap md:max-w-xs dark:border-opacity-0 border-zinc-100">
       <StrainCardLikeButton liked={props.liked} id={props.id} />
       {props.nugImage && props.name && (
-        <div className="w-1/2 flex rounded-lg items-center justify-center md:w-full dark:border-opacity-0 border border-zinc-200">
+        <Link
+          href={`/strains/${props.slug}`}
+          className="flex items-center justify-center w-1/2 border rounded-lg md:w-full dark:border-opacity-0 border-zinc-200"
+        >
           <Image
             style={{ maxHeight: "250px" }}
-            className="rounded-lg w-full h-full object-contain border border-white bg-white aspect-square"
+            className="object-contain w-full h-full bg-white border border-white rounded-lg aspect-square"
             src={props.nugImage}
             alt={props.name}
             width={350}
             height={350}
             priority={props.priority}
           />
-        </div>
+        </Link>
       )}
-      <div className="md:w-full w-1/2">
-        <div className="bg-gray-200 dark:shadow rounded px-2 py-1 text-xs font-medium dark:bg-zinc-700 inline-block">
+      <div className="w-1/2 md:w-full">
+        <div className="inline-block px-2 py-1 text-xs font-medium bg-gray-200 rounded dark:shadow dark:bg-zinc-700">
           {props.phenotype}
         </div>
-        <p className="px-1 font-medium mt-1">{props.name}</p>
+        <p className="px-1 mt-1 font-medium">{props.name}</p>
         <p className="px-1 text-sm font-normal text-gray-500 h-14 line-clamp-3">
           {props.subtitle
             ? props.subtitle
             : `No description found for ${props.name}`}
         </p>
-        <div className="flex flex-row text-sm items-center p-1 gap-1 mt-2">
-          <span className="h-4 w-6 flex justify-center items-center">
+        <div className="flex flex-row items-center gap-1 p-1 mt-2 text-sm">
+          <span className="flex items-center justify-center w-6 h-4">
             {props.averageRating && Math.round(props.averageRating * 10) / 10}
           </span>
           {<StarRating rating={3.2} />}
         </div>
-        <div className="flex flex-row text-zinc-500 dark:text-zinc-300 text-xs px-1 gap-4">
+        <div className="flex flex-row gap-4 px-1 text-xs text-zinc-500 dark:text-zinc-300">
           <span className="">THC {props.thcPercent && props.thcPercent}%</span>
           <span className="">
             CBD: {props.cannabinoids && props.cannabinoids.cbd.percentile50}%
           </span>
         </div>
-        <div className="flex flex-col md:flex-row md:gap-3 px-1 font-medium mt-2 text-xs capitalize md:items-center">
-          <span
-            className="flex flex-row items-center gap-1"
-          >
+        <div className="flex flex-col px-1 mt-2 text-xs font-medium capitalize md:flex-row md:gap-3 md:items-center">
+          <span className="flex flex-row items-center gap-1">
             <div
               style={{ backgroundColor: effects[props.topEffect] }}
               className="rounded-full w-2.5 h-2.5"
             ></div>
-             <p className="p-0">{props.topEffect}</p>
+            <p className="p-0">{props.topEffect}</p>
           </span>
           <span className="flex flex-row items-center gap-1">
             <div
@@ -115,7 +116,7 @@ const StrainCard = (props: Props) => {
         </div>
 
         <Link
-          className="flex items-center justify-center w-full text-sm py-2 mt-3 border rounded border-green-700 text-green-700 dark:hover:bg-zinc-500 dark:hover:text-white hover:bg-green-700 hover:text-white transition dark:border-zinc-500 dark:text-zinc-500"
+          className="flex items-center justify-center w-full py-2 mt-3 text-sm text-green-700 transition border border-green-700 rounded dark:hover:bg-zinc-500 dark:hover:text-white hover:bg-green-700 hover:text-white dark:border-zinc-500 dark:text-zinc-500"
           href={`/strains/${props.slug}`}
         >
           Learn More

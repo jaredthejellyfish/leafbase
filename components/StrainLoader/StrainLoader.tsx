@@ -88,10 +88,10 @@ const StrainLoader = (props: Props) => {
             ) : null
           )}
 
-      <div className="flex w-full h-10 rounded items-center justify-center mt-2 text-white"></div>
+      <div className="flex items-center justify-center w-full h-10 mt-2 text-white rounded -z-10"></div>
       <div
         ref={ref}
-        className="flex w-full h-10 bg-green-700 rounded items-center justify-center mt-10 mb-4 text-white"
+        className="absolute flex items-center justify-center w-full h-10 mt-5 mb-4 text-transparent rounded bottom-96"
       >
         {isFetchingNextPage
           ? "Loading more..."

@@ -62,9 +62,9 @@ async function UserProfile({}: Props) {
         </ol>
       </nav>
 
-      <div className="flex flex-col lg:flex-row gap-6 mt-3">
+      <div className="flex flex-col gap-6 mt-3 lg:flex-row">
         <div id="vertical 1" className="flex flex-col gap-4 lg:w-1/3">
-          <div className="relative z-0 flex flex-col p-7 rounded-xl shadow-md dark:bg-zinc-900 w-full">
+          <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
             <Link href="/profile/edit">
               <AiFillEdit size={20} className="absolute top-6 right-6" />
             </Link>
@@ -78,8 +78,8 @@ async function UserProfile({}: Props) {
               width={80}
               height={80}
             />
-            <p className="text-lg font-bold mt-2 ">{user?.name}</p>
-            <span className="text-zinc-300 text-sm flex-row flex items-center justiffy-center gap-1">
+            <p className="mt-2 text-lg font-bold ">{user?.name}</p>
+            <span className="flex flex-row items-center gap-1 text-sm text-zinc-300 justiffy-center">
               <MdLocationPin />
               <span className="text-zinc-400">{user?.location}</span>
             </span>
@@ -95,14 +95,14 @@ async function UserProfile({}: Props) {
           </div>
         </div>
         <div id="vertical 2" className="flex flex-col gap-4 lg:w-2/3">
-          <div className="flex flex-col p-7 rounded-xl shadow-md w-full dark:bg-zinc-900">
+          <div className="flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
             <h1 className="text-xl font-bold">General information</h1>
-            <h2 className="text-lg mt-4">About me</h2>
-            <p className="text-sm text-zinc-400 lg:w-4/5 mt-1">
+            <h2 className="mt-4 text-lg">About me</h2>
+            <p className="mt-1 text-sm text-zinc-400 lg:w-4/5">
               {user?.aboutMe}
             </p>
 
-            <div className="flex flex-row justify-between md:w-4/5 mt-6">
+            <div className="flex flex-row justify-between mt-6 md:w-4/5">
               <span className="mt-3 text-sm dark:text-white">
                 Birthday:
                 <p className="text-gray-400 w-60">
@@ -125,7 +125,7 @@ async function UserProfile({}: Props) {
               </span>
             </div>
           </div>
-          <div className="flex flex-col p-7 rounded-xl shadow-md w-full dark:bg-zinc-900">
+          <div className="flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
             <LikedStrains />
           </div>
         </div>

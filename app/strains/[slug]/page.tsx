@@ -244,19 +244,20 @@ const StrainPage = async (props: Props) => {
           <div className="md:w-2/3">{strain.description}</div>
         </div>
       </div>
-      <div className="flex flex-col w-full gap-3 mb-2 ml-1 md:w-4/5">
-
-        <h1 className="flex flex-row items-center mt-6 text-2xl font-bold">
-          Reviews for {strain.name}:
-        </h1>
-        <div className="flex flex-col w-full">
-          {strain.reviews &&
-            strain.reviews.length > 0 &&
-            strain.reviews.map((review: Review) => (
-              <ReviewCard key={review.id} review={review} />
-            ))}
+      {strain && strain.reviews && strain.reviews.length > 0 && (
+        <div className="flex flex-col w-full gap-3 mb-2 ml-1 md:w-4/5">
+          <h1 className="flex flex-row items-center mt-6 text-2xl font-bold">
+            Reviews for {strain.name}:
+          </h1>
+          <div className="flex flex-col w-full">
+            {strain.reviews &&
+              strain.reviews.length > 0 &&
+              strain.reviews.map((review: Review) => (
+                <ReviewCard key={review.id} review={review} />
+              ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

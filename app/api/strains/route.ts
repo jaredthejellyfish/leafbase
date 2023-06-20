@@ -16,6 +16,7 @@ const getStrains = async (skip: number, take: number, userId: string) => {
         },
       },
     });
+
     return strains;
   } catch (error) {
     console.log(error);

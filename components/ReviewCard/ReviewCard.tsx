@@ -34,13 +34,15 @@ const ReviewCard = (props: Props) => {
         </div>
         <div className="absolute top-0 right-0 flex flex-col items-end text-sm">
           <span>{moment(review.createdAt).format("MMMM Do, h:mm a")}</span>
-          <span className="flex flex-row items-center gap-1 text-sm text-zinc-500 justiffy-center">
+          <span className="flex flex-row items-center justify-center gap-1 text-sm text-zinc-500">
             <MdLocationPin />
             <span className="text-zinc-400">{review.user.location}</span>
           </span>
         </div>
         <div className="font-semibold text-zinc-500 dark:text-zinc-400">
-          {review.user.name && transformName(review.user.name)}
+          {review.user.displayName
+            ? review.user.displayName
+            : review.user.name && transformName(review.user.name)}
         </div>
       </div>
       <svg width="100%" height="1" className="mb-3">

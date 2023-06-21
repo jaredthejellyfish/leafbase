@@ -207,15 +207,31 @@ const EditProfile = (props: Props) => {
                 onChange={(e) => setName(e.target.value)}
               ></input>
             </p>
-            <button
-              className="flex flex-row items-center gap-1 text-sm text-zinc-300 justiffy-center"
-              onClick={() => updateLocation()}
-            >
-              <MdLocationPin />
-              <span className="text-zinc-400">
-                {location ? location : "Click the pin"}
-              </span>
-            </button>
+            {user?.displayName ? (
+              <>
+                <span className="flex flex-row items-center gap-1 text-sm text-zinc-300">
+                  <span className="text-zinc-400">{user?.displayName}</span>
+                </span>
+                <span className="mt-3 text-sm dark:text-white">
+                  Location:
+                  <span className="flex flex-row items-center gap-1 mt-1 text-sm cursor-pointer text-zinc-300">
+                    <MdLocationPin />
+                    <span className="text-zinc-400">{user?.location}</span>
+                  </span>
+                </span>
+              </>
+            ) : (
+              <button
+                className="flex flex-row items-center justify-center gap-1 text-sm text-zinc-300"
+                onClick={() => updateLocation()}
+              >
+                <MdLocationPin />
+                <span className="text-zinc-400">
+                  {location ? location : "Click the pin"}
+                </span>
+              </button>
+            )}
+
             <span className="mt-4 text-sm dark:text-white">
               Email Address:
               <p className="text-gray-400">

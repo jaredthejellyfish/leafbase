@@ -139,10 +139,12 @@ const StrainSoma = (props: Props) => {
           <div
             className="bg-green-700/70 h-2.5 rounded-full"
             style={{
-              width: `${Math.min(
-                Math.ceil(strain.effects.relaxed.score * 100),
-                100
-              )}%`,
+              width:
+                strain?.effects?.relaxed?.score &&
+                `${Math.min(
+                  Math.ceil(strain.effects.relaxed.score * 100),
+                  100
+                )}%`,
             }}
           ></div>
         </div>

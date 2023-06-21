@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import useColorTheme from "@/hooks/useColorTheme";
-import { BsMoonFill, BsFillSunFill, BsSearch } from "react-icons/bs";
+import { BsMoonFill, BsFillSunFill } from "react-icons/bs";
 import Link from "next/link";
 import Avatar from "react-avatar";
 import { useSession } from "next-auth/react";
@@ -12,11 +12,11 @@ import { useDispatch } from "react-redux";
 import { setTheme } from "@/store/features/themeSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import SearchBar from "../SearchBar/SearchBar";
 
 type Props = {};
 
 const Navigation = (props: Props) => {
-  const [search, setSearch] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const { data: session } = useSession();
@@ -103,18 +103,7 @@ const Navigation = (props: Props) => {
           </Link>
         </div>
         <div className="flex items-center justify-end col-span-2 gap-4">
-          <div className="pl-2 py-1.5 pr-2 flex-row items-center justify-center gap-3 bg-white rounded text-black hidden md:flex dark:bg-zinc-800">
-            <BsSearch
-              className="text-zinc-400/80 dark:text-gray-400"
-              size={20}
-            />
-            <input
-              value={search}
-              placeholder="Search..."
-              className="bg-transparent focus:outline-none dark:text-white md:w-48 xl:w-80"
-              onChange={(e) => setSearch(e.target.value)}
-            ></input>
-          </div>
+          <SearchBar />
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="10"

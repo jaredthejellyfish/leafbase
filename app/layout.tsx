@@ -5,6 +5,7 @@ import ClientToast from "@/lib/ClientToast";
 import Navigation from "@/components/Navigation/Navigation";
 
 import { Inter } from "next/font/google";
+import { cookies } from "next/headers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,12 +19,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const cookieStore = cookies();
+  const theme = cookieStore.get("theme");
+
   return (
-    <html
-      lang="en"
-      className="dark"
-    >
-      <body className={`${inter.className} dark:bg-black dark:text-white`}>
+    <html lang="en" className={theme?.value === "dark" ? "dark" : ""}>
+      <body
+        className={`${inter.className} dark:bg-black dark:text-white ${
+          theme?.value === "dark" && "dark"
+        }`}
+      >
         <Providers>
           <Navigation />
           <div className="pt-20">{children}</div>

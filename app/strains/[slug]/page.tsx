@@ -73,6 +73,7 @@ const getStrainBySlug = async (slug: string) => {
                 name: true,
                 image: true,
                 location: true,
+                displayName: true,
               },
             },
           },
@@ -236,12 +237,12 @@ const StrainPage = async (props: Props) => {
         </div>
         <div
           id="body"
-          className="flex flex-col justify-center w-full gap-8 px-5 md:flex-row md:px-8"
+          className="flex flex-col justify-center w-full gap-5 px-5 md:flex-row md:px-8"
         >
           <div className="mt-3 md:w-1/3">
             <StrainSoma strain={strain} />
           </div>
-          <div className="md:w-2/3">{strain.description}</div>
+          <div className="px-0.5 md:w-2/3">{strain.description}</div>
         </div>
       </div>
       {strain && strain.reviews && strain.reviews.length > 0 && (

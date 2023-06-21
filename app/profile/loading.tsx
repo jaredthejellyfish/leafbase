@@ -55,7 +55,7 @@ async function UserProfileLoading(props: Props) {
             <div className="w-20 h-20 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
             <div className="w-20 h-4 mt-3 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
             <p className="mt-2 text-lg font-bold "> </p>
-            <span className="flex flex-row items-center gap-1 text-sm text-zinc-300 justiffy-center">
+            <span className="flex flex-row items-center gap-1 text-sm text-zinc-300">
               <MdLocationPin />
               <div className="w-20 h-3 mt-0.5 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse rounded-md"></div>
             </span>

@@ -54,7 +54,10 @@ const LikedStrains = (props: Props) => {
         </div>
       )}
       {!isLoading && strains && strains.length === 0 ? (
-        "You haven't liked any strains yet!"
+        <>
+          <br />
+          You haven&apos;t liked any strains yet!
+        </>
       ) : (
         <div className="flex flex-row flex-wrap items-center justify-center mt-3 md:justify-start gap-y-3">
           {strains &&

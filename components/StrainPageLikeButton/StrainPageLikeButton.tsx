@@ -31,7 +31,6 @@ const StrainPageLikeButton = (props: Props) => {
 
   useEffect(() => {
     if (data) {
-      console.log(data);
       setLiked(data);
     }
   }, [data]);

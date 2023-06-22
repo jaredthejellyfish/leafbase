@@ -28,8 +28,6 @@ export async function GET(request: Request) {
     if (!foundStrains || foundStrains.length < 1)
       return NextResponse.json({ error: "No strains found" });
 
-    console.log(foundStrains);
-
     return NextResponse.json({ strains: foundStrains });
   } catch (error) {
     console.log(error);

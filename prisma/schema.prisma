@@ -1,25 +1,25 @@
 datasource db {
-  provider = "mongodb"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["jsonProtocol"]
+  previewFeatures = ["jsonProtocol", "fullTextSearch"]
 }
 
 model Account {
-  id                String  @id @default(auto()) @map("_id") @db.ObjectId
-  userId            String  @db.ObjectId
+  id                String  @id @default(cuid())
+  userId            String
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.String
-  access_token      String? @db.String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
   expires_at        Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.String
+  id_token          String? @db.Text
   session_state     String?
   user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -28,9 +28,9 @@ model Account {
 }
 
 model Session {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  id           String   @id @default(cuid())
   sessionToken String   @unique
-  userId       String   @db.ObjectId
+  userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -38,7 +38,7 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  id            String    @id @default(cuid())
   name          String?
   displayName   String?   @unique
   email         String?   @unique
@@ -60,7 +60,7 @@ model User {
 }
 
 model Strain {
-  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  id               String   @id @default(cuid())
   slug             String   @unique
   name             String?
   subtitle         String?
@@ -84,9 +84,9 @@ model Strain {
 }
 
 model Review {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId    String   @db.ObjectId
-  strainId  String   @db.ObjectId
+  id        String   @id @default(cuid())
+  userId    String
+  strainId  String
   rating    Float
   body      String?
   createdAt DateTime @default(now())
@@ -97,9 +97,9 @@ model Review {
 }
 
 model Like {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId    String   @db.ObjectId
-  strainId  String   @db.ObjectId
+  id        String   @id @default(cuid())
+  userId    String
+  strainId  String
   createdAt DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   strain    Strain   @relation(fields: [strainId], references: [id], onDelete: Cascade)
@@ -108,7 +108,7 @@ model Like {
 }
 
 model VerificationToken {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  id         String   @id @default(cuid())
   identifier String
   token      String   @unique
   expires    DateTime

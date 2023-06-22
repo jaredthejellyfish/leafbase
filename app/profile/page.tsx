@@ -95,7 +95,7 @@ async function UserProfile({}: Props) {
                 </span>
               </>
             ) : (
-              <span className="flex flex-row items-center justify-center gap-1 text-sm text-zinc-300">
+              <span className="flex flex-row items-center gap-1 text-sm text-zinc-300">
                 <MdLocationPin />
                 <span className="text-zinc-400">{user?.location}</span>
               </span>

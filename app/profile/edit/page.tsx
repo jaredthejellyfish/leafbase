@@ -222,7 +222,7 @@ const EditProfile = (props: Props) => {
               </>
             ) : (
               <button
-                className="flex flex-row items-center justify-center gap-1 text-sm text-zinc-300"
+                className="flex flex-row items-center gap-1 text-sm text-zinc-300"
                 onClick={() => updateLocation()}
               >
                 <MdLocationPin />

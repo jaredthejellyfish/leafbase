@@ -22,7 +22,6 @@
     "eslint": "8.42.0",
     "eslint-config-next": "^13.4.6",
     "framer-motion": "^10.12.16",
-    "libphonenumber-js": "^1.10.34",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "next": "^13.4.6",
@@ -52,7 +51,6 @@
     "cheerio": "^1.0.0-rc.12",
     "prisma": "^4.16.0",
     "puppeteer": "^20.7.1",
-    "request": "^2.88.2",
-    "request-promise": "^4.2.6"
+    "request": "^2.88.2"
   }
 }

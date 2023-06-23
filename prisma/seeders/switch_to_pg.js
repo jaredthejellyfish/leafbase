@@ -1,4 +1,4 @@
-const strains = require("./leafbase.strains.json");
+const strains = require("../leafbase.strains.json");
 
 const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();

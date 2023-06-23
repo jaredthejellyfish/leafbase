@@ -2,7 +2,7 @@ import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/auth/authOptions";
 
-const getUser = async (email: string) => {
+const getUserByEmail = async (email: string) => {
   try {
     const user = await prisma.user.findUnique({
       where: {
@@ -19,10 +19,29 @@ const getUser = async (email: string) => {
   }
 };
 
-export default async function useServerUser() {
+const getUserByDisplayName = async (displayName: string) => {
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        displayName: displayName,
+      },
+    });
+
+    return user;
+  } catch (error) {
+    console.log(error);
+    return null;
+  } finally {
+    await prisma.$disconnect();
+  }
+};
+
+export default async function useServerUser(displayName?: string) {
+  if (displayName) return await getUserByDisplayName(displayName);
+
   const session = await getServerSession(authOptions);
   if (session?.user?.email) {
-    return await getUser(session?.user?.email);
+    return await getUserByEmail(session?.user?.email);
   } else {
     return null;
   }

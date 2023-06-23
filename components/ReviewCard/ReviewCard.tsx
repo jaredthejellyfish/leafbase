@@ -3,6 +3,7 @@ import { Review } from "@/types/interfaces";
 import StarRating from "../StarRating/StarRating";
 import moment from "moment";
 import { MdLocationPin } from "react-icons/md";
+import Link from "next/link";
 
 type Props = {
   review: Review;
@@ -39,11 +40,18 @@ const ReviewCard = (props: Props) => {
             <span className="text-zinc-400">{review.user.location}</span>
           </span>
         </div>
-        <div className="font-semibold text-zinc-500 dark:text-zinc-400">
-          {review.user.displayName
-            ? review.user.displayName
-            : review.user.name && transformName(review.user.name)}
-        </div>
+        {review.user.displayName ? (
+          <Link
+            className="font-semibold text-zinc-500 dark:text-zinc-400"
+            href={`/profile/${review.user.displayName}`}
+          >
+            {review.user.displayName}
+          </Link>
+        ) : (
+          <div className="font-semibold text-zinc-500 dark:text-zinc-400">
+            {review.user.name && transformName(review.user.name)}
+          </div>
+        )}
       </div>
       <svg width="100%" height="1" className="mb-3">
         <line

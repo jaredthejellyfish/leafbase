@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/auth/authOptions";
+import { User } from "@prisma/client";
 
 const getUserByEmail = async (email: string) => {
   try {
@@ -41,7 +42,7 @@ export default async function useServerUser(displayName?: string) {
 
   const session = await getServerSession(authOptions);
   if (session?.user?.email) {
-    return await getUserByEmail(session?.user?.email);
+    return await getUserByEmail(session?.user?.email) as User;
   } else {
     return null;
   }

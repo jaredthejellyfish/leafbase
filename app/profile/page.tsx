@@ -8,7 +8,8 @@ import SingOutButton from "@/components/SingOutButton/SingOutButton";
 import moment from "moment";
 import ProfileRevalidator from "@/components/ProfileRevalidator/ProfileRevalidator";
 import LikedStrains from "@/components/LikedStrains/LikedStrains";
-import { cookies } from "next/headers";
+import { User } from "@prisma/client";
+import md5 from "md5";
 
 type Props = {};
 
@@ -16,10 +17,13 @@ export const metadata = {
   title: "Profile - Strainbase",
 };
 
+const generateGravatarUrl = (user: User): string => {
+  if (user?.image) return user.image;
+  return `https://www.gravatar.com/avatar/${md5(user.name)}?d=identicon`;
+};
+
 async function UserProfile({}: Props) {
   const user = await useServerUser();
-  const cookieStore = cookies();
-  const theme = cookieStore.get("theme");
 
   return (
     <div className="flex flex-col px-6 md:px-16">
@@ -71,10 +75,7 @@ async function UserProfile({}: Props) {
               <AiFillEdit size={20} className="absolute top-6 right-6" />
             </Link>
             <Image
-              src={
-                user?.image ||
-                `https://www.gravatar.com/avatar/${user?.email}?d=identicon`
-              }
+              src={generateGravatarUrl(user as User)}
               alt="profile"
               className="rounded-md"
               width={80}

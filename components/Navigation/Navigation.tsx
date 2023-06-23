@@ -5,21 +5,27 @@ import Image from "next/image";
 import useColorTheme from "@/hooks/useColorTheme";
 import { BsMoonFill, BsFillSunFill } from "react-icons/bs";
 import Link from "next/link";
-import Avatar from "react-avatar";
-import { useSession } from "next-auth/react";
+import md5 from "md5";
+import useUser from "@/hooks/useUser";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { setTheme } from "@/store/features/themeSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import SearchBar from "../SearchBar/SearchBar";
+import { User } from "@prisma/client";
 
 type Props = {};
+
+const generateGravatarUrl = (user: User): string => {
+  if (user?.image) return user.image;
+  return `https://www.gravatar.com/avatar/${md5(user.name)}?d=identicon`;
+};
 
 const Navigation = (props: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
-  const { data: session } = useSession();
+  const { user, isLoading, isFetching, error } = useUser();
   const { colorTheme, setColorTheme } = useColorTheme();
 
   const currentTheme = useSelector((state: RootState) => state.theme);
@@ -125,16 +131,17 @@ const Navigation = (props: Props) => {
             )}
           </button>
           <Link href="/profile">
-            <Avatar
-              className="rounded-full"
-              src={
-                session?.user?.image
-                  ? session?.user?.image
-                  : `https://www.gravatar.com/avatar/${session?.user?.name}?d=identicon`
-              }
-              alt="profile"
-              size="32px"
-            />
+            {isLoading || isFetching ? (
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
+            ) : (
+              <Image
+                className="rounded-full"
+                src={generateGravatarUrl(user)}
+                alt="profile"
+                height={32}
+                width={32}
+              />
+            )}
           </Link>
           <svg
             className="text-dark p-1.5 min-w-40 rounded dark:text-white hover:bg-gray-300 dark:hover:bg-zinc-700 transition-colors select-none hover:cursor-pointer"

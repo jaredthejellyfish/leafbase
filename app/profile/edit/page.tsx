@@ -12,8 +12,15 @@ import moment from "moment";
 import Modal from "@/components/Modal/Modal";
 import UserProfileLoading from "../loading";
 import DeleteAccount from "@/components/DeleteAccount/DeleteAccount";
+import md5 from "md5";
+import { User } from "@prisma/client";
 
 type Props = {};
+
+const generateGravatarUrl = (user: User): string => {
+  if (user?.image) return user.image;
+  return `https://www.gravatar.com/avatar/${md5(user.name)}?d=identicon`;
+};
 
 const EditProfile = (props: Props) => {
   const { user, isLoading, isFetching, error } = useUser();
@@ -27,6 +34,7 @@ const EditProfile = (props: Props) => {
   const [languages, setLanguages] = useState("");
   const [phone, setPhone] = useState("");
   const [location, setLocation] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -52,6 +60,7 @@ const EditProfile = (props: Props) => {
     setLanguages(user?.languages || "");
     setPhone(user?.phone || "");
     setLocation(user?.location || "");
+    setDisplayName(user?.displayName || "");
   }, [
     user?.name,
     user?.email,
@@ -60,6 +69,7 @@ const EditProfile = (props: Props) => {
     user?.languages,
     user?.phone,
     user?.location,
+    user?.displayName,
   ]);
 
   const hasChanges = () => {
@@ -70,7 +80,8 @@ const EditProfile = (props: Props) => {
       birthDate !== moment(user?.birthDate).format("LL") ||
       languages !== user?.languages ||
       phone !== user?.phone ||
-      location !== user?.location
+      location !== user?.location ||
+      displayName !== user?.displayName
     );
   };
 
@@ -81,7 +92,7 @@ const EditProfile = (props: Props) => {
         return;
       }
 
-      const res = await fetch("/api/user/edit", {
+      await fetch("/api/user/edit", {
         method: "POST",
         body: JSON.stringify({
           name: name,
@@ -91,12 +102,13 @@ const EditProfile = (props: Props) => {
           languages: languages,
           phone: phone,
           location: location,
+          displayName: displayName,
         }),
       });
-      router.push("/profile?revalidate=true");
     } catch (error) {
       console.log(error);
     } finally {
+      router.push("/profile?revalidate=true");
       queryClient.invalidateQueries({ queryKey: ["user-profile"] });
     }
   };
@@ -191,10 +203,7 @@ const EditProfile = (props: Props) => {
               <AiOutlineClose size={20} className="absolute top-6 right-6" />
             </button>
             <Image
-              src={
-                user?.image ||
-                `https://www.gravatar.com/avatar/${user?.email}?d=identicon`
-              }
+              src={generateGravatarUrl(user)}
               alt="profile"
               className="rounded-md"
               width={80}
@@ -207,30 +216,21 @@ const EditProfile = (props: Props) => {
                 onChange={(e) => setName(e.target.value)}
               ></input>
             </p>
-            {user?.displayName ? (
-              <>
-                <span className="flex flex-row items-center gap-1 text-sm text-zinc-300">
-                  <span className="text-zinc-400">{user?.displayName}</span>
-                </span>
-                <span className="mt-3 text-sm dark:text-white">
-                  Location:
-                  <span className="flex flex-row items-center gap-1 mt-1 text-sm cursor-pointer text-zinc-300">
-                    <MdLocationPin />
-                    <span className="text-zinc-400">{user?.location}</span>
-                  </span>
-                </span>
-              </>
-            ) : (
-              <button
-                className="flex flex-row items-center gap-1 text-sm text-zinc-300"
-                onClick={() => updateLocation()}
-              >
+
+            <p className="flex flex-row items-center gap-1 text-sm text-zinc-300">
+              <input
+                className="bg-transparent"
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+              ></input>
+            </p>
+            <span className="mt-3 text-sm dark:text-white">
+              Location:
+              <span className="flex flex-row items-center gap-1 mt-1 text-sm cursor-pointer text-zinc-300">
                 <MdLocationPin />
-                <span className="text-zinc-400">
-                  {location ? location : "Click the pin"}
-                </span>
-              </button>
-            )}
+                <span className="text-zinc-400">{user?.location}</span>
+              </span>
+            </span>
 
             <span className="mt-4 text-sm dark:text-white">
               Email Address:

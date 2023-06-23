@@ -26,6 +26,7 @@ export async function POST(request: Request) {
           languages: body.languages,
           phone: body.phone,
           location: body.location,
+          displayName: body.displayName,
         },
       })
       .then((user) => {

@@ -23,7 +23,7 @@ const StrainPageLikeButton = (props: Props) => {
   const { data: session } = useSession();
 
   const { data } = useQuery({
-    queryKey: ["user-profile"],
+    queryKey: ["liked-status", props.id],
     queryFn: () => getLikedStatus(props.id),
     enabled: !!session?.user,
     cacheTime: 0,

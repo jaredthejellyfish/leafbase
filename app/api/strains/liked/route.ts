@@ -2,13 +2,8 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/auth/authOptions";
-import { Like, Strain } from "@prisma/client";
 
-interface LikeStrain extends Like {
-strain: Strain
-}
-
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const session = await getServerSession(authOptions);
 
@@ -22,13 +17,21 @@ export async function GET(request: Request) {
 
     const likes = await prisma.like.findMany({
       where: {
-        userId: user.id,
+        userId: user?.id,
       },
       include: {
-        strain: true,
+        strain: {
+          select: {
+            id: true,
+            slug: true,
+            nugImage: true,
+            name: true,
+          },
+        },
       },
     });
-    const likedStrains = likes.map((like: LikeStrain) => like.strain);
+
+    const likedStrains = likes.map((like) => like.strain);
 
     return NextResponse.json({ strains: likedStrains });
   } catch (error) {
@@ -39,4 +42,4 @@ export async function GET(request: Request) {
   }
 }
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";

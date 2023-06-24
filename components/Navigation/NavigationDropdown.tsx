@@ -1,9 +1,10 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import Link from "next/link";
+import { setNavDropdownOpen } from "@/store/features/navDropdownSlice";
 
 type Props = {};
 
@@ -11,6 +12,7 @@ const NavigationDropdown = (props: Props) => {
   const isOpen = useSelector(
     (state: RootState) => state.dropdown
   ).isNavDropdownOpen;
+  const dispatch = useDispatch();
 
   const navigationMenu = {
     container: {
@@ -65,7 +67,10 @@ const NavigationDropdown = (props: Props) => {
         initial="closed"
         animate={isOpen ? "open" : "closed"}
       >
-        <Link href="/strains" onClick={() => setIsOpen(false)}>
+        <Link
+          href="/strains"
+          onClick={() => dispatch(setNavDropdownOpen(!isOpen))}
+        >
           Strains
         </Link>
       </motion.div>

@@ -15,6 +15,10 @@ const NavigationHamburgerMenu = (props: Props) => {
   ).isNavDropdownOpen;
   const [isOpen, setIsOpen] = useState(currentOpenStatus);
 
+  useEffect(() => {
+    setIsOpen(currentOpenStatus);
+  }, [currentOpenStatus]);
+
   const handleBurgerClick = () => {
     setIsOpen(!isOpen);
     dispatch(setNavDropdownOpen(!isOpen));

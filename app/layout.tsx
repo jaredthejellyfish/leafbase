@@ -3,7 +3,6 @@ import "react-toastify/dist/ReactToastify.css";
 import Providers from "@/lib/Providers";
 import ClientToast from "@/lib/ClientToast";
 import Navigation from "@/components/Navigation/Navigation";
-
 import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
 

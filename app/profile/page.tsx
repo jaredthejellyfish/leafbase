@@ -19,7 +19,7 @@ export const metadata = {
 
 const generateGravatarUrl = (user: User): string => {
   if (user?.image) return user.image;
-  return `https://www.gravatar.com/avatar/${md5(user.name)}?d=identicon`;
+  return `https://www.gravatar.com/avatar/${md5(user?.name || "NaN")}?d=identicon`;
 };
 
 async function UserProfile({}: Props) {

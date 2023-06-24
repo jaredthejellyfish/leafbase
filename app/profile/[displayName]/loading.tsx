@@ -42,7 +42,7 @@ async function UserProfileLoading(props: Props) {
                 ></path>
               </svg>
               <div className="ml-1 text-lg font-medium text-gray-700 hover:text-green-600 md:ml-2 dark:text-gray-400 dark:hover:text-green-400">
-                Profile
+                ...
               </div>
             </div>
           </li>
@@ -67,7 +67,6 @@ async function UserProfileLoading(props: Props) {
               Phone number:
               <div className="w-1/4 h-3 mt-1 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
             </span>
-
           </div>
         </div>
         <div id="vertical 2" className="flex flex-col gap-4 lg:w-2/3">

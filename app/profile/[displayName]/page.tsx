@@ -1,17 +1,14 @@
-import useEmailVerified from "@/hooks/useEmailVerified";
 import useServerUser from "@/hooks/useServerUser";
 import React from "react";
 import Image from "next/image";
 import { MdLocationPin } from "react-icons/md";
 import Link from "next/link";
-import SingOutButton from "@/components/SingOutButton/SingOutButton";
 import moment from "moment";
 import ProfileRevalidator from "@/components/ProfileRevalidator/ProfileRevalidator";
-import LikedStrains from "@/components/LikedStrains/LikedStrains";
 import { User } from "@prisma/client";
 import md5 from "md5";
 import prisma from "@/lib/prisma";
-import { Like, Strain } from "@prisma/client";
+import { Metadata } from "next";
 
 type Props = { params: { displayName: string } };
 
@@ -59,15 +56,22 @@ const getLikesByUUID = async (userId: string) => {
   }
 };
 
+type MetadataProps = { params: { displayName: string } };
+
+export async function generateMetadata({
+  params,
+}: MetadataProps): Promise<Metadata> {
+  const displayName = params.displayName;
+
+  return {
+    title: `${displayName} - Strainbase` || "Strain",
+  };
+}
+
 const ProfileDisplay = async (props: Props) => {
-  const verified = await useEmailVerified();
   const user = await useServerUser(props.params.displayName);
-  if (!verified) return <div>You are not verified!</div>;
   if (!user) return <div>User not found.</div>;
   const strains = await getLikesByUUID(user?.id);
-
-  if (!verified) return <div>You are not verified!</div>;
-  if (!user) return <div>User not found.</div>;
 
   return (
     <div className="flex flex-col px-6 md:px-16">
@@ -106,7 +110,7 @@ const ProfileDisplay = async (props: Props) => {
                 ></path>
               </svg>
               <div className="ml-1 text-lg font-medium text-gray-700 hover:text-green-600 md:ml-2 dark:text-gray-400 dark:hover:text-green-400">
-                Profile
+                {user?.displayName}
               </div>
             </div>
           </li>
@@ -177,7 +181,7 @@ const ProfileDisplay = async (props: Props) => {
           </div>
           <div className="flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
             <div>
-              <span className="text-xl font-bold ">Liked Strains </span>
+              <span className="text-xl font-bold ">Liked Strains ({strains?.length})</span>
               {strains?.length === 0 ? (
                 <div className="mt-6 text-sm text-semi text-zinc-400">
                   {user.displayName} hasn&apos;t liked any strains yet!

@@ -1,43 +1,14 @@
-# fly.toml app configuration file generated for leafbase on 2023-06-24T16:42:54+02:00
+# fly.toml app configuration file generated for leafbase on 2023-06-24T18:50:59+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = "leafbase"
 primary_region = "mad"
-kill_signal = "SIGINT"
-kill_timeout = "5s"
 
-[experimental]
-  auto_rollback = true
-
-[build]
-  [build.args]
-    NEXT_PUBLIC_EXAMPLE = "Value goes here"
-
-[env]
-  PORT = "8080"
-
-[[services]]
-  protocol = "tcp"
-  internal_port = 8080
-  processes = ["app"]
-
-  [[services.ports]]
-    port = 80
-    handlers = ["http"]
-    force_https = true
-
-  [[services.ports]]
-    port = 443
-    handlers = ["tls", "http"]
-  [services.concurrency]
-    type = "connections"
-    hard_limit = 25
-    soft_limit = 20
-
-  [[services.tcp_checks]]
-    interval = "15s"
-    timeout = "2s"
-    grace_period = "1s"
-    restart_limit = 0
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0

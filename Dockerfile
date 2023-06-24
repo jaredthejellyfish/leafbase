@@ -1,41 +1,57 @@
-# Install dependencies only when needed
-FROM node:16-alpine AS builder
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat
-WORKDIR /app
-COPY . .
-RUN yarn install --frozen-lockfile
+# syntax = docker/dockerfile:1
 
-# If using npm with a `package-lock.json` comment out above and use below instead
-# RUN npm ci
+# Adjust NODE_VERSION as desired
+ARG NODE_VERSION=18.12.1
+FROM node:${NODE_VERSION}-slim as base
 
-ENV NEXT_TELEMETRY_DISABLED 1
+LABEL fly_launch_runtime="Next.js/Prisma"
 
-# Add `ARG` instructions below if you need `NEXT_PUBLIC_` variables
-# then put the value on your fly.toml
-# Example:
-# ARG NEXT_PUBLIC_EXAMPLE="value here"
-
-RUN yarn build && npx prisma generate
-
-# If using npm comment out above and use below instead
-# RUN npm run build
-
-# Production image, copy all the files and run next
-FROM node:16-alpine AS runner
+# Next.js/Prisma app lives here
 WORKDIR /app
 
-ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
+# Set production environment
+ENV NODE_ENV=production
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
 
-COPY --from=builder /app ./
+# Throw-away build stage to reduce size of final image
+FROM base as build
 
-USER nextjs
+# Install packages needed to build node modules
+RUN apt-get update -qq && \
+    apt-get install -y python-is-python3 pkg-config build-essential openssl 
 
-CMD ["yarn", "start"]
+# Install node modules
+COPY --link package-lock.json package.json ./
+RUN npm ci --include=dev
 
-# If using npm comment out above and use below instead
-# CMD ["npm", "run", "start"]
+# Generate Prisma Client
+COPY --link prisma .
+RUN npx prisma generate
+
+# Copy application code
+COPY --link . .
+
+# Build application
+RUN npm run build
+
+# Remove development dependencies
+RUN npm prune --omit=dev
+
+
+# Final stage for app image
+FROM base
+
+# Install packages needed for deployment
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y openssl && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+# Copy built application
+COPY --from=build /app /app
+
+# Entrypoint prepares the database.
+ENTRYPOINT [ "/app/docker-entrypoint.js" ]
+
+# Start the server by default, this can be overwritten at runtime
+EXPOSE 3000
+CMD [ "npm", "run", "start" ]

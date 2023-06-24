@@ -2,7 +2,7 @@ import React from "react";
 import { MdLocationPin } from "react-icons/md";
 import Link from "next/link";
 
-type Props = {};
+type Props = { params: { displayName: string } };
 
 async function UserProfileLoading(props: Props) {
   return (

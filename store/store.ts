@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import themeSlice from "./features/themeSlice";
+import navDropdownSlice from "./features/navDropdownSlice";
 
 const rootReducer = combineReducers({
   theme: themeSlice,
+  dropdown: navDropdownSlice,
 });
 
 export const store = configureStore({

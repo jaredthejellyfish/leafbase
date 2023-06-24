@@ -38,7 +38,7 @@ const getUserByDisplayName = async (displayName: string) => {
 };
 
 export default async function useServerUser(displayName?: string) {
-  if (displayName) return await getUserByDisplayName(displayName);
+  if (displayName) return await getUserByDisplayName(displayName) as User;
 
   const session = await getServerSession(authOptions);
   if (session?.user?.email) {

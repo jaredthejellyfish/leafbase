@@ -44,7 +44,6 @@ const getLikesByUUID = async (userId: string) => {
       },
     });
 
-    console.log(likes);
     const likedStrains = likes.map((like) => like.strain as ReducedStrain);
 
     return likedStrains;

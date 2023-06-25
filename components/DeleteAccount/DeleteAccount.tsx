@@ -10,7 +10,7 @@ const DeleteAccount = () => {
     );
 
     if (result) {
-      const res = await fetch("http://localhost:3000/api/user/delete");
+      const res = await fetch("api/user/delete");
       const status = await res.json();
 
       if (status.result === "success") {

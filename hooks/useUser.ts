@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
 
 const getUser = async () => {
-  const res = await fetch("http://localhost:3000/api/user");
+  const res = await fetch("/api/user");
   const user = await res.json();
 
   return user;

@@ -1,6 +1,28 @@
 /** @type {import('next').NextConfig} */
+
+const ContentSecurityPolicy = `
+  default-src 'self';
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' va.vercel-scripts.com;
+  child-src example.com;
+  style-src 'self' 'unsafe-inline';
+  font-src 'self';
+`;
+
 const nextConfig = {
   reactStrictMode: true,
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value: ContentSecurityPolicy.replace(/\s{2,}/g, " ").trim(),
+          },
+        ],
+      },
+    ];
+  },
   images: {
     domains: [
       "images.birdfact.com",
@@ -13,7 +35,7 @@ const nextConfig = {
       "leafly-public.s3-us-west-2.amazonaws.com",
       "s3-us-west-2.amazonaws.com",
       "images.leafly.com",
-      "avatars.githubusercontent.com"
+      "avatars.githubusercontent.com",
     ],
   },
 };

@@ -7,7 +7,7 @@ import StrainLoader from "@/components/StrainLoader/StrainLoader";
 type Props = {};
 
 export const metadata = {
-  title: "Strains - Strainbase",
+  title: "Strains - Budly",
 };
 
 const Strains = async (props: Props) => {

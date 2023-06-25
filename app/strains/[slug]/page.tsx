@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 
   return {
-    title: `${strain?.name} - Strainbase` || "Strain",
+    title: `${strain?.name} - Budly` || "Strain",
   };
 }
 
@@ -89,6 +89,18 @@ const getStrainBySlug = async (slug: string) => {
     await prisma.$disconnect();
   }
 };
+
+export async function generateStaticParams() {
+  const strains = await prisma.strain.findMany({
+    select: {
+      slug: true,
+    },
+  });
+
+  return strains.map((strains) => ({
+    slug: strains.slug,
+  }));
+}
 
 const StrainPage = async (props: Props) => {
   const strain = (await getStrainBySlug(

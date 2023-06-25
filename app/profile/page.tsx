@@ -14,7 +14,7 @@ import md5 from "md5";
 type Props = {};
 
 export const metadata = {
-  title: "Profile - Strainbase",
+  title: "Profile - Budly",
 };
 
 const generateGravatarUrl = (user: User): string => {

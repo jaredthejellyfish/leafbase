@@ -37,7 +37,7 @@ const Navigation = async (props: Props) => {
               width={38}
               height={38}
             />
-            <span className="font-medium ">Strainbase</span>
+            <span className="font-medium ">Budly</span>
           </Link>
         </div>
         <div className="flex items-center justify-end col-span-2 gap-4">

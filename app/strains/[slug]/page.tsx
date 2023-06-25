@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 
   return {
-    title: `${strain?.name} - Budly` || "Strain",
+    title: `${strain?.name} - Leafbase` || "Strain",
   };
 }
 

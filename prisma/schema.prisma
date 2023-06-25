@@ -48,7 +48,7 @@ model User {
   birthDate     DateTime?
   languages     String?
   phone         String?
-  location      String?
+  location      String    @default("Earth")
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   accounts      Account[]

@@ -38,7 +38,7 @@ const Navigation = async (props: Props) => {
               height={38}
               priority
             />
-            <span className="font-medium ">Budly</span>
+            <span className="font-medium ">Leafbase</span>
           </Link>
         </div>
         <div className="flex items-center justify-end col-span-2 gap-4">

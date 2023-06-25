@@ -63,7 +63,7 @@ export async function generateMetadata({
   const displayName = params.displayName;
 
   return {
-    title: `${displayName} - Budly` || "Strain",
+    title: `${displayName} - Leafbase` || "Strain",
   };
 }
 

@@ -15,7 +15,7 @@ const fetchStrains = async ({ pageParam = 2 }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      take: 9,
+      take: 6,
       page: pageParam,
     }),
   });

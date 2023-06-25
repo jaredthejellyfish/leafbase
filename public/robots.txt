@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://leafbase.xyz
+
+# Sitemaps
+Sitemap: https://leafbase.xyz/sitemap.xml

@@ -18,7 +18,7 @@ const LikedStrains = (props: Props) => {
   const { strains, isLoading, isFetching, error } = useLikedStrains();
   return (
     <div>
-      <span className="text-xl font-bold ">Liked Strains </span>
+      <span className="text-xl font-bold ">Liked Strains ({strains?.length})</span>
       {isLoading && (
         <div className="flex flex-row flex-wrap items-center justify-center mt-3 md:justify-start gap-y-3">
           <div className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600">

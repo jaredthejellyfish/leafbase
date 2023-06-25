@@ -2,8 +2,9 @@
 
 const ContentSecurityPolicy = `
   default-src 'self';
-  script-src 'self' 'unsafe-inline' 'unsafe-eval' va.vercel-scripts.com vitals.vercel-insights.com;
+  script-src 'self' 'unsafe-inline' 'unsafe-eval' va.vercel-scripts.com;
   child-src example.com;
+  connect-src 'self' vitals.vercel-insights.com;
   style-src 'self' 'unsafe-inline';
   font-src 'self';
 `;

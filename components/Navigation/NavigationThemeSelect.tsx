@@ -21,6 +21,7 @@ const NavigationThemeSelect = (props: Props) => {
 
   return (
     <button
+      aria-label="Toggle Theme"
       className="p-2"
       onClick={() => setColorTheme(colorTheme === "dark" ? "light" : "dark")}
     >

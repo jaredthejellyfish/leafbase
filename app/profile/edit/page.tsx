@@ -168,7 +168,7 @@ const EditProfile = (props: Props) => {
                   clipRule="evenodd"
                 ></path>
               </svg>
-              <button onClick={() => handleOpen()}>
+              <button aria-label="Profile Page" onClick={() => handleOpen()}>
                 <div className="ml-1 text-lg font-medium text-gray-700 hover:text-green-600 md:ml-2 dark:text-gray-400 dark:hover:text-green-400">
                   Profile
                 </div>
@@ -201,7 +201,7 @@ const EditProfile = (props: Props) => {
       <div className="flex flex-col gap-6 mt-3 lg:flex-row">
         <div id="vertical 1" className="flex flex-col gap-4 lg:w-1/3">
           <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
-            <button onClick={() => handleOpen()}>
+            <button aria-label="Stop editing" onClick={() => handleOpen()}>
               <AiOutlineClose size={20} className="absolute top-6 right-6" />
             </button>
             <Image
@@ -256,6 +256,7 @@ const EditProfile = (props: Props) => {
             </span>
             <div className="flex h-fit">
               <button
+                aria-label="Save"
                 type="button"
                 className="w-1/2 mt-4 text-white bg-green-700 hover:bg-green-800 transition-all focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mr-2 dark:bg-green-700 dark:hover:bg-green-800 focus:outline-none dark:focus:ring-blue-800"
                 onClick={() => handleSubmit()}

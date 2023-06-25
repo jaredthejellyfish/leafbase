@@ -36,6 +36,7 @@ const Navigation = async (props: Props) => {
               alt="logo"
               width={38}
               height={38}
+              priority
             />
             <span className="font-medium ">Budly</span>
           </Link>
@@ -58,6 +59,7 @@ const Navigation = async (props: Props) => {
               alt="profile"
               height={32}
               width={32}
+              priority
             />
           </Link>
           <NavigationHamburgerMenu />

@@ -90,17 +90,17 @@ const getStrainBySlug = async (slug: string) => {
   }
 };
 
-export async function generateStaticParams() {
-  const strains = await prisma.strain.findMany({
-    select: {
-      slug: true,
-    },
-  });
+// export async function generateStaticParams() {
+//   const strains = await prisma.strain.findMany({
+//     select: {
+//       slug: true,
+//     },
+//   });
 
-  return strains.map((strains) => ({
-    slug: strains.slug,
-  }));
-}
+//   return strains.map((strains) => ({
+//     slug: strains.slug,
+//   }));
+// }
 
 const StrainPage = async (props: Props) => {
   const strain = (await getStrainBySlug(

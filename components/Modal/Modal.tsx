@@ -27,6 +27,7 @@ const Modal = (props: Props) => {
       <div className="absolute w-full max-w-md max-h-full top-1/3">
         <div className="relative bg-white rounded-lg shadow dark:bg-zinc-800">
           <button
+            aria-label="Close"
             type="button"
             className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-zinc-200 hover:text-zinc-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-zinc-900 dark:hover:text-white"
             data-modal-hide="popup-modal"
@@ -67,6 +68,7 @@ const Modal = (props: Props) => {
               {title}
             </h3>
             <button
+              aria-label="Confirm"
               data-modal-hide="popup-modal"
               type="button"
               onClick={yesCallback}
@@ -75,6 +77,7 @@ const Modal = (props: Props) => {
               {labels.yes}
             </button>
             <button
+              aria-label="Cancel"
               data-modal-hide="popup-modal"
               type="button"
               onClick={closeCallback}

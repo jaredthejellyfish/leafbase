@@ -90,7 +90,7 @@ const StrainCard = (props: Props) => {
           <span className="flex items-center justify-center w-6 h-4">
             {props.averageRating && Math.round(props.averageRating * 10) / 10}
           </span>
-          {<StarRating rating={3.2} />}
+          {<StarRating rating={props.averageRating} />}
         </div>
         <div className="flex flex-row gap-4 px-1 text-xs text-zinc-500 dark:text-zinc-300">
           <span className="">THC {props.thcPercent && props.thcPercent}%</span>

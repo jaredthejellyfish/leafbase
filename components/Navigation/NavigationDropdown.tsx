@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import Link from "next/link";
 import { setNavDropdownOpen } from "@/store/features/navDropdownSlice";
+import { usePathname } from "next/navigation";
 
 type Props = {};
 
@@ -13,6 +14,7 @@ const NavigationDropdown = (props: Props) => {
     (state: RootState) => state.dropdown
   ).isNavDropdownOpen;
   const dispatch = useDispatch();
+  const pathName = usePathname();
 
   const navigationMenu = {
     container: {
@@ -69,6 +71,7 @@ const NavigationDropdown = (props: Props) => {
       >
         <Link
           href="/strains"
+          className={`w-full ${pathName === "/strains" ? "text-green-500" : ""}`}
           onClick={() => dispatch(setNavDropdownOpen(!isOpen))}
         >
           Strains

@@ -11,7 +11,7 @@ export const metadata = {
 };
 
 const Strains = async (props: Props) => {
-  const { strains, count, error } = await useServerStrains(1, 12);
+  const { strains, count, error } = await useServerStrains(1, 18);
   if (error) {
     return <div>Error!</div>;
   }

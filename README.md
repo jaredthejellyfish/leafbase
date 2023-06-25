@@ -1,4 +1,4 @@
-# Next.js with Next-Auth
+# Next.js with Next-Auth:
 
 A fully featured Next.js template with pre-configured Next-Auth, Google, Twitch, Discord OAuth providers, and Magic Link login. Built using the latest Next.js 13 and Tailwind CSS for styling.
 

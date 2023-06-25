@@ -8,14 +8,14 @@ import useUser from "@/hooks/useUser";
 
 type Props = {};
 
-const fetchStrains = async ({ pageParam = 2 }) => {
+const fetchStrains = async ({ pageParam = 3 }) => {
   const res = await fetch("/api/strains", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      take: 6,
+      take: 9,
       page: pageParam,
     }),
   });

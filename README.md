@@ -1,4 +1,4 @@
-# Next.js with Next-Auth:
+# Next.js with Next-Auth [![wakatime](https://wakatime.com/badge/user/61cabc84-7492-4f6a-b301-5bbbdd324bc5/project/5d1cd45b-d781-442d-838e-f453723d9542.svg)](https://wakatime.com/badge/user/61cabc84-7492-4f6a-b301-5bbbdd324bc5/project/5d1cd45b-d781-442d-838e-f453723d9542)
 
 A fully featured Next.js template with pre-configured Next-Auth, Google, Twitch, Discord OAuth providers, and Magic Link login. Built using the latest Next.js 13 and Tailwind CSS for styling.
 

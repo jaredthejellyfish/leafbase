@@ -45,17 +45,18 @@ const effects: Colors = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = params.slug;
 
-  const strain = await prisma.strain.findUnique({
+  const strain = (await prisma.strain.findUnique({
     where: {
       slug: slug,
     },
     select: {
       name: true,
     },
-  });
+  })) as StrainExtended;
 
   return {
     title: `${strain?.name} - Leafbase` || "Strain",
+    description: strain.shortDescription || `Strain ${strain?.name}`,
   };
 }
 

@@ -12,7 +12,7 @@ const ProfileRevalidator = (props: Props) => {
 
   useEffect(() => {
     if (revalidate === "true") {
-      router.replace("/profile")
+      router.replace("/profile");
       router.refresh();
     }
   }, [revalidate, router]);

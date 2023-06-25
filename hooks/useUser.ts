@@ -12,12 +12,7 @@ const getUser = async () => {
 const useUser = () => {
   const { data: session } = useSession();
 
-  const {
-    data,
-    isLoading,
-    isFetching,
-    error,
-  } = useQuery({
+  const { data, isLoading, isFetching, error } = useQuery({
     queryKey: ["user-profile"],
     queryFn: () => getUser(),
     enabled: !!session?.user,

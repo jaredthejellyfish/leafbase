@@ -180,7 +180,9 @@ const ProfileDisplay = async (props: Props) => {
           </div>
           <div className="flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
             <div>
-              <span className="text-xl font-bold ">Liked Strains ({strains?.length})</span>
+              <span className="text-xl font-bold ">
+                Liked Strains ({strains?.length})
+              </span>
               {strains?.length === 0 ? (
                 <div className="mt-6 text-sm text-semi text-zinc-400">
                   {user.displayName} hasn&apos;t liked any strains yet!

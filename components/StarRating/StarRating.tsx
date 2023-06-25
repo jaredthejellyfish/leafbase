@@ -27,9 +27,7 @@ const StarRating = (props: { rating: number }) => {
     }
   }
   return (
-    <div className="flex flex-row text-black dark:text-white">
-    {stars}
-    </div>
+    <div className="flex flex-row text-black dark:text-white">{stars}</div>
   );
 };
 

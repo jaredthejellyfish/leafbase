@@ -71,7 +71,9 @@ const NavigationDropdown = (props: Props) => {
       >
         <Link
           href="/strains"
-          className={`w-full ${pathName === "/strains" ? "text-green-500" : ""}`}
+          className={`w-full ${
+            pathName === "/strains" ? "text-green-500" : ""
+          }`}
           onClick={() => dispatch(setNavDropdownOpen(!isOpen))}
         >
           Strains

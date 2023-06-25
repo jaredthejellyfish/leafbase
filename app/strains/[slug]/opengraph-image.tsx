@@ -113,18 +113,17 @@ export default async function Image({ params }: { params: { slug: string } }) {
               backgroundColor: "#E5E7EB",
               borderRadius: "0.25rem",
               maxWidth: "60px",
-              transform: "scale(1.35)"
+              transform: "scale(1.35)",
             }}
           >
             {strain.phenotype}
           </div>
-          <h1 style={{ fontSize: "44px", fontWeight: "bold"}}>
+          <h1 style={{ fontSize: "44px", fontWeight: "bold" }}>
             {strain.name}
           </h1>
           <p style={{ fontSize: "23px", color: "#4B5563" }}>
             {strain.subtitle}
           </p>
-
         </div>
       </div>
     ),

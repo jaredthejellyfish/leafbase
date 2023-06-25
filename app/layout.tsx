@@ -5,7 +5,7 @@ import ClientToast from "@/lib/ClientToast";
 import Navigation from "@/components/Navigation/Navigation";
 import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] });
 

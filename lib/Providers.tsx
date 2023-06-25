@@ -5,7 +5,7 @@ import { store } from "@/store/store";
 import { Provider } from "react-redux";
 import React, { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 function Providers({ children }: { children: React.ReactNode }) {
   const [client] = useState(

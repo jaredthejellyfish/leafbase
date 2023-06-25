@@ -9,13 +9,7 @@ const getUser = async () => {
 };
 
 const useLikedStrains = () => {
-
-  const {
-    data,
-    isLoading,
-    isFetching,
-    error,
-  } = useQuery({
+  const { data, isLoading, isFetching, error } = useQuery({
     queryKey: ["liked-strains"],
     queryFn: () => getUser(),
     cacheTime: 3000,

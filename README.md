@@ -5,6 +5,7 @@ A fully featured Next.js template with pre-configured Next-Auth, Google, Twitch,
 ## Getting Started
 
 Set these variables in the .env file:
+
 ```
 DATABASE_URL=""
 DIRECT_URL=""

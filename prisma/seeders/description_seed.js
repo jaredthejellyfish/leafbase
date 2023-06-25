@@ -73,7 +73,7 @@ const dedupeStrains = async () => {
   for (const strain of allStrains) {
     if (seenSlugs.has(strain.slug)) {
       // If the slug is already in the Set, remove the strain
-      console.log(`Deleting strain with id: ${strain.id}`)
+      console.log(`Deleting strain with id: ${strain.id}`);
       await prisma.strain.delete({ where: { id: strain.id } });
     } else {
       // Else, add the slug to the Set

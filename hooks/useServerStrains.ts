@@ -1,8 +1,6 @@
 import prisma from "@/lib/prisma";
 import useServerUser from "./useServerUser";
 
-
-
 const getStrains = async (skip: number, take: number, userId: string) => {
   try {
     const strains = await prisma.strain.findMany({
@@ -40,14 +38,13 @@ const getCount = async () => {
 
 const useServerStrains = async (page: number, take: number) => {
   const user = await useServerUser();
-  if (user === null) return {strains: null, error: true};
+  if (user === null) return { strains: null, error: true };
 
   const count = await getCount();
-  if (count === null) return {strains: null, error: true};
+  if (count === null) return { strains: null, error: true };
 
   const strains = await getStrains((page - 1) * take, take, user.id);
-  if (strains === null) return {strains: null, error: true};
-
+  if (strains === null) return { strains: null, error: true };
 
   return { strains, count, error: false };
 };

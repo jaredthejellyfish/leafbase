@@ -5,6 +5,7 @@ import ClientToast from "@/lib/ClientToast";
 import Navigation from "@/components/Navigation/Navigation";
 import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,6 +33,7 @@ export default function RootLayout({
           <Navigation />
           <div className="pt-20">{children}</div>
           <ClientToast />
+          <Analytics />
         </Providers>
       </body>
     </html>

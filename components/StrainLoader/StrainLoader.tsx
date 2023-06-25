@@ -9,7 +9,7 @@ import useUser from "@/hooks/useUser";
 type Props = {};
 
 const fetchStrains = async ({ pageParam = 2 }) => {
-  const res = await fetch("http://localhost:3000/api/strains", {
+  const res = await fetch("/api/strains", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

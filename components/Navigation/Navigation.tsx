@@ -10,6 +10,7 @@ import { User } from "@prisma/client";
 import useServerUser from "@/hooks/useServerUser";
 import NavigationHamburgerMenu from "./NavigationHamburgerMenu";
 import NavigationDropdown from "./NavigationDropdown";
+import useServerPathname from "@/hooks/useServerPathname";
 
 type Props = {};
 
@@ -20,8 +21,11 @@ const generateGravatarUrl = (user: User): string => {
   )}?d=identicon`;
 };
 
-const Navigation = async (props: Props) => {
+const Navigation = async (request: Request) => {
   const user = await useServerUser();
+  const { currentPath: pathname } = useServerPathname();
+
+  if (pathname && pathname.includes("auth")) return null;
 
   return (
     <nav className="fixed z-50 w-screen h-16 text-black drop-shadow-lg dark:text-white">

@@ -61,6 +61,7 @@ const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/auth/login",
+    verifyRequest: "/auth/verify-request",
   },
 };
 

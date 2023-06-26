@@ -102,9 +102,9 @@ function pickRandomComments(comments: Comment[], count = 4): Comment[] {
 const ProfileDisplay = async (props: Props) => {
   const user = await useServerUser(props.params.displayName);
   const { comments, isError } = await useServerComments(user as User);
-  const randomComments = pickRandomComments(comments as Comment[]);
 
   if (!user) return <div>User not found.</div>;
+  const randomComments = pickRandomComments(comments as Comment[]);
   const strains = await getLikesByUUID(user?.id);
 
   return (

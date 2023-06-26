@@ -267,7 +267,7 @@ const StrainPage = async (props: Props) => {
           <div className="flex flex-col w-full">
             {strain.comments &&
               strain.comments.length > 0 &&
-              strain.comments.map((comment : Comment) => (
+              strain.comments.map((comment: Comment) => (
                 <CommentCard key={comment.id} comment={comment} />
               ))}
           </div>

@@ -24,7 +24,7 @@ const getComments = async (user: any) => {
       },
     });
 
-    return comments
+    return comments;
   } catch (error) {
     console.log(error);
   }

@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "npx prettier --write . && next dev",
     "build": "prisma generate && next build",
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
-    "prod": "vercel --prod"
+    "prod": "npx prettier --write . && vercel --prod"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^1.0.0",
@@ -57,6 +57,7 @@
     "@types/lodash": "^4.14.195",
     "@types/nodemailer": "^6.4.8",
     "cheerio": "^1.0.0-rc.12",
+    "prettier": "^2.8.8",
     "prisma": "^4.16.1",
     "puppeteer": "^20.7.1",
     "request": "^2.88.2",

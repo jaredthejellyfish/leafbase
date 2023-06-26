@@ -2,6 +2,7 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/auth/authOptions";
+import { StrainExtended } from "@/types/interfaces";
 
 export async function GET() {
   try {
@@ -31,9 +32,16 @@ export async function GET() {
       },
     });
 
-    const likedStrains = likes.map((like) => like.strain);
+    const likedStrains = likes.map((like) => like.strain as StrainExtended);
 
-    return NextResponse.json({ strains: likedStrains });
+    // sort them by name
+    const sortedLikedStrains = likedStrains.sort((a, b) => {
+      if (a.name < b.name) return -1;
+      else if (a.name > b.name) return 1;
+      else return 0;
+    });
+
+    return NextResponse.json({ strains: sortedLikedStrains });
   } catch (error) {
     console.log(error);
     return NextResponse.json({ error: error });

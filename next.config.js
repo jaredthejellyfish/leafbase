@@ -11,7 +11,7 @@ const nextConfig = {
       "avatars.githubusercontent.com",
       "www.gravatar.com",
       "developers.google.com",
-      "discord.com"
+      "discord.com",
     ],
   },
 };

@@ -1,14 +1,24 @@
-import React from "react";
-import { getProviders, signIn } from "next-auth/react";
-import { getCsrfToken } from "next-auth/react";
+"use client";
+
+import React, { useEffect } from "react";
+import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { BsDiscord, BsTwitch } from "react-icons/bs";
 import { AiFillGithub } from "react-icons/ai";
+import { useParams, useRouter } from "next/navigation";
 
 type Props = {};
 
-const page = async (props: Props) => {
-  const csrf = await getCsrfToken();
+const LoginPage = (props: Props) => {
+  const { status } = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/");
+    }
+  }, [status, router]);
+
   return (
     <div
       style={{ minHeight: "calc(100vh - 145px)" }}
@@ -16,8 +26,15 @@ const page = async (props: Props) => {
     >
       <div className="flex flex-col items-center justify-center w-full gap-3 px-12 py-10 rounded-lg shadow-lg md:w-96 dark:bg-zinc-900">
         <h1 className="mb-2 text-xl font-medium dark:text-white">Sign in</h1>
-        <form method="post" action="/api/auth/signin/email" className="w-full">
-          <input name="csrfToken" type="hidden" defaultValue={csrf} />
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target as HTMLFormElement);
+            const data = Object.fromEntries(formData.entries());
+            signIn("email", { email: data.email });
+          }}
+          className="w-full"
+        >
           <div className="relative w-full">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
               <svg
@@ -34,21 +51,24 @@ const page = async (props: Props) => {
             <input
               type="text"
               id="email-address-icon"
+              name="email"
               className="bg-zinc-50 border border-zinc-300 text-zinc-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pl-10 p-2.5  dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
               placeholder="name@leafbase.com"
             />
           </div>
-
-          <div className="flex items-center justify-center w-full py-2 mt-3 text-sm text-green-700 transition border border-green-700 rounded dark:hover:bg-zinc-500 dark:hover:text-white hover:bg-green-700 hover:text-white dark:border-zinc-500 dark:text-zinc-500">
+          <button className="flex items-center justify-center w-full py-2 mt-3 text-sm text-green-700 transition border border-green-700 rounded dark:hover:bg-zinc-500 dark:hover:text-white hover:bg-green-700 hover:text-white dark:border-zinc-500 dark:text-zinc-500">
             <p>Sign in with Email</p>
-          </div>
+          </button>
 
           <div className="flex items-center justify-center mt-5 text-zinc-400">
-          ────────── or ──────────
+            ────────── or ──────────
           </div>
         </form>
         <div className="flex flex-row gap-6 mt-3">
-          <button className="flex items-center justify-center w-12 h-12 text-red-600 transition bg-white rounded shadow-md hover:scale-105">
+          <button
+            className="flex items-center justify-center w-12 h-12 text-red-600 transition bg-white rounded shadow-md hover:scale-105"
+            onClick={() => signIn("google")}
+          >
             <Image
               height={30}
               width={30}
@@ -58,17 +78,20 @@ const page = async (props: Props) => {
           </button>
           <button
             style={{ backgroundColor: "#000000" }}
+            onClick={() => signIn("github")}
             className="flex items-center justify-center w-12 h-12 text-white transition bg-white rounded shadow-md hover:scale-105"
           >
             <AiFillGithub size={30} />
           </button>
           <button
+            onClick={() => signIn("discord")}
             style={{ backgroundColor: "#7289da" }}
             className="flex items-center justify-center w-12 h-12 text-white transition bg-white rounded shadow-md hover:scale-105"
           >
             <BsDiscord size={30} />
           </button>
           <button
+            onClick={() => signIn("twitch")}
             style={{ backgroundColor: "#9146FF" }}
             className="flex items-center justify-center w-12 h-12 text-white transition bg-white rounded shadow-md hover:scale-105"
           >
@@ -80,4 +103,4 @@ const page = async (props: Props) => {
   );
 };
 
-export default page;
+export default LoginPage;

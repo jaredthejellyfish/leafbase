@@ -9,6 +9,9 @@ const nextConfig = {
       "s3-us-west-2.amazonaws.com",
       "images.leafly.com",
       "avatars.githubusercontent.com",
+      "www.gravatar.com",
+      "developers.google.com",
+      "discord.com"
     ],
   },
 };

@@ -28,7 +28,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "prisma/reviewa_seed.js"
+    "prisma/reviews_seed.js"
   ],
   "exclude": ["node_modules"]
 }

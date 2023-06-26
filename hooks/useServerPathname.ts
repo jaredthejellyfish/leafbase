@@ -4,7 +4,6 @@ const useServerPathname = () => {
   try {
     const headersList = headers();
     const fullUrl = headersList.get("referer") || "";
-    console.log(fullUrl)
     const url = new URL(fullUrl);
     const currentPath = url.pathname;
 

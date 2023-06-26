@@ -21,7 +21,7 @@ const generateGravatarUrl = (user: User): string => {
   )}?d=identicon`;
 };
 
-const Navigation = async (request: Request) => {
+const Navigation = async () => {
   const user = await useServerUser();
   const { currentPath: pathname } = useServerPathname();
 

@@ -14,6 +14,7 @@ import UserProfileLoading from "../loading";
 import DeleteAccount from "@/components/DeleteAccount/DeleteAccount";
 import md5 from "md5";
 import { User } from "@prisma/client";
+import { generateUsername } from "unique-username-generator";
 
 type Props = {};
 
@@ -62,7 +63,7 @@ const EditProfile = (props: Props) => {
     setLanguages(user?.languages || "");
     setPhone(user?.phone || "");
     setLocation(user?.location || "");
-    setDisplayName(user?.displayName || "");
+    setDisplayName(user?.displayName || generateUsername());
   }, [
     user?.name,
     user?.email,

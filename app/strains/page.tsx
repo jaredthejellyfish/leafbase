@@ -23,7 +23,7 @@ const Strains = async (props: Props) => {
         <p className="">
           Browse the most comprehensive weed strain library on the web. Browse
           weed strains by cannabis type (indica, sativa, or hybrid), effects, or
-          number of reviews.
+          number of comments.
         </p>
         <div className="flex items-center justify-between px-1 font-medium">
           <span className="mt-4 text-xs text-zinc-400">{count} strains</span>
@@ -35,7 +35,7 @@ const Strains = async (props: Props) => {
           </span>
         </div>
         <span className="hidden w-full p-2 mt-1 text-xs border rounded md:block border-zinc-600/50 text-zinc-600">
-          These results are based on user reviews and are not a substitute for
+          These results are based on user comments and are not a substitute for
           professional medical advice.
         </span>
         <div className="flex items-center justify-center w-full">

@@ -10,12 +10,44 @@ import ProfileRevalidator from "@/components/ProfileRevalidator/ProfileRevalidat
 import LikedStrains from "@/components/LikedStrains/LikedStrains";
 import { User } from "@prisma/client";
 import md5 from "md5";
+import useServerComments from "@/hooks/useServerComments";
 
 type Props = {};
 
 export const metadata = {
   title: "Profile - Leafbase",
 };
+
+interface StrainName {
+  name: string;
+  slug: string;
+}
+
+interface Comment {
+  id: string;
+  userId: string;
+  strainId: string;
+  body: string;
+  createdAt: Date;
+  strain: StrainName;
+}
+
+function pickRandomComments(comments: Comment[], count = 4): Comment[] {
+  const shuffledComments = [...comments].sort(() => Math.random() - 0.5);
+  const selectedComments: Comment[] = [];
+
+  for (const comment of shuffledComments) {
+    if (!selectedComments.some((r) => r.strain.name === comment.strain.name)) {
+      selectedComments.push(comment);
+
+      if (selectedComments.length >= count) {
+        break;
+      }
+    }
+  }
+
+  return selectedComments;
+}
 
 const generateGravatarUrl = (user: User): string => {
   if (user?.image) return user.image;
@@ -26,6 +58,8 @@ const generateGravatarUrl = (user: User): string => {
 
 async function UserProfile({}: Props) {
   const user = await useServerUser();
+  const { comments, isError } = await useServerComments(user as User);
+  const randomComments = pickRandomComments(comments as Comment[]);
 
   return (
     <div className="flex flex-col px-6 md:px-16">
@@ -104,7 +138,7 @@ async function UserProfile({}: Props) {
               </span>
             )}
 
-            <span className="mt-4 text-sm dark:text-white">
+            <span className="mt-3 text-sm dark:text-white">
               Email Address:
               <p className="text-gray-400">{user?.email}</p>
             </span>
@@ -114,8 +148,29 @@ async function UserProfile({}: Props) {
             </span>
             <SingOutButton />
           </div>
+          {comments?.length && comments?.length > 0 && !isError && (
+            <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
+              <h1 className="text-xl font-bold">Comments</h1>
+              <div className="flex flex-col gap-3 mt-2">
+                {randomComments &&
+                  randomComments?.length > 0 &&
+                  randomComments?.map((comment) => (
+                    <Link
+                      href={`/strains/${comment?.strain?.slug}`}
+                      className="px-3 py-2 text-sm border rounded-lg shadow border-zinc-100 dark:border-zinc-500"
+                      key={comment.id}
+                    >
+                      <h3 className="mb-1 text-base font-semibold">
+                        {comment.strain.name}
+                      </h3>
+                      <p className="text-zinc-400">{comment.body}</p>
+                    </Link>
+                  ))}
+              </div>
+            </div>
+          )}
         </div>
-        <div id="vertical 2" className="flex flex-col gap-4 lg:w-2/3">
+        <div id="vertical 2" className="flex flex-col gap-4 pb-3 lg:w-2/3">
           <div className="flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
             <h1 className="text-xl font-bold">General information</h1>
             <h2 className="mt-4 text-lg">About me</h2>

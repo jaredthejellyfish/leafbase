@@ -9,11 +9,11 @@ export async function GET(
   try {
     const slug = params.slug;
 
-    const strain = (await prisma.strain.findUnique({
+    const strain = await prisma.strain.findUnique({
       where: {
         slug: slug,
       },
-    })) as StrainExtended;
+    });
 
     return NextResponse.json({ strain });
   } catch (error) {

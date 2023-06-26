@@ -58,13 +58,13 @@ const effects: Colors = {
 
 const StrainCard = (props: Props) => {
   return (
-    <div className="relative z-10 flex gap-5 p-5 mt-4 border shadow rounded-xl dark:bg-zinc-900 md:flex-wrap flex-nowrap md:max-w-xs dark:border-opacity-0 border-zinc-100">
+    <Link
+      href={`/strains/${props.slug}`}
+      className="relative z-10 flex gap-5 p-5 mt-4 transition-transform border shadow rounded-xl dark:bg-zinc-900 md:flex-wrap flex-nowrap md:max-w-xs dark:border-opacity-0 border-zinc-100 hover:scale-101"
+    >
       <StrainCardLikeButton liked={props.liked} id={props.id} />
       {props.nugImage && props.name && (
-        <Link
-          href={`/strains/${props.slug}`}
-          className="flex items-center justify-center w-1/2 border rounded-lg md:w-full dark:border-opacity-0 border-zinc-200"
-        >
+        <div className="flex items-center justify-center w-1/2 border rounded-lg md:w-full dark:border-opacity-0 border-zinc-200">
           <Image
             style={{ maxHeight: "250px" }}
             className="object-contain w-full h-full bg-white border border-white rounded-lg aspect-square"
@@ -74,7 +74,7 @@ const StrainCard = (props: Props) => {
             height={350}
             priority={props.priority}
           />
-        </Link>
+        </div>
       )}
       <div className="w-1/2 md:w-full">
         <div className="inline-block px-2 py-1 text-xs font-medium bg-gray-200 rounded dark:shadow dark:bg-zinc-700">
@@ -114,16 +114,8 @@ const StrainCard = (props: Props) => {
             <p className="p-0">{props.topTerpene}</p>
           </span>
         </div>
-
-        <Link
-          className="flex items-center justify-center w-full py-2 mt-3 text-sm text-green-700 transition border border-green-700 rounded dark:hover:bg-zinc-500 dark:hover:text-white hover:bg-green-700 hover:text-white dark:border-zinc-500 dark:text-zinc-500"
-          href={`/strains/${props.slug}`}
-          aria-label={`Learn more about ${props.name}`}
-        >
-          Learn More
-        </Link>
       </div>
-    </div>
+    </Link>
   );
 };
 

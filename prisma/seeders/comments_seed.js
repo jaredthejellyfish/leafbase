@@ -12,29 +12,34 @@ async function getStrains(skip = 0, take = 90) {
 }
 
 async function getFirstUser() {
-  const user = await prisma.user.findFirst();
+  const user = await prisma.user.findUnique(
+    {
+      where: {
+        email: "ger.almenara@gmail.com",
+      },
+    }
+  );
   return user;
 }
 
-async function generateReviews(userId, strainId) {
-  const reviews = [];
+async function generateComments(userId, strainId) {
+  const comments = [];
   for (let i = 0; i < Math.floor(Math.random() * (40 - 1 + 1)) + 1; i++) {
-    const review = await prisma.review.create({
+    const comment = await prisma.comment.create({
       data: {
         userId: userId,
         strainId: strainId,
-        rating: faker.number.int({ min: 1, max: 5 }),
         body: faker.lorem.paragraph(),
       },
     });
 
-    reviews.push(review);
+    comments.push(comment);
   }
-  return reviews;
+  return comments;
 }
 
 async function main() {
-  console.log("Seeding reviews...");
+  console.log("Seeding comments...");
 
   const strains = await getStrains();
   if (!strains || strains.length < 1) throw new Error("No strains found");
@@ -43,18 +48,18 @@ async function main() {
   if (!user) throw new Error("No user found");
 
   console.log(
-    `Collected ${strains.length} strains. Seeding reviews with user: ${user.name}`
+    `Collected ${strains.length} strains. Seeding comments with user: ${user.name}`
   );
 
   for (const strain of strains.slice(0, 90)) {
-    const reviews = await generateReviews(user.id, strain.id);
-    if (!reviews) throw new Error("No reviews could be generated");
+    const comments = await generateComments(user.id, strain.id);
+    if (!comments) throw new Error("No comments could be generated");
     console.log(
-      `Generated ${reviews.length} reviews for strain: ${strain.name}`
+      `Generated ${comments.length} comments for strain: ${strain.name}`
     );
   }
 
-  console.log("Seeding reviews complete!");
+  console.log("Seeding comments complete!");
 }
 
 main();

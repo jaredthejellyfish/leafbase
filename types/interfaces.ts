@@ -40,15 +40,13 @@ export interface StrainExtended extends Strain {
       score: number;
     };
   };
-  reviews?: Review[];
+  comments?: Comment[];
 }
 
-export interface Review {
+export interface Comment {
   id: string;
   userId: string;
   strainId: string;
-  rating: number;
-  title: string;
   body: string;
   createdAt: string;
   user: User;

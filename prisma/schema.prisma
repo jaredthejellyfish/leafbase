@@ -54,14 +54,14 @@ model User {
   accounts      Account[]
   sessions      Session[]
   likes         Like[]
-  reviews       Review[]
+  comments      Comment[]
 
   @@map("users")
 }
 
 model Strain {
-  id               String   @id @default(cuid())
-  slug             String   @unique
+  id               String    @id @default(cuid())
+  slug             String    @unique
   name             String?
   subtitle         String?
   category         String?
@@ -78,22 +78,21 @@ model Strain {
   effects          Json?
   terps            Json?
   likes            Like[]
-  reviews          Review[]
+  comments         Comment[]
 
   @@map("strains")
 }
 
-model Review {
+model Comment {
   id        String   @id @default(cuid())
   userId    String
   strainId  String
-  rating    Float
   body      String?
   createdAt DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   strain    Strain   @relation(fields: [strainId], references: [id], onDelete: Cascade)
 
-  @@map("reviews")
+  @@map("comments")
 }
 
 model Like {

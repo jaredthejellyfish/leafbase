@@ -5,9 +5,10 @@ import StarRating from "@/components/StarRating/StarRating";
 import Link from "next/link";
 import { Metadata } from "next/types";
 import StrainPageLikeButton from "@/components/StrainPageLikeButton/StrainPageLikeButton";
-import { Review, StrainExtended } from "@/types/interfaces";
+import { StrainExtended } from "@/types/interfaces";
+import { Comment } from "@/types/interfaces";
 import StrainSoma from "@/components/StrainSoma/StrainSoma";
-import ReviewCard from "@/components/ReviewCard/ReviewCard";
+import CommentCard from "@/components/CommentCard/CommentCard";
 
 type Props = { params: { slug: string } };
 
@@ -67,7 +68,7 @@ const getStrainBySlug = async (slug: string) => {
         slug: slug,
       },
       include: {
-        reviews: {
+        comments: {
           include: {
             user: {
               select: {
@@ -258,16 +259,16 @@ const StrainPage = async (props: Props) => {
           <div className="px-0.5 md:w-2/3">{strain.description}</div>
         </div>
       </div>
-      {strain && strain.reviews && strain.reviews.length > 0 && (
+      {strain && strain.comments && strain.comments.length > 0 && (
         <div className="flex flex-col w-full gap-3 mb-2 ml-1 md:w-4/5">
           <h1 className="flex flex-row items-center mt-6 text-2xl font-bold">
-            Reviews for {strain.name}:
+            Comments for {strain.name}:
           </h1>
           <div className="flex flex-col w-full">
-            {strain.reviews &&
-              strain.reviews.length > 0 &&
-              strain.reviews.map((review: Review) => (
-                <ReviewCard key={review.id} review={review} />
+            {strain.comments &&
+              strain.comments.length > 0 &&
+              strain.comments.map((comment : Comment) => (
+                <CommentCard key={comment.id} comment={comment} />
               ))}
           </div>
         </div>

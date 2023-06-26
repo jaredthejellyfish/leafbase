@@ -9,6 +9,7 @@ import { User } from "@prisma/client";
 import md5 from "md5";
 import prisma from "@/lib/prisma";
 import { Metadata } from "next";
+import useServerComments from "@/hooks/useServerComments";
 
 type Props = { params: { displayName: string } };
 
@@ -17,6 +18,20 @@ interface ReducedStrain {
   slug: string;
   nugImage: string;
   name: string;
+}
+
+interface StrainName {
+  name: string;
+  slug: string;
+}
+
+interface Comment {
+  id: string;
+  userId: string;
+  strainId: string;
+  body: string;
+  createdAt: Date;
+  strain: StrainName;
 }
 
 const generateGravatarUrl = (user: User): string => {
@@ -67,8 +82,28 @@ export async function generateMetadata({
   };
 }
 
+function pickRandomComments(comments: Comment[], count = 4): Comment[] {
+  const shuffledComments = [...comments].sort(() => Math.random() - 0.5);
+  const selectedComments: Comment[] = [];
+
+  for (const comment of shuffledComments) {
+    if (!selectedComments.some((r) => r.strain.name === comment.strain.name)) {
+      selectedComments.push(comment);
+
+      if (selectedComments.length >= count) {
+        break;
+      }
+    }
+  }
+
+  return selectedComments;
+}
+
 const ProfileDisplay = async (props: Props) => {
   const user = await useServerUser(props.params.displayName);
+  const { comments, isError } = await useServerComments(user as User);
+  const randomComments = pickRandomComments(comments as Comment[]);
+
   if (!user) return <div>User not found.</div>;
   const strains = await getLikesByUUID(user?.id);
 
@@ -146,6 +181,27 @@ const ProfileDisplay = async (props: Props) => {
               </span>
             )}
           </div>
+          {comments?.length && comments?.length > 0 && !isError ? (
+            <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
+              <h1 className="text-xl font-bold">Comments</h1>
+              <div className="flex flex-col gap-2 mt-2">
+                {randomComments &&
+                  randomComments?.length > 0 &&
+                  randomComments?.map((comment) => (
+                    <Link
+                      href={`/strains/${comment?.strain?.slug}`}
+                      className="px-3 py-2 text-sm rounded-lg shadow dark:border dark:border-zinc-500"
+                      key={comment.id}
+                    >
+                      <h3 className="mb-1 text-base font-semibold">
+                        {comment.strain.name}
+                      </h3>
+                      <p className="text-zinc-400">{comment.body}</p>
+                    </Link>
+                  ))}
+              </div>
+            </div>
+          ) : null}
         </div>
         <div id="vertical 2" className="flex flex-col gap-4 lg:w-2/3">
           <div className="flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">

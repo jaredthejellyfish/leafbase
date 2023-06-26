@@ -194,9 +194,9 @@ const ProfileDisplay = async (props: Props) => {
                       className="px-3 py-2 text-sm rounded-lg shadow dark:border dark:border-zinc-500"
                       key={comment.id}
                     >
-                      <h3 className="mb-1 text-base font-semibold">
+                      <h2 className="mb-1 text-base font-semibold">
                         {comment.strain.name}
-                      </h3>
+                      </h2>
                       <p className="text-zinc-400">{comment.body}</p>
                     </Link>
                   ))}

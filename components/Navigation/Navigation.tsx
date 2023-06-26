@@ -8,7 +8,6 @@ import { User } from "@prisma/client";
 import useServerUser from "@/hooks/useServerUser";
 import NavigationHamburgerMenu from "./NavigationHamburgerMenu";
 import NavigationDropdown from "./NavigationDropdown";
-import useServerPathname from "@/hooks/useServerPathname";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/auth/authOptions";
 

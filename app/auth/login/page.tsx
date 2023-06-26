@@ -22,9 +22,9 @@ const LoginPage = (props: Props) => {
   return (
     <div
       style={{ minHeight: "calc(100vh - 145px)" }}
-      className="flex items-center justify-center px-12 dark:bg-black"
+      className="flex items-center justify-center px-5 dark:bg-black"
     >
-      <div className="flex flex-col items-center justify-center w-full gap-3 px-12 py-10 rounded-lg shadow-lg md:w-96 dark:bg-zinc-900">
+      <div className="flex flex-col items-center justify-center w-full gap-3 px-8 py-10 rounded-lg shadow-lg md:w-96 dark:bg-zinc-900">
         <h1 className="mb-2 text-xl font-medium dark:text-white">Sign in</h1>
         <form
           onSubmit={(e) => {
@@ -61,7 +61,7 @@ const LoginPage = (props: Props) => {
           </button>
 
           <div className="flex items-center justify-center mt-5 text-zinc-400">
-            ────────── or ──────────
+            <p className="text-xs md:text-sm">────────── or ──────────</p>
           </div>
         </form>
         <div className="flex flex-row gap-6 mt-3">

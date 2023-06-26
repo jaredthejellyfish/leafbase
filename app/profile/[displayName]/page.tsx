@@ -84,20 +84,27 @@ export async function generateMetadata({
 }
 
 function pickRandomComments(comments: Comment[], count = 4): Comment[] {
-  const shuffledComments = [...comments].sort(() => Math.random() - 0.5);
-  const selectedComments: Comment[] = [];
+  try {
+    const shuffledComments = [...comments].sort(() => Math.random() - 0.5);
+    const selectedComments: Comment[] = [];
 
-  for (const comment of shuffledComments) {
-    if (!selectedComments.some((r) => r.strain.name === comment.strain.name)) {
-      selectedComments.push(comment);
+    for (const comment of shuffledComments) {
+      if (
+        !selectedComments.some((r) => r.strain.name === comment.strain.name)
+      ) {
+        selectedComments.push(comment);
 
-      if (selectedComments.length >= count) {
-        break;
+        if (selectedComments.length >= count) {
+          break;
+        }
       }
     }
-  }
 
-  return selectedComments;
+    return selectedComments;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
 }
 
 const ProfileDisplay = async (props: Props) => {

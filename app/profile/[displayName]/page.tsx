@@ -79,6 +79,7 @@ export async function generateMetadata({
 
   return {
     title: `${displayName} - Leafbase` || "Strain",
+    description: `Explore ${displayName}'s personal user page, showcasing their profile, comments, and a curated list of their favorite cannabis strains. Connect and share experiences with fellow enthusiasts!`,
   };
 }
 

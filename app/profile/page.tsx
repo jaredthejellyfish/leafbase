@@ -16,6 +16,7 @@ type Props = {};
 
 export const metadata = {
   title: "Profile - Leafbase",
+  description: "Explore your personal user page, showcasing your profile, comments, and a curated list of your favorite cannabis strains. Stay updated and engaged with the community.",
 };
 
 interface StrainName {

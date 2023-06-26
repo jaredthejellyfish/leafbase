@@ -19,6 +19,15 @@ export async function POST(request: Request) {
 
     if (!session || !user) throw new Error("Unauthorized.");
 
+    const existingLike = await prisma.like.findFirst({
+      where: {
+        strainId: strainId,
+        userId: user.id,
+      },
+    });
+
+    if (existingLike) return NextResponse.json({ like: existingLike });
+
     const like = await prisma.like.create({
       data: {
         strain: {

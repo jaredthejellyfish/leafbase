@@ -9,6 +9,7 @@ import { StrainExtended } from "@/types/interfaces";
 import { Comment } from "@/types/interfaces";
 import StrainSoma from "@/components/StrainSoma/StrainSoma";
 import CommentCard from "@/components/CommentCard/CommentCard";
+import AddCommentButton from "@/components/AddCommentButton/AddCommentButton";
 
 type Props = { params: { slug: string } };
 
@@ -259,20 +260,27 @@ const StrainPage = async (props: Props) => {
           <div className="px-0.5 md:w-2/3">{strain.description}</div>
         </div>
       </div>
-      {strain && strain.comments && strain.comments.length > 0 && (
-        <div className="flex flex-col w-full gap-3 mb-2 ml-1 md:w-4/5">
+      <div className="flex flex-col w-full gap-3 mb-2 ml-1 md:w-4/5">
+        <div className="flex flex-row items-end justify-between w-full gap-3">
           <h1 className="flex flex-row items-center mt-6 text-2xl font-bold">
             Comments for {strain.name}:
           </h1>
-          <div className="flex flex-col w-full">
-            {strain.comments &&
-              strain.comments.length > 0 &&
-              strain.comments.map((comment: Comment) => (
+          <AddCommentButton strain={strain} />
+        </div>
+        <div className="flex flex-col w-full">
+          {strain.comments &&
+            strain.comments.length > 0 &&
+            strain.comments
+              .sort(
+                (a: Comment, b: Comment) =>
+                  new Date(b.createdAt).getTime() -
+                  new Date(a.createdAt).getTime()
+              )
+              .map((comment: Comment) => (
                 <CommentCard key={comment.id} comment={comment} />
               ))}
-          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };

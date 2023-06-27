@@ -1,0 +1,98 @@
+"use client";
+
+import { StrainExtended } from "@/types/interfaces";
+import React, { useState } from "react";
+import { AiOutlinePlus } from "react-icons/ai";
+import TextareaAutosize from "react-textarea-autosize";
+import { useRouter } from "next/navigation";
+
+type Props = { strain: StrainExtended };
+
+function AddCommentButton(props: Props) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [comment, setComment] = useState("");
+  const strainId = props.strain.id;
+  const router = useRouter();
+
+  const addComment = async (content: string, strainId: string) => {
+    if (content.length < 1) return;
+    const res = await fetch("/api/comments/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ content, strainId }),
+    });
+    if (res.status === 200) {
+      router.refresh();
+      setIsModalOpen(false);
+    } else {
+      console.log("Error adding comment");
+      setIsModalOpen(false);
+    }
+  };
+
+  return (
+    <>
+      <button
+        className="flex flex-row gap-2 p-2 text-green-700 transition scale-90 border border-green-700 rounded-lg sm:p-1 sm:px-2 sm:pr-3 md:scale-100 hover:bg-green-700 hover:text-white hover:dark:bg-zinc-500 hover:dark:text-zinc-200 text-md dark:border-zinc-500 dark:text-zinc-400 w-fit"
+        onClick={() => setIsModalOpen(!isModalOpen)}
+      >
+        <AiOutlinePlus size={25} />
+        <span className="hidden sm:block">Add Comment</span>
+      </button>
+      <div
+        className={`fixed z-10 inset-0 overflow-y-auto ${
+          isModalOpen ? "block" : "hidden"
+        }`}
+      >
+        <div className="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+          <div className="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div className="absolute inset-0 opacity-80 bg-zinc-700/75 dark:bg-zinc-900"></div>
+          </div>
+          <span
+            className="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true"
+          ></span>
+          <div className="inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl dark:bg-zinc-800 sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div className="flex flex-row items-center justify-between pt-3 px-7 dark:bg-zinc-800">
+              <p className="text-xl font-semibold">Add a comment:</p>
+              <svg
+                aria-hidden="true"
+                className="w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+                onClick={() => setIsModalOpen(false)}
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </div>
+            <div className="pt-2 pb-3 dark:bg-zinc-800 sm:px-6 sm:flex">
+              <TextareaAutosize
+                className="w-full p-2 border rounded border-zinc-300 dark:border-zinc-700 dark:bg-zinc-900/50 dark:text-zinc-300"
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                minRows={4}
+              ></TextareaAutosize>
+            </div>
+            <div className="flex items-center justify-center px-6 dark:bg-zinc-800">
+              <button
+                aria-label="Save"
+                type="button"
+                className="w-1/2 mb-4 mt-2 text-green-700 border border-green-700 dark:text-white hover:text-white hover:bg-green-800 transition-all focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mr-2 dark:bg-green-700 dark:hover:bg-green-800 focus:outline-none dark:focus:ring-blue-800"
+                onClick={() => addComment(comment, strainId)}
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export default AddCommentButton;

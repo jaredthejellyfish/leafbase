@@ -33,7 +33,7 @@ function AddCommentButton(props: Props) {
   return (
     <>
       <button
-        className="flex flex-row gap-2 p-2 text-green-700 transition scale-90 border border-green-700 rounded-lg sm:p-1 sm:px-2 sm:pr-3 md:scale-100 hover:bg-green-700 hover:text-white hover:dark:bg-zinc-500 hover:dark:text-zinc-200 text-md dark:border-zinc-500 dark:text-zinc-400 w-fit"
+        className="flex flex-row gap-2 p-2 text-green-700 transition scale-90 border border-green-700 rounded-lg sm:p-2 sm:px-2 sm:pr-3 md:scale-100 hover:bg-green-700 hover:text-white hover:dark:bg-zinc-500 hover:dark:text-zinc-200 text-md dark:border-zinc-500 dark:text-zinc-400 w-fit"
         onClick={() => setIsModalOpen(!isModalOpen)}
       >
         <AiOutlinePlus size={25} />
@@ -44,15 +44,11 @@ function AddCommentButton(props: Props) {
           isModalOpen ? "block" : "hidden"
         }`}
       >
-        <div className="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+        <div className="flex items-center justify-center min-h-screen p-0 px-4 pt-4 pb-20 text-center">
           <div className="fixed inset-0 transition-opacity" aria-hidden="true">
             <div className="absolute inset-0 opacity-80 bg-zinc-700/75 dark:bg-zinc-900"></div>
           </div>
-          <span
-            className="hidden sm:inline-block sm:align-middle sm:h-screen"
-            aria-hidden="true"
-          ></span>
-          <div className="inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl dark:bg-zinc-800 sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+          <div className="inline-block w-full max-w-lg overflow-hidden text-left align-middle transition-all transform bg-white rounded-lg shadow-xl dark:bg-zinc-800">
             <div className="flex flex-row items-center justify-between pt-3 px-7 dark:bg-zinc-800">
               <p className="text-xl font-semibold">Add a comment:</p>
               <svg
@@ -70,7 +66,7 @@ function AddCommentButton(props: Props) {
                 ></path>
               </svg>
             </div>
-            <div className="pt-2 pb-3 dark:bg-zinc-800 sm:px-6 sm:flex">
+            <div className="flex px-6 pt-2 pb-3 dark:bg-zinc-800">
               <TextareaAutosize
                 className="w-full p-2 border rounded border-zinc-300 dark:border-zinc-700 dark:bg-zinc-900/50 dark:text-zinc-300"
                 value={comment}

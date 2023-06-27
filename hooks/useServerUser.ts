@@ -40,12 +40,17 @@ const getUserByDisplayName = async (displayName: string) => {
 export default async function useServerUser(
   displayName?: string
 ): Promise<User | null> {
-  if (displayName) return (await getUserByDisplayName(displayName)) as User;
+  try {
+    if (displayName) return (await getUserByDisplayName(displayName)) as User;
 
-  const session = await getServerSession(authOptions);
-  if (session?.user?.email) {
-    return (await getUserByEmail(session?.user?.email)) as User;
-  } else {
+    const session = await getServerSession(authOptions);
+    if (session?.user?.email) {
+      return (await getUserByEmail(session?.user?.email)) as User;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.log(error);
     return null;
   }
 }

@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import TextareaAutosize from "react-textarea-autosize";
 import { useRouter } from "next/navigation";
+import {motion} from "framer-motion";
 
 type Props = { strain: StrainExtended };
 
@@ -39,7 +40,7 @@ function AddCommentButton(props: Props) {
         <AiOutlinePlus size={25} />
         <span className="hidden sm:block">Add Comment</span>
       </button>
-      <div
+      <motion.div
         className={`fixed z-10 inset-0 overflow-y-auto ${
           isModalOpen ? "block" : "hidden"
         }`}
@@ -86,7 +87,7 @@ function AddCommentButton(props: Props) {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }

@@ -7,7 +7,7 @@ import StrainLoader from "@/components/StrainLoader/StrainLoader";
 type Props = {};
 
 export const metadata = {
-  title: "Strains - Leafbase",
+  title: "All Strains - Leafbase",
   description:
     "Explore our comprehensive list of marijuana strains, featuring detailed profiles, effects, and reviews. Filter by type, potency, and medical benefits to find your perfect match. Discover new favorites and classics in our extensive collection of cannabis varieties.",
 };

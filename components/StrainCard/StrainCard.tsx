@@ -70,8 +70,8 @@ const StrainCard = (props: Props) => {
             className="object-contain w-full h-full bg-white border border-white rounded-lg aspect-square"
             src={props.nugImage}
             alt={props.name}
-            width={350}
-            height={350}
+            width={300}
+            height={300}
             priority={props.priority}
           />
         </div>

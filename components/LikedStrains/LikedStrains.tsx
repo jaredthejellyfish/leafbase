@@ -15,7 +15,7 @@ type Strain = {
 };
 
 const LikedStrains = (props: Props) => {
-  const { strains, isLoading, isFetching, error } = useLikedStrains();
+  const { strains, isLoading } = useLikedStrains();
   return (
     <div>
       <span className="text-xl font-bold ">

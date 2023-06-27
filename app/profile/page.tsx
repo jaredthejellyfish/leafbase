@@ -61,6 +61,8 @@ const generateGravatarUrl = (user: User): string => {
 async function UserProfile({}: Props) {
   const user = await useServerUser();
   const { comments, isError } = await useServerComments(user as User);
+
+  if (isError || !user) return <div>failed to load</div>;
   const randomComments = pickRandomComments(comments as Comment[]);
 
   return (

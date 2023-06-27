@@ -64,7 +64,7 @@ const LoginPage = (props: Props) => {
               height={34}
               width={34}
               src={outlookLogo}
-              alt="Outlook sso button."
+              alt="Outlook logo"
             />
           </Link>
           <Link

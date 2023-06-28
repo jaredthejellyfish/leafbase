@@ -281,3 +281,5 @@ async function UserProfile({}: Props) {
 }
 
 export default UserProfile;
+
+export const dynamic = "force-dynamic";

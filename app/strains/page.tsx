@@ -75,3 +75,5 @@ const Strains = async (props: Props) => {
 };
 
 export default Strains;
+
+export const dynamic = "force-dynamic";

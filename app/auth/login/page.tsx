@@ -6,6 +6,7 @@ import Image from "next/image";
 import { BsDiscord, BsTwitch } from "react-icons/bs";
 import { AiFillGithub } from "react-icons/ai";
 import { useParams, useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 type Props = {};
 
@@ -15,7 +16,9 @@ const LoginPage = (props: Props) => {
 
   useEffect(() => {
     if (status === "authenticated") {
+      toast.success("Successfully signed in!");
       router.push("/");
+
     }
   }, [status, router]);
 

@@ -6,11 +6,14 @@ import CommentCard from "./CommentCard";
 import AddCommentButton from "@/components/AddCommentButton/AddCommentButton";
 import { AnimatePresence } from "framer-motion";
 import { StrainExtended } from "@/types/interfaces";
+import useUser from "@/hooks/useUser";
 
 type Props = { strain: StrainExtended };
 
 const CommentLoader = (props: Props) => {
   const { strain } = props;
+  const { user, isLoading, isFetching, error } = useUser();
+
   return (
     <>
       <div className="flex flex-row items-end justify-between w-full gap-3">
@@ -21,7 +24,10 @@ const CommentLoader = (props: Props) => {
       </div>
       <div className="flex flex-col w-full">
         <AnimatePresence>
-          {strain.comments &&
+          {user &&
+            !isLoading &&
+            !isFetching &&
+            strain.comments &&
             strain.comments.length > 0 &&
             strain.comments
               .sort(
@@ -30,7 +36,11 @@ const CommentLoader = (props: Props) => {
                   new Date(a.createdAt).getTime()
               )
               .map((comment: Comment) => (
-                <CommentCard key={comment.id} comment={comment} />
+                <CommentCard
+                  key={comment.id}
+                  comment={comment}
+                  userId={user?.id}
+                />
               ))}
         </AnimatePresence>
       </div>

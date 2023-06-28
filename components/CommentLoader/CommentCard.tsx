@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 
 type Props = {
   comment: Comment;
+  userId: string;
 };
 
 function transformName(name: string): string {
@@ -25,7 +26,7 @@ function transformName(name: string): string {
 }
 
 const CommentCard = (props: Props) => {
-  const { comment } = props;
+  const { comment, userId } = props;
 
   return (
     <motion.div
@@ -51,7 +52,9 @@ const CommentCard = (props: Props) => {
               {comment.user.name && transformName(comment.user.name)}
             </div>
           )}
-          <DeleteCommentButton commentId={comment.id} />
+          {comment.userId === userId && (
+            <DeleteCommentButton commentId={comment.id} />
+          )}
         </div>
       </div>
       <svg width="100%" height="1" className="mb-3">

@@ -12,7 +12,7 @@ type Props = { strain: StrainExtended };
 
 const CommentLoader = (props: Props) => {
   const { strain } = props;
-  const { user, isLoading, isFetching, error } = useUser();
+  const { user, isLoading, isFetching } = useUser();
 
   return (
     <>

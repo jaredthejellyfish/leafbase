@@ -30,9 +30,9 @@ const CommentCard = (props: Props) => {
   return (
     <motion.div
       className="p-4 mb-5 border rounded shadow border-zinc-200 dark:border-transparent dark:bg-zinc-900"
-      initial={{ opacity: 0, scaleY: 0.4 }}
-      animate={{ opacity: 1, scaleY: 1, transition: { duration: 0.3 } }}
-      exit={{ opacity: 0, scaleY: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { duration: 0.2 } }}
+      exit={{ opacity: 0 }}
     >
       <div className="relative mb-2">
         <div className="absolute top-0 right-0 flex text-sm">

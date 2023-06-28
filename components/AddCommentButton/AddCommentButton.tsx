@@ -13,11 +13,14 @@ type Props = { strain: StrainExtended };
 function AddCommentButton(props: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [comment, setComment] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
+  const [isError, setIsError] = useState(false);
   const strainId = props.strain.id;
   const router = useRouter();
 
   const addComment = async (content: string, strainId: string) => {
     if (content.length < 1) return;
+    setIsSaving(true);
     const res = await fetch("/api/comments/add", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -25,9 +28,14 @@ function AddCommentButton(props: Props) {
     });
     if (res.status === 200) {
       router.refresh();
+      setComment("");
+      setIsSaving(false);
       setIsModalOpen(false);
     } else {
       console.log("Error adding comment");
+      setComment("");
+      setIsSaving(false);
+      setIsError(true);
       setIsModalOpen(false);
     }
   };
@@ -104,8 +112,10 @@ function AddCommentButton(props: Props) {
                     type="button"
                     className="w-1/2 mb-4 mt-2 text-green-700 border border-green-700 dark:text-white hover:text-white hover:bg-green-800 transition-all focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mr-2 dark:bg-green-700 dark:hover:bg-green-800 focus:outline-none dark:focus:ring-blue-800"
                     onClick={() => addComment(comment, strainId)}
+                    disabled={isSaving}
                   >
-                    Save
+                    {isSaving && !isError ? "Saving..." : "Save"}
+                    {isError && "Error"}
                   </button>
                 </div>
               </motion.div>

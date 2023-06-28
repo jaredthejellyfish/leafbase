@@ -3,9 +3,9 @@
 import React, { useEffect } from "react";
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
-import { BsDiscord, BsTwitch } from "react-icons/bs";
+import { BsDiscord, BsTwitch, BsSpotify } from "react-icons/bs";
 import { AiFillGithub } from "react-icons/ai";
-import { useParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 type Props = {};
@@ -18,7 +18,6 @@ const LoginPage = (props: Props) => {
     if (status === "authenticated") {
       toast.success("Successfully signed in!");
       router.push("/");
-
     }
   }, [status, router]);
 
@@ -99,6 +98,13 @@ const LoginPage = (props: Props) => {
             className="flex items-center justify-center w-12 h-12 text-white transition bg-white rounded shadow-md hover:scale-105"
           >
             <BsTwitch size={30} />
+          </button>
+          <button
+            style={{ backgroundColor: "#000000", color: "#1EB954" }}
+            onClick={() => signIn("spotify")}
+            className="flex items-center justify-center w-12 h-12 text-white transition bg-white rounded shadow-md hover:scale-105"
+          >
+            <BsSpotify size={30} />
           </button>
         </div>
       </div>

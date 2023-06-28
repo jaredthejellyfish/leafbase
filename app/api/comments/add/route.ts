@@ -9,11 +9,13 @@ export async function POST(request: Request) {
     const { content, strainId } = body;
     if (!content || !strainId) throw new Error("Invalid request.");
 
-    //const session = await getServerSession(authOptions);
+    const session = await getServerSession(authOptions);
+
+    if (!session?.user?.email) throw new Error("Unauthorized.");
 
     const user = await prisma.user.findUnique({
       where: {
-        email: "ger.almenara@gmail.com",
+        email: session?.user?.email,
       },
     });
 

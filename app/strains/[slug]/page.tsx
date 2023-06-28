@@ -10,6 +10,7 @@ import { Comment } from "@/types/interfaces";
 import StrainSoma from "@/components/StrainSoma/StrainSoma";
 import CommentCard from "@/components/CommentCard/CommentCard";
 import AddCommentButton from "@/components/AddCommentButton/AddCommentButton";
+import { AnimatePresence } from "framer-motion";
 
 type Props = { params: { slug: string } };
 
@@ -268,17 +269,19 @@ const StrainPage = async (props: Props) => {
           <AddCommentButton strain={strain} />
         </div>
         <div className="flex flex-col w-full">
-          {strain.comments &&
-            strain.comments.length > 0 &&
-            strain.comments
-              .sort(
-                (a: Comment, b: Comment) =>
-                  new Date(b.createdAt).getTime() -
-                  new Date(a.createdAt).getTime()
-              )
-              .map((comment: Comment) => (
-                <CommentCard key={comment.id} comment={comment} />
-              ))}
+          <AnimatePresence>
+            {strain.comments &&
+              strain.comments.length > 0 &&
+              strain.comments
+                .sort(
+                  (a: Comment, b: Comment) =>
+                    new Date(b.createdAt).getTime() -
+                    new Date(a.createdAt).getTime()
+                )
+                .map((comment: Comment) => (
+                  <CommentCard key={comment.id} comment={comment} />
+                ))}
+          </AnimatePresence>
         </div>
       </div>
     </div>

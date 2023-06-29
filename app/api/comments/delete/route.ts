@@ -6,8 +6,8 @@ import { authOptions } from "@/auth/authOptions";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { content, strainId } = body;
-    if (!content || !strainId) throw new Error("Invalid request.");
+    const { commentId } = body;
+    if (!commentId) throw new Error("Invalid request.");
 
     const session = await getServerSession(authOptions);
 
@@ -21,19 +21,9 @@ export async function POST(request: Request) {
 
     if (!user) throw new Error("Unauthorized.");
 
-    const comment = await prisma.comment.create({
-      data: {
-        body: content,
-        strain: {
-          connect: {
-            id: strainId,
-          },
-        },
-        user: {
-          connect: {
-            id: user.id,
-          },
-        },
+    const comment = await prisma.comment.delete({
+      where: {
+        id: commentId,
       },
     });
 

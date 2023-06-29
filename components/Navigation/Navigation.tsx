@@ -10,6 +10,7 @@ import NavigationHamburgerMenu from "./NavigationHamburgerMenu";
 import NavigationDropdown from "./NavigationDropdown";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/auth/authOptions";
+import SiteLogo from "../SiteLogo/SiteLogo";
 
 type Props = {};
 
@@ -30,15 +31,9 @@ const Navigation = async () => {
         <div className="flex items-center justify-start col-span-1">
           <Link
             href="/"
-            className="flex items-center justify-start gap-5 text-xl"
+            className="flex items-center justify-start gap-4 text-xl"
           >
-            <Image
-              src="https://companieslogo.com/img/orig/LFLY-e243e87c.png?t=1676454310"
-              alt="logo"
-              width={38}
-              height={38}
-              priority
-            />
+           <SiteLogo height={44} width={44} />
             <span className="font-medium ">Leafbase</span>
           </Link>
         </div>

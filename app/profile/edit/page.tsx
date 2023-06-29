@@ -15,6 +15,7 @@ import DeleteAccount from "@/components/DeleteAccount/DeleteAccount";
 import md5 from "md5";
 import { User } from "@prisma/client";
 import { generateUsername } from "unique-username-generator";
+import { toast } from "react-toastify";
 
 type Props = {};
 
@@ -95,7 +96,7 @@ const EditProfile = (props: Props) => {
         return;
       }
 
-      await fetch("/api/user/edit", {
+      const res = await fetch("/api/user/edit", {
         method: "POST",
         body: JSON.stringify({
           name: name,
@@ -108,10 +109,12 @@ const EditProfile = (props: Props) => {
           displayName: displayName,
         }),
       });
+      if (!res.ok) throw new Error(await res.text());
     } catch (error) {
       console.log(error);
     } finally {
       router.push("/profile?revalidate=true");
+      if (hasChanges()) toast.success("Profile updated successfully!");
       queryClient.invalidateQueries({ queryKey: ["user-profile"] });
     }
   };

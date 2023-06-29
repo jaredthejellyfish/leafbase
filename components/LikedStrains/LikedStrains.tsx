@@ -1,9 +1,10 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
-import useLikedStrains from "@/hooks/useLikedStrains";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import useServerUser from "@/hooks/useServerUser";
+import prisma from "@/lib/prisma";
+import { StrainExtended } from "@/types/interfaces";
+import { User } from "@prisma/client";
 
 type Props = {};
 
@@ -14,72 +15,45 @@ type Strain = {
   name: string;
 };
 
-const LikedStrains = (props: Props) => {
-  const { strains, isLoading } = useLikedStrains();
+const getLikedStrains = async (user: User) => {
+  const likes = await prisma.like.findMany({
+    where: {
+      userId: user?.id,
+    },
+    include: {
+      strain: {
+        select: {
+          id: true,
+          slug: true,
+          nugImage: true,
+          name: true,
+        },
+      },
+    },
+  });
+  const likedStrains = likes.map((like) => like.strain as StrainExtended);
+
+  // sort them by name
+  const sortedLikedStrains = likedStrains.sort((a, b) => {
+    if (a.name < b.name) return -1;
+    else if (a.name > b.name) return 1;
+    else return 0;
+  });
+
+  return sortedLikedStrains;
+};
+
+const LikedStrains = async (props: Props) => {
+  const user = (await useServerUser()) as User;
+  const strains = await getLikedStrains(user);
+
   return (
     <div>
       <span className="text-xl font-bold ">
         Liked Strains ({strains?.length})
       </span>
-      {isLoading && (
-        <div className="flex flex-row flex-wrap items-center justify-center mt-3 md:justify-start gap-y-3">
-          <div className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600">
-            <div
-              style={{ maxHeight: "90px", maxWidth: "90px" }}
-              className="flex items-center justify-center w-24 bg-white rounded-md aspect-square bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
-            ></div>
-            <h1 className="text-sm text-semi">
-              <div className="w-20 h-3 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-            </h1>
-          </div>
-          <div className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600">
-            <div
-              style={{ maxHeight: "90px", maxWidth: "90px" }}
-              className="flex items-center justify-center w-24 bg-white rounded-md aspect-square bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
-            ></div>
-            <h1 className="text-sm text-semi">
-              <div className="w-20 h-3 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-            </h1>
-          </div>
-          <div className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600">
-            <div
-              style={{ maxHeight: "90px", maxWidth: "90px" }}
-              className="flex items-center justify-center w-24 bg-white rounded-md aspect-square bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
-            ></div>
-            <h1 className="text-sm text-semi">
-              <div className="w-20 h-3 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-            </h1>
-          </div>
-          <div className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600">
-            <div
-              style={{ maxHeight: "90px", maxWidth: "90px" }}
-              className="flex items-center justify-center w-24 bg-white rounded-md aspect-square bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
-            ></div>
-            <h1 className="text-sm text-semi">
-              <div className="w-20 h-3 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-            </h1>
-          </div>
-          <div className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600">
-            <div
-              style={{ maxHeight: "90px", maxWidth: "90px" }}
-              className="flex items-center justify-center w-24 bg-white rounded-md aspect-square bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
-            ></div>
-            <h1 className="text-sm text-semi">
-              <div className="w-20 h-3 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-            </h1>
-          </div>
-          <div className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600">
-            <div
-              style={{ maxHeight: "90px", maxWidth: "90px" }}
-              className="flex items-center justify-center w-24 bg-white rounded-md aspect-square bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
-            ></div>
-            <h1 className="text-sm text-semi">
-              <div className="w-20 h-3 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-            </h1>
-          </div>
-        </div>
-      )}
-      {!isLoading && strains && strains.length === 0 ? (
+
+      {strains && strains.length === 0 ? (
         <div className="mt-6 text-sm text-semi text-zinc-400">
           You haven&apos;t liked any strains yet!
         </div>

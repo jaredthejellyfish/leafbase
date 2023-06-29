@@ -3,6 +3,8 @@ import EmailProvider from "next-auth/providers/email";
 import GoogleProvider from "next-auth/providers/google";
 import TwitchProvider from "next-auth/providers/twitch";
 import GitHubProvider from "next-auth/providers/github";
+import SpotifyProvider from "next-auth/providers/spotify";
+
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { html } from "@/lib/email";
 import { createTransport } from "nodemailer";
@@ -16,6 +18,10 @@ const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma) as any,
 
   providers: [
+    SpotifyProvider({
+      clientId: process.env.SPOTIFY_CLIENT_ID || "",
+      clientSecret: process.env.SPOTIFY_CLIENT_SECRET || "",
+    }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",

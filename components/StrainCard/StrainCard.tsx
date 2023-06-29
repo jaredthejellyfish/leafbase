@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import StrainCardLikeButton from "@/components/StrainCardLikeButton/StrainCardLikeButton";
+import StrainCardLikeButton from "./StrainCardLikeButton";
 import StarRating from "@/components/StarRating/StarRating";
 
 type Props = {

@@ -30,8 +30,10 @@ export default function RootLayout({
       >
         <Providers>
           <Navigation />
-          <div className="pt-20">{children}</div>
-          <ClientToast />
+          <div className="pt-20">
+            {children}
+            <ClientToast />
+          </div>
           <Analytics />
         </Providers>
       </body>

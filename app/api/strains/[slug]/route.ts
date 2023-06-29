@@ -1,6 +1,5 @@
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
-import { StrainExtended } from "@/types/interfaces";
 
 export async function GET(
   request: Request,

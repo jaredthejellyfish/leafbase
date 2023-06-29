@@ -166,3 +166,7 @@ dist
 .pnp.*
 
 .VS*
+
+all_strains.json
+leafbase.strains.json
+strain_vectors.npy

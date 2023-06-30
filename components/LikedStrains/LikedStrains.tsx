@@ -5,6 +5,7 @@ import useServerUser from "@/hooks/useServerUser";
 import prisma from "@/lib/prisma";
 import { StrainExtended } from "@/types/interfaces";
 import { User } from "@prisma/client";
+import LikedStrainsModal from "./LikedStrainsModal";
 
 type Props = {};
 
@@ -49,9 +50,10 @@ const LikedStrains = async (props: Props) => {
 
   return (
     <div>
-      <span className="text-xl font-bold ">
-        Liked Strains ({strains?.length})
-      </span>
+      <div className="flex flex-row items-center gap-8 text-xl font-bold">
+        <p>Liked Strains ({strains?.length})</p>
+        <LikedStrainsModal strains={strains} />
+      </div>
 
       {strains && strains.length === 0 ? (
         <div className="mt-6 text-sm text-semi text-zinc-400">

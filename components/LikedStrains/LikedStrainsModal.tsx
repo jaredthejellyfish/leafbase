@@ -18,6 +18,7 @@ import {
   Legend,
   LinearScale,
   PointElement,
+  Align
 } from "chart.js";
 
 ChartJS.register(
@@ -82,17 +83,17 @@ const generateDatasetsFromData = (data: LikedStrainPoint[]) => {
 const LikedStrainsModal = (props: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsModalOpen(false);
-      }
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const handleKeyDown = (event: KeyboardEvent) => {
+  //     if (event.key === "Escape") {
+  //       setIsModalOpen(false);
+  //     }
+  //   };
+  //   document.addEventListener("keydown", handleKeyDown);
+  //   return () => {
+  //     document.removeEventListener("keydown", handleKeyDown);
+  //   };
+  // }, []);
 
   const strainNames = props.strains.map((strain) => strain.name);
   const currentTheme = useSelector((state: RootState) => state.theme);
@@ -126,7 +127,7 @@ const LikedStrainsModal = (props: Props) => {
         },
         display: true,
         color: currentTheme.theme === "dark" ? "white" : "black",
-        align: "right",
+        align: "right" as Align,
         offset: 10,
       },
       legend: {
@@ -218,6 +219,7 @@ const LikedStrainsModal = (props: Props) => {
                 <Scatter
                   height={"100%"}
                   plugins={[ChartDataLabels, zoomPlugin]}
+                  // @ts-ignore
                   options={options}
                   updateMode="default"
                   data={generateDatasetsFromData(likedStrainsData)}
@@ -232,5 +234,3 @@ const LikedStrainsModal = (props: Props) => {
 };
 
 export default LikedStrainsModal;
-// isModalOpen && (isLoading || isFetching) ? (
-//   ) : (

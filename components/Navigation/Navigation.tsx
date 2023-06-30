@@ -33,7 +33,7 @@ const Navigation = async () => {
             href="/"
             className="flex items-center justify-start gap-4 text-xl"
           >
-           <SiteLogo height={44} width={44} />
+            <SiteLogo height={44} width={44} />
             <span className="font-medium ">Leafbase</span>
           </Link>
         </div>

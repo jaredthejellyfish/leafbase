@@ -2,6 +2,9 @@
 
 const nextConfig = {
   reactStrictMode: true,
+  devIndicators: {
+    buildActivity: true,
+  },
   images: {
     domains: [
       "companieslogo.com",

@@ -168,3 +168,5 @@ dist
 .VS*
 
 prisma/
+
+*.json

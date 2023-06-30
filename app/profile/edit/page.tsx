@@ -9,7 +9,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { AiOutlineClose } from "react-icons/ai";
 import moment from "moment";
-import Modal from "@/components/Modal/Modal";
+import SaveModal from "@/components/SaveModal/SaveModal";
 import UserProfileLoading from "../loading";
 import DeleteAccount from "@/components/DeleteAccount/DeleteAccount";
 import md5 from "md5";
@@ -308,7 +308,7 @@ const EditProfile = (props: Props) => {
           </div>
         </div>
       </div>
-      <Modal
+      <SaveModal
         open={open}
         title={"Are you sure you want to leave?"}
         closeCallback={() => setOpen(!open)}

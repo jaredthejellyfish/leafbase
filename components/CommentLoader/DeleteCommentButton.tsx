@@ -26,7 +26,12 @@ const DeleteCommentButton = (props: Props) => {
     router.refresh();
   };
 
-  return <BsTrashFill className="cursor-pointer" onClick={() => deleteComment(props.commentId)} />;
+  return (
+    <BsTrashFill
+      className="cursor-pointer"
+      onClick={() => deleteComment(props.commentId)}
+    />
+  );
 };
 
 export default DeleteCommentButton;

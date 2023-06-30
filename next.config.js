@@ -15,6 +15,7 @@ const nextConfig = {
       "www.gravatar.com",
       "developers.google.com",
       "discord.com",
+      "cdn.discordapp.com",
       "lh3.googleusercontent.com",
     ],
   },

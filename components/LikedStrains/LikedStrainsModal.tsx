@@ -18,7 +18,7 @@ import {
   Legend,
   LinearScale,
   PointElement,
-  Align
+  Align,
 } from "chart.js";
 
 ChartJS.register(

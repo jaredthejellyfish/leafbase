@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import md5 from "md5";
 import NavigationThemeSelect from "./NavigationThemeSelect";
-import SearchBar from "../SearchBar/SearchBar";
+import SearchBar from "./SearchBar";
 import { User } from "@prisma/client";
 import useServerUser from "@/hooks/useServerUser";
 import NavigationHamburgerMenu from "./NavigationHamburgerMenu";
@@ -11,8 +11,6 @@ import NavigationDropdown from "./NavigationDropdown";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/auth/authOptions";
 import SiteLogo from "../SiteLogo/SiteLogo";
-
-type Props = {};
 
 const generateGravatarUrl = (user: User): string => {
   if (user?.image) return user.image;

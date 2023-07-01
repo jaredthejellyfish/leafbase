@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
@@ -15,6 +16,24 @@ const NavigationDropdown = (props: Props) => {
   ).isNavDropdownOpen;
   const dispatch = useDispatch();
   const pathName = usePathname();
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        dispatch(setNavDropdownOpen(false));
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [dispatch]);
 
   const navigationMenu = {
     container: {
@@ -62,6 +81,7 @@ const NavigationDropdown = (props: Props) => {
       variants={navigationMenu.container}
       initial="closed"
       animate={isOpen ? "open" : "closed"}
+      ref={dropdownRef}
     >
       <motion.div
         className="flex items-center justify-start w-full h-10 p-5 pl-10 text-lg font-medium transition-colors cursor-pointer hover:background-slate-200 dark:hover:bg-zinc-800"

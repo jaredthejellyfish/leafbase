@@ -39,7 +39,7 @@ export async function POST(request: Request) {
 
     const likedStrainsData = await fetchLikedStrainsData(strains);
 
-    return NextResponse.json({likedStrainsData});
+    return NextResponse.json({ likedStrainsData });
   } catch (error) {
     console.log(error);
     return NextResponse.json({ error: error });

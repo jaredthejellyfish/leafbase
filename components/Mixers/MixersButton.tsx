@@ -21,18 +21,15 @@ interface Recommendation {
 }
 
 const fetchRecommendedStrainsData = async (strainName: string) => {
-  const res = await fetch(
-    `/api/recommendations/find-matches`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: strainName,
-      }),
-    }
-  );
+  const res = await fetch(`/api/recommendations/find-matches`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: strainName,
+    }),
+  });
   const data = await res.json();
 
   return data.recommendedStrainsData;

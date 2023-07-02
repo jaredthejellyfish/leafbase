@@ -10,6 +10,7 @@ import { StrainExtended } from "@/types/interfaces";
 import StrainSoma from "@/components/StrainSoma/StrainSoma";
 import CommentLoader from "@/components/CommentLoader/CommentLoader";
 import MixersButton from "@/components/Mixers/MixersButton";
+import { ErrorBoundary } from "react-error-boundary";
 
 type Props = { params: { slug: string } };
 
@@ -104,6 +105,20 @@ const getStrainBySlug = async (slug: string) => {
 //     slug: strains.slug,
 //   }));
 // }
+
+const CommentLoaderFallback = ({ strain }: { strain: StrainExtended }) => {
+  return (
+    <div className="flex flex-col items-start w-full gap-3">
+      <h1 className="flex flex-row items-center mt-6 text-2xl font-bold">
+        Comments for {strain.name}:
+      </h1>
+      <p>
+        There was an error loading the comments. Please reload the page to try
+        again.
+      </p>
+    </div>
+  );
+};
 
 const StrainPage = async (props: Props) => {
   const strain = (await getStrainBySlug(
@@ -264,7 +279,9 @@ const StrainPage = async (props: Props) => {
         </div>
       </div>
       <div className="flex flex-col w-full gap-3 mb-2 ml-1 md:w-4/5">
-        <CommentLoader strain={strain} />
+        <ErrorBoundary fallback={<CommentLoaderFallback strain={strain} />}>
+          <CommentLoader strain={strain} />
+        </ErrorBoundary>
       </div>
     </div>
   );

@@ -8,6 +8,11 @@ const getStrains = async (skip: number, take: number, userId: string) => {
     const strains = await prisma.strain.findMany({
       skip: skip,
       take: take,
+      orderBy: {
+        likes: {
+          _count: "desc",
+        },
+      },
       include: {
         likes: {
           where: {

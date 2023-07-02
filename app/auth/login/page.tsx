@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import Image from "next/image";
 import { BsDiscord, BsTwitch, BsSpotify } from "react-icons/bs";
@@ -11,15 +11,17 @@ import { toast } from "react-toastify";
 type Props = {};
 
 const LoginPage = (props: Props) => {
-  const { status } = useSession();
+  const { data: session } = useSession();
   const router = useRouter();
+  const [showToast, setShowToast] = useState(true);
 
   useEffect(() => {
-    if (status === "authenticated") {
-      toast.success("Successfully signed in!");
+    if (session?.user?.name && showToast) {
+      toast.success(`Welcome back ${session?.user?.name?.split(" ")[0]}! 🎉`);
+      setShowToast(false);
       router.push("/");
     }
-  }, [status, router]);
+  }, [router, session, showToast]);
 
   return (
     <div
@@ -38,25 +40,18 @@ const LoginPage = (props: Props) => {
           className="w-full"
         >
           <div className="relative w-full">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              <svg
-                aria-hidden="true"
-                className="w-5 h-5 text-zinc-500 dark:text-zinc-400"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
-                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
-              </svg>
+            <div className="relative">
+              <input
+                type="text"
+                id="default_outlined"
+                className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 bg-transparent rounded-lg border-1 border-zinc-300 appearance-none dark:text-white dark:border-zinc-500 dark:focus:border-green-600 focus:outline-none focus:ring-0 focus:border-green-700 peer border "
+                name="email"
+                placeholder=" "
+              />
+              <label className=" rounded absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-zinc-900 px-2 peer-focus:px-2 peer-focus:text-green-600 peer-focus:dark:text-green-700 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1">
+                Enter your email...
+              </label>
             </div>
-            <input
-              type="text"
-              id="email-address-icon"
-              name="email"
-              className="bg-zinc-50 border border-zinc-300 text-zinc-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block pl-10 p-2.5  dark:bg-zinc-700 dark:border-zinc-600 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
-              placeholder="name@leafbase.com"
-            />
           </div>
           <button className="flex items-center justify-center w-full py-2 mt-3 text-sm text-green-700 transition border border-green-700 rounded dark:hover:bg-zinc-500 dark:hover:text-white hover:bg-green-700 hover:text-white dark:border-zinc-500 dark:text-zinc-500">
             <p>Sign in with Email</p>

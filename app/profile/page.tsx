@@ -1,18 +1,21 @@
 import React, { Suspense } from "react";
-import useServerUser from "@/hooks/useServerUser";
 import Image from "next/image";
 import { MdLocationPin } from "react-icons/md";
 import { AiFillEdit } from "react-icons/ai";
+import { User } from "@prisma/client";
 import Link from "next/link";
 import SingOutButton from "@/components/SingOutButton/SingOutButton";
 import moment from "moment";
-import ProfileRevalidator from "@/components/ProfileRevalidator/ProfileRevalidator";
-import LikedStrains from "@/components/LikedStrains/LikedStrains";
-import { User } from "@prisma/client";
 import md5 from "md5";
-import ProfileComments from "@/components/ProfileComments/ProfileComments";
-import { BsClipboardDataFill } from "react-icons/bs";
 import { ErrorBoundary } from "react-error-boundary";
+import LikedStrains from "@/components/LikedStrains/LikedStrains";
+import useServerUser from "@/hooks/useServerUser";
+import ProfileComments from "@/components/ProfileComments/ProfileComments";
+import LikedStrainsError from "@/components/LikedStrains/LikedStrainsError";
+import ProfileRevalidator from "@/components/ProfileRevalidator/ProfileRevalidator";
+import LikedStrainsSkeleton from "@/components/LikedStrains/LikedStrainsSkeleton";
+import ProfileCommentsSkeleton from "@/components/ProfileComments/ProfileCommentsSkeleton";
+import ProfileCommentsError from "@/components/ProfileComments/ProfileCommentsError";
 
 type Props = {};
 
@@ -21,153 +24,6 @@ export const metadata = {
   description:
     "Explore your personal user page, showcasing your profile, comments, and a curated list of your favorite cannabis strains. Stay updated and engaged with the community.",
 };
-
-const LikedStrainsSkeleton = () => (
-  <>
-    <div className="flex flex-row items-center gap-8 text-xl font-bold">
-      <p>Liked Strains ( )</p>
-      <BsClipboardDataFill size={20} className="inline-block mr-12" />
-    </div>
-    <div className="flex flex-row flex-wrap items-center justify-center mt-3 md:justify-start gap-y-3">
-      <div className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600">
-        <div
-          style={{ maxHeight: "90px", maxWidth: "90px" }}
-          className="flex items-center justify-center w-24 bg-white rounded-md aspect-square bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
-        ></div>
-        <h1 className="text-sm text-semi">
-          <div className="w-20 h-3 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-        </h1>
-      </div>
-      <div className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600">
-        <div
-          style={{ maxHeight: "90px", maxWidth: "90px" }}
-          className="flex items-center justify-center w-24 bg-white rounded-md aspect-square bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
-        ></div>
-        <h1 className="text-sm text-semi">
-          <div className="w-20 h-3 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-        </h1>
-      </div>
-      <div className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600">
-        <div
-          style={{ maxHeight: "90px", maxWidth: "90px" }}
-          className="flex items-center justify-center w-24 bg-white rounded-md aspect-square bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
-        ></div>
-        <h1 className="text-sm text-semi">
-          <div className="w-20 h-3 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-        </h1>
-      </div>
-      <div className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600">
-        <div
-          style={{ maxHeight: "90px", maxWidth: "90px" }}
-          className="flex items-center justify-center w-24 bg-white rounded-md aspect-square bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
-        ></div>
-        <h1 className="text-sm text-semi">
-          <div className="w-20 h-3 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-        </h1>
-      </div>
-      <div className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600">
-        <div
-          style={{ maxHeight: "90px", maxWidth: "90px" }}
-          className="flex items-center justify-center w-24 bg-white rounded-md aspect-square bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
-        ></div>
-        <h1 className="text-sm text-semi">
-          <div className="w-20 h-3 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-        </h1>
-      </div>
-      <div className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600">
-        <div
-          style={{ maxHeight: "90px", maxWidth: "90px" }}
-          className="flex items-center justify-center w-24 bg-white rounded-md aspect-square bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
-        ></div>
-        <h1 className="text-sm text-semi">
-          <div className="w-20 h-3 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-        </h1>
-      </div>
-    </div>
-  </>
-);
-
-const ProfileCommentsSkeleton = () => (
-  <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
-    <h1 className="text-xl font-bold">Comments</h1>
-    <div className="flex flex-col gap-2 mt-2">
-      <div className="px-3 py-2 text-sm rounded-lg shadow dark:border dark:border-zinc-500">
-        <h2 className="mb-3 text-base font-semibold">
-          <div className="w-20 h-4 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-        </h2>
-        <p className="text-zinc-400">
-          <div className="w-2/3 h-3 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-          <div className="w-2/5 h-3 mt-2 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-        </p>
-      </div>
-      <div className="px-3 py-2 text-sm rounded-lg shadow dark:border dark:border-zinc-500">
-        <h2 className="mb-3 text-base font-semibold">
-          <div className="w-20 h-4 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-        </h2>
-        <p className="text-zinc-400">
-          <div className="w-2/3 h-3 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-          <div className="w-2/5 h-3 mt-2 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-        </p>
-      </div>
-      <div className="px-3 py-2 text-sm rounded-lg shadow dark:border dark:border-zinc-500">
-        <h2 className="mb-3 text-base font-semibold">
-          <div className="w-20 h-4 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-        </h2>
-        <p className="text-zinc-400">
-          <div className="w-2/3 h-3 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-          <div className="w-2/5 h-3 mt-2 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-        </p>
-      </div>
-      <div className="px-3 py-2 text-sm rounded-lg shadow dark:border dark:border-zinc-500">
-        <h2 className="mb-3 text-base font-semibold">
-          <div className="w-20 h-4 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-        </h2>
-        <p className="text-zinc-400">
-          <div className="w-2/3 h-3 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-          <div className="w-2/5 h-3 mt-2 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-        </p>
-      </div>
-    </div>
-  </div>
-);
-
-const ProfileCommentsError = () => (
-  <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
-    <h1 className="text-xl font-bold">Comments</h1>
-    <div className="flex flex-col gap-2 mt-2">
-      <div className="px-3 py-2 text-sm rounded-lg shadow dark:border dark:border-zinc-500">
-        <h2 className="text-base font-semibold ">
-          Oops! Something went wrong.
-        </h2>
-        <p className="text-zinc-400">
-          We&apos;re having trouble loading this comment. Our team of highly
-          trained monkeys has been dispatched to fix this issue.
-        </p>
-      </div>
-      <div className="px-3 py-2 text-sm rounded-lg shadow dark:border dark:border-zinc-500">
-        <h2 className="text-base font-semibold">Yikes! We hit a snag.</h2>
-        <p className="text-zinc-400">
-          This comment is playing hide and seek with us. We&apos;re still
-          seeking. Please check back later.
-        </p>
-      </div>
-      <div className="px-3 py-2 text-sm rounded-lg shadow dark:border dark:border-zinc-500">
-        <h2 className="text-base font-semibold">Uh-oh! We dropped the ball.</h2>
-        <p className="text-zinc-400">
-          This comment is currently unavailable. We&apos;re on it and will have
-          it back as soon as possible.
-        </p>
-      </div>
-      <div className="px-3 py-2 text-sm rounded-lg shadow dark:border dark:border-zinc-500">
-        <h2 className="text-base font-semibold">Whoops! We slipped up.</h2>
-        <p className="text-zinc-400">
-          We can&apos;t load the comment right now. We&apos;re tying our
-          shoelaces and will be right back.
-        </p>
-      </div>
-    </div>
-  </div>
-);
 
 const generateGravatarUrl = (user: User): string => {
   if (user?.image) return user.image;
@@ -315,9 +171,11 @@ async function UserProfile({}: Props) {
               </div>
             </div>
             <div className="flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
-              <Suspense fallback={<LikedStrainsSkeleton />}>
-                <LikedStrains />
-              </Suspense>
+              <ErrorBoundary fallback={<LikedStrainsError />}>
+                <Suspense fallback={<LikedStrainsSkeleton />}>
+                  <LikedStrains />
+                </Suspense>
+              </ErrorBoundary>
             </div>
           </div>
         </div>

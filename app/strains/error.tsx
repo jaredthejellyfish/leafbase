@@ -5,7 +5,7 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 
 type Props = {};
 
-const ErrorStrains = async (props: Props) => {
+const ErrorStrains = (props: Props) => {
   return (
     <div className="flex flex-col items-center justify-center px-6 xl:px-52">
       <div className="max-w-4xl">

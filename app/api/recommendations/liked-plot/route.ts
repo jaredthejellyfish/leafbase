@@ -4,18 +4,15 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/auth/authOptions";
 
 const fetchLikedStrainsData = async (strainNames: string[]) => {
-  const res = await fetch(
-    `${process.env.LEAFBASE_API_URL}/liked-plot`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        strains: strainNames,
-      }),
-    }
-  );
+  const res = await fetch(`${process.env.LEAFBASE_API_URL}/liked-plot`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      strains: strainNames,
+    }),
+  });
   const data = await res.json();
 
   return data;

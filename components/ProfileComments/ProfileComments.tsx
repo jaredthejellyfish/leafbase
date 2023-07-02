@@ -65,30 +65,27 @@ const Comments = async (props: Props) => {
   const defaultComments = await getComments(user);
   const comments = pickRandomComments(defaultComments as Comment[]);
 
-  return (
-    comments?.length &&
-    comments?.length > 0 && (
-      <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
-        <h1 className="text-xl font-bold">Comments</h1>
-        <div className="flex flex-col gap-3 mt-2">
-          {comments &&
-            comments?.length > 0 &&
-            comments?.map((comment) => (
-              <Link
-                href={`/strains/${comment?.strain?.slug}`}
-                className="px-3 py-2 text-sm border rounded-lg shadow border-zinc-100 dark:border-zinc-500"
-                key={comment.id}
-              >
-                <h2 className="mb-1 text-base font-semibold">
-                  {comment.strain.name}
-                </h2>
-                <p className="text-zinc-400">{comment.body}</p>
-              </Link>
-            ))}
-        </div>
+  return comments?.length && comments?.length > 0 ? (
+    <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
+      <h1 className="text-xl font-bold">Comments</h1>
+      <div className="flex flex-col gap-3 mt-2">
+        {comments &&
+          comments?.length > 0 &&
+          comments?.map((comment) => (
+            <Link
+              href={`/strains/${comment?.strain?.slug}`}
+              className="px-3 py-2 text-sm border rounded-lg shadow border-zinc-100 dark:border-zinc-500"
+              key={comment.id}
+            >
+              <h2 className="mb-1 text-base font-semibold">
+                {comment.strain.name}
+              </h2>
+              <p className="text-zinc-400">{comment.body}</p>
+            </Link>
+          ))}
       </div>
-    )
-  );
+    </div>
+  ) : null;
 };
 
 export default Comments;

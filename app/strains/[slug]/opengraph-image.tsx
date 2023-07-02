@@ -71,6 +71,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
           alignItems: "center",
           padding: "0 5%",
           background: "#fff",
+          transform: "scale(1.15)",
         }}
       >
         <img

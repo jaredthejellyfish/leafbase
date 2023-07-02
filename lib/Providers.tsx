@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import React, { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import Hotjar from '@hotjar/browser';
+import Hotjar from "@hotjar/browser";
 
 const siteId = 3547434;
 const hotjarVersion = 6;

@@ -1,7 +1,7 @@
 "use client";
 
 import { StrainExtended } from "@/types/interfaces";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
 import { useQuery } from "@tanstack/react-query";
@@ -42,6 +42,24 @@ const MixersButton = (props: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const strainName = props.strain.name;
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsModalOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  });
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
   const {
     data: recommendedStrainsData,
     isLoading,
@@ -66,6 +84,7 @@ const MixersButton = (props: Props) => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
+            ref={dropdownRef}
             exit={{
               opacity: 0,
               transition: {

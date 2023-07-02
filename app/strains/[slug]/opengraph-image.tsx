@@ -46,7 +46,7 @@ export const size = {
 export const contentType = "image/png";
 
 const getStrainBySlug = async (slug: string) => {
-  const res = await fetch(`${process.env.SITE_URL}/api/strains/${slug}`);
+  const res = await fetch(`https://leafbase.xyz/api/strains/${slug}`);
   const strain = await res.json();
   return strain;
 };

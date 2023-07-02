@@ -3,6 +3,7 @@ import { RxCaretDown } from "react-icons/rx";
 import useServerStrains from "@/hooks/useServerStrains";
 import StrainCard from "@/components/StrainCard/StrainCard";
 import StrainLoader from "@/components/StrainLoader/StrainLoader";
+import ErrorStrains from "./error";
 
 type Props = {};
 
@@ -15,7 +16,7 @@ export const metadata = {
 const Strains = async (props: Props) => {
   const { strains, count, error } = await useServerStrains(1, 18);
   if (error) {
-    return <div>Error!</div>;
+    return <ErrorStrains />;
   }
 
   return (

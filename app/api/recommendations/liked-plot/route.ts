@@ -5,7 +5,7 @@ import { authOptions } from "@/auth/authOptions";
 
 const fetchLikedStrainsData = async (strainNames: string[]) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_LEAFBASE_API_URL}/liked-plot`,
+    `${process.env.LEAFBASE_API_URL}/liked-plot`,
     {
       method: "POST",
       headers: {

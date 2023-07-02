@@ -22,7 +22,7 @@ const generateStrainUrl = (strainSlug: string) => {
   return `/strains/${strainSlug}`;
 };
 
-const SearchBar = (props: Props) => {
+const NavigationSearchBar = (props: Props) => {
   const [search, setSearch] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -85,4 +85,4 @@ const SearchBar = (props: Props) => {
   );
 };
 
-export default SearchBar;
+export default NavigationSearchBar;

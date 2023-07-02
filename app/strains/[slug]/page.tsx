@@ -9,6 +9,7 @@ import { StrainExtended } from "@/types/interfaces";
 
 import StrainSoma from "@/components/StrainSoma/StrainSoma";
 import CommentLoader from "@/components/CommentLoader/CommentLoader";
+import MixersButton from "@/components/Mixers/MixersButton";
 
 type Props = { params: { slug: string } };
 
@@ -183,6 +184,9 @@ const StrainPage = async (props: Props) => {
       >
         <div className="absolute transform scale-125 top-5 right-5 md:right-10">
           <StrainPageLikeButton id={strain.id} />
+        </div>
+        <div className="absolute flex items-center justify-center top-7 md:top-20 xl:top-7 md:right-12 left-5 md:left-auto xl:right-36">
+          <MixersButton strain={strain} />
         </div>
         <div
           id="header"

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import md5 from "md5";
 import NavigationThemeSelect from "./NavigationThemeSelect";
-import SearchBar from "./SearchBar";
+import NavigationSearchBar from "./NavigationSearchBar";
 import { User } from "@prisma/client";
 import useServerUser from "@/hooks/useServerUser";
 import NavigationHamburgerMenu from "./NavigationHamburgerMenu";
@@ -40,7 +40,7 @@ const Navigation = async () => {
             <NavigationThemeSelect />
           ) : (
             <>
-              <SearchBar />
+              <NavigationSearchBar />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="10"

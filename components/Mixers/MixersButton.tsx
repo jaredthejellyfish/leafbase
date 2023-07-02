@@ -22,7 +22,7 @@ interface Recommendation {
 
 const fetchRecommendedStrainsData = async (strainName: string) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_LEAFBASE_API_URL}/find-matches`,
+    `/api/recommendations/find-matches`,
     {
       method: "POST",
       headers: {
@@ -35,7 +35,7 @@ const fetchRecommendedStrainsData = async (strainName: string) => {
   );
   const data = await res.json();
 
-  return data;
+  return data.recommendedStrainsData;
 };
 
 const MixersButton = (props: Props) => {

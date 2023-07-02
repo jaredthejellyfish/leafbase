@@ -34,7 +34,6 @@ const effects: Colors = {
   Sleepy: "#1E90FF",
 };
 
-
 export const runtime = "edge";
 // Image metadata
 export const alt = "Leafbase Strain Image";

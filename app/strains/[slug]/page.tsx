@@ -59,7 +59,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: `${strain?.name} - Leafbase` || "Strain",
-    description: strain.shortDescription || `Strain ${strain?.name}`,
+    description:
+      strain.shortDescription || `Description page for ${strain?.name}`,
   };
 }
 

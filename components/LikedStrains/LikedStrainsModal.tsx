@@ -42,21 +42,18 @@ interface LikedStrainPoint {
 }
 
 const fetchLikedStrainsData = async (strainNames: string[]) => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_LEAFBASE_API_URL}/liked-plot`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        strains: strainNames,
-      }),
-    }
-  );
+  const res = await fetch(`/api/recommendations/liked-plot`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      strains: strainNames,
+    }),
+  });
   const data = await res.json();
 
-  return data;
+  return data.likedStrainsData;
 };
 
 const generateDatasetsFromData = (data: LikedStrainPoint[]) => {

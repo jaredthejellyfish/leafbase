@@ -34,8 +34,10 @@ const effects: Colors = {
   Sleepy: "#1E90FF",
 };
 
+
+export const runtime = "edge";
 // Image metadata
-export const alt = "About Acme";
+export const alt = "Leafbase Strain Image";
 export const size = {
   width: 1200,
   height: 490,
@@ -44,7 +46,7 @@ export const size = {
 export const contentType = "image/png";
 
 const getStrainBySlug = async (slug: string) => {
-  const res = await fetch(`http://localhost:3000/api/strains/${slug}`);
+  const res = await fetch(`${process.env.SITE_URL}/api/strains/${slug}`);
   const strain = await res.json();
   return strain;
 };

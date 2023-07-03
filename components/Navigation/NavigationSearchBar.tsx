@@ -13,8 +13,6 @@ const fetchSearchResults = async (search: string) => {
   const res = await fetch(`/api/strains/search?query=${search}`);
   const data = await res.json();
 
-  console.log(data);
-
   return data;
 };
 

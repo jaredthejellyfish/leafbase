@@ -92,9 +92,9 @@ const StrainPageLikeButton = (props: Props) => {
   return (
     <motion.button
       aria-label="Like Strain"
-      className={`absolute top-1.5 right-2 border bg-white dark:bg-zinc-800 text-zinc-400/75 transition-colors rounded-full p-1.5 dark:text-zinc-400 ${
-        liked ? "border-green-600/40" : "dark:border-zinc-700"
-      }`}
+      className={` border bg-white dark:bg-zinc-800 text-zinc-400/75 transition-colors rounded-full p-1.5 dark:text-zinc-400 ${
+        props.className
+      } ${liked ? "border-green-600/40" : "dark:border-zinc-700"}`}
       onClick={() => handleLike()}
       variants={likeButtonVariants}
       whileHover="hover"
@@ -103,9 +103,9 @@ const StrainPageLikeButton = (props: Props) => {
       animate={liked ? "like" : "initial"}
     >
       {liked ? (
-        <AiFillHeart className="text-green-600/75" />
+        <AiFillHeart className="text-green-600/75" size={23} />
       ) : (
-        <AiOutlineHeart />
+        <AiOutlineHeart size={23} />
       )}
     </motion.button>
   );

@@ -7,6 +7,7 @@ import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
 import { Analytics } from "@vercel/analytics/react";
 import OfflineBadge from "@/components/offline-badge/OfflineBadge";
+import Hotjar from "@/lib/Hotjar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,6 +38,7 @@ export default function RootLayout({
             <OfflineBadge />
           </div>
           <Analytics />
+          <Hotjar />
         </Providers>
       </body>
     </html>

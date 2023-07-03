@@ -9,9 +9,9 @@ import { StrainExtended } from "@/types/interfaces";
 
 import StrainSoma from "@/components/StrainSoma/StrainSoma";
 import CommentLoader from "@/components/CommentLoader/CommentLoader";
-import MixersButton from "@/components/Mixers/MixersButton";
 import { ErrorBoundary } from "react-error-boundary";
 import CommentLoaderFallback from "@/components/CommentLoader/CommentLoaderFallback";
+import StrainPageMoreButton from "@/components/StrainPageMoreButton/StrainPageMoreButton";
 
 type Props = { params: { slug: string } };
 
@@ -185,12 +185,14 @@ const StrainPage = async (props: Props) => {
         id="card"
         className="relative flex flex-col items-center justify-center pb-8 border rounded shadow md:w-4/5 border-zinc-300 dark:border-transparent dark:bg-zinc-900"
       >
-        <div className="absolute transform scale-125 top-5 right-5 md:right-10">
+        <div className="absolute transform top-6 right-5 md:right-10">
           <StrainPageLikeButton id={strain.id} />
         </div>
-        <div className="absolute flex items-center justify-center top-7 md:top-20 xl:top-7 md:right-12 left-5 md:left-auto xl:right-36">
-          <MixersButton strain={strain} />
+
+        <div className="absolute transform top-6 left-5 md:right-24 md:left-auto">
+          <StrainPageMoreButton />
         </div>
+
         <div
           id="header"
           className="flex flex-col items-center justify-center w-full gap-8 px-5 pt-8 md:flex-row md:px-8"

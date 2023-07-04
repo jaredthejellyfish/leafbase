@@ -1,7 +1,7 @@
 "use client";
 
 import { useInfiniteQuery } from "@tanstack/react-query";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useEffect } from "react";
 import StrainCard from "@/components/StrainCard/StrainCard";
 import { useInView } from "react-intersection-observer";
 import useUser from "@/hooks/useUser";
@@ -55,6 +55,10 @@ const StrainLoader = (props: Props) => {
 
   if (!user?.user?.id) {
     return null;
+  }
+
+  if (error) {
+    return <div>Error loading strains</div>;
   }
 
   return (

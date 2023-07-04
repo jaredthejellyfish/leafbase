@@ -63,7 +63,7 @@ const LikedStrains = async (props: Props) => {
           You haven&apos;t liked any strains yet!
         </div>
       ) : (
-        <div className="flex flex-row flex-wrap items-center justify-center mt-3 md:justify-start gap-y-3">
+        <div className="flex flex-row flex-wrap items-start justify-start mt-3 md:justify-start gap-y-3">
           {strains &&
             strains.map((strain: Strain) => (
               <Link

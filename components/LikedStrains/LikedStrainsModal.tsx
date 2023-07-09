@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { StrainExtended } from "@/types/interfaces";
-import React, { useState } from "react";
-import { BsClipboardDataFill } from "react-icons/bs";
-import { Scatter } from "react-chartjs-2";
-import { useQuery } from "@tanstack/react-query";
-import ChartDataLabels from "chartjs-plugin-datalabels";
-import zoomPlugin from "chartjs-plugin-zoom";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store/store";
+import { StrainExtended } from '@/types/interfaces';
+import React, { useState } from 'react';
+import { BsClipboardDataFill } from 'react-icons/bs';
+import { Scatter } from 'react-chartjs-2';
+import { useQuery } from '@tanstack/react-query';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import zoomPlugin from 'chartjs-plugin-zoom';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 import {
   Chart as ChartJS,
   ArcElement,
@@ -17,8 +17,8 @@ import {
   LinearScale,
   PointElement,
   Align,
-} from "chart.js";
-import Modal from "../Modal/Modal";
+} from 'chart.js';
+import Modal from '../Modal/Modal';
 
 ChartJS.register(
   LinearScale,
@@ -42,9 +42,9 @@ interface LikedStrainPoint {
 
 const fetchLikedStrainsData = async (strainNames: string[]) => {
   const res = await fetch(`/api/recommendations/liked-plot`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       strains: strainNames,
@@ -62,7 +62,7 @@ const generateDatasetsFromData = (data: LikedStrainPoint[]) => {
 
   // Loop through each item in the data
   for (let i = 0; i < data.length; i++) {
-    let point = data[i];
+    const point = data[i];
 
     // Create a new dataset for each item
     datasets.push({
@@ -95,7 +95,7 @@ const LikedStrainsModal = (props: Props) => {
       zoom: {
         pan: {
           enabled: true,
-          mode: "xy",
+          mode: 'xy',
         },
         zoom: {
           wheel: {
@@ -104,16 +104,16 @@ const LikedStrainsModal = (props: Props) => {
           pinch: {
             enabled: true,
           },
-          mode: "xy",
+          mode: 'xy',
         },
       },
       datalabels: {
-        formatter: function (value: any, context: any) {
+        formatter: function (context: any) {
           return context.dataset.label;
         },
         display: true,
-        color: currentTheme.theme === "dark" ? "white" : "black",
-        align: "right" as Align,
+        color: currentTheme.theme === 'dark' ? 'white' : 'black',
+        align: 'right' as Align,
         offset: 10,
       },
       legend: {
@@ -129,9 +129,8 @@ const LikedStrainsModal = (props: Props) => {
     data: likedStrainsData,
     isLoading,
     isFetching,
-    error,
   } = useQuery({
-    queryKey: ["liked-strains", strainNames],
+    queryKey: ['liked-strains', strainNames],
     queryFn: () => fetchLikedStrainsData(strainNames),
     enabled: isModalOpen,
   });
@@ -144,7 +143,7 @@ const LikedStrainsModal = (props: Props) => {
         className="inline-block mr-12 cursor-pointer text-zinc-500 dark:text-zinc-400"
       />
       <Modal
-        title={"Liked Strain Similarity"}
+        title={'Liked Strain Similarity'}
         open={isModalOpen}
         close={() => setIsModalOpen(!isModalOpen)}
         containerClasses="relative w-5/6 h-4/6 xl:w-1/2 md:w-2/3"
@@ -174,7 +173,7 @@ const LikedStrainsModal = (props: Props) => {
           </div>
         ) : (
           <Scatter
-            height={"100%"}
+            height={'100%'}
             plugins={[ChartDataLabels, zoomPlugin]}
             // @ts-ignore
             options={options}

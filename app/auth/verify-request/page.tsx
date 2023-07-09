@@ -1,30 +1,28 @@
-"use client";
+'use client';
 
-import React, { useEffect } from "react";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
-import gmailLogo from "@/public/gmail-logo.svg";
-import protonmailLogo from "@/public/protonmail-logo.svg";
-import outlookLogo from "@/public/outlook-logo.svg";
-import appleLogo from "@/public/apple-logo.svg";
+import React, { useEffect } from 'react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import Link from 'next/link';
+import gmailLogo from '@/public/gmail-logo.svg';
+import protonmailLogo from '@/public/protonmail-logo.svg';
+import outlookLogo from '@/public/outlook-logo.svg';
+import appleLogo from '@/public/apple-logo.svg';
 
-type Props = {};
-
-const LoginPage = (props: Props) => {
+const LoginPage = () => {
   const { status } = useSession();
   const router = useRouter();
 
   useEffect(() => {
-    if (status === "authenticated") {
+    if (status === 'authenticated') {
       //router.push("/");
     }
   }, [status, router]);
 
   return (
     <div
-      style={{ minHeight: "calc(100vh - 145px)" }}
+      style={{ minHeight: 'calc(100vh - 145px)' }}
       className="flex items-center justify-center px-5 dark:bg-black"
     >
       <div className="flex flex-col items-center justify-center w-full gap-3 px-8 py-10 rounded-lg shadow-lg md:w-96 dark:bg-zinc-900">

@@ -1,7 +1,7 @@
-"use client";
-import { AnimatePresence } from "framer-motion";
-import React from "react";
-import { motion } from "framer-motion";
+'use client';
+import { AnimatePresence } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 type Props = {
   open: boolean;
@@ -17,7 +17,7 @@ const SaveModal = (props: Props) => {
     title,
     closeCallback,
     yesCallback,
-    labels = { yes: "Yes, I'm sure", no: "No, cancel" },
+    labels = { yes: "Yes, I'm sure", no: 'No, cancel' },
   } = props;
 
   return (

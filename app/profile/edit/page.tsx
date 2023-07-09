@@ -1,69 +1,67 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { MdLocationPin } from "react-icons/md";
-import useUser from "@/hooks/useUser";
-import TextareaAutosize from "react-textarea-autosize";
-import Image from "next/image";
-import { useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
-import { AiOutlineClose } from "react-icons/ai";
-import moment from "moment";
-import SaveModal from "@/components/SaveModal/SaveModal";
-import UserProfileLoading from "../loading";
-import DeleteAccount from "@/components/DeleteAccount/DeleteAccount";
-import md5 from "md5";
-import { User } from "@prisma/client";
-import { generateUsername } from "unique-username-generator";
-import { toast } from "react-toastify";
-
-type Props = {};
+import React, { useState, useEffect } from 'react';
+import { MdLocationPin } from 'react-icons/md';
+import useUser from '@/hooks/useUser';
+import TextareaAutosize from 'react-textarea-autosize';
+import Image from 'next/image';
+import { useQueryClient } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
+import { AiOutlineClose } from 'react-icons/ai';
+import moment from 'moment';
+import SaveModal from '@/components/SaveModal/SaveModal';
+import UserProfileLoading from '../loading';
+import DeleteAccount from '@/components/DeleteAccount/DeleteAccount';
+import md5 from 'md5';
+import { User } from '@prisma/client';
+import { generateUsername } from 'unique-username-generator';
+import { toast } from 'react-toastify';
 
 const generateGravatarUrl = (user: User): string => {
   if (user?.image) return user.image;
   return `https://www.gravatar.com/avatar/${md5(
-    user?.name || "NaN"
+    user?.name || 'NaN'
   )}?d=identicon`;
 };
 
-const EditProfile = (props: Props) => {
-  const { user, isLoading, isFetching, error } = useUser();
+const EditProfile = () => {
+  const { user, isLoading, isFetching } = useUser();
   const queryClient = useQueryClient();
   const router = useRouter();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [aboutMe, setAboutMe] = useState("");
-  const [birthDate, setBirthDate] = useState("");
-  const [languages, setLanguages] = useState("");
-  const [phone, setPhone] = useState("");
-  const [location, setLocation] = useState("");
-  const [displayName, setDisplayName] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [aboutMe, setAboutMe] = useState('');
+  const [birthDate, setBirthDate] = useState('');
+  const [languages, setLanguages] = useState('');
+  const [phone, setPhone] = useState('');
+  const [location, setLocation] = useState('');
+  const [displayName, setDisplayName] = useState('');
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
       event.preventDefault();
-      event.returnValue = "Are you sure you want to leave this page?";
+      event.returnValue = 'Are you sure you want to leave this page?';
     };
 
     // Add the listener when the component mounts or updates
-    window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener('beforeunload', handleBeforeUnload);
 
     // Cleanup by removing the listener when the component unmounts or updates
     return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   });
 
   useEffect(() => {
-    setName(user?.name || "");
-    setEmail(user?.email || "");
-    setAboutMe(user?.aboutMe || "");
-    setBirthDate(moment(user?.birthDate).format("LL") || "");
-    setLanguages(user?.languages || "");
-    setPhone(user?.phone || "");
-    setLocation(user?.location || "");
+    setName(user?.name || '');
+    setEmail(user?.email || '');
+    setAboutMe(user?.aboutMe || '');
+    setBirthDate(moment(user?.birthDate).format('LL') || '');
+    setLanguages(user?.languages || '');
+    setPhone(user?.phone || '');
+    setLocation(user?.location || '');
     setDisplayName(user?.displayName || generateUsername());
   }, [
     user?.name,
@@ -81,7 +79,7 @@ const EditProfile = (props: Props) => {
       name !== user?.name ||
       email !== user?.email ||
       aboutMe !== user?.aboutMe ||
-      birthDate !== moment(user?.birthDate).format("LL") ||
+      birthDate !== moment(user?.birthDate).format('LL') ||
       languages !== user?.languages ||
       phone !== user?.phone ||
       location !== user?.location ||
@@ -92,12 +90,12 @@ const EditProfile = (props: Props) => {
   const handleSubmit = async () => {
     try {
       if (!hasChanges()) {
-        router.push("/profile");
+        router.push('/profile');
         return;
       }
 
-      const res = await fetch("/api/user/edit", {
-        method: "POST",
+      const res = await fetch('/api/user/edit', {
+        method: 'POST',
         body: JSON.stringify({
           name: name,
           email: email,
@@ -113,17 +111,17 @@ const EditProfile = (props: Props) => {
     } catch (error) {
       console.log(error);
     } finally {
-      router.push("/profile?revalidate=true");
-      if (hasChanges()) toast.success("Profile updated successfully!");
-      queryClient.invalidateQueries({ queryKey: ["user-profile"] });
+      router.push('/profile?revalidate=true');
+      if (hasChanges()) toast.success('Profile updated successfully!');
+      queryClient.invalidateQueries({ queryKey: ['user-profile'] });
     }
   };
 
-  const updateLocation = async () => {
+  async () => {
     try {
-      const res = await fetch("https://ipapi.co/json/");
+      const res = await fetch('https://ipapi.co/json/');
       const data = await res.json();
-      setLocation(data.city + ", " + data.country_name);
+      setLocation(data.city + ', ' + data.country_name);
     } catch (error) {
       console.log(error);
     }
@@ -132,7 +130,7 @@ const EditProfile = (props: Props) => {
   const handleOpen = () => {
     if (hasChanges()) {
       setOpen(true);
-    } else router.push("/profile");
+    } else router.push('/profile');
   };
 
   if (!user || isLoading || isFetching) {
@@ -310,9 +308,9 @@ const EditProfile = (props: Props) => {
       </div>
       <SaveModal
         open={open}
-        title={"Are you sure you want to leave?"}
+        title={'Are you sure you want to leave?'}
         closeCallback={() => setOpen(!open)}
-        yesCallback={() => router.push("/profile")}
+        yesCallback={() => router.push('/profile')}
       />
     </div>
   );

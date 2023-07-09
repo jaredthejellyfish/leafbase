@@ -1,31 +1,29 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import { signIn, useSession } from "next-auth/react";
-import Image from "next/image";
-import { BsDiscord, BsTwitch, BsSpotify } from "react-icons/bs";
-import { AiFillGithub } from "react-icons/ai";
-import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
+import React, { useEffect, useState } from 'react';
+import { signIn, useSession } from 'next-auth/react';
+import Image from 'next/image';
+import { BsDiscord, BsTwitch, BsSpotify } from 'react-icons/bs';
+import { AiFillGithub } from 'react-icons/ai';
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
-type Props = {};
-
-const LoginPage = (props: Props) => {
+const LoginPage = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const [showToast, setShowToast] = useState(true);
 
   useEffect(() => {
     if (session?.user?.name && showToast) {
-      toast.success(`Welcome back ${session?.user?.name?.split(" ")[0]}! 🎉`);
+      toast.success(`Welcome back ${session?.user?.name?.split(' ')[0]}! 🎉`);
       setShowToast(false);
-      router.push("/");
+      router.push('/');
     }
   }, [router, session, showToast]);
 
   return (
     <div
-      style={{ minHeight: "calc(100vh - 145px)" }}
+      style={{ minHeight: 'calc(100vh - 145px)' }}
       className="flex items-center justify-center px-5 dark:bg-black"
     >
       <div className="flex flex-col items-center justify-center w-full gap-3 px-8 py-10 rounded-lg shadow-lg md:w-96 dark:bg-zinc-900">
@@ -35,7 +33,7 @@ const LoginPage = (props: Props) => {
             e.preventDefault();
             const formData = new FormData(e.target as HTMLFormElement);
             const data = Object.fromEntries(formData.entries());
-            signIn("email", { email: data.email });
+            signIn('email', { email: data.email });
           }}
           className="w-full"
         >
@@ -64,39 +62,39 @@ const LoginPage = (props: Props) => {
         <div className="flex flex-row gap-6 mt-3">
           <button
             className="flex items-center justify-center w-12 h-12 text-red-600 transition bg-white rounded shadow-md hover:scale-105"
-            onClick={() => signIn("google")}
+            onClick={() => signIn('google')}
           >
             <Image
               height={30}
               width={30}
-              src={"https://developers.google.com/identity/images/g-logo.png"}
+              src={'https://developers.google.com/identity/images/g-logo.png'}
               alt="Google sso button."
             />
           </button>
           <button
-            style={{ backgroundColor: "#000000" }}
-            onClick={() => signIn("github")}
+            style={{ backgroundColor: '#000000' }}
+            onClick={() => signIn('github')}
             className="flex items-center justify-center w-12 h-12 text-white transition bg-white rounded shadow-md hover:scale-105"
           >
             <AiFillGithub size={30} />
           </button>
           <button
-            onClick={() => signIn("discord")}
-            style={{ backgroundColor: "#7289da" }}
+            onClick={() => signIn('discord')}
+            style={{ backgroundColor: '#7289da' }}
             className="flex items-center justify-center w-12 h-12 text-white transition bg-white rounded shadow-md hover:scale-105"
           >
             <BsDiscord size={30} />
           </button>
           <button
-            onClick={() => signIn("twitch")}
-            style={{ backgroundColor: "#9146FF" }}
+            onClick={() => signIn('twitch')}
+            style={{ backgroundColor: '#9146FF' }}
             className="flex items-center justify-center w-12 h-12 text-white transition bg-white rounded shadow-md hover:scale-105"
           >
             <BsTwitch size={30} />
           </button>
           <button
-            style={{ backgroundColor: "#000000", color: "#1EB954" }}
-            onClick={() => signIn("spotify")}
+            style={{ backgroundColor: '#000000', color: '#1EB954' }}
+            onClick={() => signIn('spotify')}
             className="flex items-center justify-center w-12 h-12 text-white transition bg-white rounded shadow-md hover:scale-105"
           >
             <BsSpotify size={30} />

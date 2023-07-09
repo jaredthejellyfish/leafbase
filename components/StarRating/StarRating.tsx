@@ -1,5 +1,5 @@
-import React from "react";
-import { FaStar, FaRegStar, FaStarHalfAlt } from "react-icons/fa";
+import React from 'react';
+import { FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
 
 const StarRating = (props: { rating: number }) => {
   const rating = props.rating;
@@ -28,7 +28,7 @@ const StarRating = (props: { rating: number }) => {
   }
   return (
     <div
-      style={{ display: "flex" }}
+      style={{ display: 'flex' }}
       className="flex flex-row text-black dark:text-white"
     >
       {stars}

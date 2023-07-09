@@ -1,12 +1,12 @@
-import { createSlice, createSelector } from "@reduxjs/toolkit";
-import { RootState } from "@/store/store";
+import { createSlice, createSelector } from '@reduxjs/toolkit';
+import { RootState } from '@/store/store';
 
 const initialState = {
   isNavDropdownOpen: false,
 };
 
 const isNavDropdownOpenSlice = createSlice({
-  name: "theme",
+  name: 'theme',
   initialState,
   reducers: {
     setNavDropdownOpen(state, action) {

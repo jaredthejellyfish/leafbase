@@ -1,12 +1,10 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { FiMoreVertical } from "react-icons/fi";
-import Modal from "../Modal/Modal";
+import React, { useState } from 'react';
+import { FiMoreVertical } from 'react-icons/fi';
+import Modal from '../Modal/Modal';
 
-type Props = {};
-
-const StrainPageMoreButton = (props: Props) => {
+const StrainPageMoreButton = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -15,8 +13,8 @@ const StrainPageMoreButton = (props: Props) => {
         <FiMoreVertical size={25} />
       </button>
       <Modal
-        title={"Hello world!"}
-        containerClasses={""}
+        title={'Hello world!'}
+        containerClasses={''}
         open={isModalOpen}
         close={() => setIsModalOpen(!isModalOpen)}
       >

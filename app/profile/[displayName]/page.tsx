@@ -1,15 +1,15 @@
-import useServerUser from "@/hooks/useServerUser";
-import React from "react";
-import Image from "next/image";
-import { MdLocationPin } from "react-icons/md";
-import Link from "next/link";
-import moment from "moment";
-import ProfileRevalidator from "@/components/ProfileRevalidator/ProfileRevalidator";
-import { User } from "@prisma/client";
-import md5 from "md5";
-import prisma from "@/lib/prisma";
-import { Metadata } from "next";
-import useServerComments from "@/hooks/useServerComments";
+import useServerUser from '@/hooks/useServerUser';
+import React from 'react';
+import Image from 'next/image';
+import { MdLocationPin } from 'react-icons/md';
+import Link from 'next/link';
+import moment from 'moment';
+import ProfileRevalidator from '@/components/ProfileRevalidator/ProfileRevalidator';
+import { User } from '@prisma/client';
+import md5 from 'md5';
+import prisma from '@/lib/prisma';
+import { Metadata } from 'next';
+import useServerComments from '@/hooks/useServerComments';
 
 type Props = { params: { displayName: string } };
 
@@ -37,7 +37,7 @@ interface Comment {
 const generateGravatarUrl = (user: User): string => {
   if (user?.image) return user.image;
   return `https://www.gravatar.com/avatar/${md5(
-    user.name || "NaN"
+    user.name || 'NaN'
   )}?d=identicon`;
 };
 
@@ -78,7 +78,7 @@ export async function generateMetadata({
   const displayName = params.displayName;
 
   return {
-    title: `${displayName} - Leafbase` || "Strain",
+    title: `${displayName} - Leafbase` || 'Strain',
     description: `Explore ${displayName}'s personal user page, showcasing their profile, comments, and a curated list of their favorite cannabis strains. Connect and share experiences with fellow enthusiasts!`,
   };
 }
@@ -225,13 +225,13 @@ const ProfileDisplay = async (props: Props) => {
 
             <div
               className={`flex flex-col justify-between ${
-                user?.aboutMe && "mt-6"
+                user?.aboutMe && 'mt-6'
               } md:flex-row md:w-4/5`}
             >
               <span className="mt-3 text-sm dark:text-white">
                 Birthday:
                 <p className="text-gray-400 w-60">
-                  {`${moment(user?.birthDate).format("LL")} - (${Math.ceil(
+                  {`${moment(user?.birthDate).format('LL')} - (${Math.ceil(
                     moment
                       .duration(
                         moment()
@@ -269,7 +269,7 @@ const ProfileDisplay = async (props: Props) => {
                         href={`/strains/${strain.slug}`}
                       >
                         <div
-                          style={{ maxHeight: "90px", maxWidth: "90px" }}
+                          style={{ maxHeight: '90px', maxWidth: '90px' }}
                           className="flex items-center justify-center bg-white rounded-md aspect-square"
                         >
                           <Image

@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import useLocalStorage from "./useLocalStorage";
+import { useEffect } from 'react';
+import useLocalStorage from './useLocalStorage';
 
 const useColorTheme = (): {
   colorTheme: string;
   setColorTheme: (value: string) => void;
 } => {
-  const [colorTheme, setColorTheme] = useLocalStorage("color-theme", "light");
+  const [colorTheme, setColorTheme] = useLocalStorage('color-theme', 'light');
 
   useEffect(() => {
     try {
-      const className: string = "dark";
+      const className: string = 'dark';
       const htmlClass = window.document.documentElement.classList;
       const bodyClass = window.document.body.classList;
       const expirationDate = new Date();
@@ -19,11 +19,11 @@ const useColorTheme = (): {
       expirationDate.setFullYear(expirationDate.getFullYear() + 1);
       document.cookie = `theme=${colorTheme}; expires=${expirationDate.toUTCString()}; path=/`;
 
-      colorTheme === "dark"
+      colorTheme === 'dark'
         ? htmlClass.add(className)
         : htmlClass.remove(className);
 
-      colorTheme === "dark"
+      colorTheme === 'dark'
         ? bodyClass.add(className)
         : bodyClass.remove(className);
     } catch (error) {

@@ -1,18 +1,16 @@
-"use client";
+'use client';
 
-import { useInfiniteQuery } from "@tanstack/react-query";
-import React, { useEffect } from "react";
-import StrainCard from "@/components/StrainCard/StrainCard";
-import { useInView } from "react-intersection-observer";
-import useUser from "@/hooks/useUser";
-
-type Props = {};
+import { useInfiniteQuery } from '@tanstack/react-query';
+import React, { useEffect } from 'react';
+import StrainCard from '@/components/StrainCard/StrainCard';
+import { useInView } from 'react-intersection-observer';
+import useUser from '@/hooks/useUser';
 
 const fetchStrains = async ({ pageParam = 3 }) => {
-  const res = await fetch("/api/strains", {
-    method: "POST",
+  const res = await fetch('/api/strains', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       take: 9,
@@ -23,16 +21,16 @@ const fetchStrains = async ({ pageParam = 3 }) => {
   return data;
 };
 
-const StrainLoader = (props: Props) => {
-  const { ref, inView, entry } = useInView();
+const StrainLoader = () => {
+  const { ref, inView } = useInView();
   const user = useUser();
 
   const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: ["strains"],
+      queryKey: ['strains'],
       queryFn: fetchStrains,
       enabled: !!user?.user?.id,
-      getNextPageParam: (lastPage, _pages) => {
+      getNextPageParam: (lastPage) => {
         const totalPages = lastPage.totalPages;
         const lastPageNumber = lastPage.page;
 
@@ -98,10 +96,10 @@ const StrainLoader = (props: Props) => {
         className="absolute flex items-center justify-center w-full h-10 mt-5 mb-4 text-transparent rounded bottom-96"
       >
         {isFetchingNextPage
-          ? "Loading more..."
+          ? 'Loading more...'
           : hasNextPage
-          ? "Load more"
-          : "Nothing more to load"}
+          ? 'Load more'
+          : 'Nothing more to load'}
       </div>
     </>
   );

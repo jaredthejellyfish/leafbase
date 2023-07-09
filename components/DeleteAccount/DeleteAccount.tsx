@@ -1,20 +1,20 @@
-import React from "react";
-import { signOut } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import React from 'react';
+import { signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 const DeleteAccount = () => {
   const router = useRouter();
   const deleteUser = async () => {
     const result = window.confirm(
-      "Are you sure you want to delete your account?"
+      'Are you sure you want to delete your account?'
     );
 
     if (result) {
-      const res = await fetch("api/user/delete");
+      const res = await fetch('api/user/delete');
       const status = await res.json();
 
-      if (status.result === "success") {
-        router.push("/");
+      if (status.result === 'success') {
+        router.push('/');
         signOut();
       }
     } else {

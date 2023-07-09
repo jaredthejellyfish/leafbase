@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import styles from "./styles/OfflineBadge.module.css";
-import { RiWifiOffLine } from "react-icons/ri";
-import { useRouter } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect } from 'react';
+import styles from './styles/OfflineBadge.module.css';
+import { RiWifiOffLine } from 'react-icons/ri';
+import { useRouter } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const OfflineBadge = () => {
   const [isOnline, setIsOnline] = useState(true);
@@ -19,12 +19,12 @@ const OfflineBadge = () => {
       setIsOnline(false);
     }
 
-    window.addEventListener("online", handleOnline);
-    window.addEventListener("offline", handleOffline);
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
 
     return () => {
-      window.removeEventListener("online", handleOnline);
-      window.removeEventListener("offline", handleOffline);
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
     };
   }, []);
 

@@ -1,8 +1,8 @@
-import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/auth/authOptions";
-import { StrainExtended } from "@/types/interfaces";
+import prisma from '@/lib/prisma';
+import { NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/auth/authOptions';
+import { StrainExtended } from '@/types/interfaces';
 
 export async function GET() {
   try {
@@ -14,7 +14,7 @@ export async function GET() {
       },
     });
 
-    if (!session || !user) throw new Error("Unauthorized.");
+    if (!session || !user) throw new Error('Unauthorized.');
 
     const likes = await prisma.like.findMany({
       where: {
@@ -50,4 +50,4 @@ export async function GET() {
   }
 }
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';

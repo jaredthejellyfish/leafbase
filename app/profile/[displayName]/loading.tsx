@@ -1,10 +1,8 @@
-import React from "react";
-import { MdLocationPin } from "react-icons/md";
-import Link from "next/link";
+import React from 'react';
+import { MdLocationPin } from 'react-icons/md';
+import Link from 'next/link';
 
-type Props = { params: { displayName: string } };
-
-async function UserProfileLoading(props: Props) {
+async function UserProfileLoading() {
   return (
     <div className="flex flex-col px-6 md:px-16">
       <nav className="flex ml-1" aria-label="Breadcrumb">
@@ -135,7 +133,7 @@ async function UserProfileLoading(props: Props) {
             <div className="flex flex-row flex-wrap items-center justify-center mt-3 md:justify-start gap-y-3">
               <div className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600">
                 <div
-                  style={{ maxHeight: "90px", maxWidth: "90px" }}
+                  style={{ maxHeight: '90px', maxWidth: '90px' }}
                   className="flex items-center justify-center w-24 bg-white rounded-md aspect-square bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
                 ></div>
                 <h1 className="text-sm text-semi">
@@ -144,7 +142,7 @@ async function UserProfileLoading(props: Props) {
               </div>
               <div className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600">
                 <div
-                  style={{ maxHeight: "90px", maxWidth: "90px" }}
+                  style={{ maxHeight: '90px', maxWidth: '90px' }}
                   className="flex items-center justify-center w-24 bg-white rounded-md aspect-square bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
                 ></div>
                 <h1 className="text-sm text-semi">
@@ -153,7 +151,7 @@ async function UserProfileLoading(props: Props) {
               </div>
               <div className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600">
                 <div
-                  style={{ maxHeight: "90px", maxWidth: "90px" }}
+                  style={{ maxHeight: '90px', maxWidth: '90px' }}
                   className="flex items-center justify-center w-24 bg-white rounded-md aspect-square bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
                 ></div>
                 <h1 className="text-sm text-semi">
@@ -162,7 +160,7 @@ async function UserProfileLoading(props: Props) {
               </div>
               <div className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600">
                 <div
-                  style={{ maxHeight: "90px", maxWidth: "90px" }}
+                  style={{ maxHeight: '90px', maxWidth: '90px' }}
                   className="flex items-center justify-center w-24 bg-white rounded-md aspect-square bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
                 ></div>
                 <h1 className="text-sm text-semi">
@@ -171,7 +169,7 @@ async function UserProfileLoading(props: Props) {
               </div>
               <div className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600">
                 <div
-                  style={{ maxHeight: "90px", maxWidth: "90px" }}
+                  style={{ maxHeight: '90px', maxWidth: '90px' }}
                   className="flex items-center justify-center w-24 bg-white rounded-md aspect-square bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
                 ></div>
                 <h1 className="text-sm text-semi">
@@ -180,7 +178,7 @@ async function UserProfileLoading(props: Props) {
               </div>
               <div className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600">
                 <div
-                  style={{ maxHeight: "90px", maxWidth: "90px" }}
+                  style={{ maxHeight: '90px', maxWidth: '90px' }}
                   className="flex items-center justify-center w-24 bg-white rounded-md aspect-square bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
                 ></div>
                 <h1 className="text-sm text-semi">

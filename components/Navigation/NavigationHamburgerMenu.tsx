@@ -1,14 +1,12 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/store/store";
-import { setNavDropdownOpen } from "@/store/features/navDropdownSlice";
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
+import { setNavDropdownOpen } from '@/store/features/navDropdownSlice';
 
-type Props = {};
-
-const NavigationHamburgerMenu = (props: Props) => {
+const NavigationHamburgerMenu = () => {
   const dispatch = useDispatch();
   const currentOpenStatus = useSelector(
     (state: RootState) => state.dropdown
@@ -30,8 +28,8 @@ const NavigationHamburgerMenu = (props: Props) => {
       closed: { rotate: 0, y: 0 },
     },
     middle: {
-      open: { display: "none" },
-      closed: { display: "block" },
+      open: { display: 'none' },
+      closed: { display: 'block' },
     },
     bottom: {
       open: { rotate: -45, y: -5 },
@@ -52,19 +50,19 @@ const NavigationHamburgerMenu = (props: Props) => {
       <motion.path
         variants={hamburgerMenu.top}
         initial="closed"
-        animate={isOpen ? "open" : "closed"}
+        animate={isOpen ? 'open' : 'closed'}
         d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
       ></motion.path>
       <motion.path
         variants={hamburgerMenu.middle}
         initial="closed"
-        animate={isOpen ? "open" : "closed"}
+        animate={isOpen ? 'open' : 'closed'}
         d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
       ></motion.path>
       <motion.path
         variants={hamburgerMenu.bottom}
         initial="closed"
-        animate={isOpen ? "open" : "closed"}
+        animate={isOpen ? 'open' : 'closed'}
         d="M3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
       ></motion.path>
     </svg>

@@ -1,17 +1,16 @@
-import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/auth/authOptions";
-import moment from "moment";
+import prisma from '@/lib/prisma';
+import { NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/auth/authOptions';
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
     const session = await getServerSession(authOptions);
     if (!session?.user?.email)
-      throw new Error("User is not logged in or session expired.");
+      throw new Error('User is not logged in or session expired.');
 
-    const updatedUser = prisma.user
+    prisma.user
       .update({
         where: {
           email: session.user.email,
@@ -40,4 +39,4 @@ export async function POST(request: Request) {
   }
 }
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';

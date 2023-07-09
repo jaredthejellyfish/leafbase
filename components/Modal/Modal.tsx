@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import React, { useState, useRef } from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from 'react';
+import { motion } from 'framer-motion';
 
 type Props = {
   title?: string;

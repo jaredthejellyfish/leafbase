@@ -1,7 +1,7 @@
-import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/auth/authOptions";
+import prisma from '@/lib/prisma';
+import { NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/auth/authOptions';
 
 const getStrains = async (skip: number, take: number, userId: string) => {
   try {
@@ -10,7 +10,7 @@ const getStrains = async (skip: number, take: number, userId: string) => {
       take: take,
       orderBy: {
         likes: {
-          _count: "desc",
+          _count: 'desc',
         },
       },
       include: {
@@ -47,7 +47,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { page, take } = body;
-    if (!page || !take) throw new Error("Invalid request.");
+    if (!page || !take) throw new Error('Invalid request.');
 
     const session = await getServerSession(authOptions);
 
@@ -57,13 +57,13 @@ export async function POST(request: Request) {
       },
     });
 
-    if (!session || !user) throw new Error("Unauthorized.");
+    if (!session || !user) throw new Error('Unauthorized.');
 
     const count = await getCount();
-    if (count === null) return new Error("Error fetching count.");
+    if (count === null) return new Error('Error fetching count.');
 
     const strains = await getStrains((page - 1) * take, take, user?.id);
-    if (strains === null) throw new Error("Error fetching strains.");
+    if (strains === null) throw new Error('Error fetching strains.');
 
     const totalPages = Math.ceil(count / take);
 

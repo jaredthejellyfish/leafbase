@@ -1,4 +1,4 @@
-import { Strain, User } from "@prisma/client";
+import { Strain, User } from '@prisma/client';
 
 export interface StrainExtended extends Strain {
   id: string;

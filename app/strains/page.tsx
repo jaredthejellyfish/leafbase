@@ -1,19 +1,17 @@
-import React from "react";
-import { RxCaretDown } from "react-icons/rx";
-import useServerStrains from "@/hooks/useServerStrains";
-import StrainCard from "@/components/StrainCard/StrainCard";
-import StrainLoader from "@/components/StrainLoader/StrainLoader";
-import ErrorStrains from "./error";
-
-type Props = {};
+import React from 'react';
+import { RxCaretDown } from 'react-icons/rx';
+import useServerStrains from '@/hooks/useServerStrains';
+import StrainCard from '@/components/StrainCard/StrainCard';
+import StrainLoader from '@/components/StrainLoader/StrainLoader';
+import ErrorStrains from './error';
 
 export const metadata = {
-  title: "All Strains - Leafbase",
+  title: 'All Strains - Leafbase',
   description:
-    "Explore our comprehensive list of marijuana strains, featuring detailed profiles, effects, and reviews. Filter by type, potency, and medical benefits to find your perfect match. Discover new favorites and classics in our extensive collection of cannabis varieties.",
+    'Explore our comprehensive list of marijuana strains, featuring detailed profiles, effects, and reviews. Filter by type, potency, and medical benefits to find your perfect match. Discover new favorites and classics in our extensive collection of cannabis varieties.',
 };
 
-const Strains = async (props: Props) => {
+const Strains = async () => {
   const { strains, count, error } = await useServerStrains(1, 18);
   if (error) {
     return <ErrorStrains />;
@@ -49,20 +47,20 @@ const Strains = async (props: Props) => {
                   key={strain.slug}
                   id={strain.id}
                   slug={strain.slug}
-                  name={strain.name || "Unknown"}
-                  subtitle={strain.subtitle || "Unknown"}
-                  category={strain.category || "Unknown"}
-                  phenotype={strain.phenotype || "Unknown"}
+                  name={strain.name || 'Unknown'}
+                  subtitle={strain.subtitle || 'Unknown'}
+                  category={strain.category || 'Unknown'}
+                  phenotype={strain.phenotype || 'Unknown'}
                   averageRating={strain.averageRating || 0}
-                  shortDescription={strain.shortDescription || "Unknown"}
-                  nugImage={strain.nugImage || "Unknown"}
-                  flowerImageSvg={strain.flowerImageSvg || "Unknown"}
-                  topTerpene={strain.topTerpene || "Unknown"}
+                  shortDescription={strain.shortDescription || 'Unknown'}
+                  nugImage={strain.nugImage || 'Unknown'}
+                  flowerImageSvg={strain.flowerImageSvg || 'Unknown'}
+                  topTerpene={strain.topTerpene || 'Unknown'}
                   thcPercent={strain.thcPercent || 0}
-                  topEffect={strain.topEffect || "Unknown"}
-                  cannabinoids={strain.cannabinoids || "Unknown"}
-                  effects={strain.effects || "Unknown"}
-                  terps={strain.terps || "Unknown"}
+                  topEffect={strain.topEffect || 'Unknown'}
+                  cannabinoids={strain.cannabinoids || 'Unknown'}
+                  effects={strain.effects || 'Unknown'}
+                  terps={strain.terps || 'Unknown'}
                   liked={strain.likes.length > 0}
                   priority={true}
                 />
@@ -77,4 +75,4 @@ const Strains = async (props: Props) => {
 
 export default Strains;
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';

@@ -1,38 +1,56 @@
-import React, { Suspense } from "react";
-import Image from "next/image";
-import { MdLocationPin } from "react-icons/md";
-import { AiFillEdit } from "react-icons/ai";
-import { User } from "@prisma/client";
-import Link from "next/link";
-import SingOutButton from "@/components/SingOutButton/SingOutButton";
-import moment from "moment";
-import md5 from "md5";
-import { ErrorBoundary } from "react-error-boundary";
-import LikedStrains from "@/components/LikedStrains/LikedStrains";
-import useServerUser from "@/hooks/useServerUser";
-import ProfileComments from "@/components/ProfileComments/ProfileComments";
-import LikedStrainsError from "@/components/LikedStrains/LikedStrainsError";
-import ProfileRevalidator from "@/components/ProfileRevalidator/ProfileRevalidator";
-import LikedStrainsSkeleton from "@/components/LikedStrains/LikedStrainsSkeleton";
-import ProfileCommentsSkeleton from "@/components/ProfileComments/ProfileCommentsSkeleton";
-import ProfileCommentsError from "@/components/ProfileComments/ProfileCommentsError";
+import React, { Suspense } from 'react';
+import Image from 'next/image';
+import { MdLocationPin } from 'react-icons/md';
+import { AiFillEdit } from 'react-icons/ai';
+import { User } from '@prisma/client';
+import Link from 'next/link';
+import SingOutButton from '@/components/SingOutButton/SingOutButton';
+import moment from 'moment';
+import md5 from 'md5';
+import { ErrorBoundary } from 'react-error-boundary';
 
-type Props = {};
+import useServerUser from '@/hooks/useServerUser';
+
+import LikedStrainsError from '@/components/LikedStrains/LikedStrainsError';
+import ProfileCommentsError from '@/components/ProfileComments/ProfileCommentsError';
+
+import ProfileCommentsSkeleton from '@/components/ProfileComments/ProfileCommentsSkeleton';
+import LikedStrainsSkeleton from '@/components/LikedStrains/LikedStrainsSkeleton';
+
+import dynamic from 'next/dynamic';
+
+const LikedStrains = dynamic(
+  () => import('@/components/LikedStrains/LikedStrains'),
+  {
+    loading: () => <LikedStrainsSkeleton />,
+  }
+);
+
+const ProfileComments = dynamic(
+  () => import('@/components/ProfileComments/ProfileComments'),
+  {
+    loading: () => <ProfileCommentsSkeleton />,
+  }
+);
+
+const ProfileRevalidator = dynamic(
+  () => import('@/components/ProfileRevalidator/ProfileRevalidator')
+);
 
 export const metadata = {
-  title: "Profile - Leafbase",
+  title: 'Profile - Leafbase',
   description:
-    "Explore your personal user page, showcasing your profile, comments, and a curated list of your favorite cannabis strains. Stay updated and engaged with the community.",
+    'Explore your personal user page, showcasing your profile, comments, and a curated list of your favorite cannabis strains. Stay updated and engaged with the community.',
 };
 
 const generateGravatarUrl = (user: User): string => {
   if (user?.image) return user.image;
   return `https://www.gravatar.com/avatar/${md5(
-    user?.name || "NaN"
+    user?.name || 'NaN'
   )}?d=identicon`;
 };
 
-async function UserProfile({}: Props) {
+async function UserProfile() {
   const user = await useServerUser();
 
   if (!user) return <div>failed to load</div>;
@@ -145,13 +163,13 @@ async function UserProfile({}: Props) {
 
               <div
                 className={`flex flex-col justify-between ${
-                  user?.aboutMe && "mt-6"
+                  user?.aboutMe && 'mt-6'
                 } md:flex-row md:w-4/5`}
               >
                 <span className="mt-3 text-sm dark:text-white">
                   Birthday:
                   <p className="text-gray-400 w-60">
-                    {`${moment(user?.birthDate).format("LL")} - (${Math.ceil(
+                    {`${moment(user?.birthDate).format('LL')} - (${Math.ceil(
                       moment
                         .duration(
                           moment()
@@ -172,9 +190,7 @@ async function UserProfile({}: Props) {
             </div>
             <div className="flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
               <ErrorBoundary fallback={<LikedStrainsError />}>
-                <Suspense fallback={<LikedStrainsSkeleton />}>
-                  <LikedStrains />
-                </Suspense>
+                <LikedStrains />
               </ErrorBoundary>
             </div>
           </div>
@@ -186,5 +202,3 @@ async function UserProfile({}: Props) {
 }
 
 export default UserProfile;
-
-export const dynamic = "force-dynamic";

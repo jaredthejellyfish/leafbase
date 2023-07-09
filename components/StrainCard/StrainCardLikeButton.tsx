@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { motion } from "framer-motion";
+import React, { useState } from 'react';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { motion } from 'framer-motion';
 
 type Props = {
   liked: boolean | undefined;
@@ -14,20 +14,20 @@ const StrainCardLikeButton = (props: Props) => {
   const [liked, setLiked] = useState(props.liked);
 
   const likeStrain = async () => {
-    await fetch("/api/strains/like", {
-      method: "POST",
+    await fetch('/api/strains/like', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ strainId: props.id }),
     });
   };
 
   const unlikeStrain = async () => {
-    await fetch("/api/strains/unlike", {
-      method: "POST",
+    await fetch('/api/strains/unlike', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ strainId: props.id }),
     });
@@ -72,13 +72,13 @@ const StrainCardLikeButton = (props: Props) => {
     <motion.button
       aria-label="Like Strain"
       className={`absolute top-1.5 right-2 border bg-white dark:bg-zinc-800 text-zinc-400/75 transition-colors rounded-full p-1.5 dark:text-zinc-400 ${
-        liked ? "border-green-600/40" : "dark:border-zinc-700"
+        liked ? 'border-green-600/40' : 'dark:border-zinc-700'
       }`}
       onClick={(e) => handleLike(e)}
       variants={likeButtonVariants}
       whileHover="hover"
       initial="initial"
-      animate={liked ? "like" : "initial"}
+      animate={liked ? 'like' : 'initial'}
     >
       {liked ? (
         <AiFillHeart className="text-green-600/75" />

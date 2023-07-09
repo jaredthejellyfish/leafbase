@@ -1,18 +1,17 @@
-"use client";
-import React, { useEffect } from "react";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
+'use client';
 
-type Props = {};
+import React, { useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
-const ProfileRevalidator = (props: Props) => {
+const ProfileRevalidator = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const revalidate = searchParams.get("revalidate");
+  const revalidate = searchParams.get('revalidate');
 
   useEffect(() => {
-    if (revalidate === "true") {
-      router.replace("/profile");
+    if (revalidate === 'true') {
+      router.replace('/profile');
       router.refresh();
     }
   }, [revalidate, router]);

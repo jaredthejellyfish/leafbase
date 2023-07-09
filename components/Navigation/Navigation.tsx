@@ -1,21 +1,21 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import md5 from "md5";
-import NavigationThemeSelect from "./NavigationThemeSelect";
-import NavigationSearchBar from "./NavigationSearchBar";
-import { User } from "@prisma/client";
-import useServerUser from "@/hooks/useServerUser";
-import NavigationHamburgerMenu from "./NavigationHamburgerMenu";
-import NavigationDropdown from "./NavigationDropdown";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/auth/authOptions";
-import SiteLogo from "../SiteLogo/SiteLogo";
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import md5 from 'md5';
+import NavigationThemeSelect from './NavigationThemeSelect';
+import NavigationSearchBar from './NavigationSearchBar';
+import { User } from '@prisma/client';
+import useServerUser from '@/hooks/useServerUser';
+import NavigationHamburgerMenu from './NavigationHamburgerMenu';
+import NavigationDropdown from './NavigationDropdown';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/auth/authOptions';
+import SiteLogo from '../SiteLogo/SiteLogo';
 
 const generateGravatarUrl = (user: User): string => {
   if (user?.image) return user.image;
   return `https://www.gravatar.com/avatar/${md5(
-    user?.name || "NaN"
+    user?.name || 'NaN'
   )}?d=identicon`;
 };
 

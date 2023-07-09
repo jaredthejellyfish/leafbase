@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { BiErrorCircle } from "react-icons/bi";
-import React from "react";
+import { BiErrorCircle } from 'react-icons/bi';
+import React from 'react';
 
 const ErrorStrainPage = () => {
   return (

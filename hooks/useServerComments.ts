@@ -1,8 +1,8 @@
-import prisma from "@/lib/prisma";
-import useServerUser from "./useServerUser";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/auth/authOptions";
-import { User } from "@prisma/client";
+import prisma from '@/lib/prisma';
+import useServerUser from './useServerUser';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/auth/authOptions';
+import { User } from '@prisma/client';
 
 interface Props {
   user: User;

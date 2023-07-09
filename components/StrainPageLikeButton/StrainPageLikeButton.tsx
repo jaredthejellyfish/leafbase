@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { motion } from "framer-motion";
-import { useQuery } from "@tanstack/react-query";
-import { useSession } from "next-auth/react";
-import { Strain } from "@prisma/client";
+import React, { useState, useEffect } from 'react';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { motion } from 'framer-motion';
+import { useQuery } from '@tanstack/react-query';
+import { useSession } from 'next-auth/react';
+import { Strain } from '@prisma/client';
 
 type Props = {
   id: string;
@@ -13,7 +13,7 @@ type Props = {
 };
 
 const getLikedStatus = async (id: string) => {
-  const response = await fetch("/api/strains/liked");
+  const response = await fetch('/api/strains/liked');
   const data = await response.json();
   return data.strains.map((strain: Strain) => strain.id).includes(id);
 };
@@ -23,7 +23,7 @@ const StrainPageLikeButton = (props: Props) => {
   const { data: session } = useSession();
 
   const { data } = useQuery({
-    queryKey: ["liked-status", props.id],
+    queryKey: ['liked-status', props.id],
     queryFn: () => getLikedStatus(props.id),
     enabled: !!session?.user,
     cacheTime: 0,
@@ -36,20 +36,20 @@ const StrainPageLikeButton = (props: Props) => {
   }, [data]);
 
   const likeStrain = async () => {
-    await fetch("/api/strains/like", {
-      method: "POST",
+    await fetch('/api/strains/like', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ strainId: props.id }),
     });
   };
 
   const unlikeStrain = async () => {
-    await fetch("/api/strains/unlike", {
-      method: "POST",
+    await fetch('/api/strains/unlike', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ strainId: props.id }),
     });
@@ -94,13 +94,13 @@ const StrainPageLikeButton = (props: Props) => {
       aria-label="Like Strain"
       className={` border bg-white dark:bg-zinc-800 text-zinc-400/75 transition-colors rounded-full p-1.5 dark:text-zinc-400 ${
         props.className
-      } ${liked ? "border-green-600/40" : "dark:border-zinc-700"}`}
+      } ${liked ? 'border-green-600/40' : 'dark:border-zinc-700'}`}
       onClick={() => handleLike()}
       variants={likeButtonVariants}
       whileHover="hover"
       initial="initial"
       onTap={() => setLiked(!liked)}
-      animate={liked ? "like" : "initial"}
+      animate={liked ? 'like' : 'initial'}
     >
       {liked ? (
         <AiFillHeart className="text-green-600/75" size={23} />

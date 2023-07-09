@@ -1,10 +1,8 @@
-"use client";
-import React from "react";
-import { signOut } from "next-auth/react";
+'use client';
+import React from 'react';
+import { signOut } from 'next-auth/react';
 
-type Props = {};
-
-const SingOutButton = (props: Props) => {
+const SingOutButton = () => {
   return (
     <button
       aria-label="Log Out"

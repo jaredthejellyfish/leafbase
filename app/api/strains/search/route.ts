@@ -1,21 +1,21 @@
-import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import prisma from '@/lib/prisma';
+import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
   try {
     const url = new URL(request.url);
     const searchParams = new URLSearchParams(url.search);
-    const search = searchParams.get("query");
+    const search = searchParams.get('query');
 
     if (!search)
-      return NextResponse.json({ error: "No search query provided" });
+      return NextResponse.json({ error: 'No search query provided' });
 
     const foundStrains = await prisma.strain.findMany({
       take: 5,
       where: {
         name: {
           contains: search,
-          mode: "insensitive",
+          mode: 'insensitive',
         },
       },
       select: {
@@ -26,7 +26,7 @@ export async function GET(request: Request) {
     });
 
     if (!foundStrains || foundStrains.length < 1)
-      return NextResponse.json({ error: "No strains found" });
+      return NextResponse.json({ error: 'No strains found' });
 
     return NextResponse.json({ strains: foundStrains });
   } catch (error) {
@@ -37,4 +37,4 @@ export async function GET(request: Request) {
   }
 }
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';

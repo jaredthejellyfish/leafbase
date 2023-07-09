@@ -1,17 +1,17 @@
-import React from "react";
-import prisma from "@/lib/prisma";
-import Image from "next/image";
-import StarRating from "@/components/StarRating/StarRating";
-import Link from "next/link";
-import { Metadata } from "next/types";
-import StrainPageLikeButton from "@/components/StrainPageLikeButton/StrainPageLikeButton";
-import { StrainExtended } from "@/types/interfaces";
+import React from 'react';
+import prisma from '@/lib/prisma';
+import Image from 'next/image';
+import StarRating from '@/components/StarRating/StarRating';
+import Link from 'next/link';
+import { Metadata } from 'next/types';
+import StrainPageLikeButton from '@/components/StrainPageLikeButton/StrainPageLikeButton';
+import { StrainExtended } from '@/types/interfaces';
 
-import StrainSoma from "@/components/StrainSoma/StrainSoma";
-import CommentLoader from "@/components/CommentLoader/CommentLoader";
-import { ErrorBoundary } from "react-error-boundary";
-import CommentLoaderFallback from "@/components/CommentLoader/CommentLoaderFallback";
-import StrainPageMoreButton from "@/components/StrainPageMoreButton/StrainPageMoreButton";
+import StrainSoma from '@/components/StrainSoma/StrainSoma';
+import CommentLoader from '@/components/CommentLoader/CommentLoader';
+import { ErrorBoundary } from 'react-error-boundary';
+import CommentLoaderFallback from '@/components/CommentLoader/CommentLoaderFallback';
+import StrainPageMoreButton from '@/components/StrainPageMoreButton/StrainPageMoreButton';
 
 type Props = { params: { slug: string } };
 
@@ -20,30 +20,30 @@ type Colors = {
 };
 
 const terpenes: Colors = {
-  myrcene: "#7EBF73",
-  caryophyllene: "#B25C52",
-  terpinolene: "#4A7597",
-  linalool: "#9A67B5",
-  pinene: "#3B8A5A",
-  limonene: "#F9B122",
-  ocimene: "#2AA39F",
+  myrcene: '#7EBF73',
+  caryophyllene: '#B25C52',
+  terpinolene: '#4A7597',
+  linalool: '#9A67B5',
+  pinene: '#3B8A5A',
+  limonene: '#F9B122',
+  ocimene: '#2AA39F',
 };
 
 const effects: Colors = {
-  Hungry: "#FF8C00",
-  Giggly: "#FF69B4",
-  Euphoric: "#9370DB",
-  Energetic: "#F5A623",
-  Uplifted: "#20B2AA",
-  Aroused: "#FF4500",
-  Tingly: "#BA55D3",
-  Happy: "#00FF00",
-  Focused: "#FFD700",
-  null: "#778899",
-  Talkative: "#4682B4",
-  Creative: "#FFA07A",
-  Relaxed: "#8B4513",
-  Sleepy: "#1E90FF",
+  Hungry: '#FF8C00',
+  Giggly: '#FF69B4',
+  Euphoric: '#9370DB',
+  Energetic: '#F5A623',
+  Uplifted: '#20B2AA',
+  Aroused: '#FF4500',
+  Tingly: '#BA55D3',
+  Happy: '#00FF00',
+  Focused: '#FFD700',
+  null: '#778899',
+  Talkative: '#4682B4',
+  Creative: '#FFA07A',
+  Relaxed: '#8B4513',
+  Sleepy: '#1E90FF',
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -59,7 +59,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   })) as StrainExtended;
 
   return {
-    title: `${strain?.name} - Leafbase` || "Strain",
+    title: `${strain?.name} - Leafbase` || 'Strain',
     description:
       strain.shortDescription || `Description page for ${strain?.name}`,
   };
@@ -152,7 +152,7 @@ const StrainPage = async (props: Props) => {
                 ></path>
               </svg>
               <Link
-                href={"/strains"}
+                href={'/strains'}
                 className="ml-1 text-lg font-medium text-gray-700 hover:text-green-600 md:ml-2 dark:text-gray-400 dark:hover:text-green-400"
               >
                 Strains
@@ -239,7 +239,7 @@ const StrainPage = async (props: Props) => {
                 <div
                   style={{
                     backgroundColor:
-                      effects[strain.topEffect || "rgb(70, 130, 180)"],
+                      effects[strain.topEffect || 'rgb(70, 130, 180)'],
                   }}
                   className="rounded-full w-2.5 h-2.5"
                 ></div>
@@ -249,7 +249,7 @@ const StrainPage = async (props: Props) => {
                 <div
                   style={{
                     backgroundColor:
-                      terpenes[strain.topTerpene || "rgb(70, 130, 180)"],
+                      terpenes[strain.topTerpene || 'rgb(70, 130, 180)'],
                   }}
                   className="rounded-full w-2.5 h-2.5"
                 ></div>

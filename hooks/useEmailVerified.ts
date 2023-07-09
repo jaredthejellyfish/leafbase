@@ -1,6 +1,6 @@
-import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/auth/authOptions";
+import prisma from '@/lib/prisma';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/auth/authOptions';
 
 const getUserByEmail = async (email: string) => {
   try {

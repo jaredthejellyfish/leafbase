@@ -1,18 +1,16 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
-import useServerUser from "@/hooks/useServerUser";
-import prisma from "@/lib/prisma";
-import { StrainExtended } from "@/types/interfaces";
-import { User } from "@prisma/client";
-import { ErrorBoundary } from "react-error-boundary";
-import dynamic from "next/dynamic";
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import useServerUser from '@/hooks/useServerUser';
+import prisma from '@/lib/prisma';
+import { StrainExtended } from '@/types/interfaces';
+import { User } from '@prisma/client';
+import { ErrorBoundary } from 'react-error-boundary';
+import dynamic from 'next/dynamic';
 
-const LikedStrainsModal = dynamic(() => import("./LikedStrainsModal"), {
+const LikedStrainsModal = dynamic(() => import('./LikedStrainsModal'), {
   ssr: false,
 });
-
-type Props = {};
 
 type Strain = {
   id: string;
@@ -49,7 +47,7 @@ const getLikedStrains = async (user: User) => {
   return sortedLikedStrains;
 };
 
-const LikedStrains = async (props: Props) => {
+const LikedStrains = async () => {
   const user = (await useServerUser()) as User;
   const strains = await getLikedStrains(user);
 
@@ -76,7 +74,7 @@ const LikedStrains = async (props: Props) => {
                 href={`/strains/${strain.slug}`}
               >
                 <div
-                  style={{ maxHeight: "90px", maxWidth: "90px" }}
+                  style={{ maxHeight: '90px', maxWidth: '90px' }}
                   className="flex items-center justify-center bg-white rounded-md aspect-square"
                 >
                   <Image

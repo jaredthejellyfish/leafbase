@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React from "react";
-import { Comment } from "@/types/interfaces";
-import moment from "moment";
-import Link from "next/link";
-import DeleteCommentButton from "./DeleteCommentButton";
-import { motion } from "framer-motion";
+import React from 'react';
+import { Comment } from '@/types/interfaces';
+import moment from 'moment';
+import Link from 'next/link';
+import DeleteCommentButton from './DeleteCommentButton';
+import { motion } from 'framer-motion';
 
 type Props = {
   comment: Comment;
@@ -13,7 +13,7 @@ type Props = {
 };
 
 function transformName(name: string): string {
-  const parts = name.split(" ");
+  const parts = name.split(' ');
   if (parts.length <= 1) {
     return name; // Return the name as is if there are no spaces
   }
@@ -21,8 +21,8 @@ function transformName(name: string): string {
   const firstName = parts[0];
   const transformedParts = parts
     .slice(1)
-    .map((part) => part.charAt(0).toUpperCase() + ".");
-  return `${firstName} ${transformedParts.join(" ")}`;
+    .map((part) => part.charAt(0).toUpperCase() + '.');
+  return `${firstName} ${transformedParts.join(' ')}`;
 }
 
 const CommentCard = (props: Props) => {
@@ -37,7 +37,7 @@ const CommentCard = (props: Props) => {
     >
       <div className="relative mb-2">
         <div className="absolute top-0 right-0 flex text-sm">
-          <span>{moment(comment.createdAt).format("MMMM Do, h:mm a")}</span>
+          <span>{moment(comment.createdAt).format('MMMM Do, h:mm a')}</span>
         </div>
         <div className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400">
           {comment.user.displayName ? (

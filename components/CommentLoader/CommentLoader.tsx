@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import React from "react";
-import { Comment } from "@/types/interfaces";
-import CommentCard from "./CommentCard";
-import AddCommentButton from "@/components/AddCommentButton/AddCommentButton";
-import { AnimatePresence } from "framer-motion";
-import { StrainExtended } from "@/types/interfaces";
-import useUser from "@/hooks/useUser";
+import React from 'react';
+import { Comment } from '@/types/interfaces';
+import CommentCard from './CommentCard';
+import AddCommentButton from '@/components/AddCommentButton/AddCommentButton';
+import { AnimatePresence } from 'framer-motion';
+import { StrainExtended } from '@/types/interfaces';
+import useUser from '@/hooks/useUser';
 
 type Props = { strain: StrainExtended };
 

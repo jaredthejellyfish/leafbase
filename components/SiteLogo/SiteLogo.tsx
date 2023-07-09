@@ -1,6 +1,6 @@
-import React from "react";
-import siteLogo from "@/public/site-logo.png";
-import Image from "next/image";
+import React from 'react';
+import siteLogo from '@/public/site-logo.png';
+import Image from 'next/image';
 
 type Props = { height?: number; width?: number };
 

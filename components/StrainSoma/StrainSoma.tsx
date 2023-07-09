@@ -1,8 +1,8 @@
-import React from "react";
-import { StrainExtended } from "@/types/interfaces";
-import { FiThumbsUp, FiThumbsDown } from "react-icons/fi";
-import { TbMedicalCross } from "react-icons/tb";
-import Badge from "@/components/Badge/Badge";
+import React from 'react';
+import { StrainExtended } from '@/types/interfaces';
+import { FiThumbsUp, FiThumbsDown } from 'react-icons/fi';
+import { TbMedicalCross } from 'react-icons/tb';
+import Badge from '@/components/Badge/Badge';
 
 type Effect = {
   [key: string]: string;
@@ -13,64 +13,64 @@ type Props = {
 };
 
 const effects: Effect = {
-  aroused: "uninterested",
-  creative: "unimaginative",
-  energetic: "lethargic",
-  euphoric: "dysphoric",
-  focused: "distracted",
-  giggly: "serious",
-  happy: "sad",
-  hungry: "full",
-  relaxed: "tense",
-  sleepy: "alert",
-  talkative: "quiet",
-  tingly: "numb",
-  uplifted: "downcast",
+  aroused: 'uninterested',
+  creative: 'unimaginative',
+  energetic: 'lethargic',
+  euphoric: 'dysphoric',
+  focused: 'distracted',
+  giggly: 'serious',
+  happy: 'sad',
+  hungry: 'full',
+  relaxed: 'tense',
+  sleepy: 'alert',
+  talkative: 'quiet',
+  tingly: 'numb',
+  uplifted: 'downcast',
 };
 
 const positiveEffects: Effect = {
-  aroused: "low libido",
-  creative: "creative block",
-  energetic: "fatigue",
-  euphoric: "depression",
-  focused: "ADD",
-  giggly: "apathy",
-  happy: "sadness",
-  hungry: "loss of appetite",
-  relaxed: "anxiety",
-  sleepy: "insomnia",
-  talkative: "social anxiety",
-  tingly: "lack of sensation",
-  uplifted: "low mood",
+  aroused: 'low libido',
+  creative: 'creative block',
+  energetic: 'fatigue',
+  euphoric: 'depression',
+  focused: 'ADD',
+  giggly: 'apathy',
+  happy: 'sadness',
+  hungry: 'loss of appetite',
+  relaxed: 'anxiety',
+  sleepy: 'insomnia',
+  talkative: 'social anxiety',
+  tingly: 'lack of sensation',
+  uplifted: 'low mood',
 };
 
 const effectColors: Effect = {
-  aroused: "indigo",
-  uninterested: "yellow",
-  creative: "green",
-  unimaginative: "red",
-  energetic: "purple",
-  lethargic: "dark",
-  euphoric: "pink",
-  dysphoric: "default",
-  focused: "blue",
-  distracted: "orange",
-  giggly: "yellow",
-  serious: "default",
-  happy: "green",
-  sad: "red",
-  hungry: "purple",
-  full: "dark",
-  relaxed: "indigo",
-  tense: "yellow",
-  sleepy: "blue",
-  alert: "red",
-  talkative: "green",
-  quiet: "dark",
-  tingly: "pink",
-  numb: "default",
-  uplifted: "yellow",
-  downcast: "red",
+  aroused: 'indigo',
+  uninterested: 'yellow',
+  creative: 'green',
+  unimaginative: 'red',
+  energetic: 'purple',
+  lethargic: 'dark',
+  euphoric: 'pink',
+  dysphoric: 'default',
+  focused: 'blue',
+  distracted: 'orange',
+  giggly: 'yellow',
+  serious: 'default',
+  happy: 'green',
+  sad: 'red',
+  hungry: 'purple',
+  full: 'dark',
+  relaxed: 'indigo',
+  tense: 'yellow',
+  sleepy: 'blue',
+  alert: 'red',
+  talkative: 'green',
+  quiet: 'dark',
+  tingly: 'pink',
+  numb: 'default',
+  uplifted: 'yellow',
+  downcast: 'red',
 };
 
 function getTopThreeEffects(strain: StrainExtended): string[] {
@@ -105,7 +105,7 @@ const StrainSoma = (props: Props) => {
     <div className="flex flex-col gap-2 p-2 px-3 border rounded border-zinc-200 dark:border-zinc-600 dark:bg-zinc-800 md:mt-7">
       <h3 className="text-sm font-bold uppercase">Strain soma</h3>
       <div className="flex flex-row flex-wrap items-center w-full gap-2 text-xs">
-        <FiThumbsUp size={12} />{" "}
+        <FiThumbsUp size={12} />{' '}
         <p className="hidden sm:hidden md:block xl:block">Feelings:</p>
         <div className="flex flex-row flex-wrap gap-y-2 gap-x-2">
           {topThreeEffects.map((effect) => (

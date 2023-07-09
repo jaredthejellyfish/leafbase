@@ -1,14 +1,12 @@
-"use client";
+'use client';
 
-import { StrainExtended } from "@/types/interfaces";
-import React, { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-import { AnimatePresence } from "framer-motion";
-import { useQuery } from "@tanstack/react-query";
-import Image from "next/image";
-import StarRating from "../StarRating/StarRating";
-import Link from "next/link";
-import Modal from "../Modal/Modal";
+import { StrainExtended } from '@/types/interfaces';
+import React, { useState, useEffect, useRef } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import Image from 'next/image';
+import StarRating from '../StarRating/StarRating';
+import Link from 'next/link';
+import Modal from '../Modal/Modal';
 
 type Props = { strain: StrainExtended };
 
@@ -23,9 +21,9 @@ interface Recommendation {
 
 const fetchRecommendedStrainsData = async (strainName: string) => {
   const res = await fetch(`/api/recommendations/find-matches`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       name: strainName,
@@ -50,9 +48,9 @@ const MixersButton = (props: Props) => {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   });
 
@@ -64,7 +62,7 @@ const MixersButton = (props: Props) => {
     isFetching,
     error,
   } = useQuery({
-    queryKey: ["recommended-strains", props.strain.name],
+    queryKey: ['recommended-strains', props.strain.name],
     queryFn: () => fetchRecommendedStrainsData(strainName),
     enabled: isModalOpen,
   });

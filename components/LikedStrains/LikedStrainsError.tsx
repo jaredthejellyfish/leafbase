@@ -1,5 +1,5 @@
-import { AiOutlineExclamationCircle } from "react-icons/ai";
-import { BsClipboardDataFill } from "react-icons/bs";
+import { AiOutlineExclamationCircle } from 'react-icons/ai';
+import { BsClipboardDataFill } from 'react-icons/bs';
 
 const LikedStrainsError = () => {
   return (

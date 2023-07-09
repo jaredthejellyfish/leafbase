@@ -1,10 +1,8 @@
-import React from "react";
-import { RxCaretDown } from "react-icons/rx";
-import { AiOutlineHeart } from "react-icons/ai";
+import React from 'react';
+import { RxCaretDown } from 'react-icons/rx';
+import { AiOutlineHeart } from 'react-icons/ai';
 
-type Props = {};
-
-const LoadingStrains = async (props: Props) => {
+const LoadingStrains = async () => {
   return (
     <div className="flex flex-col items-center justify-center px-6 xl:px-52">
       <div className="max-w-4xl">
@@ -33,7 +31,7 @@ const LoadingStrains = async (props: Props) => {
               <AiOutlineHeart />
             </div>
             <div
-              style={{ maxHeight: "250px" }}
+              style={{ maxHeight: '250px' }}
               className="flex items-center justify-center w-1/2 border rounded-lg md:w-full dark:border-opacity-0 border-zinc-100 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse aspect-square"
             ></div>
             <div className="w-1/2 md:w-full">
@@ -64,7 +62,7 @@ const LoadingStrains = async (props: Props) => {
               <AiOutlineHeart />
             </div>
             <div
-              style={{ maxHeight: "250px" }}
+              style={{ maxHeight: '250px' }}
               className="flex items-center justify-center w-1/2 border rounded-lg md:w-full dark:border-opacity-0 border-zinc-100 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse aspect-square"
             ></div>
             <div className="w-1/2 md:w-full">
@@ -95,7 +93,7 @@ const LoadingStrains = async (props: Props) => {
               <AiOutlineHeart />
             </div>
             <div
-              style={{ maxHeight: "250px" }}
+              style={{ maxHeight: '250px' }}
               className="flex items-center justify-center w-1/2 border rounded-lg md:w-full dark:border-opacity-0 border-zinc-100 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse aspect-square"
             ></div>
             <div className="w-1/2 md:w-full">
@@ -126,7 +124,7 @@ const LoadingStrains = async (props: Props) => {
               <AiOutlineHeart />
             </div>
             <div
-              style={{ maxHeight: "250px" }}
+              style={{ maxHeight: '250px' }}
               className="flex items-center justify-center w-1/2 border rounded-lg md:w-full dark:border-opacity-0 border-zinc-100 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse aspect-square"
             ></div>
             <div className="w-1/2 md:w-full">
@@ -157,7 +155,7 @@ const LoadingStrains = async (props: Props) => {
               <AiOutlineHeart />
             </div>
             <div
-              style={{ maxHeight: "250px" }}
+              style={{ maxHeight: '250px' }}
               className="flex items-center justify-center w-1/2 border rounded-lg md:w-full dark:border-opacity-0 border-zinc-100 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse aspect-square"
             ></div>
             <div className="w-1/2 md:w-full">
@@ -188,7 +186,7 @@ const LoadingStrains = async (props: Props) => {
               <AiOutlineHeart />
             </div>
             <div
-              style={{ maxHeight: "250px" }}
+              style={{ maxHeight: '250px' }}
               className="flex items-center justify-center w-1/2 border rounded-lg md:w-full dark:border-opacity-0 border-zinc-100 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse aspect-square"
             ></div>
             <div className="w-1/2 md:w-full">

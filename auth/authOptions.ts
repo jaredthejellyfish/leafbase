@@ -1,16 +1,16 @@
-import DiscordProvider from "next-auth/providers/discord";
-import EmailProvider from "next-auth/providers/email";
-import GoogleProvider from "next-auth/providers/google";
-import TwitchProvider from "next-auth/providers/twitch";
-import GitHubProvider from "next-auth/providers/github";
-import SpotifyProvider from "next-auth/providers/spotify";
+import DiscordProvider from 'next-auth/providers/discord';
+import EmailProvider from 'next-auth/providers/email';
+import GoogleProvider from 'next-auth/providers/google';
+import TwitchProvider from 'next-auth/providers/twitch';
+import GitHubProvider from 'next-auth/providers/github';
+import SpotifyProvider from 'next-auth/providers/spotify';
 
-import { PrismaAdapter } from "@auth/prisma-adapter";
-import { html } from "@/lib/email";
-import { createTransport } from "nodemailer";
-import { NextAuthOptions } from "next-auth";
+import { PrismaAdapter } from '@auth/prisma-adapter';
+import { html } from '@/lib/email';
+import { createTransport } from 'nodemailer';
+import { NextAuthOptions } from 'next-auth';
 
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 
 const prisma: PrismaClient = new PrismaClient();
 
@@ -19,24 +19,24 @@ const authOptions: NextAuthOptions = {
 
   providers: [
     SpotifyProvider({
-      clientId: process.env.SPOTIFY_CLIENT_ID || "",
-      clientSecret: process.env.SPOTIFY_CLIENT_SECRET || "",
+      clientId: process.env.SPOTIFY_CLIENT_ID || '',
+      clientSecret: process.env.SPOTIFY_CLIENT_SECRET || '',
     }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      clientId: process.env.GOOGLE_CLIENT_ID || '',
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
     }),
     DiscordProvider({
-      clientId: process.env.DISCORD_CLIENT_ID || "",
-      clientSecret: process.env.DISCORD_CLIENT_SECRET || "",
+      clientId: process.env.DISCORD_CLIENT_ID || '',
+      clientSecret: process.env.DISCORD_CLIENT_SECRET || '',
     }),
     TwitchProvider({
-      clientId: process.env.TWITCH_CLIENT_ID || "",
-      clientSecret: process.env.TWITCH_CLIENT_SECRET || "",
+      clientId: process.env.TWITCH_CLIENT_ID || '',
+      clientSecret: process.env.TWITCH_CLIENT_SECRET || '',
     }),
     GitHubProvider({
-      clientId: process.env.GITHUB_CLIENT_ID || "",
-      clientSecret: process.env.GITHUB_CLIENT_SECRET || "",
+      clientId: process.env.GITHUB_CLIENT_ID || '',
+      clientSecret: process.env.GITHUB_CLIENT_SECRET || '',
     }),
     EmailProvider({
       server: process.env.EMAIL_SERVER,
@@ -49,25 +49,25 @@ const authOptions: NextAuthOptions = {
         const result = await transport.sendMail({
           to: identifier,
           from: provider.from,
-          subject: "Sign in to leafbase.io",
-          text: "Sign in to leafbase.io",
+          subject: 'Sign in to leafbase.io',
+          text: 'Sign in to leafbase.io',
           html: html({ url, host, theme }),
         });
         const failed = result.rejected.concat(result.pending).filter(Boolean);
         if (failed.length) {
-          throw new Error(`Email(s) (${failed.join(", ")}) could not be sent`);
+          throw new Error(`Email(s) (${failed.join(', ')}) could not be sent`);
         }
       },
     }),
   ],
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
-    signIn: "/auth/login",
-    verifyRequest: "/auth/verify-request",
+    signIn: '/auth/login',
+    verifyRequest: '/auth/verify-request',
   },
 };
 

@@ -1,15 +1,13 @@
-"use client";
+'use client';
 
-import useColorTheme from "@/hooks/useColorTheme";
-import { setTheme } from "@/store/features/themeSlice";
-import { RootState } from "@/store/store";
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { BsMoonFill, BsFillSunFill } from "react-icons/bs";
+import useColorTheme from '@/hooks/useColorTheme';
+import { setTheme } from '@/store/features/themeSlice';
+import { RootState } from '@/store/store';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { BsMoonFill, BsFillSunFill } from 'react-icons/bs';
 
-type Props = {};
-
-const NavigationThemeSelect = (props: Props) => {
+const NavigationThemeSelect = () => {
   const dispatch = useDispatch();
   const { colorTheme, setColorTheme } = useColorTheme();
 
@@ -23,9 +21,9 @@ const NavigationThemeSelect = (props: Props) => {
     <button
       aria-label="Toggle Theme"
       className="p-2"
-      onClick={() => setColorTheme(colorTheme === "dark" ? "light" : "dark")}
+      onClick={() => setColorTheme(colorTheme === 'dark' ? 'light' : 'dark')}
     >
-      {currentTheme.theme === "light" ? <BsMoonFill /> : <BsFillSunFill />}
+      {currentTheme.theme === 'light' ? <BsMoonFill /> : <BsFillSunFill />}
     </button>
   );
 };

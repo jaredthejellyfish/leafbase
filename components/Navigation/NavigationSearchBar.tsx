@@ -1,13 +1,11 @@
-"use client";
+'use client';
 
-import React, { useState, useRef } from "react";
-import { BsSearch } from "react-icons/bs";
-import { useQuery } from "@tanstack/react-query";
-import { debounce } from "lodash";
-import Link from "next/link";
-import { StrainExtended } from "@/types/interfaces";
-
-type Props = {};
+import React, { useState, useRef } from 'react';
+import { BsSearch } from 'react-icons/bs';
+import { useQuery } from '@tanstack/react-query';
+import { debounce } from 'lodash';
+import Link from 'next/link';
+import { StrainExtended } from '@/types/interfaces';
 
 const fetchSearchResults = async (search: string) => {
   const res = await fetch(`/api/strains/search?query=${search}`);
@@ -20,12 +18,12 @@ const generateStrainUrl = (strainSlug: string) => {
   return `/strains/${strainSlug}`;
 };
 
-const NavigationSearchBar = (props: Props) => {
-  const [search, setSearch] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
+const NavigationSearchBar = () => {
+  const [search, setSearch] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const { data, isLoading, isFetching, error } = useQuery({
-    queryKey: ["search-results", searchQuery],
+    queryKey: ['search-results', searchQuery],
     queryFn: () => fetchSearchResults(searchQuery),
     cacheTime: 3000,
     enabled: Boolean(searchQuery),
@@ -70,7 +68,7 @@ const NavigationSearchBar = (props: Props) => {
                 <Link
                   className="flex flex-col leading-none"
                   href={generateStrainUrl(strain.slug)}
-                  onClick={() => setSearch("")}
+                  onClick={() => setSearch('')}
                 >
                   <p>{strain.name}</p>
                   <p className="text-sm text-green-700/75">strain</p>

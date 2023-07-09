@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Edit Profile - Leafbase",
+  title: 'Edit Profile - Leafbase',
 };
 
 export default function RootLayout({

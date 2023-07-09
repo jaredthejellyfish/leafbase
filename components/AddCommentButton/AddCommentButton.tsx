@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { StrainExtended } from "@/types/interfaces";
-import React, { useState } from "react";
-import { AiOutlinePlus } from "react-icons/ai";
-import TextareaAutosize from "react-textarea-autosize";
-import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
-import { AnimatePresence } from "framer-motion";
+import { StrainExtended } from '@/types/interfaces';
+import React, { useState } from 'react';
+import { AiOutlinePlus } from 'react-icons/ai';
+import TextareaAutosize from 'react-textarea-autosize';
+import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 type Props = { strain: StrainExtended };
 
 function AddCommentButton(props: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   const [isError, setIsError] = useState(false);
   const strainId = props.strain.id;
@@ -21,19 +21,19 @@ function AddCommentButton(props: Props) {
   const addComment = async (content: string, strainId: string) => {
     if (content.length < 1) return;
     setIsSaving(true);
-    const res = await fetch("/api/comments/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    const res = await fetch('/api/comments/add', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ content, strainId }),
     });
     if (res.status === 200) {
       router.refresh();
-      setComment("");
+      setComment('');
       setIsSaving(false);
       setIsModalOpen(false);
     } else {
-      console.log("Error adding comment");
-      setComment("");
+      console.log('Error adding comment');
+      setComment('');
       setIsSaving(false);
       setIsError(true);
       setIsModalOpen(false);
@@ -114,8 +114,8 @@ function AddCommentButton(props: Props) {
                     onClick={() => addComment(comment, strainId)}
                     disabled={isSaving}
                   >
-                    {isSaving && !isError ? "Saving..." : "Save"}
-                    {isError && "Error"}
+                    {isSaving && !isError ? 'Saving...' : 'Save'}
+                    {isError && 'Error'}
                   </button>
                 </div>
               </motion.div>

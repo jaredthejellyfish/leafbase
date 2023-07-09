@@ -1,11 +1,9 @@
-"use client";
+'use client';
 
-import React from "react";
-import { AiOutlineExclamationCircle } from "react-icons/ai";
+import React from 'react';
+import { AiOutlineExclamationCircle } from 'react-icons/ai';
 
-type Props = {};
-
-const ErrorStrains = (props: Props) => {
+const ErrorStrains = () => {
   return (
     <div className="flex flex-col items-center justify-center px-6 xl:px-52">
       <div className="max-w-4xl">

@@ -1,5 +1,5 @@
-import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import prisma from '@/lib/prisma';
+import { NextResponse } from 'next/server';
 
 export async function GET(
   request: Request,
@@ -23,4 +23,4 @@ export async function GET(
   }
 }
 
-export const dynamic = "force-dynamic";
+export const dynamic = 'force-dynamic';

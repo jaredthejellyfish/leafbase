@@ -1,8 +1,8 @@
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import StrainCardLikeButton from "./StrainCardLikeButton";
-import StarRating from "@/components/StarRating/StarRating";
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
+import StrainCardLikeButton from './StrainCardLikeButton';
+import StarRating from '@/components/StarRating/StarRating';
 
 type Props = {
   id: string;
@@ -30,30 +30,30 @@ type Colors = {
 };
 
 const terpenes: Colors = {
-  myrcene: "#7EBF73",
-  caryophyllene: "#B25C52",
-  terpinolene: "#4A7597",
-  linalool: "#9A67B5",
-  pinene: "#3B8A5A",
-  limonene: "#F9B122",
-  ocimene: "#2AA39F",
+  myrcene: '#7EBF73',
+  caryophyllene: '#B25C52',
+  terpinolene: '#4A7597',
+  linalool: '#9A67B5',
+  pinene: '#3B8A5A',
+  limonene: '#F9B122',
+  ocimene: '#2AA39F',
 };
 
 const effects: Colors = {
-  Hungry: "#FF8C00",
-  Giggly: "#FF69B4",
-  Euphoric: "#9370DB",
-  Energetic: "#F5A623",
-  Uplifted: "#20B2AA",
-  Aroused: "#FF4500",
-  Tingly: "#BA55D3",
-  Happy: "#00FF00",
-  Focused: "#FFD700",
-  null: "#778899",
-  Talkative: "#4682B4",
-  Creative: "#FFA07A",
-  Relaxed: "#8B4513",
-  Sleepy: "#1E90FF",
+  Hungry: '#FF8C00',
+  Giggly: '#FF69B4',
+  Euphoric: '#9370DB',
+  Energetic: '#F5A623',
+  Uplifted: '#20B2AA',
+  Aroused: '#FF4500',
+  Tingly: '#BA55D3',
+  Happy: '#00FF00',
+  Focused: '#FFD700',
+  null: '#778899',
+  Talkative: '#4682B4',
+  Creative: '#FFA07A',
+  Relaxed: '#8B4513',
+  Sleepy: '#1E90FF',
 };
 
 const StrainCard = (props: Props) => {
@@ -66,7 +66,7 @@ const StrainCard = (props: Props) => {
       {props.nugImage && props.name && (
         <div className="flex items-center justify-center w-1/2 border rounded-lg md:w-full dark:border-opacity-0 border-zinc-200">
           <Image
-            style={{ maxHeight: "250px" }}
+            style={{ maxHeight: '250px' }}
             className="object-contain w-full h-full bg-white border border-white rounded-lg aspect-square"
             src={props.nugImage}
             alt={props.name}

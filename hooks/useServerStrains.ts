@@ -1,5 +1,5 @@
-import prisma from "@/lib/prisma";
-import useServerUser from "./useServerUser";
+import prisma from '@/lib/prisma';
+import useServerUser from './useServerUser';
 
 const getStrains = async (skip: number, take: number, userId: string) => {
   try {
@@ -8,7 +8,7 @@ const getStrains = async (skip: number, take: number, userId: string) => {
       take: take,
       orderBy: {
         likes: {
-          _count: "desc",
+          _count: 'desc',
         },
       },
       include: {

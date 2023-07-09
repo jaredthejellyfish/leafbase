@@ -60,6 +60,8 @@ const fetchLikedStrainsData = async (strainNames: string[]) => {
 const generateDatasetsFromData = (data: LikedStrainPoint[]) => {
   const datasets = [];
 
+  if (!data) throw new Error("No data provided");
+
   // Loop through each item in the data
   for (let i = 0; i < data.length; i++) {
     let point = data[i];

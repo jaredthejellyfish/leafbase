@@ -5,8 +5,12 @@ import useServerUser from "@/hooks/useServerUser";
 import prisma from "@/lib/prisma";
 import { StrainExtended } from "@/types/interfaces";
 import { User } from "@prisma/client";
-import LikedStrainsModal from "./LikedStrainsModal";
 import { ErrorBoundary } from "react-error-boundary";
+import dynamic from "next/dynamic";
+
+const LikedStrainsModal = dynamic(() => import("./LikedStrainsModal"), {
+  ssr: false,
+});
 
 type Props = {};
 

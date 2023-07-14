@@ -1,12 +1,12 @@
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
-import useServerUser from '@/hooks/useServerUser';
+import Image from 'next/image';
 import prisma from '@/lib/prisma';
-import { StrainExtended } from '@/types/interfaces';
-import { User } from '@prisma/client';
-import { ErrorBoundary } from 'react-error-boundary';
 import dynamic from 'next/dynamic';
+import { User } from '@prisma/client';
+import useServerUser from '@/hooks/useServerUser';
+import { StrainExtended } from '@/types/interfaces';
+import { ErrorBoundary } from 'react-error-boundary';
 
 const LikedStrainsModal = dynamic(() => import('./LikedStrainsModal'), {
   ssr: false,

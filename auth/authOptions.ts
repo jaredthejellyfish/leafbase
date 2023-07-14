@@ -12,6 +12,8 @@ import { NextAuthOptions } from 'next-auth';
 
 import { PrismaClient } from '@prisma/client';
 
+import { v4 as uuidv4 } from 'uuid';
+
 const prisma: PrismaClient = new PrismaClient();
 
 const authOptions: NextAuthOptions = {
@@ -52,6 +54,9 @@ const authOptions: NextAuthOptions = {
           subject: 'Sign in to leafbase.io',
           text: 'Sign in to leafbase.io',
           html: html({ url, host, theme }),
+          headers: {
+            'X-Entity-Ref-ID': uuidv4(),
+          },
         });
         const failed = result.rejected.concat(result.pending).filter(Boolean);
         if (failed.length) {

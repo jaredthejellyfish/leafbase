@@ -1,14 +1,7 @@
 import prisma from '@/lib/prisma';
-import useServerUser from './useServerUser';
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/auth/authOptions';
 import { User } from '@prisma/client';
 
-interface Props {
-  user: User;
-}
-
-const getComments = async (user: any) => {
+const getComments = async (user: User) => {
   try {
     const comments = await prisma.comment.findMany({
       where: {

@@ -1,8 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import StrainCardLikeButton from './StrainCardLikeButton';
 import StarRating from '@/components/StarRating/StarRating';
+import dynamic from 'next/dynamic';
+import StrainCardLikeButtonLoading from './StrainCardLikeButtonLoading';
+
+const StrainCardLikeButton = dynamic(() => import('./StrainCardLikeButton'), {
+  ssr: false,
+  loading: () => <StrainCardLikeButtonLoading />,
+});
 
 type Props = {
   id: string;

@@ -22,6 +22,7 @@ import dynamic from 'next/dynamic';
 const LikedStrains = dynamic(
   () => import('@/components/LikedStrains/LikedStrains'),
   {
+    ssr: false,
     loading: () => <LikedStrainsSkeleton />,
   }
 );
@@ -29,6 +30,7 @@ const LikedStrains = dynamic(
 const ProfileComments = dynamic(
   () => import('@/components/ProfileComments/ProfileComments'),
   {
+    ssr: false,
     loading: () => <ProfileCommentsSkeleton />,
   }
 );

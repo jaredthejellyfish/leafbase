@@ -2,11 +2,20 @@
 
 import React from 'react';
 import { Comment } from '@/types/interfaces';
-import CommentCard from './CommentCard';
-import AddCommentButton from '@/components/AddCommentButton/AddCommentButton';
-import { AnimatePresence } from 'framer-motion';
 import { StrainExtended } from '@/types/interfaces';
 import useUser from '@/hooks/useUser';
+import dynamic from 'next/dynamic';
+
+const CommentCard = dynamic(() => import('./CommentCard'), { ssr: false });
+
+const AddCommentButton = dynamic(
+  () => import('@/components/AddCommentButton/AddCommentButton')
+);
+
+const AnimatePresence = dynamic(
+  () => import('framer-motion').then((mod) => mod.AnimatePresence),
+  { ssr: false }
+);
 
 type Props = { strain: StrainExtended };
 

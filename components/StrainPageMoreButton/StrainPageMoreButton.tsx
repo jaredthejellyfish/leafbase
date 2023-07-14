@@ -2,7 +2,9 @@
 
 import React, { useState } from 'react';
 import { FiMoreVertical } from 'react-icons/fi';
-import Modal from '../Modal/Modal';
+import dynamic from 'next/dynamic';
+
+const Modal = dynamic(() => import('@/components/Modal/Modal'), { ssr: false });
 
 const StrainPageMoreButton = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

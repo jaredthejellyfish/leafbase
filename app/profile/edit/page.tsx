@@ -8,14 +8,29 @@ import Image from 'next/image';
 import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { AiOutlineClose } from 'react-icons/ai';
-import moment from 'moment';
-import SaveModal from '@/components/SaveModal/SaveModal';
-import UserProfileLoading from '../loading';
-import DeleteAccount from '@/components/DeleteAccount/DeleteAccount';
+import UserProfileLoading from './loading';
 import md5 from 'md5';
 import { User } from '@prisma/client';
-import { generateUsername } from 'unique-username-generator';
-import { toast } from 'react-toastify';
+import dynamic from 'next/dynamic';
+
+const SaveModal = dynamic(() => import('@/components/SaveModal/SaveModal'), {
+  ssr: false,
+});
+
+const DeleteAccount = dynamic(
+  () => import('@/components/DeleteAccount/DeleteAccount'),
+  {
+    loading: () => (
+      <button
+        aria-label="Delete Account"
+        type="button"
+        className="w-1/2 mt-4 dark:text-white border border-gray-400 transition-all focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mr-2 hover:dark:bg-gray-50/10 focus:outline-none dark:focus:ring-blue-800"
+      >
+        Delete Account
+      </button>
+    ),
+  }
+);
 
 const generateGravatarUrl = (user: User): string => {
   if (user?.image) return user.image;
@@ -58,11 +73,33 @@ const EditProfile = () => {
     setName(user?.name || '');
     setEmail(user?.email || '');
     setAboutMe(user?.aboutMe || '');
-    setBirthDate(moment(user?.birthDate).format('LL') || '');
     setLanguages(user?.languages || '');
     setPhone(user?.phone || '');
     setLocation(user?.location || '');
-    setDisplayName(user?.displayName || generateUsername());
+
+    if (user?.birthDate) {
+      import('moment')
+        .then(({ default: moment }) => {
+          setBirthDate(moment(user?.birthDate).format('LL') || '');
+        })
+        .catch((err) => {
+          console.error('Failed to load module: ', err);
+        });
+    } else {
+      setBirthDate('');
+    }
+
+    if (!user?.displayName) {
+      import('unique-username-generator')
+        .then((module) => {
+          setDisplayName(module.generateUsername());
+        })
+        .catch((err) => {
+          console.error('Failed to load module: ', err);
+        });
+    } else {
+      setDisplayName(user?.displayName);
+    }
   }, [
     user?.name,
     user?.email,
@@ -79,7 +116,6 @@ const EditProfile = () => {
       name !== user?.name ||
       email !== user?.email ||
       aboutMe !== user?.aboutMe ||
-      birthDate !== moment(user?.birthDate).format('LL') ||
       languages !== user?.languages ||
       phone !== user?.phone ||
       location !== user?.location ||
@@ -112,7 +148,11 @@ const EditProfile = () => {
       console.log(error);
     } finally {
       router.push('/profile?revalidate=true');
-      if (hasChanges()) toast.success('Profile updated successfully!');
+      if (hasChanges()) {
+        import('react-toastify').then(({ toast }) =>
+          toast.success('Profile updated successfully!')
+        );
+      }
       queryClient.invalidateQueries({ queryKey: ['user-profile'] });
     }
   };

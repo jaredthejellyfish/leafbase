@@ -1,9 +1,15 @@
 import React from 'react';
 import { RxCaretDown } from 'react-icons/rx';
 import useServerStrains from '@/hooks/useServerStrains';
-import StrainCard from '@/components/StrainCard/StrainCard';
-import StrainLoader from '@/components/StrainLoader/StrainLoader';
 import ErrorStrains from './error';
+import StrainCard from '@/components/StrainCard/StrainCard';
+
+import dynamic from 'next/dynamic';
+
+const StrainLoader = dynamic(
+  () => import('@/components/StrainLoader/StrainLoader'),
+  { ssr: false }
+);
 
 export const metadata = {
   title: 'All Strains - Leafbase',
@@ -74,5 +80,3 @@ const Strains = async () => {
 };
 
 export default Strains;
-
-export const dynamic = 'force-dynamic';

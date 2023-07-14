@@ -4,14 +4,31 @@ import Image from 'next/image';
 import StarRating from '@/components/StarRating/StarRating';
 import Link from 'next/link';
 import { Metadata } from 'next/types';
-import StrainPageLikeButton from '@/components/StrainPageLikeButton/StrainPageLikeButton';
 import { StrainExtended } from '@/types/interfaces';
-
+import { AiOutlineHeart } from 'react-icons/ai';
 import StrainSoma from '@/components/StrainSoma/StrainSoma';
-import CommentLoader from '@/components/CommentLoader/CommentLoader';
 import { ErrorBoundary } from 'react-error-boundary';
 import CommentLoaderFallback from '@/components/CommentLoader/CommentLoaderFallback';
+import CommentLoader from '@/components/CommentLoader/CommentLoader';
 import StrainPageMoreButton from '@/components/StrainPageMoreButton/StrainPageMoreButton';
+
+import dynamic from 'next/dynamic';
+
+const StrainPageLikeButton = dynamic(
+  () => import('@/components/StrainPageLikeButton/StrainPageLikeButton'),
+  {
+    loading: () => (
+      <button
+        aria-label="Like Strain"
+        className={
+          'absolute top-1.5 right-2 border bg-white dark:bg-zinc-800 text-zinc-400/75 transition-colors rounded-full p-1.5 dark:text-zinc-400 dark:border-zinc-700'
+        }
+      >
+        <AiOutlineHeart />
+      </button>
+    ),
+  }
+);
 
 type Props = { params: { slug: string } };
 

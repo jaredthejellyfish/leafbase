@@ -62,7 +62,6 @@ const StrainLoader = ({ filter }: { filter?: string }) => {
 
   return (
     <>
-    {`filter: ${filter}`}
       {data &&
         data.pages
           .flatMap((page) => page.strains)

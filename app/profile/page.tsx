@@ -1,11 +1,11 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { MdLocationPin } from 'react-icons/md';
 import { AiFillEdit } from 'react-icons/ai';
 import { User } from '@prisma/client';
 import Link from 'next/link';
 import SingOutButton from '@/components/SingOutButton/SingOutButton';
-import moment from 'moment';
+
 import md5 from 'md5';
 import { ErrorBoundary } from 'react-error-boundary';
 
@@ -16,6 +16,8 @@ import ProfileCommentsError from '@/components/ProfileComments/ProfileCommentsEr
 
 import ProfileCommentsSkeleton from '@/components/ProfileComments/ProfileCommentsSkeleton';
 import LikedStrainsSkeleton from '@/components/LikedStrains/LikedStrainsSkeleton';
+
+import GeneralInformationSkeleton from '@/components/GeneralInformation/GeneralInformationSkeleton';
 
 import dynamic from 'next/dynamic';
 
@@ -32,6 +34,14 @@ const ProfileComments = dynamic(
   {
     ssr: false,
     loading: () => <ProfileCommentsSkeleton />,
+  }
+);
+
+const GeneralInformation = dynamic(
+  () => import('@/components/GeneralInformation/GeneralInformation'),
+  {
+    ssr: false,
+    loading: () => <GeneralInformationSkeleton />,
   }
 );
 
@@ -146,49 +156,12 @@ async function UserProfile() {
               <SingOutButton />
             </div>
             <ErrorBoundary fallback={<ProfileCommentsError />}>
-              <Suspense fallback={<ProfileCommentsSkeleton />}>
-                <ProfileComments user={user} />
-              </Suspense>
+              <ProfileComments user={user} />
             </ErrorBoundary>
           </div>
           <div id="vertical 2" className="flex flex-col gap-4 pb-3 lg:w-2/3">
             <div className="flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
-              <h1 className="text-xl font-bold">General information</h1>
-              {user?.aboutMe && (
-                <>
-                  <h2 className="mt-4 text-lg">About me</h2>
-                  <p className="mt-1 text-sm text-zinc-400 lg:w-4/5">
-                    {user?.aboutMe}
-                  </p>
-                </>
-              )}
-
-              <div
-                className={`flex flex-col justify-between ${
-                  user?.aboutMe && 'mt-6'
-                } md:flex-row md:w-4/5`}
-              >
-                <span className="mt-3 text-sm dark:text-white">
-                  Birthday:
-                  <p className="text-gray-400 w-60">
-                    {`${moment(user?.birthDate).format('LL')} - (${Math.ceil(
-                      moment
-                        .duration(
-                          moment()
-                            .year(moment().year())
-                            .month(moment(user?.birthDate).month())
-                            .date(moment(user?.birthDate).date())
-                            .diff(moment())
-                        )
-                        .asDays()
-                    )} days)`}
-                  </p>
-                </span>
-                <span className="mt-3 text-sm dark:text-white">
-                  Languages:
-                  <p className="text-gray-400 w-60">{user?.languages}</p>
-                </span>
-              </div>
+              <GeneralInformation user={user} />
             </div>
             <div className="flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
               <ErrorBoundary fallback={<LikedStrainsError />}>

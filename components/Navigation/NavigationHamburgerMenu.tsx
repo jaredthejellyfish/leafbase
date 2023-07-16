@@ -14,7 +14,6 @@ const NavigationHamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(currentOpenStatus);
 
   useEffect(() => {
-    if (currentOpenStatus === false) return;
     setIsOpen(currentOpenStatus);
   }, [currentOpenStatus]);
 

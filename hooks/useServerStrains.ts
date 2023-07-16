@@ -1,16 +1,52 @@
 import prisma from '@/lib/prisma';
 import useServerUser from './useServerUser';
 
-const getStrains = async (skip: number, take: number, userId: string) => {
+const getStrains = async (
+  skip: number,
+  take: number,
+  userId: string,
+  filterName: string
+) => {
   try {
+    let filter: object;
+
+    switch (filterName) {
+      case 'az':
+        filter = { name: 'asc' };
+        break;
+
+      case 're':
+        filter = {
+          likes: {
+            _count: 'desc',
+          },
+        };
+        break;
+
+      case 'za':
+        filter = { name: 'desc' };
+        break;
+
+      case 'mr':
+        filter = {
+          comments: {
+            _count: 'desc',
+          },
+        };
+        break;
+      default:
+        filter = {
+          likes: {
+            _count: 'desc',
+          },
+        };
+        break;
+    }
+
     const strains = await prisma.strain.findMany({
       skip: skip,
       take: take,
-      orderBy: {
-        likes: {
-          _count: 'desc',
-        },
-      },
+      orderBy: filter,
       include: {
         likes: {
           where: {
@@ -41,14 +77,14 @@ const getCount = async () => {
   }
 };
 
-const useServerStrains = async (page: number, take: number) => {
+const useServerStrains = async (page: number, take: number, filter = 're') => {
   const user = await useServerUser();
   if (user === null) return { strains: null, error: true };
 
   const count = await getCount();
   if (count === null) return { strains: null, error: true };
 
-  const strains = await getStrains((page - 1) * take, take, user.id);
+  const strains = await getStrains((page - 1) * take, take, user.id, filter);
   if (strains === null) return { strains: null, error: true };
 
   return { strains, count, error: false };

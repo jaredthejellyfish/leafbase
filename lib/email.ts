@@ -1,4 +1,9 @@
-function html({ url, theme }: { url: string; host: string; theme: any }) {
+interface Theme {
+  brandColor?: string;
+  buttonText?: string;
+}
+
+function html({ url, theme }: { url: string; host: string; theme: Theme }) {
   const escapedHost = 'leafbase.io';
 
   const brandColor = theme.brandColor || '#346df1';

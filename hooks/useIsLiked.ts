@@ -3,12 +3,13 @@ import useServerUser from './useServerUser';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/auth/authOptions';
 import { Strain } from '@prisma/client';
+import { User } from '@prisma/client';
 
 type Props = {
   strainID: string;
 };
 
-const getIsLiked = async (user: any, strainID: string) => {
+const getIsLiked = async (user: User, strainID: string) => {
   try {
     const likes = await prisma.like.findMany({
       where: {

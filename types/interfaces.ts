@@ -40,6 +40,7 @@ export interface StrainExtended extends Strain {
       score: number;
     };
   };
+  likes: any;
   comments?: Comment[];
 }
 
@@ -58,4 +59,61 @@ export interface Like {
   userId: string;
   strainId: string;
   createdAt: string;
+}
+
+interface Terp {
+  name: string;
+  score: number;
+  description: string | null;
+}
+
+export interface Terps {
+  pinene: Terp;
+  myrcene: Terp;
+  ocimene: Terp;
+  humulene: Terp;
+  limonene: Terp;
+  linalool: Terp;
+  terpinolene: Terp;
+  caryophyllene: Terp;
+}
+
+interface Effect {
+  icon: null;
+  name: string;
+  type: null;
+  score: number;
+  votes: null;
+}
+
+export interface Effects {
+  happy: Effect;
+  giggly: Effect;
+  hungry: Effect;
+  sleepy: Effect;
+  tingly: Effect;
+  aroused: Effect;
+  focused: Effect;
+  relaxed: Effect;
+  creative: Effect;
+  euphoric: Effect;
+  uplifted: Effect;
+  energetic: Effect;
+  talkative: Effect;
+}
+
+interface Cannabinoid {
+  order: number;
+  displayName: string;
+  percentile25: number | null;
+  percentile50: number;
+  percentile75: number | null;
+}
+
+export interface Cannabinoids {
+  cbc: Cannabinoid;
+  cbd: Cannabinoid;
+  cbg: Cannabinoid;
+  thc: Cannabinoid;
+  thcv: Cannabinoid;
 }

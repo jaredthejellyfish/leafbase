@@ -20,6 +20,8 @@
   "plugins": ["@typescript-eslint", "react-hooks"],
   "rules": {
     "react-hooks/rules-of-hooks": "off",
-    "@typescript-eslint/ban-ts-comment": "warn"
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@next/next/no-img-element": "off",
+    "no-var": "off"
   }
 }

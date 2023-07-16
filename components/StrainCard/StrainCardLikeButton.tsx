@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { motion } from 'framer-motion';
 
@@ -12,6 +12,10 @@ type Props = {
 
 const StrainCardLikeButton = (props: Props) => {
   const [liked, setLiked] = useState(props.liked);
+
+  useEffect(() => {
+    setLiked(props.liked);
+  }, [props.liked]);
 
   const likeStrain = async () => {
     await fetch('/api/strains/like', {

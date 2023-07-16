@@ -5,7 +5,7 @@ datasource db {
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["jsonProtocol", "fullTextSearch"]
+  previewFeatures = ["fullTextSearch"]
 }
 
 model Account {

@@ -20,6 +20,15 @@ import {
 } from 'chart.js';
 import Modal from '../Modal/Modal';
 
+interface Context {
+  dataset: { label: string };
+}
+
+interface Value {
+  x: number;
+  y: number;
+}
+
 ChartJS.register(
   LinearScale,
   Tooltip,
@@ -108,7 +117,8 @@ const LikedStrainsModal = (props: Props) => {
         },
       },
       datalabels: {
-        formatter: function (context: any) {
+        formatter: function (value: Value, context: Context) {
+          console.log('v', typeof value);
           return context.dataset.label;
         },
         display: true,

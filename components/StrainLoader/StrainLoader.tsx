@@ -6,24 +6,25 @@ import StrainCard from '@/components/StrainCard/StrainCard';
 import { useInView } from 'react-intersection-observer';
 import useUser from '@/hooks/useUser';
 
-const fetchStrains = async ({ pageParam = 3 }) => {
-  const res = await fetch('/api/strains', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      take: 9,
-      page: pageParam,
-    }),
-  });
-  const data = await res.json();
-  return data;
-};
-
-const StrainLoader = () => {
+const StrainLoader = ({ filter }: { filter?: string }) => {
   const { ref, inView } = useInView();
   const user = useUser();
+
+  const fetchStrains = async ({ pageParam = 3 }) => {
+    const res = await fetch('/api/strains', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        take: 9,
+        page: pageParam,
+        filter: filter,
+      }),
+    });
+    const data = await res.json();
+    return data;
+  };
 
   const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
@@ -61,6 +62,7 @@ const StrainLoader = () => {
 
   return (
     <>
+    {`filter: ${filter}`}
       {data &&
         data.pages
           .flatMap((page) => page.strains)
@@ -83,7 +85,6 @@ const StrainLoader = () => {
                 topEffect={strain.topEffect || undefined}
                 cannabinoids={strain.cannabinoids || undefined}
                 effects={strain.effects || undefined}
-                terps={strain.terps || undefined}
                 liked={strain.likes.length > 0}
                 priority={false}
               />

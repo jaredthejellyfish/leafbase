@@ -4,9 +4,9 @@ import React from 'react';
 import StarRating from '@/components/StarRating/StarRating';
 import dynamic from 'next/dynamic';
 import StrainCardLikeButtonLoading from './StrainCardLikeButtonLoading';
+import { Cannabinoids, Effects } from '@/types/interfaces';
 
 const StrainCardLikeButton = dynamic(() => import('./StrainCardLikeButton'), {
-  ssr: false,
   loading: () => <StrainCardLikeButtonLoading />,
 });
 
@@ -24,9 +24,8 @@ type Props = {
   topTerpene: string;
   thcPercent: number;
   topEffect: string;
-  cannabinoids: any;
-  effects: any;
-  terps: any;
+  cannabinoids?: Cannabinoids;
+  effects?: Effects;
   liked: boolean;
   priority: boolean;
 };
@@ -101,7 +100,11 @@ const StrainCard = (props: Props) => {
         <div className="flex flex-row gap-4 px-1 text-xs text-zinc-500 dark:text-zinc-300">
           <span className="">THC {props.thcPercent && props.thcPercent}%</span>
           <span className="">
-            CBD: {props.cannabinoids && props.cannabinoids.cbd.percentile50}%
+            CBD:{' '}
+            {props.cannabinoids
+              ? props.cannabinoids.cbd.percentile50
+              : 'unknown'}
+            %
           </span>
         </div>
         <div className="flex flex-col px-1 mt-2 text-xs font-medium capitalize md:flex-row md:gap-3 md:items-center">

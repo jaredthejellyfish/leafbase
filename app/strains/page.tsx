@@ -1,24 +1,37 @@
 import React from 'react';
-import { RxCaretDown } from 'react-icons/rx';
+
 import useServerStrains from '@/hooks/useServerStrains';
 import ErrorStrains from './error';
-import StrainCard from '@/components/StrainCard/StrainCard';
 
 import dynamic from 'next/dynamic';
+import { Cannabinoids, Effects } from '@/types/interfaces';
 
 const StrainLoader = dynamic(
   () => import('@/components/StrainLoader/StrainLoader'),
   { ssr: false }
 );
 
+const FilterByMenu = dynamic(
+  () => import('@/components/FilterByMenu/FilterByMenu')
+);
+
+const StrainCard = dynamic(() => import('@/components/StrainCard/StrainCard'));
+
+
+
 export const metadata = {
   title: 'All Strains - Leafbase',
   description:
-    'Explore our comprehensive list of marijuana strains, featuring detailed profiles, effects, and reviews. Filter by type, potency, and medical benefits to find your perfect match. Discover new favorites and classics in our extensive collection of cannabis varieties.',
+    'Explore our comprehensive list of marijuana strains, featuring detailed profiles, effects, and reviews. sort by type, potency, and medical benefits to find your perfect match. Discover new favorites and classics in our extensive collection of cannabis varieties.',
 };
 
-const Strains = async () => {
-  const { strains, count, error } = await useServerStrains(1, 18);
+const Strains = async (request: { searchParams: { filter?: string } }) => {
+  const { strains, count, error } = await useServerStrains(
+    1,
+    18,
+    request.searchParams.filter
+  );
+
   if (error) {
     return <ErrorStrains />;
   }
@@ -34,11 +47,8 @@ const Strains = async () => {
         </p>
         <div className="flex items-center justify-between px-1 font-medium">
           <span className="mt-4 text-xs text-zinc-400">{count} strains</span>
-          <span className="flex flex-row items-center gap-1 mt-4 text-xs text-zinc-400">
-            Sort by
-            <span className="flex flex-row items-center cursor-pointer dark:text-zinc-300 text-zinc-500">
-              Recommended <RxCaretDown size={14} />
-            </span>
+          <span className="flex flex-row items-center gap-1 mb-1 text-xs text-zinc-400">
+            <FilterByMenu filter={request.searchParams.filter} />
           </span>
         </div>
         <span className="hidden w-full p-2 mt-1 text-xs border rounded md:block border-zinc-600/50 text-zinc-600">
@@ -64,14 +74,13 @@ const Strains = async () => {
                   topTerpene={strain.topTerpene || 'Unknown'}
                   thcPercent={strain.thcPercent || 0}
                   topEffect={strain.topEffect || 'Unknown'}
-                  cannabinoids={strain.cannabinoids || 'Unknown'}
-                  effects={strain.effects || 'Unknown'}
-                  terps={strain.terps || 'Unknown'}
+                  cannabinoids={strain.cannabinoids as unknown as Cannabinoids}
+                  effects={strain.effects as unknown as Effects}
                   liked={strain.likes.length > 0}
                   priority={true}
                 />
               ))}
-            <StrainLoader />
+            <StrainLoader filter={request.searchParams.filter} />
           </div>
         </div>
       </div>

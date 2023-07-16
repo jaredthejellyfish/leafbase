@@ -74,7 +74,7 @@ const FilterByMenu = (props: Props) => {
   }, [isOpen]);
 
   return (
-    <div className="flex flex-row items-center">
+    <div className="relative flex flex-row items-center">
       <span
         className="flex flex-row items-center justify-end w-40 gap-1 mt-4 text-xs text text-zinc-400"
         onClick={() => setOpen(!isOpen)}
@@ -86,7 +86,7 @@ const FilterByMenu = (props: Props) => {
         </span>
       </span>
       <motion.div
-        className="absolute z-40 flex flex-col ml-1.5 bg-zinc-800 w-36 top-64 sm:top-60 text-white gap-0.5 items-start rounded p-1 filter-menu"
+        className="absolute z-40 flex flex-col ml-1.5 bg-zinc-800 w-36 right-0 top-10 text-white gap-0.5 items-start rounded p-1 filter-menu"
         ref={menuRef}
         initial={{ display: 'none' }}
         transition={{ display: { delay: 0.2 } }}

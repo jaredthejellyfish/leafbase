@@ -28,7 +28,7 @@ const staggerMenuItems = stagger(0.05, { startDelay: 0.2 });
 
 const FilterByMenu = (props: Props) => {
   const [isOpen, setOpen] = useState(false);
-  const menuRef = useRef(null); // Add this line
+  const menuRef = useRef<HTMLDivElement | null>(null); // Add this line
 
   const router = useRouter();
 
@@ -39,7 +39,7 @@ const FilterByMenu = (props: Props) => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setOpen(false);
       }
     };

@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useEffect, useState, useRef } from 'react';
-import { useRouter } from 'next/navigation';
 import { animate, motion, stagger } from 'framer-motion';
 import { RxCaretDown } from 'react-icons/rx';
+import Link from 'next/link';
 
 interface Props {
   filter?: string;
@@ -28,14 +28,7 @@ const staggerMenuItems = stagger(0.05, { startDelay: 0.2 });
 
 const FilterByMenu = (props: Props) => {
   const [isOpen, setOpen] = useState(false);
-  const menuRef = useRef<HTMLDivElement | null>(null); // Add this line
-
-  const router = useRouter();
-
-  const handleFilterChange = (filter: string) => {
-    router.push(`/strains?filter=${filter}`);
-    setOpen(false);
-  };
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -98,30 +91,34 @@ const FilterByMenu = (props: Props) => {
         initial={{ display: 'none' }}
         transition={{ display: { delay: 0.2 } }}
       >
-        <button
+        <Link
+          href="/strains?filter=re"
           className="flex items-start w-full px-3 py-3 rounded hover:bg-zinc-500 filter-item"
-          onClick={() => handleFilterChange('re')}
+          onClick={() => setOpen(false)}
         >
           Recommended
-        </button>
-        <button
+        </Link>
+        <Link
+          href="/strains?filter=az"
           className="flex items-start w-full px-3 py-3 rounded hover:bg-zinc-500 filter-item"
-          onClick={() => handleFilterChange('az')}
+          onClick={() => setOpen(false)}
         >
           A-Z
-        </button>
-        <button
+        </Link>
+        <Link
+          href="/strains?filter=za"
           className="flex items-start w-full px-3 py-3 rounded hover:bg-zinc-500 filter-item"
-          onClick={() => handleFilterChange('za')}
+          onClick={() => setOpen(false)}
         >
           Z-A
-        </button>
-        <button
+        </Link>
+        <Link
+          href="/strains?filter=mr"
           className="flex items-start w-full px-3 py-3 rounded hover:bg-zinc-500 filter-item"
-          onClick={() => handleFilterChange('mr')}
+          onClick={() => setOpen(false)}
         >
           Most Reviews
-        </button>
+        </Link>
       </motion.div>
     </div>
   );

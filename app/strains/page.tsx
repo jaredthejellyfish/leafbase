@@ -5,6 +5,7 @@ import ErrorStrains from './error';
 
 import dynamic from 'next/dynamic';
 import { Cannabinoids, Effects } from '@/types/interfaces';
+import { RxCaretDown } from 'react-icons/rx';
 
 const StrainLoader = dynamic(
   () => import('@/components/StrainLoader/StrainLoader'),
@@ -12,12 +13,23 @@ const StrainLoader = dynamic(
 );
 
 const FilterByMenu = dynamic(
-  () => import('@/components/FilterByMenu/FilterByMenu')
+  () => import('@/components/FilterByMenu/FilterByMenu'),
+  {
+    loading: () => (
+      <span
+        className="flex flex-row items-center justify-end w-40 gap-1 mt-4 text-xs text text-zinc-400"
+      >
+        Sort by
+        <span className="flex flex-row items-center cursor-pointer dark:text-zinc-300 text-zinc-500">
+          {"Filter"}
+          <RxCaretDown className="ml-1.5 arrow" size={14} />
+        </span>
+      </span>
+    ),
+  }
 );
 
 const StrainCard = dynamic(() => import('@/components/StrainCard/StrainCard'));
-
-
 
 export const metadata = {
   title: 'All Strains - Leafbase',

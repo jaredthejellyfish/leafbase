@@ -78,7 +78,7 @@ const FilterByMenu = (props: Props) => {
         </span>
       </span>
 
-      <motion.div  className="absolute z-40 flex flex-col ml-1.5 bg-zinc-800 w-36 top-60 text-white gap-0.5 items-start rounded p-1 filter-menu">
+      <motion.div  className="absolute z-40 flex flex-col ml-1.5 bg-zinc-800 w-36 top-64 sm:top-60 text-white gap-0.5 items-start rounded p-1 filter-menu">
         <button
           className="flex items-start w-full px-3 py-3 rounded hover:bg-zinc-500 filter-item"
           onClick={() => handleFilterChange('re')}

@@ -18,8 +18,8 @@ const NavigationHamburgerMenu = () => {
   }, [currentOpenStatus]);
 
   const handleBurgerClick = () => {
-    setIsOpen(!isOpen);
     dispatch(setNavDropdownOpen(!isOpen));
+    setIsOpen(!isOpen);
   };
 
   const hamburgerMenu = {

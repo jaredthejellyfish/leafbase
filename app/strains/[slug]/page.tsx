@@ -9,8 +9,6 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import StrainSoma from '@/components/StrainSoma/StrainSoma';
 import { ErrorBoundary } from 'react-error-boundary';
 import CommentLoaderFallback from '@/components/CommentLoader/CommentLoaderFallback';
-import CommentLoader from '@/components/CommentLoader/CommentLoader';
-import StrainPageMoreButton from '@/components/StrainPageMoreButton/StrainPageMoreButton';
 
 import dynamic from 'next/dynamic';
 
@@ -29,6 +27,17 @@ const StrainPageLikeButton = dynamic(
     ),
   }
 );
+
+const CommentLoader = dynamic(
+  () => import('@/components/CommentLoader/CommentLoader'),
+  {
+    ssr: false,
+  }
+);
+
+const MixersButton = dynamic(() => import('@/components/Mixers/MixersButton'), {
+  ssr: false,
+});
 
 type Props = { params: { slug: string } };
 
@@ -206,9 +215,7 @@ const StrainPage = async (props: Props) => {
           <StrainPageLikeButton id={strain.id} />
         </div>
 
-        <div className="absolute transform top-6 left-5 md:right-24 md:left-auto">
-          <StrainPageMoreButton />
-        </div>
+        <MixersButton strain={strain} />
 
         <div
           id="header"

@@ -79,8 +79,23 @@ model Strain {
   terps            Json?
   likes            Like[]
   comments         Comment[]
+  mixers           Mixer[]
 
   @@map("strains")
+}
+
+model Mixer {
+  id             String  @id @default(cuid())
+  strainId       String
+  strain         Strain  @relation(fields: [strainId], references: [id], onDelete: Cascade)
+  name           String
+  recommendation String
+  slug           String
+  nugImage       String
+  averageRating  Float
+  category       String
+
+  @@map("mixers")
 }
 
 model Comment {

@@ -19,7 +19,7 @@ const FilterByMenu = dynamic(
       <span className="flex flex-row items-center justify-end w-40 gap-1 mt-4 text-xs text text-zinc-400">
         Sort by
         <span className="flex flex-row items-center cursor-pointer dark:text-zinc-300 text-zinc-500">
-          {'Filter'}
+          Filter
           <RxCaretDown className="ml-1.5 arrow" size={14} />
         </span>
       </span>

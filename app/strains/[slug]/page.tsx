@@ -9,6 +9,7 @@ import { AiOutlineHeart } from 'react-icons/ai';
 import StrainSoma from '@/components/StrainSoma/StrainSoma';
 import { ErrorBoundary } from 'react-error-boundary';
 import CommentLoaderFallback from '@/components/CommentLoader/CommentLoaderFallback';
+import { FiMoreVertical } from 'react-icons/fi';
 
 import dynamic from 'next/dynamic';
 
@@ -37,6 +38,14 @@ const CommentLoader = dynamic(
 
 const MixersButton = dynamic(() => import('@/components/Mixers/MixersButton'), {
   ssr: false,
+  loading: () => (
+    <div className="absolute text-gray-400 top-8 sm:right-28 sm:left-auto left-8">
+      <FiMoreVertical
+        className="cursor-pointer"
+        size={25}
+      />
+    </div>
+  ),
 });
 
 type Props = { params: { slug: string } };

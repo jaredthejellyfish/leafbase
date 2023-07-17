@@ -35,9 +35,8 @@ export async function POST(request: Request) {
       },
     });
 
-    console.log('mixers', mixers);
-
     if (mixers.length < 1) {
+      console.log("MIXERS NOT FOUND")
       const mixers = await fetchRecommendedStrainsData(strainName);
 
       const mixersWithStrainId = mixers.map((mixer: Mixer) => {
@@ -46,8 +45,6 @@ export async function POST(request: Request) {
           strainId: strainId,
         };
       });
-
-      console.log(mixersWithStrainId);
 
       await prisma.mixer.createMany({
         data: mixersWithStrainId,
@@ -62,7 +59,6 @@ export async function POST(request: Request) {
       mixers: mixers,
     });
   } catch (error) {
-    console.log(error);
     return NextResponse.json({ error: error });
   } finally {
     await prisma.$disconnect();

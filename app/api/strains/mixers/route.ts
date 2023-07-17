@@ -2,7 +2,6 @@ import prisma from '@/lib/prisma';
 import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from '@/auth/authOptions';
-import { StrainExtended } from '@/types/interfaces';
 import { Mixer } from '@prisma/client';
 
 const fetchRecommendedStrainsData = async (strainName: string) => {
@@ -25,6 +24,10 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { strainId, strainName } = body;
     if (!strainId || !strainName) throw new Error('Invalid request.');
+
+    const session = await getServerSession(authOptions);
+
+    if (!session) throw new Error('Unauthorized.');
 
     const mixers = await prisma.mixer.findMany({
       where: {

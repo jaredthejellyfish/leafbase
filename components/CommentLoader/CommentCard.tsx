@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Comment } from '@/types/interfaces';
-import moment from 'moment';
+import { format, parseISO, parseJSON } from 'date-fns';
 import Link from 'next/link';
 import DeleteCommentButton from './DeleteCommentButton';
 import { motion } from 'framer-motion';
@@ -37,7 +37,10 @@ const CommentCard = (props: Props) => {
     >
       <div className="relative mb-2">
         <div className="absolute top-0 right-0 flex text-sm">
-          <span>{moment(comment.createdAt).format('MMMM Do, h:mm a')}</span>
+          <span>
+            {comment?.createdAt &&
+              format(parseJSON(comment.createdAt), "MMMM dd, h:mm a")}
+          </span>
         </div>
         <div className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400">
           {comment.user.displayName ? (

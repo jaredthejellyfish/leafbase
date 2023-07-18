@@ -36,7 +36,7 @@ export async function POST(request: Request) {
     });
 
     if (mixers.length < 1) {
-      console.log("MIXERS NOT FOUND")
+      console.log('MIXERS NOT FOUND');
       const mixers = await fetchRecommendedStrainsData(strainName);
 
       const mixersWithStrainId = mixers.map((mixer: Mixer) => {

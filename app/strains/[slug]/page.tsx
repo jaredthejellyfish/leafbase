@@ -40,10 +40,7 @@ const MixersButton = dynamic(() => import('@/components/Mixers/MixersButton'), {
   ssr: false,
   loading: () => (
     <div className="absolute text-gray-400 top-8 sm:right-28 sm:left-auto left-8">
-      <FiMoreVertical
-        className="cursor-pointer"
-        size={25}
-      />
+      <FiMoreVertical className="cursor-pointer" size={25} />
     </div>
   ),
 });

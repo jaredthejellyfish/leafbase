@@ -73,8 +73,6 @@ const MixersButton = (props: Props) => {
     enabled: isModalOpen,
   });
 
-  console.log(recommendedStrainsData)
-
   return (
     <>
       <div className="absolute text-gray-400 top-8 sm:right-28 sm:left-auto left-8">
@@ -91,7 +89,10 @@ const MixersButton = (props: Props) => {
           open={isModalOpen}
           close={() => setIsModalOpen(!isModalOpen)}
         >
-          {!isLoading && !isFetching && !error && recommendedStrainsData.length > 0 ? (
+          {!isLoading &&
+          !isFetching &&
+          !error &&
+          recommendedStrainsData.length > 0 ? (
             recommendedStrainsData.map((recommendation: Recommendation) => {
               return (
                 <Link

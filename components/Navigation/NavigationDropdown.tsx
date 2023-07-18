@@ -119,7 +119,12 @@ const NavigationDropdown = () => {
         initial="closed"
         animate={isOpen ? 'open' : 'closed'}
       >
-        Stocks
+        <Link
+          href="/settings"
+          onClick={() => dispatch(setNavDropdownOpen(!isOpen))}
+        >
+          Settings
+        </Link>
       </motion.div>
     </motion.div>
   );

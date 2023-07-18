@@ -2,7 +2,7 @@
 
 import { User } from '@prisma/client';
 import React from 'react';
-import moment from 'moment';
+import { format } from 'date-fns';
 
 type Props = {
   user: User;
@@ -28,17 +28,7 @@ const GeneralInformation = (props: Props) => {
         <span className="mt-3 text-sm dark:text-white">
           Birthday:
           <p className="text-gray-400 w-60">
-            {`${moment(user?.birthDate).format('LL')} - (${Math.ceil(
-              moment
-                .duration(
-                  moment()
-                    .year(moment().year())
-                    .month(moment(user?.birthDate).month())
-                    .date(moment(user?.birthDate).date())
-                    .diff(moment())
-                )
-                .asDays()
-            )} days)`}
+            {`${user.birthDate && format(new Date(user?.birthDate), 'PP')}`}
           </p>
         </span>
         <span className="mt-3 text-sm dark:text-white">

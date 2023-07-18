@@ -9,7 +9,7 @@ import { StrainExtended } from '@/types/interfaces';
 import { ErrorBoundary } from 'react-error-boundary';
 
 const LikedStrainsModal = dynamic(() => import('./LikedStrainsModal'), {
-  ssr: false,
+  loading: () => <div>Loading...</div>,
 });
 
 type Strain = {

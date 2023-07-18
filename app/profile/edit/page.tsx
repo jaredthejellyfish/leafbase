@@ -12,6 +12,11 @@ import UserProfileLoading from './loading';
 import md5 from 'md5';
 import { User } from '@prisma/client';
 import dynamic from 'next/dynamic';
+import { format } from 'date-fns';
+
+const DatePicker = dynamic(() => import('@/components/DatePicker/DatePicker'), {
+  ssr: false,
+});
 
 const SaveModal = dynamic(() => import('@/components/SaveModal/SaveModal'), {
   ssr: false,
@@ -47,12 +52,13 @@ const EditProfile = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [aboutMe, setAboutMe] = useState('');
-  const [birthDate, setBirthDate] = useState('');
+  const [birthDate, setBirthDate] = useState<Date | undefined>();
   const [languages, setLanguages] = useState('');
   const [phone, setPhone] = useState('');
   const [location, setLocation] = useState('');
   const [displayName, setDisplayName] = useState('');
   const [open, setOpen] = useState(false);
+  const [datePickerOpen, setDatePickerOpen] = useState(false);
 
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
@@ -78,15 +84,15 @@ const EditProfile = () => {
     setLocation(user?.location || '');
 
     if (user?.birthDate) {
-      import('moment')
-        .then(({ default: moment }) => {
-          setBirthDate(moment(user?.birthDate).format('LL') || '');
+      import('date-fns')
+        .then(({ parseISO }) => {
+          setBirthDate(user?.birthDate ? parseISO(user.birthDate) : undefined);
         })
         .catch((err) => {
           console.error('Failed to load module: ', err);
         });
     } else {
-      setBirthDate('');
+      setBirthDate(undefined);
     }
 
     if (!user?.displayName) {
@@ -119,7 +125,8 @@ const EditProfile = () => {
       languages !== user?.languages ||
       phone !== user?.phone ||
       location !== user?.location ||
-      displayName !== user?.displayName
+      displayName !== user?.displayName ||
+      birthDate !== user?.birthDate
     );
   };
 
@@ -253,21 +260,21 @@ const EditProfile = () => {
               width={80}
               height={80}
             />
-            <p className="mt-2 text-lg font-bold ">
+            <div className="mt-2 text-lg font-bold ">
               <input
-                className="bg-transparent"
+                className="bg-transparent border rounded border-zinc-500 px-0.5"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               ></input>
-            </p>
+            </div>
 
-            <p className="flex flex-row items-center gap-1 text-sm text-zinc-300">
+            <div className="flex flex-row items-center gap-1 text-sm text-zinc-300">
               <input
-                className="bg-transparent"
+                className="bg-transparent border rounded border-zinc-500 px-0.5 mt-1"
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
               ></input>
-            </p>
+            </div>
             <span className="mt-3 text-sm dark:text-white">
               Location:
               <span className="flex flex-row items-center gap-1 mt-1 text-sm cursor-pointer text-zinc-300">
@@ -278,23 +285,23 @@ const EditProfile = () => {
 
             <span className="mt-4 text-sm dark:text-white">
               Email Address:
-              <p className="text-gray-400">
+              <div className="text-gray-400">
                 <input
-                  className="bg-transparent w-60"
+                  className="bg-transparent border rounded border-zinc-500 px-0.5 w-60"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 ></input>
-              </p>
+              </div>
             </span>
             <span className="mt-3 text-sm dark:text-white">
               Phone number:
-              <p className="text-gray-400">
+              <div className="text-gray-400">
                 <input
-                  className="bg-transparent w-60"
+                  className="bg-transparent border rounded border-zinc-500 px-0.5 w-60"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 ></input>
-              </p>
+              </div>
             </span>
             <div className="flex h-fit">
               <button
@@ -313,34 +320,43 @@ const EditProfile = () => {
           <div className="flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
             <h1 className="text-xl font-bold">General information</h1>
             <h2 className="mt-4 text-lg">About me</h2>
-            <p className="mt-1 text-sm text-zinc-400 lg:w-4/5">
+            <div className="mt-1 text-sm text-zinc-400 lg:w-4/5">
               <TextareaAutosize
-                className="w-full bg-transparent"
+                className="w-full p-1 bg-transparent border rounded border-zinc-500"
                 value={aboutMe}
                 onChange={(e) => setAboutMe(e.target.value)}
               ></TextareaAutosize>
-            </p>
+            </div>
 
             <div className="flex flex-row justify-between mt-6 md:w-4/5">
               <span className="mt-3 text-sm dark:text-white">
                 Birthday:
-                <p className="text-gray-400">
+                <div className="absolute text-gray-400">
                   <input
                     className="bg-transparent w-60"
-                    value={birthDate}
-                    onChange={(e) => setBirthDate(e.target.value)}
+                    value={birthDate ? format(birthDate, 'PP') : ''}
+                    onClick={() => setDatePickerOpen(!datePickerOpen)}
+                    readOnly
                   ></input>
-                </p>
+                  {datePickerOpen && (
+                    <DatePicker
+                      onDateSelect={(date) => {
+                        setBirthDate(date);
+                      }}
+                      closeCallback={() => setDatePickerOpen(!datePickerOpen)}
+                    />
+                  )}
+                </div>
               </span>
               <span className="mt-3 text-sm dark:text-white">
-                Languages:
-                <p className="text-gray-400">
+                Preferred Language:
+                <div className="text-gray-400">
                   <input
                     className="bg-transparent w-60"
                     value={languages}
                     onChange={(e) => setLanguages(e.target.value)}
                   ></input>
-                </p>
+                </div>
               </span>
             </div>
           </div>

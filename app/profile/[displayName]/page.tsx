@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import { MdLocationPin } from 'react-icons/md';
 import Link from 'next/link';
-import moment from 'moment';
+import { format } from 'date-fns';
 import ProfileRevalidator from '@/components/ProfileRevalidator/ProfileRevalidator';
 import { User } from '@prisma/client';
 import md5 from 'md5';
@@ -231,17 +231,7 @@ const ProfileDisplay = async (props: Props) => {
               <span className="mt-3 text-sm dark:text-white">
                 Birthday:
                 <p className="text-gray-400 w-60">
-                  {`${moment(user?.birthDate).format('LL')} - (${Math.ceil(
-                    moment
-                      .duration(
-                        moment()
-                          .year(moment().year())
-                          .month(moment(user?.birthDate).month())
-                          .date(moment(user?.birthDate).date())
-                          .diff(moment())
-                      )
-                      .asDays()
-                  )} days)`}
+                  {user?.birthDate && format(user?.birthDate, 'PP')}
                 </p>
               </span>
               <span className="mt-3 text-sm dark:text-white">

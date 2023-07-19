@@ -88,7 +88,7 @@ const NavigationDropdown = () => {
         animate={isOpen ? 'open' : 'closed'}
       >
         <Link
-          href="/strains"
+          href="/strains?filter=re"
           className={`w-full ${
             pathName === '/strains' ? 'text-green-500' : ''
           }`}

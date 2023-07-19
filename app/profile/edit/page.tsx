@@ -328,7 +328,7 @@ const EditProfile = () => {
               ></TextareaAutosize>
             </div>
 
-            <div className="flex flex-row justify-between mt-6 md:w-4/5">
+            <div className="flex flex-col justify-between gap-5 mt-6 sm:flex-row md:w-4/5">
               <span className="mt-3 text-sm dark:text-white">
                 Birthday:
                 <div className="absolute text-gray-400">

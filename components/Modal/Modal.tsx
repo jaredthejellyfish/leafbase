@@ -15,8 +15,8 @@ const Modal = (props: Props) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="relative">
-      {props.open && (
+    props.open && (
+      <div className="relative">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -56,8 +56,8 @@ const Modal = (props: Props) => {
             <div className="relative w-full h-full">{props.children}</div>
           </div>
         </motion.div>
-      )}
-    </div>
+      </div>
+    )
   );
 };
 

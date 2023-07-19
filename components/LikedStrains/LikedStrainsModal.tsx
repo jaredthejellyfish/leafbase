@@ -146,7 +146,7 @@ const LikedStrainsModal = (props: Props) => {
   });
 
   return (
-    <>
+    <div className="flex items-center justify-center">
       <BsClipboardDataFill
         onClick={() => setIsModalOpen(!isModalOpen)}
         size={20}
@@ -192,7 +192,7 @@ const LikedStrainsModal = (props: Props) => {
           />
         )}
       </Modal>
-    </>
+    </div>
   );
 };
 

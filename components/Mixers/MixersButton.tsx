@@ -85,7 +85,7 @@ const MixersButton = (props: Props) => {
       <div className="relative">
         <Modal
           title="Recommended Strains"
-          containerClasses="h-4/7 md:h-4/7 xl:w-2/5 md:w-2/3"
+          containerClasses="h-7/8 md:h-4/7 md:h-4/7 xl:w-2/5 md:w-2/3"
           open={isModalOpen}
           close={() => setIsModalOpen(!isModalOpen)}
         >
@@ -103,19 +103,19 @@ const MixersButton = (props: Props) => {
                   <Image
                     width={144}
                     height={144}
-                    className="object-cover p-2 bg-white rounded w-28 md:w-36 md:h-36"
+                    className="hidden object-cover p-2 bg-white rounded w-28 md:w-36 md:h-36 sm:block"
                     src={recommendation.nugImage}
                     alt={recommendation.name}
                   />
-                  <div className="flex flex-col items-start justify-center w-2/3 py-2 ml-5">
+                  <div className="flex flex-col items-start justify-center w-full py-2 sm:ml-5 sm:w-2/3">
                     <div className="flex flex-row gap-3">
                       <p className="px-1 font-medium">{recommendation.name}</p>
-                      <div className="inline-block px-2 py-1 text-xs font-medium bg-gray-200 rounded dark:shadow dark:bg-zinc-700">
+                      <div className="inline-block h-6 px-2 py-1 text-xs font-medium bg-gray-200 rounded dark:shadow dark:bg-zinc-700">
                         {recommendation.category}
                       </div>
                     </div>
 
-                    <div className="px-1 my-2 text-sm font-normal text-gray-500 h-14 line-clamp-3">
+                    <div className="px-1 my-2 text-xs font-normal text-gray-500 sm:text-sm md:h-16 line-clamp-6 md:line-clamp-4">
                       {recommendation.recommendation}
                     </div>
                     <div className="flex flex-row items-center gap-2">

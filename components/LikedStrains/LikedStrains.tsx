@@ -53,8 +53,8 @@ const LikedStrains = async () => {
 
   return (
     <div>
-      <div className="flex flex-row items-center gap-8 text-xl font-bold">
-        <p>Liked Strains ({strains?.length})</p>
+      <div className="flex flex-row items-center gap-5 text-xl font-bold">
+        <p className=''>Liked Strains ({strains?.length})</p>
         <ErrorBoundary fallback={<span>error :C</span>}>
           <LikedStrainsModal strains={strains} />
         </ErrorBoundary>
@@ -65,7 +65,7 @@ const LikedStrains = async () => {
           You haven&apos;t liked any strains yet!
         </div>
       ) : (
-        <div className="flex flex-row flex-wrap items-start justify-start mt-3 md:justify-start gap-y-3">
+        <div className="flex flex-row flex-wrap items-start justify-center mt-3 md:justify-start gap-y-3">
           {strains &&
             strains.map((strain: Strain) => (
               <Link
@@ -74,8 +74,7 @@ const LikedStrains = async () => {
                 href={`/strains/${strain.slug}`}
               >
                 <div
-                  style={{ maxHeight: '90px', maxWidth: '90px' }}
-                  className="flex items-center justify-center bg-white rounded-md aspect-square"
+                  className="flex items-center justify-center bg-white rounded-md aspect-square max-h-24 max-w-24"
                 >
                   <Image
                     src={strain.nugImage}

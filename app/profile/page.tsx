@@ -4,25 +4,28 @@ import { MdLocationPin } from 'react-icons/md';
 import { AiFillEdit } from 'react-icons/ai';
 import { User } from '@prisma/client';
 import Link from 'next/link';
-import SingOutButton from '@/components/SingOutButton/SingOutButton';
 
 import md5 from 'md5';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import useServerUser from '@/hooks/useServerUser';
 
-import LikedStrainsError from '@/components/LikedStrains/LikedStrainsError';
-import ProfileCommentsError from '@/components/ProfileComments/ProfileCommentsError';
+import LikedStrainsError from './components/LikedStrains/LikedStrainsError';
+import ProfileCommentsError from './components/ProfileComments/ProfileCommentsError';
 
-import ProfileCommentsSkeleton from '@/components/ProfileComments/ProfileCommentsSkeleton';
-import LikedStrainsSkeleton from '@/components/LikedStrains/LikedStrainsSkeleton';
+import ProfileCommentsSkeleton from './components/ProfileComments/ProfileCommentsSkeleton';
+import LikedStrainsSkeleton from './components/LikedStrains/LikedStrainsSkeleton';
 
-import GeneralInformationSkeleton from '@/components/GeneralInformation/GeneralInformationSkeleton';
+import GeneralInformationSkeleton from '@/app/profile/components/GeneralInformation/GeneralInformationSkeleton';
 
 import dynamic from 'next/dynamic';
 
+const SingOutButton = dynamic(
+  import('./components/SingOutButton/SingOutButton')
+);
+
 const LikedStrains = dynamic(
-  () => import('@/components/LikedStrains/LikedStrains'),
+  () => import('./components/LikedStrains/LikedStrains'),
   {
     ssr: false,
     loading: () => <LikedStrainsSkeleton />,
@@ -30,7 +33,7 @@ const LikedStrains = dynamic(
 );
 
 const ProfileComments = dynamic(
-  () => import('@/components/ProfileComments/ProfileComments'),
+  () => import('./components/ProfileComments/ProfileComments'),
   {
     ssr: false,
     loading: () => <ProfileCommentsSkeleton />,
@@ -38,7 +41,7 @@ const ProfileComments = dynamic(
 );
 
 const GeneralInformation = dynamic(
-  () => import('@/components/GeneralInformation/GeneralInformation'),
+  () => import('./components/GeneralInformation/GeneralInformation'),
   {
     ssr: false,
     loading: () => <GeneralInformationSkeleton />,
@@ -46,7 +49,7 @@ const GeneralInformation = dynamic(
 );
 
 const ProfileRevalidator = dynamic(
-  () => import('@/components/ProfileRevalidator/ProfileRevalidator')
+  () => import('./components/ProfileRevalidator/ProfileRevalidator')
 );
 
 export const metadata = {

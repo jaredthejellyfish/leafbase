@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { MdLocationPin } from 'react-icons/md';
 import Link from 'next/link';
 import { format } from 'date-fns';
-import ProfileRevalidator from '@/components/ProfileRevalidator/ProfileRevalidator';
+import ProfileRevalidator from '../components/ProfileRevalidator/ProfileRevalidator';
 import { User } from '@prisma/client';
 import md5 from 'md5';
 import prisma from '@/lib/prisma';

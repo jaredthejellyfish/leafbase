@@ -14,16 +14,16 @@ import { User } from '@prisma/client';
 import dynamic from 'next/dynamic';
 import { format } from 'date-fns';
 
-const DatePicker = dynamic(() => import('@/components/DatePicker/DatePicker'), {
+const DatePicker = dynamic(() => import('./components/DatePicker/DatePicker'), {
   ssr: false,
 });
 
-const SaveModal = dynamic(() => import('@/components/SaveModal/SaveModal'), {
+const SaveModal = dynamic(() => import('./components/SaveModal/SaveModal'), {
   ssr: false,
 });
 
 const DeleteAccount = dynamic(
-  () => import('@/components/DeleteAccount/DeleteAccount'),
+  () => import('./components/DeleteAccount/DeleteAccount'),
   {
     loading: () => (
       <button

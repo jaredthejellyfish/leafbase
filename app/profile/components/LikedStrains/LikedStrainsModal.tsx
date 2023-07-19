@@ -18,7 +18,7 @@ import {
   PointElement,
   Align,
 } from 'chart.js';
-import Modal from '../Modal/Modal';
+import Modal from '@/components/Modal/Modal';
 
 interface Context {
   dataset: { label: string };

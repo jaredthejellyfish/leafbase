@@ -9,11 +9,11 @@ import { RxCaretDown } from 'react-icons/rx';
 import StrainCard from '@/components/StrainCard/StrainCard';
 
 const StrainLoader = dynamic(
-  () => import('@/components/StrainLoader/StrainLoader')
+  () => import('./components/StrainLoader/StrainLoader')
 );
 
 const FilterByMenu = dynamic(
-  () => import('@/components/FilterByMenu/FilterByMenu'),
+  () => import('./components/FilterByMenu/FilterByMenu'),
   {
     loading: () => (
       <span className="flex flex-row items-center justify-end w-40 gap-1 mt-4 text-xs text text-zinc-400">

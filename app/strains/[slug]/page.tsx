@@ -6,15 +6,15 @@ import Link from 'next/link';
 import { Metadata } from 'next/types';
 import { StrainExtended } from '@/types/interfaces';
 import { AiOutlineHeart } from 'react-icons/ai';
-import StrainSoma from '@/components/StrainSoma/StrainSoma';
+import StrainSoma from './components/StrainSoma/StrainSoma';
 import { ErrorBoundary } from 'react-error-boundary';
-import CommentLoaderFallback from '@/components/CommentLoader/CommentLoaderFallback';
+import CommentLoaderFallback from './components/CommentLoader/CommentLoaderFallback';
 import { FiMoreVertical } from 'react-icons/fi';
 
 import dynamic from 'next/dynamic';
 
 const StrainPageLikeButton = dynamic(
-  () => import('@/components/StrainPageLikeButton/StrainPageLikeButton'),
+  () => import('./components/StrainPageLikeButton/StrainPageLikeButton'),
   {
     loading: () => (
       <button
@@ -30,13 +30,13 @@ const StrainPageLikeButton = dynamic(
 );
 
 const CommentLoader = dynamic(
-  () => import('@/components/CommentLoader/CommentLoader'),
+  () => import('./components/CommentLoader/CommentLoader'),
   {
     ssr: false,
   }
 );
 
-const MixersButton = dynamic(() => import('@/components/Mixers/MixersButton'), {
+const MixersButton = dynamic(() => import('./components/Mixers/MixersButton'), {
   ssr: false,
   loading: () => (
     <div className="absolute text-gray-400 top-8 sm:right-28 sm:left-auto left-8">

@@ -181,4 +181,4 @@ async function UserProfile() {
 
 export default UserProfile;
 
-export const dynamic = 'force-dynamic'
+export const dynamic = 'force-dynamic';

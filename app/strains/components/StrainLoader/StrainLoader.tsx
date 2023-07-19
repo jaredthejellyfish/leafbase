@@ -5,9 +5,7 @@ import React, { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import useUser from '@/hooks/useUser';
 import StrainCard from '@/components/StrainCard/StrainCard';
-import dynamic from 'next/dynamic';
-
-const StrainLoaderSkeleton = dynamic(import('./StrainLoaderSkeleton'));
+import StrainLoaderSkeleton from './StrainLoaderSkeleton';
 
 const StrainLoader = ({ filter }: { filter?: string }) => {
   const { ref, inView } = useInView();
@@ -53,7 +51,7 @@ const StrainLoader = ({ filter }: { filter?: string }) => {
     if (inView) {
       loadMoreCallback();
     }
-  }, [inView, fetchNextPage]);
+  }, [inView, fetchNextPage, isFetchingNextPage]);
 
   if (!user?.user?.id) {
     return null;

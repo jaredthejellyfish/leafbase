@@ -9,16 +9,13 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import zoomPlugin from 'chartjs-plugin-zoom';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
-import {
-  Chart as ChartJS,
-  ArcElement,
-  Tooltip,
-  Legend,
-  LinearScale,
-  PointElement,
-  Align,
-} from 'chart.js';
-import Modal from '@/components/Modal/Modal';
+import { Align } from 'chart.js';
+import dynamic from 'next/dynamic';
+
+const Modal = dynamic(() => import('@/components/Modal/Modal'), {
+  loading: () => <div></div>,
+  ssr: false,
+});
 
 interface Context {
   dataset: { label: string };
@@ -28,16 +25,6 @@ interface Value {
   x: number;
   y: number;
 }
-
-ChartJS.register(
-  LinearScale,
-  Tooltip,
-  Legend,
-  PointElement,
-  ArcElement,
-  ChartDataLabels,
-  zoomPlugin
-);
 
 type Props = {
   strains: StrainExtended[];
@@ -144,6 +131,19 @@ const LikedStrainsModal = (props: Props) => {
     queryFn: () => fetchLikedStrainsData(strainNames),
     enabled: isModalOpen,
   });
+
+  if (isModalOpen === true)
+    import('chart.js').then(
+      ({ Chart, ArcElement, Tooltip, Legend, LinearScale, PointElement }) =>
+        Chart.register(
+          ArcElement,
+          Tooltip,
+          Legend,
+          LinearScale,
+          PointElement,
+          ChartDataLabels
+        )
+    );
 
   return (
     <div className="flex items-center justify-center">

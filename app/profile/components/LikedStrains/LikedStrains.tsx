@@ -10,6 +10,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 
 const LikedStrainsModal = dynamic(() => import('./LikedStrainsModal'), {
   loading: () => <div>Loading...</div>,
+  ssr: false,
 });
 
 type Strain = {

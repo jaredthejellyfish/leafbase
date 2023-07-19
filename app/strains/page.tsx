@@ -6,10 +6,10 @@ import ErrorStrains from './error';
 import dynamic from 'next/dynamic';
 import { Cannabinoids, Effects } from '@/types/interfaces';
 import { RxCaretDown } from 'react-icons/rx';
+import StrainCard from '@/components/StrainCard/StrainCard';
 
 const StrainLoader = dynamic(
-  () => import('@/components/StrainLoader/StrainLoader'),
-  { ssr: false }
+  () => import('@/components/StrainLoader/StrainLoader')
 );
 
 const FilterByMenu = dynamic(
@@ -26,8 +26,6 @@ const FilterByMenu = dynamic(
     ),
   }
 );
-
-const StrainCard = dynamic(() => import('@/components/StrainCard/StrainCard'));
 
 export const metadata = {
   title: 'All Strains - Leafbase',
@@ -70,7 +68,7 @@ const Strains = async (request: { searchParams: { filter?: string } }) => {
             {strains &&
               strains.map((strain) => (
                 <StrainCard
-                  key={strain.slug}
+                  key={`ssr-${strain.slug}`}
                   id={strain.id}
                   slug={strain.slug}
                   name={strain.name || 'Unknown'}

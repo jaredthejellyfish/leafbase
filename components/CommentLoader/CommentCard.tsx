@@ -39,7 +39,7 @@ const CommentCard = (props: Props) => {
         <div className="absolute top-0 right-0 flex text-sm">
           <span>
             {comment?.createdAt &&
-              format(parseJSON(comment.createdAt), "MMMM dd, h:mm a")}
+              format(parseJSON(comment.createdAt), 'MMMM dd, h:mm a')}
           </span>
         </div>
         <div className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400">

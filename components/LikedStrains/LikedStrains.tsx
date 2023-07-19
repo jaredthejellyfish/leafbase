@@ -54,7 +54,7 @@ const LikedStrains = async () => {
   return (
     <div>
       <div className="flex flex-row items-center gap-5 text-xl font-bold">
-        <p className=''>Liked Strains ({strains?.length})</p>
+        <p className="">Liked Strains ({strains?.length})</p>
         <ErrorBoundary fallback={<span>error :C</span>}>
           <LikedStrainsModal strains={strains} />
         </ErrorBoundary>
@@ -73,9 +73,7 @@ const LikedStrains = async () => {
                 className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600"
                 href={`/strains/${strain.slug}`}
               >
-                <div
-                  className="flex items-center justify-center bg-white rounded-md aspect-square max-h-24 max-w-24"
-                >
+                <div className="flex items-center justify-center bg-white rounded-md aspect-square max-h-24 max-w-24">
                   <Image
                     src={strain.nugImage}
                     className="rounded-md"

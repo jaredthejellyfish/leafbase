@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Comment } from '@/types/interfaces';
-import { format, parseISO, parseJSON } from 'date-fns';
+import { format, parseJSON } from 'date-fns';
 import Link from 'next/link';
 import DeleteCommentButton from './DeleteCommentButton';
 import { motion } from 'framer-motion';

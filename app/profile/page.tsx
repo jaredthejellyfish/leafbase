@@ -18,13 +18,13 @@ import LikedStrainsSkeleton from './components/LikedStrains/LikedStrainsSkeleton
 
 import GeneralInformationSkeleton from '@/app/profile/components/GeneralInformation/GeneralInformationSkeleton';
 
-import dynamic from 'next/dynamic';
+import { default as nextDynamic } from 'next/dynamic';
 
-const SingOutButton = dynamic(
+const SingOutButton = nextDynamic(
   import('./components/SingOutButton/SingOutButton')
 );
 
-const LikedStrains = dynamic(
+const LikedStrains = nextDynamic(
   () => import('./components/LikedStrains/LikedStrains'),
   {
     ssr: false,
@@ -32,7 +32,7 @@ const LikedStrains = dynamic(
   }
 );
 
-const ProfileComments = dynamic(
+const ProfileComments = nextDynamic(
   () => import('./components/ProfileComments/ProfileComments'),
   {
     ssr: false,
@@ -40,7 +40,7 @@ const ProfileComments = dynamic(
   }
 );
 
-const GeneralInformation = dynamic(
+const GeneralInformation = nextDynamic(
   () => import('./components/GeneralInformation/GeneralInformation'),
   {
     ssr: false,
@@ -48,7 +48,7 @@ const GeneralInformation = dynamic(
   }
 );
 
-const ProfileRevalidator = dynamic(
+const ProfileRevalidator = nextDynamic(
   () => import('./components/ProfileRevalidator/ProfileRevalidator')
 );
 
@@ -180,3 +180,5 @@ async function UserProfile() {
 }
 
 export default UserProfile;
+
+export const dynamic = 'force-dynamic'

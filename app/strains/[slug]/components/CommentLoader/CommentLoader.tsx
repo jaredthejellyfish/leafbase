@@ -9,8 +9,7 @@ import dynamic from 'next/dynamic';
 const CommentCard = dynamic(() => import('./CommentCard'), { ssr: false });
 
 const AddCommentButton = dynamic(
-  () =>
-    import('../AddCommentButton/AddCommentButton')
+  () => import('../AddCommentButton/AddCommentButton')
 );
 
 const AnimatePresence = dynamic(

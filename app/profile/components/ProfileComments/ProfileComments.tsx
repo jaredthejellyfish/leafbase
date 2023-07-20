@@ -1,7 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import prisma from '@/lib/prisma';
-import { User } from '@prisma/client';
+import { Like, User } from '@prisma/client';
+import StrainCommentLikeButton from './StrainCommentLikeButton';
 
 type Props = {
   user: User;
@@ -19,6 +20,7 @@ interface Comment {
   body: string;
   createdAt: Date;
   strain: StrainName;
+  likes?: Like[];
 }
 
 const getComments = async (user: User) => {
@@ -28,6 +30,11 @@ const getComments = async (user: User) => {
         userId: user.id,
       },
       include: {
+        likes: {
+          where: {
+            userId: user.id,
+          },
+        },
         strain: {
           select: {
             name: true,
@@ -63,7 +70,7 @@ function pickRandomComments(comments: Comment[], count = 4): Comment[] {
 const Comments = async (props: Props) => {
   const { user } = props;
   const defaultComments = await getComments(user);
-  const comments = pickRandomComments(defaultComments as Comment[]);
+  const comments = pickRandomComments(defaultComments as unknown as Comment[]);
 
   return comments?.length && comments?.length > 0 ? (
     <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
@@ -74,9 +81,13 @@ const Comments = async (props: Props) => {
           comments?.map((comment) => (
             <Link
               href={`/strains/${comment?.strain?.slug}`}
-              className="px-3 py-2 text-sm border rounded-lg shadow border-zinc-100 dark:border-zinc-500"
+              className="relative px-3 py-2 text-sm border rounded-lg shadow border-zinc-100 dark:border-zinc-500"
               key={comment.id}
             >
+              <StrainCommentLikeButton
+                id={comment.id}
+                liked={comment?.likes && comment.likes.length > 0}
+              />
               <h2 className="mb-1 text-base font-semibold">
                 {comment.strain.name}
               </h2>

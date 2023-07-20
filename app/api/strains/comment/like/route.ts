@@ -7,6 +7,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { commentId } = body;
+
     if (!commentId) throw new Error('Invalid request.');
 
     const session = await getServerSession(authOptions);
@@ -45,7 +46,6 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ like });
   } catch (error) {
-    console.log(error);
     return NextResponse.json({ error: error });
   } finally {
     await prisma.$disconnect();

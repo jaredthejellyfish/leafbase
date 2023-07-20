@@ -1,20 +1,26 @@
-
 import React from 'react';
 import Link from 'next/link';
 import prisma from '@/lib/prisma';
 import { Dispensary } from '@prisma/client';
+import useServerUser from '@/hooks/useServerUser';
+import CommentLikeButton from './CommentLikeButton';
 
 type Props = {
   dispensary: Dispensary;
 };
 
-const getComments = async (dispensary: Dispensary) => {
+const getComments = async (dispensary: Dispensary, userId: string) => {
   try {
     const comments = await prisma.dispensaryComment.findMany({
       where: {
         dispensaryId: dispensary.id,
       },
       include: {
+        likes: {
+          where: {
+            userId: userId,
+          },
+        },
         user: {
           select: {
             displayName: true,
@@ -23,17 +29,20 @@ const getComments = async (dispensary: Dispensary) => {
       },
     });
 
-    console.log('comments', comments);
-
-    return comments;
+    return { comments: comments, error: null };
   } catch (error) {
     console.log(error);
+    return { comments: null, error: error };
   }
 };
 
 const Comments = async (props: Props) => {
   const { dispensary } = props;
-  const comments = await getComments(dispensary);
+  const user = await useServerUser();
+
+  const { comments, error } = await getComments(dispensary, user?.id as string);
+
+  if (error || !comments) return <div>Error</div>;
 
   return comments?.length && comments?.length > 0 ? (
     <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
@@ -44,9 +53,13 @@ const Comments = async (props: Props) => {
           comments?.map((comment) => (
             <Link
               href={`/profile/${comment.user.displayName}`}
-              className="px-3 py-2 text-sm border rounded-lg shadow border-zinc-100 dark:border-zinc-500"
+              className="relative px-3 py-2 text-sm border rounded-lg shadow border-zinc-100 dark:border-zinc-500"
               key={comment.id}
             >
+              <CommentLikeButton
+                liked={comment?.likes ? comment?.likes.length > 0 : false}
+                id={comment.id}
+              />
               <h2 className="mb-1 text-base font-semibold">
                 {comment.user.displayName}
               </h2>

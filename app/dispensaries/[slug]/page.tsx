@@ -35,7 +35,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
   });
 
-  if (!dispensary) return { title: 'Error - Leafbase', description: 'Dispensary' };
+  if (!dispensary)
+    return { title: 'Error - Leafbase', description: 'Dispensary' };
 
   return {
     title: `${dispensary?.name} - Leafbase` || 'Dispensary',

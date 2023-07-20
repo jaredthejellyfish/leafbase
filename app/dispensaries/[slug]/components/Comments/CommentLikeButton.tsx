@@ -10,30 +10,31 @@ type Props = {
   className?: string;
 };
 
-const StrainCardLikeButton = (props: Props) => {
-  const [liked, setLiked] = useState(props.liked);
+const CommentLikeButton = (props: Props) => {
+  const { liked: likedProp, id } = props;
+  const [liked, setLiked] = useState(likedProp);
 
   useEffect(() => {
-    setLiked(props.liked);
-  }, [props.liked]);
+    setLiked(liked);
+  }, [liked]);
 
-  const likeStrain = async () => {
-    await fetch('/api/strains/like', {
+  const likeDispensaryComment = async () => {
+    await fetch('/api/dispensaries/comment/like', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ strainId: props.id }),
+      body: JSON.stringify({ commentId: id }),
     });
   };
 
-  const unlikeStrain = async () => {
-    await fetch('/api/strains/unlike', {
+  const unlikeDispensaryComment = async () => {
+    await fetch('/api/dispensaries/comment/unlike', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ strainId: props.id }),
+      body: JSON.stringify({ commentId: id }),
     });
   };
 
@@ -44,9 +45,9 @@ const StrainCardLikeButton = (props: Props) => {
     setLiked(!liked);
     try {
       if (liked === false) {
-        likeStrain();
+        likeDispensaryComment();
       } else {
-        unlikeStrain();
+        unlikeDispensaryComment();
       }
     } catch (error) {
       console.log(error);
@@ -95,4 +96,4 @@ const StrainCardLikeButton = (props: Props) => {
   );
 };
 
-export default StrainCardLikeButton;
+export default CommentLikeButton;

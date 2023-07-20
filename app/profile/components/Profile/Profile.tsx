@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { MdLocationPin } from 'react-icons/md';
-import { AiFillEdit } from 'react-icons/ai';
+import { AiFillEdit, AiFillEye } from 'react-icons/ai';
 import { User } from '@prisma/client';
 import Link from 'next/link';
 import SingOutButton from '../SingOutButton/SingOutButton';
@@ -24,8 +24,17 @@ const Profile = (props: Props) => {
 
   return (
     <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
-      <Link href="/profile/edit">
-        <AiFillEdit size={20} className="absolute top-6 right-6" />
+      <Link
+        className="absolute top-6 right-6 text-zinc-200"
+        href="/profile/edit"
+      >
+        <AiFillEdit size={20} />
+      </Link>
+      <Link
+        className="absolute top-6 right-16 text-zinc-200"
+        href={`/profile/${user.displayName}`}
+      >
+        <AiFillEye size={20} />
       </Link>
       <Image
         src={generateGravatarUrl(user as User)}

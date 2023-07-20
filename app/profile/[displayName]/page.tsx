@@ -5,11 +5,16 @@ import { MdLocationPin } from 'react-icons/md';
 import Link from 'next/link';
 import { format } from 'date-fns';
 import ProfileRevalidator from '../components/ProfileRevalidator/ProfileRevalidator';
-import { User } from '@prisma/client';
+import { User, Like } from '@prisma/client';
 import md5 from 'md5';
 import prisma from '@/lib/prisma';
 import { Metadata } from 'next';
 import useServerComments from '@/hooks/useServerComments';
+import dynamic from 'next/dynamic';
+
+const StrainCommentLikeButton = dynamic(
+  () => import('./components/ProfileCommentLikeButton')
+);
 
 type Props = { params: { displayName: string } };
 
@@ -32,6 +37,7 @@ interface Comment {
   body: string;
   createdAt: Date;
   strain: StrainName;
+  likes?: Like[];
 }
 
 const generateGravatarUrl = (user: User): string => {
@@ -111,7 +117,8 @@ const ProfileDisplay = async (props: Props) => {
   const user = await useServerUser(props.params.displayName);
   const { comments, isError } = await useServerComments(user as User);
 
-  if (!user) return <div>User not found.</div>;
+  if (!user) throw new Error('User not found');
+
   const randomComments = pickRandomComments(comments as Comment[]);
   const strains = await getLikesByUUID(user?.id);
 
@@ -134,6 +141,26 @@ const ProfileDisplay = async (props: Props) => {
                 <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
               </svg>
               Home
+            </Link>
+          </li>
+          <li>
+            <Link href="/profile" className="flex items-center">
+              <svg
+                aria-hidden="true"
+                className="w-6 h-6 text-gray-400"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
+              <div className="ml-1 text-lg font-medium text-gray-700 hover:text-green-600 md:ml-2 dark:text-gray-400 dark:hover:text-green-400">
+                Profile
+              </div>
             </Link>
           </li>
           <li>
@@ -198,9 +225,13 @@ const ProfileDisplay = async (props: Props) => {
                   randomComments?.map((comment) => (
                     <Link
                       href={`/strains/${comment?.strain?.slug}`}
-                      className="px-3 py-2 text-sm rounded-lg shadow dark:border dark:border-zinc-500"
+                      className="relative px-3 py-2 text-sm border rounded-lg shadow border-zinc-100 dark:border-zinc-500"
                       key={comment.id}
                     >
+                      <StrainCommentLikeButton
+                        id={comment.id}
+                        liked={comment?.likes && comment.likes.length > 0}
+                      />
                       <h2 className="mb-1 text-base font-semibold">
                         {comment.strain.name}
                       </h2>

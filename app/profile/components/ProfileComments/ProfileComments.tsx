@@ -2,7 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import prisma from '@/lib/prisma';
 import { Like, User } from '@prisma/client';
-import StrainCommentLikeButton from './StrainCommentLikeButton';
 
 type Props = {
   user: User;
@@ -84,10 +83,6 @@ const Comments = async (props: Props) => {
               className="relative px-3 py-2 text-sm border rounded-lg shadow border-zinc-100 dark:border-zinc-500"
               key={comment.id}
             >
-              <StrainCommentLikeButton
-                id={comment.id}
-                liked={comment?.likes && comment.likes.length > 0}
-              />
               <h2 className="mb-1 text-base font-semibold">
                 {comment.strain.name}
               </h2>

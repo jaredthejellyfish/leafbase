@@ -6,8 +6,16 @@ import { Dispensary } from '@prisma/client';
 import { MdLocationPin } from 'react-icons/md';
 import Link from 'next/link';
 import StarRating from '@/components/StarRating/StarRating';
+import md5 from 'md5';
 
 type Props = { dispensary: Dispensary };
+
+const generateGravatarUrl = (dispensary: Dispensary): string => {
+  if (dispensary?.logo) return dispensary.logo;
+  return `https://www.gravatar.com/avatar/${md5(
+    dispensary?.name || 'NaN'
+  )}?d=identicon`;
+};
 
 const Profile = (props: Props) => {
   const { dispensary } = props;
@@ -16,9 +24,9 @@ const Profile = (props: Props) => {
     <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
       <div className="flex flex-row items-center gap-4">
         <Image
-          src={dispensary?.logo || '/images/leafbase-logo.png'}
+          src={dispensary?.logo || generateGravatarUrl(dispensary)}
           alt="profile"
-          className="p-3 bg-gray-100 rounded-md"
+          className="p-3 bg-white rounded-md"
           width={80}
           height={80}
         />
@@ -29,7 +37,7 @@ const Profile = (props: Props) => {
               Math.round(dispensary.averageRating * 10) / 10}
             <StarRating rating={dispensary.averageRating || 0} />
           </span>
-          <span className="flex flex-row items-center gap-1 text-sm text-zinc-300">
+          <span className="flex-row items-center hidden gap-1 text-sm md:flex text-zinc-300">
             <MdLocationPin />
             <Link
               href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
@@ -42,9 +50,25 @@ const Profile = (props: Props) => {
           </span>
         </div>
       </div>
+
+      <span className="flex flex-col mt-3 text-sm sm:hidden dark:text-white">
+        Location:
+        <span className="flex flex-row items-center gap-1 text-sm text-zinc-300">
+          <MdLocationPin />
+          <Link
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+              dispensary?.address || 'Unknown'
+            )}`}
+            className="overflow-hidden text-zinc-400 hover:text-green-400 overflow-ellipsis"
+          >
+            {dispensary?.address}, {dispensary?.city}
+          </Link>
+        </span>
+      </span>
+
       {dispensary?.email && (
         <span className="flex flex-col mt-3 text-sm dark:text-white">
-          Phone email:
+          Email:
           <span className="text-gray-400 hover:text-green-400">
             <Link href={`mailto:${dispensary?.email}`}>{dispensary.email}</Link>
           </span>

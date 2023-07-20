@@ -148,23 +148,23 @@ model Like {
 }
 
 model Dispensary {
-  id                     String                   @id @default(cuid())
-  slug                   String                   @unique
-  name                   String?
-  description            String?
-  address                String?
-  city                   String?
-  phone                  String?
-  website                String?
-  email                  String?
-  hours                  String?
-  latitude               Float?
-  longitude              Float?
-  averageRating          Float?
-  image                  String?
-  logo                   String?
-  comments               DispensaryComment[]
-  DispensarySubscription DispensarySubscription[]
+  id            String                   @id @default(cuid())
+  slug          String                   @unique
+  name          String?
+  description   String?
+  address       String?
+  city          String?
+  phone         String?
+  website       String?
+  email         String?
+  hours         String?
+  latitude      Float?
+  longitude     Float?
+  averageRating Float?
+  image         String?
+  logo          String?
+  comments      DispensaryComment[]
+  subscriptions DispensarySubscription[]
 
   @@map("dispensaries")
 }

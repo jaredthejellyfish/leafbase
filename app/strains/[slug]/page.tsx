@@ -31,10 +31,7 @@ const StrainPageLikeButton = dynamic(
 );
 
 const CommentLoader = dynamic(
-  () => import('./components/CommentLoader/CommentLoader'),
-  {
-    ssr: false,
-  }
+  () => import('./components/CommentLoader/CommentLoader')
 );
 
 const MixersButton = dynamic(() => import('./components/Mixers/MixersButton'), {

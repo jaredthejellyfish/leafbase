@@ -12,6 +12,7 @@ const LoginPage = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const [showToast, setShowToast] = useState(true);
+  const [disableEmailButton, setDisableEmailButton] = useState(false);
 
   useEffect(() => {
     if (session?.user?.name && showToast) {
@@ -31,6 +32,7 @@ const LoginPage = () => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            setDisableEmailButton(true);
             const formData = new FormData(e.target as HTMLFormElement);
             const data = Object.fromEntries(formData.entries());
             signIn('email', { email: data.email });
@@ -51,7 +53,10 @@ const LoginPage = () => {
               </label>
             </div>
           </div>
-          <button className="flex items-center justify-center w-full py-2 mt-3 text-sm text-green-700 transition border border-green-700 rounded dark:hover:bg-zinc-500 dark:hover:text-white hover:bg-green-700 hover:text-white dark:border-zinc-500 dark:text-zinc-500">
+          <button
+            disabled={disableEmailButton}
+            className="flex items-center justify-center w-full py-2 mt-3 text-sm text-green-700 transition border border-green-700 rounded dark:hover:bg-zinc-500 dark:hover:text-white hover:bg-green-700 hover:text-white dark:border-zinc-500 dark:text-zinc-500"
+          >
             <p>Sign in with Email</p>
           </button>
 

@@ -65,7 +65,7 @@ const DispensaryPageLoading = () => {
           </li>
         </ol>
       </nav>
-      <div className="flex flex-col gap-6 mt-3 lg:flex-row">
+      <div className="flex flex-col gap-6 lg:flex-row">
         <div id="vertical 1" className="flex flex-col gap-4 lg:w-1/3">
           <ProfileSkeleton />
           <CommentsSkeleton />

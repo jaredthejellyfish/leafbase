@@ -38,26 +38,27 @@ model Session {
 }
 
 model User {
-  id                     String                  @id @default(cuid())
-  name                   String?
-  displayName            String?                 @unique
-  email                  String?                 @unique
-  emailVerified          DateTime?
-  image                  String?
-  aboutMe                String?
-  birthDate              DateTime?
-  languages              String?
-  phone                  String?
-  location               String                  @default("Earth")
-  createdAt              DateTime                @default(now())
-  updatedAt              DateTime                @updatedAt
-  accounts               Account[]
-  sessions               Session[]
-  likes                  Like[]
-  comments               Comment[]
-  dispensaryComments     DispensaryComment[]
-  dispensaryCommentLikes DispensaryCommentLike[]
-  CommentLike            CommentLike[]
+  id                      String                   @id @default(cuid())
+  name                    String?
+  displayName             String?                  @unique
+  email                   String?                  @unique
+  emailVerified           DateTime?
+  image                   String?
+  aboutMe                 String?
+  birthDate               DateTime?
+  languages               String?
+  phone                   String?
+  location                String                   @default("Earth")
+  createdAt               DateTime                 @default(now())
+  updatedAt               DateTime                 @updatedAt
+  accounts                Account[]
+  sessions                Session[]
+  likes                   Like[]
+  comments                Comment[]
+  dispensaryComments      DispensaryComment[]
+  dispensaryCommentLikes  DispensaryCommentLike[]
+  commentLikes            CommentLike[]
+  dispensarySubscriptions DispensarySubscription[]
 
   @@map("users")
 }
@@ -147,22 +148,23 @@ model Like {
 }
 
 model Dispensary {
-  id            String              @id @default(cuid())
-  slug          String              @unique
-  name          String?
-  description   String?
-  address       String?
-  city          String?
-  phone         String?
-  website       String?
-  email         String?
-  hours         String?
-  latitude      Float?
-  longitude     Float?
-  averageRating Float?
-  image         String?
-  logo          String?
-  comments      DispensaryComment[]
+  id                     String                   @id @default(cuid())
+  slug                   String                   @unique
+  name                   String?
+  description            String?
+  address                String?
+  city                   String?
+  phone                  String?
+  website                String?
+  email                  String?
+  hours                  String?
+  latitude               Float?
+  longitude              Float?
+  averageRating          Float?
+  image                  String?
+  logo                   String?
+  comments               DispensaryComment[]
+  DispensarySubscription DispensarySubscription[]
 
   @@map("dispensaries")
 }
@@ -189,4 +191,14 @@ model DispensaryCommentLike {
   comment   DispensaryComment @relation(fields: [commentId], references: [id], onDelete: Cascade)
 
   @@map("dispensary_comment_likes")
+}
+
+model DispensarySubscription {
+  id           String     @id @default(cuid())
+  userId       String
+  dispensaryId String
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  dispensary   Dispensary @relation(fields: [dispensaryId], references: [id], onDelete: Cascade)
+
+  @@map("dispensary_subscriptions")
 }

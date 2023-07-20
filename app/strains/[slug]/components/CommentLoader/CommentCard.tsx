@@ -1,17 +1,29 @@
 'use client';
 
 import React from 'react';
-import { Comment } from '@/types/interfaces';
+import { StrainExtended } from '@/types/interfaces';
 import { format, parseJSON } from 'date-fns';
 import Link from 'next/link';
 import DeleteCommentButton from './DeleteCommentButton';
 import { motion } from 'framer-motion';
 import CommentLikeButton from './CommentLikeButton';
+import { Like, User } from '@prisma/client';
 
 type Props = {
   comment: Comment;
   userId: string;
 };
+
+interface Comment {
+  id: string;
+  userId: string;
+  strainId: string;
+  body: string;
+  createdAt: Date;
+  strain: StrainExtended;
+  likes?: Like[];
+  user: User;
+}
 
 function transformName(name: string): string {
   const parts = name.split(' ');
@@ -36,7 +48,10 @@ const CommentCard = (props: Props) => {
       animate={{ opacity: 1, transition: { duration: 0.2 } }}
       exit={{ opacity: 0 }}
     >
-      <CommentLikeButton id={comment.id} liked={comment?.likes?.length > 0} />
+      <CommentLikeButton
+        id={comment.id}
+        liked={comment?.likes && comment?.likes?.length > 0}
+      />
       <div className="relative mb-2">
         <div className="absolute top-0 right-0 flex text-sm">
           <span>

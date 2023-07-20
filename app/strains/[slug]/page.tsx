@@ -12,6 +12,7 @@ import CommentLoaderFallback from './components/CommentLoader/CommentLoaderFallb
 import { FiMoreVertical } from 'react-icons/fi';
 
 import dynamic from 'next/dynamic';
+import useServerUser from '@/hooks/useServerUser';
 
 const StrainPageLikeButton = dynamic(
   () => import('./components/StrainPageLikeButton/StrainPageLikeButton'),
@@ -97,25 +98,49 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const getStrainBySlug = async (slug: string) => {
+const getStrainBySlug = async (slug: string, userId?: string) => {
   try {
+    const filter = userId
+      ? {
+          comments: {
+            include: {
+              likes: {
+                where: {
+                  userId: userId,
+                },
+              },
+              user: {
+                select: {
+                  name: true,
+                  image: true,
+                  location: true,
+                  displayName: true,
+                },
+              },
+            },
+          },
+        }
+      : {
+          comments: {
+            include: {
+              user: {
+                select: {
+                  name: true,
+                  image: true,
+                  location: true,
+                  displayName: true,
+                },
+              },
+            },
+          },
+        };
     const strain = await prisma.strain.findUnique({
       where: {
         slug: slug,
       },
+
       include: {
-        comments: {
-          include: {
-            user: {
-              select: {
-                name: true,
-                image: true,
-                location: true,
-                displayName: true,
-              },
-            },
-          },
-        },
+        ...filter,
       },
     });
 
@@ -141,8 +166,11 @@ const getStrainBySlug = async (slug: string) => {
 // }
 
 const StrainPage = async (props: Props) => {
+  const user = await useServerUser();
+
   const strain = (await getStrainBySlug(
-    props.params.slug
+    props.params.slug,
+    user?.id
   )) as unknown as StrainExtended;
 
   if (!strain) return <div>Error not found</div>;
@@ -300,7 +328,7 @@ const StrainPage = async (props: Props) => {
       </div>
       <div className="flex flex-col w-full gap-3 mb-2 ml-1 md:w-4/5">
         <ErrorBoundary fallback={<CommentLoaderFallback strain={strain} />}>
-          <CommentLoader strain={strain} />
+          {user && <CommentLoader strain={strain} user={user} />}
         </ErrorBoundary>
       </div>
     </div>

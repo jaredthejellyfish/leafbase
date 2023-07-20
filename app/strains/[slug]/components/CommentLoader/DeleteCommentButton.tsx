@@ -11,7 +11,7 @@ const DeleteCommentButton = (props: Props) => {
   const router = useRouter();
 
   const deleteComment = async (commentId: string) => {
-    const res = await fetch('/api/comments/delete', {
+    const res = await fetch('/api/strains/comment/delete', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ commentId: commentId }),

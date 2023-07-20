@@ -6,6 +6,7 @@ import { format, parseJSON } from 'date-fns';
 import Link from 'next/link';
 import DeleteCommentButton from './DeleteCommentButton';
 import { motion } from 'framer-motion';
+import CommentLikeButton from './CommentLikeButton';
 
 type Props = {
   comment: Comment;
@@ -35,6 +36,7 @@ const CommentCard = (props: Props) => {
       animate={{ opacity: 1, transition: { duration: 0.2 } }}
       exit={{ opacity: 0 }}
     >
+      <CommentLikeButton id={comment.id} liked={comment?.likes?.length > 0} />
       <div className="relative mb-2">
         <div className="absolute top-0 right-0 flex text-sm">
           <span>

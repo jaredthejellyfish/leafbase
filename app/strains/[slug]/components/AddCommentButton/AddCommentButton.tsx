@@ -21,7 +21,7 @@ function AddCommentButton(props: Props) {
   const addComment = async (content: string, strainId: string) => {
     if (content.length < 1) return;
     setIsSaving(true);
-    const res = await fetch('/api/comments/add', {
+    const res = await fetch('/api/strains/comment/add', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ content, strainId }),

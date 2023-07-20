@@ -3,8 +3,8 @@
 import React from 'react';
 import { Comment } from '@/types/interfaces';
 import { StrainExtended } from '@/types/interfaces';
-import useUser from '@/hooks/useUser';
 import dynamic from 'next/dynamic';
+import { User } from '@prisma/client';
 
 const CommentCard = dynamic(() => import('./CommentCard'), { ssr: false });
 
@@ -17,11 +17,10 @@ const AnimatePresence = dynamic(
   { ssr: false }
 );
 
-type Props = { strain: StrainExtended };
+type Props = { strain: StrainExtended; user?: User };
 
 const CommentLoader = (props: Props) => {
-  const { strain } = props;
-  const { user, isLoading, isFetching } = useUser();
+  const { strain, user } = props;
 
   return (
     <>
@@ -34,8 +33,6 @@ const CommentLoader = (props: Props) => {
       <div className="flex flex-col w-full">
         <AnimatePresence>
           {user &&
-            !isLoading &&
-            !isFetching &&
             strain.comments &&
             strain.comments.length > 0 &&
             strain.comments

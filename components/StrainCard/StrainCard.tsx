@@ -26,7 +26,7 @@ type Props = {
   topEffect: string;
   cannabinoids?: Cannabinoids;
   effects?: Effects;
-  liked: boolean;
+  liked?: boolean;
   priority: boolean;
 };
 
@@ -67,7 +67,9 @@ const StrainCard = (props: Props) => {
       href={`/strains/${props.slug}`}
       className="relative z-10 flex gap-5 p-5 mt-4 transition-transform border shadow rounded-xl dark:bg-zinc-900 md:flex-wrap flex-nowrap md:max-w-xs dark:border-opacity-0 border-zinc-100 hover:scale-101"
     >
-      <StrainCardLikeButton liked={props.liked} id={props.id} />
+      {props.liked && (
+        <StrainCardLikeButton liked={props.liked} id={props.id} />
+      )}
       {props.nugImage && props.name && (
         <div className="flex items-center justify-center w-1/2 border rounded-lg md:w-full dark:border-opacity-0 border-zinc-200">
           <Image

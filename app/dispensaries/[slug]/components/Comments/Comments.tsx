@@ -3,11 +3,17 @@ import Link from 'next/link';
 import prisma from '@/lib/prisma';
 import { Dispensary } from '@prisma/client';
 import useServerUser from '@/hooks/useServerUser';
-import CommentLikeButton from './CommentLikeButton';
+
+import dynamic from 'next/dynamic';
+import CommentLikeButtonLoading from './ComentLikeButtonLoading';
 
 type Props = {
   dispensary: Dispensary;
 };
+
+const CommentLikeButton = dynamic(() => import('./CommentLikeButton'), {
+  loading: () => <CommentLikeButtonLoading />,
+});
 
 const getComments = async (dispensary: Dispensary, userId: string) => {
   try {

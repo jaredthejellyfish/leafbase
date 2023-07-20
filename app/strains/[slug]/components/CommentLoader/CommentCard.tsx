@@ -31,7 +31,7 @@ const CommentCard = (props: Props) => {
 
   return (
     <motion.div
-      className="p-4 mb-5 border rounded shadow border-zinc-200 dark:border-transparent dark:bg-zinc-900"
+      className="relative p-4 mb-5 border rounded shadow border-zinc-200 dark:border-transparent dark:bg-zinc-900"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { duration: 0.2 } }}
       exit={{ opacity: 0 }}

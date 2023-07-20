@@ -78,7 +78,7 @@ const CommentLikeButton = (props: Props) => {
   return (
     <motion.button
       aria-label="Like Strain"
-      className={`absolute top-1.5 right-2 border bg-white dark:bg-zinc-800 text-zinc-400/75 transition-colors rounded-full p-1.5 dark:text-zinc-400 ${
+      className={`z-40 absolute top-2.5 right-36 border bg-white dark:bg-zinc-800 text-zinc-400/75 transition-colors rounded-full p-1.5 dark:text-zinc-400 ${
         liked ? 'border-green-600/40' : 'dark:border-zinc-700'
       }`}
       onClick={(e) => handleLike(e)}

@@ -10,16 +10,16 @@ import CommentLikeButton from './CommentLikeButton';
 import { Like, User } from '@prisma/client';
 
 type Props = {
-  comment: Comment;
+  comment: CommentExtended;
   userId: string;
 };
 
-interface Comment {
+interface CommentExtended {
   id: string;
   userId: string;
   strainId: string;
   body: string;
-  createdAt: Date;
+  createdAt: Date | string;
   strain: StrainExtended;
   likes?: Like[];
   user: User;

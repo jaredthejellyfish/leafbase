@@ -1,11 +1,6 @@
 import React from 'react';
-import Image from 'next/image';
-import { MdLocationPin } from 'react-icons/md';
-import { AiFillEdit } from 'react-icons/ai';
-import { User } from '@prisma/client';
 import Link from 'next/link';
 
-import md5 from 'md5';
 import { ErrorBoundary } from 'react-error-boundary';
 
 import useServerUser from '@/hooks/useServerUser';
@@ -16,13 +11,15 @@ import ProfileCommentsError from './components/ProfileComments/ProfileCommentsEr
 import ProfileCommentsSkeleton from './components/ProfileComments/ProfileCommentsSkeleton';
 import LikedStrainsSkeleton from './components/LikedStrains/LikedStrainsSkeleton';
 
-import GeneralInformationSkeleton from '@/app/profile/components/GeneralInformation/GeneralInformationSkeleton';
+import GeneralInformationSkeleton from './components/GeneralInformation/GeneralInformationSkeleton';
+import ProfileSkeleton from './components/Profile/ProfileSkeleton';
 
 import { default as nextDynamic } from 'next/dynamic';
 
-const SingOutButton = nextDynamic(
-  import('./components/SingOutButton/SingOutButton')
-);
+const Profile = nextDynamic(() => import('./components/Profile/Profile'), {
+  ssr: false,
+  loading: () => <ProfileSkeleton />,
+});
 
 const LikedStrains = nextDynamic(
   () => import('./components/LikedStrains/LikedStrains'),
@@ -56,13 +53,6 @@ export const metadata = {
   title: 'Profile - Leafbase',
   description:
     'Explore your personal user page, showcasing your profile, comments, and a curated list of your favorite cannabis strains. Stay updated and engaged with the community.',
-};
-
-const generateGravatarUrl = (user: User): string => {
-  if (user?.image) return user.image;
-  return `https://www.gravatar.com/avatar/${md5(
-    user?.name || 'NaN'
-  )}?d=identicon`;
 };
 
 async function UserProfile() {
@@ -116,48 +106,8 @@ async function UserProfile() {
         </nav>
         <div className="flex flex-col gap-6 mt-3 lg:flex-row">
           <div id="vertical 1" className="flex flex-col gap-4 lg:w-1/3">
-            <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
-              <Link href="/profile/edit">
-                <AiFillEdit size={20} className="absolute top-6 right-6" />
-              </Link>
-              <Image
-                src={generateGravatarUrl(user as User)}
-                alt="profile"
-                className="rounded-md"
-                width={80}
-                height={80}
-              />
-              <p className="mt-2 text-lg font-bold ">{user?.name}</p>
-              {user?.displayName ? (
-                <>
-                  <span className="flex flex-row items-center gap-1 text-sm text-zinc-300">
-                    <span className="text-zinc-400">{user?.displayName}</span>
-                  </span>
-                  <span className="mt-3 text-sm dark:text-white">
-                    Location:
-                    <span className="flex flex-row items-center gap-1 text-sm text-zinc-300">
-                      <MdLocationPin />
-                      <span className="text-zinc-400">{user?.location}</span>
-                    </span>
-                  </span>
-                </>
-              ) : (
-                <span className="flex flex-row items-center gap-1 text-sm text-zinc-300">
-                  <MdLocationPin />
-                  <span className="text-zinc-400">{user?.location}</span>
-                </span>
-              )}
+            <Profile user={user} />
 
-              <span className="mt-3 text-sm dark:text-white">
-                Email Address:
-                <p className="text-gray-400">{user?.email}</p>
-              </span>
-              <span className="mt-3 text-sm dark:text-white">
-                Phone number:
-                <p className="text-gray-400">{user?.phone}</p>
-              </span>
-              <SingOutButton />
-            </div>
             <ErrorBoundary fallback={<ProfileCommentsError />}>
               <ProfileComments user={user} />
             </ErrorBoundary>

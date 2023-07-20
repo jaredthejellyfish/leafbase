@@ -59,6 +59,16 @@ model User {
   @@map("users")
 }
 
+model VerificationToken {
+  id         String   @id @default(cuid())
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
 model Strain {
   id               String    @id @default(cuid())
   slug             String    @unique
@@ -85,9 +95,9 @@ model Strain {
 }
 
 model Mixer {
-  id             String  @id @default(cuid())
+  id             String @id @default(cuid())
   strainId       String
-  strain         Strain  @relation(fields: [strainId], references: [id], onDelete: Cascade)
+  strain         Strain @relation(fields: [strainId], references: [id], onDelete: Cascade)
   name           String
   recommendation String
   slug           String
@@ -121,12 +131,22 @@ model Like {
   @@map("likes")
 }
 
-model VerificationToken {
-  id         String   @id @default(cuid())
-  identifier String
-  token      String   @unique
-  expires    DateTime
+model Dispensary {
+  id            String  @id @default(cuid())
+  slug          String  @unique
+  name          String?
+  description   String?
+  address       String?
+  city          String?
+  phone         String?
+  website       String?
+  email         String?
+  hours         String?
+  latitude      Float?
+  longitude     Float?
+  averageRating Float?
+  image         String?
+  logo          String?
 
-  @@unique([identifier, token])
-  @@map("verification_tokens")
+  @@map("dispensaries")
 }

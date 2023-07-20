@@ -36,7 +36,7 @@ const DispensaryPage = async ({ params }: Props) => {
 
   const { dispensary, error } = await useServerDispensary(slug);
 
-  if (error || !dispensary) return <div>failed to load</div>;
+  if (error || !dispensary) throw new Error('Dispensary not found');
 
   return (
     <div className="flex flex-col px-6 md:px-16">

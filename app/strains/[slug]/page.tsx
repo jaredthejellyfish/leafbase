@@ -173,7 +173,7 @@ const StrainPage = async (props: Props) => {
     user?.id
   )) as unknown as StrainExtended;
 
-  if (!strain) return <div>Error not found</div>;
+  if (!strain) throw new Error('Strain not found');
 
   return (
     <div className="flex flex-col items-center justify-center px-4 md:px-1/4">

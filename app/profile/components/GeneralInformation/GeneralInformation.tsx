@@ -12,7 +12,7 @@ const GeneralInformation = (props: Props) => {
   const { user } = props;
 
   return (
-    <>
+    <div className="flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
       <h1 className="text-xl font-bold">General information</h1>
       {user?.aboutMe && (
         <>
@@ -36,7 +36,7 @@ const GeneralInformation = (props: Props) => {
           <p className="text-gray-400 w-60">{user?.languages}</p>
         </span>
       </div>
-    </>
+    </div>
   );
 };
 

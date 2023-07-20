@@ -38,23 +38,24 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  displayName   String?   @unique
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  aboutMe       String?
-  birthDate     DateTime?
-  languages     String?
-  phone         String?
-  location      String    @default("Earth")
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  accounts      Account[]
-  sessions      Session[]
-  likes         Like[]
-  comments      Comment[]
+  id                String              @id @default(cuid())
+  name              String?
+  displayName       String?             @unique
+  email             String?             @unique
+  emailVerified     DateTime?
+  image             String?
+  aboutMe           String?
+  birthDate         DateTime?
+  languages         String?
+  phone             String?
+  location          String              @default("Earth")
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  accounts          Account[]
+  sessions          Session[]
+  likes             Like[]
+  comments          Comment[]
+  DispensaryComment DispensaryComment[]
 
   @@map("users")
 }
@@ -132,8 +133,8 @@ model Like {
 }
 
 model Dispensary {
-  id            String  @id @default(cuid())
-  slug          String  @unique
+  id            String              @id @default(cuid())
+  slug          String              @unique
   name          String?
   description   String?
   address       String?
@@ -147,6 +148,19 @@ model Dispensary {
   averageRating Float?
   image         String?
   logo          String?
+  comments      DispensaryComment[]
 
   @@map("dispensaries")
+}
+
+model DispensaryComment {
+  id           String     @id @default(cuid())
+  userId       String
+  dispensaryId String
+  body         String?
+  createdAt    DateTime   @default(now())
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  dispensary   Dispensary @relation(fields: [dispensaryId], references: [id], onDelete: Cascade)
+
+  @@map("dispensary_comments")
 }

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Dispensary } from '@prisma/client';
 import { MdLocationPin } from 'react-icons/md';
 import Link from 'next/link';
+import StarRating from '@/components/StarRating/StarRating';
 
 type Props = { dispensary: Dispensary };
 
@@ -22,8 +23,12 @@ const Profile = (props: Props) => {
           height={80}
         />
         <div className="flex flex-col">
-          <p className="mt-2 text-lg font-bold ">{dispensary?.name}</p>
-
+          <p className="text-lg font-bold ">{dispensary?.name}</p>
+          <span className="flex items-center justify-start gap-3 -mt-1 text-sm text-zinc-800 dark:text-zinc-200">
+            {dispensary.averageRating &&
+              Math.round(dispensary.averageRating * 10) / 10}
+            <StarRating rating={dispensary.averageRating || 0} />
+          </span>
           <span className="flex flex-row items-center gap-1 text-sm text-zinc-300">
             <MdLocationPin />
             <Link
@@ -37,7 +42,6 @@ const Profile = (props: Props) => {
           </span>
         </div>
       </div>
-
       {dispensary?.email && (
         <span className="flex flex-col mt-3 text-sm dark:text-white">
           Phone email:

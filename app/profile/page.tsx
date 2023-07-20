@@ -113,9 +113,8 @@ async function UserProfile() {
             </ErrorBoundary>
           </div>
           <div id="vertical 2" className="flex flex-col gap-4 pb-3 lg:w-2/3">
-            <div className="flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
-              <GeneralInformation user={user} />
-            </div>
+            <GeneralInformation user={user} />
+
             <div className="flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
               <ErrorBoundary fallback={<LikedStrainsError />}>
                 <LikedStrains />

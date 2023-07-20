@@ -4,14 +4,25 @@ import Link from 'next/link';
 import prisma from '@/lib/prisma';
 import { Metadata } from 'next/types';
 import { ErrorBoundary } from 'react-error-boundary';
+import Comments from './components/Comments/Comments';
+
+import ProfileSkeleton from './components/Profile/ProfileSkeleton';
+import GeneralInformationSkeleton from './components/GeneralInformation/GeneralInformationSkeleton';
 
 import dynamic from 'next/dynamic';
-import ProfileSkeleton from './components/Profile/ProfileSkeleton';
 
 const Profile = dynamic(() => import('./components/Profile/Profile'), {
   ssr: false,
   loading: () => <ProfileSkeleton />,
 });
+
+const GeneralInformation = dynamic(
+  () => import('./components/GeneralInformation/GeneralInformation'),
+  {
+    ssr: false,
+    loading: () => <GeneralInformationSkeleton />,
+  }
+);
 
 type Props = { params: { slug: string } };
 
@@ -23,6 +34,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       slug: slug,
     },
   });
+
+  if (!dispensary) return { title: 'Error - Leafbase', description: 'Dispensary' };
 
   return {
     title: `${dispensary?.name} - Leafbase` || 'Dispensary',
@@ -40,7 +53,7 @@ const DispensaryPage = async ({ params }: Props) => {
 
   return (
     <div className="flex flex-col px-6 md:px-16">
-      <nav className="flex mb-3 ml-1" aria-label="Breadcrumb">
+      <nav className="flex ml-1" aria-label="Breadcrumb">
         <ol className="inline-flex items-center space-x-1 md:space-x-3">
           <li className="inline-flex items-center">
             <Link
@@ -101,10 +114,20 @@ const DispensaryPage = async ({ params }: Props) => {
           </li>
         </ol>
       </nav>
-      <div id="vertical 1" className="flex flex-col gap-4 lg:w-1/3">
-        <ErrorBoundary fallback={<div>Error</div>}>
-          <Profile dispensary={dispensary} />
-        </ErrorBoundary>
+      <div className="flex flex-col gap-6 mt-3 lg:flex-row">
+        <div id="vertical 1" className="flex flex-col gap-4 lg:w-1/3">
+          <ErrorBoundary fallback={<div>Error</div>}>
+            <Profile dispensary={dispensary} />
+          </ErrorBoundary>
+          <ErrorBoundary fallback={<div>Error</div>}>
+            <Comments dispensary={dispensary} />
+          </ErrorBoundary>
+        </div>
+        <div id="vertical 2" className="flex flex-col gap-4 pb-3 lg:w-2/3">
+          <ErrorBoundary fallback={<div>Error</div>}>
+            <GeneralInformation dispensary={dispensary} />
+          </ErrorBoundary>
+        </div>
       </div>
     </div>
   );

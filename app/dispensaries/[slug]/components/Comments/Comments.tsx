@@ -43,7 +43,7 @@ const Comments = async (props: Props) => {
           comments?.length > 0 &&
           comments?.map((comment) => (
             <Link
-              href={`/strains/${comment.user.displayName}`}
+              href={`/profile/${comment.user.displayName}`}
               className="px-3 py-2 text-sm border rounded-lg shadow border-zinc-100 dark:border-zinc-500"
               key={comment.id}
             >

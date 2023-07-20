@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { Dispensary } from '@prisma/client';
 import { MdLocationPin } from 'react-icons/md';
 import Link from 'next/link';
-import { formatPhoneNumberIntl } from 'react-phone-number-input';
 
 type Props = { dispensary: Dispensary };
 
@@ -48,13 +47,17 @@ const Profile = (props: Props) => {
         </span>
       )}
       {dispensary?.phone && (
-        <span className="flex flex-col mt-3 text-sm dark:text-white">
+        <span className="flex flex-col mt-3 text-sm dark:text-white ">
           Phone number:
           <Link
-            href={`tel:${dispensary.phone}`}
             className="text-gray-400 hover:text-green-400"
+            href={`tel:${dispensary.phone}`}
           >
-            {dispensary.phone && formatPhoneNumberIntl(dispensary.phone)}
+            {dispensary?.phone &&
+              import('react-phone-number-input').then(
+                ({ formatPhoneNumberIntl }) =>
+                  formatPhoneNumberIntl(dispensary.phone as string)
+              )}
           </Link>
         </span>
       )}

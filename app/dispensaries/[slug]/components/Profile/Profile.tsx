@@ -24,7 +24,7 @@ const Profile = (props: Props) => {
             )}?d=identicon`
           }
           alt="profile"
-          className="p-3 bg-white rounded-md"
+          className="bg-white rounded-md"
           width={80}
           height={80}
         />

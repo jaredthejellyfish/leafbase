@@ -125,10 +125,14 @@ const DispensaryPage = async ({ params }: Props) => {
             <Comments dispensary={dispensary} />
           </ErrorBoundary>
 
-          <DispensaryMapDynamic
-            lat={dispensary.latitude || 0}
-            lon={dispensary.longitude || 0}
-          />
+          <ErrorBoundary fallback={<div>Error</div>}>
+            {dispensary.latitude && dispensary.longitude && (
+              <DispensaryMapDynamic
+                lat={dispensary.latitude || 0}
+                lon={dispensary.longitude || 0}
+              />
+            )}
+          </ErrorBoundary>
         </div>
         <div id="vertical 2" className="flex flex-col gap-4 pb-3 lg:w-2/3">
           <ErrorBoundary fallback={<div>Error</div>}>

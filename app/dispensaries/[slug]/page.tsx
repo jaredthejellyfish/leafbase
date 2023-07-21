@@ -10,7 +10,7 @@ import ProfileSkeleton from './components/Profile/ProfileSkeleton';
 import GeneralInformationSkeleton from './components/GeneralInformation/GeneralInformationSkeleton';
 import Menu from './components/Menu/Menu';
 import dynamic from 'next/dynamic';
-import DispensaryMapDynamic from './components/DispensaryMap/DispensaryMap';
+import DispensaryMapDynamic from './components/DispensaryMap/DispensaryMapDynamic';
 
 const Profile = dynamic(() => import('./components/Profile/Profile'), {
   ssr: false,

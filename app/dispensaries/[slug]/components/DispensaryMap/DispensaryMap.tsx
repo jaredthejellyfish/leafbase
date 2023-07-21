@@ -54,7 +54,7 @@ const DispensaryMap = (props: Props) => {
   return typeof window !== undefined || marker ? (
     <div className="h-[324px] relative z-0 flex flex-col w-full p-3 shadow-md rounded-xl dark:bg-zinc-900">
       <MapContainer
-        className="h-[300px] w-full relative rounded-xl"
+        className="h-[300px] w-full relative rounded-xl bg--gray-400"
         center={[props.lat, props.lon]}
         zoom={15}
       >

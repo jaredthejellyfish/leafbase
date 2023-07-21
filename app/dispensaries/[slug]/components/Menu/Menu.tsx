@@ -19,11 +19,7 @@ const Menu = (props: Props) => {
         <div className="flex flex-col">
           <div className="flex flex-wrap gap-2 text-xl font-semibold text-gray-800 md:gap-5 dark:text-gray-100">
             {strains.map((strain) => (
-              <MenuStrainCard
-                key={strain.id}
-                strain={strain}
-                prices={prices}
-              />
+              <MenuStrainCard key={strain.id} strain={strain} prices={prices} />
             ))}
           </div>
         </div>

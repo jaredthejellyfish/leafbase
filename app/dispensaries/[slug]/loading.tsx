@@ -70,8 +70,8 @@ const DispensaryPageLoading = () => {
       <div className="flex flex-col gap-6 lg:flex-row">
         <div id="vertical 1" className="flex flex-col gap-4 lg:w-1/3">
           <ProfileSkeleton />
-          <CommentsSkeleton />
           <DispensaryMapSkeleton />
+          <CommentsSkeleton />
         </div>
         <div id="vertical 2" className="flex flex-col gap-4 pb-3 lg:w-2/3">
           <GeneralInformationSkeleton />

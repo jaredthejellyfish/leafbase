@@ -50,7 +50,10 @@ const effectColors: Colors = {
 const MenuStrainCard = (props: Props) => {
   const { strain } = props;
   const prices = props.prices as unknown as Prices[];
-  const price = prices.length > 0 ? prices.find((price) => price.id === strain.id) : undefined;
+  const price =
+    prices.length > 0
+      ? prices.find((price) => price.id === strain.id)
+      : undefined;
   const cannabinoids = strain.cannabinoids as unknown as Cannabinoids;
 
   return (

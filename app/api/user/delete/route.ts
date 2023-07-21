@@ -6,7 +6,7 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   try {
     const session = await getServerSession(authOptions);
-    console.log('session', session);
+
     if (!session?.user?.email)
       throw new Error('User is not logged in or session expired.');
 
@@ -15,7 +15,7 @@ export async function GET() {
         email: session?.user?.email,
       },
     });
-    console.log('user', user);
+
     if (!user) throw new Error('User not found.');
 
     return NextResponse.json({ result: 'success' });

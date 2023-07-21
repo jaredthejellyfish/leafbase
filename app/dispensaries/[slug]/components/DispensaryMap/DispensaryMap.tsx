@@ -49,12 +49,14 @@ const DispensaryMap = (props: Props) => {
     );
   }, [props.lat, props.lon]);
 
+  if (props.lat === 0 && props.lon === 0) return null;
+
   return typeof window !== undefined || marker ? (
     <div className="h-[324px] relative z-0 flex flex-col w-full p-3 shadow-md rounded-xl dark:bg-zinc-900">
       <MapContainer
         className="h-[300px] w-full relative rounded-xl"
         center={[props.lat, props.lon]}
-        zoom={11}
+        zoom={15}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

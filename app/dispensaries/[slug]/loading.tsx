@@ -4,6 +4,7 @@ import ProfileSkeleton from './components/Profile/ProfileSkeleton';
 import CommentsSkeleton from './components/Comments/CommentsSkeleton';
 import GeneralInformationSkeleton from './components/GeneralInformation/GeneralInformationSkeleton';
 import DispensaryMapSkeleton from './components/DispensaryMap/DispensaryMapSkeleton';
+import MenuSkeleton from './components/Menu/MenuSkeleton';
 
 const DispensaryPageLoading = () => {
   return (
@@ -74,6 +75,7 @@ const DispensaryPageLoading = () => {
         </div>
         <div id="vertical 2" className="flex flex-col gap-4 pb-3 lg:w-2/3">
           <GeneralInformationSkeleton />
+          <MenuSkeleton />
         </div>
       </div>
     </div>

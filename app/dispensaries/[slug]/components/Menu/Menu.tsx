@@ -1,12 +1,6 @@
 import React from 'react';
 import { Prisma, Strain } from '@prisma/client';
-import dynamic from 'next/dynamic';
-import MenuStrainCardSkeleton from './MenuStrainCardSkeleton';
-
-const MenuStrainCard = dynamic(() => import('./MenuStrainCard'), {
-  ssr: false,
-  loading: () => <MenuStrainCardSkeleton />,
-});
+import MenuStrainCard from './MenuStrainCard';
 
 type Props = {
   strains: Strain[];
@@ -28,7 +22,7 @@ const Menu = (props: Props) => {
               <MenuStrainCard
                 key={strain.id}
                 strain={strain}
-                prices={prices[0]}
+                prices={prices}
               />
             ))}
           </div>

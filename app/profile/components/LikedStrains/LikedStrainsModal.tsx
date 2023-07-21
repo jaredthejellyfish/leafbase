@@ -105,7 +105,6 @@ const LikedStrainsModal = (props: Props) => {
       },
       datalabels: {
         formatter: function (value: Value, context: Context) {
-          console.log('v', typeof value);
           return context.dataset.label;
         },
         display: true,

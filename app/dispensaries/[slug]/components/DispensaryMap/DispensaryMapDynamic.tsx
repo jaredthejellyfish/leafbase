@@ -15,9 +15,7 @@ const DispensaryMap = dynamic(() => import('./DispensaryMap'), {
 });
 
 const DispensaryMapDynamic = (props: Props) => {
-  return (
-    <DispensaryMap lat={props.lat} lon={props.lon} />
-  );
+  return <DispensaryMap lat={props.lat} lon={props.lon} />;
 };
 
 export default DispensaryMapDynamic;

@@ -57,9 +57,11 @@ const Profile = (props: Props) => {
             href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
               dispensary?.address || 'Unknown'
             )}`}
-            className="overflow-hidden text-zinc-400 hover:text-green-400 overflow-ellipsis"
+            className="text-zinc-400 hover:text-green-400"
           >
-            {dispensary?.address}, {dispensary?.city}
+            <div id="span-thing" className="truncate">
+              {`Addy is what gurl?? ${dispensary?.address}`}
+            </div>
           </Link>
         </span>
       </span>

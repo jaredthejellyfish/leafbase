@@ -102,7 +102,7 @@ const StrainCard = (props: Props) => {
         <div className="flex flex-row gap-4 px-1 text-xs text-zinc-500 dark:text-zinc-300">
           <span className="">THC {props.thcPercent && props.thcPercent}%</span>
           <span className="">
-            CBD:{' '}
+            CBD:
             {props.cannabinoids
               ? props.cannabinoids.cbd.percentile50
               : 'unknown'}

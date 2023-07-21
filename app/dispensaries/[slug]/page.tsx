@@ -5,11 +5,12 @@ import prisma from '@/lib/prisma';
 import { Metadata } from 'next/types';
 import { ErrorBoundary } from 'react-error-boundary';
 import Comments from './components/Comments/Comments';
-
+import 'leaflet/dist/leaflet.css';
 import ProfileSkeleton from './components/Profile/ProfileSkeleton';
 import GeneralInformationSkeleton from './components/GeneralInformation/GeneralInformationSkeleton';
-
+import Menu from './components/Menu/Menu';
 import dynamic from 'next/dynamic';
+import DispensaryMapDynamic from './components/DispensaryMap/DispensaryMap';
 
 const Profile = dynamic(() => import('./components/Profile/Profile'), {
   ssr: false,
@@ -123,10 +124,23 @@ const DispensaryPage = async ({ params }: Props) => {
           <ErrorBoundary fallback={<div>Error</div>}>
             <Comments dispensary={dispensary} />
           </ErrorBoundary>
+
+          <DispensaryMapDynamic
+            lat={dispensary.latitude || 0}
+            lon={dispensary.longitude || 0}
+          />
         </div>
         <div id="vertical 2" className="flex flex-col gap-4 pb-3 lg:w-2/3">
           <ErrorBoundary fallback={<div>Error</div>}>
-            <GeneralInformation dispensary={dispensary} />
+            <GeneralInformation
+              description={dispensary?.description || undefined}
+            />
+          </ErrorBoundary>
+          <ErrorBoundary fallback={<div>Error</div>}>
+            <Menu
+              prices={dispensary.menus[0].prices}
+              strains={dispensary.menus[0].strains}
+            />
           </ErrorBoundary>
         </div>
       </div>

@@ -27,7 +27,7 @@ const Modal = (props: Props) => {
               duration: 0.2,
             },
           }}
-          className="fixed top-0 left-0 z-10 flex items-center justify-center w-full h-full bg-black/60"
+          className="fixed left-0 z-10 flex items-center justify-center w-full h-full top-8 sm:top-0 bg-black/60"
         >
           <div
             className={`relative flex flex-col w-full px-8 py-4 mx-3 bg-white sm:px-10 rounded-xl dark:bg-zinc-900 ${props.containerClasses}`}

@@ -69,12 +69,12 @@ const LikedStrains = async () => {
             You haven&apos;t liked any strains yet!
           </div>
         ) : (
-          <div className="flex flex-row flex-wrap items-start justify-center mt-3 md:justify-start gap-y-3">
+          <div className="flex flex-row flex-wrap items-start justify-center mt-3 sm:justify-start gap-x-1 gap-y-1 sm:gap-x-3 sm:gap-y-3">
             {strains &&
               strains.map((strain: Strain) => (
                 <Link
                   key={strain.id}
-                  className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600"
+                  className="flex flex-col gap-2 p-2 border rounded shadow dark:border-zinc-600"
                   href={`/strains/${strain.slug}`}
                 >
                   <div className="flex items-center justify-center bg-white rounded-md aspect-square max-h-24 max-w-24">
@@ -94,7 +94,7 @@ const LikedStrains = async () => {
               ))}
           </div>
         )}
-      </div>{' '}
+      </div>
     </div>
   );
 };

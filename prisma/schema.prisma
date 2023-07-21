@@ -74,8 +74,8 @@ model VerificationToken {
 }
 
 model Strain {
-  id               String    @id @default(cuid())
-  slug             String    @unique
+  id               String           @id @default(cuid())
+  slug             String           @unique
   name             String?
   subtitle         String?
   category         String?
@@ -94,20 +94,23 @@ model Strain {
   likes            Like[]
   comments         Comment[]
   mixers           Mixer[]
+  DispensaryMenus  DispensaryMenu[]
+  dispensaryMenuId String?
 
   @@map("strains")
 }
 
 model Mixer {
-  id             String @id @default(cuid())
+  id             String   @id @default(cuid())
   strainId       String
-  strain         Strain @relation(fields: [strainId], references: [id], onDelete: Cascade)
+  strain         Strain   @relation(fields: [strainId], references: [id], onDelete: Cascade)
   name           String
   recommendation String
   slug           String
   nugImage       String
   averageRating  Float
   category       String
+  createdAt      DateTime @default(now())
 
   @@map("mixers")
 }
@@ -166,6 +169,8 @@ model Dispensary {
   comments      DispensaryComment[]
   subscriptions DispensarySubscription[]
   menus         DispensaryMenu[]
+  createdAt     DateTime                 @default(now())
+  updatedAt     DateTime                 @updatedAt
 
   @@map("dispensaries")
 }
@@ -200,6 +205,7 @@ model DispensarySubscription {
   dispensaryId String
   user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   dispensary   Dispensary @relation(fields: [dispensaryId], references: [id], onDelete: Cascade)
+  createdAt    DateTime   @default(now())
 
   @@map("dispensary_subscriptions")
 }
@@ -208,7 +214,9 @@ model DispensaryMenu {
   id           String     @id @default(cuid())
   dispensaryId String
   dispensary   Dispensary @relation(fields: [dispensaryId], references: [id], onDelete: Cascade)
-  menu         Json
+  strains      Strain[]
+  prices       Json[]
+  createdAt    DateTime   @default(now())
 
   @@map("dispensary_menus")
 }

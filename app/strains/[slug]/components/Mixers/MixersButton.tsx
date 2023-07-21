@@ -4,9 +4,9 @@ import { StrainExtended } from '@/types/interfaces';
 import React, { useState, useEffect, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
-import StarRating from '../../../../../components/StarRating/StarRating';
+import StarRating from '@/components/StarRating/StarRating';
 import Link from 'next/link';
-import Modal from '../../../../../components/Modal/Modal';
+import Modal from '@/components/Modal/Modal';
 import { FiMoreVertical } from 'react-icons/fi';
 
 type Props = { strain: StrainExtended };

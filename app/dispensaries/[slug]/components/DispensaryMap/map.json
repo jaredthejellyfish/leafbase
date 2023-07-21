@@ -1,0 +1,259 @@
+{
+  "type": "FeatureCollection",
+  "query": ["c", "de", "casanova", "112", "08036", "barcelona"],
+  "features": [
+    {
+      "id": "address.97476850913300",
+      "type": "Feature",
+      "place_type": ["address"],
+      "relevance": 1,
+      "properties": {
+        "accuracy": "rooftop",
+        "mapbox_id": "dXJuOm1ieGFkcjo2MzM5MDgyOS1iZWM0LTQyMzEtOGZmMC02MTJhNDViY2I0YjM"
+      },
+      "text": "Carrer De Casanova",
+      "place_name": "Carrer De Casanova 112, 08036 Barcelona, Barcelona, Spain",
+      "center": [2.15595, 41.387657],
+      "geometry": {"type": "Point", "coordinates": [2.15595, 41.387657]},
+      "address": "112",
+      "context": [
+        {
+          "id": "neighborhood.6081606",
+          "mapbox_id": "dXJuOm1ieHBsYzpYTXhH",
+          "wikidata": "Q3291762",
+          "text": "L'Antiga Esquerra de l'Eixample"
+        },
+        {
+          "id": "postcode.9293382",
+          "mapbox_id": "dXJuOm1ieHBsYzpqYzVH",
+          "text": "08036"
+        },
+        {
+          "id": "locality.125372998",
+          "mapbox_id": "dXJuOm1ieHBsYzpCM2tLUmc",
+          "text": "Eixample"
+        },
+        {
+          "id": "place.7727174",
+          "mapbox_id": "dXJuOm1ieHBsYzpkZWhH",
+          "wikidata": "Q1492",
+          "text": "Barcelona"
+        },
+        {
+          "id": "region.296006",
+          "mapbox_id": "dXJuOm1ieHBsYzpCSVJH",
+          "wikidata": "Q81949",
+          "short_code": "ES-B",
+          "text": "Barcelona"
+        },
+        {
+          "id": "country.8774",
+          "mapbox_id": "dXJuOm1ieHBsYzpJa1k",
+          "wikidata": "Q29",
+          "short_code": "es",
+          "text": "Spain"
+        }
+      ]
+    },
+    {
+      "id": "address.8866769148389752",
+      "type": "Feature",
+      "place_type": ["address"],
+      "relevance": 0.833333,
+      "properties": {
+        "accuracy": "interpolated",
+        "mapbox_id": "dXJuOm1ieGFkcjo1MzJhNWUxNC04MGJhLTQyMGUtYmIyZS0xMGZlMWY0YTNiYmI"
+      },
+      "text": "Carrer De Casanova",
+      "place_name": "Carrer De Casanova 112, 08901 L'Hospitalet De Llobregat, Barcelona, Spain",
+      "center": [2.104804, 41.361085],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [2.104804, 41.361085],
+        "interpolated": true,
+        "omitted": true
+      },
+      "address": "112",
+      "context": [
+        {
+          "id": "postcode.11947590",
+          "mapbox_id": "dXJuOm1ieHBsYzp0azVH",
+          "text": "08901"
+        },
+        {
+          "id": "place.33007686",
+          "mapbox_id": "dXJuOm1ieHBsYzpBZmVvUmc",
+          "wikidata": "Q15470",
+          "text": "L'Hospitalet De Llobregat"
+        },
+        {
+          "id": "region.296006",
+          "mapbox_id": "dXJuOm1ieHBsYzpCSVJH",
+          "wikidata": "Q81949",
+          "short_code": "ES-B",
+          "text": "Barcelona"
+        },
+        {
+          "id": "country.8774",
+          "mapbox_id": "dXJuOm1ieHBsYzpJa1k",
+          "wikidata": "Q29",
+          "short_code": "es",
+          "text": "Spain"
+        }
+      ]
+    },
+    {
+      "id": "address.3008934267802722",
+      "type": "Feature",
+      "place_type": ["address"],
+      "relevance": 0.772745,
+      "properties": {
+        "accuracy": "interpolated",
+        "mapbox_id": "dXJuOm1ieGFkcjoyNzk5NDJmOC1kZmQ1LTRmMzAtYjkxYS0yN2U3NjEzNjdjOGE"
+      },
+      "text": "Carrer De Montserrat De Casanovas",
+      "place_name": "Carrer De Montserrat De Casanovas 112, 08032 Barcelona, Barcelona, Spain",
+      "center": [2.164127, 41.423565],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [2.164127, 41.423565],
+        "interpolated": true
+      },
+      "address": "112",
+      "context": [
+        {
+          "id": "neighborhood.5811270",
+          "mapbox_id": "dXJuOm1ieHBsYzpXS3hH",
+          "wikidata": "Q3297889",
+          "text": "La Font d'en Fargues"
+        },
+        {
+          "id": "postcode.9260614",
+          "mapbox_id": "dXJuOm1ieHBsYzpqVTVH",
+          "text": "08032"
+        },
+        {
+          "id": "locality.169683526",
+          "mapbox_id": "dXJuOm1ieHBsYzpDaDBxUmc",
+          "wikidata": "Q1771488",
+          "text": "Horta-Guinardó"
+        },
+        {
+          "id": "place.7727174",
+          "mapbox_id": "dXJuOm1ieHBsYzpkZWhH",
+          "wikidata": "Q1492",
+          "text": "Barcelona"
+        },
+        {
+          "id": "region.296006",
+          "mapbox_id": "dXJuOm1ieHBsYzpCSVJH",
+          "wikidata": "Q81949",
+          "short_code": "ES-B",
+          "text": "Barcelona"
+        },
+        {
+          "id": "country.8774",
+          "mapbox_id": "dXJuOm1ieHBsYzpJa1k",
+          "wikidata": "Q29",
+          "short_code": "es",
+          "text": "Spain"
+        }
+      ]
+    },
+    {
+      "id": "address.1245606954309680",
+      "type": "Feature",
+      "place_type": ["address"],
+      "relevance": 0.740741,
+      "properties": {
+        "accuracy": "interpolated",
+        "mapbox_id": "dXJuOm1ieGFkcjo2YTg1YTNkYy0xYzZkLTRlYzMtOWEyZi1mYmEyMmRhNDJiYzg"
+      },
+      "text": "Carrer De Casanova",
+      "place_name": "Carrer De Casanova 112, 08757 Corbera de Llobregat, Barcelona, Spain",
+      "center": [1.922646, 41.408724],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [1.922646, 41.408724],
+        "interpolated": true,
+        "omitted": true
+      },
+      "address": "112",
+      "context": [
+        {
+          "id": "postcode.11554374",
+          "mapbox_id": "dXJuOm1ieHBsYzpzRTVH",
+          "text": "08757"
+        },
+        {
+          "id": "place.18253894",
+          "mapbox_id": "dXJuOm1ieHBsYzpBUmFJUmc",
+          "wikidata": "Q15601",
+          "text": "Corbera de Llobregat"
+        },
+        {
+          "id": "region.296006",
+          "mapbox_id": "dXJuOm1ieHBsYzpCSVJH",
+          "wikidata": "Q81949",
+          "short_code": "ES-B",
+          "text": "Barcelona"
+        },
+        {
+          "id": "country.8774",
+          "mapbox_id": "dXJuOm1ieHBsYzpJa1k",
+          "wikidata": "Q29",
+          "short_code": "es",
+          "text": "Spain"
+        }
+      ]
+    },
+    {
+      "id": "address.4510502463257884",
+      "type": "Feature",
+      "place_type": ["address"],
+      "relevance": 0.737037,
+      "properties": {
+        "accuracy": "interpolated",
+        "mapbox_id": "dXJuOm1ieGFkcjoxOGZkNjQ1ZC04YzNjLTRlYTQtYjNjYi05Mzk4MDc5MmNkMzk"
+      },
+      "text": "Carrer De Rafael Casanova",
+      "place_name": "Carrer De Rafael Casanova 112, 08921 Santa Coloma de Gramenet, Barcelona, Spain",
+      "center": [2.215707, 41.451204],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [2.215707, 41.451204],
+        "interpolated": true,
+        "omitted": true
+      },
+      "address": "112",
+      "context": [
+        {
+          "id": "postcode.12078662",
+          "mapbox_id": "dXJuOm1ieHBsYzp1RTVH",
+          "text": "08921"
+        },
+        {
+          "id": "place.51234886",
+          "mapbox_id": "dXJuOm1ieHBsYzpBdzNJUmc",
+          "wikidata": "Q15473",
+          "text": "Santa Coloma de Gramenet"
+        },
+        {
+          "id": "region.296006",
+          "mapbox_id": "dXJuOm1ieHBsYzpCSVJH",
+          "wikidata": "Q81949",
+          "short_code": "ES-B",
+          "text": "Barcelona"
+        },
+        {
+          "id": "country.8774",
+          "mapbox_id": "dXJuOm1ieHBsYzpJa1k",
+          "wikidata": "Q29",
+          "short_code": "es",
+          "text": "Spain"
+        }
+      ]
+    }
+  ],
+  "attribution": "NOTICE: © 2023 Mapbox and its suppliers. All rights reserved. Use of this data is subject to the Mapbox Terms of Service (https://www.mapbox.com/about/maps/). This response and the information it contains may not be retained. POI(s) provided by Foursquare."
+}

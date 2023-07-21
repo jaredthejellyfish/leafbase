@@ -105,7 +105,7 @@ const StrainSoma = (props: Props) => {
     <div className="flex flex-col gap-2 p-2 px-3 border rounded border-zinc-200 dark:border-zinc-600 dark:bg-zinc-800 md:mt-7">
       <h3 className="text-sm font-bold uppercase">Strain soma</h3>
       <div className="flex flex-row flex-wrap items-center w-full gap-2 text-xs">
-        <FiThumbsUp size={12} />{' '}
+        <FiThumbsUp size={12} />
         <p className="hidden sm:hidden md:block xl:block">Feelings:</p>
         <div className="flex flex-row flex-wrap gap-y-2 gap-x-2">
           {topThreeEffects.map((effect) => (

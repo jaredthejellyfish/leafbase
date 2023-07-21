@@ -1,0 +1,25 @@
+{
+  "flower": [
+    {
+      "slug": "jealousy",
+      "name": "Jealousy",
+      "thc": 18,
+      "cbd": 0.1,
+      "ppg": 10
+    },
+    {
+      "slug": "gsc",
+      "name": "Girl Scout Cookies",
+      "thc": 18,
+      "cbd": 0.1,
+      "ppg": 10
+    },
+    {
+      "slug": "gg4",
+      "name": "Gorilla Glue #4",
+      "thc": 18,
+      "cbd": 0.1,
+      "ppg": 10
+    }
+  ]
+}

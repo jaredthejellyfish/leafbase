@@ -3,6 +3,7 @@ import React from 'react';
 import ProfileSkeleton from './components/Profile/ProfileSkeleton';
 import CommentsSkeleton from './components/Comments/CommentsSkeleton';
 import GeneralInformationSkeleton from './components/GeneralInformation/GeneralInformationSkeleton';
+import DispensaryMapSkeleton from './components/DispensaryMap/DispensaryMapSkeleton';
 
 const DispensaryPageLoading = () => {
   return (
@@ -69,6 +70,7 @@ const DispensaryPageLoading = () => {
         <div id="vertical 1" className="flex flex-col gap-4 lg:w-1/3">
           <ProfileSkeleton />
           <CommentsSkeleton />
+          <DispensaryMapSkeleton />
         </div>
         <div id="vertical 2" className="flex flex-col gap-4 pb-3 lg:w-2/3">
           <GeneralInformationSkeleton />

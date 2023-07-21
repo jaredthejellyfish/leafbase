@@ -274,12 +274,12 @@ const ProfileDisplay = async (props: Props) => {
                   {user.displayName} hasn&apos;t liked any strains yet!
                 </div>
               ) : (
-                <div className="flex flex-row flex-wrap items-center justify-center mt-3 md:justify-start gap-y-3">
+                <div className="flex flex-row flex-wrap items-center justify-center mt-3 md:justify-start gap-x-1 gap-y-1 sm:gap-x-3 sm:gap-y-3">
                   {strains &&
                     strains.map((strain: ReducedStrain) => (
                       <Link
                         key={strain.id}
-                        className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600"
+                        className="flex flex-col gap-2 p-2 border rounded shadow dark:border-zinc-600"
                         href={`/strains/${strain.slug}`}
                       >
                         <div

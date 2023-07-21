@@ -6,6 +6,19 @@ const getDispensaryFromSlug = async (slug: string) => {
       where: {
         slug: slug,
       },
+      include: {
+        menus: {
+          select: {
+            createdAt: true,
+            strains: true,
+            prices: true,
+          },
+          orderBy: {
+            createdAt: 'desc',
+          },
+          take: 1,
+        },
+      },
     });
 
     return dispensary;

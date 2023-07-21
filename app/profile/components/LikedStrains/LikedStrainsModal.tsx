@@ -150,7 +150,7 @@ const LikedStrainsModal = (props: Props) => {
       <BsClipboardDataFill
         onClick={() => setIsModalOpen(!isModalOpen)}
         size={20}
-        className="inline-block mr-12 cursor-pointer text-zinc-500 dark:text-zinc-400"
+        className="inline-block cursor-pointer text-zinc-500 dark:text-zinc-400"
       />
       <Modal
         title={'Liked Strain Similarity'}

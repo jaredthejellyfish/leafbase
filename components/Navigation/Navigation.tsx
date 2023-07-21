@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import md5 from 'md5';
 import { User } from '@prisma/client';
 
 import { getServerSession } from 'next-auth';

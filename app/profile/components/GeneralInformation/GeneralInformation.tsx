@@ -1,7 +1,7 @@
 'use client';
 
-import { User } from '@prisma/client';
 import React from 'react';
+import { User } from '@prisma/client';
 import { format } from 'date-fns';
 
 type Props = {
@@ -25,16 +25,20 @@ const GeneralInformation = (props: Props) => {
           user?.aboutMe && 'mt-6'
         } md:flex-row md:w-4/5`}
       >
-        <span className="mt-3 text-sm dark:text-white">
-          Birthday:
-          <p className="text-gray-400 w-60">
-            {`${user.birthDate && format(new Date(user?.birthDate), 'PP')}`}
-          </p>
-        </span>
-        <span className="mt-3 text-sm dark:text-white">
-          Languages:
-          <p className="text-gray-400 w-60">{user?.languages}</p>
-        </span>
+        {user.birthDate && (
+          <span className="mt-3 text-sm dark:text-white">
+            Birthday:
+            <p className="text-gray-400 w-60">
+              {`${format(new Date(user?.birthDate), 'PP')}`}
+            </p>
+          </span>
+        )}
+        {user.languages && (
+          <span className="mt-3 text-sm dark:text-white">
+            Languages:
+            <p className="text-gray-400 w-60">{user?.languages}</p>
+          </span>
+        )}
       </div>
     </div>
   );

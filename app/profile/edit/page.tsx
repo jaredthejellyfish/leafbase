@@ -9,8 +9,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { AiOutlineClose } from 'react-icons/ai';
 import UserProfileLoading from './loading';
-import md5 from 'md5';
-import { User } from '@prisma/client';
+import generateGravatarUrl from '@/utils/generateGravatarUrl';
 import dynamic from 'next/dynamic';
 import { format } from 'date-fns';
 import 'react-phone-number-input/style.css';
@@ -42,13 +41,6 @@ const DeleteAccount = dynamic(
     ),
   }
 );
-
-const generateGravatarUrl = (user: User): string => {
-  if (user?.image) return user.image;
-  return `https://www.gravatar.com/avatar/${md5(
-    user?.name || 'NaN'
-  )}?d=identicon`;
-};
 
 const EditProfile = () => {
   const { user, isLoading, isFetching } = useUser();

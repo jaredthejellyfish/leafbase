@@ -8,16 +8,9 @@ import { User } from '@prisma/client';
 import Link from 'next/link';
 import SingOutButton from '../SingOutButton/SingOutButton';
 
-import md5 from 'md5';
+import generateGravatarUrl from '@/utils/generateGravatarUrl';
 
 type Props = { user: User };
-
-const generateGravatarUrl = (user: User): string => {
-  if (user?.image) return user.image;
-  return `https://www.gravatar.com/avatar/${md5(
-    user?.name || 'NaN'
-  )}?d=identicon`;
-};
 
 const Profile = (props: Props) => {
   const { user } = props;
@@ -30,12 +23,14 @@ const Profile = (props: Props) => {
       >
         <AiFillEdit size={20} />
       </Link>
-      <Link
-        className="absolute top-6 right-16 text-zinc-200"
-        href={`/profile/${user.displayName}`}
-      >
-        <AiFillEye size={20} />
-      </Link>
+      {user.displayName && (
+        <Link
+          className="absolute top-6 right-16 text-zinc-200"
+          href={`/profile/${user.displayName}`}
+        >
+          <AiFillEye size={20} />
+        </Link>
+      )}
       <Image
         src={generateGravatarUrl(user as User)}
         alt="profile"
@@ -64,20 +59,24 @@ const Profile = (props: Props) => {
         </span>
       )}
 
-      <span className="mt-3 text-sm dark:text-white">
-        Email Address:
-        <p className="text-gray-400">{user?.email}</p>
-      </span>
-      <span className="flex flex-col mt-3 text-sm dark:text-white">
-        Phone number:
-        <span className="text-gray-400">
-          {user?.phone &&
-            import('react-phone-number-input').then(
-              ({ formatPhoneNumberIntl }) =>
-                formatPhoneNumberIntl(user?.phone as string)
-            )}
+      {user.email && (
+        <span className="mt-3 text-sm dark:text-white">
+          Email Address:
+          <p className="text-gray-400">{user?.email}</p>
         </span>
-      </span>
+      )}
+      {user.phone && (
+        <span className="flex flex-col mt-3 text-sm dark:text-white">
+          Phone number:
+          <span className="text-gray-400">
+            {user?.phone &&
+              import('react-phone-number-input').then(
+                ({ formatPhoneNumberIntl }) =>
+                  formatPhoneNumberIntl(user?.phone as string)
+              )}
+          </span>
+        </span>
+      )}
       <SingOutButton />
     </div>
   );

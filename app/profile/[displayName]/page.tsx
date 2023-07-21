@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { format } from 'date-fns';
 import ProfileRevalidator from '../components/ProfileRevalidator/ProfileRevalidator';
 import { User, Like } from '@prisma/client';
-import md5 from 'md5';
+import generateGravatarUrl from '@/utils/generateGravatarUrl';
 import prisma from '@/lib/prisma';
 import { Metadata } from 'next';
 import useServerComments from '@/hooks/useServerComments';
@@ -39,13 +39,6 @@ interface Comment {
   strain: StrainName;
   likes?: Like[];
 }
-
-const generateGravatarUrl = (user: User): string => {
-  if (user?.image) return user.image;
-  return `https://www.gravatar.com/avatar/${md5(
-    user.name || 'NaN'
-  )}?d=identicon`;
-};
 
 const getLikesByUUID = async (userId: string) => {
   try {

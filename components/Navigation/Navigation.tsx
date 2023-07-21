@@ -13,13 +13,7 @@ import SiteLogo from '../SiteLogo/SiteLogo';
 import NavigationThemeSelect from './NavigationThemeSelect';
 import NavigationHamburgerMenu from './NavigationHamburgerMenu';
 import NavigationDropdown from './NavigationDropdown';
-
-const generateGravatarUrl = (user: User): string => {
-  if (user?.image) return user.image;
-  return `https://www.gravatar.com/avatar/${md5(
-    user?.name || 'NaN'
-  )}?d=identicon`;
-};
+import generateGravatarUrl from '@/utils/generateGravatarUrl';
 
 const Navigation = async () => {
   const user = await useServerUser();

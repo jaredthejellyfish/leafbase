@@ -10,13 +10,6 @@ import md5 from 'md5';
 
 type Props = { dispensary: Dispensary };
 
-const generateGravatarUrl = (dispensary: Dispensary): string => {
-  if (dispensary?.logo) return dispensary.logo;
-  return `https://www.gravatar.com/avatar/${md5(
-    dispensary?.name || 'NaN'
-  )}?d=identicon`;
-};
-
 const Profile = (props: Props) => {
   const { dispensary } = props;
 
@@ -24,7 +17,12 @@ const Profile = (props: Props) => {
     <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
       <div className="flex flex-row items-center gap-4">
         <Image
-          src={dispensary?.logo || generateGravatarUrl(dispensary)}
+          src={
+            dispensary?.logo ||
+            `https://www.gravatar.com/avatar/${md5(
+              dispensary?.name || 'NaN'
+            )}?d=identicon`
+          }
           alt="profile"
           className="p-3 bg-white rounded-md"
           width={80}

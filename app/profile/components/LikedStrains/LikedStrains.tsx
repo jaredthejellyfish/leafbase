@@ -52,45 +52,49 @@ const LikedStrains = async () => {
   const user = (await useServerUser()) as User;
   const strains = await getLikedStrains(user);
 
-  return (
-    <div>
-      <div className="flex flex-row items-center gap-5 text-xl font-bold">
-        <p className="">Liked Strains ({strains?.length})</p>
-        <ErrorBoundary fallback={<span>error :C</span>}>
-          <LikedStrainsModal strains={strains} />
-        </ErrorBoundary>
-      </div>
+  if (strains.length < 1) return null;
 
-      {strains && strains.length === 0 ? (
-        <div className="mt-6 text-sm text-semi text-zinc-400">
-          You haven&apos;t liked any strains yet!
+  return (
+    <div className="flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
+      <div>
+        <div className="flex flex-row items-center gap-5 text-xl font-bold">
+          <p className="">Liked Strains ({strains?.length})</p>
+          <ErrorBoundary fallback={<span>error :C</span>}>
+            <LikedStrainsModal strains={strains} />
+          </ErrorBoundary>
         </div>
-      ) : (
-        <div className="flex flex-row flex-wrap items-start justify-center mt-3 md:justify-start gap-y-3">
-          {strains &&
-            strains.map((strain: Strain) => (
-              <Link
-                key={strain.id}
-                className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600"
-                href={`/strains/${strain.slug}`}
-              >
-                <div className="flex items-center justify-center bg-white rounded-md aspect-square max-h-24 max-w-24">
-                  <Image
-                    src={strain.nugImage}
-                    className="rounded-md"
-                    alt={strain.name}
-                    width={90}
-                    height={90}
-                    priority={true}
-                  />
-                </div>
-                <h1 className="w-20 text-sm truncate text-semi">
-                  {strain.name}
-                </h1>
-              </Link>
-            ))}
-        </div>
-      )}
+
+        {strains && strains.length === 0 ? (
+          <div className="mt-6 text-sm text-semi text-zinc-400">
+            You haven&apos;t liked any strains yet!
+          </div>
+        ) : (
+          <div className="flex flex-row flex-wrap items-start justify-center mt-3 md:justify-start gap-y-3">
+            {strains &&
+              strains.map((strain: Strain) => (
+                <Link
+                  key={strain.id}
+                  className="flex flex-col gap-2 p-2 mr-3 border rounded shadow dark:border-zinc-600"
+                  href={`/strains/${strain.slug}`}
+                >
+                  <div className="flex items-center justify-center bg-white rounded-md aspect-square max-h-24 max-w-24">
+                    <Image
+                      src={strain.nugImage}
+                      className="rounded-md"
+                      alt={strain.name}
+                      width={90}
+                      height={90}
+                      priority={true}
+                    />
+                  </div>
+                  <h1 className="w-20 text-sm truncate text-semi">
+                    {strain.name}
+                  </h1>
+                </Link>
+              ))}
+          </div>
+        )}
+      </div>{' '}
     </div>
   );
 };

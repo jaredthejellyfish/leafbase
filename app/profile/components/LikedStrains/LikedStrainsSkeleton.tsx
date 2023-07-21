@@ -1,7 +1,7 @@
 import { BsClipboardDataFill } from 'react-icons/bs';
 
 const LikedStrainsSkeleton = () => (
-  <>
+  <div className="flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
     <div className="flex flex-row items-center gap-8 text-xl font-bold">
       <p>Liked Strains ( )</p>
       <BsClipboardDataFill size={20} className="inline-block mr-12" />
@@ -62,7 +62,7 @@ const LikedStrainsSkeleton = () => (
         </h1>
       </div>
     </div>
-  </>
+  </div>
 );
 
 export default LikedStrainsSkeleton;

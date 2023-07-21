@@ -4,7 +4,6 @@ import Providers from '@/lib/Providers';
 import ClientToast from '@/lib/ClientToast';
 import Navigation from '@/components/Navigation/Navigation';
 import { cookies } from 'next/headers';
-import { Analytics } from '@vercel/analytics/react';
 import OfflineBadge from '@/components/offline-badge/OfflineBadge';
 import Hotjar from '@/lib/Hotjar';
 
@@ -34,7 +33,6 @@ export default function RootLayout({
             <ClientToast />
             <OfflineBadge />
           </div>
-          <Analytics />
           <Hotjar />
         </Providers>
       </body>

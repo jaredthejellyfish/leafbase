@@ -170,3 +170,5 @@ dist
 all_strains.json
 leafbase.strains.json
 strain_vectors.npy
+
+*.json

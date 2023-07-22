@@ -13,13 +13,9 @@ const NavigationHamburgerMenu = () => {
   ).isNavDropdownOpen;
   const [isOpen, setIsOpen] = useState(currentOpenStatus);
 
-  useEffect(() => {
-    setIsOpen(currentOpenStatus);
-  }, [currentOpenStatus]);
-
   const handleBurgerClick = () => {
-    dispatch(setNavDropdownOpen(!isOpen));
     setIsOpen(!isOpen);
+    dispatch(setNavDropdownOpen(!isOpen));
   };
 
   const hamburgerMenu = {

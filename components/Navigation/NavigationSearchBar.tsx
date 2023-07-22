@@ -18,7 +18,11 @@ const generateStrainUrl = (strainSlug: string) => {
   return `/strains/${strainSlug}`;
 };
 
-const NavigationSearchBar = () => {
+interface Props {
+  containerClassName?: string;
+}
+
+const NavigationSearchBar = (props: Props) => {
   const [search, setSearch] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -40,11 +44,11 @@ const NavigationSearchBar = () => {
 
   return (
     <>
-      <div className="pl-4 py-1.5 pr-5 flex-row gap-3 bg-white rounded text-black hidden md:flex dark:bg-zinc-800 items-center">
+      <div className={props.containerClassName}>
         <input
           value={search}
           placeholder="Search..."
-          className="bg-transparent focus:outline-none dark:text-white md:w-46 xl:w-80"
+          className="w-full bg-transparent focus:outline-none dark:text-white"
           onChange={(e) => debouncedHandleChange(e.target.value)}
         ></input>
         <BsSearch className="text-zinc-400/80 dark:text-gray-400" size={20} />

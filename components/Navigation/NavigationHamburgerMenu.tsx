@@ -13,9 +13,13 @@ const NavigationHamburgerMenu = () => {
   ).isNavDropdownOpen;
   const [isOpen, setIsOpen] = useState(currentOpenStatus);
 
+  useEffect(() => {
+    setIsOpen(currentOpenStatus);
+  }, [currentOpenStatus]);
+
   const handleBurgerClick = () => {
     setIsOpen(!isOpen);
-    dispatch(setNavDropdownOpen(!isOpen));
+    dispatch(setNavDropdownOpen(!currentOpenStatus));
   };
 
   const hamburgerMenu = {
@@ -42,6 +46,7 @@ const NavigationHamburgerMenu = () => {
       viewBox="0 0 20 20"
       xmlns="http://www.w3.org/2000/svg"
       onClick={() => handleBurgerClick()}
+      id="hamburger-button"
     >
       <motion.path
         variants={hamburgerMenu.top}

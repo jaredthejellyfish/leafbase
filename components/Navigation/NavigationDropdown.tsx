@@ -31,9 +31,12 @@ const NavigationDropdown = () => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      const burgerButton = document.getElementById('hamburger-button');
       if (
         dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
+        !dropdownRef.current.contains(event.target as Node) &&
+        burgerButton &&
+        !burgerButton.contains(event.target as Node)
       ) {
         dispatch(setNavDropdownOpen(false));
       }
@@ -43,7 +46,7 @@ const NavigationDropdown = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [dispatch]);
+  }, [dispatch, isOpen]);
 
   const navigationMenu = {
     container: {
@@ -152,7 +155,15 @@ const NavigationDropdown = () => {
           initial="closed"
           animate={isOpen ? 'open' : 'closed'}
         >
-          Company
+          <Link
+            href="/dispensaries"
+            className={`w-full ${
+              pathName === '/dispensaries' ? 'text-green-500' : ''
+            }`}
+            onClick={() => dispatch(setNavDropdownOpen(!isOpen))}
+          >
+            Dispensaries
+          </Link>
         </motion.div>
         <motion.div
           className="flex items-center justify-start w-full h-10 py-5 pl-3.5 text-lg font-medium transition-colors cursor-pointer md:pl-10 hover:background-slate-200 dark:hover:bg-zinc-800"

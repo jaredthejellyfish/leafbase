@@ -53,10 +53,6 @@ const StrainLoader = ({ filter }: { filter?: string }) => {
     }
   }, [inView, fetchNextPage, isFetchingNextPage]);
 
-  if (!user?.user?.id) {
-    return null;
-  }
-
   if (error) {
     return <div>Error loading strains</div>;
   }

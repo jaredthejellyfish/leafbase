@@ -242,12 +242,12 @@ const StrainPage = async (props: Props) => {
         id="card"
         className="relative flex flex-col items-center justify-center pb-8 border rounded shadow md:w-4/5 border-zinc-300 dark:border-transparent dark:bg-zinc-900"
       >
-        <div className="absolute transform top-6 right-5 md:right-10">
-          <StrainPageLikeButton id={strain.id} />
-        </div>
-
-        <MixersButton strain={strain} />
-
+        {user && (
+          <div className="absolute transform top-6 right-5 md:right-10">
+            <StrainPageLikeButton id={strain.id} />
+          </div>
+        )}
+        {user && <MixersButton strain={strain} />}
         <div
           id="header"
           className="flex flex-col items-center justify-center w-full gap-8 px-5 pt-8 md:flex-row md:px-8"

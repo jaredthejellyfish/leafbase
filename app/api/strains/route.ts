@@ -87,18 +87,23 @@ export async function POST(request: Request) {
 
     const session = await getServerSession(authOptions);
 
-    const user = await prisma.user.findUnique({
-      where: {
-        email: session?.user?.email || undefined,
-      },
-    });
-
-    if (!session || !user) throw new Error('Unauthorized.');
+    const user = session
+      ? await prisma.user.findUnique({
+          where: {
+            email: session?.user?.email || undefined,
+          },
+        })
+      : undefined;
 
     const count = await getCount();
     if (count === null) return new Error('Error fetching count.');
 
-    const strains = await getStrains((page - 1) * take, take, user?.id, filter);
+    const strains = user
+      ? await getStrains((page - 1) * take, take, user?.id, filter)
+      : await getStrains((page - 1) * take, take, '', filter);
+
+    console.log(strains);
+
     if (strains === null) throw new Error('Error fetching strains.');
 
     const totalPages = Math.ceil(count / take);

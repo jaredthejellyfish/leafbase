@@ -32,7 +32,19 @@ const Navigation = async () => {
         </div>
         <div className="flex items-center justify-end col-span-2 gap-4">
           {!session ? (
-            <NavigationThemeSelect />
+            <>
+              <NavigationSearchBar containerClassName="pl-4 py-1.5 pr-5 flex-row gap-3 bg-white rounded text-black hidden md:flex dark:bg-zinc-800 items-center md:w-46 xl:w-80" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="10"
+                height="20"
+                className="hidden stroke-black dark:stroke-white md:block"
+              >
+                <line x1="5" y1="0" x2="5" y2="200" strokeWidth="1.3" />
+              </svg>
+              <NavigationThemeSelect />
+              <NavigationHamburgerMenu />
+            </>
           ) : (
             <>
               <NavigationSearchBar containerClassName="pl-4 py-1.5 pr-5 flex-row gap-3 bg-white rounded text-black hidden md:flex dark:bg-zinc-800 items-center md:w-46 xl:w-80" />
@@ -55,7 +67,6 @@ const Navigation = async () => {
                   priority
                 />
               </Link>
-              <NavigationHamburgerMenu />
             </>
           )}
         </div>

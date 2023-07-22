@@ -32,7 +32,7 @@ const Navigation = async () => {
           >
             <line x1="5" y1="0" x2="5" y2="200" strokeWidth="1.3" />
           </svg>
-          <BsFillSunFill className='mx-2' />
+          <BsFillSunFill className="mx-2" />
           <div>
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
           </div>

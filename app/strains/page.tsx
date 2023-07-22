@@ -84,7 +84,7 @@ const Strains = async (request: { searchParams: { filter?: string } }) => {
                   topEffect={strain.topEffect || 'Unknown'}
                   cannabinoids={strain.cannabinoids as unknown as Cannabinoids}
                   effects={strain.effects as unknown as Effects}
-                  liked={strain.likes.length > 0}
+                  liked={strain.likes ? strain.likes.length > 0 : false}
                   priority={true}
                 />
               ))}

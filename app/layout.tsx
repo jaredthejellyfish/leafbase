@@ -4,6 +4,7 @@ import { cookies } from 'next/headers';
 import Hotjar from '@/lib/Hotjar';
 import dynamic from 'next/dynamic';
 import NavigationSkeleton from '@/components/Navigation/NavigationSkeleton';
+
 const Navigation = dynamic(() => import('@/components/Navigation/Navigation'), {
   ssr: false,
   loading: () => <NavigationSkeleton />,

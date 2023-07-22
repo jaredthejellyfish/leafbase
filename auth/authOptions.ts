@@ -51,8 +51,8 @@ const authOptions: NextAuthOptions = {
         const result = await transport.sendMail({
           to: identifier,
           from: provider.from,
-          subject: 'Sign in to leafbase.io',
-          text: 'Sign in to leafbase.io',
+          subject: 'Sign in to leafbase.xyz',
+          text: 'Sign in to leafbase.xyz',
           html: html({ url, host, theme }),
           headers: {
             'X-Entity-Ref-ID': uuidv4(),

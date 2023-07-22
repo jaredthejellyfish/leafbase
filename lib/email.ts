@@ -61,7 +61,7 @@ function html({ url, theme, host }: { url: string; host: string; theme: Theme })
                                   <p class="text"
                                     style="color:#999999;font-family:'Open Sans',Helvetica,Arial,sans-serif;font-size:14px;font-weight:400;font-style:normal;letter-spacing:normal;line-height:22px;text-transform:none;text-align:center;padding:0;margin:0">
                                     Click the button below to sign in using a magic link that will securely log you into
-                                    your account instantly. No need to remember passwords</p>
+                                    your account instantly. No need to remember passwords!</p>
                                 </td>
                               </tr>
                             </tbody>

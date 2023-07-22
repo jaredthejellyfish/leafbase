@@ -60,7 +60,7 @@ const Profile = (props: Props) => {
             className="text-zinc-400 hover:text-green-400"
           >
             <div id="span-thing" className="truncate">
-              {`Addy is what gurl?? ${dispensary?.address}`}
+              {`${dispensary?.address}, ${dispensary?.city}`}
             </div>
           </Link>
         </span>

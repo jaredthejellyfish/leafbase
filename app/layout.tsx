@@ -1,11 +1,28 @@
 import './globals.css';
 import 'react-toastify/dist/ReactToastify.css';
-import Providers from '@/lib/Providers';
-import ClientToast from '@/lib/ClientToast';
-import Navigation from '@/components/Navigation/Navigation';
 import { cookies } from 'next/headers';
-import OfflineBadge from '@/components/offline-badge/OfflineBadge';
 import Hotjar from '@/lib/Hotjar';
+import dynamic from 'next/dynamic';
+import NavigationSkeleton from '@/components/Navigation/NavigationSkeleton';
+const Navigation = dynamic(() => import('@/components/Navigation/Navigation'), {
+  ssr: false,
+  loading: () => <NavigationSkeleton />,
+});
+
+const OfflineBadge = dynamic(
+  () => import('@/components/offline-badge/OfflineBadge'),
+  {
+    ssr: false,
+  }
+);
+
+const ClientToast = dynamic(() => import('@/lib/ClientToast'), {
+  ssr: false,
+});
+
+const Providers = dynamic(() => import('@/lib/Providers'), {
+  ssr: true,
+});
 
 export const metadata = {
   title: 'Leafbase',

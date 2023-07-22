@@ -9,7 +9,7 @@ const SiteLogo = (props: Props) => {
     <Image
       src={siteLogo}
       alt="site logo"
-      className="border shadow rounded-xl border-zinc-100 dark:border-zinc-500"
+      className="border rounded-lg shadow border-zinc-100 dark:border-zinc-500"
       height={props.height || 64}
       width={props.width || 64}
     />

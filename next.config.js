@@ -22,6 +22,7 @@ const nextConfig = {
       'cdn.discordapp.com',
       'lh3.googleusercontent.com',
       'i.imgur.com',
+      'www.google.com',
     ],
   },
 };

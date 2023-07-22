@@ -65,7 +65,6 @@ const getStrainsWithUser = async (
   }
 };
 
-
 const getCount = async () => {
   try {
     const strain = await prisma.strain.count({});

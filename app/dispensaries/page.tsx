@@ -7,7 +7,7 @@ export const metadata = {
 };
 
 const Dispensaries = () => {
-  return <Link href={"/dispensaries/1up"}>1 UP</Link>;
+  return <Link href={'/dispensaries/1up'}>1 UP</Link>;
 };
 
 export default Dispensaries;

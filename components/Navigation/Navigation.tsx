@@ -14,6 +14,8 @@ import NavigationHamburgerMenu from './NavigationHamburgerMenu';
 import NavigationDropdown from './NavigationDropdown';
 import generateGravatarUrl from '@/utils/generateGravatarUrl';
 
+import ProfileIcon from '@/public/profile-icon.svg';
+
 const Navigation = async () => {
   const user = await useServerUser();
   const session = await getServerSession(authOptions);
@@ -43,6 +45,16 @@ const Navigation = async () => {
                 <line x1="5" y1="0" x2="5" y2="200" strokeWidth="1.3" />
               </svg>
               <NavigationThemeSelect />
+              <Link href="/profile" className="bg-white rounded-full">
+                <Image
+                  className="p-0.5 rounded-full text-zinc-900"
+                  src={ProfileIcon}
+                  alt="profile"
+                  height={32}
+                  width={32}
+                  priority
+                />
+              </Link>
               <NavigationHamburgerMenu />
             </>
           ) : (
@@ -67,6 +79,7 @@ const Navigation = async () => {
                   priority
                 />
               </Link>
+              <NavigationHamburgerMenu />
             </>
           )}
         </div>

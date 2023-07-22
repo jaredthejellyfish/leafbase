@@ -28,7 +28,9 @@ const LoginPage = () => {
       className="flex items-center justify-center px-5 dark:bg-black"
     >
       <div className="flex flex-col items-center justify-center w-full gap-3 px-8 py-10 rounded-lg shadow-lg md:w-96 dark:bg-zinc-900">
-        <h1 className="mb-2 text-xl font-medium dark:text-white">Sign in</h1>
+        <h1 className="mb-2 text-xl font-medium dark:text-white">
+          Sign in / Sing up
+        </h1>
         <form
           onSubmit={(e) => {
             e.preventDefault();

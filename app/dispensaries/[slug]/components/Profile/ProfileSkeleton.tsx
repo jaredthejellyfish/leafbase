@@ -21,18 +21,6 @@ const ProfileSkeleton = () => {
           </span>
         </div>
       </div>
-      <span className="flex flex-col mt-3 text-sm dark:text-white">
-        Email:
-        <span className="text-gray-400 hover:text-green-400">
-          <div className="w-32 h-3 mt-1 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-        </span>
-      </span>
-      <span className="flex flex-col mt-3 text-sm dark:text-white">
-        Phone number:
-        <span className="text-gray-400 hover:text-green-400">
-          <div className="w-32 h-3 mt-1 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-        </span>
-      </span>
     </div>
   );
 };

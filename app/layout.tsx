@@ -20,9 +20,7 @@ const ClientToast = dynamic(() => import('@/lib/ClientToast'), {
   ssr: false,
 });
 
-const Providers = dynamic(() => import('@/lib/Providers'), {
-  ssr: true,
-});
+const Providers = dynamic(() => import('@/lib/Providers'));
 
 export const metadata = {
   title: 'Leafbase',

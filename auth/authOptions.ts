@@ -17,7 +17,8 @@ import { v4 as uuidv4 } from 'uuid';
 const prisma: PrismaClient = new PrismaClient();
 
 const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma) as any,
+  // @ts-ignore
+  adapter: PrismaAdapter(prisma),
 
   providers: [
     SpotifyProvider({

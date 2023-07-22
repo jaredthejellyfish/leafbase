@@ -171,7 +171,7 @@ const NavigationDropdown = () => {
           initial="closed"
           animate={isOpen ? 'open' : 'closed'}
         >
-          Marketplace
+          -
         </motion.div>
         <motion.div
           className="flex items-center justify-start w-full h-10 py-5 pl-3.5 text-lg font-medium transition-colors cursor-pointer md:pl-10 hover:background-slate-200 dark:hover:bg-zinc-800"
@@ -183,7 +183,7 @@ const NavigationDropdown = () => {
             href="/settings"
             onClick={() => dispatch(setNavDropdownOpen(!isOpen))}
           >
-            Settings
+            -
           </Link>
         </motion.div>
       </motion.div>

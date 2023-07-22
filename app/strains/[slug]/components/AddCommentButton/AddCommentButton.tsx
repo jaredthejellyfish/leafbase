@@ -32,7 +32,6 @@ function AddCommentButton(props: Props) {
       setIsSaving(false);
       setIsModalOpen(false);
     } else {
-      console.log('Error adding comment');
       setComment('');
       setIsSaving(false);
       setIsError(true);

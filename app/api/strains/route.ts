@@ -102,8 +102,6 @@ export async function POST(request: Request) {
       ? await getStrains((page - 1) * take, take, user?.id, filter)
       : await getStrains((page - 1) * take, take, '', filter);
 
-    console.log(strains);
-
     if (strains === null) throw new Error('Error fetching strains.');
 
     const totalPages = Math.ceil(count / take);

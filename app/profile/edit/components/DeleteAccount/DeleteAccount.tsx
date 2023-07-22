@@ -11,7 +11,6 @@ const DeleteAccount = () => {
 
     if (result) {
       const res = await fetch('/api/user/delete');
-      console.log(res);
       if (res.ok) {
         router.push('/');
         signOut();

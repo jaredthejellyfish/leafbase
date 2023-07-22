@@ -62,10 +62,12 @@ const Comments = async (props: Props) => {
               className="relative px-3 py-2 text-sm border rounded-lg shadow border-zinc-100 dark:border-zinc-500"
               key={comment.id}
             >
-              <CommentLikeButton
-                liked={comment?.likes ? comment?.likes.length > 0 : false}
-                id={comment.id}
-              />
+              {user && comment?.likes && (
+                <CommentLikeButton
+                  liked={comment?.likes.length > 0}
+                  id={comment.id}
+                />
+              )}
               <h2 className="mb-1 text-base font-semibold">
                 {comment.user.displayName}
               </h2>

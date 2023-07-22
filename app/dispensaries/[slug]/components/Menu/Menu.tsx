@@ -12,7 +12,7 @@ const Menu = (props: Props) => {
 
   return (
     <div>
-      <h2 className="mb-3 text-xl font-semibold text-gray-800 dark:text-gray-100">
+      <h2 className="mb-3 ml-1 text-xl font-bold text-gray-800 dark:text-gray-100">
         Menu:
       </h2>
       <div className="flex flex-row justify-between">

@@ -3,8 +3,8 @@ interface Theme {
   buttonText?: string;
 }
 
-function html({ url, theme }: { url: string; host: string; theme: Theme }) {
-  const escapedHost = 'leafbase.io';
+function html({ url, theme, host }: { url: string; host: string; theme: Theme }) {
+  const escapedHost = host.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
   const brandColor = theme.brandColor || '#346df1';
   const color = {
@@ -18,7 +18,7 @@ function html({ url, theme }: { url: string; host: string; theme: Theme }) {
 
   return `
   <body style="background: ${color.background};">
-  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout:fixed;background-color:#f9f9f9; padding-top: 20px;"
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout:fixed;background-color:#1e1e1e; padding-top: 20px;"
     id="bodyTable">
     <tbody>
       <tr>
@@ -28,18 +28,17 @@ function html({ url, theme }: { url: string; host: string; theme: Theme }) {
               <tr>
                 <td align="center" valign="top">
                   <table border="0" cellpadding="0" cellspacing="0" width="100%" class="tableCard"
-                    style="background-color:#fff;border-color:#e5e5e5;border-style:solid;border-width:0 1px 1px 1px;">
+                    style="background-color:#282828;border-color:#303030;border-style:solid;border-width:0 1px 1px 1px;">
                     <tbody>
                       <tr>
-                        <td style="background-color:#00d2f4;font-size:1px;line-height:3px" class="topBorder" height="3">
+                        <td style="background-color:#2f855a;font-size:1px;line-height:3px" class="topBorder" height="3">
                           &nbsp;</td>
                       </tr>
-
                       <tr>
                         <td style="padding-bottom: 5px; padding-left: 20px; padding-right: 20px; padding-top: 40px;"
                           align="center" valign="top" class="mainTitle">
                           <h2 class="text"
-                            style="color:#000;font-family:Poppins,Helvetica,Arial,sans-serif;font-size:28px;font-weight:500;font-style:normal;letter-spacing:normal;line-height:36px;text-transform:none;text-align:center;padding:0;margin:0">
+                            style="color:#ffffff;font-family:Poppins,Helvetica,Arial,sans-serif;font-size:28px;font-weight:500;font-style:normal;letter-spacing:normal;line-height:36px;text-transform:none;text-align:center;padding:0;margin:0">
                             Sign in to ${escapedHost}</h2>
                         </td>
                       </tr>
@@ -47,7 +46,7 @@ function html({ url, theme }: { url: string; host: string; theme: Theme }) {
                         <td style="padding-bottom: 30px; padding-left: 20px; padding-right: 20px;" align="center"
                           valign="top" class="subTitle">
                           <h4 class="text"
-                            style="color:#999;font-family:Poppins,Helvetica,Arial,sans-serif;font-size:16px;font-weight:500;font-style:normal;letter-spacing:normal;line-height:24px;text-transform:none;text-align:center;padding:0;margin:0">
+                            style="color:#cccccc;font-family:Poppins,Helvetica,Arial,sans-serif;font-size:16px;font-weight:500;font-style:normal;letter-spacing:normal;line-height:24px;text-transform:none;text-align:center;padding:0;margin:0">
                             Sign in with a magic link!</h4>
                         </td>
                       </tr>
@@ -60,7 +59,7 @@ function html({ url, theme }: { url: string; host: string; theme: Theme }) {
                               <tr>
                                 <td style="padding-bottom: 20px;" align="center" valign="top" class="description">
                                   <p class="text"
-                                    style="color:#666;font-family:'Open Sans',Helvetica,Arial,sans-serif;font-size:14px;font-weight:400;font-style:normal;letter-spacing:normal;line-height:22px;text-transform:none;text-align:center;padding:0;margin:0">
+                                    style="color:#999999;font-family:'Open Sans',Helvetica,Arial,sans-serif;font-size:14px;font-weight:400;font-style:normal;letter-spacing:normal;line-height:22px;text-transform:none;text-align:center;padding:0;margin:0">
                                     Click the button below to sign in using a magic link that will securely log you into
                                     your account instantly. No need to remember passwords</p>
                                 </td>
@@ -76,7 +75,7 @@ function html({ url, theme }: { url: string; host: string; theme: Theme }) {
                                     <tbody>
                                       <tr>
                                         <td
-                                          style="background-color: rgb(0, 210, 244); padding: 12px 35px; border-radius: 50px;"
+                                          style="background-color: #2f855a; padding: 12px 35px; border-radius: 50px;"
                                           align="center" class="ctaButton"> <a href="${url}"
                                             style="color:#fff;font-family:Poppins,Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;font-style:normal;letter-spacing:1px;line-height:20px;text-transform:uppercase;text-decoration:none;display:block"
                                             target="_blank" class="text">Sign In</a>
@@ -103,7 +102,6 @@ function html({ url, theme }: { url: string; host: string; theme: Theme }) {
               </tr>
             </tbody>
           </table>
-
         </td>
       </tr>
     </tbody>

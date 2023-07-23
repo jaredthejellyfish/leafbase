@@ -45,24 +45,24 @@ interface Price {
 
 type Props = { params: { slug: string } };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const slug = params.slug;
+// export async function generateMetadata({ params }: Props): Promise<Metadata> {
+//   const slug = params.slug;
 
-  const dispensary = await prisma.dispensary.findUnique({
-    where: {
-      slug: slug,
-    },
-  });
+//   const dispensary = await prisma.dispensary.findUnique({
+//     where: {
+//       slug: slug,
+//     },
+//   });
 
-  if (!dispensary)
-    return { title: 'Error - Leafbase', description: 'Dispensary' };
+//   if (!dispensary)
+//     return { title: 'Error - Leafbase', description: 'Dispensary' };
 
-  return {
-    title: `${dispensary?.name} - Leafbase` || 'Dispensary',
-    description:
-      dispensary?.description || `Description page for ${dispensary?.name}`,
-  };
-}
+//   return {
+//     title: `${dispensary?.name} - Leafbase` || 'Dispensary',
+//     description:
+//       dispensary?.description || `Description page for ${dispensary?.name}`,
+//   };
+// }
 
 const DispensaryPage = async ({ params }: Props) => {
   const slug = params.slug;

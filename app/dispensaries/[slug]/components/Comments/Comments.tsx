@@ -18,6 +18,7 @@ const CommentLikeButton = dynamic(() => import('./CommentLikeButton'), {
 const getComments = async (dispensary: Dispensary, userId: string) => {
   try {
     const comments = await prisma.dispensaryComment.findMany({
+      take: 4,
       where: {
         dispensaryId: dispensary.id,
       },

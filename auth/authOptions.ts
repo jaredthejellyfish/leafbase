@@ -6,8 +6,7 @@ import GitHubProvider from 'next-auth/providers/github';
 import SpotifyProvider from 'next-auth/providers/spotify';
 
 import { PrismaAdapter } from '@auth/prisma-adapter';
-import { html } from '@/lib/email';
-import { createTransport } from 'nodemailer';
+import { html } from './email';
 import { NextAuthOptions } from 'next-auth';
 
 import { PrismaClient } from '@prisma/client';
@@ -45,24 +44,28 @@ const authOptions: NextAuthOptions = {
       server: process.env.EMAIL_SERVER,
       from: process.env.EMAIL_FROM,
       async sendVerificationRequest(params) {
-        const { identifier, url, provider, theme } = params;
-        const { host } = new URL(url);
-        // NOTE: You are not required to use `nodemailer`, use whatever you want.
-        const transport = createTransport(provider.server);
-        const result = await transport.sendMail({
-          to: identifier,
-          from: provider.from,
-          subject: 'Sign in to leafbase.xyz',
-          text: 'Sign in to leafbase.xyz',
-          html: html({ url, host, theme }),
-          headers: {
-            'X-Entity-Ref-ID': uuidv4(),
-          },
+        import('nodemailer').then(async (nodemailer) => {
+          const { identifier, url, provider, theme } = params;
+          const { host } = new URL(url);
+          // NOTE: You are not required to use `nodemailer`, use whatever you want.
+          const transport = nodemailer.createTransport(provider.server);
+          const result = await transport.sendMail({
+            to: identifier,
+            from: provider.from,
+            subject: 'Sign in to leafbase.xyz',
+            text: 'Sign in to leafbase.xyz',
+            html: html({ url, host, theme }),
+            headers: {
+              'X-Entity-Ref-ID': uuidv4(),
+            },
+          });
+          const failed = result.rejected.concat(result.pending).filter(Boolean);
+          if (failed.length) {
+            throw new Error(
+              `Email(s) (${failed.join(', ')}) could not be sent`
+            );
+          }
         });
-        const failed = result.rejected.concat(result.pending).filter(Boolean);
-        if (failed.length) {
-          throw new Error(`Email(s) (${failed.join(', ')}) could not be sent`);
-        }
       },
     }),
   ],

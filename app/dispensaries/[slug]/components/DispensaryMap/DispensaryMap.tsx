@@ -1,12 +1,14 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import DispensaryMapSkeleton from './DispensaryMapSkeleton';
+import { useMapEvent } from 'react-leaflet';
 
 type Props = {
   lat: number;
   lon: number;
+  address: string;
 };
 
 const MapContainer = dynamic(
@@ -30,21 +32,40 @@ const Marker = dynamic(
   }
 );
 
+const Popup = dynamic(() => import('react-leaflet').then((mod) => mod.Popup), {
+  ssr: false,
+});
+
+function SetViewOnClick() {
+  const map = useMapEvent('click', (e) => {
+    map.setView(e.latlng, map.getZoom(), {
+      animate: true,
+    });
+  });
+
+  return null;
+}
+
 const DispensaryMap = (props: Props) => {
   const [marker, setMarker] = useState<React.ReactNode>(undefined);
 
   useEffect(() => {
+    if (props.lat === 0 && props.lon === 0) return;
     import('leaflet').then((mod) =>
       setMarker(
         <Marker
           position={[props.lat, props.lon]}
           icon={
             new mod.Icon({
-              iconUrl: 'https://www.svgrepo.com/show/302636/map-marker.svg',
+              iconUrl: 'map-marker.svg',
               iconSize: [25, 25],
             })
           }
-        />
+        >
+          <Popup>
+            A pretty CSS3 popup. <br /> Easily customizable.
+          </Popup>
+        </Marker>
       )
     );
   }, [props.lat, props.lon]);
@@ -57,11 +78,14 @@ const DispensaryMap = (props: Props) => {
         className="h-[170px] md:h-[240px] w-full relative rounded-xl bg--gray-400"
         center={[props.lat, props.lon]}
         zoom={15}
+        placeholder={<DispensaryMapSkeleton />}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
         />
+        <SetViewOnClick />
+
         {marker}
       </MapContainer>
     </div>

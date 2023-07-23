@@ -23,6 +23,7 @@ const nextConfig = {
       'lh3.googleusercontent.com',
       'i.imgur.com',
       'www.google.com',
+      'cloudflare-ipfs.com',
     ],
   },
 };

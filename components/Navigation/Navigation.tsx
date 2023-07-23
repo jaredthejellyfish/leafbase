@@ -2,10 +2,8 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { User } from '@prisma/client';
-
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/auth/authOptions';
-
 import useServerUser from '@/hooks/useServerUser';
 import NavigationSearchBar from './NavigationSearchBar';
 import SiteLogo from '../SiteLogo/SiteLogo';
@@ -13,6 +11,7 @@ import NavigationThemeSelect from './NavigationThemeSelect';
 import NavigationHamburgerMenu from './NavigationHamburgerMenu';
 import NavigationDropdown from './NavigationDropdown';
 import generateGravatarUrl from '@/utils/generateGravatarUrl';
+import ProfileIcon from '@/public/profile-icon.svg';
 
 const Navigation = async () => {
   const user = await useServerUser();
@@ -44,16 +43,14 @@ const Navigation = async () => {
               </svg>
               <NavigationThemeSelect />
               <Link href="/profile" className="bg-white rounded-full">
-                {import('@/public/profile-icon.svg').then((ProfileIcon) => (
-                  <Image
-                    className="p-0.5 rounded-full text-zinc-900"
-                    src={ProfileIcon}
-                    alt="profile"
-                    height={32}
-                    width={32}
-                    priority
-                  />
-                ))}
+                <Image
+                  className="p-0.5 rounded-full text-zinc-900"
+                  src={ProfileIcon}
+                  alt="profile"
+                  height={32}
+                  width={32}
+                  priority
+                />
               </Link>
               <NavigationHamburgerMenu />
             </>

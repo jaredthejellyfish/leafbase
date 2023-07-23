@@ -11,6 +11,19 @@ import GeneralInformationSkeleton from './components/GeneralInformation/GeneralI
 import Menu from './components/Menu/Menu';
 import dynamic from 'next/dynamic';
 import DispensaryMapDynamic from './components/DispensaryMap/DispensaryMapDynamic';
+import { MdError } from 'react-icons/md';
+
+export async function generateStaticParams() {
+  const dispensaries = await prisma.dispensary.findMany({
+    select: {
+      slug: true,
+    },
+  });
+
+  return dispensaries.map((dispensary) => ({
+    slug: dispensary.slug,
+  }));
+}
 
 const Profile = dynamic(() => import('./components/Profile/Profile'), {
   ssr: false,
@@ -24,6 +37,11 @@ const GeneralInformation = dynamic(
     loading: () => <GeneralInformationSkeleton />,
   }
 );
+
+interface Price {
+  strainId: string;
+  price: number;
+}
 
 type Props = { params: { slug: string } };
 
@@ -51,7 +69,24 @@ const DispensaryPage = async ({ params }: Props) => {
 
   const { dispensary, error } = await useServerDispensary(slug);
 
-  if (error || !dispensary) throw new Error('Dispensary not found');
+  if (error || !dispensary)
+    return (
+      <div className="absolute top-0 flex flex-col items-center justify-center w-screen h-screen">
+        <MdError size={80} className="text-green-700" />
+        <h1 className="mt-5 text-3xl font-semibold text-gray-700 dark:text-gray-400">
+          Dispensary not found!
+        </h1>
+        <p className="mt-5 text-lg text-gray-700 dark:text-gray-400">
+          We couldn&apos;t find the requested dispensary in our database.
+        </p>
+        <Link
+          href="/dispensaries"
+          className="mt-5 text-lg font-medium text-green-700 hover:text-green-800 dark:text-green-700 dark:hover:text-green-600"
+        >
+          Return to Dispensaries
+        </Link>
+      </div>
+    );
 
   return (
     <div className="flex flex-col px-6 md:px-16">
@@ -122,10 +157,13 @@ const DispensaryPage = async ({ params }: Props) => {
             <Profile dispensary={dispensary} />
           </ErrorBoundary>
           <ErrorBoundary fallback={null}>
-            <DispensaryMapDynamic
-              lat={dispensary.latitude || 0}
-              lon={dispensary.longitude || 0}
-            />
+            {dispensary.latitude && dispensary.longitude && (
+              <DispensaryMapDynamic
+                lat={dispensary.latitude || 0}
+                lon={dispensary.longitude || 0}
+                address={dispensary.address || ''}
+              />
+            )}
           </ErrorBoundary>
           <ErrorBoundary fallback={<div>Error</div>}>
             <Comments dispensary={dispensary} />
@@ -133,13 +171,15 @@ const DispensaryPage = async ({ params }: Props) => {
         </div>
         <div id="vertical 2" className="flex flex-col gap-4 pb-3 lg:w-2/3">
           <ErrorBoundary fallback={<div>Error</div>}>
-            <GeneralInformation
-              description={dispensary?.description || undefined}
-            />
+            {dispensary.description && (
+              <GeneralInformation
+                description={dispensary?.description || undefined}
+              />
+            )}
           </ErrorBoundary>
           <ErrorBoundary fallback={<div>Error</div>}>
             <Menu
-              prices={dispensary.menus[0].prices}
+              prices={dispensary.menus[0].prices as unknown as Price[]}
               strains={dispensary.menus[0].strains}
             />
           </ErrorBoundary>

@@ -13,6 +13,7 @@ import { FiMoreVertical } from 'react-icons/fi';
 
 import dynamic from 'next/dynamic';
 import useServerUser from '@/hooks/useServerUser';
+import { MdError } from 'react-icons/md';
 
 const StrainPageLikeButton = dynamic(
   () => import('./components/StrainPageLikeButton/StrainPageLikeButton'),
@@ -150,17 +151,17 @@ const getStrainBySlug = async (slug: string, userId?: string) => {
   }
 };
 
-// export async function generateStaticParams() {
-//   const strains = await prisma.strain.findMany({
-//     select: {
-//       slug: true,
-//     },
-//   });
+export async function generateStaticParams() {
+  const strains = await prisma.strain.findMany({
+    select: {
+      slug: true,
+    },
+  });
 
-//   return strains.map((strains) => ({
-//     slug: strains.slug,
-//   }));
-// }
+  return strains.map((strains) => ({
+    slug: strains.slug,
+  }));
+}
 
 const StrainPage = async (props: Props) => {
   const user = await useServerUser();
@@ -170,7 +171,24 @@ const StrainPage = async (props: Props) => {
     user?.id
   )) as unknown as StrainExtended;
 
-  if (!strain) throw new Error('Strain not found');
+  if (!strain)
+    return (
+      <div className="absolute top-0 flex flex-col items-center justify-center w-screen h-screen">
+        <MdError size={80} className="text-green-700" />
+        <h1 className="mt-5 text-3xl font-semibold text-gray-700 dark:text-gray-400">
+          Strain not found!
+        </h1>
+        <p className="mt-5 text-lg text-gray-700 dark:text-gray-400">
+          We couldn&apos;t find the requested strain in our database.
+        </p>
+        <Link
+          href="/strains?filter=re"
+          className="mt-5 text-lg font-medium text-green-700 hover:text-green-800 dark:text-green-700 dark:hover:text-green-600"
+        >
+          Return to Strains
+        </Link>
+      </div>
+    );
 
   return (
     <div className="flex flex-col items-center justify-center px-4 md:px-1/4">

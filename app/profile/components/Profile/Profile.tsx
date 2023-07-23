@@ -18,13 +18,16 @@ const Profile = (props: Props) => {
 
   return (
     <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
-      <div className="absolute flex items-center justify-center gap-6 top-6 right-8">
+      <div className="absolute flex items-center justify-center gap-6 top-6 right-8 ">
         {user.displayName && (
-          <Link className="text-zinc-200" href={`/profile/${user.displayName}`}>
+          <Link
+            className="text-zinc-500 dark:text-zinc-300"
+            href={`/profile/${user.displayName}`}
+          >
             <AiFillEye size={20} />
           </Link>
         )}
-        <Link className=" text-zinc-200" href="/profile/edit">
+        <Link className="text-zinc-500 dark:text-zinc-300" href="/profile/edit">
           <BsFillGearFill size={18} />
         </Link>
       </div>

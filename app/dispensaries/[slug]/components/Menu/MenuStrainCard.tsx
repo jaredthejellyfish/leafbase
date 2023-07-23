@@ -2,20 +2,20 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import StarRating from '@/components/StarRating/StarRating';
-import { Prisma, Strain } from '@prisma/client';
+import { Strain } from '@prisma/client';
 import { Cannabinoids } from '@/types/interfaces';
 
 type Props = {
   strain: Strain;
-  prices: Prisma.JsonValue;
+  price?: Price;
 };
 
 type Colors = {
   [key: string]: string;
 };
 
-interface Prices {
-  id: string;
+interface Price {
+  strainId: string;
   price: number;
 }
 
@@ -49,11 +49,8 @@ const effectColors: Colors = {
 
 const MenuStrainCard = (props: Props) => {
   const { strain } = props;
-  const prices = props.prices as unknown as Prices[];
-  const price =
-    prices.length > 0
-      ? prices.find((price) => price.id === strain.id)
-      : undefined;
+
+  const price = props.price as unknown as Price;
   const cannabinoids = strain.cannabinoids as unknown as Cannabinoids;
 
   return (

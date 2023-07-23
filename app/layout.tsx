@@ -10,13 +10,6 @@ const Navigation = dynamic(() => import('@/components/Navigation/Navigation'), {
   loading: () => <NavigationSkeleton />,
 });
 
-const OfflineBadge = dynamic(
-  () => import('@/components/offline-badge/OfflineBadge'),
-  {
-    ssr: false,
-  }
-);
-
 const ClientToast = dynamic(() => import('@/lib/ClientToast'), {
   ssr: false,
 });
@@ -47,7 +40,6 @@ export default function RootLayout({
           <div className="pt-20">
             {children}
             <ClientToast />
-            <OfflineBadge />
           </div>
           <Hotjar />
         </Providers>

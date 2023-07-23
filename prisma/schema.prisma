@@ -112,7 +112,7 @@ model Mixer {
   category       String
   createdAt      DateTime @default(now())
 
-  @@map("mixers")
+  @@map("strain_mixers")
 }
 
 model Comment {
@@ -125,7 +125,7 @@ model Comment {
   strain    Strain        @relation(fields: [strainId], references: [id], onDelete: Cascade)
   likes     CommentLike[]
 
-  @@map("comments")
+  @@map("strain_comments")
 }
 
 model CommentLike {
@@ -136,7 +136,7 @@ model CommentLike {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   comment   Comment  @relation(fields: [commentId], references: [id], onDelete: Cascade)
 
-  @@map("comment_likes")
+  @@map("strain_comment_likes")
 }
 
 model Like {
@@ -147,7 +147,7 @@ model Like {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   strain    Strain   @relation(fields: [strainId], references: [id], onDelete: Cascade)
 
-  @@map("likes")
+  @@map("strain_likes")
 }
 
 model Dispensary {

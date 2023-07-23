@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic';
 type Props = {
   lat: number;
   lon: number;
+  address: string;
 };
 
 const DispensaryMap = dynamic(() => import('./DispensaryMap'), {
@@ -15,7 +16,7 @@ const DispensaryMap = dynamic(() => import('./DispensaryMap'), {
 });
 
 const DispensaryMapDynamic = (props: Props) => {
-  return <DispensaryMap lat={props.lat} lon={props.lon} />;
+  return <DispensaryMap address={props.address} lat={props.lat} lon={props.lon} />;
 };
 
 export default DispensaryMapDynamic;

@@ -1,23 +1,18 @@
-interface Theme {
-  brandColor?: string;
-  buttonText?: string;
-}
-
-function html({ url, theme, host }: { url: string; host: string; theme: Theme }) {
-  const escapedHost = host.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-
-  const brandColor = theme.brandColor || '#346df1';
-  const color = {
-    background: '#f9f9f9',
-    text: '#444',
-    mainBackground: '#fff',
-    buttonBackground: brandColor,
-    buttonBorder: brandColor,
-    buttonText: theme.buttonText || '#fff',
-  };
+function html({
+  url,
+  host,
+}: {
+  url: string;
+  host: string;
+  theme: { brandColor?: string; buttonText?: string };
+}) {
+  const escapedHost = host
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
 
   return `
-  <body style="background: ${color.background};">
+  <body style="background: transparent;">
   <table border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout:fixed;background-color:#1e1e1e; padding-top: 20px;"
     id="bodyTable">
     <tbody>

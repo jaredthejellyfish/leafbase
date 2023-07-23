@@ -172,3 +172,4 @@ leafbase.strains.json
 strain_vectors.npy
 
 *.json
+*.service

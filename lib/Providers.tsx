@@ -17,7 +17,7 @@ function Providers({ children }: { children: React.ReactNode }) {
       <SessionProvider>
         <QueryClientProvider client={client}>
           {children}
-          <ReactQueryDevtools initialIsOpen={false} />
+          <ReactQueryDevtools initialIsOpen={false} position={'bottom-right'}/>
         </QueryClientProvider>
       </SessionProvider>
     </Provider>

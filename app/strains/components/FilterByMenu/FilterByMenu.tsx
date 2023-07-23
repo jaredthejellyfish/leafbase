@@ -4,6 +4,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { animate, motion, stagger } from 'framer-motion';
 import { RxCaretDown } from 'react-icons/rx';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   filter?: string;
@@ -29,6 +30,14 @@ const staggerMenuItems = stagger(0.05, { startDelay: 0.2 });
 const FilterByMenu = (props: Props) => {
   const [isOpen, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    router.prefetch('/strains?filter=re');
+    router.prefetch('/strains?filter=az');
+    router.prefetch('/strains?filter=za');
+    router.prefetch('/strains?filter=mr');
+  }, [router]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -36,7 +45,6 @@ const FilterByMenu = (props: Props) => {
         setOpen(false);
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);

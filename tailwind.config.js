@@ -17,6 +17,9 @@ module.exports = {
       scale: {
         101: '1.01',
       },
+      height: {
+        'screen-bar': 'calc(92vh - 0.3rem)',
+      },
     },
   },
   plugins: [],

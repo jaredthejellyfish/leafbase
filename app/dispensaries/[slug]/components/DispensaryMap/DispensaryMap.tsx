@@ -1,9 +1,11 @@
 'use client';
 
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import DispensaryMapSkeleton from './DispensaryMapSkeleton';
 import { useMapEvent } from 'react-leaflet';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 
 type Props = {
   lat: number;
@@ -48,6 +50,8 @@ function SetViewOnClick() {
 
 const DispensaryMap = (props: Props) => {
   const [marker, setMarker] = useState<React.ReactNode>(undefined);
+  const currentTheme = useSelector((state: RootState) => state.theme).theme;
+  const mapThemeUrl = currentTheme === 'dark' ? 'dark_all' : 'light_all';
 
   useEffect(() => {
     if (props.lat === 0 && props.lon === 0) return;
@@ -57,8 +61,9 @@ const DispensaryMap = (props: Props) => {
           position={[props.lat, props.lon]}
           icon={
             new mod.Icon({
-              iconUrl: 'map-marker.svg',
-              iconSize: [25, 25],
+              iconUrl:
+                'https://inthesk.net/wp-content/uploads/2023/06/Circunferencia.png',
+              iconSize: [20, 14.5],
             })
           }
         >
@@ -73,7 +78,7 @@ const DispensaryMap = (props: Props) => {
   if (props.lat === 0 && props.lon === 0) return null;
 
   return typeof window !== undefined || marker ? (
-    <div className="h-[194px] md:h-[264px]  relative z-0 flex flex-col w-full p-3 shadow-md rounded-xl dark:bg-zinc-900">
+    <div className="h-[194px] md:h-[264px] relative z-0 flex flex-col w-full p-3 shadow-md rounded-xl dark:bg-zinc-900">
       <MapContainer
         className="h-[170px] md:h-[240px] w-full relative rounded-xl bg--gray-400"
         center={[props.lat, props.lon]}
@@ -82,7 +87,7 @@ const DispensaryMap = (props: Props) => {
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+          url={`https://{s}.basemaps.cartocdn.com/rastertiles/${mapThemeUrl}/{z}/{x}/{y}{r}.png`}
         />
         <SetViewOnClick />
 

@@ -2,7 +2,6 @@ import React from 'react';
 import useServerDispensary from '@/hooks/useServerDispensary';
 import Link from 'next/link';
 import prisma from '@/lib/prisma';
-import { Metadata } from 'next/types';
 import { ErrorBoundary } from 'react-error-boundary';
 import Comments from './components/Comments/Comments';
 import 'leaflet/dist/leaflet.css';
@@ -44,25 +43,6 @@ interface Price {
 }
 
 type Props = { params: { slug: string } };
-
-// export async function generateMetadata({ params }: Props): Promise<Metadata> {
-//   const slug = params.slug;
-
-//   const dispensary = await prisma.dispensary.findUnique({
-//     where: {
-//       slug: slug,
-//     },
-//   });
-
-//   if (!dispensary)
-//     return { title: 'Error - Leafbase', description: 'Dispensary' };
-
-//   return {
-//     title: `${dispensary?.name} - Leafbase` || 'Dispensary',
-//     description:
-//       dispensary?.description || `Description page for ${dispensary?.name}`,
-//   };
-// }
 
 const DispensaryPage = async ({ params }: Props) => {
   const slug = params.slug;

@@ -19,3 +19,5 @@ const Dispensaries = async () => {
 };
 
 export default Dispensaries;
+
+export const dynamic = 'force';

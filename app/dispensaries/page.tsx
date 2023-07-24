@@ -17,7 +17,7 @@ const Dispensaries = async () => {
 
   return (
     <div className="flex flex-row justify-center w-full -mt-3 items-around">
-      <ErrorBoundary fallback={<DispensariesListSkeleton />}>
+      <ErrorBoundary fallback={<div>error</div>}>
         <Suspense fallback={<DispensariesListSkeleton />}>
           <DispensariesList user={user as User} />
         </Suspense>

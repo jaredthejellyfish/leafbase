@@ -1,8 +1,24 @@
-# Leafbase [![wakatime](https://wakatime.com/badge/github/jaredthejellyfish/leafbase.svg)](https://wakatime.com/badge/github/jaredthejellyfish/leafbase)
+<h1 align="center">Welcome to leafbase.xyz 👋</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
+  <a href="#" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+  </a>
+</p>
 
-Leafbase is a Next.js website that serves as a database of strains. It provides information and details about various cannabis strains, including their effects, flavors, and lineage.
+> The most comprehensive weed strain library on the web.
 
-## Getting Started
+### 🏠 [Homepage](https://leafbase.xyz/strains)
+
+### ✨ [Demo](https://dev.leafbase.xyz/strains)
+
+## Install
+
+```sh
+npm install
+```
+
+## Usage
 
 Set these variables in the .env file:
 
@@ -35,7 +51,7 @@ SITE_URL=""
 NEXT_PUBLIC_LEAFBASE_API_URL=""
 ```
 
-First, run the development server:
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -44,3 +60,18 @@ yarn dev
 # or
 pnpm dev
 ```
+
+## Author
+
+👤 **Gerard Almenara Hernandez**
+
+- Website: https://www.instagram.com/photoniks_
+- Github: [@jaredthejellyfish](https://github.com/jaredthejellyfish)
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+---
+
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

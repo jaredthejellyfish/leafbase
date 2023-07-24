@@ -173,3 +173,4 @@ strain_vectors.npy
 
 *.json
 *.service
+*.old

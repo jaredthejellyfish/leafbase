@@ -44,7 +44,7 @@ const DispensaryTable = (props: Props) => {
 
   return (
     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 mb-2 flex flex-col">
-      <thead className="text-xs text-gray-700 uppercase bg-zinc-50 dark:bg-zinc-800 dark:text-gray-400">
+      <thead className="text-xs text-gray-700 uppercase bg-zinc-100 dark:bg-zinc-800 dark:text-gray-400">
         <tr className="flex flex-row justify-between items-center">
           <th scope="col" className="px-6 py-3 w-2/3">
             <Link href={`/dispensaries/${dispensary.slug}`}>
@@ -73,15 +73,18 @@ const DispensaryTable = (props: Props) => {
       >
         {dispensary.menus.length > 0 &&
           dispensary.menus[0].strains.map((strain) => (
-            <tr className="bg-white border-b dark:bg-zinc-800/20 dark:border-zinc-700 flex items-center justify-center">
+            <tr
+              key={strain.id}
+              className="bg-white border-b dark:bg-zinc-800/20 dark:border-zinc-700 flex items-center justify-center"
+            >
               <th
                 scope="row"
-                className="px-6 py-4 w-full font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                className="px-6 py-2 w-full font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
                 {strain.name}
               </th>
 
-              <span className="flex w-28 flex-row mr-3 flex items-center justify-center">
+              <span className="flex w-28 flex-row mr-4 flex items-center justify-end">
                 <p>
                   {
                     dispensary.menus[0].prices.filter(

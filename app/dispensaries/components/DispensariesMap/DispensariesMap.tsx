@@ -144,7 +144,7 @@ const DispensariesMap = (props: Props) => {
     if (roughCoordinates) {
       dispatch(setUserCoordinates({ ...roughCoordinates }));
     }
-  }, [coordinates, roughCoordinates]);
+  }, [coordinates, roughCoordinates, dispatch]);
 
   if (coordinatesError || roughCoordinatesError)
     return <p>There was an error!</p>;

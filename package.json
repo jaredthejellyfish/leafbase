@@ -6,7 +6,8 @@
     "dev": "prisma generate && prettier --write . && next dev",
     "build": "prisma generate && npx prettier --write . && next build",
     "start": "next start",
-    "lint": "next lint && npx tsc --noEmit --pretty --noErrorTruncation --skipLibCheck",
+    "lint": "next lint",
+    "tsc": "npx tsc --noEmit --pretty --noErrorTruncation --skipLibCheck",
     "prod": "npx prettier --write . && vercel --prod",
     "db": "npx prisma db push",
     "prettier": "prettier --write ."

@@ -7,6 +7,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import DispensaryTable from './DispensaryTable';
 import { nearbyDispensary } from '@/types/interfaces';
+import DispensariesTableSkeleton from './DispensariesTableSkeleton';
 
 type Props = { user: User };
 
@@ -63,7 +64,7 @@ const DispensariesList = (props: Props) => {
   });
 
   return (
-    <div className="lg:w-[28vw] mt-1 h-screen-bar bg-zinc-900 rounded-xl mr-1.5 overflow-y-scroll">
+    <div className="lg:w-[28vw] mt-1 h-screen-bar rounded-xl mr-1.5 overflow-y-scroll shadow-lg border border-zinc-100 dark:border-zinc-900 dark:bg-zinc-900">
       <div className="relative overflow-x-auto sm:rounded-lg">
         <div className="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-zinc-900">
           Nearby Dispensaries
@@ -74,12 +75,22 @@ const DispensariesList = (props: Props) => {
           </p>
         </div>
         {!dispensariesLoading &&
-          !dispensariesError &&
-          dispensaries &&
-          dispensaries.length > 0 &&
+        !dispensariesError &&
+        dispensaries &&
+        dispensaries.length > 0 ? (
           dispensaries.map((dispensary) => (
             <DispensaryTable key={dispensary.id} dispensary={dispensary} />
-          ))}
+          ))
+        ) : (
+          <>
+            <DispensariesTableSkeleton />
+            <DispensariesTableSkeleton />
+            <DispensariesTableSkeleton />
+            <DispensariesTableSkeleton />
+            <DispensariesTableSkeleton />
+            <DispensariesTableSkeleton />
+          </>
+        )}
       </div>
     </div>
   );

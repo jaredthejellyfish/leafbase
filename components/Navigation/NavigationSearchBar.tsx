@@ -5,7 +5,6 @@ import { BsSearch } from 'react-icons/bs';
 import { useQuery } from '@tanstack/react-query';
 import { debounce } from 'lodash';
 import Link from 'next/link';
-import { StrainExtended } from '@/types/interfaces';
 
 const fetchSearchResults = async (search: string) => {
   const res = await fetch(`/api/strains/search?query=${search}`);

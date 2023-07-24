@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import DispensaryMapSkeleton from './DispensaryMapSkeleton';
-import { useMapEvent } from 'react-leaflet';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { Dispensary } from '@prisma/client';
@@ -95,7 +94,7 @@ const DispensaryMap = (props: Props) => {
         </Marker>
       )
     );
-  }, [props.lat, props.lon]);
+  }, [props.lat, props.lon, props.dispensary]);
 
   if (props.lat === 0 && props.lon === 0) return null;
 

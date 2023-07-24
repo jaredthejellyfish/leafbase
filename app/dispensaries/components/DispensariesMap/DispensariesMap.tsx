@@ -141,7 +141,7 @@ const DispensariesMap = (props: Props) => {
     if (coordinates) {
       dispatch(setUserCoordinates({ ...coordinates }));
     }
-    if (roughCoordinates) {
+    if (roughCoordinates && !coordinates) {
       dispatch(setUserCoordinates({ ...roughCoordinates }));
     }
   }, [coordinates, roughCoordinates, dispatch]);

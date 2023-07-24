@@ -5,8 +5,12 @@ import DispensariesListSkeleton from './components/DispensariesList/Dispensaries
 const Dispensaries = () => {
   return (
     <div className="flex flex-row justify-center w-full -mt-3 items-around">
-      <DispensariesListSkeleton />
-      <DispensariesMapSkeleton />
+      <div className="order-last lg:order-first">
+        <DispensariesListSkeleton />
+      </div>
+      <div className="order-first lg:order-last">
+        <DispensariesMapSkeleton />
+      </div>
     </div>
   );
 };

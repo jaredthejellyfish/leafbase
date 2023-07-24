@@ -139,7 +139,8 @@ const DispensariesMap = (props: Props) => {
     ),
   });
 
-  if (coordinatesError || roughCoordinatesError) return <p>There was an error!</p>;
+  if (coordinatesError || roughCoordinatesError)
+    return <p>There was an error!</p>;
 
   return (
     <CoordinatesContext.Provider
@@ -152,17 +153,17 @@ const DispensariesMap = (props: Props) => {
         dispensaries: dispensaries,
       }}
     >
-        <button
-          className={`absolute z-30 text-green-700 right-10 top-28 ${
-            coordinatesLoading &&
-            canGetGeolocation &&
-            'bg-clip-text bg-gradient-to-r from-gray-200 via-gray-300 to-gray-400 animate-pulse'
-          }`}
-          onClick={() => setGetGeolocation(!canGetGeolocation)}
-          disabled={!coordinates ? false : true}
-        >
-          <IoMdLocate size={40} />
-        </button>
+      <button
+        className={`absolute z-30 text-green-700 right-10 top-28 ${
+          coordinatesLoading &&
+          canGetGeolocation &&
+          'bg-clip-text bg-gradient-to-r from-gray-200 via-gray-300 to-gray-400 animate-pulse'
+        }`}
+        onClick={() => setGetGeolocation(!canGetGeolocation)}
+        disabled={!coordinates ? false : true}
+      >
+        <IoMdLocate size={40} />
+      </button>
       <DispensariesMapLeaflet />
     </CoordinatesContext.Provider>
   );

@@ -20,4 +20,4 @@ const Dispensaries = async () => {
 
 export default Dispensaries;
 
-export const dynamic = 'force';
+export const dynamic = 'force-dynamic';

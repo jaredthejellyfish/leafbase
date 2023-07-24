@@ -68,7 +68,6 @@ const DispensariesMapLeaflet = () => {
   if (error) return <p>There was an error!</p>;
   if (loading) return <DispensariesMapSkeleton />;
 
-
   return (
     <div className="relative z-0 flex flex-col w-[99vw] p-3 m-1 shadow-md h-screen-bar rounded-xl dark:bg-zinc-900">
       {typeof window !== undefined && (

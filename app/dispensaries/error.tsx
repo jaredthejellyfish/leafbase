@@ -12,7 +12,8 @@ const ErrorDispensaries = () => {
         Oops, something went wrong.
       </h1>
       <p className="mt-5 text-lg text-gray-700 dark:text-gray-400">
-        We couldn&apos;t load the requested dispensaries, please try again later.
+        We couldn&apos;t load the requested dispensaries, please try again
+        later.
       </p>
       <Link
         href="/"

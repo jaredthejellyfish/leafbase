@@ -3,7 +3,7 @@ import DispensariesMapSkeleton from './components/DispensariesMap/DispensariesMa
 
 const Dispensaries = () => {
   return (
-    <div className="flex flex-col items-center justify-center w-full -mt-3">
+    <div className="flex flex-col justify-center w-full -mt-3">
       <DispensariesMapSkeleton />
     </div>
   );

@@ -7,6 +7,7 @@ import { Icon } from 'leaflet';
 import DispensariesMapSkeleton from './DispensariesMapSkeleton';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
+import StarRating from '@/components/StarRating/StarRating';
 
 const MapContainer = dynamic(
   () => import('react-leaflet').then((mod) => mod.MapContainer),
@@ -49,6 +50,7 @@ type nearbyDispensary = {
   slug: string;
   name: string;
   city: string;
+  address: string;
 };
 
 const DispensariesMapLeaflet = () => {
@@ -69,7 +71,7 @@ const DispensariesMapLeaflet = () => {
   if (loading) return <DispensariesMapSkeleton />;
 
   return (
-    <div className="relative z-0 flex flex-col w-[99vw] p-3 m-1 shadow-md h-screen-bar rounded-xl dark:bg-zinc-900">
+    <div className="relative z-0 flex flex-col w-[99vw] lg:w-[70vw] p-3 m-1 shadow-md h-screen-bar rounded-xl dark:bg-zinc-900">
       {typeof window !== undefined && (
         <MapContainer
           className="relative w-full h-full rounded-xl bg--gray-400"
@@ -91,7 +93,11 @@ const DispensariesMapLeaflet = () => {
                   iconSize: [20, 20],
                 })
               }
-            ></Marker>
+            >
+              <Popup>
+                <span>You are here! :{')'}</span>
+              </Popup>
+            </Marker>
           )}
 
           {dispensaries.map((dispensary) => (
@@ -108,8 +114,26 @@ const DispensariesMapLeaflet = () => {
               }
             >
               <Popup>
-                <Link href={`/dispensaries/${dispensary.slug}`}>
+                <Link
+                  href={`/dispensaries/${dispensary.slug}`}
+                  className="text-base font-bold"
+                >
                   {dispensary.name}
+                </Link>
+                <br />
+                <span className="flex flex-row gap-x-2">
+                  {4.2}
+                  <StarRating className={'text-zinc-900'} rating={4.5} />
+                </span>
+                <Link
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                    dispensary.address || '/dispensaries '
+                  )}`}
+                  className="overflow-hidden text-zinc-400 hover:text-green-400 overflow-ellipsis"
+                >
+                  <span className="text-sm text-zinc-900">
+                    {dispensary.address}
+                  </span>
                 </Link>
               </Popup>
             </Marker>

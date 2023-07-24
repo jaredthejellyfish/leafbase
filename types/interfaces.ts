@@ -117,3 +117,24 @@ export interface Cannabinoids {
   thc: Cannabinoid;
   thcv: Cannabinoid;
 }
+
+
+export type nearbyDispensary = {
+  id: string;
+  latitude: number;
+  longitude: number;
+  slug: string;
+  name: string;
+  city: string;
+  address: string;
+  menus: {
+    strains: {
+      id: string;
+      name: string;
+    }[];
+    prices: {
+      price: number;
+      strainId: string;
+    }[];
+  }[];
+};

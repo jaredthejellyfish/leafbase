@@ -11,6 +11,8 @@ import Menu from './components/Menu/Menu';
 import dynamic from 'next/dynamic';
 import DispensaryMapDynamic from './components/DispensaryMap/DispensaryMapDynamic';
 import { MdError } from 'react-icons/md';
+import CommentsSkeleton from './components/Comments/CommentsSkeleton';
+import DispensaryMapSkeleton from './components/DispensaryMap/DispensaryMapSkeleton';
 
 export async function generateStaticParams() {
   const dispensaries = await prisma.dispensary.findMany({
@@ -133,24 +135,25 @@ const DispensaryPage = async ({ params }: Props) => {
       </nav>
       <div className="flex flex-col gap-6 mt-3 lg:flex-row">
         <div id="vertical 1" className="flex flex-col gap-4 lg:w-1/3">
-          <ErrorBoundary fallback={<div>Error</div>}>
+          <ErrorBoundary fallback={<ProfileSkeleton />}>
             <Profile dispensary={dispensary} />
           </ErrorBoundary>
-          <ErrorBoundary fallback={null}>
+          <ErrorBoundary fallback={<DispensaryMapSkeleton />}>
             {dispensary.latitude && dispensary.longitude && (
               <DispensaryMapDynamic
                 lat={dispensary.latitude || 0}
                 lon={dispensary.longitude || 0}
                 address={dispensary.address || ''}
+                dispensary={dispensary}
               />
             )}
           </ErrorBoundary>
-          <ErrorBoundary fallback={<div>Error</div>}>
+          <ErrorBoundary fallback={<CommentsSkeleton />}>
             <Comments dispensary={dispensary} />
           </ErrorBoundary>
         </div>
         <div id="vertical 2" className="flex flex-col gap-4 pb-3 lg:w-2/3">
-          <ErrorBoundary fallback={<div>Error</div>}>
+          <ErrorBoundary fallback={<GeneralInformationSkeleton />}>
             {dispensary.description && (
               <GeneralInformation
                 description={dispensary?.description || undefined}
@@ -158,10 +161,12 @@ const DispensaryPage = async ({ params }: Props) => {
             )}
           </ErrorBoundary>
           <ErrorBoundary fallback={<div>Error</div>}>
-            <Menu
-              prices={dispensary.menus[0].prices as unknown as Price[]}
-              strains={dispensary.menus[0].strains}
-            />
+            {dispensary.menus.length > 0 && (
+              <Menu
+                prices={dispensary.menus[0].prices as unknown as Price[]}
+                strains={dispensary.menus[0].strains}
+              />
+            )}
           </ErrorBoundary>
         </div>
       </div>

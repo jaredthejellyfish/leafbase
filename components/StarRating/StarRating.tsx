@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
 
-const StarRating = (props: { rating: number }) => {
+const StarRating = (props: { rating: number; className?: string }) => {
   const rating = props.rating;
   const stars = [];
 
@@ -29,7 +29,9 @@ const StarRating = (props: { rating: number }) => {
   return (
     <div
       style={{ display: 'flex' }}
-      className="flex flex-row text-black dark:text-white"
+      className={`flex flex-row text-black ${
+        props.className ? props.className : 'dark:text-white'
+      } `}
     >
       {stars}
     </div>

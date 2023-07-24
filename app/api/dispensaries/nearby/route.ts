@@ -4,8 +4,8 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as {
-      lat?: number;
-      lon?: number;
+      lat?: string;
+      lon?: string;
       city?: string;
     };
     const { lat, lon, city } = body;
@@ -15,14 +15,14 @@ export async function POST(request: Request) {
         AND: [
           {
             latitude: {
-              gte: lat - 0.1,
-              lte: lat + 0.1,
+              gte: parseFloat(lat) - 0.1,
+              lte: parseFloat(lat) + 0.1,
             },
           },
           {
             longitude: {
-              gte: lon - 0.1,
-              lte: lon + 0.1,
+              gte: parseFloat(lon) - 0.1,
+              lte: parseFloat(lon) + 0.1,
             },
           },
         ],
@@ -44,9 +44,21 @@ export async function POST(request: Request) {
         id: true,
         slug: true,
         name: true,
+        address: true,
         city: true,
         latitude: true,
         longitude: true,
+        menus: {
+          select: {
+            strains: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+            prices: true,
+          },
+        },
       },
     });
 

@@ -1,11 +1,14 @@
 'use client';
 
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 import { User } from '@prisma/client';
 import { useQuery } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
 import DispensariesMapSkeleton from './DispensariesMapSkeleton';
 import { IoMdLocate } from 'react-icons/io';
+import { useDispatch } from 'react-redux';
+import { setUserCoordinates } from '@/store/features/userCoordinatesSlice';
+import { nearbyDispensary } from '@/types/interfaces';
 
 const DispensariesMapLeaflet = dynamic(
   () => import('./DispensariesMapLeaflet'),
@@ -20,15 +23,6 @@ type Props = { user: User };
 type Geolocation = {
   lat: number;
   lon: number;
-};
-
-type nearbyDispensary = {
-  id: string;
-  latitude: number;
-  longitude: number;
-  slug: string;
-  name: string;
-  city: string;
 };
 
 export const CoordinatesContext = createContext({});
@@ -102,6 +96,8 @@ const getIpGeolocation = async (city?: string): Promise<Geolocation> => {
 const DispensariesMap = (props: Props) => {
   const [canGetGeolocation, setGetGeolocation] = useState<boolean>(false);
 
+  const dispatch = useDispatch();
+
   const {
     data: roughCoordinates,
     isLoading: roughCoordinatesLoading,
@@ -127,7 +123,7 @@ const DispensariesMap = (props: Props) => {
     error: dispensariesError,
   } = useQuery({
     queryKey: [
-      'nearby-dispenaries',
+      'nearby-dispensaries',
       [coordinates?.lat, coordinates?.lon, props.user.location],
     ],
     queryFn: () =>
@@ -140,6 +136,15 @@ const DispensariesMap = (props: Props) => {
       (coordinates?.lat && coordinates.lon) || props.user.location
     ),
   });
+
+  useEffect(() => {
+    if (coordinates) {
+      dispatch(setUserCoordinates({ ...coordinates }));
+    }
+    if (roughCoordinates) {
+      dispatch(setUserCoordinates({ ...roughCoordinates }));
+    }
+  }, [coordinates, roughCoordinates]);
 
   if (coordinatesError || roughCoordinatesError)
     return <p>There was an error!</p>;
@@ -156,7 +161,7 @@ const DispensariesMap = (props: Props) => {
       }}
     >
       <button
-        className={`absolute z-30 text-green-700 right-10 top-28 ${
+        className={`absolute z-30 text-green-700 right-10 top-[6.5rem] ${
           coordinatesLoading &&
           canGetGeolocation &&
           'bg-clip-text bg-gradient-to-r from-gray-200 via-gray-300 to-gray-400 animate-pulse'

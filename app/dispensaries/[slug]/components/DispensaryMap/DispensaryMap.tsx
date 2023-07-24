@@ -6,11 +6,15 @@ import DispensaryMapSkeleton from './DispensaryMapSkeleton';
 import { useMapEvent } from 'react-leaflet';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
+import { Dispensary } from '@prisma/client';
+import Link from 'next/link';
+import StarRating from '@/components/StarRating/StarRating';
 
 type Props = {
   lat: number;
   lon: number;
   address: string;
+  dispensary: Dispensary;
 };
 
 const MapContainer = dynamic(
@@ -38,16 +42,6 @@ const Popup = dynamic(() => import('react-leaflet').then((mod) => mod.Popup), {
   ssr: false,
 });
 
-function SetViewOnClick() {
-  const map = useMapEvent('click', (e) => {
-    map.setView(e.latlng, map.getZoom(), {
-      animate: true,
-    });
-  });
-
-  return null;
-}
-
 const DispensaryMap = (props: Props) => {
   const [marker, setMarker] = useState<React.ReactNode>(undefined);
   const currentTheme = useSelector((state: RootState) => state.theme).theme;
@@ -67,9 +61,37 @@ const DispensaryMap = (props: Props) => {
             })
           }
         >
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
+          {props.dispensary && (
+            <Popup
+              className="z-50"
+              autoClose={true}
+              closeOnEscapeKey={true}
+              closeButton={false}
+              closeOnClick={true}
+            >
+              <Link
+                href={`/dispensaries/${props.dispensary.slug}`}
+                className="text-sm font-bold"
+              >
+                {props.dispensary.name}
+              </Link>
+              <br />
+              <span className="flex flex-row -ml-1 scale-95 gap-x-2">
+                {4.2}
+                <StarRating className={'text-zinc-900'} rating={4.5} />
+              </span>
+              <Link
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                  props.dispensary.address || '/dispensaries'
+                )}`}
+                className="overflow-hidden text-zinc-400 hover:text-green-400 overflow-ellipsis"
+              >
+                <span className="text-xs text-zinc-900">
+                  {props.dispensary.address}
+                </span>
+              </Link>
+            </Popup>
+          )}
         </Marker>
       )
     );
@@ -86,10 +108,9 @@ const DispensaryMap = (props: Props) => {
         placeholder={<DispensaryMapSkeleton />}
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          attribution="lolkeklmao"
           url={`https://{s}.basemaps.cartocdn.com/rastertiles/${mapThemeUrl}/{z}/{x}/{y}{r}.png`}
         />
-        <SetViewOnClick />
 
         {marker}
       </MapContainer>

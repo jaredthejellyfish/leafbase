@@ -3,11 +3,13 @@
 import React from 'react';
 import DispensaryMapSkeleton from './DispensaryMapSkeleton';
 import dynamic from 'next/dynamic';
+import { Dispensary } from '@prisma/client';
 
 type Props = {
   lat: number;
   lon: number;
   address: string;
+  dispensary: Dispensary;
 };
 
 const DispensaryMap = dynamic(() => import('./DispensaryMap'), {
@@ -17,7 +19,12 @@ const DispensaryMap = dynamic(() => import('./DispensaryMap'), {
 
 const DispensaryMapDynamic = (props: Props) => {
   return (
-    <DispensaryMap address={props.address} lat={props.lat} lon={props.lon} />
+    <DispensaryMap
+      dispensary={props.dispensary}
+      address={props.address}
+      lat={props.lat}
+      lon={props.lon}
+    />
   );
 };
 

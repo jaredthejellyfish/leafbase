@@ -64,7 +64,7 @@ const DispensariesList = (props: Props) => {
   });
 
   return (
-    <div className="lg:w-[28vw] mt-1 h-screen-bar rounded-xl mr-1.5 overflow-y-scroll shadow-lg border border-zinc-100 dark:border-zinc-900 dark:bg-zinc-900">
+    <div className="lg:w-[28vw] mt-1 pb-3 lg:h-screen-bar rounded-lg mr-1.5 overflow-y-scroll shadow-lg border border-zinc-100 dark:border-zinc-900 dark:bg-zinc-900">
       <div className="relative overflow-x-auto sm:rounded-lg">
         <div className="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-zinc-900">
           Nearby Dispensaries

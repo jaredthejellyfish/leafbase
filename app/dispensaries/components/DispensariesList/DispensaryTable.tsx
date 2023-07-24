@@ -85,14 +85,20 @@ const DispensaryTable = (props: Props) => {
               </th>
 
               <span className="flex w-28 flex-row mr-4 flex items-center justify-end">
-                <p>
-                  {
-                    dispensary.menus[0].prices.filter(
-                      (price) => price.strainId === strain.id
-                    )[0].price
-                  }
-                </p>
-                <p>€ / g</p>
+                {dispensary.menus[0]?.prices?.filter(
+                  (price) => price.strainId === strain.id
+                )[0]?.price && (
+                  <>
+                    <p>
+                      {
+                        dispensary.menus[0].prices.filter(
+                          (price) => price.strainId === strain.id
+                        )[0].price
+                      }
+                    </p>
+                    <p>€ / g</p>
+                  </>
+                )}
               </span>
             </tr>
           ))}

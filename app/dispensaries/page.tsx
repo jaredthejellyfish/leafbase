@@ -17,9 +17,11 @@ const Dispensaries = async () => {
 
   return (
     <div className="flex flex-row justify-center w-full -mt-3 items-around">
+      <ErrorBoundary fallback={<DispensariesListSkeleton />}>
         <Suspense fallback={<DispensariesListSkeleton />}>
           <DispensariesList user={user as User} />
         </Suspense>
+      </ErrorBoundary>
       <ErrorBoundary fallback={<DispensariesMapSkeleton />}>
         <DispensariesMap user={user as User} />
       </ErrorBoundary>

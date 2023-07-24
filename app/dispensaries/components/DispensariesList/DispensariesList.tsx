@@ -9,7 +9,7 @@ import DispensaryTable from './DispensaryTable';
 import { nearbyDispensary } from '@/types/interfaces';
 import DispensariesTableSkeleton from './DispensariesTableSkeleton';
 
-type Props = { user: User };
+type Props = { user: User | null };
 
 const getNearbyDispensaries = async (
   lat?: number,
@@ -50,16 +50,16 @@ const DispensariesList = (props: Props) => {
   } = useQuery({
     queryKey: [
       'nearby-dispensaries',
-      [coordinates?.lat, coordinates?.lon, props.user.location],
+      [coordinates?.lat, coordinates?.lon, props.user?.location],
     ],
     queryFn: () =>
       getNearbyDispensaries(
         coordinates?.lat,
         coordinates?.lon,
-        props.user.location
+        props.user?.location
       ),
     enabled: Boolean(
-      (coordinates?.lat && coordinates.lon) || props.user.location
+      (coordinates?.lat && coordinates.lon) || props.user?.location
     ),
   });
 

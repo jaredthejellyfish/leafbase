@@ -13,20 +13,20 @@ export const metadata = {
 };
 
 const Dispensaries = async () => {
-  const user = await useServerUser();
+  const user = await useServerUser() as User | null;
 
   return (
     <div className="flex flex-col lg:flex-row justify-center w-full -mt-3 items-around">
       <div className="order-last lg:order-first">
         <ErrorBoundary fallback={<DispensariesListSkeleton />}>
           <Suspense fallback={<DispensariesListSkeleton />}>
-            <DispensariesList user={user as User} />
+            <DispensariesList user={user && user} />
           </Suspense>
         </ErrorBoundary>
       </div>
       <div className="order-first lg:order-last">
         <ErrorBoundary fallback={<DispensariesMapSkeleton />}>
-          <DispensariesMap user={user as User} />
+          <DispensariesMap user={user && user} />
         </ErrorBoundary>
       </div>
     </div>

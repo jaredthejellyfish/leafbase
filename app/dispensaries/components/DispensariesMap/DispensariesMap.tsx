@@ -18,7 +18,7 @@ const DispensariesMapLeaflet = dynamic(
   }
 );
 
-type Props = { user: User };
+type Props = { user: User | null };
 
 type Geolocation = {
   lat: number;
@@ -104,7 +104,7 @@ const DispensariesMap = (props: Props) => {
     error: roughCoordinatesError,
   } = useQuery({
     queryKey: ['rough-coordinates'],
-    queryFn: () => getIpGeolocation(props.user.location),
+    queryFn: () => getIpGeolocation(props.user?.location),
   });
 
   const {
@@ -124,16 +124,18 @@ const DispensariesMap = (props: Props) => {
   } = useQuery({
     queryKey: [
       'nearby-dispensaries',
-      [coordinates?.lat, coordinates?.lon, props.user.location],
+      [coordinates?.lat, coordinates?.lon, props.user?.location],
     ],
     queryFn: () =>
       getNearbyDispensaries(
-        coordinates?.lat,
-        coordinates?.lon,
-        props.user.location
+        coordinates?.lat ?? roughCoordinates?.lat,
+        coordinates?.lon ?? roughCoordinates?.lon,
+        props.user?.location
       ),
     enabled: Boolean(
-      (coordinates?.lat && coordinates.lon) || props.user.location
+      (coordinates?.lat && coordinates.lon) ||
+        (roughCoordinates?.lon && roughCoordinates?.lat) ||
+        props.user?.location
     ),
   });
 
@@ -156,7 +158,7 @@ const DispensariesMap = (props: Props) => {
         lon: coordinates?.lon || roughCoordinates?.lon,
         error: dispensariesError,
         loading: roughCoordinatesLoading || dispensariesLoading,
-        city: props.user.location == 'Earth' ? null : props.user.location,
+        city: props.user?.location == 'Earth' ? null : props.user?.location,
         dispensaries: dispensaries,
       }}
     >

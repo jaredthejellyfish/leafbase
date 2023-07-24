@@ -58,9 +58,6 @@ const FilterByMenu = (props: Props) => {
       '.filter-menu',
       {
         display: isOpen ? 'flex' : 'none',
-        clipPath: isOpen
-          ? 'inset(0% 0% 0% 0% round 10px)'
-          : 'inset(10% 50% 90% 50% round 10px)',
       },
       {
         type: 'spring',
@@ -94,35 +91,35 @@ const FilterByMenu = (props: Props) => {
         </span>
       </span>
       <motion.div
-        className="absolute z-40 flex flex-col ml-1.5 bg-zinc-800 w-36 right-0 top-10 text-white gap-0.5 items-start rounded p-1 filter-menu"
+        className="dark:border-zinc-900 absolute z-40 box-border flex flex-col ml-1.5 dark:bg-zinc-800 bg-white border border-zinc-200 shadow-xl w-36 right-0 top-10 dark:text-white text-zinc-600 gap-0.5 items-start rounded-lg p-1 filter-menu font-bold"
         ref={menuRef}
         initial={{ display: 'none' }}
         transition={{ display: { delay: 0.2 } }}
       >
         <Link
           href="/strains?filter=re"
-          className="flex items-start w-full px-3 py-3 rounded hover:bg-zinc-500 filter-item"
+          className="flex items-start w-full px-3 py-3 rounded dark:dark:hover:bg-zinc-500 hover:bg-zinc-100/80 filter-item"
           onClick={() => setOpen(false)}
         >
           Recommended
         </Link>
         <Link
           href="/strains?filter=az"
-          className="flex items-start w-full px-3 py-3 rounded hover:bg-zinc-500 filter-item"
+          className="flex items-start w-full px-3 py-3 rounded dark:hover:bg-zinc-500 hover:bg-zinc-100/80 filter-item"
           onClick={() => setOpen(false)}
         >
           A-Z
         </Link>
         <Link
           href="/strains?filter=za"
-          className="flex items-start w-full px-3 py-3 rounded hover:bg-zinc-500 filter-item"
+          className="flex items-start w-full px-3 py-3 rounded dark:hover:bg-zinc-500 hover:bg-zinc-100/80 filter-item"
           onClick={() => setOpen(false)}
         >
           Z-A
         </Link>
         <Link
           href="/strains?filter=mr"
-          className="flex items-start w-full px-3 py-3 rounded hover:bg-zinc-500 filter-item"
+          className="flex items-start w-full px-3 py-3 rounded dark:hover:bg-zinc-500 hover:bg-zinc-100/80 filter-item"
           onClick={() => setOpen(false)}
         >
           Most Reviews

@@ -4,6 +4,7 @@ import React from 'react';
 import { BsTrashFill } from 'react-icons/bs';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
+import { Comment } from '@prisma/client';
 
 type Props = { commentId: string };
 
@@ -17,7 +18,7 @@ const DeleteCommentButton = (props: Props) => {
       body: JSON.stringify({ commentId: commentId }),
     });
 
-    const status = await res.json();
+    const status = (await res.json()) as { comment?: Comment; error?: string };
 
     if ((status && status?.error) || !status)
       toast.error('Error deleting comment');

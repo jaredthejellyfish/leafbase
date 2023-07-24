@@ -6,6 +6,7 @@ import { useInView } from 'react-intersection-observer';
 import useUser from '@/hooks/useUser';
 import StrainCard from '@/components/StrainCard/StrainCard';
 import StrainLoaderSkeleton from './StrainLoaderSkeleton';
+import { Cannabinoids, Effects, StrainExtended } from '@/types/interfaces';
 
 const StrainLoader = ({ filter }: { filter?: string }) => {
   const { ref, inView } = useInView();
@@ -23,7 +24,11 @@ const StrainLoader = ({ filter }: { filter?: string }) => {
         filter: filter,
       }),
     });
-    const data = await res.json();
+    const data = (await res.json()) as {
+      strains: StrainExtended[];
+      page: number;
+      totalPages: number;
+    };
     return data;
   };
 
@@ -68,19 +73,19 @@ const StrainLoader = ({ filter }: { filter?: string }) => {
                 key={strain.slug}
                 id={strain.id}
                 slug={strain.slug}
-                name={strain.name || undefined}
-                subtitle={strain.subtitle || undefined}
-                category={strain.category || undefined}
-                phenotype={strain.phenotype || undefined}
-                averageRating={strain.averageRating || undefined}
-                shortDescription={strain.shortDescription || undefined}
-                nugImage={strain.nugImage || undefined}
-                flowerImageSvg={strain.flowerImageSvg || undefined}
-                topTerpene={strain.topTerpene || undefined}
-                thcPercent={strain.thcPercent || undefined}
-                topEffect={strain.topEffect || undefined}
-                cannabinoids={strain.cannabinoids || undefined}
-                effects={strain.effects || undefined}
+                name={strain.name}
+                subtitle={strain.subtitle}
+                category={strain.category}
+                phenotype={strain.phenotype}
+                averageRating={strain.averageRating}
+                shortDescription={strain.shortDescription || 'No description'}
+                nugImage={strain.nugImage}
+                flowerImageSvg={strain.flowerImageSvg}
+                topTerpene={strain.topTerpene}
+                thcPercent={strain.thcPercent}
+                topEffect={strain.topEffect}
+                cannabinoids={strain.cannabinoids as unknown as Cannabinoids}
+                effects={strain.effects as unknown as Effects}
                 liked={strain.likes.length > 0}
                 priority={false}
               />

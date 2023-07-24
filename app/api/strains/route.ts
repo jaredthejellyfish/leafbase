@@ -81,7 +81,11 @@ const getCount = async () => {
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    const body = (await request.json()) as {
+      page: number;
+      take: number;
+      filter: string;
+    };
     const { page, take, filter } = body;
     if (!page || !take) throw new Error('Invalid request.');
 

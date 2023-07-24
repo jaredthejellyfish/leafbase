@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 import { Strain } from '@prisma/client';
+import { StrainExtended } from '@/types/interfaces';
 
 type Props = {
   id: string;
@@ -14,7 +15,7 @@ type Props = {
 
 const getLikedStatus = async (id: string) => {
   const response = await fetch('/api/strains/liked');
-  const data = await response.json();
+  const data = (await response.json()) as { strains: StrainExtended[] };
   return data.strains.map((strain: Strain) => strain.id).includes(id);
 };
 

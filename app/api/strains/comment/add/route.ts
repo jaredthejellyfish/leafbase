@@ -5,7 +5,10 @@ import { authOptions } from '@/auth/authOptions';
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    const body = (await request.json()) as {
+      content: string;
+      strainId: string;
+    };
     const { content, strainId } = body;
     if (!content || !strainId) throw new Error('Invalid request.');
 

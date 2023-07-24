@@ -46,7 +46,7 @@ const fetchLikedStrainsData = async (strainNames: string[]) => {
       strains: strainNames,
     }),
   });
-  const data = await res.json();
+  const data = (await res.json()) as { likedStrainsData: LikedStrainPoint[] };
 
   if (!data.likedStrainsData) return [];
 
@@ -147,7 +147,7 @@ const LikedStrainsModal = (props: Props) => {
   return (
     <div className="flex items-center justify-center">
       <BsClipboardDataFill
-        onClick={() => setIsModalOpen(!isModalOpen)}
+        onClick={() => setIsModalOpen(likedStrainsData ? !isModalOpen : false)}
         size={20}
         className="inline-block cursor-pointer text-zinc-500 dark:text-zinc-400"
       />
@@ -181,14 +181,16 @@ const LikedStrainsModal = (props: Props) => {
             <span className="sr-only">Loading...</span>
           </div>
         ) : (
-          <Scatter
-            height={'100%'}
-            plugins={[ChartDataLabels, zoomPlugin]}
-            // @ts-ignore
-            options={options}
-            updateMode="default"
-            data={generateDatasetsFromData(likedStrainsData)}
-          />
+          likedStrainsData && (
+            <Scatter
+              height={'100%'}
+              plugins={[ChartDataLabels, zoomPlugin]}
+              // @ts-ignore
+              options={options}
+              updateMode="default"
+              data={generateDatasetsFromData(likedStrainsData)}
+            />
+          )
         )}
       </Modal>
     </div>

@@ -20,7 +20,7 @@ const fetchLikedStrainsData = async (strainNames: string[]) => {
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    const body = (await request.json()) as { strains: string[] };
     const { strains } = body;
     if (!strains) throw new Error('Invalid request.');
 

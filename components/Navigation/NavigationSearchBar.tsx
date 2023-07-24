@@ -9,7 +9,13 @@ import { StrainExtended } from '@/types/interfaces';
 
 const fetchSearchResults = async (search: string) => {
   const res = await fetch(`/api/strains/search?query=${search}`);
-  const data = await res.json();
+  const data = (await res.json()) as {
+    strains: {
+      name: string | null;
+      slug: string;
+      id: string;
+    }[];
+  };
 
   return data;
 };
@@ -60,7 +66,7 @@ const NavigationSearchBar = (props: Props) => {
         !error &&
         data?.strains?.length > 0 && (
           <div className="absolute flex-col hidden gap-4 px-4 py-5 rounded bg-white shadow dark:bg-zinc-800 md:flex top-16 right-60 xl:min-w-[388px] md:min-w-[248px]">
-            {data.strains.map((strain: StrainExtended) => (
+            {data.strains.map((strain) => (
               <div
                 className="flex flex-row items-center gap-5 px-2.5 "
                 key={strain.slug}

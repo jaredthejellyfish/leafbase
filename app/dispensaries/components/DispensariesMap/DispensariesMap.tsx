@@ -17,7 +17,10 @@ const DispensariesMapLeaflet = dynamic(
 
 type Props = { user: User };
 
-export const CoordinatesContext = createContext({});
+type Geolocation = {
+  lat: number;
+  lon: number;
+};
 
 type nearbyDispensary = {
   id: string;
@@ -27,6 +30,8 @@ type nearbyDispensary = {
   name: string;
   city: string;
 };
+
+export const CoordinatesContext = createContext({});
 
 const getNearbyDispensaries = async (
   lat?: number,
@@ -46,8 +51,10 @@ const getNearbyDispensaries = async (
   });
 
   if (res.ok) {
-    const dispensaries = await res.json();
-    return dispensaries.dispensaries as nearbyDispensary[];
+    const dispensaries = (await res.json()) as {
+      dispensaries: nearbyDispensary[];
+    };
+    return dispensaries.dispensaries;
   } else {
     return [];
   }
@@ -79,22 +86,17 @@ const getGeolocation = (): Promise<Geolocation> => {
 const getIpGeolocation = async (city?: string): Promise<Geolocation> => {
   if (city) {
     const res = await fetch(`https://geocode.maps.co/search?q=${city}`);
-    const data = await res.json();
+    const data = (await res.json()) as Geolocation[];
     return { lat: data[0].lat, lon: data[0].lon };
   }
 
   const res = await fetch('http://ip-api.com/json');
-  const data = await res.json();
+  const data = (await res.json()) as Geolocation;
 
   return {
     lat: data.lat,
     lon: data.lon,
   };
-};
-
-type Geolocation = {
-  lat: number;
-  lon: number;
 };
 
 const DispensariesMap = (props: Props) => {

@@ -20,7 +20,7 @@ const fetchRecommendedStrainsData = async (strainName: string) => {
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    const body = (await request.json()) as { name: string };
     const { name } = body;
     if (!name) throw new Error('Invalid request.');
 

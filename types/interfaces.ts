@@ -40,7 +40,7 @@ export interface StrainExtended extends Strain {
       score: number;
     };
   };
-  likes: any;
+  likes: Like[];
   comments?: Comment[];
 }
 

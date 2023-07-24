@@ -14,14 +14,17 @@ const fetchRecommendedStrainsData = async (strainName: string) => {
       name: strainName,
     }),
   });
-  const data = await res.json();
+  const data = (await res.json()) as Mixer[];
 
   return data;
 };
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    const body = (await request.json()) as {
+      strainId: string;
+      strainName: string;
+    };
     const { strainId, strainName } = body;
     if (!strainId || !strainName) throw new Error('Invalid request.');
 

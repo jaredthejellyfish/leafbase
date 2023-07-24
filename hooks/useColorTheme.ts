@@ -11,7 +11,7 @@ const useColorTheme = (): {
 
   useEffect(() => {
     try {
-      const className: string = 'dark';
+      const className = 'dark';
       const htmlClass = window.document.documentElement.classList;
       const bodyClass = window.document.body.classList;
       const expirationDate = new Date();

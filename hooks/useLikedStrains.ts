@@ -1,11 +1,12 @@
 'use client';
+import { StrainExtended } from '@/types/interfaces';
 import { useQuery } from '@tanstack/react-query';
 
 const getUser = async () => {
   const res = await fetch('/api/strains/liked');
   const strains = await res.json();
 
-  return strains;
+  return strains as { strains: StrainExtended[] };
 };
 
 const useLikedStrains = () => {

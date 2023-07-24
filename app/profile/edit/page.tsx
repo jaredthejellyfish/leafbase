@@ -14,6 +14,7 @@ import dynamic from 'next/dynamic';
 import { format } from 'date-fns';
 import 'react-phone-number-input/style.css';
 import { E164Number } from 'libphonenumber-js/core';
+import { User } from '@prisma/client';
 
 const DatePicker = dynamic(() => import('./components/DatePicker/DatePicker'), {
   ssr: false,
@@ -44,6 +45,7 @@ const DeleteAccount = dynamic(
 
 const EditProfile = () => {
   const { user, isLoading, isFetching } = useUser();
+
   const queryClient = useQueryClient();
   const router = useRouter();
 
@@ -74,6 +76,7 @@ const EditProfile = () => {
   });
 
   useEffect(() => {
+    if (!user) return;
     setName(user?.name || '');
     setEmail(user?.email || '');
     setAboutMe(user?.aboutMe || '');
@@ -84,7 +87,7 @@ const EditProfile = () => {
     if (user?.birthDate) {
       import('date-fns')
         .then(({ parseISO }) => {
-          setBirthDate(user?.birthDate ? parseISO(user.birthDate) : undefined);
+          setBirthDate(user?.birthDate ? parseISO(user.birthDate as unknown as string) : undefined);
         })
         .catch((err) => {
           console.error('Failed to load module: ', err);
@@ -165,7 +168,7 @@ const EditProfile = () => {
   async () => {
     try {
       const res = await fetch('https://ipapi.co/json/');
-      const data = await res.json();
+      const data = (await res.json()) as { city: string; country_name: string };
       setLocation(data.city + ', ' + data.country_name);
     } catch (error) {
       console.log(error);

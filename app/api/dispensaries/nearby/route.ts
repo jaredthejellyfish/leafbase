@@ -3,31 +3,38 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    const body = (await request.json()) as {
+      lat?: number;
+      lon?: number;
+      city?: string;
+    };
     const { lat, lon, city } = body;
 
-    const withCoords = {
-      AND: [
-        {
-          latitude: {
-            gte: lat - 0.1,
-            lte: lat + 0.1,
+    const withCoords = lat &&
+      lon && {
+        AND: [
+          {
+            latitude: {
+              gte: lat - 0.1,
+              lte: lat + 0.1,
+            },
           },
-        },
-        {
-          longitude: {
-            gte: lon - 0.1,
-            lte: lon + 0.1,
+          {
+            longitude: {
+              gte: lon - 0.1,
+              lte: lon + 0.1,
+            },
           },
-        },
-      ],
-    };
+        ],
+      };
 
-    const withoutCoords = {
-      city: {
-        equals: city && city.split(',')[0],
-      },
-    };
+    const withoutCoords = !lat &&
+      !lon &&
+      city && {
+        city: {
+          equals: city && city.split(',')[0],
+        },
+      };
 
     const dispensaries = await prisma.dispensary.findMany({
       where: {

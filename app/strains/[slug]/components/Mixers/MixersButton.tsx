@@ -34,7 +34,7 @@ const fetchRecommendedStrainsData = async (
       strainId: strainId,
     }),
   });
-  const data = await res.json();
+  const data = (await res.json()) as { mixers: Recommendation[] };
 
   return data.mixers;
 };
@@ -92,6 +92,7 @@ const MixersButton = (props: Props) => {
           {!isLoading &&
           !isFetching &&
           !error &&
+          recommendedStrainsData &&
           recommendedStrainsData.length > 0 ? (
             recommendedStrainsData.map((recommendation: Recommendation) => {
               return (

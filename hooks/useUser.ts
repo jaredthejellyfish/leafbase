@@ -1,12 +1,13 @@
 'use client';
 import { useQuery } from '@tanstack/react-query';
+import { User } from '@prisma/client';
 import { useSession } from 'next-auth/react';
 
 const getUser = async () => {
   const res = await fetch('/api/user');
   const user = await res.json();
 
-  return user;
+  return user as { user: User };
 };
 
 const useUser = () => {
@@ -20,6 +21,9 @@ const useUser = () => {
   });
 
   const user = data?.user;
+
+  if (!user && !isLoading && !isFetching)
+    return { user: null, error, isLoading, isFetching };
 
   return { user, isLoading, isFetching, error };
 };

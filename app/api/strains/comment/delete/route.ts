@@ -5,7 +5,7 @@ import { authOptions } from '@/auth/authOptions';
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    const body = (await request.json()) as { commentId: string };
     const { commentId } = body;
     if (!commentId) throw new Error('Invalid request.');
 

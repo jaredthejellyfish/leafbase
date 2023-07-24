@@ -14,7 +14,6 @@ import dynamic from 'next/dynamic';
 import { format } from 'date-fns';
 import 'react-phone-number-input/style.css';
 import { E164Number } from 'libphonenumber-js/core';
-import { User } from '@prisma/client';
 
 const DatePicker = dynamic(() => import('./components/DatePicker/DatePicker'), {
   ssr: false,
@@ -87,7 +86,11 @@ const EditProfile = () => {
     if (user?.birthDate) {
       import('date-fns')
         .then(({ parseISO }) => {
-          setBirthDate(user?.birthDate ? parseISO(user.birthDate as unknown as string) : undefined);
+          setBirthDate(
+            user?.birthDate
+              ? parseISO(user.birthDate as unknown as string)
+              : undefined
+          );
         })
         .catch((err) => {
           console.error('Failed to load module: ', err);

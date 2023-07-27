@@ -1,0 +1,23 @@
+import React from 'react';
+import { MdError } from 'react-icons/md';
+
+const DispensariesMapError = () => {
+  return (
+    <div className="relative z-0 flex flex-col w-[99vw] lg:w-[70vw] p-3 m-1 shadow-md border border-zinc-100 dark:border-zinc-900 h-[30vh] lg:h-screen-bar rounded-xl dark:bg-zinc-900">
+      <div className="flex items-center justify-center flex-col relative w-full h-full rounded-xl bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse">
+        <div className="flex flex-col items-center justify-center pb-10">
+          <MdError size={80} className="text-green-700" />
+          <span className="text-2xl font-bold text-black">
+            Error loading map
+          </span>
+          <span className="text-lg text-center font-semibold text-gray-500">
+            Please try again later or contact support if the problem
+            persists.
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default DispensariesMapError;

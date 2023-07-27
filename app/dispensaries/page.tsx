@@ -7,6 +7,7 @@ import DispensariesMap from './components/DispensariesMap/DispensariesMap';
 import DispensariesMapSkeleton from './components/DispensariesMap/DispensariesMapSkeleton';
 import DispensariesListSkeleton from './components/DispensariesList/DispensariesListSkeleton';
 import DispensariesList from './components/DispensariesList/DispensariesList';
+import DispensariesMapError from './components/DispensariesMap/DispensariesMapSkeleton';
 
 export const metadata = {
   title: 'Dispensaries - Leafbase',
@@ -18,7 +19,7 @@ const Dispensaries = async () => {
   return (
     <div className="flex flex-col lg:flex-row justify-center w-full -mt-3 items-around">
       <div className="order-last lg:order-first">
-        <ErrorBoundary fallback={<DispensariesListSkeleton />}>
+        <ErrorBoundary fallback={<DispensariesMapError />}>
           <Suspense fallback={<DispensariesListSkeleton />}>
             <DispensariesList user={user && user} />
           </Suspense>

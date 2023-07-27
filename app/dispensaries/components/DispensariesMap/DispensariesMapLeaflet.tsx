@@ -57,7 +57,6 @@ const DispensariesMapLeaflet = () => {
   const {
     lat,
     lon,
-    error,
     loading,
     dispensaries: dispensaries,
   } = useContext(CoordinatesContext) as Coordinates;
@@ -66,8 +65,6 @@ const DispensariesMapLeaflet = () => {
   const mapThemeUrl = currentTheme === 'dark' ? 'dark_all' : 'light_all';
 
   if (!window) return null;
-  if (dispensaries && dispensaries?.length < 1) return null;
-  if (error) return <p>There was an error!</p>;
   if (loading) return <DispensariesMapSkeleton />;
 
   return (

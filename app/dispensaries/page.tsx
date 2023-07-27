@@ -4,7 +4,6 @@ import { User } from '@prisma/client';
 import { ErrorBoundary } from 'react-error-boundary';
 import useServerUser from '@/hooks/useServerUser';
 import DispensariesMap from './components/DispensariesMap/DispensariesMap';
-import DispensariesMapSkeleton from './components/DispensariesMap/DispensariesMapSkeleton';
 import DispensariesListSkeleton from './components/DispensariesList/DispensariesListSkeleton';
 import DispensariesList from './components/DispensariesList/DispensariesList';
 import DispensariesMapError from './components/DispensariesMap/DispensariesMapError'

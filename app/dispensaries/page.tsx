@@ -7,7 +7,7 @@ import DispensariesMap from './components/DispensariesMap/DispensariesMap';
 import DispensariesMapSkeleton from './components/DispensariesMap/DispensariesMapSkeleton';
 import DispensariesListSkeleton from './components/DispensariesList/DispensariesListSkeleton';
 import DispensariesList from './components/DispensariesList/DispensariesList';
-import DispensariesMapError from './components/DispensariesMap/DispensariesMapSkeleton';
+import DispensariesMapError from './components/DispensariesMap/DispensariesMapError';
 
 export const metadata = {
   title: 'Dispensaries - Leafbase',

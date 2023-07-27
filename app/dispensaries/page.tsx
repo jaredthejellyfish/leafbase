@@ -13,7 +13,7 @@ export const metadata = {
 };
 
 const Dispensaries = async () => {
-  const user = await useServerUser() as User | null;
+  const user = (await useServerUser()) as User | null;
 
   return (
     <div className="flex flex-col lg:flex-row justify-center w-full -mt-3 items-around">

@@ -118,7 +118,6 @@ export interface Cannabinoids {
   thcv: Cannabinoid;
 }
 
-
 export type nearbyDispensary = {
   id: string;
   latitude: number;

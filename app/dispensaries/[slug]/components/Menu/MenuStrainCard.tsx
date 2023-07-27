@@ -19,17 +19,6 @@ interface Price {
   price: number;
 }
 
-const terpeneColors: Colors = {
-  myrcene: '#7EBF73',
-  caryophyllene: '#B25C52',
-  terpinolene: '#4A7597',
-  linalool: '#9A67B5',
-  pinene: '#3B8A5A',
-  limonene: '#F9B122',
-  ocimene: '#2AA39F',
-  null: '#778899',
-};
-
 const effectColors: Colors = {
   Hungry: '#FF8C00',
   Giggly: '#FF69B4',
@@ -104,15 +93,6 @@ const MenuStrainCard = (props: Props) => {
               className="rounded-full w-2.5 h-2.5"
             ></div>
             <p className="p-0">{strain.topEffect}</p>
-          </span>
-          <span className="flex flex-row items-center gap-1">
-            <div
-              style={{
-                backgroundColor: terpeneColors[strain.topTerpene || 'null'],
-              }}
-              className="rounded-full w-2.5 h-2.5"
-            ></div>
-            <p className="p-0">{strain.topTerpene}</p>
           </span>
         </div>
       </div>

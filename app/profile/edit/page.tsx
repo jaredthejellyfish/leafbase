@@ -119,7 +119,7 @@ const EditProfile = () => {
     user?.phone,
     user?.location,
     user?.displayName,
-    user
+    user,
   ]);
 
   const hasChanges = () => {

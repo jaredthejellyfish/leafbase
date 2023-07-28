@@ -6,7 +6,7 @@ import useServerUser from '@/hooks/useServerUser';
 import DispensariesMap from './components/DispensariesMap/DispensariesMap';
 import DispensariesListSkeleton from './components/DispensariesList/DispensariesListSkeleton';
 import DispensariesList from './components/DispensariesList/DispensariesList';
-import DispensariesMapError from './components/DispensariesMap/DispensariesMapError'
+import DispensariesMapError from './components/DispensariesMap/DispensariesMapError';
 
 export const metadata = {
   title: 'Dispensaries - Leafbase',

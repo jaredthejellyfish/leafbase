@@ -11,8 +11,7 @@ const DispensariesMapError = () => {
             Error loading map
           </span>
           <span className="text-lg text-center font-semibold text-gray-500">
-            Please try again later or contact support if the problem
-            persists.
+            Please try again later or contact support if the problem persists.
           </span>
         </div>
       </div>

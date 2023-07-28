@@ -1,3 +1,5 @@
+import React from 'react';
+
 const ProfileCommentsSkeleton = () => (
   <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
     <h1 className="text-xl font-bold">Comments</h1>

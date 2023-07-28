@@ -148,7 +148,8 @@ const DispensariesMap = (props: Props) => {
     }
   }, [coordinates, roughCoordinates, dispatch]);
 
-  if (coordinatesError || roughCoordinatesError) throw new Error('No coordinates found.');
+  if (coordinatesError || roughCoordinatesError)
+    throw new Error('No coordinates found.');
 
   return (
     <CoordinatesContext.Provider

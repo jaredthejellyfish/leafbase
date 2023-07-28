@@ -1,4 +1,5 @@
 import { BsClipboardDataFill } from 'react-icons/bs';
+import React from 'react';
 
 const LikedStrainsSkeleton = () => (
   <div className="flex flex-col w-full px-1 shadow-md rounded-xl">

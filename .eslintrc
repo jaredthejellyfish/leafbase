@@ -8,6 +8,7 @@
     "next",
     "next/core-web-vitals",
     "prettier",
+    "eslint:recommended",
     "plugin:react/recommended"
   ],
   "parser": "@typescript-eslint/parser",

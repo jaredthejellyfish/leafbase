@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import DispensaryTable from './DispensaryTable';
 import { nearbyDispensary } from '@/types/interfaces';
 import DispensariesTableSkeleton from './DispensariesTableSkeleton';
+import DispensariesTableError from './DispensariesTableError';
 
 type Props = { user: User | null };
 
@@ -74,14 +75,7 @@ const DispensariesList = (props: Props) => {
             nisi totam, sint nulla.
           </p>
         </div>
-        {!dispensariesLoading &&
-        !dispensariesError &&
-        dispensaries &&
-        dispensaries.length > 0 ? (
-          dispensaries.map((dispensary) => (
-            <DispensaryTable key={dispensary.id} dispensary={dispensary} />
-          ))
-        ) : (
+        {dispensariesLoading && !dispensariesError && (
           <>
             <DispensariesTableSkeleton />
             <DispensariesTableSkeleton />
@@ -90,6 +84,18 @@ const DispensariesList = (props: Props) => {
             <DispensariesTableSkeleton />
             <DispensariesTableSkeleton />
           </>
+        )}
+
+        {!dispensariesLoading &&
+          !dispensariesError &&
+          dispensaries &&
+          dispensaries.length > 0 &&
+          dispensaries.map((dispensary) => (
+            <DispensaryTable key={dispensary.id} dispensary={dispensary} />
+          ))}
+
+        {(!dispensaries || dispensaries.length < 1) && !dispensariesLoading && (
+          <DispensariesTableError />
         )}
       </div>
     </div>

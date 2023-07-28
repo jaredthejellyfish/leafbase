@@ -22,7 +22,8 @@ const css = `
 `;
 
 interface Props {
-  onDateSelect: (date: Date) => void;
+  // eslint-disable-next-line no-unused-vars
+  onDateSelect: (day: Date) => void;
   closeCallback?: () => void;
 }
 

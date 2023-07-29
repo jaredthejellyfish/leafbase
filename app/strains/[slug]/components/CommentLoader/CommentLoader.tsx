@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Comment } from '@/types/interfaces';
+import { Comment, CommentExtended } from '@/types/interfaces';
 import { StrainExtended } from '@/types/interfaces';
 import dynamic from 'next/dynamic';
 import { User } from '@prisma/client';
@@ -9,17 +9,14 @@ import { AiOutlinePlus } from 'react-icons/ai';
 
 const CommentCard = dynamic(() => import('./CommentCard'), { ssr: false });
 
-const AddCommentButton = dynamic(
-  () => import('../AddCommentButton/AddCommentButton'),
-  {
-    loading: () => (
-      <button className="flex flex-row gap-2 p-2 text-green-700 transition scale-90 border border-green-700 rounded-lg sm:p-2 sm:px-2 sm:pr-3 md:scale-100 hover:bg-green-700 hover:text-white hover:dark:bg-zinc-500 hover:dark:text-zinc-200 text-md dark:border-zinc-500 dark:text-zinc-400 w-fit">
-        <AiOutlinePlus size={25} />
-        <span className="hidden sm:block">Add Comment</span>
-      </button>
-    ),
-  }
-);
+const AddCommentButton = dynamic(() => import('./AddCommentButton'), {
+  loading: () => (
+    <button className="flex flex-row gap-2 p-2 text-green-700 transition scale-90 border border-green-700 rounded-lg sm:p-2 sm:px-2 sm:pr-3 md:scale-100 hover:bg-green-700 hover:text-white hover:dark:bg-zinc-500 hover:dark:text-zinc-200 text-md dark:border-zinc-500 dark:text-zinc-400 w-fit">
+      <AiOutlinePlus size={25} />
+      <span className="hidden sm:block">Add Comment</span>
+    </button>
+  ),
+});
 
 const AnimatePresence = dynamic(
   () => import('framer-motion').then((mod) => mod.AnimatePresence),
@@ -53,7 +50,7 @@ const CommentLoader = (props: Props) => {
               .map((comment: Comment) => (
                 <CommentCard
                   key={comment.id}
-                  comment={comment}
+                  comment={comment as CommentExtended}
                   userId={user?.id}
                 />
               ))}

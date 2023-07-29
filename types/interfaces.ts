@@ -61,6 +61,13 @@ export interface Like {
   createdAt: string;
 }
 
+export interface CommentLike {
+  id: string;
+  userId: string;
+  commentId: string;
+  createdAt: string;
+}
+
 interface Terp {
   name: string;
   score: number;
@@ -137,3 +144,19 @@ export type nearbyDispensary = {
     }[];
   }[];
 };
+
+export interface CommentExtended {
+  id: string;
+  userId: string;
+  strainId: string;
+  body: string;
+  createdAt: Date | string;
+  strain: StrainExtended;
+  likes?: CommentLike[];
+  user: {
+    name: string;
+    image: string;
+    location: string;
+    displayName: string;
+  };
+}

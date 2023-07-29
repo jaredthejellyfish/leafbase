@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { motion } from 'framer-motion';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 import { Strain } from '@prisma/client';
 import { StrainExtended } from '@/types/interfaces';
@@ -22,6 +22,7 @@ const getLikedStatus = async (id: string) => {
 const StrainPageLikeButton = (props: Props) => {
   const [liked, setLiked] = useState(false);
   const { data: session } = useSession();
+  const queryClient = useQueryClient();
 
   const { data } = useQuery({
     queryKey: ['liked-status', props.id],
@@ -56,16 +57,22 @@ const StrainPageLikeButton = (props: Props) => {
     });
   };
 
+  const { mutate: addLike } = useMutation(likeStrain, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['liked-status', props.id]);
+    },
+  });
+  const { mutate: removeLike } = useMutation(unlikeStrain, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['liked-status', props.id]);
+    },
+  });
+
   const handleLike = () => {
-    setLiked(!liked);
-    try {
-      if (liked === false) {
-        likeStrain();
-      } else {
-        unlikeStrain();
-      }
-    } catch (error) {
-      console.log(error);
+    if (liked) {
+      removeLike();
+    } else {
+      addLike();
     }
   };
 

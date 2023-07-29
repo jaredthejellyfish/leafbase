@@ -1,29 +1,17 @@
 'use client';
 
 import React from 'react';
-import { StrainExtended } from '@/types/interfaces';
+import { CommentExtended } from '@/types/interfaces';
 import { format, parseJSON } from 'date-fns';
 import Link from 'next/link';
 import DeleteCommentButton from './DeleteCommentButton';
 import { motion } from 'framer-motion';
 import CommentLikeButton from './CommentLikeButton';
-import { Like, User } from '@prisma/client';
 
 type Props = {
   comment: CommentExtended;
   userId: string;
 };
-
-interface CommentExtended {
-  id: string;
-  userId: string;
-  strainId: string;
-  body: string;
-  createdAt: Date | string;
-  strain: StrainExtended;
-  likes?: Like[];
-  user: User;
-}
 
 function transformName(name: string): string {
   const parts = name.split(' ');

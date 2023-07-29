@@ -11,6 +11,7 @@ export async function POST(request: Request) {
     };
     const { content, strainId } = body;
     if (!content || !strainId) throw new Error('Invalid request.');
+    if (content.length > 500) throw new Error('Comment too long.');
 
     const session = await getServerSession(authOptions);
 

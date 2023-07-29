@@ -3,14 +3,12 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import React, { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import useUser from '@/hooks/useUser';
 import StrainCard from '@/components/StrainCard/StrainCard';
 import StrainLoaderSkeleton from './StrainLoaderSkeleton';
 import { Cannabinoids, Effects, StrainExtended } from '@/types/interfaces';
 
 const StrainLoader = ({ filter }: { filter?: string }) => {
   const { ref, inView } = useInView();
-  const user = useUser();
 
   const fetchStrains = async ({ pageParam = 3 }) => {
     const res = await fetch('/api/strains', {
@@ -36,7 +34,6 @@ const StrainLoader = ({ filter }: { filter?: string }) => {
     useInfiniteQuery({
       queryKey: ['strains'],
       queryFn: fetchStrains,
-      enabled: !!user?.user?.id,
       getNextPageParam: (lastPage) => {
         const totalPages = lastPage.totalPages;
         const lastPageNumber = lastPage.page;

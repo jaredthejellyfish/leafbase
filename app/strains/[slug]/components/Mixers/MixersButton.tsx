@@ -77,6 +77,7 @@ const MixersButton = (props: Props) => {
     <>
       <div className="absolute text-gray-400 top-8 sm:right-28 sm:left-auto left-8">
         <FiMoreVertical
+          data-testid="mixers-button"
           className="cursor-pointer"
           size={25}
           onClick={() => setIsModalOpen(!isModalOpen)}

@@ -5,6 +5,9 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 });
 
 const nextConfig = {
+  experimental: {
+    forceSwcTransforms: true,
+  },
   reactStrictMode: true,
   devIndicators: {
     buildActivity: true,

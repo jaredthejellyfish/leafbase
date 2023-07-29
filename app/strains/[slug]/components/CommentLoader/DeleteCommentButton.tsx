@@ -28,10 +28,12 @@ const DeleteCommentButton = (props: Props) => {
   };
 
   return (
-    <BsTrashFill
-      className="cursor-pointer"
+    <button
+      data-testid="delete-comment-button"
       onClick={() => deleteComment(props.commentId)}
-    />
+    >
+      <BsTrashFill className="cursor-pointer" />
+    </button>
   );
 };
 

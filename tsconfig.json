@@ -27,7 +27,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
+    ".next/types/**/*.ts", "app/strains/components/tests/StrainLoader.test.jsx", "app/strains/components/tests/FilterByMenu.test.jsx",
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "test_data", "**/tests/**", "**/*.test.ts", "**/*.test.tsx"]
 }

@@ -69,7 +69,7 @@ const DispensariesMapLeaflet = () => {
 
   return (
     <div className="relative z-0 flex flex-col w-[99vw] lg:w-[70vw] p-3 m-1 shadow-md border border-zinc-100 dark:border-zinc-900 h-[30vh] lg:h-screen-bar rounded-xl dark:bg-zinc-900">
-      {typeof window !== "undefined" && (
+      {typeof window !== 'undefined' && (
         <MapContainer
           className="relative w-full h-full rounded-xl bg--gray-400"
           center={[lat || 0, lon || 0]}

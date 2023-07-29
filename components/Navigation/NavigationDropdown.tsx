@@ -180,10 +180,10 @@ const NavigationDropdown = () => {
           animate={isOpen ? 'open' : 'closed'}
         >
           <Link
-            href="/settings"
+            href="/about"
             onClick={() => dispatch(setNavDropdownOpen(!isOpen))}
           >
-            -
+            About Us
           </Link>
         </motion.div>
       </motion.div>

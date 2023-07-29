@@ -98,7 +98,7 @@ const DispensaryMap = (props: Props) => {
 
   if (props.lat === 0 && props.lon === 0) return null;
 
-  return typeof window !== "undefined" || marker ? (
+  return typeof window !== 'undefined' || marker ? (
     <div className="h-[194px] md:h-[264px] relative z-0 flex flex-col w-full p-3 shadow-md rounded-xl dark:bg-zinc-900">
       <MapContainer
         className="h-[170px] md:h-[240px] w-full relative rounded-xl bg--gray-400"

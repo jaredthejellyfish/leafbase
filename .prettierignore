@@ -170,3 +170,7 @@ dist
 prisma/
 
 *.json
+
+.*
+
+**/tests/**

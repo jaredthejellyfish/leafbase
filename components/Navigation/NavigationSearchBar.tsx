@@ -1,10 +1,12 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { useQuery } from '@tanstack/react-query';
 import { debounce } from 'lodash';
 import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import { setNavDropdownOpen } from '@/store/features/navDropdownSlice';
 
 const fetchSearchResults = async (search: string) => {
   const res = await fetch(`/api/strains/search?query=${search}`);
@@ -28,6 +30,7 @@ interface Props {
 }
 
 const NavigationSearchBar = (props: Props) => {
+  const dispatch = useDispatch();
   const [search, setSearch] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -47,6 +50,27 @@ const NavigationSearchBar = (props: Props) => {
     debouncedHandleChangeRef.current(input);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const burgerButton = document.getElementById('hamburger-button');
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node) &&
+        burgerButton &&
+        !burgerButton.contains(event.target as Node)
+      ) {
+        setSearch('');
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [dispatch]);
+
+  const searchRef = useRef<HTMLDivElement>(null);
+
   return (
     <>
       <div className={props.containerClassName}>
@@ -64,10 +88,13 @@ const NavigationSearchBar = (props: Props) => {
         !isLoading &&
         !error &&
         data?.strains?.length > 0 && (
-          <div className="absolute flex-col hidden gap-4 px-4 py-5 rounded bg-white shadow dark:bg-zinc-800 md:flex top-16 right-60 xl:min-w-[388px] md:min-w-[248px]">
+          <div
+            className="absolute flex-col md:gap-4 px-4 py-5 rounded bg-white shadow dark:bg-zinc-900 md:dark:bg-zinc-800 md:top-16 md:right-60 w-[90vw] xl:w-[325px] md:w-[248px]"
+            ref={searchRef}
+          >
             {data.strains.map((strain) => (
               <div
-                className="flex flex-row items-center gap-5 px-2.5 "
+                className="flex flex-row items-center gap-5 px-2.5 mt-4"
                 key={strain.slug}
               >
                 <BsSearch
@@ -77,7 +104,10 @@ const NavigationSearchBar = (props: Props) => {
                 <Link
                   className="flex flex-col leading-none"
                   href={generateStrainUrl(strain.slug)}
-                  onClick={() => setSearch('')}
+                  onClick={() => {
+                    setSearch('');
+                    dispatch(setNavDropdownOpen(false));
+                  }}
                 >
                   <p>{strain.name}</p>
                   <p className="text-sm text-green-700/75">strain</p>

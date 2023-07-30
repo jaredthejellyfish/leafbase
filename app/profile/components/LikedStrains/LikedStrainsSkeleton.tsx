@@ -3,8 +3,8 @@ import React from 'react';
 
 const LikedStrainsSkeleton = () => (
   <div className="px-1">
-  <div className="flex flex-row items-center gap-5 text-xl font-bold">
-    <p className="">Liked Strains ( )</p>
+    <div className="flex flex-row items-center gap-5 text-xl font-bold">
+      <p className="">Liked Strains ( )</p>
       <BsClipboardDataFill size={20} className="inline-block mr-12" />
     </div>
     <div className="flex flex-row flex-wrap items-start justify-start mt-3 gap-x-0 gap-y-0 sm:gap-x-3 sm:gap-y-3">

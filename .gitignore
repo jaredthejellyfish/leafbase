@@ -174,3 +174,6 @@ strain_vectors.npy
 *.json
 *.service
 *.old
+
+# Sentry Auth Token
+.sentryclirc

@@ -64,7 +64,6 @@ describe('NavigationThemeSelect', () => {
         <NavigationThemeSelect />
       </Provider>
     );
-    console.log(store.getState().theme);
     const button = screen.getByLabelText('Toggle Theme');
     fireEvent.click(button);
 

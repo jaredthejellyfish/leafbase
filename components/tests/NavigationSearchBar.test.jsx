@@ -72,8 +72,6 @@ describe('NavigationSearchBar', () => {
       target: { value: 'strain' },
     });
 
-    console.log(screen.getByPlaceholderText('Search...').value);
-
     await waitFor(() =>
       expect(screen.getByText('Strain 1')).toBeInTheDocument()
     );

@@ -19,7 +19,6 @@
     "@next/bundle-analyzer": "^13.4.10",
     "@prisma/client": "^5.0.0",
     "@reduxjs/toolkit": "^1.9.5",
-    "@sentry/nextjs": "^7.60.1",
     "@tanstack/react-query": "^4.29.13",
     "@tanstack/react-query-devtools": "^4.29.13",
     "@total-typescript/ts-reset": "^0.4.2",

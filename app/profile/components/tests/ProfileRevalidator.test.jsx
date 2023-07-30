@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
-import { useRouter, useSearchParams} from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react';
 import ProfileRevalidator from '../ProfileRevalidator/ProfileRevalidator';
 
@@ -13,15 +13,14 @@ useRouter.mockReturnValue({
   replace: jest.fn(),
 });
 
-
-
 describe('ProfileRevalidator', () => {
   let mockRouter;
   let mockSearchParams;
 
   beforeEach(() => {
     mockSearchParams = new URLSearchParams();
-    mockRouter = useRouter();});
+    mockRouter = useRouter();
+  });
 
   afterEach(() => {
     jest.clearAllMocks();

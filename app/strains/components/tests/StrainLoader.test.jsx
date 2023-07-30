@@ -9,7 +9,6 @@ import fetchMock from 'jest-fetch-mock';
 
 fetchMock.enableMocks();
 
-
 const createSession = (user) => ({
   user,
   expires: new Date(Date.now() + 86400000).toISOString().slice(0, -5) + 'Z',

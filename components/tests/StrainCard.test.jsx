@@ -2,7 +2,7 @@ import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
 import StrainCard from '../StrainCard/StrainCard';
 import React from 'react';
-import { QueryClientProvider, QueryClient} from '@tanstack/react-query';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
 jest.mock('next/image');
 

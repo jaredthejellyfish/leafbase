@@ -15,7 +15,8 @@ describe('StarRating', () => {
   it('renders classname correctly', () => {
     render(<StarRating rating={1} className="test-class" />);
 
-    const starRating = screen.getByTestId('full-star').parentElement.parentElement;
+    const starRating =
+      screen.getByTestId('full-star').parentElement.parentElement;
 
     expect(starRating).toHaveClass('test-class');
   });

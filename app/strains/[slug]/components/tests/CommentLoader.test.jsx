@@ -38,8 +38,8 @@ describe('CommentLoader', () => {
     updatedAt: '2023-07-29T16:33:47.569Z',
   };
 
-  let queryClient
-  let container
+  let queryClient;
+  let container;
 
   afterEach(() => {
     document.body.removeChild(container);

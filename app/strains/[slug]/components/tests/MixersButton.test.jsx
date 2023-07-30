@@ -5,10 +5,9 @@ import MixersButton from '../Mixers/MixersButton';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import fetchMock from 'jest-fetch-mock';
 
-
 fetchMock.enableMocks();
 
-const mockStrain= {
+const mockStrain = {
   id: 'cljm0oaev000bxivq33kc2erh',
   slug: 'jealousy',
   name: 'Jealousy',
@@ -273,7 +272,7 @@ const createQueryClient = () =>
   });
 
 describe('MixersButton', () => {
-  let queryClient
+  let queryClient;
 
   beforeEach(() => {
     queryClient = createQueryClient();

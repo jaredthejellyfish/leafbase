@@ -19,8 +19,8 @@ const createQueryClient = () =>
   });
 
 describe('StrainPageLikeButton', () => {
-  let queryClient
-  let session
+  let queryClient;
+  let session;
 
   beforeEach(() => {
     queryClient = createQueryClient();

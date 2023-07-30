@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { SessionProvider } from 'next-auth/react';
 import ProfileCommentLikeButton from '../ProfileCommentLikeButton';
@@ -35,9 +35,7 @@ describe('CommentLikeButton', () => {
     render(
       <QueryClientProvider client={queryClient}>
         <SessionProvider session={session}>
-
-            <ProfileCommentLikeButton id="1" liked={true} />
-
+          <ProfileCommentLikeButton id="1" liked={true} />
         </SessionProvider>
       </QueryClientProvider>
     );

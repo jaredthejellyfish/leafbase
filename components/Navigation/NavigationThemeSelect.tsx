@@ -23,11 +23,7 @@ const NavigationThemeSelect = () => {
   };
 
   return (
-    <button
-      aria-label="Toggle Theme"
-      className="p-2"
-      onClick={handleClick}
-    >
+    <button aria-label="Toggle Theme" className="p-2" onClick={handleClick}>
       {currentTheme.theme === 'light' ? <BsMoonFill /> : <BsFillSunFill />}
     </button>
   );

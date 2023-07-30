@@ -35,7 +35,7 @@ describe('DeleteCommentButton', () => {
 
   it('calls deleteComment function on click', async () => {
     global.fetch = jest.fn().mockResolvedValueOnce({
-    json: () =>
+      json: () =>
         Promise.resolve({
           comment: {
             id: 'clkavgxaz0001xijp08zdc016',

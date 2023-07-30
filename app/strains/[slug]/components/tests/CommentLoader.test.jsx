@@ -38,11 +38,11 @@ describe('CommentLoader', () => {
     updatedAt: '2023-07-29T16:33:47.569Z',
   };
 
-  let queryClient: QueryClient;
-  let container: Node | null = null;
+  let queryClient
+  let container
 
   afterEach(() => {
-    document.body.removeChild(container as Node);
+    document.body.removeChild(container);
     container = null;
   });
 

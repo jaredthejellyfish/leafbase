@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { motion } from 'framer-motion';
+import { useMutation } from '@tanstack/react-query';
 
 type Props = {
   liked: boolean | undefined;
@@ -38,19 +39,24 @@ const StrainCommentLikeButton = (props: Props) => {
     });
   };
 
+  const { mutate: addLike } = useMutation(likeDispensaryComment, {
+    onSuccess: () => {
+      setLiked(true);
+    },
+  });
+  const { mutate: removeLike } = useMutation(unlikeDispensaryComment, {
+    onSuccess: () => {
+      setLiked(false);
+    },
+  });
+
   const handleLike = (e: React.MouseEvent) => {
     e.stopPropagation();
     e.preventDefault();
-
-    setLiked(!liked);
-    try {
-      if (liked === false) {
-        likeDispensaryComment();
-      } else {
-        unlikeDispensaryComment();
-      }
-    } catch (error) {
-      console.log(error);
+    if (liked) {
+      removeLike();
+    } else {
+      addLike();
     }
   };
 

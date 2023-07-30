@@ -3,7 +3,6 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 import CommentCard from '../CommentLoader/CommentCard';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { CommentExtended } from '@/types/interfaces';
 
 const createQueryClient = () =>
   new QueryClient({
@@ -11,8 +10,8 @@ const createQueryClient = () =>
   });
 
 describe('CommentCard', () => {
-  let queryClient: QueryClient;
-  let comment: CommentExtended;
+  let queryClient;
+  let comment;
 
   beforeEach(() => {
     queryClient = createQueryClient();
@@ -47,7 +46,7 @@ describe('CommentCard', () => {
     );
 
     const commentElement = screen.getByText(
-      (content, element) => element?.textContent === 'Test Comment'
+      (_, element) => element?.textContent === 'Test Comment'
     );
 
     expect(commentElement).toBeInTheDocument();

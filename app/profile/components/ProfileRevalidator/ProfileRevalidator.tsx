@@ -6,8 +6,8 @@ import { useRouter } from 'next/navigation';
 
 const ProfileRevalidator = () => {
   const searchParams = useSearchParams();
-  const router = useRouter();
   const revalidate = searchParams.get('revalidate');
+  const router = useRouter();
 
   useEffect(() => {
     if (revalidate === 'true') {

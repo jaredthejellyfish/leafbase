@@ -14,7 +14,7 @@ useRouter.mockReturnValue({
 });
 
 describe('AddCommentButton', () => {
-  let mockRouter: any;
+  let mockRouter;
 
   beforeEach(() => {
     mockRouter = useRouter();

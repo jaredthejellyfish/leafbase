@@ -9,13 +9,8 @@ import fetchMock from 'jest-fetch-mock';
 
 fetchMock.enableMocks();
 
-type UserSession = {
-  name: string,
-  email: string,
-  image: string,
-};
 
-const createSession = (user?: UserSession) => ({
+const createSession = (user) => ({
   user,
   expires: new Date(Date.now() + 86400000).toISOString().slice(0, -5) + 'Z',
 });
@@ -26,8 +21,8 @@ const createQueryClient = () =>
   });
 
 describe('StrainLoader', () => {
-  let queryClient: QueryClient;
-  let session: ReturnType<typeof createSession>;
+  let queryClient;
+  let session;
 
   beforeEach(() => {
     queryClient = createQueryClient();

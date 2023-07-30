@@ -17,7 +17,7 @@ useRouter.mockReturnValue({
 });
 
 describe('DeleteCommentButton', () => {
-  let mockRouter: any;
+  let mockRouter;
 
   beforeEach(() => {
     mockRouter = useRouter();
@@ -34,8 +34,8 @@ describe('DeleteCommentButton', () => {
   });
 
   it('calls deleteComment function on click', async () => {
-    (global as any).fetch = jest.fn().mockResolvedValueOnce({
-      json: () =>
+    global.fetch = jest.fn().mockResolvedValueOnce({
+    json: () =>
         Promise.resolve({
           comment: {
             id: 'clkavgxaz0001xijp08zdc016',
@@ -56,7 +56,7 @@ describe('DeleteCommentButton', () => {
 
   it('shows error toast when deleteComment fails', async () => {
     // Mocking fetch here as you've done in the test
-    (global as any).fetch = jest.fn(() =>
+    global.fetch = jest.fn(() =>
       Promise.resolve({
         json: () => Promise.resolve({ error: 'Error' }),
       })
@@ -84,7 +84,7 @@ describe('DeleteCommentButton', () => {
   });
 
   it('shows success toast when deleteComment succeeds', async () => {
-    (global as any).fetch = jest.fn(() =>
+    global.fetch = jest.fn(() =>
       Promise.resolve({
         json: () => Promise.resolve({ comment: { id: '1' } }),
       })

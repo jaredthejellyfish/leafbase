@@ -14,14 +14,19 @@ const NavigationThemeSelect = () => {
   const currentTheme = useSelector((state: RootState) => state.theme);
 
   useEffect(() => {
-    dispatch(setTheme(colorTheme));
-  }, [colorTheme, dispatch]);
+    if (colorTheme !== currentTheme.theme) dispatch(setTheme(colorTheme));
+  }, [colorTheme, dispatch, currentTheme]);
+
+  const handleClick = () => {
+    setColorTheme(colorTheme === 'dark' ? 'light' : 'dark');
+    dispatch(setTheme(colorTheme === 'dark' ? 'light' : 'dark'));
+  };
 
   return (
     <button
       aria-label="Toggle Theme"
       className="p-2"
-      onClick={() => setColorTheme(colorTheme === 'dark' ? 'light' : 'dark')}
+      onClick={handleClick}
     >
       {currentTheme.theme === 'light' ? <BsMoonFill /> : <BsFillSunFill />}
     </button>

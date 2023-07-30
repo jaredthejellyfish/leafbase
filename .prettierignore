@@ -172,5 +172,3 @@ prisma/
 *.json
 
 .*
-
-**/tests/**

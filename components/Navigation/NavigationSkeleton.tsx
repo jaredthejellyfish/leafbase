@@ -2,9 +2,9 @@ import React from 'react';
 import { BsFillSunFill } from 'react-icons/bs';
 import { BsSearch } from 'react-icons/bs';
 
-const Navigation = async () => {
+const NavigationSkeleton = () => {
   return (
-    <nav className="fixed z-50 w-screen h-16 text-black drop-shadow-lg dark:text-white">
+    <nav data-testid="navigation-skeleton" className="fixed z-50 w-screen h-16 text-black drop-shadow-lg dark:text-white">
       <div className="relative z-50 grid h-full grid-cols-3 grid-rows-1 gap-0 px-6 bg-gray-100 md:px-16 dark:bg-zinc-900">
         <div className="flex items-center justify-start col-span-1">
           <div className="flex items-center justify-start gap-4 text-xl">
@@ -54,4 +54,4 @@ const Navigation = async () => {
   );
 };
 
-export default Navigation;
+export default NavigationSkeleton;

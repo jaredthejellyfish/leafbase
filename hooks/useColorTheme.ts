@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, Dispatch, SetStateAction } from 'react';
 import useLocalStorage from './useLocalStorage';
 
 const useColorTheme = (): {
   colorTheme: string;
-  setColorTheme: (value: string) => void;
+  setColorTheme: Dispatch<SetStateAction<string>>;
 } => {
   const [colorTheme, setColorTheme] = useLocalStorage('color-theme', 'light');
 
@@ -31,7 +31,10 @@ const useColorTheme = (): {
     }
   }, [colorTheme]);
 
-  return { colorTheme, setColorTheme };
+  return { colorTheme, setColorTheme } as {
+    colorTheme: string;
+    setColorTheme: Dispatch<SetStateAction<string>>;
+  };
 };
 
 export default useColorTheme;

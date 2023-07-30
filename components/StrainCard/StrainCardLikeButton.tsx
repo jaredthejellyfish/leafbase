@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { motion } from 'framer-motion';
+import { useMutation } from '@tanstack/react-query';
 
 type Props = {
   liked: boolean | undefined;
@@ -37,19 +38,25 @@ const StrainCardLikeButton = (props: Props) => {
     });
   };
 
+  const { mutate: addLike } = useMutation(likeStrain, {
+    onSuccess: () => {
+      setLiked(true);
+    },
+  });
+  const { mutate: removeLike } = useMutation(unlikeStrain, {
+    onSuccess: () => {
+      setLiked(false);
+    },
+  });
+
   const handleLike = (e: React.MouseEvent) => {
     e.stopPropagation();
     e.preventDefault();
 
-    setLiked(!liked);
-    try {
-      if (liked === false) {
-        likeStrain();
-      } else {
-        unlikeStrain();
-      }
-    } catch (error) {
-      console.log(error);
+    if (liked) {
+      removeLike();
+    } else {
+      addLike();
     }
   };
 

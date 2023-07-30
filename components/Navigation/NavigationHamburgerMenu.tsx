@@ -47,6 +47,7 @@ const NavigationHamburgerMenu = () => {
       xmlns="http://www.w3.org/2000/svg"
       onClick={() => handleBurgerClick()}
       id="hamburger-button"
+      data-testid="hamburger-button"
     >
       <motion.path
         variants={hamburgerMenu.top}

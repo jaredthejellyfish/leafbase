@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import {PiKeyReturnFill} from 'react-icons/pi';
+import { PiKeyReturnFill } from 'react-icons/pi';
 
 const AuthError = (context: { searchParams: { error: string } }) => {
   console.log(context.searchParams.error);

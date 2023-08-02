@@ -1,27 +1,39 @@
 import { withAuth } from 'next-auth/middleware';
+import { NextResponse } from 'next/server';
 
 const config = {
-  matcher: ['/profile', '/profile/*'],
+  matcher: ['^/profile$', '^/profile/.*', '^/$'],
 };
 
-export default withAuth({
-  callbacks: {
-    authorized: async ({ req, token }) => {
-      const url = req?.url;
-      const pathname = new URL(url).pathname;
+export default withAuth(
+  function middleware(req) {
+    const url = new URL(req.url);
+    const pathname = url.pathname;
+    const baseUrl = url.origin;
 
-      if (token) return true;
+    if (!!req.nextauth.token && pathname === '/auth/login')
+      return NextResponse.redirect(`${baseUrl}/strains`);
+  },
 
-      if (config.matcher.some((path) => pathname.match(path))) {
-        return false;
-      } else {
+  {
+    callbacks: {
+      authorized: async ({ req, token }) => {
+        const url = req?.url;
+        const pathname = new URL(url).pathname;
+
+        if (token) return true;
+
+        // honor the wildcard matcher for all routes and stick to only exact matches so "/" doesn't match "/profile"
+        if (config.matcher.some((route) => new RegExp(route).test(pathname))) {
+          return false;
+        }
+
         return true;
-      }
+      },
     },
-  },
-  pages: {
-    signIn: '/auth/login',
-    verifyRequest: '/auth/verify-request',
-    error: '/auth/error',
-  },
-});
+    pages: {
+      verifyRequest: '/auth/verify-request',
+      error: '/auth/error',
+    },
+  }
+);

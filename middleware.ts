@@ -10,9 +10,10 @@ export default withAuth(
     const url = new URL(req.url);
     const pathname = url.pathname;
     const baseUrl = url.origin;
+    const search = new URLSearchParams(url.search).get('callbackUrl');
 
-    if (!!req.nextauth.token && pathname === '/auth/login')
-      return NextResponse.redirect(`${baseUrl}/strains`);
+    if (!!req?.nextauth.token && pathname === '/auth/login')
+      return NextResponse.redirect(search || `${baseUrl}/strains`);
   },
 
   {

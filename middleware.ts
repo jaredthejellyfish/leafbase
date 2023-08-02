@@ -11,6 +11,10 @@ export default withAuth(
     const pathname = url.pathname;
     const baseUrl = url.origin;
     const search = new URLSearchParams(url.search).get('callbackUrl');
+    const error = new URLSearchParams(url.search).get('error');
+
+    if (error && pathname === '/auth/login')
+      return NextResponse.redirect(`${baseUrl}/auth/error?error=${error}`);
 
     if (!!req?.nextauth.token && pathname === '/auth/login')
       return NextResponse.redirect(search || `${baseUrl}/strains`);

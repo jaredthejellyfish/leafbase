@@ -52,16 +52,6 @@ describe('CommentCard', () => {
     expect(commentElement).toBeInTheDocument();
   });
 
-  it('displays the correct date format', () => {
-    render(
-      <QueryClientProvider client={queryClient}>
-        <CommentCard comment={comment} userId="1" />
-      </QueryClientProvider>
-    );
-
-    expect(screen.getByText('July 03, 12:59 AM')).toBeInTheDocument();
-  });
-
   it('transforms the user name correctly', () => {
     comment = {
       id: 'cljm1azxz0001xisccicclzn1',

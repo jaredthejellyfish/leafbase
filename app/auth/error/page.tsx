@@ -1,30 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
 import { PiKeyReturnFill } from 'react-icons/pi';
-
-const ERRORS = {
-  Verification: {
-    title: 'Verification Error',
-    body: 'There was an error while trying to verify your email address. Please try again later.',
-  },
-  OAuthAccountNotLinked: {
-    title: 'Account Not Linked',
-    body: 'There was an error while trying to link your account. Please try again later.',
-  },
-  default: {
-    title: 'Authentication Error',
-    body: 'There was an error while trying to authenticate you. Please try again later.',
-  },
-};
+import { ERRORS, DEFAULT_ERROR } from './errors';
 
 const generateError = (error?: string) => {
-  switch (error) {
-    case 'Verification':
-      return ERRORS.Verification;
-    case 'OAuthAccountNotLinked':
-      return ERRORS.OAuthAccountNotLinked;
-    default:
-      return ERRORS.default;
+  const errorObject = ERRORS.find((errorObject) => error && errorObject[error]);
+
+  if (errorObject) {
+    const errorKey = Object.keys(errorObject)[0];
+    return errorObject[errorKey];
+  } else {
+    return DEFAULT_ERROR;
   }
 };
 

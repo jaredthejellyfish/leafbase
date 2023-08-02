@@ -5,7 +5,7 @@ import GeneralInformationSkeleton from './components/GeneralInformation/GeneralI
 import ProfileSkeleton from './components/Profile/ProfileSkeleton';
 import ProfileCommentsSkeleton from './components/ProfileComments/ProfileCommentsSkeleton';
 
-async function UserProfileLoading() {
+async function ProfileLoading() {
   return (
     <div className="flex flex-col px-6 md:px-16">
       <nav className="flex ml-1" aria-label="Breadcrumb">
@@ -64,4 +64,4 @@ async function UserProfileLoading() {
   );
 }
 
-export default UserProfileLoading;
+export default ProfileLoading;

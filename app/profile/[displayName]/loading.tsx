@@ -2,7 +2,7 @@ import React from 'react';
 import { MdLocationPin } from 'react-icons/md';
 import Link from 'next/link';
 
-async function UserProfileLoading() {
+async function ProfileDisplayLoading() {
   return (
     <div className="flex flex-col px-6 md:px-16">
       <nav className="flex ml-1" aria-label="Breadcrumb">
@@ -213,4 +213,4 @@ async function UserProfileLoading() {
   );
 }
 
-export default UserProfileLoading;
+export default ProfileDisplayLoading;

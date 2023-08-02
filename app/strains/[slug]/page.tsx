@@ -151,19 +151,7 @@ const getStrainBySlug = async (slug: string, userId?: string) => {
   }
 };
 
-// export async function generateStaticParams() {
-//   const strains = await prisma.strain.findMany({
-//     select: {
-//       slug: true,
-//     },
-//   });
-
-//   return strains.map((strains) => ({
-//     slug: strains.slug,
-//   }));
-// }
-
-const StrainPage = async (props: Props) => {
+const Strain = async (props: Props) => {
   const user = await useServerUser();
 
   const strain = (await getStrainBySlug(
@@ -350,4 +338,4 @@ const StrainPage = async (props: Props) => {
   );
 };
 
-export default StrainPage;
+export default Strain;

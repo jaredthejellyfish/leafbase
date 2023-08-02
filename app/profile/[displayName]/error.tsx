@@ -4,7 +4,7 @@ import React from 'react';
 import { MdError } from 'react-icons/md';
 import { useRouter } from 'next/navigation';
 
-const UserProfileError = () => {
+const ProfileDisplayError = () => {
   const router = useRouter();
   return (
     <div className="absolute top-0 flex flex-col items-center justify-center w-screen h-screen">
@@ -25,4 +25,4 @@ const UserProfileError = () => {
   );
 };
 
-export default UserProfileError;
+export default ProfileDisplayError;

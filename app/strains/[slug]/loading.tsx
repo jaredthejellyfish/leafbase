@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LoadingStrainPage = () => {
+const StrainLoading = () => {
   return (
     <div className="flex flex-col items-center justify-center px-4 md:px-1/4">
       <nav className="flex w-full mb-2 ml-1 md:w-4/5" aria-label="Breadcrumb">
@@ -112,4 +112,4 @@ const LoadingStrainPage = () => {
   );
 };
 
-export default LoadingStrainPage;
+export default StrainLoading;

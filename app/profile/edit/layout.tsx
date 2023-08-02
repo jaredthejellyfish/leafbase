@@ -4,7 +4,7 @@ export const metadata = {
   title: 'Edit Profile - Leafbase',
 };
 
-export default function RootLayout({
+export default function ProfileEditLayout({
   children,
 }: {
   children: React.ReactNode;

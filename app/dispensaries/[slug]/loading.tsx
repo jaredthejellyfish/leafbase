@@ -6,7 +6,7 @@ import GeneralInformationSkeleton from './components/GeneralInformation/GeneralI
 import DispensaryMapSkeleton from './components/DispensaryMap/DispensaryMapSkeleton';
 import MenuSkeleton from './components/Menu/MenuSkeleton';
 
-const DispensaryPageLoading = () => {
+const DispensaryLoading = () => {
   return (
     <div className="flex flex-col px-6 md:px-16">
       <nav className="flex mb-3 ml-1" aria-label="Breadcrumb">
@@ -82,4 +82,4 @@ const DispensaryPageLoading = () => {
   );
 };
 
-export default DispensaryPageLoading;
+export default DispensaryLoading;

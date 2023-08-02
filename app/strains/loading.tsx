@@ -2,7 +2,7 @@ import React from 'react';
 import { RxCaretDown } from 'react-icons/rx';
 import { AiOutlineHeart } from 'react-icons/ai';
 
-const LoadingStrains = async () => {
+const StrainsLoading = async () => {
   return (
     <div className="flex flex-col items-center justify-center px-6 xl:px-52">
       <div className="max-w-4xl">
@@ -218,4 +218,4 @@ const LoadingStrains = async () => {
   );
 };
 
-export default LoadingStrains;
+export default StrainsLoading;

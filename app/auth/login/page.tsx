@@ -8,7 +8,7 @@ import { AiFillGithub } from 'react-icons/ai';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 
-const LoginPage = () => {
+const AuthLogin = () => {
   const { data: session } = useSession();
   const router = useRouter();
   const [showToast, setShowToast] = useState(true);
@@ -112,4 +112,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default AuthLogin;

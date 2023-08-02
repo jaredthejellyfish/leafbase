@@ -40,6 +40,8 @@ interface Comment {
   likes?: Like[];
 }
 
+type MetadataProps = { params: { displayName: string } };
+
 const getLikesByUUID = async (userId: string) => {
   try {
     const likes = await prisma.like.findMany({
@@ -68,8 +70,6 @@ const getLikesByUUID = async (userId: string) => {
     await prisma.$disconnect();
   }
 };
-
-type MetadataProps = { params: { displayName: string } };
 
 export async function generateMetadata({
   params,

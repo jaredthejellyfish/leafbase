@@ -10,7 +10,7 @@ import protonmailLogo from '@/public/protonmail-logo.svg';
 import outlookLogo from '@/public/outlook-logo.svg';
 import appleLogo from '@/public/apple-logo.svg';
 
-const LoginPage = () => {
+const AuthVerify = () => {
   const { status } = useSession();
   const router = useRouter();
 
@@ -77,4 +77,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default AuthVerify;

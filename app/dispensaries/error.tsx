@@ -4,7 +4,7 @@ import React from 'react';
 import { MdError } from 'react-icons/md';
 import Link from 'next/link';
 
-const ErrorDispensaries = () => {
+const DispensariesError = () => {
   return (
     <div className="absolute top-0 flex flex-col items-center justify-center w-screen h-screen">
       <MdError size={80} className="text-green-700" />
@@ -25,4 +25,4 @@ const ErrorDispensaries = () => {
   );
 };
 
-export default ErrorDispensaries;
+export default DispensariesError;

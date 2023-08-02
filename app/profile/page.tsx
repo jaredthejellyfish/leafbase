@@ -55,7 +55,7 @@ export const metadata = {
     'Explore your personal user page, showcasing your profile, comments, and a curated list of your favorite cannabis strains. Stay updated and engaged with the community.',
 };
 
-async function UserProfile() {
+async function ProfilePage() {
   const user = await useServerUser();
 
   if (!user) return <div>failed to load</div>;
@@ -128,6 +128,6 @@ async function UserProfile() {
   );
 }
 
-export default UserProfile;
+export default ProfilePage;
 
 export const dynamic = 'force-dynamic';

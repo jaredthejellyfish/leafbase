@@ -46,7 +46,7 @@ interface Price {
 
 type Props = { params: { slug: string } };
 
-const DispensaryPage = async ({ params }: Props) => {
+const Dispensary = async ({ params }: Props) => {
   const slug = params.slug;
 
   const { dispensary, error } = await useServerDispensary(slug);
@@ -174,4 +174,4 @@ const DispensaryPage = async ({ params }: Props) => {
   );
 };
 
-export default DispensaryPage;
+export default Dispensary;

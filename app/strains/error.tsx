@@ -3,7 +3,7 @@
 import React from 'react';
 import { AiOutlineExclamationCircle } from 'react-icons/ai';
 
-const ErrorStrains = () => {
+const StrainsError = () => {
   return (
     <div className="flex flex-col items-center justify-center px-6 xl:px-52">
       <div className="max-w-4xl">
@@ -41,4 +41,4 @@ const ErrorStrains = () => {
   );
 };
 
-export default ErrorStrains;
+export default StrainsError;

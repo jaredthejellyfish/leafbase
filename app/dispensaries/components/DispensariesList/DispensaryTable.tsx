@@ -45,7 +45,10 @@ const DispensaryTable = (props: Props) => {
   return (
     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 mb-2 flex flex-col">
       <thead className="text-xs text-gray-700 uppercase bg-zinc-100 dark:bg-zinc-800 dark:text-gray-400">
-        <tr className="flex flex-row justify-between items-center">
+        <tr
+          className="flex flex-row justify-between items-center"
+          onClick={() => setOpen(!open)}
+        >
           <th scope="col" className="px-6 py-3 w-2/3">
             <Link href={`/dispensaries/${dispensary.slug}`}>
               {dispensary.name}
@@ -57,7 +60,6 @@ const DispensaryTable = (props: Props) => {
               initial="closed"
               className="flex items-center mr-2 justify-center"
               animate={open ? 'open' : 'closed'}
-              onClick={() => setOpen(!open)}
             >
               <RxCaretDown size={20} />
             </motion.th>
@@ -81,7 +83,7 @@ const DispensaryTable = (props: Props) => {
                 scope="row"
                 className="px-6 py-2 w-full font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
-                {strain.name}
+                <Link href={`/strains/${strain.slug}`}>{strain.name}</Link>
               </th>
 
               <span className="flex w-28 flex-row mr-4 flex items-center justify-end">

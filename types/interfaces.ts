@@ -137,6 +137,7 @@ export type nearbyDispensary = {
     strains: {
       id: string;
       name: string;
+      slug: string;
     }[];
     prices: {
       price: number;

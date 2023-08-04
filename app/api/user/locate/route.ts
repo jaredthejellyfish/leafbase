@@ -33,6 +33,8 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ ok: getIPAddress(req.headers) });
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ error: error });
+    return NextResponse.error());
   }
 }
+
+export const dynamic = 'force-dynamic';

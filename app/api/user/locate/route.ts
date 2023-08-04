@@ -32,6 +32,10 @@ const getIpLocation = async (ip: string) => {
 
   if (res.ok) {
     const geodata = (await res.json()) as geoIpLocation;
+
+    if (!geodata || geodata.location.status === 'fail')
+      throw new Error('Error fetching ip location');
+
     return geodata;
   }
 };
@@ -40,10 +44,6 @@ export async function GET(req: NextRequest) {
   try {
     const ip = getIPAddress(req.headers);
     const location = await getIpLocation(ip);
-
-    if (!location) {
-      throw new Error('Error fetching ip location');
-    }
 
     return NextResponse.json({ location });
   } catch (error) {

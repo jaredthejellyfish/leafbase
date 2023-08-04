@@ -5,7 +5,7 @@ import { MdLocationPin } from 'react-icons/md';
 import useUser from '@/hooks/useUser';
 import TextareaAutosize from 'react-textarea-autosize';
 import Image from 'next/image';
-import { useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { AiOutlineClose } from 'react-icons/ai';
 import UserProfileLoading from './loading';
@@ -14,6 +14,7 @@ import dynamic from 'next/dynamic';
 import { format } from 'date-fns';
 import 'react-phone-number-input/style.css';
 import { E164Number } from 'libphonenumber-js/core';
+import { z } from 'zod';
 
 const DatePicker = dynamic(() => import('./components/DatePicker/DatePicker'), {
   ssr: false,
@@ -41,6 +42,17 @@ const DeleteAccount = dynamic(
     ),
   }
 );
+
+const UserProfileEditSchema = z.object({
+  name: z.string().min(1).max(48),
+  email: z.string().email(),
+  aboutMe: z.string().max(500),
+  birthDate: z.date().nullable(),
+  languages: z.string().max(50),
+  phone: z.string().max(15),
+  location: z.string().max(50),
+  displayName: z.string().max(16),
+});
 
 const EditProfile = () => {
   const { user, isLoading, isFetching } = useUser();
@@ -136,40 +148,53 @@ const EditProfile = () => {
   };
 
   const handleSubmit = async () => {
-    try {
-      if (!hasChanges()) {
-        router.push('/profile');
-        return;
-      }
+    if (!hasChanges()) throw new Error('No changes were made.');
 
-      const res = await fetch('/api/user/edit', {
-        method: 'POST',
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          aboutMe: aboutMe,
-          birthDate: birthDate,
-          languages: languages,
-          phone: phone,
-          location: location,
-          displayName: displayName,
-        }),
-      });
-      if (!res.ok) throw new Error(await res.text());
-    } catch (error) {
-      console.log(error);
-    } finally {
-      router.push('/profile?revalidate=true');
-      if (hasChanges()) {
-        import('react-toastify').then(({ toast }) =>
-          toast.success('Profile updated successfully!')
-        );
-      }
-      queryClient.invalidateQueries({ queryKey: ['user-profile'] });
-    }
+    UserProfileEditSchema.parse({
+      name: name,
+      email: email,
+      aboutMe: aboutMe,
+      birthDate: birthDate,
+      languages: languages,
+      phone: phone,
+      location: location,
+      displayName: displayName,
+    });
+
+    const res = await fetch('/api/user/edit', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        aboutMe: aboutMe,
+        birthDate: birthDate,
+        languages: languages,
+        phone: phone,
+        location: location,
+        displayName: displayName,
+      }),
+    });
+    if (!res.ok) throw new Error(await res.text());
   };
 
-  async () => {
+  const { mutate: editProfile } = useMutation(handleSubmit, {
+    onSuccess: () => {
+      router.push('/profile?revalidate=true');
+      queryClient.invalidateQueries({ queryKey: ['user-profile'] });
+      import('react-toastify').then(({ toast }) => {
+        toast.success('Profile updated successfully.');
+      });
+    },
+    onError: () => {
+      import('react-toastify').then(({ toast }) => {
+        toast.error(
+          'Error! Please ensure all the fields are filled out correctly and try again.'
+        );
+      });
+    },
+  });
+
+  const getLocation = async () => {
     try {
       const res = await fetch('https://ipapi.co/json/');
       const data = (await res.json()) as { city: string; country_name: string };
@@ -288,7 +313,10 @@ const EditProfile = () => {
               </div>
               <span className="mt-3 text-sm dark:text-white">
                 Location:
-                <span className="flex flex-row items-center gap-1 mt-1 text-sm cursor-pointer text-zinc-300">
+                <span
+                  className="flex flex-row items-center gap-1 mt-1 text-sm cursor-pointer text-zinc-300"
+                  onClick={() => getLocation()}
+                >
                   <MdLocationPin />
                   <span className="text-zinc-400">{user?.location}</span>
                 </span>
@@ -320,7 +348,7 @@ const EditProfile = () => {
                   aria-label="Save"
                   type="button"
                   className="w-1/2 mt-4 text-white bg-green-700 hover:bg-green-800 transition-all focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mr-2 dark:bg-green-700 dark:hover:bg-green-800 focus:outline-none dark:focus:ring-blue-800"
-                  onClick={() => handleSubmit()}
+                  onClick={() => editProfile()}
                 >
                   Save
                 </button>

@@ -43,12 +43,13 @@ export async function POST(request: Request) {
           displayName: displayName,
         },
       })
-      .then((user) => {
-        return user;
+      .then(() => {
+        return NextResponse.json({ ok: true });
       });
+
+    return NextResponse.json({ ok: true });
   } catch (error) {
-    console.log(error);
-    return NextResponse.json({ error: error });
+    return NextResponse.error();
   } finally {
     await prisma.$disconnect();
   }

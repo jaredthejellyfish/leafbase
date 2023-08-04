@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
 import { AiFillBell, AiOutlineBell } from 'react-icons/ai';
+import { motion } from 'framer-motion';
 
 type Props = { dispensaryId: string };
 
@@ -84,15 +85,41 @@ const FollowDispensaryButton = (props: Props) => {
     }
   };
 
+  const bellVariants = {
+    followed: {
+      scale: [1, 1.05, 1],
+      rotate: [0, 10, -10, 10, -10, 0],
+      x: [0, -1, 1, -1, 1, 0], // This will make the bell swing side to side
+      transition: {
+        duration: 0.8,
+      },
+    },
+    initial: {
+      scale: [1, 0.9, 1],
+      rotate: [0, 10, -10, 10, -10, 0],
+      x: [0, -1, 1, -1, 1, 0], // This will make the bell swing side to side
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
   return (
     !!session?.user && (
       <button
-        className={`absolute top-3 right-4 rounded text-sm ${
-          followed ? 'text-green-700' : 'text-zinc-400 '
+        className={`absolute top-3 right-4 rounded-full text-sm p-1.5 border  ${
+          followed
+            ? 'text-green-700 border-green-600'
+            : 'border-zinc-400 text-zinc-400 '
         }`}
         onClick={(e) => handleFollow(e)}
       >
-        {!followed ? <AiOutlineBell size={23} /> : <AiFillBell size={23} />}
+        <motion.div
+          variants={bellVariants}
+          animate={followed ? 'followed' : 'initial'}
+        >
+          {!followed ? <AiOutlineBell size={18} /> : <AiFillBell size={18} />}
+        </motion.div>
       </button>
     )
   );

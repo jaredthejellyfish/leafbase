@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import Image from 'next/image';
 import { Dispensary } from '@prisma/client';
 import { MdLocationPin } from 'react-icons/md';
@@ -8,6 +8,8 @@ import Link from 'next/link';
 import StarRating from '@/components/StarRating/StarRating';
 import md5 from 'md5';
 import FollowDispensaryButton from './FollowDispensaryButton';
+import { ErrorBoundary } from 'react-error-boundary';
+import FollowDispensaryButtonSkeleton from './FollowDispensaryButtonSkeleton';
 
 type Props = { dispensary: Dispensary };
 
@@ -16,7 +18,11 @@ const Profile = (props: Props) => {
 
   return (
     <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
-      <FollowDispensaryButton dispensaryId={dispensary.id} />
+      <ErrorBoundary fallback={<FollowDispensaryButtonSkeleton />}>
+        <Suspense fallback={<FollowDispensaryButtonSkeleton />}>
+          <FollowDispensaryButton dispensaryId={dispensary.id} />
+        </Suspense>
+      </ErrorBoundary>
       <div className="flex flex-row items-center gap-4">
         <Image
           src={

@@ -1,3 +1,5 @@
+'use client';
+
 import { Dispensary } from '@prisma/client';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
@@ -67,7 +69,6 @@ const FollowDispensaryButton = (props: Props) => {
   });
 
   useEffect(() => {
-    console.log('data', data);
     if (data) {
       setFollowed(data);
     }

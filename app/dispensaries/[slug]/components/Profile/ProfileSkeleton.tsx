@@ -1,9 +1,11 @@
 import React from 'react';
 import { MdLocationPin } from 'react-icons/md';
+import FollowDispensaryButtonSkeleton from './FollowDispensaryButtonSkeleton';
 
 const ProfileSkeleton = () => {
   return (
     <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
+      <FollowDispensaryButtonSkeleton />
       <div className="flex flex-row items-center gap-4">
         <div className="w-20 h-20 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
         <div className="flex flex-col">

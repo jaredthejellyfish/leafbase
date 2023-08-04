@@ -33,7 +33,10 @@ const getIpLocation = async (ip: string) => {
   if (res.ok) {
     const geodata = (await res.json()) as geoIpLocation;
 
-    if (!geodata || geodata.location.status === 'fail')
+    if (
+      !geodata ||
+      (geodata?.location?.status && geodata?.location?.status === 'fail')
+    )
       throw new Error('Error fetching ip location');
 
     return geodata;

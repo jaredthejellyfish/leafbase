@@ -88,9 +88,7 @@ const FollowDispensaryButton = (props: Props) => {
     !!session?.user && (
       <button
         className={`absolute top-3 right-4 rounded text-sm ${
-          followed
-            ? 'text-green-700'
-            : 'text-zinc-400 '
+          followed ? 'text-green-700' : 'text-zinc-400 '
         }`}
         onClick={(e) => handleFollow(e)}
       >

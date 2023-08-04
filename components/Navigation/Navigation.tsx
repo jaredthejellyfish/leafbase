@@ -11,7 +11,7 @@ import NavigationThemeSelect from './NavigationThemeSelect';
 import NavigationHamburgerMenu from './NavigationHamburgerMenu';
 import NavigationDropdown from './NavigationDropdown';
 import generateGravatarUrl from '@/utils/generateGravatarUrl';
-import ProfileIcon from '@/public/profile-icon.svg';
+import ProfileIcon from '@/public/svg/profile-icon.svg';
 
 const Navigation = async () => {
   const user = await useServerUser();

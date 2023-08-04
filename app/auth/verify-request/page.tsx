@@ -5,10 +5,10 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import gmailLogo from '@/public/gmail-logo.svg';
-import protonmailLogo from '@/public/protonmail-logo.svg';
-import outlookLogo from '@/public/outlook-logo.svg';
-import appleLogo from '@/public/apple-logo.svg';
+import gmailLogo from '@/public/svg/gmail-logo.svg';
+import protonmailLogo from '@/public/svg/protonmail-logo.svg';
+import outlookLogo from '@/public/svg/outlook-logo.svg';
+import appleLogo from '@/public/svg/apple-logo.svg';
 
 const AuthVerify = () => {
   const { status } = useSession();

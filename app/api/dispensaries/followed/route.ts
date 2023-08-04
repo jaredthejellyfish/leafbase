@@ -31,8 +31,9 @@ export async function GET() {
       },
     });
 
-    const followedDispensaries = followed.map((follow) => follow.dispensary as Dispensary);
-
+    const followedDispensaries = followed.map(
+      (follow) => follow.dispensary as Dispensary
+    );
 
     return NextResponse.json({ dispensaries: followedDispensaries });
   } catch (error) {

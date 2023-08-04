@@ -125,7 +125,7 @@ export interface Cannabinoids {
   thcv: Cannabinoid;
 }
 
-export type nearbyDispensary = {
+export interface nearbyDispensary {
   id: string;
   latitude: number;
   longitude: number;
@@ -144,7 +144,7 @@ export type nearbyDispensary = {
       strainId: string;
     }[];
   }[];
-};
+}
 
 export interface CommentExtended {
   id: string;
@@ -159,5 +159,24 @@ export interface CommentExtended {
     image: string;
     location: string;
     displayName: string;
+  };
+}
+
+export interface geoIpLocation {
+  location: {
+    query: string;
+    status: string;
+    country: string;
+    countryCode: string;
+    region: string;
+    regionName: string;
+    city: string;
+    zip: string;
+    lat: number;
+    lon: number;
+    timezone: string;
+    isp: string;
+    org: string;
+    as: string;
   };
 }

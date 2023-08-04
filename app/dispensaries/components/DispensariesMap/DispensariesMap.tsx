@@ -8,7 +8,7 @@ import DispensariesMapSkeleton from './DispensariesMapSkeleton';
 import { IoMdLocate } from 'react-icons/io';
 import { useDispatch } from 'react-redux';
 import { setUserCoordinates } from '@/store/features/userCoordinatesSlice';
-import { nearbyDispensary } from '@/types/interfaces';
+import { geoIpLocation, nearbyDispensary } from '@/types/interfaces';
 
 const DispensariesMapLeaflet = dynamic(
   () => import('./DispensariesMapLeaflet'),
@@ -84,12 +84,12 @@ const getIpGeolocation = async (city?: string): Promise<Geolocation> => {
     return { lat: data[0].lat, lon: data[0].lon };
   }
 
-  const res = await fetch('http://ip-api.com/json');
-  const data = (await res.json()) as Geolocation;
+  const res = await fetch('/api/user/locate');
+  const data = (await res.json()) as geoIpLocation;
 
   return {
-    lat: data.lat,
-    lon: data.lon,
+    lat: data.location.lat,
+    lon: data.location.lon,
   };
 };
 

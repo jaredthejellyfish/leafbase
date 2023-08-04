@@ -33,6 +33,7 @@
     "eslint-config-next": "^13.4.6",
     "eslint-plugin-react": "^7.33.0",
     "framer-motion": "^10.12.16",
+    "geoip-lite": "^1.4.7",
     "leaflet": "^1.9.4",
     "lodash": "^4.17.21",
     "md5": "^2.3.0",

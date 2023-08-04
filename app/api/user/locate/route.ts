@@ -1,36 +1,51 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { geoIpLocation } from '@/types/interfaces';
+
+const ipAddressPattern =
+  /^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
 
 function getIPAddress(headers: NextRequest['headers']) {
   const forwardedFor = headers.get('x-forwarded-for');
   const realIP = headers.get('x-real-ip');
   const host = headers.get('host');
+  let ipAddress = '83.51.245.72';
 
-  if (forwardedFor) {
-    // The 'x-forwarded-for' header might contain multiple IP addresses separated by commas.
-    // The first IP address is usually the client's IP.
-    const ipAddress = forwardedFor.split(',')[0].trim();
-    return ipAddress;
+  if (forwardedFor && ipAddressPattern.test(forwardedFor)) {
+    ipAddress = forwardedFor.split(',')[0].trim();
   }
 
-  if (realIP) {
-    return realIP;
+  if (realIP && ipAddressPattern.test(realIP)) {
+    ipAddress = realIP;
   }
 
-  if (host) {
-    // If 'host' contains an IP address, we can use that as well.
-    // In this case, we need to remove the square brackets if present.
-    const ipAddress = host.replace(/\[|\]/g, '');
-    return ipAddress;
+  if (host && ipAddressPattern.test(host)) {
+    ipAddress = host.replace(/\[|\]/g, '');
   }
 
-  // If no valid IP address is found in the headers, return null or any default value as needed.
-  return null;
+  return ipAddress;
 }
+
+const getIpLocation = async (ip: string) => {
+  const url = `http://ip-api.com/json/${ip}`;
+  console.log(url);
+  const res = await fetch(url);
+
+  if (res.ok) {
+    const geodata = (await res.json()) as geoIpLocation;
+    return geodata;
+  }
+};
 
 export async function GET(req: NextRequest) {
   try {
-    console.log(getIPAddress(req.headers));
-    return NextResponse.json({ ok: getIPAddress(req.headers) });
+    const ip = getIPAddress(req.headers);
+    const location = await getIpLocation(ip);
+
+    if (!location) {
+      throw new Error('Error fetching ip location');
+    }
+
+    return NextResponse.json({ location });
   } catch (error) {
     console.log(error);
     return NextResponse.error();

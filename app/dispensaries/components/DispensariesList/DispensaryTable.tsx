@@ -47,10 +47,15 @@ const DispensaryTable = (props: Props) => {
       <thead className="text-xs text-gray-700 uppercase bg-zinc-100 dark:bg-zinc-800 dark:text-gray-400">
         <tr
           className="flex flex-row justify-between items-center"
-          onClick={() => setOpen(!open)}
+          onClick={() => {
+            setOpen(!open);
+          }}
         >
           <th scope="col" className="px-6 py-3 w-2/3">
-            <Link href={`/dispensaries/${dispensary.slug}`}>
+            <Link
+              href={`/dispensaries/${dispensary.slug}`}
+              onClick={(e) => e.stopPropagation()}
+            >
               {dispensary.name}
             </Link>
           </th>

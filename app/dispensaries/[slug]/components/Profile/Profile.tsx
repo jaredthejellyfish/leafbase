@@ -7,6 +7,7 @@ import { MdLocationPin } from 'react-icons/md';
 import Link from 'next/link';
 import StarRating from '@/components/StarRating/StarRating';
 import md5 from 'md5';
+import FollowDispensaryButton from './FollowDispensaryButton';
 
 type Props = { dispensary: Dispensary };
 
@@ -15,6 +16,7 @@ const Profile = (props: Props) => {
 
   return (
     <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
+      <FollowDispensaryButton dispensaryId={dispensary.id} />
       <div className="flex flex-row items-center gap-4">
         <Image
           src={

@@ -46,7 +46,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ like });
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ error: error });
+    return NextResponse.error();
   } finally {
     await prisma.$disconnect();
   }

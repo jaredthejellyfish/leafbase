@@ -31,7 +31,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ strains: foundStrains });
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ error: error });
+    return NextResponse.error();
   } finally {
     await prisma.$disconnect();
   }

@@ -21,7 +21,7 @@ export async function GET() {
     return NextResponse.json({ result: 'success' });
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ error: error });
+    return NextResponse.error();
   } finally {
     await prisma.$disconnect();
   }

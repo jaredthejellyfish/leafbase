@@ -180,6 +180,9 @@ const NavigationDropdown = () => {
           animate={isOpen ? 'open' : 'closed'}
         >
           <Link
+            className={`w-full ${
+              pathName === '/about' ? 'text-green-500' : ''
+            }`}
             href="/about"
             onClick={() => dispatch(setNavDropdownOpen(!isOpen))}
           >

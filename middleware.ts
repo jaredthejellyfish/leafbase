@@ -2,7 +2,24 @@ import { withAuth } from 'next-auth/middleware';
 import { NextResponse } from 'next/server';
 
 const config = {
-  matcher: ['^/profile$', '^/profile/.*', '^/$'],
+  matcher: [
+    '^/api/dispensaries/comment/.*$',
+    '^/api/dispensaries/follow$',
+    '^/api/dispensaries/followed$',
+    '^/api/dispensaries/unfollow$',
+    '^/api/recommendations/.*$',
+    '^/api/strains/comment/.*$',
+    '^/api/strains/like$',
+    '^/api/strains/unlike$',
+    '^/api/strains/liked$',
+    '^/api/strains/mixers$',
+    '^/api/users/delete$',
+    '^/api/users/edit$',
+    '^/users$',
+    '^/profile$',
+    '^/profile/.*',
+    '^/$',
+  ],
 };
 
 export default withAuth(

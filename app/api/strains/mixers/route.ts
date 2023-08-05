@@ -61,7 +61,7 @@ export async function POST(request: Request) {
       mixers: mixers,
     });
   } catch (error) {
-    return NextResponse.json({ error: error });
+    return NextResponse.error();
   } finally {
     await prisma.$disconnect();
   }

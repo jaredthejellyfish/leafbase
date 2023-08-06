@@ -27,7 +27,7 @@ const useColorTheme = (): {
         ? bodyClass.add(className)
         : bodyClass.remove(className);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }, [colorTheme]);
 

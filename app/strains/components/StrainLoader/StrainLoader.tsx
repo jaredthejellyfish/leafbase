@@ -98,7 +98,7 @@ const StrainLoader = ({ filter }: { filter?: string }) => {
       {(isFetchingNextPage || isLoading) && <StrainLoaderSkeleton />}
 
       <div
-      data-testid="strain-loader-sentinel"
+        data-testid="strain-loader-sentinel"
         ref={ref}
         className="flex items-center justify-center w-full h-10 mt-2 text-white rounded -z-10"
       ></div>

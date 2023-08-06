@@ -30,30 +30,37 @@ const StrainLoader = ({ filter }: { filter?: string }) => {
     return data;
   };
 
-  const { data, error, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useInfiniteQuery({
-      queryKey: ['strains'],
-      queryFn: fetchStrains,
-      getNextPageParam: (lastPage) => {
-        const totalPages = lastPage.totalPages;
-        const lastPageNumber = lastPage.page;
+  const {
+    data,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    isLoading,
+  } = useInfiniteQuery({
+    queryKey: ['strains'],
+    queryFn: fetchStrains,
+    getNextPageParam: (lastPage) => {
+      const totalPages = lastPage.totalPages;
+      const lastPageNumber = lastPage.page;
 
-        if (lastPageNumber < totalPages) {
-          return lastPageNumber + 1;
-        } else {
-          return undefined;
-        }
-      },
-    });
+      if (lastPageNumber < totalPages) {
+        return lastPageNumber + 1;
+      } else {
+        return undefined;
+      }
+    },
+    enabled: Boolean(filter),
+  });
 
   useEffect(() => {
     const loadMoreCallback = () => {
       fetchNextPage();
     };
-    if (inView) {
+    if (inView && !isFetchingNextPage && hasNextPage && !isLoading) {
       loadMoreCallback();
     }
-  }, [inView, fetchNextPage, isFetchingNextPage]);
+  }, [inView, fetchNextPage, isFetchingNextPage, hasNextPage, isLoading]);
 
   if (error) {
     return <div>Error loading strains</div>;
@@ -88,19 +95,12 @@ const StrainLoader = ({ filter }: { filter?: string }) => {
               />
             ) : null
           )}
-      {isFetchingNextPage && <StrainLoaderSkeleton />}
+      {(isFetchingNextPage || isLoading) && <StrainLoaderSkeleton />}
 
-      <div className="flex items-center justify-center w-full h-10 mt-2 text-white rounded -z-10"></div>
       <div
         ref={ref}
-        className="absolute flex items-center justify-center w-full h-10 mt-5 mb-4 text-transparent rounded bottom-96"
-      >
-        {isFetchingNextPage
-          ? 'Loading more...'
-          : hasNextPage
-          ? 'Load more'
-          : 'Nothing more to load'}
-      </div>
+        className="flex items-center justify-center w-full h-10 mt-2 text-white rounded -z-10"
+      ></div>
     </>
   );
 };

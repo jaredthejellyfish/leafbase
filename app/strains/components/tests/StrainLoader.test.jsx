@@ -41,7 +41,7 @@ describe('StrainLoader', () => {
       </QueryClientProvider>
     );
 
-    expect(screen.getByText('Nothing more to load')).toBeInTheDocument();
+    expect(screen.getByTestId('strain-loader-sentinel')).toBeInTheDocument();
   });
 
   it('renders without a user', () => {

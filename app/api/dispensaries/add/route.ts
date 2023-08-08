@@ -28,13 +28,15 @@ export async function POST(request: Request) {
 
     const session = await getServerSession(authOptions);
 
+    if (!session) throw new Error('Unauthorized.');
+
     const user = await prisma.user.findUnique({
       where: {
         email: session?.user?.email || undefined,
       },
     });
 
-    if (!session || !user) throw new Error('Unauthorized.');
+    if (!user) throw new Error('User could not be found.');
 
     const dispensary = await prisma.dispensary.create({
       data: {
@@ -51,7 +53,10 @@ export async function POST(request: Request) {
         averageRating: body.averageRating,
         image: body.image,
         logo: body.logo,
-        slug: body.name.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, ''),
+        slug: body.name
+          .toLowerCase()
+          .replace(/ /g, '-')
+          .replace(/[^\w-]+/g, ''),
       },
     });
 

@@ -16,9 +16,9 @@ export async function GET(
     });
 
     return NextResponse.json({ strain });
-  } catch (error) {
+    } catch (error) {
     console.log(error);
-    return NextResponse.error();
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   } finally {
     await prisma.$disconnect();
   }

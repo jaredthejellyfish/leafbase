@@ -9,7 +9,7 @@ export async function GET() {
     const session = await getServerSession(authOptions);
 
     if (!session?.user?.email)
-      throw new Error('User is not logged in or session expired.');
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const user = await prisma.user.delete({
       where: {
@@ -17,12 +17,12 @@ export async function GET() {
       },
     });
 
-    if (!user) throw new Error('User not found.');
+    if (!user) return NextResponse.json({ error: 'User not found' }, { status: 500 });
 
     return NextResponse.json({ result: 'success' });
-  } catch (error) {
+    } catch (error) {
     console.log(error);
-    return NextResponse.error();
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   } finally {
     await prisma.$disconnect();
   }

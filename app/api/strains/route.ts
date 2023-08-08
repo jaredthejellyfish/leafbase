@@ -88,7 +88,7 @@ export async function POST(request: Request) {
       filter: string;
     };
     const { page, take, filter } = body;
-    if (!page || !take) throw new Error('Invalid request.');
+    if (!page || !take) return NextResponse.json({ error: 'Invalid Request' }, { status: 500 });
 
     const session = await getServerSession(authOptions);
 
@@ -107,7 +107,7 @@ export async function POST(request: Request) {
       ? await getStrains((page - 1) * take, take, user?.id, filter)
       : await getStrains((page - 1) * take, take, '', filter);
 
-    if (strains === null) throw new Error('Error fetching strains.');
+    if (strains === null) return NextResponse.json({ error: 'Error fetching strains.' }, { status: 500 });
 
     const totalPages = Math.ceil(count / take);
 
@@ -116,9 +116,9 @@ export async function POST(request: Request) {
       page: page,
       totalPages: totalPages,
     });
-  } catch (error) {
+    } catch (error) {
     console.log(error);
-    return NextResponse.error();
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   } finally {
     await prisma.$disconnect();
   }

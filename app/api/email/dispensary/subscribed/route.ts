@@ -9,7 +9,8 @@ export async function POST(request: Request) {
   try {
     const body = (await request.json()) as { dispensaryId: string };
     const { dispensaryId } = body;
-    if (!dispensaryId) throw new Error('Invalid request.');
+    if (!dispensaryId)
+      return NextResponse.json({ error: 'Invalid Request' }, { status: 500 });
 
     const session = await getServerSession(authOptions);
     const user = await prisma.user.findUnique({
@@ -17,7 +18,8 @@ export async function POST(request: Request) {
         email: session?.user?.email || undefined,
       },
     });
-    if (!session || !user || !user?.email) throw new Error('Unauthorized.');
+    if (!session || !user || !user?.email)
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     if (user.dispensaryNotify === false)
       return NextResponse.json({ success: 'silent' });
 
@@ -35,10 +37,16 @@ export async function POST(request: Request) {
     });
 
     if (!dispensary || !dispensary.name)
-      throw new Error('Dispensary not found.');
+      return NextResponse.json(
+        { error: 'Dispensary not found' },
+        { status: 500 }
+      );
 
     if (dispensary.subscriptions.length < 1)
-      throw new Error('You are not following this dispensary.');
+      return NextResponse.json(
+        { error: 'You are not subscribed to this dispensary' },
+        { status: 500 }
+      );
 
     import('nodemailer').then(async (nodemailer) => {
       // NOTE: You are not required to use `nodemailer`, use whatever you want.
@@ -51,14 +59,20 @@ export async function POST(request: Request) {
       });
       const failed = result.rejected.concat(result.pending).filter(Boolean);
       if (failed.length) {
-        throw new Error(`Email to ${user.id} could not be sent`);
+        return NextResponse.json(
+          { error: 'Email could not be sent' },
+          { status: 500 }
+        );
       }
     });
 
     return NextResponse.json({ success: true });
   } catch (error) {
     console.log(error);
-    return NextResponse.error();
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
   } finally {
     await prisma.$disconnect();
   }

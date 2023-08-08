@@ -8,11 +8,11 @@ export async function POST(request: Request) {
   try {
     const body = (await request.json()) as { commentId: string };
     const { commentId } = body;
-    if (!commentId) throw new Error('Invalid request.');
+    if (!commentId) return NextResponse.json({ error: 'Invalid Request' }, { status: 500 });
 
     const session = await getServerSession(authOptions);
 
-    if (!session?.user?.email) throw new Error('Unauthorized.');
+    if (!session?.user?.email) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const user = await prisma.user.findUnique({
       where: {
@@ -20,7 +20,7 @@ export async function POST(request: Request) {
       },
     });
 
-    if (!user) throw new Error('Unauthorized.');
+    if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const comment = await prisma.comment.delete({
       where: {
@@ -29,9 +29,9 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ comment: comment });
-  } catch (error) {
+    } catch (error) {
     console.log(error);
-    return NextResponse.error();
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   } finally {
     await prisma.$disconnect();
   }

@@ -9,7 +9,8 @@ export async function GET(request: Request) {
     const url = new URL(request.url);
     const searchParams = new URLSearchParams(url.search);
     const dispensaryId = searchParams.get('dispensary');
-    if (!dispensaryId) throw new Error('Invalid request.');
+    if (!dispensaryId)
+      return NextResponse.json({ error: 'Invalid Request' }, { status: 500 });
 
     const session = await getServerSession(authOptions);
     if (!session)
@@ -22,7 +23,8 @@ export async function GET(request: Request) {
         email: session?.user?.email || undefined,
       },
     });
-    if (!user) throw new Error('Unauthorized.');
+    if (!user)
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const existingFollow = await prisma.dispensarySubscription.findFirst({
       where: {
@@ -32,7 +34,10 @@ export async function GET(request: Request) {
     });
 
     if (!existingFollow)
-      throw new Error('You are not following this dispensary.');
+      return NextResponse.json(
+        { error: 'You are not following this dispensary.' },
+        { status: 500 }
+      );
 
     await prisma.dispensarySubscription.delete({
       where: {

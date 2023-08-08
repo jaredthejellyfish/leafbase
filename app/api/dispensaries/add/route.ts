@@ -24,11 +24,13 @@ export async function POST(request: Request) {
   try {
     const body = (await request.json()) as DispensaryUpdate;
 
-    if (!body || !body.name) throw new Error('Invalid request.');
+    if (!body || !body.name)
+      return NextResponse.json({ error: 'Invalid Request' }, { status: 500 });
 
     const session = await getServerSession(authOptions);
 
-    if (!session) throw new Error('Unauthorized.');
+    if (!session)
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const user = await prisma.user.findUnique({
       where: {
@@ -36,7 +38,8 @@ export async function POST(request: Request) {
       },
     });
 
-    if (!user) throw new Error('User could not be found.');
+    if (!user)
+      return NextResponse.json({ error: 'User not found.' }, { status: 500 });
 
     const dispensary = await prisma.dispensary.create({
       data: {
@@ -63,7 +66,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ dispensary });
   } catch (error) {
     console.log(error);
-    return NextResponse.error();
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   } finally {
     await prisma.$disconnect();
   }

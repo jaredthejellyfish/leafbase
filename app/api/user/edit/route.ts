@@ -14,7 +14,7 @@ export async function POST(request: Request) {
 
     const session = await getServerSession(authOptions);
     if (!session?.user?.email)
-      throw new Error('User is not logged in or session expired.');
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     prisma.user
       .update({

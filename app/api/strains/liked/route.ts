@@ -15,7 +15,7 @@ export async function GET() {
       },
     });
 
-    if (!session || !user) throw new Error('Unauthorized.');
+    if (!session || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const likes = await prisma.like.findMany({
       where: {
@@ -43,9 +43,9 @@ export async function GET() {
     });
 
     return NextResponse.json({ strains: sortedLikedStrains });
-  } catch (error) {
+    } catch (error) {
     console.log(error);
-    return NextResponse.error();
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   } finally {
     await prisma.$disconnect();
   }

@@ -11,12 +11,12 @@ export async function POST(request: Request) {
       strainId: string;
     };
     const { content, strainId } = body;
-    if (!content || !strainId) throw new Error('Invalid request.');
-    if (content.length > 500) throw new Error('Comment too long.');
+    if (!content || !strainId) return NextResponse.json({ error: 'Invalid Request' }, { status: 500 });
+    if (content.length > 500) return NextResponse.json({ error: 'Comment must be less than 500 characters' }, { status: 500 });
 
     const session = await getServerSession(authOptions);
 
-    if (!session?.user?.email) throw new Error('Unauthorized.');
+    if (!session?.user?.email) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const user = await prisma.user.findUnique({
       where: {
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
       },
     });
 
-    if (!user) throw new Error('Unauthorized.');
+    if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const comment = await prisma.comment.create({
       data: {
@@ -43,9 +43,9 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ comment: comment });
-  } catch (error) {
+    } catch (error) {
     console.log(error);
-    return NextResponse.error();
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   } finally {
     await prisma.$disconnect();
   }

@@ -8,7 +8,7 @@ export async function POST(request: Request) {
   try {
     const body = (await request.json()) as { strainId: string };
     const { strainId } = body;
-    if (!strainId) throw new Error('Invalid request.');
+    if (!strainId) return NextResponse.json({ error: 'Invalid Request' }, { status: 500 });
 
     const session = await getServerSession(authOptions);
 
@@ -18,7 +18,7 @@ export async function POST(request: Request) {
       },
     });
 
-    if (!session || !user) throw new Error('Unauthorized.');
+    if (!session || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const like = await prisma.like.findFirst({
       where: {
@@ -27,7 +27,7 @@ export async function POST(request: Request) {
       },
     });
 
-    if (!like) throw new Error('Like not found.');
+    if (!like) return NextResponse.json({ error: 'Like not found' }, { status: 500 });
 
     await prisma.like.delete({
       where: {
@@ -36,9 +36,9 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ success: true });
-  } catch (error) {
+    } catch (error) {
     console.log(error);
-    return NextResponse.error();
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   } finally {
     await prisma.$disconnect();
   }

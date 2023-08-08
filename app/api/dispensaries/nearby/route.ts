@@ -65,9 +65,9 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ dispensaries });
-  } catch (error) {
+    } catch (error) {
     console.log(error);
-    return NextResponse.error();
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   } finally {
     await prisma.$disconnect();
   }

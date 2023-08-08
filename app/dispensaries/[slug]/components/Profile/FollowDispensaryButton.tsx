@@ -15,6 +15,14 @@ const followDispensary = async (dispensaryId: string) => {
     body: JSON.stringify({ dispensaryId }),
   });
   const data = await response.json();
+  fetch('/api/email/dispensary/subscribed', {
+    method: 'POST',
+    body: JSON.stringify({
+      dispensaryId,
+    }),
+  })
+    .then(() => console.log('sent email'))
+    .catch((err) => console.error(err));
   return data;
 };
 
@@ -27,7 +35,7 @@ const unfollowDispensary = async (dispensaryId: string) => {
   return data;
 };
 
-const gerFollowedStatus = async (dispensaryId: string) => {
+const getFollowedStatus = async (dispensaryId: string) => {
   const response = await fetch('/api/dispensaries/followed');
   const data = (await response.json()) as { dispensaries: Dispensary[] };
 
@@ -63,7 +71,7 @@ const FollowDispensaryButton = (props: Props) => {
 
   const { data } = useQuery({
     queryKey: ['followed-status', dispensaryId],
-    queryFn: () => gerFollowedStatus(dispensaryId),
+    queryFn: () => getFollowedStatus(dispensaryId),
     enabled: !!session?.user,
     cacheTime: 30000,
   });

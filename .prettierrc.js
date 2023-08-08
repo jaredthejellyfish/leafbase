@@ -5,9 +5,9 @@ module.exports = {
   tabWidth: 2,
   useTabs: false,
   sortingMethod: 'lineLength',
-  stripNewlines: true, // Optional, based on your preference
+  stripNewlines: true,
   importTypeOrder: ['NPMPackages', 'localImports'],
-  newlineBetweenTypes: true, // Optional, based on your preference
+  newlineBetweenTypes: true,
   pluginSearchDirs: ['./node_modules'],
   plugins: ['./node_modules/prettier-plugin-sort-imports'],
 };

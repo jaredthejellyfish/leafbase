@@ -1,22 +1,25 @@
+import { default as nextDynamic } from 'next/dynamic';
 import 'react-toastify/dist/ReactToastify.css';
 import { cookies } from 'next/headers';
-import dynamic from 'next/dynamic';
 import React from 'react';
 
 import NavigationSkeleton from '@/components/Navigation/NavigationSkeleton';
 import Hotjar from '@/lib/Hotjar';
 import './globals.css';
 
-const Navigation = dynamic(() => import('@/components/Navigation/Navigation'), {
+const Navigation = nextDynamic(
+  () => import('@/components/Navigation/Navigation'),
+  {
+    ssr: false,
+    loading: () => <NavigationSkeleton />,
+  }
+);
+
+const ClientToast = nextDynamic(() => import('@/lib/ClientToast'), {
   ssr: false,
-  loading: () => <NavigationSkeleton />,
 });
 
-const ClientToast = dynamic(() => import('@/lib/ClientToast'), {
-  ssr: false,
-});
-
-const Providers = dynamic(() => import('@/lib/Providers'));
+const Providers = nextDynamic(() => import('@/lib/Providers'));
 
 export const metadata = {
   title: 'Leafbase',

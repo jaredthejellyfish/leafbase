@@ -172,3 +172,5 @@ prisma/
 *.json
 
 .*
+
+*.yaml

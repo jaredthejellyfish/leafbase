@@ -27,7 +27,10 @@ const AuthError = (context: { searchParams: { error: string } }) => {
         </h1>
         <p className="text-sm text-center text-zinc-400">{body}</p>
         <div className="flex flex-row gap-4"></div>
-        <Link href="/auth/login" className="bg-green-700 rounded text-white p-2">
+        <Link
+          href="/auth/login"
+          className="bg-green-700 rounded text-white p-2"
+        >
           <BsArrowReturnLeft size={20} />
         </Link>
       </div>

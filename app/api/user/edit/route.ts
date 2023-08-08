@@ -2,18 +2,8 @@ import { getServerSession } from 'next-auth/next';
 import { NextResponse } from 'next/server';
 
 import { authOptions } from '@/auth/authOptions';
+import { UserUpdate } from '@/types/interfaces';
 import prisma from '@/lib/prisma';
-
-interface UserUpdate {
-  name: string;
-  email: string;
-  aboutMe: string;
-  birthDate: string;
-  languages: string;
-  phone: string;
-  location: string;
-  displayName: string;
-}
 
 export async function POST(request: Request) {
   try {

@@ -180,3 +180,14 @@ export interface geoIpLocation {
     as: string;
   };
 }
+
+export interface UserUpdate {
+  name: string;
+  email: string;
+  aboutMe: string;
+  birthDate: string;
+  languages: string;
+  phone: string;
+  location: string;
+  displayName: string;
+}

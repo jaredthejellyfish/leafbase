@@ -177,3 +177,7 @@ strain_vectors.npy
 
 # Sentry Auth Token
 .sentryclirc
+
+*.bak
+*.sh
+table_of_contents.txt

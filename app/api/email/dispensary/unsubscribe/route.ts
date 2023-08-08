@@ -12,12 +12,17 @@ export async function GET(request: Request) {
     if (!dispensaryId) throw new Error('Invalid request.');
 
     const session = await getServerSession(authOptions);
+    if (!session)
+      return NextResponse.redirect(
+        new URL(`/auth/error?error=MustBeLoggedIn`, request.url)
+      );
+
     const user = await prisma.user.findUnique({
       where: {
         email: session?.user?.email || undefined,
       },
     });
-    if (!session || !user) throw new Error('Unauthorized.');
+    if (!user) throw new Error('Unauthorized.');
 
     const existingFollow = await prisma.dispensarySubscription.findFirst({
       where: {
@@ -44,7 +49,8 @@ export async function GET(request: Request) {
       },
     });
 
-    if (!slug) return NextResponse.redirect(`/dispensaries`);
+    if (!slug)
+      return NextResponse.redirect(new URL(`/dispensaries`, request.url));
 
     return NextResponse.redirect(
       new URL(`/dispensaries/${slug.slug}`, request.url)

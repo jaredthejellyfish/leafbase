@@ -18,7 +18,8 @@ export async function POST(request: Request) {
       },
     });
     if (!session || !user || !user?.email) throw new Error('Unauthorized.');
-    if (user.dispensaryNotify === false) return NextResponse.json({ success: true });
+    if (user.dispensaryNotify === false)
+      return NextResponse.json({ success: 'silent' });
 
     const dispensary = await prisma.dispensary.findUnique({
       where: {

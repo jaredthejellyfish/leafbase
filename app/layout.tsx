@@ -35,11 +35,7 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={theme?.value === 'dark' ? 'dark' : ''}>
-      <body
-        className={`dark:bg-black dark:text-white ${
-          theme?.value === 'dark' && 'dark'
-        }`}
-      >
+      <body className="dark:bg-black dark:text-white">
         <Providers>
           <Navigation />
           <div className="pt-20">

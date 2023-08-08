@@ -82,6 +82,12 @@ export const ERRORS: {
       body: 'Related to the Email provider. The token has expired or has already been used.',
     },
   },
+  {
+    MustBeLoggedIn: {
+      title: 'Access Denied',
+      body: 'You must be logged in to access this page.',
+    },
+  },
 ];
 
 export const DEFAULT_ERROR = {

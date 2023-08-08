@@ -30,9 +30,12 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: 'No strains found' });
 
     return NextResponse.json({ strains: foundStrains });
-    } catch (error) {
+  } catch (error) {
     console.log(error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
   } finally {
     await prisma.$disconnect();
   }

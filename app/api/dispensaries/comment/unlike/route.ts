@@ -8,7 +8,8 @@ export async function POST(request: Request) {
   try {
     const body = (await request.json()) as { commentId: string };
     const { commentId } = body;
-    if (!commentId) return NextResponse.json({ error: 'Invalid Request' }, { status: 500 });
+    if (!commentId)
+      return NextResponse.json({ error: 'Invalid Request' }, { status: 500 });
 
     const session = await getServerSession(authOptions);
 
@@ -18,7 +19,8 @@ export async function POST(request: Request) {
       },
     });
 
-    if (!session || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    if (!session || !user)
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const like = await prisma.dispensaryCommentLike.findFirst({
       where: {
@@ -27,7 +29,8 @@ export async function POST(request: Request) {
       },
     });
 
-    if (!like) return NextResponse.json({ error: 'Like not found.' }, { status: 500 });
+    if (!like)
+      return NextResponse.json({ error: 'Like not found.' }, { status: 500 });
 
     await prisma.dispensaryCommentLike.delete({
       where: {
@@ -36,9 +39,12 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ success: true });
-    } catch (error) {
+  } catch (error) {
     console.log(error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
   } finally {
     await prisma.$disconnect();
   }

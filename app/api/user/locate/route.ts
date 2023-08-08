@@ -50,8 +50,11 @@ export async function GET(req: NextRequest) {
     const location = await getIpLocation(ip);
 
     return NextResponse.json({ location });
-    } catch (error) {
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
   }
 }
 

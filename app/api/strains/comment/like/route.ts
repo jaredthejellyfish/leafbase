@@ -9,7 +9,8 @@ export async function POST(request: Request) {
     const body = (await request.json()) as { commentId: string };
     const { commentId } = body;
 
-    if (!commentId) return NextResponse.json({ error: 'Invalid Request' }, { status: 500 });
+    if (!commentId)
+      return NextResponse.json({ error: 'Invalid Request' }, { status: 500 });
 
     const session = await getServerSession(authOptions);
 
@@ -19,7 +20,8 @@ export async function POST(request: Request) {
       },
     });
 
-    if (!session || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    if (!session || !user)
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const existingLike = await prisma.commentLike.findFirst({
       where: {

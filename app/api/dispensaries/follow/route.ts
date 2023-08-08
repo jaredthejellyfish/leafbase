@@ -8,7 +8,8 @@ export async function POST(request: Request) {
   try {
     const body = (await request.json()) as { dispensaryId: string };
     const { dispensaryId } = body;
-    if (!dispensaryId) return NextResponse.json({ error: 'Invalid Request' }, { status: 500 });
+    if (!dispensaryId)
+      return NextResponse.json({ error: 'Invalid Request' }, { status: 500 });
 
     const session = await getServerSession(authOptions);
 
@@ -18,7 +19,8 @@ export async function POST(request: Request) {
       },
     });
 
-    if (!session || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    if (!session || !user)
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const existingFollow = await prisma.dispensarySubscription.findFirst({
       where: {
@@ -45,9 +47,12 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json({ follow });
-    } catch (error) {
+  } catch (error) {
     console.log(error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
   } finally {
     await prisma.$disconnect();
   }

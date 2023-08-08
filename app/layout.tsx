@@ -4,7 +4,6 @@ import { cookies } from 'next/headers';
 import React from 'react';
 
 import NavigationSkeleton from '@/components/Navigation/NavigationSkeleton';
-import Hotjar from '@/lib/Hotjar';
 import './globals.css';
 
 const Navigation = nextDynamic(
@@ -42,7 +41,6 @@ export default function RootLayout({
             {children}
             <ClientToast />
           </div>
-          <Hotjar />
         </Providers>
       </body>
     </html>

@@ -27,11 +27,13 @@ export async function POST(request: Request) {
       strainName: string;
     };
     const { strainId, strainName } = body;
-    if (!strainId || !strainName) return NextResponse.json({ error: 'Invalid Request' }, { status: 500 });
+    if (!strainId || !strainName)
+      return NextResponse.json({ error: 'Invalid Request' }, { status: 500 });
 
     const session = await getServerSession(authOptions);
 
-    if (!session) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    if (!session)
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const mixers = await prisma.mixer.findMany({
       where: {

@@ -23,7 +23,8 @@ export async function POST(request: Request) {
   try {
     const body = (await request.json()) as { name: string };
     const { name } = body;
-    if (!name) return NextResponse.json({ error: 'Invalid Request' }, { status: 500 });
+    if (!name)
+      return NextResponse.json({ error: 'Invalid Request' }, { status: 500 });
 
     const session = await getServerSession(authOptions);
 
@@ -33,14 +34,18 @@ export async function POST(request: Request) {
       },
     });
 
-    if (!session || !user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    if (!session || !user)
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
     const recommendedStrainsData = await fetchRecommendedStrainsData(name);
 
     return NextResponse.json({ recommendedStrainsData });
-    } catch (error) {
+  } catch (error) {
     console.log(error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
   } finally {
     await prisma.$disconnect();
   }

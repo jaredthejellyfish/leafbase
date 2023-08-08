@@ -241,7 +241,7 @@ const ProfileDisplay = async (props: Props) => {
             <h1 className="text-xl font-bold">General information</h1>
             {user?.aboutMe && (
               <>
-                <h2 className="mt-4 text-lg">About me</h2>
+<span className="mt-3 text-sm dark:text-white">About me</span>
                 <p className="mt-1 text-sm text-zinc-400 lg:w-4/5">
                   {user?.aboutMe}
                 </p>

@@ -83,7 +83,7 @@ const StrainCard = (props: Props) => {
         </div>
       )}
       <div className="w-1/2 md:w-full">
-        <div className="inline-block px-2 py-1 text-xs font-medium bg-gray-200 rounded dark:shadow dark:bg-zinc-700">
+        <div className="inline-block w-14 flex items-center justify-center px-2 py-1 text-xs font-medium bg-gray-200 rounded dark:shadow dark:bg-zinc-700">
           {props.phenotype}
         </div>
         <p className="px-1 mt-1 font-medium">{props.name}</p>
@@ -99,14 +99,13 @@ const StrainCard = (props: Props) => {
           {<StarRating rating={props.averageRating} />}
         </div>
         <div className="flex flex-row gap-4 px-1 text-xs text-zinc-500 dark:text-zinc-300">
-          <span className="">THC {props.thcPercent && props.thcPercent}%</span>
-          <span className="">
-            CBD:
-            {props.cannabinoids
-              ? props.cannabinoids.cbd.percentile50
-              : 'unknown'}
-            %
-          </span>
+          <span className="">THC: {props.thcPercent && props.thcPercent}%</span>
+
+          {props.cannabinoids && props.cannabinoids.cbd.percentile50 ? (
+            <span className="">
+              CBD: {props.cannabinoids.cbd.percentile50}%
+            </span>
+          ) : null}
         </div>
         <div className="flex flex-col px-1 mt-2 text-xs font-medium capitalize md:flex-row md:gap-3 md:items-center">
           <span className="flex flex-row items-center gap-1">

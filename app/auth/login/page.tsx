@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { signIn, useSession } from 'next-auth/react';
-import Image from 'next/image';
 import { BsDiscord, BsTwitch, BsSpotify } from 'react-icons/bs';
+import { signIn, useSession } from 'next-auth/react';
+import React, { useEffect, useState } from 'react';
 import { AiFillGithub } from 'react-icons/ai';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
+import Image from 'next/image';
 
 const AuthLogin = () => {
   const { data: session } = useSession();

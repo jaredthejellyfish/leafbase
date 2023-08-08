@@ -1,10 +1,10 @@
 'use client';
 
-import { Dispensary } from '@prisma/client';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useSession } from 'next-auth/react';
-import React, { useEffect, useState } from 'react';
 import { AiFillBell, AiOutlineBell } from 'react-icons/ai';
+import React, { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
+import { Dispensary } from '@prisma/client';
 import { motion } from 'framer-motion';
 
 type Props = { dispensaryId: string };

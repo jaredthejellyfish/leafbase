@@ -1,5 +1,6 @@
-import prisma from '@/lib/prisma';
 import { User, Like } from '@prisma/client';
+
+import prisma from '@/lib/prisma';
 
 interface StrainName {
   name: string;

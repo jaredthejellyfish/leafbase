@@ -1,9 +1,10 @@
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import StarRating from '@/components/StarRating/StarRating';
-import dynamic from 'next/dynamic';
+
 import StrainCardLikeButtonLoading from './StrainCardLikeButtonLoading';
+import StarRating from '@/components/StarRating/StarRating';
 import { Cannabinoids, Effects } from '@/types/interfaces';
 
 const StrainCardLikeButton = dynamic(() => import('./StrainCardLikeButton'), {

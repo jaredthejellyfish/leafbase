@@ -99,6 +99,7 @@
     "msw": "^1.2.3",
     "next-router-mock": "^0.9.7",
     "prettier": "^2.8.8",
+    "prettier-plugin-sort-imports": "^1.7.2",
     "prisma": "^5.1.1",
     "puppeteer": "^20.7.1",
     "react-test-renderer": "^18.2.0",

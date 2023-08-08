@@ -1,12 +1,13 @@
-import '@testing-library/jest-dom/extend-expect';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { render, fireEvent, screen } from '@testing-library/react';
+import { configureStore } from '@reduxjs/toolkit';
+import '@testing-library/jest-dom/extend-expect';
+import { usePathname } from 'next/navigation';
 import { Provider } from 'react-redux';
+import React from 'react';
+
 import navDropdownReducer from '../../store/features/navDropdownSlice';
 import NavigationDropdown from '../Navigation/NavigationDropdown';
-import { configureStore } from '@reduxjs/toolkit';
-import { usePathname } from 'next/navigation';
-import React from 'react';
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 
 jest.mock('next/navigation');
 

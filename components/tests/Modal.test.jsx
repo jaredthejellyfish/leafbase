@@ -1,7 +1,8 @@
-import '@testing-library/jest-dom/extend-expect';
 import { render, fireEvent, screen } from '@testing-library/react';
-import Modal from '../Modal/Modal';
+import '@testing-library/jest-dom/extend-expect';
 import React from 'react';
+
+import Modal from '../Modal/Modal';
 
 describe('Modal', () => {
   const mockClose = jest.fn();

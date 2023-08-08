@@ -1,10 +1,11 @@
 'use client';
 
+import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
+
 import { setNavDropdownOpen } from '@/store/features/navDropdownSlice';
+import { RootState } from '@/store/store';
 
 const NavigationHamburgerMenu = () => {
   const dispatch = useDispatch();

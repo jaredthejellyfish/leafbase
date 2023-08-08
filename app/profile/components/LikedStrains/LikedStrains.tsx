@@ -1,12 +1,13 @@
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import prisma from '@/lib/prisma';
-import dynamic from 'next/dynamic';
-import { User } from '@prisma/client';
-import useServerUser from '@/hooks/useServerUser';
-import { StrainExtended } from '@/types/interfaces';
 import { ErrorBoundary } from 'react-error-boundary';
+import { User } from '@prisma/client';
+import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
+
+import { StrainExtended } from '@/types/interfaces';
+import useServerUser from '@/hooks/useServerUser';
+import prisma from '@/lib/prisma';
 
 const LikedStrainsModal = dynamic(() => import('./LikedStrainsModal'), {
   loading: () => <div>Loading...</div>,

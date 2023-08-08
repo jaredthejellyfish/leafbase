@@ -1,7 +1,8 @@
-import React from 'react';
-import Link from 'next/link';
-import prisma from '@/lib/prisma';
 import { Like, User } from '@prisma/client';
+import Link from 'next/link';
+import React from 'react';
+
+import prisma from '@/lib/prisma';
 
 type Props = {
   user: User;

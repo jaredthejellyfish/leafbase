@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
 import { hotjar } from 'react-hotjar';
+import { useEffect } from 'react';
 
 const Hotjar = () => {
   useEffect(() => {

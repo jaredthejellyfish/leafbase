@@ -1,6 +1,6 @@
-import React from 'react';
-import { RxCaretDown } from 'react-icons/rx';
 import { AiOutlineHeart } from 'react-icons/ai';
+import { RxCaretDown } from 'react-icons/rx';
+import React from 'react';
 
 const StrainsLoading = async () => {
   return (

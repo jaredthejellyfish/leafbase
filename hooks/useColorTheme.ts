@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, Dispatch, SetStateAction } from 'react';
+
 import useLocalStorage from './useLocalStorage';
 
 const useColorTheme = (): {

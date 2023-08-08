@@ -1,4 +1,5 @@
 import React from 'react';
+
 import MenuStrainCardSkeleton from './MenuStrainCardSkeleton';
 
 const MenuSkeleton = () => {

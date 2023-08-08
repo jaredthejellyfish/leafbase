@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
 type Props = {

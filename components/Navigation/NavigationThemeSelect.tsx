@@ -1,11 +1,12 @@
 'use client';
 
-import useColorTheme from '@/hooks/useColorTheme';
-import { setTheme } from '@/store/features/themeSlice';
-import { RootState } from '@/store/store';
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { BsMoonFill, BsFillSunFill } from 'react-icons/bs';
+import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+
+import { setTheme } from '@/store/features/themeSlice';
+import useColorTheme from '@/hooks/useColorTheme';
+import { RootState } from '@/store/store';
 
 const NavigationThemeSelect = () => {
   const dispatch = useDispatch();

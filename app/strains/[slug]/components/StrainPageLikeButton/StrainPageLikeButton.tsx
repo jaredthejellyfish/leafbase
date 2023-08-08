@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
-import { motion } from 'framer-motion';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { Strain } from '@prisma/client';
+import { motion } from 'framer-motion';
+
 import { StrainExtended } from '@/types/interfaces';
 
 type Props = {

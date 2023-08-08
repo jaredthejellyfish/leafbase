@@ -1,6 +1,7 @@
 import React from 'react';
-import DispensariesMapSkeleton from './components/DispensariesMap/DispensariesMapSkeleton';
+
 import DispensariesListSkeleton from './components/DispensariesList/DispensariesListSkeleton';
+import DispensariesMapSkeleton from './components/DispensariesMap/DispensariesMapSkeleton';
 
 const DispensariesLoading = () => {
   return (

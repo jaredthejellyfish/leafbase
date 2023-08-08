@@ -1,8 +1,9 @@
-import '@testing-library/jest-dom/extend-expect';
 import { render, fireEvent, screen } from '@testing-library/react';
-import SingOutButton from '../SingOutButton/SingOutButton';
+import '@testing-library/jest-dom/extend-expect';
 import { signOut } from 'next-auth/react';
 import React from 'react';
+
+import SingOutButton from '../SingOutButton/SingOutButton';
 
 jest.mock('next-auth/react');
 

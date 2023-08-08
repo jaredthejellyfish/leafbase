@@ -1,11 +1,12 @@
-import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import React from 'react';
-import StrainLoader from '../StrainLoader/StrainLoader';
-import { SessionProvider } from 'next-auth/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { render, screen } from '@testing-library/react';
+import { SessionProvider } from 'next-auth/react';
 import { waitFor } from '@testing-library/react';
 import fetchMock from 'jest-fetch-mock';
+import '@testing-library/jest-dom';
+import React from 'react';
+
+import StrainLoader from '../StrainLoader/StrainLoader';
 
 fetchMock.enableMocks();
 

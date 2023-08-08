@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
+import React, { useEffect } from 'react';
 
 const ProfileRevalidator = () => {
   const searchParams = useSearchParams();

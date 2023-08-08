@@ -1,9 +1,9 @@
 import React from 'react';
 
-import ProfileSkeleton from './components/Profile/ProfileSkeleton';
-import CommentsSkeleton from './components/Comments/CommentsSkeleton';
 import GeneralInformationSkeleton from './components/GeneralInformation/GeneralInformationSkeleton';
 import DispensaryMapSkeleton from './components/DispensaryMap/DispensaryMapSkeleton';
+import CommentsSkeleton from './components/Comments/CommentsSkeleton';
+import ProfileSkeleton from './components/Profile/ProfileSkeleton';
 import MenuSkeleton from './components/Menu/MenuSkeleton';
 
 const DispensaryLoading = () => {

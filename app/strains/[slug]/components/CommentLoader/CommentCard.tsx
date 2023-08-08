@@ -1,11 +1,12 @@
 'use client';
 
-import React from 'react';
-import { CommentExtended } from '@/types/interfaces';
 import { format, parseJSON } from 'date-fns';
-import Link from 'next/link';
-import DeleteCommentButton from './DeleteCommentButton';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
+import React from 'react';
+
+import DeleteCommentButton from './DeleteCommentButton';
+import { CommentExtended } from '@/types/interfaces';
 import CommentLikeButton from './CommentLikeButton';
 
 type Props = {

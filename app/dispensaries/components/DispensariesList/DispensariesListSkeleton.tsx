@@ -1,4 +1,5 @@
 import React from 'react';
+
 import DispensariesTableSkeleton from './DispensariesTableSkeleton';
 
 const DispensariesListSkeleton = () => {

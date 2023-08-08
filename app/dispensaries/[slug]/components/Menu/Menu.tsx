@@ -1,5 +1,6 @@
-import React from 'react';
 import { Strain } from '@prisma/client';
+import React from 'react';
+
 import MenuStrainCard from './MenuStrainCard';
 
 type Props = {

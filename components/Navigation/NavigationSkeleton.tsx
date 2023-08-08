@@ -1,6 +1,6 @@
-import React from 'react';
 import { BsFillSunFill } from 'react-icons/bs';
 import { BsSearch } from 'react-icons/bs';
+import React from 'react';
 
 const NavigationSkeleton = () => {
   return (

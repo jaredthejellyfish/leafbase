@@ -1,13 +1,14 @@
-import React, { useContext } from 'react';
-import { CoordinatesContext } from './DispensariesMap';
-import 'leaflet/dist/leaflet.css';
-import Link from 'next/link';
-import dynamic from 'next/dynamic';
-import { Icon } from 'leaflet';
-import DispensariesMapSkeleton from './DispensariesMapSkeleton';
 import { useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
+import React, { useContext } from 'react';
+import dynamic from 'next/dynamic';
+import 'leaflet/dist/leaflet.css';
+import { Icon } from 'leaflet';
+import Link from 'next/link';
+
+import DispensariesMapSkeleton from './DispensariesMapSkeleton';
 import StarRating from '@/components/StarRating/StarRating';
+import { CoordinatesContext } from './DispensariesMap';
+import { RootState } from '@/store/store';
 
 const MapContainer = dynamic(
   () => import('react-leaflet').then((mod) => mod.MapContainer),

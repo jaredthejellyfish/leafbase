@@ -1,10 +1,11 @@
-import '@testing-library/jest-dom';
 import { render, fireEvent, screen } from '@testing-library/react';
-import React from 'react';
-import DeleteCommentButton from '../CommentLoader/DeleteCommentButton';
+import { ToastContainer } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import fetchMock from 'jest-fetch-mock';
-import { ToastContainer } from 'react-toastify';
+import '@testing-library/jest-dom';
+import React from 'react';
+
+import DeleteCommentButton from '../CommentLoader/DeleteCommentButton';
 
 fetchMock.enableMocks();
 

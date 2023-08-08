@@ -1,14 +1,15 @@
 'use client';
 
 import React, { useState, createContext, useEffect } from 'react';
-import { User } from '@prisma/client';
 import { useQuery } from '@tanstack/react-query';
-import dynamic from 'next/dynamic';
-import DispensariesMapSkeleton from './DispensariesMapSkeleton';
 import { IoMdLocate } from 'react-icons/io';
 import { useDispatch } from 'react-redux';
+import { User } from '@prisma/client';
+import dynamic from 'next/dynamic';
+
 import { setUserCoordinates } from '@/store/features/userCoordinatesSlice';
 import { geoIpLocation, nearbyDispensary } from '@/types/interfaces';
+import DispensariesMapSkeleton from './DispensariesMapSkeleton';
 
 const DispensariesMapLeaflet = dynamic(
   () => import('./DispensariesMapLeaflet'),

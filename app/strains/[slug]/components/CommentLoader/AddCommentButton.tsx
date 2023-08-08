@@ -1,12 +1,13 @@
 'use client';
 
-import { StrainExtended } from '@/types/interfaces';
-import React, { useState } from 'react';
-import { AiOutlinePlus } from 'react-icons/ai';
 import TextareaAutosize from 'react-textarea-autosize';
-import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
 import { AnimatePresence } from 'framer-motion';
+import { AiOutlinePlus } from 'react-icons/ai';
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+
+import { StrainExtended } from '@/types/interfaces';
 
 type Props = { strain: StrainExtended };
 

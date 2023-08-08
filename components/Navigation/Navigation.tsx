@@ -1,17 +1,18 @@
-import React from 'react';
+import { getServerSession } from 'next-auth';
+import { User } from '@prisma/client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { User } from '@prisma/client';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/auth/authOptions';
-import useServerUser from '@/hooks/useServerUser';
-import NavigationSearchBar from './NavigationSearchBar';
-import SiteLogo from '../SiteLogo/SiteLogo';
-import NavigationThemeSelect from './NavigationThemeSelect';
+import React from 'react';
+
 import NavigationHamburgerMenu from './NavigationHamburgerMenu';
-import NavigationDropdown from './NavigationDropdown';
 import generateGravatarUrl from '@/utils/generateGravatarUrl';
+import NavigationThemeSelect from './NavigationThemeSelect';
 import ProfileIcon from '@/public/svg/profile-icon.svg';
+import NavigationSearchBar from './NavigationSearchBar';
+import NavigationDropdown from './NavigationDropdown';
+import useServerUser from '@/hooks/useServerUser';
+import { authOptions } from '@/auth/authOptions';
+import SiteLogo from '../SiteLogo/SiteLogo';
 
 const Navigation = async () => {
   const user = await useServerUser();

@@ -1,9 +1,10 @@
 'use client';
 
-import { RootState } from '@/store/store';
-import React from 'react';
-import { useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
+import { useSelector } from 'react-redux';
+import React from 'react';
+
+import { RootState } from '@/store/store';
 
 const ClientToast = () => {
   const currentTheme = useSelector((state: RootState) => state.theme).theme;

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+
 import { geoIpLocation } from '@/types/interfaces';
 
 const ipAddressPattern =

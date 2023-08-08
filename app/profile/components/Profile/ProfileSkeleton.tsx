@@ -1,5 +1,5 @@
-import React from 'react';
 import { MdLocationPin } from 'react-icons/md';
+import React from 'react';
 
 const ProfileSkeleton = () => {
   return (

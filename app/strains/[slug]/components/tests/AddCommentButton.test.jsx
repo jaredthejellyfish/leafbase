@@ -1,8 +1,9 @@
-import '@testing-library/jest-dom/extend-expect';
 import { render, fireEvent, screen, waitFor } from '@testing-library/react';
-import AddCommentButton from '../CommentLoader/AddCommentButton';
+import '@testing-library/jest-dom/extend-expect';
 import { useRouter } from 'next/navigation';
 import React from 'react';
+
+import AddCommentButton from '../CommentLoader/AddCommentButton';
 import { mockStrain } from '@/test_data/mockStrain';
 
 jest.mock('next/navigation');

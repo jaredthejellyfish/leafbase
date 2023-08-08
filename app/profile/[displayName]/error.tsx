@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
-import { MdError } from 'react-icons/md';
 import { useRouter } from 'next/navigation';
+import { MdError } from 'react-icons/md';
+import React from 'react';
 
 const ProfileDisplayError = () => {
   const router = useRouter();

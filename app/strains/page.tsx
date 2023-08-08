@@ -1,12 +1,11 @@
+import { RxCaretDown } from 'react-icons/rx';
+import dynamic from 'next/dynamic';
 import React from 'react';
 
+import StrainCard from '@/components/StrainCard/StrainCard';
+import { Cannabinoids, Effects } from '@/types/interfaces';
 import useServerStrains from '@/hooks/useServerStrains';
 import ErrorStrains from './error';
-
-import dynamic from 'next/dynamic';
-import { Cannabinoids, Effects } from '@/types/interfaces';
-import { RxCaretDown } from 'react-icons/rx';
-import StrainCard from '@/components/StrainCard/StrainCard';
 
 const StrainLoader = dynamic(
   () => import('./components/StrainLoader/StrainLoader')

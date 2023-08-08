@@ -1,13 +1,14 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
-import Link from 'next/link';
-import { setNavDropdownOpen } from '@/store/features/navDropdownSlice';
 import { usePathname } from 'next/navigation';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+
+import { setNavDropdownOpen } from '@/store/features/navDropdownSlice';
 import NavigationSearchBar from './NavigationSearchBar';
+import { RootState } from '@/store/store';
 
 const NavigationDropdown = () => {
   const isOpen = useSelector(

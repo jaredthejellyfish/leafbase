@@ -1,9 +1,10 @@
-import '@testing-library/jest-dom';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import React from 'react';
-import MixersButton from '../Mixers/MixersButton';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import fetchMock from 'jest-fetch-mock';
+import '@testing-library/jest-dom';
+import React from 'react';
+
+import MixersButton from '../Mixers/MixersButton';
 
 fetchMock.enableMocks();
 

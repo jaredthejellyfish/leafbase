@@ -1,7 +1,8 @@
-import prisma from '@/lib/prisma';
-import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth/next';
+import { NextResponse } from 'next/server';
+
 import { authOptions } from '@/auth/authOptions';
+import prisma from '@/lib/prisma';
 
 const fetchRecommendedStrainsData = async (strainName: string) => {
   const res = await fetch(`${process.env.LEAFBASE_API_URL}/find-matches`, {

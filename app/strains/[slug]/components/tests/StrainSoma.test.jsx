@@ -1,8 +1,9 @@
-import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import React from 'react';
-import StrainSoma from '../StrainSoma/StrainSoma';
+
 import { mockStrain } from '@/test_data/mockStrain';
+import StrainSoma from '../StrainSoma/StrainSoma';
 
 describe('StrainSoma', () => {
   it('renders without crashing', () => {

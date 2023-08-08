@@ -1,4 +1,5 @@
 import { renderHook, act } from '@testing-library/react';
+
 import useColorTheme from '../useColorTheme';
 
 jest.mock('../useLocalStorage', () => jest.fn());

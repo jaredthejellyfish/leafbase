@@ -1,11 +1,11 @@
-import React from 'react';
-import Link from 'next/link';
-import prisma from '@/lib/prisma';
 import { Dispensary } from '@prisma/client';
-import useServerUser from '@/hooks/useServerUser';
-
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import React from 'react';
+
 import CommentLikeButtonLoading from './ComentLikeButtonLoading';
+import useServerUser from '@/hooks/useServerUser';
+import prisma from '@/lib/prisma';
 
 type Props = {
   dispensary: Dispensary;

@@ -1,5 +1,6 @@
-import { StrainExtended } from '@/types/interfaces';
 import React from 'react';
+
+import { StrainExtended } from '@/types/interfaces';
 
 const CommentLoaderFallback = ({ strain }: { strain: StrainExtended }) => {
   return (

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
 import { RxCaretDown } from 'react-icons/rx';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { nearbyDispensary } from '@/types/interfaces';
 import Link from 'next/link';
+
+import { nearbyDispensary } from '@/types/interfaces';
 
 type Props = { dispensary: nearbyDispensary };
 

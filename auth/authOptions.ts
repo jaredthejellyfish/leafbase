@@ -1,17 +1,15 @@
 import DiscordProvider from 'next-auth/providers/discord';
-import EmailProvider from 'next-auth/providers/email';
+import SpotifyProvider from 'next-auth/providers/spotify';
 import GoogleProvider from 'next-auth/providers/google';
 import TwitchProvider from 'next-auth/providers/twitch';
 import GitHubProvider from 'next-auth/providers/github';
-import SpotifyProvider from 'next-auth/providers/spotify';
-
+import EmailProvider from 'next-auth/providers/email';
 import { PrismaAdapter } from '@auth/prisma-adapter';
-import { html } from './email';
-import { NextAuthOptions } from 'next-auth';
-
 import { PrismaClient } from '@prisma/client';
-
+import { NextAuthOptions } from 'next-auth';
 import { v4 as uuidv4 } from 'uuid';
+
+import { html } from './email';
 
 const prisma: PrismaClient = new PrismaClient();
 

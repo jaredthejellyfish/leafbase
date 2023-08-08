@@ -1,18 +1,19 @@
-import React from 'react';
-import useServerDispensary from '@/hooks/useServerDispensary';
-import Link from 'next/link';
-import prisma from '@/lib/prisma';
 import { ErrorBoundary } from 'react-error-boundary';
-import Comments from './components/Comments/Comments';
-import 'leaflet/dist/leaflet.css';
-import ProfileSkeleton from './components/Profile/ProfileSkeleton';
-import GeneralInformationSkeleton from './components/GeneralInformation/GeneralInformationSkeleton';
-import Menu from './components/Menu/Menu';
-import dynamic from 'next/dynamic';
-import DispensaryMapDynamic from './components/DispensaryMap/DispensaryMapDynamic';
 import { MdError } from 'react-icons/md';
-import CommentsSkeleton from './components/Comments/CommentsSkeleton';
+import dynamic from 'next/dynamic';
+import 'leaflet/dist/leaflet.css';
+import Link from 'next/link';
+import React from 'react';
+
+import GeneralInformationSkeleton from './components/GeneralInformation/GeneralInformationSkeleton';
 import DispensaryMapSkeleton from './components/DispensaryMap/DispensaryMapSkeleton';
+import DispensaryMapDynamic from './components/DispensaryMap/DispensaryMapDynamic';
+import CommentsSkeleton from './components/Comments/CommentsSkeleton';
+import ProfileSkeleton from './components/Profile/ProfileSkeleton';
+import useServerDispensary from '@/hooks/useServerDispensary';
+import Comments from './components/Comments/Comments';
+import Menu from './components/Menu/Menu';
+import prisma from '@/lib/prisma';
 
 export async function generateStaticParams() {
   const dispensaries = await prisma.dispensary.findMany({

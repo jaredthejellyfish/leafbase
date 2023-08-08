@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
-import { motion } from 'framer-motion';
 import { useMutation } from '@tanstack/react-query';
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 type Props = {
   liked: boolean | undefined;

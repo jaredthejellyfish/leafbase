@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
 import { AiOutlineExclamationCircle } from 'react-icons/ai';
+import React from 'react';
 
 const StrainsError = () => {
   return (

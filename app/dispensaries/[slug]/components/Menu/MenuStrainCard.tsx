@@ -1,8 +1,9 @@
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import StarRating from '@/components/StarRating/StarRating';
 import { Strain } from '@prisma/client';
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
+
+import StarRating from '@/components/StarRating/StarRating';
 import { Cannabinoids } from '@/types/interfaces';
 
 type Props = {

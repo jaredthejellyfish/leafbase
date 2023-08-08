@@ -1,11 +1,12 @@
 'use client';
 
-import { SessionProvider } from 'next-auth/react';
-import { store } from '@/store/store';
-import { Provider } from 'react-redux';
-import React, { useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { SessionProvider } from 'next-auth/react';
+import React, { useState } from 'react';
+import { Provider } from 'react-redux';
+
+import { store } from '@/store/store';
 
 function Providers({ children }: { children: React.ReactNode }) {
   const [client] = useState(

@@ -1,5 +1,5 @@
-import React from 'react';
 import { AiOutlineHeart } from 'react-icons/ai';
+import React from 'react';
 
 const CommentLikeButtonLoading = () => {
   return (

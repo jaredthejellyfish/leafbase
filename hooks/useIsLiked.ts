@@ -1,9 +1,10 @@
-import prisma from '@/lib/prisma';
-import useServerUser from './useServerUser';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/auth/authOptions';
 import { Strain } from '@prisma/client';
 import { User } from '@prisma/client';
+
+import { authOptions } from '@/auth/authOptions';
+import useServerUser from './useServerUser';
+import prisma from '@/lib/prisma';
 
 type Props = {
   strainID: string;

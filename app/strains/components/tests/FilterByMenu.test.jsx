@@ -1,8 +1,9 @@
-import '@testing-library/jest-dom/extend-expect'; //
 import { render, fireEvent, screen } from '@testing-library/react';
-import FilterByMenu from '../FilterByMenu/FilterByMenu';
+import '@testing-library/jest-dom/extend-expect'; //
 import { useRouter } from 'next/navigation';
 import React from 'react';
+
+import FilterByMenu from '../FilterByMenu/FilterByMenu';
 
 jest.mock('next/navigation');
 

@@ -1,7 +1,8 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import themeSlice from './features/themeSlice';
-import navDropdownSlice from './features/navDropdownSlice';
+
 import userCoordinatesSlice from './features/userCoordinatesSlice';
+import navDropdownSlice from './features/navDropdownSlice';
+import themeSlice from './features/themeSlice';
 
 const rootReducer = combineReducers({
   theme: themeSlice,

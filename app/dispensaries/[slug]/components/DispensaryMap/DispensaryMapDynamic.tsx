@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
-import DispensaryMapSkeleton from './DispensaryMapSkeleton';
-import dynamic from 'next/dynamic';
 import { Dispensary } from '@prisma/client';
+import dynamic from 'next/dynamic';
+import React from 'react';
+
+import DispensaryMapSkeleton from './DispensaryMapSkeleton';
 
 type Props = {
   lat: number;

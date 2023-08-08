@@ -1,11 +1,12 @@
 'use client';
 
 import { useInfiniteQuery } from '@tanstack/react-query';
-import React, { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
+import React, { useEffect } from 'react';
+
+import { Cannabinoids, Effects, StrainExtended } from '@/types/interfaces';
 import StrainCard from '@/components/StrainCard/StrainCard';
 import StrainLoaderSkeleton from './StrainLoaderSkeleton';
-import { Cannabinoids, Effects, StrainExtended } from '@/types/interfaces';
 
 const StrainLoader = ({ filter }: { filter?: string }) => {
   const { ref, inView } = useInView();

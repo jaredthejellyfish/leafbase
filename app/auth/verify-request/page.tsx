@@ -1,13 +1,14 @@
 'use client';
 
-import React, { useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import gmailLogo from '@/public/svg/gmail-logo.svg';
+
 import protonmailLogo from '@/public/svg/protonmail-logo.svg';
 import outlookLogo from '@/public/svg/outlook-logo.svg';
+import gmailLogo from '@/public/svg/gmail-logo.svg';
 import appleLogo from '@/public/svg/apple-logo.svg';
 
 const AuthVerify = () => {

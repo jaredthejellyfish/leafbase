@@ -1,6 +1,6 @@
-import React from 'react';
 import { MdLocationPin } from 'react-icons/md';
 import Link from 'next/link';
+import React from 'react';
 
 async function ProfileDisplayLoading() {
   return (

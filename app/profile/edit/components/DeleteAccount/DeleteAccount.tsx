@@ -1,6 +1,6 @@
-import React from 'react';
-import { signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { signOut } from 'next-auth/react';
+import React from 'react';
 
 const DeleteAccount = () => {
   const router = useRouter();

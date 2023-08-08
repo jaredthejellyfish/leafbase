@@ -1,7 +1,8 @@
-import '@testing-library/jest-dom/extend-expect';
 import { render, screen } from '@testing-library/react';
-import Badge from '../Badge/Badge';
+import '@testing-library/jest-dom/extend-expect';
 import React from 'react';
+
+import Badge from '../Badge/Badge';
 
 describe('Badge', () => {
   it('renders correctly with default color', () => {

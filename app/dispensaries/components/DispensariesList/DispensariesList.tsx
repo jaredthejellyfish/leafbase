@@ -1,14 +1,15 @@
 'use client';
 
-import { RootState } from '@/store/store';
-import { User } from '@prisma/client';
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
 import { useSelector } from 'react-redux';
-import DispensaryTable from './DispensaryTable';
-import { nearbyDispensary } from '@/types/interfaces';
+import { User } from '@prisma/client';
+import React from 'react';
+
 import DispensariesTableSkeleton from './DispensariesTableSkeleton';
 import DispensariesTableError from './DispensariesTableError';
+import { nearbyDispensary } from '@/types/interfaces';
+import DispensaryTable from './DispensaryTable';
+import { RootState } from '@/store/store';
 
 type Props = { user: User | null };
 

@@ -1,6 +1,7 @@
-import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import React from 'react';
+
 import CommentLoaderFallback from '../CommentLoader/CommentLoaderFallback';
 import { mockStrain } from '@/test_data/mockStrain';
 

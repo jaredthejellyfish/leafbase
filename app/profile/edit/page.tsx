@@ -1,20 +1,21 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { MdLocationPin } from 'react-icons/md';
-import useUser from '@/hooks/useUser';
-import TextareaAutosize from 'react-textarea-autosize';
-import Image from 'next/image';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
+import TextareaAutosize from 'react-textarea-autosize';
+import { E164Number } from 'libphonenumber-js/core';
+import React, { useState, useEffect } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
-import UserProfileLoading from './loading';
-import generateGravatarUrl from '@/utils/generateGravatarUrl';
+import { MdLocationPin } from 'react-icons/md';
+import 'react-phone-number-input/style.css';
+import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { format } from 'date-fns';
-import 'react-phone-number-input/style.css';
-import { E164Number } from 'libphonenumber-js/core';
+import Image from 'next/image';
 import { z } from 'zod';
+
+import generateGravatarUrl from '@/utils/generateGravatarUrl';
+import UserProfileLoading from './loading';
+import useUser from '@/hooks/useUser';
 
 const DatePicker = dynamic(() => import('./components/DatePicker/DatePicker'), {
   ssr: false,

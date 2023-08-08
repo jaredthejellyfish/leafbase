@@ -3,8 +3,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { animate, motion, stagger } from 'framer-motion';
 import { RxCaretDown } from 'react-icons/rx';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 interface Props {
   filter?: string;

@@ -1,13 +1,14 @@
-import '@testing-library/jest-dom/extend-expect';
 import { render, fireEvent, screen, waitFor } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import NavigationSearchBar from '../Navigation/NavigationSearchBar';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import '@testing-library/jest-dom/extend-expect';
+import fetchMock from 'jest-fetch-mock';
+import { Provider } from 'react-redux';
+
 import isNavDropdownOpenSlice, {
   setNavDropdownOpen,
 } from '../../store/features/navDropdownSlice';
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import fetchMock from 'jest-fetch-mock';
+import NavigationSearchBar from '../Navigation/NavigationSearchBar';
 
 fetchMock.enableMocks();
 

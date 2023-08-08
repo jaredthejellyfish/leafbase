@@ -1,11 +1,12 @@
-import '@testing-library/jest-dom/extend-expect';
-import { act, screen } from '@testing-library/react';
-import CommentLoader from '../CommentLoader/CommentLoader';
-import { useRouter } from 'next/navigation';
-import React from 'react';
-import { mockStrain } from '@/test_data/mockStrain';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { act, screen } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import { useRouter } from 'next/navigation';
 import ReactDOM from 'react-dom/client';
+import React from 'react';
+
+import CommentLoader from '../CommentLoader/CommentLoader';
+import { mockStrain } from '@/test_data/mockStrain';
 
 jest.mock('next/navigation');
 

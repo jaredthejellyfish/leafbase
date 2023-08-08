@@ -1,6 +1,7 @@
-import React from 'react';
-import Link from 'next/link';
 import { BsArrowReturnLeft } from 'react-icons/bs';
+import Link from 'next/link';
+import React from 'react';
+
 import { ERRORS, DEFAULT_ERROR } from './errors';
 
 const generateError = (error?: string) => {

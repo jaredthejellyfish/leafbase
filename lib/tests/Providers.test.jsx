@@ -1,8 +1,9 @@
-import '@testing-library/jest-dom/extend-expect'; //
 import { render, screen } from '@testing-library/react';
-import React from 'react';
-import Providers from '../Providers';
+import '@testing-library/jest-dom/extend-expect'; //
 import fetchMock from 'jest-fetch-mock';
+import React from 'react';
+
+import Providers from '../Providers';
 
 fetchMock.enableMocks();
 

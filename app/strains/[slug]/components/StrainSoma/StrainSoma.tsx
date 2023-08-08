@@ -1,7 +1,8 @@
-import React from 'react';
-import { StrainExtended } from '@/types/interfaces';
 import { FiThumbsUp, FiThumbsDown } from 'react-icons/fi';
 import { TbMedicalCross } from 'react-icons/tb';
+import React from 'react';
+
+import { StrainExtended } from '@/types/interfaces';
 import Badge from '@/components/Badge/Badge';
 
 type Effect = {

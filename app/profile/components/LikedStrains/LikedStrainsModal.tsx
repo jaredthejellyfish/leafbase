@@ -1,16 +1,17 @@
 'use client';
 
-import { StrainExtended } from '@/types/interfaces';
-import React, { useState } from 'react';
-import { BsClipboardDataFill } from 'react-icons/bs';
-import { Scatter } from 'react-chartjs-2';
-import { useQuery } from '@tanstack/react-query';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { BsClipboardDataFill } from 'react-icons/bs';
+import { useQuery } from '@tanstack/react-query';
 import zoomPlugin from 'chartjs-plugin-zoom';
+import { Scatter } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
-import { Align } from 'chart.js';
+import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
+import { Align } from 'chart.js';
+
+import { StrainExtended } from '@/types/interfaces';
+import { RootState } from '@/store/store';
 
 const Modal = dynamic(() => import('@/components/Modal/Modal'), {
   loading: () => <div></div>,

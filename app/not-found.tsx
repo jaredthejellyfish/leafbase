@@ -1,8 +1,9 @@
-import Link from 'next/link';
-import stoner from '@/public/png/stoner.png';
-import Image from 'next/image';
 import { RxCaretLeft } from 'react-icons/rx';
+import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
+
+import stoner from '@/public/png/stoner.png';
 
 export default function NotFound() {
   return (

@@ -1,7 +1,8 @@
-import '@testing-library/jest-dom/extend-expect';
-import { render, screen } from '@testing-library/react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 import React from 'react';
+
 import ProfileRevalidator from '../ProfileRevalidator/ProfileRevalidator';
 
 jest.mock('next/navigation');

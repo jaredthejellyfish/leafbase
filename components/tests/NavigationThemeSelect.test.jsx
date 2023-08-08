@@ -1,10 +1,11 @@
-import '@testing-library/jest-dom/extend-expect';
 import { render, fireEvent, screen } from '@testing-library/react';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import '@testing-library/jest-dom/extend-expect';
 import { Provider } from 'react-redux';
+import React from 'react';
+
 import NavigationThemeSelect from '../Navigation/NavigationThemeSelect';
 import themeSlice, { setTheme } from '../../store/features/themeSlice';
-import React from 'react';
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import useColorTheme from '../../hooks/useColorTheme';
 
 jest.mock('../../hooks/useColorTheme', () => ({

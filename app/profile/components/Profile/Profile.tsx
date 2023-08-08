@@ -1,15 +1,15 @@
 'use client';
 
-import React from 'react';
-import Image from 'next/image';
+import { BsFillGearFill } from 'react-icons/bs';
 import { MdLocationPin } from 'react-icons/md';
 import { AiFillEye } from 'react-icons/ai';
-import { BsFillGearFill } from 'react-icons/bs';
 import { User } from '@prisma/client';
+import Image from 'next/image';
 import Link from 'next/link';
-import SingOutButton from '../SingOutButton/SingOutButton';
+import React from 'react';
 
 import generateGravatarUrl from '@/utils/generateGravatarUrl';
+import SingOutButton from '../SingOutButton/SingOutButton';
 
 type Props = { user: User };
 

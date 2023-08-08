@@ -1,19 +1,19 @@
-import React from 'react';
-import prisma from '@/lib/prisma';
-import Image from 'next/image';
-import StarRating from '@/components/StarRating/StarRating';
-import Link from 'next/link';
-import { Metadata } from 'next/types';
-import { StrainExtended } from '@/types/interfaces';
-import { AiOutlineHeart } from 'react-icons/ai';
-import StrainSoma from './components/StrainSoma/StrainSoma';
 import { ErrorBoundary } from 'react-error-boundary';
-import CommentLoaderFallback from './components/CommentLoader/CommentLoaderFallback';
+import { AiOutlineHeart } from 'react-icons/ai';
 import { FiMoreVertical } from 'react-icons/fi';
-
-import dynamic from 'next/dynamic';
-import useServerUser from '@/hooks/useServerUser';
 import { MdError } from 'react-icons/md';
+import { Metadata } from 'next/types';
+import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
+
+import CommentLoaderFallback from './components/CommentLoader/CommentLoaderFallback';
+import StarRating from '@/components/StarRating/StarRating';
+import StrainSoma from './components/StrainSoma/StrainSoma';
+import { StrainExtended } from '@/types/interfaces';
+import useServerUser from '@/hooks/useServerUser';
+import prisma from '@/lib/prisma';
 
 const StrainPageLikeButton = dynamic(
   () => import('./components/StrainPageLikeButton/StrainPageLikeButton'),

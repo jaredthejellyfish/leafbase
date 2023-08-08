@@ -1,15 +1,16 @@
 'use client';
 
+import { ErrorBoundary } from 'react-error-boundary';
+import { MdLocationPin } from 'react-icons/md';
+import { Dispensary } from '@prisma/client';
 import React, { Suspense } from 'react';
 import Image from 'next/image';
-import { Dispensary } from '@prisma/client';
-import { MdLocationPin } from 'react-icons/md';
 import Link from 'next/link';
-import StarRating from '@/components/StarRating/StarRating';
 import md5 from 'md5';
-import FollowDispensaryButton from './FollowDispensaryButton';
-import { ErrorBoundary } from 'react-error-boundary';
+
 import FollowDispensaryButtonSkeleton from './FollowDispensaryButtonSkeleton';
+import FollowDispensaryButton from './FollowDispensaryButton';
+import StarRating from '@/components/StarRating/StarRating';
 
 type Props = { dispensary: Dispensary };
 

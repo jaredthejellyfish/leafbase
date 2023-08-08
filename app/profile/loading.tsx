@@ -1,9 +1,10 @@
-import React from 'react';
 import Link from 'next/link';
-import LikedStrainsSkeleton from './components/LikedStrains/LikedStrainsSkeleton';
+import React from 'react';
+
 import GeneralInformationSkeleton from './components/GeneralInformation/GeneralInformationSkeleton';
-import ProfileSkeleton from './components/Profile/ProfileSkeleton';
 import ProfileCommentsSkeleton from './components/ProfileComments/ProfileCommentsSkeleton';
+import LikedStrainsSkeleton from './components/LikedStrains/LikedStrainsSkeleton';
+import ProfileSkeleton from './components/Profile/ProfileSkeleton';
 
 async function ProfileLoading() {
   return (

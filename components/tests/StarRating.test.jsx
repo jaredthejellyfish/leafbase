@@ -1,7 +1,8 @@
-import '@testing-library/jest-dom/extend-expect';
 import { render, screen, cleanup } from '@testing-library/react';
-import StarRating from '../StarRating/StarRating';
+import '@testing-library/jest-dom/extend-expect';
 import React from 'react';
+
+import StarRating from '../StarRating/StarRating';
 
 describe('StarRating', () => {
   it('renders correctly', () => {

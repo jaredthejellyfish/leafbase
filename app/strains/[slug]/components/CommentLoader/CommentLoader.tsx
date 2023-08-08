@@ -1,11 +1,12 @@
 'use client';
 
+import { AiOutlinePlus } from 'react-icons/ai';
+import { User } from '@prisma/client';
+import dynamic from 'next/dynamic';
 import React from 'react';
+
 import { Comment, CommentExtended } from '@/types/interfaces';
 import { StrainExtended } from '@/types/interfaces';
-import dynamic from 'next/dynamic';
-import { User } from '@prisma/client';
-import { AiOutlinePlus } from 'react-icons/ai';
 
 const CommentCard = dynamic(() => import('./CommentCard'), { ssr: false });
 

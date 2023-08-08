@@ -1,10 +1,10 @@
 'use client';
 
-import React from 'react';
 import { BsTrashFill } from 'react-icons/bs';
 import { useRouter } from 'next/navigation';
-import { toast } from 'react-toastify';
 import { Comment } from '@prisma/client';
+import { toast } from 'react-toastify';
+import React from 'react';
 
 type Props = { commentId: string };
 

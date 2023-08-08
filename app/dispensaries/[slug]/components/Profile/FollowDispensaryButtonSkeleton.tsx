@@ -1,5 +1,5 @@
-import React from 'react';
 import { AiOutlineBell } from 'react-icons/ai';
+import React from 'react';
 
 const FollowDispensaryButtonSkeleton = () => {
   return (

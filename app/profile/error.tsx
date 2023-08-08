@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
 import { MdError } from 'react-icons/md';
 import Link from 'next/link';
+import React from 'react';
 
 const ProfileSkeleton = () => {
   return (

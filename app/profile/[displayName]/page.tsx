@@ -1,16 +1,17 @@
-import useServerUser from '@/hooks/useServerUser';
-import React from 'react';
-import Image from 'next/image';
 import { MdLocationPin } from 'react-icons/md';
-import Link from 'next/link';
-import { format } from 'date-fns';
-import ProfileRevalidator from '../components/ProfileRevalidator/ProfileRevalidator';
 import { User, Like } from '@prisma/client';
-import generateGravatarUrl from '@/utils/generateGravatarUrl';
-import prisma from '@/lib/prisma';
-import { Metadata } from 'next';
-import useServerComments from '@/hooks/useServerComments';
 import dynamic from 'next/dynamic';
+import { format } from 'date-fns';
+import { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
+
+import ProfileRevalidator from '../components/ProfileRevalidator/ProfileRevalidator';
+import generateGravatarUrl from '@/utils/generateGravatarUrl';
+import useServerComments from '@/hooks/useServerComments';
+import useServerUser from '@/hooks/useServerUser';
+import prisma from '@/lib/prisma';
 
 const StrainCommentLikeButton = dynamic(
   () => import('./components/ProfileCommentLikeButton')

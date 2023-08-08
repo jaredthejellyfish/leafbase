@@ -1,11 +1,12 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { BsSearch } from 'react-icons/bs';
 import { useQuery } from '@tanstack/react-query';
+import { BsSearch } from 'react-icons/bs';
+import { useDispatch } from 'react-redux';
 import { debounce } from 'lodash';
 import Link from 'next/link';
-import { useDispatch } from 'react-redux';
+
 import { setNavDropdownOpen } from '@/store/features/navDropdownSlice';
 
 const fetchSearchResults = async (search: string) => {

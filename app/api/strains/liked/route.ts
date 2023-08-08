@@ -1,8 +1,9 @@
-import prisma from '@/lib/prisma';
-import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/auth/authOptions';
+import { NextResponse } from 'next/server';
+
 import { StrainExtended } from '@/types/interfaces';
+import { authOptions } from '@/auth/authOptions';
+import prisma from '@/lib/prisma';
 
 export async function GET() {
   try {

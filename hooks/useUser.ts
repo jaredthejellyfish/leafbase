@@ -1,7 +1,7 @@
 'use client';
 import { useQuery } from '@tanstack/react-query';
-import { User } from '@prisma/client';
 import { useSession } from 'next-auth/react';
+import { User } from '@prisma/client';
 
 const getUser = async () => {
   const res = await fetch('/api/user');

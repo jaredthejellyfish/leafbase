@@ -1,5 +1,5 @@
-import prisma from '@/lib/prisma';
 import useServerUser from './useServerUser';
+import prisma from '@/lib/prisma';
 
 const getStrainsWithUser = async (
   skip: number,

@@ -1,20 +1,15 @@
-import React from 'react';
-import Link from 'next/link';
-
+import { default as nextDynamic } from 'next/dynamic';
 import { ErrorBoundary } from 'react-error-boundary';
-
-import useServerUser from '@/hooks/useServerUser';
-
-import LikedStrainsError from './components/LikedStrains/LikedStrainsError';
-import ProfileCommentsError from './components/ProfileComments/ProfileCommentsError';
-
-import ProfileCommentsSkeleton from './components/ProfileComments/ProfileCommentsSkeleton';
-import LikedStrainsSkeleton from './components/LikedStrains/LikedStrainsSkeleton';
+import Link from 'next/link';
+import React from 'react';
 
 import GeneralInformationSkeleton from './components/GeneralInformation/GeneralInformationSkeleton';
+import ProfileCommentsSkeleton from './components/ProfileComments/ProfileCommentsSkeleton';
+import ProfileCommentsError from './components/ProfileComments/ProfileCommentsError';
+import LikedStrainsSkeleton from './components/LikedStrains/LikedStrainsSkeleton';
+import LikedStrainsError from './components/LikedStrains/LikedStrainsError';
 import ProfileSkeleton from './components/Profile/ProfileSkeleton';
-
-import { default as nextDynamic } from 'next/dynamic';
+import useServerUser from '@/hooks/useServerUser';
 
 const Profile = nextDynamic(() => import('./components/Profile/Profile'), {
   ssr: false,

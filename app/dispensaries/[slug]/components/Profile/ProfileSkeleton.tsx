@@ -1,5 +1,6 @@
-import React from 'react';
 import { MdLocationPin } from 'react-icons/md';
+import React from 'react';
+
 import FollowDispensaryButtonSkeleton from './FollowDispensaryButtonSkeleton';
 
 const ProfileSkeleton = () => {

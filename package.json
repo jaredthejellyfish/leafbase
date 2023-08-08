@@ -70,7 +70,7 @@
     "@babel/preset-typescript": "^7.22.5",
     "@faker-js/faker": "^8.0.2",
     "@flydotio/dockerfile": "^0.2.16",
-    "@prisma/client": "^5.1.0",
+    "@prisma/client": "^5.1.1",
     "@tanstack/eslint-plugin-query": "^4.29.9",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^14.0.0",

@@ -5,7 +5,7 @@ import DispensariesMapSkeleton from './components/DispensariesMap/DispensariesMa
 
 const DispensariesLoading = () => {
   return (
-    <div className="flex flex-row justify-center w-full -mt-3 items-around">
+    <div className="flex flex-col lg:flex-row justify-center w-full -mt-3 items-around">
       <div className="order-last lg:order-first">
         <DispensariesListSkeleton />
       </div>

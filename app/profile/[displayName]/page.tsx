@@ -14,20 +14,12 @@ import LikedStrains from '@/components/LikedStrains/LikedStrains';
 import generateGravatarUrl from '@/utils/generateGravatarUrl';
 import useServerComments from '@/hooks/useServerComments';
 import useServerUser from '@/hooks/useServerUser';
-import prisma from '@/lib/prisma';
 
 const StrainCommentLikeButton = dynamic(
   () => import('./components/ProfileCommentLikeButton')
 );
 
 type Props = { params: { displayName: string } };
-
-interface ReducedStrain {
-  id: string;
-  slug: string;
-  nugImage: string;
-  name: string;
-}
 
 interface StrainName {
   name: string;
@@ -45,35 +37,6 @@ interface Comment {
 }
 
 type MetadataProps = { params: { displayName: string } };
-
-const getLikesByUUID = async (userId: string) => {
-  try {
-    const likes = await prisma.like.findMany({
-      where: {
-        userId: userId,
-      },
-      include: {
-        strain: {
-          select: {
-            id: true,
-            slug: true,
-            nugImage: true,
-            name: true,
-          },
-        },
-      },
-    });
-
-    const likedStrains = likes.map((like) => like.strain as ReducedStrain);
-
-    return likedStrains;
-  } catch (error) {
-    console.log(error);
-    return null;
-  } finally {
-    await prisma.$disconnect();
-  }
-};
 
 export async function generateMetadata({
   params,

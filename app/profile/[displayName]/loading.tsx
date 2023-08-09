@@ -1,6 +1,7 @@
 import { MdLocationPin } from 'react-icons/md';
 import Link from 'next/link';
 import React from 'react';
+
 import LikedStrainsSkeleton from '@/components/LikedStrains/LikedStrainsSkeleton';
 
 async function ProfileDisplayLoading() {

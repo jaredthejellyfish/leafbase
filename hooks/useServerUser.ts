@@ -47,11 +47,9 @@ export default async function useServerUser(
     const session = await getServerSession(authOptions);
     if (session?.user?.email) {
       return (await getUserByEmail(session?.user?.email)) as User;
-    } else {
-      return null;
     }
   } catch (error) {
     console.log(error);
-    return null;
   }
+  return null;
 }

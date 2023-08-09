@@ -5,7 +5,7 @@ import StrainCardLikeButtonLoading from './StrainCardLikeButtonLoading';
 
 const StrainCardSkeleton = () => {
   return (
-    <div  className="relative z-10 flex gap-5 p-5 mt-4 transition-transform border shadow rounded-xl dark:bg-zinc-900 md:flex-wrap flex-nowrap md:max-w-xs dark:border-opacity-0 border-zinc-100 hover:scale-101 w-full">
+    <div className="relative z-10 flex gap-5 p-5 mt-4 transition-transform border shadow rounded-xl dark:bg-zinc-900 md:flex-wrap flex-nowrap md:max-w-xs dark:border-opacity-0 border-zinc-100 hover:scale-101 w-full">
       <StrainCardLikeButtonLoading />
       <div className="flex items-center justify-center w-1/2 border rounded-lg md:w-full dark:border-opacity-0 border-zinc-200">
         <div
@@ -44,15 +44,11 @@ const StrainCardSkeleton = () => {
 
         <div className="flex flex-col px-1 mt-2 text-xs gap-y-1 font-medium capitalize md:flex-row md:gap-3 md:items-center">
           <span className="flex flex-row items-center gap-1">
-            <div
-              className="rounded-full w-2.5 h-2.5 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
-            ></div>
+            <div className="rounded-full w-2.5 h-2.5 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
             <div className="w-16 h-2 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
           </span>
           <span className="flex flex-row items-center gap-1">
-            <div
-              className="rounded-full w-2.5 h-2.5 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
-            ></div>
+            <div className="rounded-full w-2.5 h-2.5 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
             <div className="w-16 h-2 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
           </span>
         </div>

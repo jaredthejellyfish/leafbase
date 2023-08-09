@@ -6,8 +6,8 @@ import React from 'react';
 import GeneralInformationSkeleton from './components/GeneralInformation/GeneralInformationSkeleton';
 import ProfileCommentsSkeleton from './components/ProfileComments/ProfileCommentsSkeleton';
 import ProfileCommentsError from './components/ProfileComments/ProfileCommentsError';
-import LikedStrainsSkeleton from './components/LikedStrains/LikedStrainsSkeleton';
-import LikedStrainsError from './components/LikedStrains/LikedStrainsError';
+import LikedStrainsSkeleton from '@/components/LikedStrains/LikedStrainsSkeleton';
+import LikedStrainsError from '@/components/LikedStrains/LikedStrainsError';
 import ProfileSkeleton from './components/Profile/ProfileSkeleton';
 import useServerUser from '@/hooks/useServerUser';
 
@@ -17,7 +17,7 @@ const Profile = nextDynamic(() => import('./components/Profile/Profile'), {
 });
 
 const LikedStrains = nextDynamic(
-  () => import('./components/LikedStrains/LikedStrains'),
+  () => import('@/components/LikedStrains/LikedStrains'),
   {
     ssr: false,
     loading: () => <LikedStrainsSkeleton />,

@@ -1,3 +1,4 @@
+import { ErrorBoundary } from 'react-error-boundary';
 import { MdLocationPin } from 'react-icons/md';
 import { User, Like } from '@prisma/client';
 import dynamic from 'next/dynamic';
@@ -8,6 +9,8 @@ import Link from 'next/link';
 import React from 'react';
 
 import ProfileRevalidator from '../components/ProfileRevalidator/ProfileRevalidator';
+import LikedStrainsError from '@/components/LikedStrains/LikedStrainsError';
+import LikedStrains from '@/components/LikedStrains/LikedStrains';
 import generateGravatarUrl from '@/utils/generateGravatarUrl';
 import useServerComments from '@/hooks/useServerComments';
 import useServerUser from '@/hooks/useServerUser';
@@ -114,7 +117,6 @@ const ProfileDisplay = async (props: Props) => {
   if (!user) throw new Error('User not found');
 
   const randomComments = pickRandomComments(comments as Comment[]);
-  const strains = await getLikesByUUID(user?.id);
 
   return (
     <div className="flex flex-col px-6 md:px-16">
@@ -241,7 +243,7 @@ const ProfileDisplay = async (props: Props) => {
             <h1 className="text-xl font-bold">General information</h1>
             {user?.aboutMe && (
               <>
-<span className="mt-3 text-sm dark:text-white">About me</span>
+                <span className="mt-3 text-sm dark:text-white">About me</span>
                 <p className="mt-1 text-sm text-zinc-400 lg:w-4/5">
                   {user?.aboutMe}
                 </p>
@@ -265,46 +267,9 @@ const ProfileDisplay = async (props: Props) => {
               </span>
             </div>
           </div>
-          <div className="flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
-            <div>
-              <span className="text-xl font-bold ">
-                Liked Strains ({strains?.length})
-              </span>
-              {strains?.length === 0 ? (
-                <div className="mt-6 text-sm text-semi text-zinc-400">
-                  {user.displayName} hasn&apos;t liked any strains yet!
-                </div>
-              ) : (
-                <div className="flex flex-row flex-wrap items-center justify-center mt-3 md:justify-start gap-x-1 gap-y-1 sm:gap-x-3 sm:gap-y-3">
-                  {strains &&
-                    strains.map((strain: ReducedStrain) => (
-                      <Link
-                        key={strain.id}
-                        className="flex flex-col gap-2 p-2 border rounded shadow dark:border-zinc-600"
-                        href={`/strains/${strain.slug}`}
-                      >
-                        <div
-                          style={{ maxHeight: '90px', maxWidth: '90px' }}
-                          className="flex items-center justify-center bg-white rounded-md aspect-square"
-                        >
-                          <Image
-                            src={strain.nugImage}
-                            className="rounded-md"
-                            alt={strain.name}
-                            width={90}
-                            height={90}
-                            priority={true}
-                          />
-                        </div>
-                        <h1 className="w-20 text-sm truncate text-semi">
-                          {strain.name}
-                        </h1>
-                      </Link>
-                    ))}
-                </div>
-              )}
-            </div>
-          </div>
+          <ErrorBoundary fallback={<LikedStrainsError />}>
+            <LikedStrains user={user} />
+          </ErrorBoundary>
         </div>
       </div>
       <ProfileRevalidator />

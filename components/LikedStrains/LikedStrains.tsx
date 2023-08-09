@@ -49,8 +49,12 @@ const getLikedStrains = async (user: User) => {
   return sortedLikedStrains;
 };
 
-const LikedStrains = async () => {
-  const user = (await useServerUser()) as User;
+interface Props {
+  user?: User;
+}
+
+const LikedStrains = async (props: Props) => {
+  const user = props.user ? props.user : ((await useServerUser()) as User);
   const strains = await getLikedStrains(user);
 
   if (strains.length < 1) return null;

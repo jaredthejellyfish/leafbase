@@ -6,6 +6,7 @@ import React from 'react';
 import StrainCardLikeButtonLoading from './StrainCardLikeButtonLoading';
 import StarRating from '@/components/StarRating/StarRating';
 import { Cannabinoids, Effects } from '@/types/interfaces';
+import defaultImage from '@/public/webp/default.webp';
 
 const StrainCardLikeButton = dynamic(() => import('./StrainCardLikeButton'), {
   loading: () => <StrainCardLikeButtonLoading />,
@@ -76,7 +77,7 @@ const StrainCard = (props: Props) => {
           <Image
             style={{ maxHeight: '250px' }}
             className="object-contain w-full h-full bg-white border border-white rounded-lg aspect-square"
-            src={props.nugImage}
+            src={props.nugImage ? props.nugImage : defaultImage}
             alt={props.name}
             width={300}
             height={300}

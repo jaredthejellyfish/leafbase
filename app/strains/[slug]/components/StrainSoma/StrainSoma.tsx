@@ -75,23 +75,38 @@ const effectColors: Effect = {
 };
 
 function getTopThreeEffects(strain: StrainExtended): string[] {
-  const effects = Object.values(strain.effects);
-  const sortedEffects = effects.sort((a, b) => b.score - a.score);
-  const topThree = sortedEffects.slice(0, 3);
-  return topThree.map((effect) => effect.name);
+  try {
+    const effects = Object.values(strain.effects);
+    const sortedEffects = effects.sort((a, b) => b.score - a.score);
+    const topThree = sortedEffects.slice(0, 3);
+    return topThree.map((effect) => effect.name);
+  } catch (error) {
+    console.error(error);
+  }
+  return [];
 }
 
 function getTopThreeEffectsNegative(strain: StrainExtended): string[] {
-  const effects = Object.values(strain.effects);
-  const sortedEffects = effects.sort((a, b) => a.score - b.score);
-  const topThree = sortedEffects.slice(0, 3);
-  return topThree.map((effect) => effect.name);
+  try {
+    const effects = Object.values(strain.effects);
+    const sortedEffects = effects.sort((a, b) => a.score - b.score);
+    const topThree = sortedEffects.slice(0, 3);
+    return topThree.map((effect) => effect.name);
+  } catch (error) {
+    console.error(error);
+  }
+  return [];
 }
 
 function getPositivesFromTopThree(strain: StrainExtended): string[] {
-  const topThree = getTopThreeEffects(strain);
-  const positives = topThree.map((effect) => positiveEffects[effect]);
-  return positives;
+  try {
+    const topThree = getTopThreeEffects(strain);
+    const positives = topThree.map((effect) => positiveEffects[effect]);
+    return positives;
+  } catch (error) {
+    console.error(error);
+  }
+  return [];
 }
 
 const StrainSoma = (props: Props) => {
@@ -105,33 +120,39 @@ const StrainSoma = (props: Props) => {
   return (
     <div className="flex flex-col gap-2 p-2 px-3 border rounded border-zinc-200 dark:border-zinc-600 dark:bg-zinc-800 md:mt-7">
       <h3 className="text-sm font-bold uppercase">Strain soma</h3>
-      <div className="flex flex-row flex-wrap items-center w-full gap-2 text-xs">
-        <FiThumbsUp size={12} />
-        <p className="hidden sm:hidden md:block xl:block">Feelings:</p>
-        <div className="flex flex-row flex-wrap gap-y-2 gap-x-2">
-          {topThreeEffects.map((effect) => (
-            <Badge key={effect} text={effect} color={effectColors[effect]} />
-          ))}
+      {topThreeEffects.length >= 3 && (
+        <div className="flex flex-row flex-wrap items-center w-full gap-2 text-xs">
+          <FiThumbsUp size={12} />
+          <p className="hidden sm:hidden md:block xl:block">Feelings:</p>
+          <div className="flex flex-row flex-wrap gap-y-2 gap-x-2">
+            {topThreeEffects.map((effect) => (
+              <Badge key={effect} text={effect} color={effectColors[effect]} />
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="flex flex-row flex-wrap items-center w-full text-xs gap-y-2 gap-x-2">
-        <FiThumbsDown size={12} className="transform scale-x-[-1]" />
-        <p className="hidden sm:hidden md:block xl:block">Negatives:</p>
-        <div className="flex flex-row flex-wrap gap-y-2 gap-x-2">
-          {topThreeEffectsNegative.map((effect) => (
-            <Badge key={effect} text={effect} color={effectColors[effect]} />
-          ))}
+      )}
+      {topThreeEffects.length >= 3 && (
+        <div className="flex flex-row flex-wrap items-center w-full text-xs gap-y-2 gap-x-2">
+          <FiThumbsDown size={12} className="transform scale-x-[-1]" />
+          <p className="hidden sm:hidden md:block xl:block">Negatives:</p>
+          <div className="flex flex-row flex-wrap gap-y-2 gap-x-2">
+            {topThreeEffectsNegative.map((effect) => (
+              <Badge key={effect} text={effect} color={effectColors[effect]} />
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="flex flex-row flex-wrap items-center w-full gap-2 text-xs">
-        <TbMedicalCross size={12} className="transform scale-x-[-1]" />
-        <p className="hidden sm:hidden md:block xl:block">Helps with:</p>
-        <div className="flex flex-row flex-wrap gap-y-2 -gap-x-2">
-          {positives.map((effect) => (
-            <Badge key={effect} text={effect} color={effectColors[effect]} />
-          ))}
+      )}
+      {positives.length >= 3 && (
+        <div className="flex flex-row flex-wrap items-center w-full gap-2 text-xs">
+          <TbMedicalCross size={12} className="transform scale-x-[-1]" />
+          <p className="hidden sm:hidden md:block xl:block">Helps with:</p>
+          <div className="flex flex-row flex-wrap gap-y-2 -gap-x-2">
+            {positives.map((effect) => (
+              <Badge key={effect} text={effect} color={effectColors[effect]} />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
       <div className="mt-2">
         <div className="flex flex-row items-center justify-between px-1 mb-1 text-xs">
           <p>calm</p> <p>energizing</p>

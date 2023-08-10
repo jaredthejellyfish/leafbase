@@ -9,8 +9,10 @@ import Link from 'next/link';
 import React from 'react';
 
 import CommentLoaderFallback from './components/CommentLoader/CommentLoaderFallback';
+import NavBreadcrumbs from '@/components/NavBreadcrumbs/NavBreadcrumbs';
 import StarRating from '@/components/StarRating/StarRating';
 import StrainSoma from './components/StrainSoma/StrainSoma';
+import defaultImage from '@/public/webp/default.webp';
 import { StrainExtended } from '@/types/interfaces';
 import useServerUser from '@/hooks/useServerUser';
 import prisma from '@/lib/prisma';
@@ -180,70 +182,13 @@ const Strain = async (props: Props) => {
 
   return (
     <div className="flex flex-col items-center justify-center px-4 md:px-1/4">
-      <nav className="flex w-full mb-2 ml-1 md:w-4/5" aria-label="Breadcrumb">
-        <ol className="inline-flex items-center space-x-1 md:space-x-3">
-          <li className="inline-flex items-center">
-            <Link
-              href="/"
-              className="inline-flex items-center text-lg font-medium text-gray-700 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-400"
-            >
-              <svg
-                aria-hidden="true"
-                className="w-4 h-4 mr-2"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
-              </svg>
-              Home
-            </Link>
-          </li>
-          <li>
-            <div className="flex items-center">
-              <svg
-                aria-hidden="true"
-                className="w-6 h-6 text-gray-400"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-              <Link
-                href={'/strains'}
-                className="ml-1 text-lg font-medium text-gray-700 hover:text-green-600 md:ml-2 dark:text-gray-400 dark:hover:text-green-400"
-              >
-                Strains
-              </Link>
-            </div>
-          </li>
-          <li>
-            <div className="flex items-center">
-              <svg
-                aria-hidden="true"
-                className="w-6 h-6 text-gray-400"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-              <div className="ml-1 text-lg font-medium text-gray-700 hover:text-green-600 md:ml-2 dark:text-gray-400 dark:hover:text-green-400">
-                {strain?.name}
-              </div>
-            </div>
-          </li>
-        </ol>
-      </nav>
+      <NavBreadcrumbs
+        urls={[
+          { name: 'Home', url: '/' },
+          { name: 'Strains', url: '/strains' },
+          { name: strain.name, url: `/strains/${strain.slug}` },
+        ]}
+      />
       <div
         id="card"
         className="relative flex flex-col items-center justify-center pb-8 border rounded shadow md:w-4/5 border-zinc-300 dark:border-transparent dark:bg-zinc-900"
@@ -262,15 +207,13 @@ const Strain = async (props: Props) => {
             id="vertical-1"
             className="flex items-center justify-center md:w-1/3 h-52"
           >
-            {strain.nugImage && (
-              <Image
-                className="rounded"
-                src={strain.nugImage}
-                alt={strain?.slug}
-                width={200}
-                height={200}
-              />
-            )}
+            <Image
+              className="rounded"
+              src={strain.nugImage ? strain.nugImage : defaultImage}
+              alt={strain?.slug}
+              width={200}
+              height={200}
+            />
           </div>
           <div id="vertical-2" className="w-full md:w-2/3">
             <div className="flex flex-row items-center gap-3 mb-2">
@@ -282,7 +225,7 @@ const Strain = async (props: Props) => {
                   THC {strain.thcPercent && strain.thcPercent}%
                 </span>
                 <span className="">
-                  CBD: {strain && strain.cannabinoids.cbd.percentile50}%
+                  CBD: {strain && strain?.cannabinoids?.cbd?.percentile50}%
                 </span>
               </div>
             </div>

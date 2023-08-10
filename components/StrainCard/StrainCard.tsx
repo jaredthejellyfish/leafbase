@@ -43,6 +43,7 @@ const terpenes: Colors = {
   pinene: '#3B8A5A',
   limonene: '#F9B122',
   ocimene: '#2AA39F',
+  Unknown: '#778899',
 };
 
 const effects: Colors = {
@@ -60,6 +61,7 @@ const effects: Colors = {
   Creative: '#FFA07A',
   Relaxed: '#8B4513',
   Sleepy: '#1E90FF',
+  Unknown: '#778899',
 };
 
 const StrainCard = (props: Props) => {

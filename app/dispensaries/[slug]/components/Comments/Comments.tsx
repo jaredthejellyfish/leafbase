@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React from 'react';
 
 import CommentLikeButtonLoading from './ComentLikeButtonLoading';
-import useServerUser from '@/hooks/useServerUser';
+import getServerUser from '@/utils/getServerUser';
 import prisma from '@/lib/prisma';
 
 type Props = {
@@ -45,7 +45,7 @@ const getComments = async (dispensary: Dispensary, userId: string) => {
 
 const Comments = async (props: Props) => {
   const { dispensary } = props;
-  const user = await useServerUser();
+  const user = await getServerUser();
 
   const { comments, error } = await getComments(dispensary, user?.id as string);
 

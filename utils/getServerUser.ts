@@ -38,7 +38,7 @@ const getUserByDisplayName = async (displayName: string) => {
   }
 };
 
-export default async function useServerUser(
+export default async function getServerUser(
   displayName?: string
 ): Promise<User | null> {
   try {

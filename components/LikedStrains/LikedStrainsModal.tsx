@@ -186,6 +186,7 @@ const LikedStrainsModal = (props: Props) => {
             <Scatter
               height={'100%'}
               plugins={[ChartDataLabels, zoomPlugin]}
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
               options={options}
               updateMode="default"

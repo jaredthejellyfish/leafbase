@@ -6,7 +6,7 @@ import Link from 'next/link';
 import React from 'react';
 
 import { StrainExtended } from '@/types/interfaces';
-import useServerUser from '@/hooks/useServerUser';
+import getServerUser from '@/utils/getServerUser';
 import prisma from '@/lib/prisma';
 
 const LikedStrainsModal = dynamic(() => import('./LikedStrainsModal'), {
@@ -54,7 +54,8 @@ interface Props {
 }
 
 const LikedStrains = async (props: Props) => {
-  const user = props.user ? props.user : ((await useServerUser()) as User);
+  const user = props.user ? props.user : await getServerUser();
+  if (!user) return null;
   const strains = await getLikedStrains(user);
 
   if (strains.length < 1) return null;

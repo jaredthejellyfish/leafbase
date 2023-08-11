@@ -30,11 +30,11 @@ const getDispensaryFromSlug = async (slug: string) => {
   }
 };
 
-const useServerDispensary = async (slug: string) => {
+const getServerDispensary = async (slug: string) => {
   const dispensary = await getDispensaryFromSlug(slug);
   if (dispensary === null) return { dispensary: null, error: true };
 
   return { dispensary, error: false };
 };
 
-export default useServerDispensary;
+export default getServerDispensary;

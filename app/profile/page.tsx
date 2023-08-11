@@ -9,7 +9,7 @@ import LikedStrainsSkeleton from '@/components/LikedStrains/LikedStrainsSkeleton
 import LikedStrainsError from '@/components/LikedStrains/LikedStrainsError';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs/NavBreadcrumbs';
 import ProfileSkeleton from './components/Profile/ProfileSkeleton';
-import useServerUser from '@/hooks/useServerUser';
+import getServerUser from '@/utils/getServerUser';
 
 const Profile = nextDynamic(() => import('./components/Profile/Profile'), {
   ssr: false,
@@ -51,7 +51,7 @@ export const metadata = {
 };
 
 async function ProfilePage() {
-  const user = await useServerUser();
+  const user = await getServerUser();
 
   if (!user) return <div>failed to load</div>;
 

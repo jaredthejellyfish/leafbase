@@ -1,20 +1,19 @@
 import { ErrorBoundary } from 'react-error-boundary';
 import 'react-phone-number-input/style.css';
 import React, { Suspense } from 'react';
-import { User } from '@prisma/client';
 
 import DispensariesListSkeleton from './components/DispensariesList/DispensariesListSkeleton';
 import DispensariesMapError from './components/DispensariesMap/DispensariesMapError';
 import DispensariesList from './components/DispensariesList/DispensariesList';
 import DispensariesMap from './components/DispensariesMap/DispensariesMap';
-import useServerUser from '@/hooks/useServerUser';
+import getServerUser from '@/utils/getServerUser';
 
 export const metadata = {
   title: 'Dispensaries - Leafbase',
 };
 
 const Dispensaries = async () => {
-  const user = (await useServerUser()) as User | null;
+  const user = await getServerUser();
 
   return (
     <div className="flex flex-col lg:flex-row justify-center w-full -mt-3 items-around">

@@ -11,7 +11,7 @@ import DispensaryMapDynamic from './components/DispensaryMap/DispensaryMapDynami
 import NavBreadcrumbs from '@/components/NavBreadcrumbs/NavBreadcrumbs';
 import CommentsSkeleton from './components/Comments/CommentsSkeleton';
 import ProfileSkeleton from './components/Profile/ProfileSkeleton';
-import useServerDispensary from '@/hooks/useServerDispensary';
+import getServerDispensary from '@/utils/getServerDispensary';
 import Comments from './components/Comments/Comments';
 import Menu from './components/Menu/Menu';
 import prisma from '@/lib/prisma';
@@ -51,7 +51,7 @@ type Props = { params: { slug: string } };
 const Dispensary = async ({ params }: Props) => {
   const slug = params.slug;
 
-  const { dispensary, error } = await useServerDispensary(slug);
+  const { dispensary, error } = await getServerDispensary(slug);
 
   if (error || !dispensary)
     return (

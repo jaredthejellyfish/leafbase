@@ -14,6 +14,7 @@ import { html } from './email';
 const prisma: PrismaClient = new PrismaClient();
 
 const authOptions: NextAuthOptions = {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   adapter: PrismaAdapter(prisma),
 

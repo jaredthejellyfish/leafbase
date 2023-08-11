@@ -1,4 +1,4 @@
-import useServerUser from './useServerUser';
+import getServerUser from '@/utils/getServerUser';
 import prisma from '@/lib/prisma';
 
 const getStrainsWithUser = async (
@@ -77,8 +77,8 @@ const getCount = async () => {
   }
 };
 
-const useServerStrains = async (page: number, take: number, filter = 're') => {
-  const user = await useServerUser();
+const getServerStrains = async (page: number, take: number, filter = 're') => {
+  const user = await getServerUser();
 
   const count = await getCount();
   if (count === null) return { strains: null, error: true };
@@ -94,4 +94,4 @@ const useServerStrains = async (page: number, take: number, filter = 're') => {
   return { strains, count, error: false };
 };
 
-export default useServerStrains;
+export default getServerStrains;

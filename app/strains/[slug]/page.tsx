@@ -14,7 +14,7 @@ import StarRating from '@/components/StarRating/StarRating';
 import StrainSoma from './components/StrainSoma/StrainSoma';
 import defaultImage from '@/public/webp/default.webp';
 import { StrainExtended } from '@/types/interfaces';
-import useServerUser from '@/hooks/useServerUser';
+import getServerUser from '@/utils/getServerUser';
 import prisma from '@/lib/prisma';
 
 const StrainPageLikeButton = dynamic(
@@ -154,7 +154,7 @@ const getStrainBySlug = async (slug: string, userId?: string) => {
 };
 
 const Strain = async (props: Props) => {
-  const user = await useServerUser();
+  const user = await getServerUser();
 
   const strain = (await getStrainBySlug(
     props.params.slug,

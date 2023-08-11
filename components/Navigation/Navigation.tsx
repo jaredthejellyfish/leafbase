@@ -10,12 +10,12 @@ import NavigationThemeSelect from './NavigationThemeSelect';
 import ProfileIcon from '@/public/svg/profile-icon.svg';
 import NavigationSearchBar from './NavigationSearchBar';
 import NavigationDropdown from './NavigationDropdown';
-import useServerUser from '@/hooks/useServerUser';
+import getServerUser from '@/utils/getServerUser';
 import { authOptions } from '@/auth/authOptions';
 import SiteLogo from '../SiteLogo/SiteLogo';
 
 const Navigation = async () => {
-  const user = await useServerUser();
+  const user = await getServerUser();
   const session = await getServerSession(authOptions);
 
   return (

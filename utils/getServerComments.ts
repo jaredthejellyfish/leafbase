@@ -44,7 +44,7 @@ const getComments = async (user: User) => {
   }
 };
 
-export default async function useServerComments(user: User) {
+export default async function getServerComments(user: User) {
   if (!user) {
     return { comments: null, isError: true };
   }

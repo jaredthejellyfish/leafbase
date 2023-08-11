@@ -4,7 +4,7 @@ import React from 'react';
 
 import StrainCard from '@/components/StrainCard/StrainCard';
 import { Cannabinoids, Effects } from '@/types/interfaces';
-import useServerStrains from '@/hooks/useServerStrains';
+import getServerStrains from '@/utils/getServerStrains';
 import ErrorStrains from './error';
 
 const StrainLoader = dynamic(
@@ -33,7 +33,7 @@ export const metadata = {
 };
 
 const Strains = async (request: { searchParams: { filter?: string } }) => {
-  const { strains, count, error } = await useServerStrains(
+  const { strains, count, error } = await getServerStrains(
     1,
     18,
     request.searchParams.filter

@@ -13,8 +13,8 @@ import LikedStrainsError from '@/components/LikedStrains/LikedStrainsError';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs/NavBreadcrumbs';
 import LikedStrains from '@/components/LikedStrains/LikedStrains';
 import generateGravatarUrl from '@/utils/generateGravatarUrl';
-import useServerComments from '@/hooks/useServerComments';
-import useServerUser from '@/hooks/useServerUser';
+import getServerComments from '@/utils/getServerComments';
+import getServerUser from '@/utils/getServerUser';
 
 const StrainCommentLikeButton = dynamic(
   () => import('./components/ProfileCommentLikeButton')
@@ -75,8 +75,8 @@ function pickRandomComments(comments: Comment[], count = 4): Comment[] {
 }
 
 const ProfileDisplay = async (props: Props) => {
-  const user = await useServerUser(props.params.displayName);
-  const { comments, isError } = await useServerComments(user as User);
+  const user = await getServerUser(props.params.displayName);
+  const { comments, isError } = await getServerComments(user as User);
 
   if (!user) throw new Error('User not found');
 

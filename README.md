@@ -11,8 +11,6 @@
 
 ### 🏠 [Homepage](https://leafbase.xyz/strains)
 
-### ✨ [Demo](https://dev.leafbase.xyz/strains)
-
 ## Install
 
 ```sh

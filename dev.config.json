@@ -1,0 +1,33 @@
+{
+  "name": "leafbase.xyz",
+  "version": "0.0.1",
+  "description": "Run the dev commands for leafbase.xyz",
+  "commands": [
+    {
+      "name": "Prettier",
+      "command": "pnpm prettier --write .",
+      "silent": true
+    },
+    {
+      "name": "Prisma Generate",
+      "command": "pnpm prisma generate",
+      "silent": true
+    },
+    {
+      "name": "TSC Checks",
+      "command": "pnpm tsc",
+      "silent": true
+    },
+    {
+      "name": "Remove TSBuildinfo",
+      "command": "rm -rf tsconfig.tsbuildinfo",
+      "silent": true
+    },
+    {
+      "name": "Next Development Server",
+      "command": "pnpm next dev",
+      "silent": false,
+      "live": true
+    }
+  ]
+}

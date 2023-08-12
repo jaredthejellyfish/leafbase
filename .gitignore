@@ -172,6 +172,7 @@ leafbase.strains.json
 strain_vectors.npy
 
 *.json
+!*.config.json
 *.service
 *.old
 
@@ -181,4 +182,3 @@ strain_vectors.npy
 *.bak
 *.sh
 table_of_contents.txt
-run_dev.js

@@ -174,3 +174,7 @@ prisma/
 .*
 
 *.yaml
+
+*.md
+
+*.d.ts

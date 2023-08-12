@@ -1,0 +1,25 @@
+{
+  "name": "build",
+  "version": "0.1.0",
+  "description": "Run build commands for leafbase.xyz",
+  "commands": [
+    {
+      "name": "Prisma Generate",
+      "command": "pnpm prisma generate",
+      "silent": true,
+      "live": false
+    },
+    {
+      "name": "Prettier",
+      "command": "pnpm prettier --write .",
+      "silent": true,
+      "live": false
+    },
+    {
+      "name": "Next Build",
+      "command": "pnpm next build",
+      "silent": false,
+      "live": true
+    }
+  ]
+}

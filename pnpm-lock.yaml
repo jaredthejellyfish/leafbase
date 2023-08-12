@@ -224,8 +224,8 @@ devDependencies:
     specifier: ^5.0.0
     version: 5.0.0
   cfgi:
-    specifier: ^1.0.4
-    version: 1.0.4
+    specifier: ^1.0.5
+    version: 1.0.5
   cheerio:
     specifier: 1.0.0-rc.12
     version: 1.0.0-rc.12
@@ -3485,8 +3485,8 @@ packages:
     resolution: {integrity: sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==}
     dev: true
 
-  /cfgi@1.0.4:
-    resolution: {integrity: sha512-cjA8QuhSMQqTHvjj3dTUisLzoGpdhNAZRhWVEMzoGts5rliTjA8bmwwG7FQkVzAO4qgGYGfRY3vM5fvEeAhAiA==}
+  /cfgi@1.0.5:
+    resolution: {integrity: sha512-GCl5MaixPNrN0jCa/2K4MFXpUp2yKW9jIvG2Bs8WXjNm35FOEGdXBr45tJZlSFspuGhR0sCQAUon0mCfGPseUg==}
     hasBin: true
     dependencies:
       '@inquirer/prompts': 3.0.2

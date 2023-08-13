@@ -86,9 +86,6 @@ dependencies:
   nodemailer:
     specifier: ^6.9.4
     version: 6.9.4
-  playwright:
-    specifier: ^1.37.0
-    version: 1.37.0
   postcss:
     specifier: ^8.4.27
     version: 8.4.27
@@ -224,8 +221,8 @@ devDependencies:
     specifier: ^5.0.0
     version: 5.0.0
   cfgi:
-    specifier: ^1.0.8
-    version: 1.0.8
+    specifier: ^1.0.9
+    version: 1.0.9
   cheerio:
     specifier: 1.0.0-rc.12
     version: 1.0.0-rc.12
@@ -3485,8 +3482,8 @@ packages:
     resolution: {integrity: sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==}
     dev: true
 
-  /cfgi@1.0.8:
-    resolution: {integrity: sha512-EpFGj1wSfJfVpehUK5Azm8VlCkJMAfn2jW/7/lP0pB2RkRf8w4ZUy4Jbyye92DeDN2igGExUOVJWtdsm6G3CeQ==}
+  /cfgi@1.0.9:
+    resolution: {integrity: sha512-z64OIjUA0FCWaNPFHuOVIrY/rzyR6jleLEH7P9st830CfGCh/sOhl3bHLDSWFND12TwcRnYkXk3y0GVWbXz2Jw==}
     hasBin: true
     dependencies:
       '@inquirer/prompts': 3.0.2
@@ -7025,21 +7022,6 @@ packages:
     dependencies:
       find-up: 3.0.0
     dev: true
-
-  /playwright-core@1.37.0:
-    resolution: {integrity: sha512-1c46jhTH/myQw6sesrcuHVtLoSNfJv8Pfy9t3rs6subY7kARv0HRw5PpyfPYPpPtQvBOmgbE6K+qgYUpj81LAA==}
-    engines: {node: '>=16'}
-    hasBin: true
-    dev: false
-
-  /playwright@1.37.0:
-    resolution: {integrity: sha512-CrAEFfVioamMwDKmygc/HAkzEAxYAwjD+zod2poTxM7ObivkoDsKHu1ned16fnQV/Tf1kDB8KtsyH8Qd3VzJIg==}
-    engines: {node: '>=16'}
-    hasBin: true
-    requiresBuild: true
-    dependencies:
-      playwright-core: 1.37.0
-    dev: false
 
   /postcss-import@15.1.0(postcss@8.4.27):
     resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}

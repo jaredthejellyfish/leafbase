@@ -184,7 +184,6 @@ const Strain = async (props: Props) => {
     <div className="flex flex-col items-center justify-center px-4 md:px-1/4">
       <NavBreadcrumbs
         urls={[
-          { name: 'Home', url: '/' },
           { name: 'Strains', url: '/strains' },
           { name: strain.name, url: `/strains/${strain.slug}` },
         ]}

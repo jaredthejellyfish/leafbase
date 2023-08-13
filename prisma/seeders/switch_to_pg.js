@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 const strains = require("./leafbase.strains.json");
 
 const { PrismaClient } = require("@prisma/client");

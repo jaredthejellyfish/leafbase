@@ -10,10 +10,27 @@
       "live": false
     },
     {
+      "name": "ESLint",
+      "command": "pnpm eslint --fix .",
+      "silent": true,
+      "live": false
+    },
+    {
       "name": "Prettier",
       "command": "pnpm prettier --write .",
       "silent": true,
       "live": false
+    },
+    {
+      "name": "Run TSC Build (check)",
+      "command": "pnpm tsc --noEmit --pretty --noErrorTruncation --skipLibCheck",
+      "silent": true,
+      "live": false
+    },
+    {
+      "name": "Remove TSBuildinfo",
+      "command": "rm -rf tsconfig.tsbuildinfo",
+      "silent": true
     },
     {
       "name": "Next Build",

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 const { PrismaClient } = require("@prisma/client");
 const axios = require("axios");
 

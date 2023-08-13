@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const puppeteer = require("puppeteer");
 const { PrismaClient } = require("@prisma/client");
-const fs = require("fs");
 
 const prisma = new PrismaClient();
 
@@ -17,7 +17,9 @@ async function processPage(slug) {
       );
       await button.click();
       await page.screenshot({ path: `./scrapingbee_homepage.jpg` });
-    } catch (error) {}
+    } catch (error) {
+      console.log("no button found");
+    }
 
     var element = await page.waitForXPath(
       '//*[@id="__next"]/div[15]/main/div[1]/div[2]/section[1]/section/div[2]/div/div/div/p',
@@ -26,7 +28,7 @@ async function processPage(slug) {
 
     var text = await page.evaluate((element) => element.textContent, element);
   } catch (error) {
-    console.log(`Error: ${err.message}`);
+    console.log(`Error: ${error.message}`);
   } finally {
     await browser.close();
   }

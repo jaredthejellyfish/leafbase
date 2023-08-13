@@ -1,6 +1,6 @@
 import React from 'react';
 
-import StrainCardSkeleton from '@/components/StrainCard/StrainCardSkeleton';
+import StrainCardSkeleton from '@/app/components/StrainCard/StrainCardSkeleton';
 
 const StrainLoaderSkeleton = () => {
   return (

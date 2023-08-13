@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React from 'react';
 
 import StrainCardLikeButtonLoading from './StrainCardLikeButtonLoading';
-import StarRating from '@/components/StarRating/StarRating';
+import StarRating from '@/app/components/StarRating/StarRating';
 import { Cannabinoids, Effects } from '@/types/interfaces';
 import defaultImage from '@/public/webp/default.webp';
 
@@ -66,6 +66,7 @@ const effects: Colors = {
 };
 
 const StrainCard = (props: Props) => {
+  console.log("rendered")
   return (
     <Link
       href={`/strains/${props.slug}`}

@@ -5,7 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import React, { useEffect } from 'react';
 
 import { Cannabinoids, Effects, StrainExtended } from '@/types/interfaces';
-import StrainCard from '@/components/StrainCard/StrainCard';
+import StrainCard from '@/app/components/StrainCard/StrainCard';
 import StrainLoaderSkeleton from './StrainLoaderSkeleton';
 
 const StrainLoader = ({ filter }: { filter?: string }) => {

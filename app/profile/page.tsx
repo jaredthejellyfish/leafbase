@@ -4,10 +4,10 @@ import React from 'react';
 
 import GeneralInformationSkeleton from './components/GeneralInformation/GeneralInformationSkeleton';
 import ProfileCommentsSkeleton from './components/ProfileComments/ProfileCommentsSkeleton';
+import LikedStrainsSkeleton from '@/app/components/LikedStrains/LikedStrainsSkeleton';
 import ProfileCommentsError from './components/ProfileComments/ProfileCommentsError';
-import LikedStrainsSkeleton from '@/components/LikedStrains/LikedStrainsSkeleton';
-import LikedStrainsError from '@/components/LikedStrains/LikedStrainsError';
-import NavBreadcrumbs from '@/components/NavBreadcrumbs/NavBreadcrumbs';
+import LikedStrainsError from '@/app/components/LikedStrains/LikedStrainsError';
+import NavBreadcrumbs from '@/app/components/NavBreadcrumbs/NavBreadcrumbs';
 import ProfileSkeleton from './components/Profile/ProfileSkeleton';
 import getServerUser from '@/utils/getServerUser';
 
@@ -17,7 +17,7 @@ const Profile = nextDynamic(() => import('./components/Profile/Profile'), {
 });
 
 const LikedStrains = nextDynamic(
-  () => import('@/components/LikedStrains/LikedStrains'),
+  () => import('@/app/components/LikedStrains/LikedStrains'),
   {
     ssr: false,
     loading: () => <LikedStrainsSkeleton />,

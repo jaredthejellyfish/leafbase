@@ -3,11 +3,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import { cookies } from 'next/headers';
 import React from 'react';
 
-import NavigationSkeleton from '@/components/Navigation/NavigationSkeleton';
+import NavigationSkeleton from '@/app/components/Navigation/NavigationSkeleton';
 import './globals.css';
 
 const Navigation = nextDynamic(
-  () => import('@/components/Navigation/Navigation'),
+  () => import('@/app/components/Navigation/Navigation'),
   {
     ssr: false,
     loading: () => <NavigationSkeleton />,

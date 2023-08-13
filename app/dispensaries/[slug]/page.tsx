@@ -8,7 +8,7 @@ import React from 'react';
 import GeneralInformationSkeleton from './components/GeneralInformation/GeneralInformationSkeleton';
 import DispensaryMapSkeleton from './components/DispensaryMap/DispensaryMapSkeleton';
 import DispensaryMapDynamic from './components/DispensaryMap/DispensaryMapDynamic';
-import NavBreadcrumbs from '@/components/NavBreadcrumbs/NavBreadcrumbs';
+import NavBreadcrumbs from '@/app/components/NavBreadcrumbs/NavBreadcrumbs';
 import CommentsSkeleton from './components/Comments/CommentsSkeleton';
 import ProfileSkeleton from './components/Profile/ProfileSkeleton';
 import getServerDispensary from '@/utils/getServerDispensary';

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-import StarRating from '@/components/StarRating/StarRating';
+import StarRating from '@/app/components/StarRating/StarRating';
 import { Cannabinoids } from '@/types/interfaces';
 
 type Props = {

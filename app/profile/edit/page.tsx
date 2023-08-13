@@ -13,7 +13,7 @@ import { format } from 'date-fns';
 import Image from 'next/image';
 import { z } from 'zod';
 
-import NavBreadcrumbs from '@/components/NavBreadcrumbs/NavBreadcrumbs';
+import NavBreadcrumbs from '@/app/components/NavBreadcrumbs/NavBreadcrumbs';
 import generateGravatarUrl from '@/utils/generateGravatarUrl';
 import UserProfileLoading from './loading';
 import useUser from '@/hooks/useUser';

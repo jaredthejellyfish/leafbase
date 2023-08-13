@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
-import StarRating from '@/components/StarRating/StarRating';
+import StarRating from '@/app/components/StarRating/StarRating';
 import DispensaryMapSkeleton from './DispensaryMapSkeleton';
 import { RootState } from '@/store/store';
 

@@ -13,7 +13,7 @@ import { Align } from 'chart.js';
 import { StrainExtended } from '@/types/interfaces';
 import { RootState } from '@/store/store';
 
-const Modal = dynamic(() => import('@/components/Modal/Modal'), {
+const Modal = dynamic(() => import('@/app/components/Modal/Modal'), {
   loading: () => <div></div>,
   ssr: false,
 });

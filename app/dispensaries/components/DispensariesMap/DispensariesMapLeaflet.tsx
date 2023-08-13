@@ -5,8 +5,8 @@ import 'leaflet/dist/leaflet.css';
 import { Icon } from 'leaflet';
 import Link from 'next/link';
 
+import StarRating from '@/app/components/StarRating/StarRating';
 import DispensariesMapSkeleton from './DispensariesMapSkeleton';
-import StarRating from '@/components/StarRating/StarRating';
 import { CoordinatesContext } from './DispensariesMap';
 import { RootState } from '@/store/store';
 

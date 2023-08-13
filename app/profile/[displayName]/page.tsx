@@ -9,9 +9,9 @@ import Link from 'next/link';
 import React from 'react';
 
 import ProfileRevalidator from '../components/ProfileRevalidator/ProfileRevalidator';
-import LikedStrainsError from '@/components/LikedStrains/LikedStrainsError';
-import NavBreadcrumbs from '@/components/NavBreadcrumbs/NavBreadcrumbs';
-import LikedStrains from '@/components/LikedStrains/LikedStrains';
+import LikedStrainsError from '@/app/components/LikedStrains/LikedStrainsError';
+import NavBreadcrumbs from '@/app/components/NavBreadcrumbs/NavBreadcrumbs';
+import LikedStrains from '@/app/components/LikedStrains/LikedStrains';
 import generateGravatarUrl from '@/utils/generateGravatarUrl';
 import getServerComments from '@/utils/getServerComments';
 import getServerUser from '@/utils/getServerUser';

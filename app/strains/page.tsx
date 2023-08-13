@@ -2,7 +2,7 @@ import { RxCaretDown } from 'react-icons/rx';
 import dynamic from 'next/dynamic';
 import React from 'react';
 
-import StrainCard from '@/components/StrainCard/StrainCard';
+import StrainCard from '@/app/components/StrainCard/StrainCard';
 import { Cannabinoids, Effects } from '@/types/interfaces';
 import getServerStrains from '@/utils/getServerStrains';
 import ErrorStrains from './error';

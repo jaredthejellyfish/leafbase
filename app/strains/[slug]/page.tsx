@@ -9,8 +9,8 @@ import Link from 'next/link';
 import React from 'react';
 
 import CommentLoaderFallback from './components/CommentLoader/CommentLoaderFallback';
-import NavBreadcrumbs from '@/components/NavBreadcrumbs/NavBreadcrumbs';
-import StarRating from '@/components/StarRating/StarRating';
+import NavBreadcrumbs from '@/app/components/NavBreadcrumbs/NavBreadcrumbs';
+import StarRating from '@/app/components/StarRating/StarRating';
 import StrainSoma from './components/StrainSoma/StrainSoma';
 import defaultImage from '@/public/webp/default.webp';
 import { StrainExtended } from '@/types/interfaces';

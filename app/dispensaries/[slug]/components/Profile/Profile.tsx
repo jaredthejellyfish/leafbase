@@ -9,8 +9,8 @@ import Link from 'next/link';
 import md5 from 'md5';
 
 import FollowDispensaryButtonSkeleton from './FollowDispensaryButtonSkeleton';
+import StarRating from '@/app/components/StarRating/StarRating';
 import FollowDispensaryButton from './FollowDispensaryButton';
-import StarRating from '@/components/StarRating/StarRating';
 
 type Props = { dispensary: Dispensary };
 

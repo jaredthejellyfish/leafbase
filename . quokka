@@ -1,0 +1,11 @@
+{
+  "babel": {
+    "presets": ["react-app"]
+  },
+  "ts": true,
+  "plugins": ["alias-quokka-plugin", "jsdom-quokka-plugin", "@babel/plugin-transform-typescript"],
+  "alias": {
+    "@/": "./src/",
+    "@/classes/": "./src/classes/"
+  }
+}

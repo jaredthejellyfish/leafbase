@@ -1,9 +1,9 @@
 import React from 'react';
 
 import GeneralInformationSkeleton from './components/GeneralInformation/GeneralInformationSkeleton';
+import NavBreadcrumbsSkeleton from '@/app/components/NavBreadcrumbs/NavBreadcrumbsSkeleton';
 import ProfileCommentsSkeleton from './components/ProfileComments/ProfileCommentsSkeleton';
-import NavBreadcrumbsSkeleton from '@/components/NavBreadcrumbs/NavBreadcrumbsSkeleton';
-import LikedStrainsSkeleton from '@/components/LikedStrains/LikedStrainsSkeleton';
+import LikedStrainsSkeleton from '@/app/components/LikedStrains/LikedStrainsSkeleton';
 import ProfileSkeleton from './components/Profile/ProfileSkeleton';
 
 async function ProfileLoading() {

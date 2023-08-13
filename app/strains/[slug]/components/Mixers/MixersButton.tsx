@@ -6,9 +6,9 @@ import { FiMoreVertical } from 'react-icons/fi';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import StarRating from '@/components/StarRating/StarRating';
+import StarRating from '@/app/components/StarRating/StarRating';
 import { StrainExtended } from '@/types/interfaces';
-import Modal from '@/components/Modal/Modal';
+import Modal from '@/app/components/Modal/Modal';
 
 type Props = { strain: StrainExtended };
 

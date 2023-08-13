@@ -1,7 +1,7 @@
 import React from 'react';
 
 import GeneralInformationSkeleton from './components/GeneralInformation/GeneralInformationSkeleton';
-import NavBreadcrumbsSkeleton from '@/components/NavBreadcrumbs/NavBreadcrumbsSkeleton';
+import NavBreadcrumbsSkeleton from '@/app/components/NavBreadcrumbs/NavBreadcrumbsSkeleton';
 import DispensaryMapSkeleton from './components/DispensaryMap/DispensaryMapSkeleton';
 import CommentsSkeleton from './components/Comments/CommentsSkeleton';
 import ProfileSkeleton from './components/Profile/ProfileSkeleton';

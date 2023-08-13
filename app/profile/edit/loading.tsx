@@ -1,7 +1,7 @@
 import { MdLocationPin } from 'react-icons/md';
 import React from 'react';
 
-import NavBreadcrumbsSkeleton from '@/components/NavBreadcrumbs/NavBreadcrumbsSkeleton';
+import NavBreadcrumbsSkeleton from '@/app/components/NavBreadcrumbs/NavBreadcrumbsSkeleton';
 
 async function ProfileEditLoading() {
   return (

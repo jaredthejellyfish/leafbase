@@ -3,7 +3,7 @@ import { TbMedicalCross } from 'react-icons/tb';
 import React from 'react';
 
 import { StrainExtended } from '@/types/interfaces';
-import Badge from '@/components/Badge/Badge';
+import Badge from '@/app/components/Badge/Badge';
 
 type Effect = {
   [key: string]: string;

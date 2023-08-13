@@ -66,7 +66,6 @@ const effects: Colors = {
 };
 
 const StrainCard = (props: Props) => {
-  console.log("rendered")
   return (
     <Link
       href={`/strains/${props.slug}`}

@@ -22,17 +22,6 @@
       "live": false
     },
     {
-      "name": "Run TSCompile (check)",
-      "command": "npm run tsc",
-      "silent": true,
-      "live": false
-    },
-    {
-      "name": "Remove TSBuildinfo",
-      "command": "rm -rf tsconfig.tsbuildinfo",
-      "silent": true
-    },
-    {
       "name": "Next Build",
       "command": "pnpm next build",
       "silent": false,

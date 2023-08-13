@@ -22,8 +22,8 @@
       "live": false
     },
     {
-      "name": "Run TSC Build (check)",
-      "command": "pnpm tsc --noEmit --pretty --noErrorTruncation --skipLibCheck",
+      "name": "Run TSCompile (check)",
+      "command": "npm run tsc",
       "silent": true,
       "live": false
     },

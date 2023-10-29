@@ -1,0 +1,165 @@
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
+import Image from 'next/image';
+import React from 'react';
+
+import StrainSoma from '@/components/StrainSoma';
+import StarRating from '@/components/StrainCard/StarRating';
+import defaultImage from '@/public/default.webp';
+import type { Database } from '@/lib/database';
+import type { Strain } from '@/lib/types';
+import NavBreadcrumbs from '@/components/NavBreadcrumbs';
+
+type Props = { params: { slug: string } };
+
+type Colors = {
+  [key: string]: string;
+};
+
+const terpenes: Colors = {
+  myrcene: '#7EBF73',
+  caryophyllene: '#B25C52',
+  terpinolene: '#4A7597',
+  linalool: '#9A67B5',
+  pinene: '#3B8A5A',
+  limonene: '#F9B122',
+  ocimene: '#2AA39F',
+};
+
+const effects: Colors = {
+  Hungry: '#FF8C00',
+  Giggly: '#FF69B4',
+  Euphoric: '#9370DB',
+  Energetic: '#F5A623',
+  Uplifted: '#20B2AA',
+  Aroused: '#FF4500',
+  Tingly: '#BA55D3',
+  Happy: '#00FF00',
+  Focused: '#FFD700',
+  null: '#778899',
+  Talkative: '#4682B4',
+  Creative: '#FFA07A',
+  Relaxed: '#8B4513',
+  Sleepy: '#1E90FF',
+};
+
+const StrainSlugPage = async (props: Props) => {
+  const { slug } = props.params;
+
+  const cookieStore = cookies();
+  const supabase = createServerComponentClient<Database>({
+    cookies: () => cookieStore,
+  });
+
+  const { data: strain } = await supabase
+    .from('strains')
+    .select(
+      `
+    *,
+    strain_comments (
+      *
+    )
+  `
+    )
+    .eq('slug', slug)
+    .returns<Strain[]>()
+    .maybeSingle();
+
+  if (!strain) {
+    return <p>Error</p>;
+  }
+
+  return (
+    <main className="flex flex-col items-center justify-center px-3.5 py-4">
+      <NavBreadcrumbs
+        urls={[
+          { name: 'Strains', url: '/strains' },
+          {
+            name: strain.name as string,
+            url: `/strains/${strain.slug}`,
+          },
+        ]}
+      />
+      <div
+        id="card"
+        className="relative flex flex-col items-center justify-center pb-8 border rounded shadow md:w-4/5 border-zinc-300 dark:border-transparent dark:bg-zinc-900"
+      >
+        <div
+          id="header"
+          className="flex flex-col items-center justify-center w-full gap-8 px-5 pt-8 md:flex-row md:px-8"
+        >
+          <div
+            id="vertical-1"
+            className="flex items-center justify-center md:w-1/3 h-52"
+          >
+            <Image
+              className="rounded"
+              src={strain.nugImage ? strain.nugImage : defaultImage}
+              alt={strain?.slug}
+              width={200}
+              priority
+              height={200}
+            />
+          </div>
+          <div id="vertical-2" className="w-full md:w-2/3">
+            <div className="flex flex-row items-center gap-3 mb-2">
+              <div className="inline-block px-2 py-1 text-xs font-medium bg-gray-200 rounded dark:shadow dark:bg-zinc-700">
+                {strain.phenotype}
+              </div>
+              <div className="flex flex-row gap-4 px-1 text-xs text-zinc-500 dark:text-zinc-300">
+                <span className="">
+                  THC {strain.thcPercent && strain.thcPercent}%
+                </span>
+                <span className="">
+                  CBD: {strain && strain?.cannabinoids?.cbd?.percentile50}%
+                </span>
+              </div>
+            </div>
+            <h1 className="text-2xl font-bold mb-0.5">{strain.name}</h1>
+            <h2 className="font-semi text-zinc-400 md:w-2/3 min-h-10">
+              {strain.subtitle}
+            </h2>
+            <span className="flex items-center justify-start w-48 gap-3 mt-1 text-zinc-800 dark:text-zinc-200">
+              {strain.averageRating &&
+                Math.round(strain.averageRating * 10) / 10}
+              <StarRating rating={strain.averageRating || 0} />
+            </span>
+            <div className="flex flex-row gap-3 mt-1 text-sm font-medium capitalize">
+              <span className="flex flex-row items-center gap-1">
+                <div
+                  style={{
+                    backgroundColor:
+                      effects[strain.topEffect || 'rgb(70, 130, 180)'],
+                  }}
+                  className="rounded-full w-2.5 h-2.5"
+                ></div>
+                <p className="p-0">{strain.topEffect}</p>
+              </span>
+              <span className="flex flex-row items-center gap-1">
+                <div
+                  style={{
+                    backgroundColor:
+                      terpenes[strain.topTerpene || 'rgb(70, 130, 180)'],
+                  }}
+                  className="rounded-full w-2.5 h-2.5"
+                ></div>
+                <p className="p-0">{strain.topTerpene}</p>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div
+          id="body"
+          className="flex flex-col justify-center w-full gap-5 px-5 md:flex-row md:px-8"
+        >
+          <div className="mt-3 md:w-1/3">
+            <StrainSoma strain={strain} />
+          </div>
+          <div className="px-0.5 md:w-2/3">{strain.description}</div>
+        </div>
+      </div>
+    </main>
+  );
+};
+
+export default StrainSlugPage;

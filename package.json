@@ -69,7 +69,7 @@
     "@types/uuid": "^9.0.2",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
-    "cfgi": "^1.0.10",
+    "cfgi": "^0.8.0",
     "cheerio": "1.0.0-rc.12",
     "eslint": "^8.47.0",
     "eslint-config-prettier": "^8.10.0",

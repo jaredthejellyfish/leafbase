@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "pnpm cfgi dev",
-    "build": "pnpm cfgi build",
+    "build": "pnpx prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "tsc": "npx tsc --noEmit --pretty --noErrorTruncation --skipLibCheck"

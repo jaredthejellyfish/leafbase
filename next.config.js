@@ -23,6 +23,7 @@ const nextConfig = {
       'i.imgur.com',
       'www.google.com',
       'cloudflare-ipfs.com',
+      'utfs.io'
     ],
   },
 };

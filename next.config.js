@@ -14,6 +14,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: '*.leafly.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'utfs.io',
+      },
     ],
   },
 };

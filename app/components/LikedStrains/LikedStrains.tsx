@@ -82,7 +82,7 @@ const LikedStrains = async (props: Props) => {
                 className="flex flex-col gap-2 p-2 scale-95 border rounded shadow sm:scale-100 dark:border-zinc-600 dark:bg-zinc-800 "
                 href={`/strains/${strain.slug}`}
               >
-                <div className="flex items-center justify-center bg-white rounded-md aspect-square max-h-24 max-w-24">
+                <div className="flex items-center justify-center rounded-md aspect-square max-h-24 max-w-24">
                   <Image
                     src={strain.nugImage}
                     className="rounded-md"

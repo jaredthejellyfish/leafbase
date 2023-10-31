@@ -76,7 +76,7 @@ const StrainCard = (props: Props) => {
         <div className="flex items-center justify-center w-1/2 border rounded-lg md:w-full dark:border-opacity-0 border-zinc-200">
           <Image
             style={{ maxHeight: '250px' }}
-            className="object-contain w-full h-full bg-white border border-white rounded-lg aspect-square"
+            className="object-contain w-full h-full border border-white dark:border-zinc-800 rounded-lg aspect-square"
             src={props.nugImage ? props.nugImage : defaultImage}
             alt={props.name}
             width={300}

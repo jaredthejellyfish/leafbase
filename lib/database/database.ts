@@ -26,14 +26,12 @@ export interface Database {
           {
             foreignKeyName: "_DispensaryMenuToStrain_A_fkey"
             columns: ["A"]
-            isOneToOne: false
             referencedRelation: "dispensary_menus"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "_DispensaryMenuToStrain_B_fkey"
             columns: ["B"]
-            isOneToOne: false
             referencedRelation: "strains"
             referencedColumns: ["id"]
           }
@@ -119,7 +117,6 @@ export interface Database {
           {
             foreignKeyName: "accounts_userId_fkey"
             columns: ["userId"]
-            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -208,14 +205,12 @@ export interface Database {
           {
             foreignKeyName: "dispensary_comment_likes_commentId_fkey"
             columns: ["commentId"]
-            isOneToOne: false
             referencedRelation: "dispensary_comments"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "dispensary_comment_likes_userId_fkey"
             columns: ["userId"]
-            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -247,14 +242,12 @@ export interface Database {
           {
             foreignKeyName: "dispensary_comments_dispensaryId_fkey"
             columns: ["dispensaryId"]
-            isOneToOne: false
             referencedRelation: "dispensaries"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "dispensary_comments_userId_fkey"
             columns: ["userId"]
-            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -283,7 +276,6 @@ export interface Database {
           {
             foreignKeyName: "dispensary_menus_dispensaryId_fkey"
             columns: ["dispensaryId"]
-            isOneToOne: false
             referencedRelation: "dispensaries"
             referencedColumns: ["id"]
           }
@@ -312,14 +304,12 @@ export interface Database {
           {
             foreignKeyName: "dispensary_subscriptions_dispensaryId_fkey"
             columns: ["dispensaryId"]
-            isOneToOne: false
             referencedRelation: "dispensaries"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "dispensary_subscriptions_userId_fkey"
             columns: ["userId"]
-            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -348,7 +338,6 @@ export interface Database {
           {
             foreignKeyName: "sessions_userId_fkey"
             columns: ["userId"]
-            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -377,14 +366,12 @@ export interface Database {
           {
             foreignKeyName: "strain_comment_likes_commentId_fkey"
             columns: ["commentId"]
-            isOneToOne: false
             referencedRelation: "strain_comments"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "strain_comment_likes_userId_fkey"
             columns: ["userId"]
-            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -416,14 +403,12 @@ export interface Database {
           {
             foreignKeyName: "strain_comments_strainId_fkey"
             columns: ["strainId"]
-            isOneToOne: false
             referencedRelation: "strains"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "strain_comments_userId_fkey"
             columns: ["userId"]
-            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -452,14 +437,12 @@ export interface Database {
           {
             foreignKeyName: "strain_likes_strainId_fkey"
             columns: ["strainId"]
-            isOneToOne: false
             referencedRelation: "strains"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "strain_likes_userId_fkey"
             columns: ["userId"]
-            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -503,7 +486,6 @@ export interface Database {
           {
             foreignKeyName: "strain_mixers_strainId_fkey"
             columns: ["strainId"]
-            isOneToOne: false
             referencedRelation: "strains"
             referencedColumns: ["id"]
           }
@@ -519,7 +501,6 @@ export interface Database {
           effects: Json | null
           flowerImageSvg: string | null
           id: string
-          likes_count: number | null
           name: string | null
           nugImage: string | null
           phenotype: string | null
@@ -540,7 +521,6 @@ export interface Database {
           effects?: Json | null
           flowerImageSvg?: string | null
           id: string
-          likes_count?: number | null
           name?: string | null
           nugImage?: string | null
           phenotype?: string | null
@@ -561,7 +541,6 @@ export interface Database {
           effects?: Json | null
           flowerImageSvg?: string | null
           id?: string
-          likes_count?: number | null
           name?: string | null
           nugImage?: string | null
           phenotype?: string | null

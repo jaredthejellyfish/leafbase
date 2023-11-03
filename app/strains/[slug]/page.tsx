@@ -90,7 +90,7 @@ const StrainSlugPage = async (props: Props) => {
         >
           <div
             id="vertical-1"
-            className="flex items-center justify-center md:w-1/3 h-52"
+            className="flex items-center justify-center md:w-1/3 h-52 md:border rounded-sm md:dark:bg-zinc-950/10 md:dark:shadow md:shadow-sm "
           >
             <Image
               className="rounded"

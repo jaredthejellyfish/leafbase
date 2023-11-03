@@ -1,29 +1,23 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
 import React from 'react';
 
+import { getServerPaginatedStrains } from '@/lib/utils/getServerPaginatedStrains';
 import FilterByMenu from '@/components/FilterByMenu';
-import StrainCard from '@/components/StrainCard';
-import type { Database } from '@/lib/database';
-import type { Strain } from '@/lib/types';
+import dynamic from 'next/dynamic';
+
+const StrainCardLoader = dynamic(() => import('@/components/StrainCardLoader'))
 
 const StrainsPage = async (request: { searchParams: { filter?: string } }) => {
-  const cookieStore = cookies();
-  const supabase = createServerComponentClient<Database>({
-    cookies: () => cookieStore,
+  const filter = request.searchParams.filter;
+
+  const perPage = 12;
+
+  const { strains, count, nextPage } = await getServerPaginatedStrains({
+    filter,
+    perPage,
   });
 
-  const {
-    count,
-    data: strains,
-  } = await supabase
-    .from('strains')
-    .select('*', { count: 'estimated', head: false })
-    .limit(20)
-    .returns<Strain[]>();
-
   return (
-    <main className="flex flex-col items-center justify-center px-6 xl:px-52">
+    <main className="flex flex-col items-center justify-center px-6 xl:px-52 pb-8">
       <div className="max-w-4xl">
         <h1 className="mt-4 mb-2 text-3xl font-bold ">All strains</h1>
         <p className="">
@@ -43,9 +37,15 @@ const StrainsPage = async (request: { searchParams: { filter?: string } }) => {
         </span>
         <div className="flex items-center justify-center w-full">
           <div className="relative grid max-w-4xl md:grid-cols-3 gap-x-4">
-            {strains?.map((strain) => (
-              <StrainCard strain={strain} key={strain.id} />
-            ))}
+            {strains && count && count > perPage && (
+              <StrainCardLoader
+                perPage={perPage}
+                page={nextPage}
+                filter={filter || 're'}
+                initialData={strains}
+                count={count}
+              />
+            )}
           </div>
         </div>
       </div>

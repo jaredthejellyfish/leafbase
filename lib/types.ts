@@ -1,4 +1,4 @@
-import type { Database } from './database';
+import type { DatabaseStrain } from "./database/database_types";
 
 interface Effect {
   icon: null;
@@ -40,7 +40,7 @@ export interface Cannabinoids {
   thcv: Cannabinoid;
 }
 
-export type DatabaseStrain = Database['public']['Tables']['strains']['Row'];
+
 
 export interface Strain extends DatabaseStrain {
   cannabinoids: {

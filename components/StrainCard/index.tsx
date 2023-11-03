@@ -39,7 +39,13 @@ const effects: Colors = {
   Unknown: '#778899',
 };
 
-const StrainCard = ({ strain }: { strain: Strain }) => {
+const StrainCard = ({
+  strain,
+  priority,
+}: {
+  strain: Strain;
+  priority?: boolean;
+}) => {
   return (
     <Link
       href={`/strains/${strain.slug}`}
@@ -49,18 +55,18 @@ const StrainCard = ({ strain }: { strain: Strain }) => {
         <div className="flex items-center justify-center w-1/2 border rounded-lg md:w-full dark:border-opacity-0 border-zinc-200">
           <Image
             style={{ maxHeight: '250px' }}
-            className="object-contain w-full h-full border border-white dark:border-zinc-800 rounded-lg aspect-square"
+            className="bg-zinc-300/10 dark:opacity-90 dark:bg-zinc-950/30 object-contain w-full h-full border border-white dark:border-zinc-800 rounded-lg aspect-square p-4"
             src={strain.nugImage ? strain.nugImage : defaultImage}
             alt={strain.name}
             width={300}
             height={300}
-            priority={true}
+            priority={priority}
           />
         </div>
       )}
       <div className="w-1/2 md:w-full">
         <div className="inline-block w-14 flex items-center justify-center px-2 py-1 text-xs font-medium bg-gray-200 rounded dark:shadow dark:bg-zinc-700">
-          {strain.phenotype}
+          {strain.phenotype || 'N/A'}
         </div>
         <p className="px-1 mt-1 font-medium">{strain.name}</p>
         <p className="px-1 text-sm font-normal text-gray-500 h-14 line-clamp-3">
@@ -70,14 +76,12 @@ const StrainCard = ({ strain }: { strain: Strain }) => {
         </p>
         <div className="flex flex-row items-center gap-1 p-1 mt-2 text-sm">
           <span className="flex items-center justify-center w-6 h-4">
-            {strain.averageRating && Math.round(strain.averageRating * 10) / 10}
+            {strain.averageRating ? (Math.round(strain.averageRating * 10) / 10).toFixed(1) : "0.0"}
           </span>
           {<StarRating rating={strain.averageRating || 0} />}
         </div>
         <div className="flex flex-row gap-4 px-1 text-xs text-zinc-500 dark:text-zinc-300">
-          <span className="">
-            THC: {strain.thcPercent || "?"}%
-          </span>
+          <span className="">THC: {strain.thcPercent || '?'}%</span>
 
           {strain.cannabinoids && strain.cannabinoids.cbd.percentile50 ? (
             <span className="">

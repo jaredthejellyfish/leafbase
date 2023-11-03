@@ -58,8 +58,8 @@ const HamburgerMenu = () => {
       <div ref={hamburgerRef}>
         <svg
           className="text-dark rounded dark:text-white hover:bg-gray-300 dark:hover:bg-zinc-700 transition-colors select-none hover:cursor-pointer"
-          width={28}
-          height={28}
+          width={25}
+          height={25}
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +87,7 @@ const HamburgerMenu = () => {
           ></motion.path>
         </svg>
       </div>
-      <div ref={dropdownRef}>
+      <div ref={dropdownRef} className="absolute top-0 left-0">
         <DropdownMenu open={isOpen} setOpen={setIsOpen} />
       </div>
     </>

@@ -9,7 +9,6 @@ import type { Database } from '@/lib/database';
 const utapi = new UTApi();
 
 export async function uploadFiles(
-  prevState: any,
   formData: FormData
 ): Promise<{ status: string }> {
   const cookieStore = cookies();
@@ -43,18 +42,18 @@ export async function uploadFiles(
         .update({ nugImage: response.data.url })
         .eq('id', strainId);
 
-      console.log('response', response.err);
       console.log('error', error);
 
-      if (error || response.err) {
+      if (error || response.error) {
         return {
-          status: (error?.message as string) || (response.err as string),
+          status: (error?.message as string) || response.error || 'error',
         };
       }
     }
   } catch (err) {
     console.log('fd', formData.getAll('files'));
     console.error(err);
+    
     return { status: err.message };
   }
   return { status: 'success' };

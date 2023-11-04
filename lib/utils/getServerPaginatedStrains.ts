@@ -29,7 +29,7 @@ export async function getServerPaginatedStrains({
     .select('*', { count: 'estimated', head: true });
 
   if (!totalCount) {
-    console.log('No strains found');
+    console.error('No strains found');
     return {
       strains: [],
       nextPage: 0,
@@ -41,7 +41,7 @@ export async function getServerPaginatedStrains({
   const totalPages = Math.ceil(totalCount / perPage);
 
   if (page > totalPages) {
-    console.log('Page out of range');
+    console.error('Page out of range');
     return {
       strains: [],
       nextPage: 0,

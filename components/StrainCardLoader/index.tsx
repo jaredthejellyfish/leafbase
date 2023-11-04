@@ -57,7 +57,7 @@ const StrainCardLoader = (props: Props) => {
 
   const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: ['strains'],
+      queryKey: ['strains', props.filter],
       queryFn: fetchStrains,
       initialData: {
         pages: [
@@ -104,7 +104,6 @@ const StrainCardLoader = (props: Props) => {
 
     const loadMoreRefCurrent = loadMoreRef.current;
 
-    // Clean up on unmount
     return () => {
       if (loadMoreRefCurrent) {
         observer.unobserve(loadMoreRefCurrent);
@@ -114,17 +113,18 @@ const StrainCardLoader = (props: Props) => {
 
   return (
     <>
-      {data &&
-        data.pages
-          .flatMap((page) => page.strains)
-          .map((strain) => {
-            if (!strain) return;
-            return (
-              <StrainCard strain={strain} key={strain.id} priority={true} />
-            );
-          })}
-      <div></div>
-      <div className="w-full flex items-center justify-center mt-4">
+      <div className="relative grid md:grid-cols-3 xl:grid-cols-4 gap-x-4">
+        {data &&
+          data.pages
+            .flatMap((page) => page.strains)
+            .map((strain) => {
+              if (!strain) return;
+              return (
+                <StrainCard strain={strain} key={strain.id} priority={true} />
+              );
+            })}
+      </div>
+      <div className="w-full block items-center justify-center mt-4 contents">
         <Button
           ref={loadMoreRef}
           onClick={() => debouncedFetchNextPage()}

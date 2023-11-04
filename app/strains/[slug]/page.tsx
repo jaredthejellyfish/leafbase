@@ -9,6 +9,7 @@ import defaultImage from '@/public/default.webp';
 import type { Database } from '@/lib/database';
 import type { Strain } from '@/lib/types';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs';
+import type { Metadata } from 'next';
 
 type Props = { params: { slug: string } };
 
@@ -43,6 +44,35 @@ const effects: Colors = {
   Sleepy: '#1E90FF',
 };
 
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const { slug } = props.params;
+
+  const cookieStore = cookies();
+  const supabase = createServerComponentClient<Database>({
+    cookies: () => cookieStore,
+  });
+
+  const { data: strain } = await supabase
+    .from('strains')
+    .select(
+      `
+    *,
+    strain_comments (
+      *
+    )
+  `
+    )
+    .eq('slug', slug)
+    .returns<Strain[]>()
+    .maybeSingle();
+
+  return {
+    title: `${strain?.name} - Leafbase` || 'Strain',
+    description:
+      strain?.shortDescription || `Description page for ${strain?.name}`,
+  };
+}
+
 const StrainSlugPage = async (props: Props) => {
   const { slug } = props.params;
 
@@ -70,7 +100,7 @@ const StrainSlugPage = async (props: Props) => {
   }
 
   return (
-    <main className="flex flex-col items-center justify-center px-3.5 py-4">
+    <main className="justify-center px-5 md:px-16 py-3">
       <NavBreadcrumbs
         urls={[
           { name: 'Strains', url: '/strains' },
@@ -82,7 +112,7 @@ const StrainSlugPage = async (props: Props) => {
       />
       <div
         id="card"
-        className="relative flex flex-col items-center justify-center pb-8 border rounded shadow md:w-4/5 border-zinc-300 dark:border-transparent dark:bg-zinc-900"
+        className="relative flex flex-col items-center justify-center pb-8 border rounded shadow border-zinc-300 dark:border-transparent dark:bg-zinc-900"
       >
         <div
           id="header"

@@ -1,10 +1,17 @@
+import dynamic from 'next/dynamic';
 import React from 'react';
 
 import { getServerPaginatedStrains } from '@/lib/utils/getServerPaginatedStrains';
 import FilterByMenu from '@/components/FilterByMenu';
-import dynamic from 'next/dynamic';
+import type { Metadata } from 'next';
 
-const StrainCardLoader = dynamic(() => import('@/components/StrainCardLoader'))
+export const metadata: Metadata= {
+  title: 'All Strains - Leafbase',
+  description:
+    'Explore our comprehensive list of marijuana strains, featuring detailed profiles, effects, and reviews. sort by type, potency, and medical benefits to find your perfect match. Discover new favorites and classics in our extensive collection of cannabis varieties.',
+};
+
+const StrainCardLoader = dynamic(() => import('@/components/StrainCardLoader'));
 
 const StrainsPage = async (request: { searchParams: { filter?: string } }) => {
   const filter = request.searchParams.filter;
@@ -17,8 +24,8 @@ const StrainsPage = async (request: { searchParams: { filter?: string } }) => {
   });
 
   return (
-    <main className="flex flex-col items-center justify-center px-6 xl:px-52 pb-8">
-      <div className="max-w-4xl">
+    <main className="pb-8 px-5 md:px-16 xl:px-36 py-3">
+      <div className="">
         <h1 className="mt-4 mb-2 text-3xl font-bold ">All strains</h1>
         <p className="">
           Browse the most comprehensive weed strain library on the web. Browse
@@ -35,18 +42,16 @@ const StrainsPage = async (request: { searchParams: { filter?: string } }) => {
           These results are based on user comments and are not a substitute for
           professional medical advice.
         </span>
-        <div className="flex items-center justify-center w-full">
-          <div className="relative grid max-w-4xl md:grid-cols-3 gap-x-4">
-            {strains && count && count > perPage && (
-              <StrainCardLoader
-                perPage={perPage}
-                page={nextPage}
-                filter={filter || 're'}
-                initialData={strains}
-                count={count}
-              />
-            )}
-          </div>
+        <div className="flex flex-col gap-4 items-center justify-center w-full">
+          {strains && count && count > perPage && (
+            <StrainCardLoader
+              perPage={perPage}
+              page={nextPage}
+              filter={filter || 're'}
+              initialData={strains}
+              count={count}
+            />
+          )}
         </div>
       </div>
     </main>

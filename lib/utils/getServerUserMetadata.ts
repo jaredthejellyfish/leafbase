@@ -11,21 +11,19 @@ export async function getServerUserMetadata(session?: boolean) {
 
   const { data: sessionData, error: sessionError } =
     await supabase.auth.getSession();
+
   const userSession = sessionData?.session;
 
   if (!userSession || sessionError) {
     await supabase.auth.refreshSession();
   }
 
-  if (userSession && session) {
+  if (userSession || session) {
     const { data: userData } = await supabase.auth.getUser();
     const user = userData?.user;
 
-    return { session: userSession, user_metadata: user?.user_metadata };
-  }
-  if (userSession && !session) {
-    return { user_metadata: userSession.user.user_metadata };
+    return { session: userSession, user_metadata: user?.user_metadata || null };
   }
 
-  return { user_metadata: null };
+  return { session: null, user_metadata: null };
 }

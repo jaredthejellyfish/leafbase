@@ -42,7 +42,7 @@ export async function uploadFiles(
         .update({ nugImage: response.data.url })
         .eq('id', strainId);
 
-      console.log('error', error);
+      console.error('error', error);
 
       if (error || response.error) {
         return {
@@ -51,7 +51,7 @@ export async function uploadFiles(
       }
     }
   } catch (err) {
-    console.log('fd', formData.getAll('files'));
+    console.error('fd', formData.getAll('files'));
     console.error(err);
     
     return { status: err.message };
@@ -62,10 +62,8 @@ export async function uploadFiles(
 export async function deleteFiles() {
   const files = await utapi.listFiles();
   const fileKeys = files.map((file) => file.key);
-  console.log('fileKeys', fileKeys);
 
   const responses = await utapi.deleteFiles(fileKeys);
 
-  console.log('length, responses', fileKeys.length, responses);
   return { status: 'success' };
 }

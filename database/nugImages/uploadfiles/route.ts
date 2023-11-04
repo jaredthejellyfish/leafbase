@@ -46,8 +46,7 @@ async function readFileAndUpload({
       .update({ nugImage: response.data.url })
       .eq('id', strainId);
 
-    console.log("response", response);
-    console.log("error", error);
+    console.error("error", error);
   } catch (error) {
     console.error('Error reading files:', error);
   }

@@ -4,7 +4,6 @@ import { useFormStatus } from 'react-dom';
 import React from 'react';
 
 import { cn } from '@/lib/utils';
-import dynamic from 'next/dynamic';
 
 type Props = {
   name?: string;

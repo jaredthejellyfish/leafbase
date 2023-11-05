@@ -5,7 +5,7 @@ import React from 'react';
 
 import { getServerUserMetadata } from '@/lib/utils/getServerUserMetadata';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs';
-import { updateUser } from '@/lib/actions/updateUser';
+import { updateUser } from '@/lib/actions/user/updateUser';
 import SubmitButton from '@/components/SubmitButton';
 
 export const metadata = {

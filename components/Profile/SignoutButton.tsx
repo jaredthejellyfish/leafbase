@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { signOutUser } from '@/lib/actions/signOutUser';
+import { signOutUser } from '@/lib/actions/auth/signOutUser';
 import SubmitButton from '../SubmitButton';
 
 const SignoutButton = () => {

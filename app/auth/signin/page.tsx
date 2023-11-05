@@ -1,8 +1,7 @@
 import React from 'react';
 
 import LoginReloader from '@/components/LoginReloader';
-import { signInUser } from '@/lib/actions/signInUser';
-import { Button } from '@/components/ui/button';
+import { signInUser } from '@/lib/actions/auth/signInUser';
 import { Input } from '@/components/ui/input';
 import SubmitButton from '@/components/SubmitButton';
 

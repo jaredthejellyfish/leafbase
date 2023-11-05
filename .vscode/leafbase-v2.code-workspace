@@ -1,0 +1,32 @@
+{
+  "folders": [
+    {
+      "name": "api",
+      "path": "../app/api"
+    },
+    {
+      "name": "app",
+      "path": "../app"
+    },
+    {
+      "name": "components",
+      "path": "../components"
+    },
+    {
+      "name": "lib",
+      "path": "../lib"
+    },
+    {
+      "name": "supabase",
+      "path": "../supabase"
+    },
+    {
+      "name": "root",
+      "path": "../"
+    }
+  ],
+  "settings": {
+    "git-blame.gitWebUrl": "",
+    "deno.unstable": true,
+  }
+}

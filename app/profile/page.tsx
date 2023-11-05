@@ -1,8 +1,12 @@
-import React from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import React, { Suspense } from 'react';
 
+import LikedStrainsSkeleton from '@/components/LikedStrains/LikedStrainsSkeleton';
+import LikedStrainsError from '@/components/LikedStrains/LikedStrainsError';
 import { getServerUserMetadata } from '@/lib/utils/getServerUserMetadata';
 import GeneralInformation from '@/components/GeneralInformation';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs';
+import LikedStrains from '@/components/LikedStrains';
 import Profile from '@/components/Profile';
 
 export const metadata = {
@@ -34,6 +38,11 @@ async function ProfilePage() {
         </div>
         <div id="vertical 2" className="flex flex-col gap-4 pb-3 lg:w-2/3">
           <GeneralInformation user={user_metadata} />
+          <ErrorBoundary fallback={<LikedStrainsError />}>
+            <Suspense fallback={<LikedStrainsSkeleton />}>
+              <LikedStrains userId={session?.user.id} />
+            </Suspense>
+          </ErrorBoundary>
         </div>
       </div>
     </div>

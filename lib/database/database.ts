@@ -9,34 +9,6 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      _DispensaryMenuToStrain: {
-        Row: {
-          A: string
-          B: string
-        }
-        Insert: {
-          A: string
-          B: string
-        }
-        Update: {
-          A?: string
-          B?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "_DispensaryMenuToStrain_A_fkey"
-            columns: ["A"]
-            referencedRelation: "dispensary_menus"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "_DispensaryMenuToStrain_B_fkey"
-            columns: ["B"]
-            referencedRelation: "strains"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
       _prisma_migrations: {
         Row: {
           applied_steps_count: number
@@ -117,6 +89,7 @@ export interface Database {
           {
             foreignKeyName: "accounts_userId_fkey"
             columns: ["userId"]
+            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -205,12 +178,14 @@ export interface Database {
           {
             foreignKeyName: "dispensary_comment_likes_commentId_fkey"
             columns: ["commentId"]
+            isOneToOne: false
             referencedRelation: "dispensary_comments"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "dispensary_comment_likes_userId_fkey"
             columns: ["userId"]
+            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -242,12 +217,14 @@ export interface Database {
           {
             foreignKeyName: "dispensary_comments_dispensaryId_fkey"
             columns: ["dispensaryId"]
+            isOneToOne: false
             referencedRelation: "dispensaries"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "dispensary_comments_userId_fkey"
             columns: ["userId"]
+            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -276,6 +253,7 @@ export interface Database {
           {
             foreignKeyName: "dispensary_menus_dispensaryId_fkey"
             columns: ["dispensaryId"]
+            isOneToOne: false
             referencedRelation: "dispensaries"
             referencedColumns: ["id"]
           }
@@ -304,16 +282,161 @@ export interface Database {
           {
             foreignKeyName: "dispensary_subscriptions_dispensaryId_fkey"
             columns: ["dispensaryId"]
+            isOneToOne: false
             referencedRelation: "dispensaries"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "dispensary_subscriptions_userId_fkey"
             columns: ["userId"]
+            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
         ]
+      }
+      public_profiles: {
+        Row: {
+          aboutMe: string | null
+          birthDate: string | null
+          displayName: string
+          id: string
+          image: string | null
+          languages: string | null
+          location: string | null
+          name: string | null
+        }
+        Insert: {
+          aboutMe?: string | null
+          birthDate?: string | null
+          displayName: string
+          id: string
+          image?: string | null
+          languages?: string | null
+          location?: string | null
+          name?: string | null
+        }
+        Update: {
+          aboutMe?: string | null
+          birthDate?: string | null
+          displayName?: string
+          id?: string
+          image?: string | null
+          languages?: string | null
+          location?: string | null
+          name?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_profiles_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      public_strain_likes: {
+        Row: {
+          created_at: string
+          id: string
+          strain_id: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          strain_id?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          strain_id?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "public_strain_likes_strain_id_fkey"
+            columns: ["strain_id"]
+            isOneToOne: false
+            referencedRelation: "public_strains"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "public_strain_likes_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      public_strains: {
+        Row: {
+          averageRating: number | null
+          cannabinoids: Json | null
+          category: string | null
+          description: string | null
+          dispensaryMenuId: string | null
+          effects: Json | null
+          flowerImageSvg: string | null
+          id: string
+          likes_count: number | null
+          name: string | null
+          nugImage: string | null
+          phenotype: string | null
+          shortDescription: string | null
+          slug: string
+          subtitle: string | null
+          terps: Json | null
+          thcPercent: number | null
+          topEffect: string | null
+          topTerpene: string | null
+        }
+        Insert: {
+          averageRating?: number | null
+          cannabinoids?: Json | null
+          category?: string | null
+          description?: string | null
+          dispensaryMenuId?: string | null
+          effects?: Json | null
+          flowerImageSvg?: string | null
+          id: string
+          likes_count?: number | null
+          name?: string | null
+          nugImage?: string | null
+          phenotype?: string | null
+          shortDescription?: string | null
+          slug: string
+          subtitle?: string | null
+          terps?: Json | null
+          thcPercent?: number | null
+          topEffect?: string | null
+          topTerpene?: string | null
+        }
+        Update: {
+          averageRating?: number | null
+          cannabinoids?: Json | null
+          category?: string | null
+          description?: string | null
+          dispensaryMenuId?: string | null
+          effects?: Json | null
+          flowerImageSvg?: string | null
+          id?: string
+          likes_count?: number | null
+          name?: string | null
+          nugImage?: string | null
+          phenotype?: string | null
+          shortDescription?: string | null
+          slug?: string
+          subtitle?: string | null
+          terps?: Json | null
+          thcPercent?: number | null
+          topEffect?: string | null
+          topTerpene?: string | null
+        }
+        Relationships: []
       }
       sessions: {
         Row: {
@@ -338,6 +461,7 @@ export interface Database {
           {
             foreignKeyName: "sessions_userId_fkey"
             columns: ["userId"]
+            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -366,12 +490,14 @@ export interface Database {
           {
             foreignKeyName: "strain_comment_likes_commentId_fkey"
             columns: ["commentId"]
+            isOneToOne: false
             referencedRelation: "strain_comments"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "strain_comment_likes_userId_fkey"
             columns: ["userId"]
+            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -403,12 +529,14 @@ export interface Database {
           {
             foreignKeyName: "strain_comments_strainId_fkey"
             columns: ["strainId"]
+            isOneToOne: false
             referencedRelation: "strains"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "strain_comments_userId_fkey"
             columns: ["userId"]
+            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -437,12 +565,14 @@ export interface Database {
           {
             foreignKeyName: "strain_likes_strainId_fkey"
             columns: ["strainId"]
+            isOneToOne: false
             referencedRelation: "strains"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "strain_likes_userId_fkey"
             columns: ["userId"]
+            isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -458,7 +588,6 @@ export interface Database {
           nugImage: string
           recommendation: string
           slug: string
-          strainId: string
         }
         Insert: {
           averageRating: number
@@ -469,7 +598,6 @@ export interface Database {
           nugImage: string
           recommendation: string
           slug: string
-          strainId: string
         }
         Update: {
           averageRating?: number
@@ -480,16 +608,8 @@ export interface Database {
           nugImage?: string
           recommendation?: string
           slug?: string
-          strainId?: string
         }
-        Relationships: [
-          {
-            foreignKeyName: "strain_mixers_strainId_fkey"
-            columns: ["strainId"]
-            referencedRelation: "strains"
-            referencedColumns: ["id"]
-          }
-        ]
+        Relationships: []
       }
       strains: {
         Row: {
@@ -501,6 +621,7 @@ export interface Database {
           effects: Json | null
           flowerImageSvg: string | null
           id: string
+          likes_count: number | null
           name: string | null
           nugImage: string | null
           phenotype: string | null
@@ -521,6 +642,7 @@ export interface Database {
           effects?: Json | null
           flowerImageSvg?: string | null
           id: string
+          likes_count?: number | null
           name?: string | null
           nugImage?: string | null
           phenotype?: string | null
@@ -541,6 +663,7 @@ export interface Database {
           effects?: Json | null
           flowerImageSvg?: string | null
           id?: string
+          likes_count?: number | null
           name?: string | null
           nugImage?: string | null
           phenotype?: string | null

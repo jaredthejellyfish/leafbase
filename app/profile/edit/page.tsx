@@ -33,7 +33,8 @@ async function EditPage() {
             </button>
             <Image
               src={
-                user_metadata?.image || 'https://utfs.io/f/a2004ba7-e7b4-4153-bebc-058ce1393a59-mou0mx.png'
+                user_metadata?.image ||
+                'https://utfs.io/f/a2004ba7-e7b4-4153-bebc-058ce1393a59-mou0mx.png'
               }
               alt="profile"
               className="rounded-md"
@@ -45,7 +46,7 @@ async function EditPage() {
                 className="bg-transparent border rounded border-zinc-500 px-0.5"
                 name="name"
                 placeholder={user_metadata?.name || 'Enter name'}
-              ></input>
+              />
             </div>
 
             <div className="flex flex-row items-center gap-1 text-sm text-zinc-300">
@@ -53,24 +54,28 @@ async function EditPage() {
                 className="bg-transparent border rounded border-zinc-500 px-0.5 mt-1"
                 name="username"
                 placeholder={user_metadata?.displayName || 'Enter username'}
-              ></input>
+              />
             </div>
-            <span className="mt-3 text-sm dark:text-white">
+            <span className="mt-2 text-sm dark:text-white">
               Location:
-              <span className="flex flex-row items-center gap-1 mt-1 text-sm cursor-pointer text-zinc-300">
+              <span className="flex flex-row items-center gap-1 text-sm cursor-pointer text-zinc-300">
                 <MdLocationPin />
-                <span className="text-zinc-400">{user_metadata?.location}</span>
+                <input
+                  className="bg-transparent border rounded border-zinc-500 px-0.5 mt-1"
+                  name="location"
+                  placeholder={user_metadata?.location || 'Enter location'}
+                />
               </span>
             </span>
 
-            <span className="mt-4 text-sm dark:text-white">
+            <span className="mt-3 text-sm dark:text-white">
               Email Address:
               <div className="text-gray-400">
                 <input
                   className="bg-transparent border rounded border-zinc-500 px-0.5 w-60"
                   name="email"
                   placeholder={session?.user.email}
-                ></input>
+                />
               </div>
             </span>
             <span className="mt-3 text-sm dark:text-white">
@@ -84,12 +89,12 @@ async function EditPage() {
                 />
               </div>
             </span>
-            <div className="flex h-fit">
+            <div className="w-full flex h-fit">
               <button
                 aria-label="Save"
                 name="save"
                 type="submit"
-                className="w-1/2 mt-4 text-white bg-green-700 hover:bg-green-800 transition-all focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mr-2 dark:bg-green-700 dark:hover:bg-green-800 focus:outline-none dark:focus:ring-blue-800"
+                className="w-full mt-4 text-white bg-green-700 hover:bg-green-800 transition-all focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mr-2 dark:bg-green-700 dark:hover:bg-green-800 focus:outline-none dark:focus:ring-blue-800"
               >
                 Save
               </button>

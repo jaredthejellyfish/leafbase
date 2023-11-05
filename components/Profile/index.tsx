@@ -11,7 +11,11 @@ import React from 'react';
 import type { UserMetadataExtended } from '@/lib/database/database_types';
 import SignoutButton from './SignoutButton';
 
-type Props = { user: UserMetadata; session: Session | null };
+type Props = {
+  user: UserMetadata;
+  session?: Session | null;
+  hideOptions?: boolean;
+};
 
 const Profile = (props: Props) => {
   const { user: plainUser, session } = props;
@@ -20,17 +24,24 @@ const Profile = (props: Props) => {
   return (
     <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
       <div className="absolute flex items-center justify-center gap-6 top-6 right-8 ">
-        {user.displayName && (
-          <Link
-            className="text-zinc-500 dark:text-zinc-300"
-            href={`/profile/${user.displayName}`}
-          >
-            <AiFillEye size={20} />
-          </Link>
+        {!props.hideOptions && (
+          <>
+            {user.displayName && (
+              <Link
+                className="text-zinc-500 dark:text-zinc-300"
+                href={`/profile/${user.displayName}`}
+              >
+                <AiFillEye size={20} />
+              </Link>
+            )}
+            <Link
+              className="text-zinc-500 dark:text-zinc-300"
+              href="/profile/edit"
+            >
+              <BsFillGearFill size={18} />
+            </Link>
+          </>
         )}
-        <Link className="text-zinc-500 dark:text-zinc-300" href="/profile/edit">
-          <BsFillGearFill size={18} />
-        </Link>
       </div>
       <Image
         src={user?.image || '/images/placeholder.png'}
@@ -60,7 +71,7 @@ const Profile = (props: Props) => {
         </span>
       )}
 
-      {session?.user.email && (
+      {session && session?.user.email && (
         <span className="mt-3 text-sm dark:text-white">
           Email Address:
           <p className="text-gray-400">{session?.user.email}</p>
@@ -72,7 +83,7 @@ const Profile = (props: Props) => {
           <span className="text-gray-400">{user.phone}</span>
         </span>
       )}
-      <SignoutButton />
+      {!props.hideOptions && <SignoutButton />}
     </div>
   );
 };

@@ -1,11 +1,10 @@
 'use server';
 
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 
 import type { Database } from '@/lib/database';
-import { redirect } from 'next/navigation';
-
 
 export async function updateUser(formData: FormData) {
   const cookieStore = cookies();
@@ -26,15 +25,18 @@ export async function updateUser(formData: FormData) {
   const name = formData.get('name') || session?.user.user_metadata.full_name;
   const username =
     formData.get('username') || session?.user.user_metadata.display_name;
-  const phone = formData.get('phone') || session?.user.user_metadata.phone;
 
+  const phone = formData.get('phone') || session?.user.user_metadata.phone;
+  const location =
+    formData.get('location') || session?.user.user_metadata.location;
+    
   const newUserMetadata = {
-      ...session.user.user_metadata,
+    ...session.user.user_metadata,
     name,
     displayName: username,
     phone,
+    location,
   };
-
 
   const { data: newUser, error: updateError } = await supabase.auth.updateUser({
     data: newUserMetadata,
@@ -47,5 +49,5 @@ export async function updateUser(formData: FormData) {
     };
   }
 
- redirect('/profile')
+  redirect('/profile');
 }

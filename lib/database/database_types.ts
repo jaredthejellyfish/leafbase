@@ -1,4 +1,4 @@
-import type { Database } from './database';
+import type { Database } from '@/lib/database';
 
 export type DatabaseStrain = Database['public']['Tables']['strains']['Row'];
 export type UserMetadataExtended = {
@@ -13,3 +13,5 @@ export type UserMetadataExtended = {
   name: string;
   phone: string;
 };
+export type PublicProfile =
+  Database['public']['Tables']['public_profiles']['Row'];

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "gentypes": "supabase gen types typescript --project-id euwnyenhzhztqztezjdn > ./lib/database.ts"
+    "gentypes": "supabase gen types typescript --project-id euwnyenhzhztqztezjdn > ./lib/database/database.ts"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.0.4",
@@ -31,6 +31,7 @@
     "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
+    "react-error-boundary": "^4.0.11",
     "react-icons": "^4.11.0",
     "react-phone-number-input": "^3.3.7",
     "sharp": "^0.32.6",

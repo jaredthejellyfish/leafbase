@@ -15,3 +15,5 @@ export type UserMetadataExtended = {
 };
 export type PublicProfile =
   Database['public']['Tables']['public_profiles']['Row'];
+
+  export type SearchStrain = Database['public']['Functions']['search_strains']['Returns'][0];

@@ -5,9 +5,18 @@ import { cookies } from 'next/headers';
 import type { Database } from '@/lib//database';
 import type { StrainLike } from '@/lib/types';
 
-export async function getServerLikedStrains(
-  userId?: string
-): Promise<{
+function sortStrainsByName(strains: StrainLike[]): StrainLike[] {
+  return strains.sort((a, b) => {
+    const nameA = a.strain_id.name.toLowerCase();
+    const nameB = b.strain_id.name.toLowerCase();
+
+    if (nameA < nameB) return -1;
+    if (nameA > nameB) return 1;
+    return 0;
+  });
+}
+
+export async function getServerLikedStrains(userId?: string): Promise<{
   error: PostgrestError | null | string | AuthError;
   data: StrainLike[];
 }> {
@@ -46,10 +55,21 @@ export async function getServerLikedStrains(
     )
   `
     )
-    .eq('user_id', user_id);
+    .eq('user_id', user_id)
+    .returns<StrainLike[]>();
+
+  if (strainLikesError) {
+    console.error(strainLikesError);
+    return {
+      error: strainLikesError,
+      data: [],
+    };
+  }
+
+  const sortedStrains = sortStrainsByName(strainLikes);
 
   return {
     error: strainLikesError,
-    data: strainLikes as unknown as StrainLike[],
+    data: sortedStrains as unknown as StrainLike[],
   };
 }

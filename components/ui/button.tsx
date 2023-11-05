@@ -43,7 +43,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
     return (
-      // @ts-expect-error - children prop missing from HTMLAttributes
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}

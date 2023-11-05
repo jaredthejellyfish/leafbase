@@ -3,7 +3,7 @@ import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 
 import Navigation, { NavigationSkeleton } from '@/components/Navigation';
-import { ThemeProvider, QueryProvider } from '@/components/providers';
+import { ThemeProvider, QueryProvider } from '@/components/Providers';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import './globals.css';
 

@@ -1,11 +1,13 @@
+import { ErrorBoundary } from 'react-error-boundary';
+import React, { Suspense } from 'react';
+import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-import React from 'react';
 
 import { getServerPaginatedStrains } from '@/lib/utils/getServerPaginatedStrains';
+import { getServerLikedStrains } from '@/lib/utils/getServerLikedStrains';
 import FilterByMenu from '@/components/FilterByMenu';
-import type { Metadata } from 'next';
 
-export const metadata: Metadata= {
+export const metadata: Metadata = {
   title: 'All Strains - Leafbase',
   description:
     'Explore our comprehensive list of marijuana strains, featuring detailed profiles, effects, and reviews. sort by type, potency, and medical benefits to find your perfect match. Discover new favorites and classics in our extensive collection of cannabis varieties.',
@@ -13,7 +15,7 @@ export const metadata: Metadata= {
 
 const StrainCardLoader = dynamic(() => import('@/components/StrainCardLoader'));
 
-const StrainsPage = async (request: { searchParams: { filter?: string } }) => {
+async function StrainsPage(request: { searchParams: { filter?: string } }) {
   const filter = request.searchParams.filter;
 
   const perPage = 12;
@@ -22,6 +24,10 @@ const StrainsPage = async (request: { searchParams: { filter?: string } }) => {
     filter,
     perPage,
   });
+
+  const { data: strainLikes } = await getServerLikedStrains();
+
+  const likes = strainLikes?.map((strainLike) => strainLike.strain_id.id);
 
   return (
     <main className="pb-8 px-5 md:px-16 xl:px-36 py-3">
@@ -43,19 +49,22 @@ const StrainsPage = async (request: { searchParams: { filter?: string } }) => {
           professional medical advice.
         </span>
         <div className="flex flex-col gap-4 items-center justify-center w-full">
-          {strains && count && count > perPage && (
-            <StrainCardLoader
-              perPage={perPage}
-              page={nextPage}
-              filter={filter || 're'}
-              initialData={strains}
-              count={count}
-            />
-          )}
+          <ErrorBoundary fallback={<div>Something went wrong</div>}>
+              {strains && count && count > perPage && (
+                <StrainCardLoader
+                  perPage={perPage}
+                  page={nextPage}
+                  filter={filter || 're'}
+                  initialData={strains}
+                  count={count}
+                  likes={likes}
+                />
+              )}
+          </ErrorBoundary>
         </div>
       </div>
     </main>
   );
-};
+}
 
 export default StrainsPage;

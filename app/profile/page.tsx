@@ -1,13 +1,13 @@
 import { ErrorBoundary } from 'react-error-boundary';
 import React, { Suspense } from 'react';
 
-import LikedStrainsSkeleton from '@/components/LikedStrains/LikedStrainsSkeleton';
 import LikedStrainsError from '@/components/LikedStrains/LikedStrainsError';
 import { getServerUserMetadata } from '@/lib/utils/getServerUserMetadata';
 import GeneralInformation from '@/components/GeneralInformation';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs';
 import LikedStrains from '@/components/LikedStrains';
 import Profile from '@/components/Profile';
+import LikedStrainsSkeleton from '@/components/LikedStrains/LikedStrainsSkeleton';
 
 export const metadata = {
   title: 'Profile - Leafbase',

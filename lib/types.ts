@@ -1,4 +1,4 @@
-import type { DatabaseStrain } from "./database/database_types";
+import type { DatabaseStrain } from './database/database_types';
 
 interface Effect {
   icon: null;
@@ -40,8 +40,6 @@ export interface Cannabinoids {
   thcv: Cannabinoid;
 }
 
-
-
 export interface Strain extends DatabaseStrain {
   cannabinoids: {
     [key: string]: {
@@ -69,3 +67,14 @@ export interface Strain extends DatabaseStrain {
     };
   };
 }
+
+export type StrainLike = {
+  id: string;
+  created_at: string;
+  strain_id: {
+    name: string;
+    nugImage: string;
+    slug: string;
+    id: string;
+  };
+};

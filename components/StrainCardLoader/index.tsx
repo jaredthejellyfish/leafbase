@@ -9,6 +9,7 @@ import type { Database } from '@/lib/database';
 import type { Strain } from '@/lib/types';
 import StrainCard from '../StrainCard';
 import { Button } from '../ui/button';
+import { isLiked } from '@/lib/utils';
 
 const supabase = createClientComponentClient<Database>();
 
@@ -18,6 +19,7 @@ type Props = {
   page: number;
   filter: string;
   count: number;
+  likes?: string[];
 };
 
 const StrainCardLoader = (props: Props) => {
@@ -33,7 +35,7 @@ const StrainCardLoader = (props: Props) => {
     const orderByLikes = filter && filter !== 're' ? false : true;
 
     let query = supabase
-      .from('strains')
+      .from('public_strains')
       .select('*', { count: 'estimated', head: false });
 
     if (orderByLikes) {
@@ -120,7 +122,14 @@ const StrainCardLoader = (props: Props) => {
             .map((strain) => {
               if (!strain) return;
               return (
-                <StrainCard strain={strain} key={strain.id} priority={true} />
+                <StrainCard
+                  strain={strain}
+                  key={strain.id}
+                  priority={true}
+                  liked={
+                    props.likes && props.likes.length ? isLiked(strain.id, props.likes) : undefined
+                  }
+                />
               );
             })}
       </div>

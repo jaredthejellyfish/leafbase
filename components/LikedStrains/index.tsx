@@ -11,6 +11,7 @@ const LikedStrains = async (props: { userId?: string }) => {
   const { data: strains } = await getServerLikedStrains(userId);
 
   if (strains.length < 1) return null;
+
   return (
     <div className="px-1">
       <div className="flex flex-row items-center gap-5 text-xl font-bold">

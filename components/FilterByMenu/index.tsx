@@ -6,8 +6,6 @@ import { RxCaretDown } from 'react-icons/rx';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
-import skeleton from './skeleton';
-
 interface Props {
   filter?: string;
 }
@@ -137,4 +135,3 @@ const FilterByMenu = (props: Props) => {
 };
 
 export default FilterByMenu;
-export { skeleton };

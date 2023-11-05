@@ -1,26 +1,37 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import type { PostgrestError } from '@supabase/supabase-js';
+import type { AuthError, PostgrestError } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
 
 import type { Database } from '@/lib//database';
-
-type StrainLike = {
-  id: string;
-  created_at: string;
-  strain_id: {
-    name: string;
-    nugImage: string;
-    slug: string;
-  };
-};
+import type { StrainLike } from '@/lib/types';
 
 export async function getServerLikedStrains(
-  userId: string
-): Promise<{ error: PostgrestError | null; data: StrainLike[] }> {
+  userId?: string
+): Promise<{
+  error: PostgrestError | null | string | AuthError;
+  data: StrainLike[];
+}> {
   const cookieStore = cookies();
   const supabase = createServerComponentClient<Database>({
     cookies: () => cookieStore,
   });
+
+  let user_id = userId;
+
+  if (!user_id) {
+    const { data, error } = await supabase.auth.getSession();
+    const session = data.session;
+
+    if (error || !session) {
+      console.error(error || 'No session found');
+      return {
+        error: error || 'No session found',
+        data: [],
+      };
+    }
+
+    user_id = session.user.id;
+  }
 
   const { data: strainLikes, error: strainLikesError } = await supabase
     .from('public_strain_likes')
@@ -30,11 +41,12 @@ export async function getServerLikedStrains(
     strain_id (
       name,
       nugImage,
-      slug
+      slug,
+      id
     )
   `
     )
-    .eq('user_id', userId);
+    .eq('user_id', user_id);
 
   return {
     error: strainLikesError,

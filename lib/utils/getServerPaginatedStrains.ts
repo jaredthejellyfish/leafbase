@@ -25,7 +25,7 @@ export async function getServerPaginatedStrains({
 
   const offset = Math.max((page - 1) * perPage, 0);
   const { count: totalCount } = await supabase
-    .from('strains')
+    .from('public_strains')
     .select('*', { count: 'estimated', head: true });
 
   if (!totalCount) {
@@ -55,7 +55,7 @@ export async function getServerPaginatedStrains({
   const orderByLikes = filter && filter !== 're' ? false : true;
   
   let query = supabase
-    .from('strains')
+    .from('public_strains')
     .select('*', { count: 'estimated', head: false });
 
   if (orderByLikes) {

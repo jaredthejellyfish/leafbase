@@ -1,3 +1,4 @@
+import { isLiked } from './isLiked';
 import { cn } from './cn';
 
-export { cn };
+export { cn, isLiked };

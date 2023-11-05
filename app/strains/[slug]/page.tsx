@@ -1,15 +1,18 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import React from 'react';
 
-import StrainSoma from '@/components/StrainSoma';
+import StrainCardLikeButton from '@/components/StrainCard/StrainCardLikeButton';
+import { getServerLikedStrains } from '@/lib/utils/getServerLikedStrains';
 import StarRating from '@/components/StrainCard/StarRating';
+import NavBreadcrumbs from '@/components/NavBreadcrumbs';
+import StrainSoma from '@/components/StrainSoma';
 import defaultImage from '@/public/default.webp';
 import type { Database } from '@/lib/database';
 import type { Strain } from '@/lib/types';
-import NavBreadcrumbs from '@/components/NavBreadcrumbs';
-import type { Metadata } from 'next';
+import { isLiked } from '@/lib/utils';
 
 type Props = { params: { slug: string } };
 
@@ -53,15 +56,8 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   });
 
   const { data: strain } = await supabase
-    .from('strains')
-    .select(
-      `
-    *,
-    strain_comments (
-      *
-    )
-  `
-    )
+    .from('public_strains')
+    .select('name, shortDescription')
     .eq('slug', slug)
     .returns<Strain[]>()
     .maybeSingle();
@@ -81,16 +77,12 @@ const StrainSlugPage = async (props: Props) => {
     cookies: () => cookieStore,
   });
 
+  const { data: strainLikes } = await getServerLikedStrains();
+  const likes = strainLikes?.map((strainLike) => strainLike.strain_id.id);
+
   const { data: strain } = await supabase
-    .from('strains')
-    .select(
-      `
-    *,
-    strain_comments (
-      *
-    )
-  `
-    )
+    .from('public_strains')
+    .select('*')
     .eq('slug', slug)
     .returns<Strain[]>()
     .maybeSingle();
@@ -114,6 +106,15 @@ const StrainSlugPage = async (props: Props) => {
         id="card"
         className="relative flex flex-col items-center justify-center pb-8 border rounded shadow border-zinc-300 dark:border-transparent dark:bg-zinc-900"
       >
+        {likes && likes.length ? (
+          <StrainCardLikeButton
+            id={strain.id}
+            liked={isLiked(strain.id, likes)}
+            className="top-5 right-5"
+            width={25}
+            height={25}
+          />
+        ) : null}
         <div
           id="header"
           className="flex flex-col items-center justify-center w-full gap-8 px-5 pt-8 md:flex-row md:px-8"

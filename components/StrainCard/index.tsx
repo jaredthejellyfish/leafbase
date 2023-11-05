@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
+import StrainCardLikeButton from './StrainCardLikeButton';
 import defaultImage from '@/public/strain.png';
 import type { Strain } from '@/lib/types';
 import StarRating from './StarRating';
@@ -42,15 +43,20 @@ const effects: Colors = {
 const StrainCard = ({
   strain,
   priority,
+  liked,
 }: {
   strain: Strain;
   priority?: boolean;
+  liked?: boolean;
 }) => {
   return (
     <Link
       href={`/strains/${strain.slug}`}
       className="relative z-10 flex gap-5 p-5 mt-4 transition-transform border shadow rounded-xl dark:bg-zinc-900 md:flex-wrap flex-nowrap md:max-w-xs dark:border-opacity-0 border-zinc-100 hover:scale-101"
     >
+      {typeof liked !== 'undefined' && (
+        <StrainCardLikeButton liked={liked} id={strain.id} />
+      )}
       {strain.nugImage && strain.name && (
         <div className="flex items-center justify-center w-1/2 border rounded-lg md:w-full dark:border-opacity-0 border-zinc-200">
           <Image
@@ -76,7 +82,9 @@ const StrainCard = ({
         </p>
         <div className="flex flex-row items-center gap-1 p-1 mt-2 text-sm">
           <span className="flex items-center justify-center w-6 h-4">
-            {strain.averageRating ? (Math.round(strain.averageRating * 10) / 10).toFixed(1) : "0.0"}
+            {strain.averageRating
+              ? (Math.round(strain.averageRating * 10) / 10).toFixed(1)
+              : '0.0'}
           </span>
           {<StarRating rating={strain.averageRating || 0} />}
         </div>

@@ -1,5 +1,5 @@
 import { ErrorBoundary } from 'react-error-boundary';
-import React, { Suspense } from 'react';
+import React from 'react';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 

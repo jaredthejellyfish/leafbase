@@ -1,8 +1,9 @@
 'use client';
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import React, { useEffect, useRef, useState } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import React, { useEffect, useRef } from 'react';
+import { useIntersectionObserver } from 'usehooks-ts';
 import { debounce } from 'lodash';
 
 import type { Database } from '@/lib/database';
@@ -55,7 +56,10 @@ const StrainCardLoader = (props: Props) => {
   };
 
   const loadMoreRef = useRef<HTMLButtonElement>(null);
+  const entry = useIntersectionObserver(loadMoreRef, {});
+  const shouldFetchMore = !!entry?.isIntersecting;
   const totalPages = Math.ceil(props.count / (props.perPage || 6));
+  const [hasFetched, setHasFetched] = useState(false);
 
   const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } =
     useInfiniteQuery({
@@ -85,33 +89,14 @@ const StrainCardLoader = (props: Props) => {
   const debouncedFetchNextPage = debounce(fetchNextPage, 500);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          if (!(isFetchingNextPage && isFetching) && hasNextPage) {
-            debouncedFetchNextPage();
-          }
-        }
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0,
-      }
-    );
-
-    if (loadMoreRef.current) {
-      observer.observe(loadMoreRef.current);
+    if (shouldFetchMore && !hasFetched) {
+      console.log('fetching more')
+      debouncedFetchNextPage();
+      setHasFetched(true);
+    } else if (!shouldFetchMore) {
+      setHasFetched(false);
     }
-
-    const loadMoreRefCurrent = loadMoreRef.current;
-
-    return () => {
-      if (loadMoreRefCurrent) {
-        observer.unobserve(loadMoreRefCurrent);
-      }
-    };
-  }, [hasNextPage, isFetchingNextPage, isFetching, debouncedFetchNextPage]);
+  }, [shouldFetchMore, debouncedFetchNextPage, hasFetched]);
 
   return (
     <>
@@ -127,7 +112,9 @@ const StrainCardLoader = (props: Props) => {
                   key={strain.id}
                   priority={true}
                   liked={
-                    props.likes && props.likes.length ? isLiked(strain.id, props.likes) : undefined
+                    props.likes && props.likes.length
+                      ? isLiked(strain.id, props.likes)
+                      : undefined
                   }
                 />
               );

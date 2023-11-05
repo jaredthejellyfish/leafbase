@@ -49,5 +49,5 @@ export async function updateUser(formData: FormData) {
     };
   }
 
-  redirect('/profile');
+  redirect('/profile?updated=true');
 }

@@ -6,6 +6,7 @@ import React from 'react';
 import { getServerUserMetadata } from '@/lib/utils/getServerUserMetadata';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs';
 import { updateUser } from '@/lib/actions/updateUser';
+import SubmitButton from '@/components/SubmitButton';
 
 export const metadata = {
   title: 'Edit Profile - Leafbase',
@@ -90,14 +91,7 @@ async function EditPage() {
               </div>
             </span>
             <div className="w-full flex h-fit">
-              <button
-                aria-label="Save"
-                name="save"
-                type="submit"
-                className="w-full mt-4 text-white bg-green-700 hover:bg-green-800 transition-all focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm px-5 py-2.5 mr-2 dark:bg-green-700 dark:hover:bg-green-800 focus:outline-none dark:focus:ring-blue-800"
-              >
-                Save
-              </button>
+              <SubmitButton text="Save" whilePending='Saving...' />
               {/* <DeleteAccount /> */}
             </div>
           </div>

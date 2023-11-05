@@ -4,6 +4,7 @@ import LoginReloader from '@/components/LoginReloader';
 import { signInUser } from '@/lib/actions/signInUser';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import SubmitButton from '@/components/SubmitButton';
 
 export default function Login() {
   return (
@@ -11,7 +12,7 @@ export default function Login() {
       <form action={signInUser} className="flex flex-col gap-2">
         <Input name="email" placeholder='jared@leafbase.xyz' />
         <Input type="password" name="password" placeholder='password' />
-        <Button type="submit">Sign in</Button>
+        <SubmitButton text={'Sign in'} whilePending={'Signing in...'} />
       </form>
       <LoginReloader />
     </div>

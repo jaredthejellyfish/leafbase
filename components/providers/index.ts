@@ -1,4 +1,4 @@
-import QueryProvider from "./query-provider";
-import { ThemeProvider } from "./theme-provider";
+import ThemeProvider from './theme-provider';
+import QueryProvider from './query-provider';
 
 export { QueryProvider, ThemeProvider };

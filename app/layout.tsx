@@ -1,11 +1,12 @@
-import { GeistSans } from 'geist/font'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import React, { Suspense } from 'react';
+import { GeistSans } from 'geist/font';
 import type { Metadata } from 'next';
 
 import Navigation, { NavigationSkeleton } from '@/components/Navigation';
 import { ThemeProvider, QueryProvider } from '@/components/Providers';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import './globals.css';
+import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
   title: 'Leafbase',
@@ -31,6 +32,7 @@ export default function RootLayout({
             </Suspense>
 
             {children}
+            <Toaster />
             <ReactQueryDevtools initialIsOpen={false} />
           </QueryProvider>
         </ThemeProvider>

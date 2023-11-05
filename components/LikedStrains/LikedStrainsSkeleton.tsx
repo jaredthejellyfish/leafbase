@@ -78,15 +78,6 @@ const LikedStrainsSkeleton = () => (
           <div className="w-20 h-3 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
         </div>
       </div>
-      <div className="flex flex-col gap-2 p-2 scale-95 border rounded shadow sm:scale-100 dark:bg-zinc-900 dark:border-zinc-600">
-        <div
-          style={{ maxHeight: '90px', maxWidth: '90px' }}
-          className="flex items-center justify-center w-24 bg-white rounded-md aspect-square bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
-        ></div>
-        <div className="text-sm text-semi">
-          <div className="w-20 h-3 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-        </div>
-      </div>
     </div>
   </div>
 );

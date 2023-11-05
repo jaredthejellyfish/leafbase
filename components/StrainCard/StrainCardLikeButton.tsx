@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState, useTransition } from 'react';
+import React, { useEffect, useOptimistic, useTransition } from 'react';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { motion } from 'framer-motion';
 
@@ -15,38 +15,44 @@ type Props = {
   height?: number;
 };
 
+const likeButtonVariants = {
+  initial: {
+    scale: 1,
+    rotate: 0,
+  },
+  hover: {
+    scale: 1.05,
+    rotate: [-25, 0, 25, 0, -25],
+    transition: {
+      scale: { duration: 0.2 },
+      rotate: { duration: 1.15, repeat: Infinity, delay: 0.2 },
+    },
+  },
+  like: {
+    rotate: [0, 360],
+    transition: {
+      rotate: { duration: 0.3 },
+    },
+  },
+};
+
 const StrainCardLikeButton = (props: Props) => {
-  const [liked, setLiked] = useState(props.liked);
   const [isPending, startTransition] = useTransition();
+  const [optimisticLike, setOptimisticLike] = useOptimistic(
+    props.liked || false, // Default to 0 likes if null
+    (state) => !state
+  );
 
   useEffect(() => {
-    setLiked(props.liked);
-  }, [props.liked]);
+    startTransition(() => {
+      setOptimisticLike(props.liked);
+    });
+  }, [props.liked, setOptimisticLike]);
 
-  const likeButtonVariants = {
-    initial: {
-      scale: 1,
-      rotate: 0,
-    },
-    hover: {
-      scale: 1.05,
-      rotate: [-25, 0, 25, 0, -25],
-      transition: {
-        scale: { duration: 0.2 },
-        rotate: { duration: 1.15, repeat: Infinity, delay: 0.2 },
-      },
-    },
-    like: {
-      rotate: [0, 360],
-      transition: {
-        rotate: { duration: 0.3 },
-      },
-    },
-  };
   function handleClick() {
     startTransition(() => {
-      likeStrain(!liked, props.id);
-      setLiked(!liked);
+      likeStrain(!optimisticLike, props.id);
+      setOptimisticLike(!optimisticLike);
     });
   }
 
@@ -55,14 +61,14 @@ const StrainCardLikeButton = (props: Props) => {
       aria-label="Like Strain"
       className={cn(
         `z-50 absolute top-1.5 right-2 border bg-white dark:bg-zinc-800 text-zinc-400/75 transition-colors rounded-full p-1.5 dark:text-zinc-400 ${
-          liked ? 'border-green-600/40' : 'dark:border-zinc-700'
+          optimisticLike ? 'border-green-600/40' : 'dark:border-zinc-700'
         }`,
         props.className
       )}
       variants={likeButtonVariants}
       whileHover="hover"
       initial="initial"
-      animate={liked ? 'like' : 'initial'}
+      animate={optimisticLike ? 'like' : 'initial'}
       onClick={(e) => {
         e.stopPropagation();
         e.preventDefault();
@@ -70,7 +76,7 @@ const StrainCardLikeButton = (props: Props) => {
       }}
       disabled={isPending}
     >
-      {liked ? (
+      {optimisticLike ? (
         <AiFillHeart
           style={{ width: props.width, height: props.height }}
           className="text-green-600/75"

@@ -3,7 +3,6 @@
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
-
 import { z } from 'zod';
 
 const SigninSchema = z.object({
@@ -28,10 +27,15 @@ export async function signInUser(formData: FormData) {
     return { status: null, error: validated.error.message };
   }
 
-  await supabase.auth.signInWithPassword({
+  const { data } = await supabase.auth.signInWithPassword({
     email: validated.data.email,
     password: validated.data.password,
   });
+  const { session } = data;
 
-  redirect('/profile');
+  redirect(
+    `/profile?notify=Welcome ${
+      session?.user.user_metadata.username || 'to Leafbase'
+    }!&title=Logged in!`
+  );
 }

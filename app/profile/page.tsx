@@ -8,6 +8,7 @@ import NavBreadcrumbs from '@/components/NavBreadcrumbs';
 import LikedStrains from '@/components/LikedStrains';
 import Profile from '@/components/Profile';
 import LikedStrainsSkeleton from '@/components/LikedStrains/LikedStrainsSkeleton';
+import Notifier from '@/components/Notifier';
 
 export const metadata = {
   title: 'Profile - Leafbase',
@@ -45,6 +46,7 @@ async function ProfilePage() {
           </ErrorBoundary>
         </div>
       </div>
+      <Notifier />
     </div>
   );
 }

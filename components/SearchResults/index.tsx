@@ -57,13 +57,16 @@ function SearchResults({ query }: Props) {
   });
 
   return (
-    <div className="">
+    <>
       {data && data.length
-        ? data.map((strain) => (
-            <SearchResult key={strain.name} imageSize={60} strain={strain} />
+        ? data.map((strain, index) => (
+            <>
+              {index !== 0 && <div className="border-b dark:border-gray-600 border-gray-300"></div>}
+              <SearchResult key={strain.name} imageSize={60} strain={strain} />
+            </>
           ))
         : null}
-    </div>
+    </>
   );
 }
 

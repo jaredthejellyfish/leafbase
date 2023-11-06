@@ -8,6 +8,7 @@ import HamburgerMenu from './hamburger-menu';
 import { ThemeToggle } from './theme-toggle';
 import NavigationSkeleton from './skeleton';
 import UserAvatar from './user-avatar';
+import SearchBar from './search-bar';
 
 async function Navigation() {
   const { user_metadata } = await getServerUserMetadata();
@@ -30,6 +31,15 @@ async function Navigation() {
         </Link>
       </div>
       <div className="flex flex-row items-center sm:gap-5 gap-3">
+        <SearchBar />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="10"
+          height="20"
+          className="hidden stroke-black dark:stroke-white md:block"
+        >
+          <line x1="5" y1="0" x2="5" y2="200" strokeWidth="1.3" />
+        </svg>
         <ThemeToggle />
         <UserAvatar
           avatarUrl={user_metadata?.image}

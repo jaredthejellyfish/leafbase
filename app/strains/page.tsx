@@ -1,11 +1,11 @@
 import { ErrorBoundary } from 'react-error-boundary';
-import React from 'react';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
+import React from 'react';
 
 import { getServerPaginatedStrains } from '@/lib/utils/getServerPaginatedStrains';
 import { getServerLikedStrains } from '@/lib/utils/getServerLikedStrains';
-import FilterByMenu from '@/components/FilterByMenu';
+const FilterByMenu = dynamic(() => import('@/components/FilterByMenu'));
 
 export const metadata: Metadata = {
   title: 'All Strains - Leafbase',
@@ -50,16 +50,16 @@ async function StrainsPage(request: { searchParams: { filter?: string } }) {
         </span>
         <div className="flex flex-col gap-4 items-center justify-center w-full">
           <ErrorBoundary fallback={<div>Something went wrong</div>}>
-              {strains && count && count > perPage && (
-                <StrainCardLoader
-                  perPage={perPage}
-                  page={nextPage}
-                  filter={filter || 're'}
-                  initialData={strains}
-                  count={count}
-                  likes={likes}
-                />
-              )}
+            {strains && count && count > perPage && (
+              <StrainCardLoader
+                perPage={perPage}
+                page={nextPage}
+                filter={filter || 're'}
+                initialData={strains}
+                count={count}
+                likes={likes}
+              />
+            )}
           </ErrorBoundary>
         </div>
       </div>

@@ -5,8 +5,10 @@ import type { Metadata } from 'next';
 
 import Navigation, { NavigationSkeleton } from '@/components/Navigation';
 import { ThemeProvider, QueryProvider } from '@/components/Providers';
+import CookieBanner from '@/components/CookieBanner';
+import { Toaster } from '@/components/ui/toaster';
+import Analytics from '@/components/Analytics';
 import './globals.css';
-import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
   title: 'Leafbase',
@@ -33,9 +35,13 @@ export default function RootLayout({
 
             {children}
             <Toaster />
+            <CookieBanner />
             <ReactQueryDevtools initialIsOpen={false} />
           </QueryProvider>
         </ThemeProvider>
+        <Suspense>
+          <Analytics />
+        </Suspense>
       </body>
     </html>
   );

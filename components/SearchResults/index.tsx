@@ -2,9 +2,9 @@
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useQuery } from '@tanstack/react-query';
+import React, { useId } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
 
 import type { SearchStrain } from '@/lib/database/database_types';
 import type { Database } from '@/lib/database';
@@ -61,8 +61,17 @@ function SearchResults({ query }: Props) {
       {data && data.length
         ? data.map((strain, index) => (
             <>
-              {index !== 0 && <div className="border-b dark:border-gray-600 border-gray-300"></div>}
-              <SearchResult key={strain.name} imageSize={60} strain={strain} />
+              {index !== 0 && (
+                <div
+                  key={`divider-${Math.random()}`}
+                  className="border-b dark:border-gray-600 border-gray-300"
+                ></div>
+              )}
+              <SearchResult
+                key={`strain-${strain.slug}-${Math.random()}`}
+                imageSize={60}
+                strain={strain}
+              />
             </>
           ))
         : null}

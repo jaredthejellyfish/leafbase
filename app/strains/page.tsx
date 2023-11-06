@@ -1,19 +1,18 @@
 import { ErrorBoundary } from 'react-error-boundary';
+import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
-import dynamic from 'next/dynamic';
-import React from 'react';
 
 import { getServerPaginatedStrains } from '@/lib/utils/getServerPaginatedStrains';
 import { getServerLikedStrains } from '@/lib/utils/getServerLikedStrains';
-const FilterByMenu = dynamic(() => import('@/components/FilterByMenu'));
+import FilterByMenuSkeleton from '@/components/FilterByMenu/skeleton';
+import StrainCardLoader from '@/components/StrainCardLoader';
+import FilterByMenu from '@/components/FilterByMenu';
 
 export const metadata: Metadata = {
   title: 'All Strains - Leafbase',
   description:
     'Explore our comprehensive list of marijuana strains, featuring detailed profiles, effects, and reviews. sort by type, potency, and medical benefits to find your perfect match. Discover new favorites and classics in our extensive collection of cannabis varieties.',
 };
-
-const StrainCardLoader = dynamic(() => import('@/components/StrainCardLoader'));
 
 async function StrainsPage(request: { searchParams: { filter?: string } }) {
   const filter = request.searchParams.filter;
@@ -41,7 +40,11 @@ async function StrainsPage(request: { searchParams: { filter?: string } }) {
         <div className="flex items-center justify-between px-1 font-medium">
           <span className="mt-4 text-xs text-zinc-400">{count} strains</span>
           <span className="flex flex-row items-center gap-1 mb-1 text-xs text-zinc-400">
-            <FilterByMenu filter={request.searchParams.filter} />
+            <ErrorBoundary fallback={<FilterByMenuSkeleton />}>
+              <Suspense fallback={<FilterByMenuSkeleton />}>
+                <FilterByMenu filter={request.searchParams.filter} />
+              </Suspense>
+            </ErrorBoundary>
           </span>
         </div>
         <span className="hidden w-full p-2 mt-1 text-xs border rounded md:block border-zinc-600/50 text-zinc-600">
@@ -50,16 +53,18 @@ async function StrainsPage(request: { searchParams: { filter?: string } }) {
         </span>
         <div className="flex flex-col gap-4 items-center justify-center w-full">
           <ErrorBoundary fallback={<div>Something went wrong</div>}>
-            {strains && count && count > perPage && (
-              <StrainCardLoader
-                perPage={perPage}
-                page={nextPage}
-                filter={filter || 're'}
-                initialData={strains}
-                count={count}
-                likes={likes}
-              />
-            )}
+            <Suspense fallback={<div>Loading...</div>}>
+              {strains && count && count > perPage && (
+                <StrainCardLoader
+                  perPage={perPage}
+                  page={nextPage}
+                  filter={filter || 're'}
+                  initialData={strains}
+                  count={count}
+                  likes={likes}
+                />
+              )}
+            </Suspense>
           </ErrorBoundary>
         </div>
       </div>

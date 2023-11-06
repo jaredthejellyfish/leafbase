@@ -1,13 +1,23 @@
 'use client';
 
+import { useOnClickOutside } from 'usehooks-ts';
+import React, { useRef, useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
-import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 
-const SearchResults = dynamic(() => import('../SearchResults'), {ssr: false});
+const SearchResults = dynamic(() => import('../SearchResults'), { ssr: false });
 
 function DrowdownSearchbar() {
   const [query, setQuery] = useState('');
+
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  const handleClickOutside = () => {
+    // Your custom logic here
+    console.log('clicked outside');
+  };
+
+  useOnClickOutside(ref, handleClickOutside);
 
   return (
     <>
@@ -25,6 +35,7 @@ function DrowdownSearchbar() {
         <div
           className="flex z-50 absolute top-13 dark:bg-zinc-800 bg-white border border-zinc-600 border-solid max-w-[93%] xl:max-w-[320px] w-full py-3 px-3 rounded flex-col gap-y-2.5"
           onClick={() => setQuery('')}
+          ref={ref}
         >
           <SearchResults query={query} />
         </div>

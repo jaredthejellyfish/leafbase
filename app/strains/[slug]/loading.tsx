@@ -1,13 +1,12 @@
 import React from 'react';
 
 import FilterByMenuSkeleton from '@/components/FilterByMenu/skeleton';
-import StrainCardSkeleton from '@/components/StrainCard/skeleton';
 
 function StrainsLoading() {
   return (
     <main className="pb-8 px-5 md:px-16 xl:px-36 py-3">
       <div className="">
-        <h1 className="mt-4 mb-2 text-3xl font-bold ">All strains</h1>
+        <h1 className="mt-4 mb-2 text-3xl font-bold ">Single strain</h1>
         <p className="">
           Browse the most comprehensive weed strain library on the web. Browse
           weed strains by cannabis type (indica, sativa, or hybrid), effects, or
@@ -23,11 +22,10 @@ function StrainsLoading() {
           These results are based on user comments and are not a substitute for
           professional medical advice.
         </span>
-
-        <div className="relative grid md:grid-cols-3 xl:grid-cols-4 gap-x-4">
-          {[...Array(12)].map((_, i) => (
-            <StrainCardSkeleton key={i} />
-          ))}
+        <div className="flex flex-col gap-4 items-center justify-center w-full">
+          <div className="relative grid md:grid-cols-3 xl:grid-cols-4 gap-x-4">
+ 
+          </div>
         </div>
       </div>
     </main>

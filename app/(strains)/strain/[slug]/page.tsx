@@ -106,7 +106,7 @@ const StrainSlugPage = async (props: Props) => {
         id="card"
         className="relative flex flex-col items-center justify-center pb-8 border rounded shadow border-zinc-300 dark:border-transparent dark:bg-zinc-900"
       >
-        {likes && likes.length ? (
+        {typeof likes !== 'undefined' ? (
           <StrainCardLikeButton
             id={strain.id}
             liked={isLiked(strain.id, likes)}

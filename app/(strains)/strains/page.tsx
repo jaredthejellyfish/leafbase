@@ -24,9 +24,7 @@ async function StrainsPage(request: { searchParams: { filter?: string } }) {
     perPage,
   });
 
-  const { data: strainLikes } = await getServerLikedStrains();
-
-  const likes = strainLikes?.map((strainLike) => strainLike.strain_id.id);
+  const { likes } = await getServerLikedStrains();
 
   return (
     <main className="pb-8 px-5 md:px-16 xl:px-36 py-3">

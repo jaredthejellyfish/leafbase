@@ -44,11 +44,12 @@ const Profile = (props: Props) => {
         )}
       </div>
       <Image
-        src={user?.image || '/images/placeholder.png'}
+        src={user?.image || 'https://utfs.io/f/dfa9eb34-fe8f-4786-afc0-eb190be52ce8-c3bqop.png'}
         alt="profile"
         className="rounded-md"
         width={80}
         height={80}
+        priority
       />
       <p className="mt-2 text-lg font-bold ">{user?.name}</p>
       {user?.displayName ? (
@@ -56,13 +57,15 @@ const Profile = (props: Props) => {
           <span className="flex flex-row items-center gap-1 text-sm text-zinc-300">
             <span className="text-zinc-400">{user?.displayName}</span>
           </span>
-          <span className="mt-3 text-sm dark:text-white">
-            Location:
-            <span className="flex flex-row items-center gap-1 text-sm text-zinc-300">
-              <MdLocationPin />
-              <span className="text-zinc-400">{user?.location}</span>
+          {user?.location && (
+            <span className="mt-3 text-sm dark:text-white">
+              Location:
+              <span className="flex flex-row items-center gap-1 text-sm text-zinc-300">
+                <MdLocationPin />
+                <span className="text-zinc-400">{user?.location}</span>
+              </span>
             </span>
-          </span>
+          )}
         </>
       ) : (
         <span className="flex flex-row items-center gap-1 text-sm text-zinc-300">

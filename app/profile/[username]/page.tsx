@@ -9,10 +9,15 @@ import NavBreadcrumbs from '@/components/NavBreadcrumbs';
 import LikedStrains from '@/components/LikedStrains';
 import Profile from '@/components/Profile';
 
-async function UsernamePage() {
+type Props = { params: { username: string } };
+
+async function UsernamePage(props: Props) {
+  if (!props.params.username) return null;
+
   const { userProfile: user } = await getServerUserProfileFromUsername(
-    'jaredthejelly'
+    props.params.username
   );
+  
   if (!user) return <div>404</div>;
 
   return (

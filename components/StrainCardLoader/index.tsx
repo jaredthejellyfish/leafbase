@@ -90,7 +90,6 @@ const StrainCardLoader = (props: Props) => {
 
   useEffect(() => {
     if (shouldFetchMore && !hasFetched) {
-      console.log('fetching more')
       debouncedFetchNextPage();
       setHasFetched(true);
     } else if (!shouldFetchMore) {
@@ -112,7 +111,7 @@ const StrainCardLoader = (props: Props) => {
                   key={strain.id}
                   priority={true}
                   liked={
-                    props.likes && props.likes.length
+                    typeof props.likes !== 'undefined'
                       ? isLiked(strain.id, props.likes)
                       : undefined
                   }

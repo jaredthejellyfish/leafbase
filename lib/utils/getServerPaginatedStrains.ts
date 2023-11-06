@@ -9,7 +9,7 @@ export async function getServerPaginatedStrains({
   page = 0,
   perPage,
 }: {
-  filter?: string | 're' | 'az' | 'za' | 'mr';
+  filter?: string | 're' | 'az' | 'za' | 'sr';
   page?: number;
   perPage: number;
 }): Promise<{
@@ -53,18 +53,24 @@ export async function getServerPaginatedStrains({
   const nameFilter = filter === 'za' ? false : true;
 
   const orderByLikes = filter && filter !== 're' ? false : true;
-  
+
+  const orderByStars = filter === 'sr' ? true : false;
+
   let query = supabase
     .from('public_strains')
     .select('*', { count: 'estimated', head: false });
 
   if (orderByLikes) {
-    query = query.order('likes_count', { ascending: false });
+    query = query
+      .order('likes_count', { ascending: false })
+      .order('name', { ascending: nameFilter });
   }
 
-  query = query
-    .order('name', { ascending: nameFilter })
-    .range(offset, offset + perPage - 1);
+  if (orderByStars) {
+    query = query.order('averageRating', { ascending: false });
+  }
+
+  query = query.range(offset, offset + perPage - 1);
 
   const { data: strains } = await query.returns<Strain[]>();
 

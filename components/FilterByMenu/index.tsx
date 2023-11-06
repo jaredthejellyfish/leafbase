@@ -18,8 +18,8 @@ const generateFilterFromQuery = (filter = 're') => {
       return 'Recommended';
     case 'za':
       return 'Z-A';
-    case 'mr':
-      return 'Most Reviews';
+    case 'sr':
+      return 'Star Rating';
     default:
       break;
   }
@@ -37,7 +37,7 @@ const FilterByMenu = (props: Props) => {
     router.prefetch('/strains?filter=re');
     router.prefetch('/strains?filter=az');
     router.prefetch('/strains?filter=za');
-    router.prefetch('/strains?filter=mr');
+    router.prefetch('/strains?filter=sr');
   }, [router]);
 
   useEffect(() => {
@@ -123,11 +123,11 @@ const FilterByMenu = (props: Props) => {
           Z-A
         </Link>
         <Link
-          href="/strains?filter=mr"
+          href="/strains?filter=sr"
           className="flex items-start w-full px-3 py-3 rounded dark:hover:bg-zinc-500 hover:bg-zinc-100/80 filter-item"
           onClick={() => setOpen(false)}
         >
-          Most Reviews
+          Star Rating
         </Link>
       </motion.div>
     </div>

@@ -22,7 +22,7 @@ function SearchResult({
 }) {
   return (
     <Link
-      href={`/strains/${strain.slug}`}
+      href={`/strain/${strain.slug}`}
       className="flex flex-col items-start"
     >
       <div className="flex flex-row items-center gap-2">

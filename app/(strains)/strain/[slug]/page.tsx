@@ -98,7 +98,7 @@ const StrainSlugPage = async (props: Props) => {
           { name: 'Strains', url: '/strains' },
           {
             name: strain.name as string,
-            url: `/strains/${strain.slug}`,
+            url: `/strain/${strain.slug}`,
           },
         ]}
       />

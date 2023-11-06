@@ -2,7 +2,6 @@
 
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
-
 import { z } from 'zod';
 
 const SigninSchema = z.object({
@@ -16,6 +15,8 @@ export async function signUpUser(formData: FormData) {
 
   const email = formData.get('email');
   const password = formData.get('password');
+  const name = formData.get('name');
+  const username = formData.get('username');
 
   if (!email || !password) {
     return { status: null, error: 'Email and password are required.' };
@@ -31,7 +32,13 @@ export async function signUpUser(formData: FormData) {
     email: validated.data.email,
     password: validated.data.password,
     options: {
-        emailRedirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback`,
+      emailRedirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback`,
+
+      data: {
+        name: name,
+        email: email,
+        displayName: username,
+      },
     },
   });
 }

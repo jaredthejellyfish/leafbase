@@ -18,7 +18,8 @@ function sortStrainsByName(strains: StrainLike[]): StrainLike[] {
 
 export async function getServerLikedStrains(userId?: string): Promise<{
   error: PostgrestError | null | string | AuthError;
-  data: StrainLike[];
+  data: StrainLike[] | undefined;
+  likes: string[] | undefined;
 }> {
   const cookieStore = cookies();
   const supabase = createServerComponentClient<Database>({
@@ -35,7 +36,8 @@ export async function getServerLikedStrains(userId?: string): Promise<{
       console.error(error || 'No session found');
       return {
         error: error || 'No session found',
-        data: [],
+        data: undefined,
+        likes: undefined,
       };
     }
 
@@ -62,14 +64,20 @@ export async function getServerLikedStrains(userId?: string): Promise<{
     console.error(strainLikesError);
     return {
       error: strainLikesError,
-      data: [],
+      data: undefined,
+      likes: undefined,
     };
   }
 
   const sortedStrains = sortStrainsByName(strainLikes);
+  if (sortedStrains.length === 0)
+    return { error: null, data: [], likes: [] };
+
+  const likes = strainLikes?.map((strainLike) => strainLike.strain_id.id);
 
   return {
     error: strainLikesError,
     data: sortedStrains as unknown as StrainLike[],
+    likes: likes,
   };
 }

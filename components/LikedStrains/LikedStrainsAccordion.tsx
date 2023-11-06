@@ -27,7 +27,10 @@ function LikedStrainsAccordion(props: Props) {
       marginBottom: '10px',
       transition: { duration: 0.5 },
     },
-    closed: { height: closedHeight, transition: { duration: 0.3 } },
+    closed: {
+      height: strains && strains.length < 10 ? 'auto' : closedHeight,
+      transition: { duration: 0.3 },
+    },
   };
 
   return (
@@ -63,15 +66,17 @@ function LikedStrainsAccordion(props: Props) {
             </Link>
           ))}
       </motion.div>
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="font-semibold w-full mt-1 flex flex-row items-center justify-center gap-2"
-      >
-        <motion.div animate={{ rotate: isOpen ? 180 : 0 }}>
-          <ChevronDownIcon className="w-4 h-4" />
-        </motion.div>
-        {isOpen ? 'Show less' : 'Show all'}
-      </button>
+      {props.strains.length > 10 ? (
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="font-semibold w-full mt-1 flex flex-row items-center justify-center gap-2"
+        >
+          <motion.div animate={{ rotate: isOpen ? 180 : 0 }}>
+            <ChevronDownIcon className="w-4 h-4" />
+          </motion.div>
+          {isOpen ? 'Show less' : 'Show all'}
+        </button>
+      ) : null}
     </>
   );
 }

@@ -10,7 +10,7 @@ const LikedStrains = async (props: { userId?: string }) => {
 
   const { data: strains } = await getServerLikedStrains(userId);
 
-  if (strains.length < 1) return null;
+  if (strains && strains.length < 1) return null;
 
   return (
     <div className="px-1">
@@ -18,12 +18,12 @@ const LikedStrains = async (props: { userId?: string }) => {
         <p className="">Liked Strains ({strains?.length})</p>
       </div>
 
-      {strains && strains.length === 0 ? (
+      {strains && strains.length > 0 ? (
+        <LikedStrainsAccordion strains={strains} />
+      ) : (
         <div className="mt-6 text-sm text-semi text-zinc-400">
           You haven&apos;t liked any strains yet!
         </div>
-      ) : (
-        <LikedStrainsAccordion strains={strains} />
       )}
     </div>
   );

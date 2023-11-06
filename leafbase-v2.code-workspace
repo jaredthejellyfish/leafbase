@@ -1,0 +1,28 @@
+{
+  "folders": [
+    {
+      "name": "api",
+      "path": "app/api"
+    },
+    {
+      "name": "app",
+      "path": "app"
+    },
+    {
+      "name": "components",
+      "path": "components"
+    },
+    {
+      "name": "lib",
+      "path": "lib"
+    },
+    {
+      "name": "root",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "git-blame.gitWebUrl": ""
+    // Workspace-specific settings go here
+  },
+}

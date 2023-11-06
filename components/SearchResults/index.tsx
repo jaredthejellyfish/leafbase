@@ -2,7 +2,7 @@
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useQuery } from '@tanstack/react-query';
-import React, { useId } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 

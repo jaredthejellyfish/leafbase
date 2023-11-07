@@ -36,7 +36,7 @@ const StrainCardLoader = (props: Props) => {
     const orderByLikes = filter && filter !== 're' ? false : true;
 
     let query = supabase
-      .from('public_strains')
+      .from('strains')
       .select('*', { count: 'estimated', head: false });
 
     if (orderByLikes) {

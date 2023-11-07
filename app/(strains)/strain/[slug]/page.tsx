@@ -56,7 +56,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   });
 
   const { data: strain } = await supabase
-    .from('public_strains')
+    .from('strains')
     .select('name, shortDescription')
     .eq('slug', slug)
     .returns<Strain[]>()
@@ -81,7 +81,7 @@ const StrainSlugPage = async (props: Props) => {
   const likes = strainLikes?.map((strainLike) => strainLike.strain_id.id);
 
   const { data: strain } = await supabase
-    .from('public_strains')
+    .from('strains')
     .select('*')
     .eq('slug', slug)
     .returns<Strain[]>()

@@ -45,7 +45,7 @@ export async function getServerLikedStrains(userId?: string): Promise<{
   }
 
   const { data: strainLikes, error: strainLikesError } = await supabase
-    .from('public_strain_likes')
+    .from('strain_likes')
     .select(
       `
     id, created_at,

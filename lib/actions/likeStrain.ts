@@ -28,14 +28,14 @@ export async function likeStrain(liked: boolean, strain_id: string) {
   }
 
   const { data: existingLike, error: existingLikeError } = await supabase
-    .from('public_strain_likes')
+    .from('strain_likes')
     .select('id')
     .eq('user_id', user_id)
     .eq('strain_id', strain_id);
 
   if (liked === true && !existingLikeError && !existingLike?.length) {
     const { error } = await supabase
-      .from('public_strain_likes')
+      .from('strain_likes')
       .insert([{ user_id, strain_id }]);
 
     if (error) {
@@ -46,7 +46,7 @@ export async function likeStrain(liked: boolean, strain_id: string) {
 
   if (liked === false && !existingLikeError && existingLike?.length) {
     const { error } = await supabase
-      .from('public_strain_likes')
+      .from('strain_likes')
       .delete()
       .eq('user_id', user_id)
       .eq('strain_id', strain_id);

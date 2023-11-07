@@ -17,7 +17,7 @@ export async function getServerUserProfileFromUsername(
   });
 
   const { data: user, error } = await supabase
-    .from('public_profiles')
+    .from('profiles')
     .select('*')
     .eq('displayName', displayName)
     .single();

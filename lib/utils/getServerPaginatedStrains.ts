@@ -70,6 +70,10 @@ export async function getServerPaginatedStrains({
     query = query.order('averageRating', { ascending: false });
   }
 
+  if (!orderByLikes && !orderByStars) {
+    query = query.order('name', { ascending: nameFilter });
+  }
+
   query = query.range(offset, offset + perPage - 1);
 
   const { data: strains } = await query.returns<Strain[]>();

@@ -31,7 +31,7 @@ function DrowdownSearchbar() {
         ></input>
         <BsSearch className="text-zinc-400/80 dark:text-gray-400" size={20} />
       </div>
-      {query.length > 3 && (
+      {query.length > 1 && (
         <div
           className="flex z-50 absolute top-13 dark:bg-zinc-800 bg-white border border-zinc-600 border-solid max-w-[93%] xl:max-w-[320px] w-full py-3 px-3 rounded flex-col gap-y-2.5"
           onClick={() => setQuery('')}

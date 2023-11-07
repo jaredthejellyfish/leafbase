@@ -9,370 +9,7 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      _prisma_migrations: {
-        Row: {
-          applied_steps_count: number
-          checksum: string
-          finished_at: string | null
-          id: string
-          logs: string | null
-          migration_name: string
-          rolled_back_at: string | null
-          started_at: string
-        }
-        Insert: {
-          applied_steps_count?: number
-          checksum: string
-          finished_at?: string | null
-          id: string
-          logs?: string | null
-          migration_name: string
-          rolled_back_at?: string | null
-          started_at?: string
-        }
-        Update: {
-          applied_steps_count?: number
-          checksum?: string
-          finished_at?: string | null
-          id?: string
-          logs?: string | null
-          migration_name?: string
-          rolled_back_at?: string | null
-          started_at?: string
-        }
-        Relationships: []
-      }
-      accounts: {
-        Row: {
-          access_token: string | null
-          expires_at: number | null
-          id: string
-          id_token: string | null
-          provider: string
-          providerAccountId: string
-          refresh_token: string | null
-          scope: string | null
-          session_state: string | null
-          token_type: string | null
-          type: string
-          userId: string
-        }
-        Insert: {
-          access_token?: string | null
-          expires_at?: number | null
-          id: string
-          id_token?: string | null
-          provider: string
-          providerAccountId: string
-          refresh_token?: string | null
-          scope?: string | null
-          session_state?: string | null
-          token_type?: string | null
-          type: string
-          userId: string
-        }
-        Update: {
-          access_token?: string | null
-          expires_at?: number | null
-          id?: string
-          id_token?: string | null
-          provider?: string
-          providerAccountId?: string
-          refresh_token?: string | null
-          scope?: string | null
-          session_state?: string | null
-          token_type?: string | null
-          type?: string
-          userId?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "accounts_userId_fkey"
-            columns: ["userId"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      dispensaries: {
-        Row: {
-          address: string | null
-          averageRating: number | null
-          city: string | null
-          createdAt: string
-          description: string | null
-          email: string | null
-          hours: string | null
-          id: string
-          image: string | null
-          latitude: number | null
-          logo: string | null
-          longitude: number | null
-          name: string | null
-          phone: string | null
-          slug: string
-          updatedAt: string
-          website: string | null
-        }
-        Insert: {
-          address?: string | null
-          averageRating?: number | null
-          city?: string | null
-          createdAt?: string
-          description?: string | null
-          email?: string | null
-          hours?: string | null
-          id: string
-          image?: string | null
-          latitude?: number | null
-          logo?: string | null
-          longitude?: number | null
-          name?: string | null
-          phone?: string | null
-          slug: string
-          updatedAt: string
-          website?: string | null
-        }
-        Update: {
-          address?: string | null
-          averageRating?: number | null
-          city?: string | null
-          createdAt?: string
-          description?: string | null
-          email?: string | null
-          hours?: string | null
-          id?: string
-          image?: string | null
-          latitude?: number | null
-          logo?: string | null
-          longitude?: number | null
-          name?: string | null
-          phone?: string | null
-          slug?: string
-          updatedAt?: string
-          website?: string | null
-        }
-        Relationships: []
-      }
-      dispensary_comment_likes: {
-        Row: {
-          commentId: string
-          createdAt: string
-          id: string
-          userId: string
-        }
-        Insert: {
-          commentId: string
-          createdAt?: string
-          id: string
-          userId: string
-        }
-        Update: {
-          commentId?: string
-          createdAt?: string
-          id?: string
-          userId?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "dispensary_comment_likes_commentId_fkey"
-            columns: ["commentId"]
-            isOneToOne: false
-            referencedRelation: "dispensary_comments"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "dispensary_comment_likes_userId_fkey"
-            columns: ["userId"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      dispensary_comments: {
-        Row: {
-          body: string | null
-          createdAt: string
-          dispensaryId: string
-          id: string
-          userId: string
-        }
-        Insert: {
-          body?: string | null
-          createdAt?: string
-          dispensaryId: string
-          id: string
-          userId: string
-        }
-        Update: {
-          body?: string | null
-          createdAt?: string
-          dispensaryId?: string
-          id?: string
-          userId?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "dispensary_comments_dispensaryId_fkey"
-            columns: ["dispensaryId"]
-            isOneToOne: false
-            referencedRelation: "dispensaries"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "dispensary_comments_userId_fkey"
-            columns: ["userId"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      dispensary_menus: {
-        Row: {
-          createdAt: string
-          dispensaryId: string
-          id: string
-          prices: Json[] | null
-        }
-        Insert: {
-          createdAt?: string
-          dispensaryId: string
-          id: string
-          prices?: Json[] | null
-        }
-        Update: {
-          createdAt?: string
-          dispensaryId?: string
-          id?: string
-          prices?: Json[] | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "dispensary_menus_dispensaryId_fkey"
-            columns: ["dispensaryId"]
-            isOneToOne: false
-            referencedRelation: "dispensaries"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      dispensary_subscriptions: {
-        Row: {
-          createdAt: string
-          dispensaryId: string
-          id: string
-          userId: string
-        }
-        Insert: {
-          createdAt?: string
-          dispensaryId: string
-          id: string
-          userId: string
-        }
-        Update: {
-          createdAt?: string
-          dispensaryId?: string
-          id?: string
-          userId?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "dispensary_subscriptions_dispensaryId_fkey"
-            columns: ["dispensaryId"]
-            isOneToOne: false
-            referencedRelation: "dispensaries"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "dispensary_subscriptions_userId_fkey"
-            columns: ["userId"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      public_profiles: {
-        Row: {
-          aboutMe: string | null
-          birthDate: string | null
-          displayName: string
-          id: string
-          image: string | null
-          languages: string | null
-          location: string | null
-          name: string | null
-        }
-        Insert: {
-          aboutMe?: string | null
-          birthDate?: string | null
-          displayName: string
-          id: string
-          image?: string | null
-          languages?: string | null
-          location?: string | null
-          name?: string | null
-        }
-        Update: {
-          aboutMe?: string | null
-          birthDate?: string | null
-          displayName?: string
-          id?: string
-          image?: string | null
-          languages?: string | null
-          location?: string | null
-          name?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "public_profiles_id_fkey"
-            columns: ["id"]
-            isOneToOne: true
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      public_strain_likes: {
-        Row: {
-          created_at: string
-          id: string
-          strain_id: string | null
-          user_id: string | null
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          strain_id?: string | null
-          user_id?: string | null
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          strain_id?: string | null
-          user_id?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "public_strain_likes_strain_id_fkey"
-            columns: ["strain_id"]
-            isOneToOne: false
-            referencedRelation: "public_strains"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "public_strain_likes_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      public_strains: {
+      backup_strains: {
         Row: {
           averageRating: number | null
           cannabinoids: Json | null
@@ -438,66 +75,102 @@ export interface Database {
         }
         Relationships: []
       }
-      sessions: {
+      dispensaries: {
         Row: {
-          expires: string
-          id: string
-          sessionToken: string
-          userId: string
-        }
-        Insert: {
-          expires: string
-          id: string
-          sessionToken: string
-          userId: string
-        }
-        Update: {
-          expires?: string
-          id?: string
-          sessionToken?: string
-          userId?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "sessions_userId_fkey"
-            columns: ["userId"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      strain_comment_likes: {
-        Row: {
-          commentId: string
+          address: string | null
+          averageRating: number | null
+          city: string | null
           createdAt: string
+          description: string | null
+          email: string | null
+          hours: string | null
           id: string
-          userId: string
+          image: string | null
+          latitude: number | null
+          logo: string | null
+          longitude: number | null
+          name: string | null
+          phone: string | null
+          slug: string
+          updatedAt: string
+          website: string | null
         }
         Insert: {
-          commentId: string
+          address?: string | null
+          averageRating?: number | null
+          city?: string | null
           createdAt?: string
+          description?: string | null
+          email?: string | null
+          hours?: string | null
           id: string
-          userId: string
+          image?: string | null
+          latitude?: number | null
+          logo?: string | null
+          longitude?: number | null
+          name?: string | null
+          phone?: string | null
+          slug: string
+          updatedAt: string
+          website?: string | null
         }
         Update: {
-          commentId?: string
+          address?: string | null
+          averageRating?: number | null
+          city?: string | null
           createdAt?: string
+          description?: string | null
+          email?: string | null
+          hours?: string | null
           id?: string
-          userId?: string
+          image?: string | null
+          latitude?: number | null
+          logo?: string | null
+          longitude?: number | null
+          name?: string | null
+          phone?: string | null
+          slug?: string
+          updatedAt?: string
+          website?: string | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          aboutMe: string | null
+          birthDate: string | null
+          displayName: string
+          id: string
+          image: string | null
+          languages: string | null
+          location: string | null
+          name: string | null
+        }
+        Insert: {
+          aboutMe?: string | null
+          birthDate?: string | null
+          displayName: string
+          id: string
+          image?: string | null
+          languages?: string | null
+          location?: string | null
+          name?: string | null
+        }
+        Update: {
+          aboutMe?: string | null
+          birthDate?: string | null
+          displayName?: string
+          id?: string
+          image?: string | null
+          languages?: string | null
+          location?: string | null
+          name?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "strain_comment_likes_commentId_fkey"
-            columns: ["commentId"]
-            isOneToOne: false
-            referencedRelation: "strain_comments"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "strain_comment_likes_userId_fkey"
-            columns: ["userId"]
-            isOneToOne: false
+            foreignKeyName: "profiles_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
@@ -505,37 +178,37 @@ export interface Database {
       }
       strain_comments: {
         Row: {
-          body: string | null
-          createdAt: string
+          comment: string
+          created_at: string
           id: string
-          strainId: string
-          userId: string
+          strain_id: string
+          user_id: string
         }
         Insert: {
-          body?: string | null
-          createdAt?: string
-          id: string
-          strainId: string
-          userId: string
+          comment: string
+          created_at?: string
+          id?: string
+          strain_id: string
+          user_id: string
         }
         Update: {
-          body?: string | null
-          createdAt?: string
+          comment?: string
+          created_at?: string
           id?: string
-          strainId?: string
-          userId?: string
+          strain_id?: string
+          user_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "strain_comments_strainId_fkey"
-            columns: ["strainId"]
+            foreignKeyName: "strain_comments_strain_id_fkey"
+            columns: ["strain_id"]
             isOneToOne: false
             referencedRelation: "strains"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "strain_comments_userId_fkey"
-            columns: ["userId"]
+            foreignKeyName: "strain_comments_user_id_fkey"
+            columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
@@ -544,72 +217,39 @@ export interface Database {
       }
       strain_likes: {
         Row: {
-          createdAt: string
+          created_at: string
           id: string
-          strainId: string
-          userId: string
+          strain_id: string | null
+          user_id: string | null
         }
         Insert: {
-          createdAt?: string
-          id: string
-          strainId: string
-          userId: string
+          created_at?: string
+          id?: string
+          strain_id?: string | null
+          user_id?: string | null
         }
         Update: {
-          createdAt?: string
+          created_at?: string
           id?: string
-          strainId?: string
-          userId?: string
+          strain_id?: string | null
+          user_id?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "strain_likes_strainId_fkey"
-            columns: ["strainId"]
+            foreignKeyName: "strain_likes_strain_id_fkey"
+            columns: ["strain_id"]
             isOneToOne: false
             referencedRelation: "strains"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "strain_likes_userId_fkey"
-            columns: ["userId"]
+            foreignKeyName: "strain_likes_user_id_fkey"
+            columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "users"
             referencedColumns: ["id"]
           }
         ]
-      }
-      strain_mixers: {
-        Row: {
-          averageRating: number
-          category: string
-          createdAt: string
-          id: string
-          name: string
-          nugImage: string
-          recommendation: string
-          slug: string
-        }
-        Insert: {
-          averageRating: number
-          category: string
-          createdAt?: string
-          id: string
-          name: string
-          nugImage: string
-          recommendation: string
-          slug: string
-        }
-        Update: {
-          averageRating?: number
-          category?: string
-          createdAt?: string
-          id?: string
-          name?: string
-          nugImage?: string
-          recommendation?: string
-          slug?: string
-        }
-        Relationships: []
       }
       strains: {
         Row: {
@@ -674,81 +314,6 @@ export interface Database {
           thcPercent?: number | null
           topEffect?: string | null
           topTerpene?: string | null
-        }
-        Relationships: []
-      }
-      users: {
-        Row: {
-          aboutMe: string | null
-          birthDate: string | null
-          commentNotify: boolean
-          createdAt: string
-          dispensaryNotify: boolean
-          displayName: string | null
-          email: string | null
-          emailVerified: string | null
-          id: string
-          image: string | null
-          languages: string | null
-          location: string
-          name: string | null
-          phone: string | null
-          updatedAt: string
-        }
-        Insert: {
-          aboutMe?: string | null
-          birthDate?: string | null
-          commentNotify?: boolean
-          createdAt?: string
-          dispensaryNotify?: boolean
-          displayName?: string | null
-          email?: string | null
-          emailVerified?: string | null
-          id: string
-          image?: string | null
-          languages?: string | null
-          location?: string
-          name?: string | null
-          phone?: string | null
-          updatedAt: string
-        }
-        Update: {
-          aboutMe?: string | null
-          birthDate?: string | null
-          commentNotify?: boolean
-          createdAt?: string
-          dispensaryNotify?: boolean
-          displayName?: string | null
-          email?: string | null
-          emailVerified?: string | null
-          id?: string
-          image?: string | null
-          languages?: string | null
-          location?: string
-          name?: string | null
-          phone?: string | null
-          updatedAt?: string
-        }
-        Relationships: []
-      }
-      verification_tokens: {
-        Row: {
-          expires: string
-          id: string
-          identifier: string
-          token: string
-        }
-        Insert: {
-          expires: string
-          id: string
-          identifier: string
-          token: string
-        }
-        Update: {
-          expires?: string
-          id?: string
-          identifier?: string
-          token?: string
         }
         Relationships: []
       }

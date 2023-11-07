@@ -1,17 +1,19 @@
+import Link from 'next/link';
 import React from 'react';
 
 import { signInUser } from '@/lib/actions/auth/signInUser';
 import LoginReloader from '@/components/LoginReloader';
 import SubmitButton from '@/components/SubmitButton';
 import SocialSignin from '@/components/SocialSignin';
-import Link from 'next/link';
 
 export default function Login() {
   return (
     <div className="flex items-center justify-center h-screen-bar bg-zinc-50/50 dark:bg-zinc-950">
       <div className="mx-auto max-w-sm space-y-3 bg-white dark:bg-zinc-900 p-8 rounded-lg shadow-md">
         <div className="space-y-2 text-center">
-          <h1 className="text-3xl font-bold">Login</h1>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-zinc-900 dark:text-white">
+            Log in
+          </h2>
           <p className="text-zinc-500 dark:text-zinc-400">
             Enter your email below to login to your account
           </p>

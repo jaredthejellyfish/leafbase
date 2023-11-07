@@ -36,7 +36,6 @@ export default function Login() {
               <div>
                 <Label htmlFor="username">Username</Label>
                 <Input
-                  autoComplete="username"
                   id="username"
                   name="username"
                   placeholder="johndoe123"
@@ -46,7 +45,7 @@ export default function Login() {
               <div>
                 <Label htmlFor="email-address">Email address</Label>
                 <Input
-                  autoComplete="email"
+                  autoComplete="username"
                   id="email-address"
                   name="email"
                   placeholder="john.doe@example.com"
@@ -73,6 +72,8 @@ export default function Login() {
                   id="terms"
                   name="terms"
                   type="checkbox"
+                  required={true}
+                  title="Please agree to the terms and conditions"
                 />
                 <Label
                   className="ml-2 block text-sm text-zinc-900 dark:text-white"
@@ -83,12 +84,16 @@ export default function Login() {
               </div>
             </div>
             <div>
-              <SubmitButton className={"mt-0"} text={'Sign up'} whilePending={'Signing up...'} />
+              <SubmitButton
+                className={'mt-0'}
+                text={'Sign up'}
+                whilePending={'Signing up...'}
+              />
             </div>
             <div className="mt-0 text-center text-sm">
               Already have an account?
               <Link className="underline ml-2" href="/auth/signin">
-                Login
+                Log in
               </Link>
             </div>
           </form>

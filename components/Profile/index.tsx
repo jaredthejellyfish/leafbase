@@ -10,6 +10,7 @@ import React from 'react';
 
 import type { UserMetadataExtended } from '@/lib/database/database_types';
 import SignoutButton from './SignoutButton';
+import { cn } from '@/lib/utils';
 
 type Props = {
   user: UserMetadata;
@@ -43,15 +44,19 @@ const Profile = (props: Props) => {
           </>
         )}
       </div>
-      <Image
-        src={user?.image || 'https://utfs.io/f/dfa9eb34-fe8f-4786-afc0-eb190be52ce8-c3bqop.png'}
-        alt="profile"
-        className="rounded-md"
-        width={80}
-        height={80}
-        priority
-      />
-      <p className="mt-2 text-lg font-bold ">{user?.name}</p>
+      {user.image && (
+        <Image
+          src={user?.image}
+          alt="profile"
+          className="rounded-md"
+          width={80}
+          height={80}
+          priority
+        />
+      )}
+      <p className={cn('mt-2 text-lg font-bold', !user?.name ? 'mt-0' : '')}>
+        {user?.name}
+      </p>
       {user?.displayName ? (
         <>
           <span className="flex flex-row items-center gap-1 text-sm text-zinc-300">

@@ -9,7 +9,7 @@ import SocialSignin from '@/components/SocialSignin';
 export default function Login() {
   return (
     <main className="flex items-center justify-center h-screen-bar bg-zinc-50/50 dark:bg-zinc-950 px-4 sm:px-0">
-      <div className="mx-auto max-w-sm space-y-3 bg-white dark:bg-zinc-900 p-5 sm:p-8 rounded-lg shadow-md">
+      <div className="mx-auto max-w-sm space-y-3 bg-white dark:bg-zinc-900 p-5 sm:p-8 rounded-lg shadow-xl">
         <div className="space-y-2 text-center">
           <h2 className="mt-6 text-center text-3xl font-extrabold text-zinc-900 dark:text-white">
             Log in

@@ -9,9 +9,9 @@ import { Label } from '@/components/ui/label';
 
 export default function Login() {
   return (
-    <div className="flex items-center justify-center h-screen-bar bg-zinc-50/50 dark:bg-zinc-950">
+    <main className="flex items-center justify-center h-screen-bar bg-zinc-50/50 dark:bg-zinc-950 px-4 sm:px-0">
       <div className="flex justify-center items-center h-full w-full">
-        <div className="max-w-md w-full space-y-3 bg-white dark:bg-zinc-900 px-8 py-5 rounded-lg shadow-xl">
+        <div className="max-w-md w-full space-y-3 bg-white dark:bg-zinc-900 px-5 sm:px-8 py-5 rounded-lg shadow-xl">
           <div className="flex flex-col gap-y-2">
             <h2 className="mt-6 text-center text-3xl font-extrabold text-zinc-900 dark:text-white">
               Sign up
@@ -100,6 +100,6 @@ export default function Login() {
         </div>
       </div>
       <LoginReloader />
-    </div>
+    </main>
   );
 }

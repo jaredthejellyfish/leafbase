@@ -17,7 +17,7 @@ async function UsernamePage(props: Props) {
   const { userProfile: user } = await getServerUserProfileFromUsername(
     props.params.username
   );
-  
+
   if (!user) return <div>404</div>;
 
   return (
@@ -36,7 +36,9 @@ async function UsernamePage(props: Props) {
           <Profile user={user} hideOptions />
         </div>
         <div id="vertical 2" className="flex flex-col gap-4 pb-3 lg:w-2/3">
-          <GeneralInformation user={user} />
+          {user && (user.aboutMe || user.birthDate || user.languages) && (
+            <GeneralInformation user={user} />
+          )}
           <ErrorBoundary fallback={<LikedStrainsError />}>
             <Suspense fallback={<LikedStrainsSkeleton />}>
               <LikedStrains userId={user.id} />

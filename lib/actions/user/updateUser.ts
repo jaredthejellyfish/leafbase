@@ -29,7 +29,7 @@ export async function updateUser(formData: FormData) {
   const phone = formData.get('phone') || session?.user.user_metadata.phone;
   const location =
     formData.get('location') || session?.user.user_metadata.location;
-    
+
   const newUserMetadata = {
     ...session.user.user_metadata,
     name,

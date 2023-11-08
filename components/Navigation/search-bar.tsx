@@ -24,7 +24,10 @@ function SearchBar() {
         <BsSearch className="text-zinc-400/80 dark:text-gray-400" size={20} />
       </div>
       {query.length > 1 && matches && (
-        <div className="flex z-50 absolute top-16 bg-zinc-800 max-w-[265px] xl:max-w-[320px] w-full py-2 px-3 rounded flex-col gap-y-2.5" onClick={() => setQuery("")}>
+        <div
+          className="flex z-50 absolute top-16 bg-zinc-800 max-w-[265px] xl:max-w-[320px] w-full py-2 px-3 rounded flex-col gap-y-2.5"
+          onClick={() => setQuery('')}
+        >
           <SearchResults query={query} />
         </div>
       )}

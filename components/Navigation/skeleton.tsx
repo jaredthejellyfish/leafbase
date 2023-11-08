@@ -10,10 +10,7 @@ const NavigationSkeleton = () => {
   return (
     <nav className="justify-between px-6 bg-gray-100 dark:bg-zinc-900 h-14 sm:h-16 flex items-center">
       <div>
-        <div
-
-          className="flex items-center justify-start gap-2.5 sm:gap-4 text-xl"
-        >
+        <div className="flex items-center justify-start gap-2.5 sm:gap-4 text-xl">
           <Image
             className="rounded-sm sm:scale-125"
             src={SiteLogo}

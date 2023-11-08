@@ -1,4 +1,4 @@
-import type { DatabaseStrain } from './database/database_types';
+import type { DatabaseStrain, StrainComment } from './database/database_types';
 
 interface Effect {
   icon: null;
@@ -68,6 +68,20 @@ export interface Strain extends DatabaseStrain {
   };
 }
 
+export interface StrainWithComments extends Strain {
+  strain_comments: {
+    comment: string;
+    created_at: string;
+    id: string;
+    strain_id: string;
+    user_id: string;
+    profile: {
+      displayName: string;
+      image: string | null;
+    };
+  }[];
+}
+
 export type StrainLike = {
   id: string;
   created_at: string;
@@ -78,3 +92,16 @@ export type StrainLike = {
     id: string;
   };
 };
+
+export interface StrainCommentWithUser extends StrainComment {
+  profile: {
+    id: string;
+    displayName: string;
+    image: string;
+  };
+}
+
+export type StrainWithCommentsWithUser = Omit<
+  StrainWithComments,
+  'strain_comments' & { strain_comments: StrainCommentWithUser[] }
+>[];

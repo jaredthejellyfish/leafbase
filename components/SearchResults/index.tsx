@@ -2,9 +2,9 @@
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import React from 'react';
 
 import type { SearchStrain } from '@/lib/database/database_types';
 import type { Database } from '@/lib/database';
@@ -21,10 +21,7 @@ function SearchResult({
   imageSize: number;
 }) {
   return (
-    <Link
-      href={`/strain/${strain.slug}`}
-      className="flex flex-col items-start"
-    >
+    <Link href={`/strain/${strain.slug}`} className="flex flex-col items-start">
       <div className="flex flex-row items-center gap-2">
         <Image
           src={strain.nugimage}

@@ -6,14 +6,19 @@ import type { Database } from '@/lib//database';
 import type { StrainLike } from '@/lib/types';
 
 function sortStrainsByName(strains: StrainLike[]): StrainLike[] {
-  return strains.sort((a, b) => {
-    const nameA = a.strain_id.name.toLowerCase();
-    const nameB = b.strain_id.name.toLowerCase();
+  try {
+    return strains.sort((a, b) => {
+      const nameA = a.strain_id.name.toLowerCase();
+      const nameB = b.strain_id.name.toLowerCase();
 
-    if (nameA < nameB) return -1;
-    if (nameA > nameB) return 1;
-    return 0;
-  });
+      if (nameA < nameB) return -1;
+      if (nameA > nameB) return 1;
+      return 0;
+    });
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
 }
 
 export async function getServerLikedStrains(userId?: string): Promise<{
@@ -70,8 +75,7 @@ export async function getServerLikedStrains(userId?: string): Promise<{
   }
 
   const sortedStrains = sortStrainsByName(strainLikes);
-  if (sortedStrains.length === 0)
-    return { error: null, data: [], likes: [] };
+  if (sortedStrains.length === 0) return { error: null, data: [], likes: [] };
 
   const likes = strainLikes?.map((strainLike) => strainLike.strain_id.id);
 

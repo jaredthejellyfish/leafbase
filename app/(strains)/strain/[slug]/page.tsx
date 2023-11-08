@@ -1,6 +1,7 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React from 'react';
 
@@ -8,11 +9,13 @@ import StrainCardLikeButton from '@/components/StrainCard/StrainCardLikeButton';
 import { getServerLikedStrains } from '@/lib/utils/getServerLikedStrains';
 import StarRating from '@/components/StrainCard/StarRating';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs';
+import type { StrainWithComments } from '@/lib/types';
 import StrainSoma from '@/components/StrainSoma';
 import defaultImage from '@/public/default.webp';
 import type { Database } from '@/lib/database';
-import type { Strain } from '@/lib/types';
 import { isLiked } from '@/lib/utils';
+
+const CommentSection = dynamic(() => import('@/components/CommentSection'));
 
 type Props = { params: { slug: string } };
 
@@ -59,7 +62,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     .from('strains')
     .select('name, shortDescription')
     .eq('slug', slug)
-    .returns<Strain[]>()
+    .returns<StrainWithComments[]>()
     .maybeSingle();
 
   return {
@@ -80,15 +83,15 @@ const StrainSlugPage = async (props: Props) => {
   const { data: strainLikes } = await getServerLikedStrains();
   const likes = strainLikes?.map((strainLike) => strainLike.strain_id.id);
 
-  const { data: strain } = await supabase
+  const { data: strain, error } = await supabase
     .from('strains')
-    .select('*')
+    .select('*, strain_comments ( *, profile:profiles ( displayName, image ) )')
     .eq('slug', slug)
-    .returns<Strain[]>()
+    .returns<StrainWithComments[]>()
     .maybeSingle();
 
   if (!strain) {
-    return <p>Error</p>;
+    return <pre>{JSON.stringify(error, null, 2)}</pre>;
   }
 
   return (
@@ -184,10 +187,15 @@ const StrainSlugPage = async (props: Props) => {
           className="flex flex-col justify-center w-full gap-5 px-5 md:flex-row md:px-8"
         >
           <div className="mt-3 md:w-1/3">
-            <StrainSoma strain={strain} />
+            <StrainSoma strain={strain as unknown as StrainWithComments} />
           </div>
           <div className="px-0.5 md:w-2/3">{strain.description}</div>
         </div>
+      </div>
+      <div className="mt-5">
+        {strain.strain_comments.length > 0 && (
+          <CommentSection comments={strain.strain_comments} />
+        )}
       </div>
     </main>
   );

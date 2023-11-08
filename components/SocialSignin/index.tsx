@@ -2,7 +2,6 @@
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import type { Provider } from '@supabase/supabase-js';
-import dynamic from 'next/dynamic';
 import React from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -117,4 +116,4 @@ function SocialSignin() {
   );
 }
 
-export default dynamic(() => Promise.resolve(SocialSignin), { ssr: true });
+export default SocialSignin;

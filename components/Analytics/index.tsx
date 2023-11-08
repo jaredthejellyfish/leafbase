@@ -9,7 +9,6 @@ export default function Analytics({
 }: {
   GA_MEASUREMENT_ID?: string;
 }) {
-
   const measurementId = GA_MEASUREMENT_ID || process.env.NEXT_PUBLIC_GTM;
 
   if (process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production') {

@@ -1,14 +1,16 @@
 import { ErrorBoundary } from 'react-error-boundary';
 import React, { Suspense } from 'react';
+import dynamic from 'next/dynamic';
 
+import LikedStrainsSkeleton from '@/components/LikedStrains/LikedStrainsSkeleton';
 import LikedStrainsError from '@/components/LikedStrains/LikedStrainsError';
 import { getServerUserMetadata } from '@/lib/utils/getServerUserMetadata';
 import GeneralInformation from '@/components/GeneralInformation';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs';
 import LikedStrains from '@/components/LikedStrains';
 import Profile from '@/components/Profile';
-import LikedStrainsSkeleton from '@/components/LikedStrains/LikedStrainsSkeleton';
-import Notifier from '@/components/Notifier';
+
+const Notifier = dynamic(() => import('@/components/Notifier'), { ssr: false });
 
 export const metadata = {
   title: 'Profile - Leafbase',

@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import dynamic from 'next/dynamic';
 
 function CookieBanner() {
   const [cookieConsent, setCookieConsent] = useState<boolean>(
@@ -63,6 +62,4 @@ function CookieBanner() {
   );
 }
 
-export default dynamic(() => Promise.resolve(CookieBanner), {
-  ssr: false,
-});
+export default CookieBanner;

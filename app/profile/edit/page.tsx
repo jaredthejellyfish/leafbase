@@ -4,8 +4,8 @@ import Image from 'next/image';
 import React from 'react';
 
 import { getServerUserMetadata } from '@/lib/utils/getServerUserMetadata';
-import NavBreadcrumbs from '@/components/NavBreadcrumbs';
 import { updateUser } from '@/lib/actions/user/updateUser';
+import NavBreadcrumbs from '@/components/NavBreadcrumbs';
 import SubmitButton from '@/components/SubmitButton';
 
 export const metadata = {
@@ -91,7 +91,7 @@ async function EditPage() {
               </div>
             </span>
             <div className="w-full flex h-fit">
-              <SubmitButton text="Save" whilePending='Saving...' />
+              <SubmitButton text="Save" whilePending="Saving..." />
               {/* <DeleteAccount /> */}
             </div>
           </div>

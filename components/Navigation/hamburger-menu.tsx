@@ -1,14 +1,10 @@
-"use client";
+'use client';
 
-import React, {
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { motion } from "framer-motion";
-import DropdownMenu from "./dropdown-menu";
+import React, { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import dynamic from 'next/dynamic';
 
-
+const DropdownMenu = dynamic(() => import('./dropdown-menu'), { ssr: false });
 
 const hamburgerMenu = {
   top: {
@@ -16,8 +12,8 @@ const hamburgerMenu = {
     closed: { rotate: 0, y: 0 },
   },
   middle: {
-    open: { display: "none" },
-    closed: { display: "block" },
+    open: { display: 'none' },
+    closed: { display: 'block' },
   },
   bottom: {
     open: { rotate: -45, y: -5 },
@@ -47,9 +43,9 @@ const HamburgerMenu = () => {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
@@ -70,19 +66,19 @@ const HamburgerMenu = () => {
           <motion.path
             variants={hamburgerMenu.top}
             initial="closed"
-            animate={isOpen ? "open" : "closed"}
+            animate={isOpen ? 'open' : 'closed'}
             d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
           ></motion.path>
           <motion.path
             variants={hamburgerMenu.middle}
             initial="closed"
-            animate={isOpen ? "open" : "closed"}
+            animate={isOpen ? 'open' : 'closed'}
             d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
           ></motion.path>
           <motion.path
             variants={hamburgerMenu.bottom}
             initial="closed"
-            animate={isOpen ? "open" : "closed"}
+            animate={isOpen ? 'open' : 'closed'}
             d="M3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
           ></motion.path>
         </svg>

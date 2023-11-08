@@ -102,6 +102,4 @@ const DropdownMenu = (props: Props) => {
   );
 };
 
-export default dynamic(() => Promise.resolve(DropdownMenu), {
-  ssr: false,
-});
+export default DropdownMenu;

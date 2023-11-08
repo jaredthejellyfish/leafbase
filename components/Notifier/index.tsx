@@ -2,7 +2,6 @@
 
 import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
-import dynamic from 'next/dynamic';
 
 import { useToast } from '../ui/use-toast';
 
@@ -28,4 +27,4 @@ const Notifier = () => {
   return null;
 };
 
-export default dynamic(() => Promise.resolve(Notifier), { ssr: false });
+export default Notifier;

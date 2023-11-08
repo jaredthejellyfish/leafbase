@@ -178,3 +178,10 @@ prisma/
 *.md
 
 *.d.ts
+
+public/
+node_modules/
+database/
+.vercel/
+.vscode/
+.next/

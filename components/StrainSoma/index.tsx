@@ -122,7 +122,7 @@ const StrainSoma = (props: Props) => {
       <h3 className="text-sm font-bold uppercase">Strain soma</h3>
       {topThreeEffects.length >= 3 && (
         <div className="flex flex-row flex-wrap items-center w-full gap-2 text-xs">
-          <FiThumbsUp size={12} />
+          <FiThumbsUp className={'z-auto'} size={12} />
           <p className="hidden sm:hidden md:block xl:block">Feelings:</p>
           <div className="flex flex-row flex-wrap gap-y-2 gap-x-2">
             {topThreeEffects.map((effect) => (
@@ -133,7 +133,7 @@ const StrainSoma = (props: Props) => {
       )}
       {topThreeEffects.length >= 3 && (
         <div className="flex flex-row flex-wrap items-center w-full text-xs gap-y-2 gap-x-2">
-          <FiThumbsDown size={12} className="transform scale-x-[-1]" />
+          <FiThumbsDown size={12} style={{ }} />
           <p className="hidden sm:hidden md:block xl:block">Negatives:</p>
           <div className="flex flex-row flex-wrap gap-y-2 gap-x-2">
             {topThreeEffectsNegative.map((effect) => (
@@ -144,7 +144,7 @@ const StrainSoma = (props: Props) => {
       )}
       {positives.length >= 3 && (
         <div className="flex flex-row flex-wrap items-center w-full gap-2 text-xs">
-          <TbMedicalCross size={12} className="transform scale-x-[-1]" />
+          <TbMedicalCross size={12} />
           <p className="hidden sm:hidden md:block xl:block">Helps with:</p>
           <div className="flex flex-row flex-wrap gap-y-2 -gap-x-2">
             {positives.map((effect) => (

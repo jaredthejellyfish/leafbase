@@ -223,6 +223,7 @@ export interface Database {
           image: string | null
           strain1_id: string
           strain2_id: string
+          strain2_name: string
           strain2_slug: string
         }
         Insert: {
@@ -232,6 +233,7 @@ export interface Database {
           image?: string | null
           strain1_id: string
           strain2_id: string
+          strain2_name: string
           strain2_slug: string
         }
         Update: {
@@ -241,6 +243,7 @@ export interface Database {
           image?: string | null
           strain1_id?: string
           strain2_id?: string
+          strain2_name?: string
           strain2_slug?: string
         }
         Relationships: [
@@ -346,12 +349,12 @@ export interface Database {
           flowerImageSvg: string | null
           id: string
           likes_count: number | null
-          name: string | null
+          name: string
           nugImage: string | null
           phenotype: string | null
           shortDescription: string | null
           slug: string
-          subtitle: string | null
+          subtitle: string
           terps: Json | null
           thcPercent: number | null
           topEffect: string | null
@@ -367,12 +370,12 @@ export interface Database {
           flowerImageSvg?: string | null
           id: string
           likes_count?: number | null
-          name?: string | null
+          name: string
           nugImage?: string | null
           phenotype?: string | null
           shortDescription?: string | null
           slug: string
-          subtitle?: string | null
+          subtitle: string
           terps?: Json | null
           thcPercent?: number | null
           topEffect?: string | null
@@ -388,12 +391,12 @@ export interface Database {
           flowerImageSvg?: string | null
           id?: string
           likes_count?: number | null
-          name?: string | null
+          name?: string
           nugImage?: string | null
           phenotype?: string | null
           shortDescription?: string | null
           slug?: string
-          subtitle?: string | null
+          subtitle?: string
           terps?: Json | null
           thcPercent?: number | null
           topEffect?: string | null

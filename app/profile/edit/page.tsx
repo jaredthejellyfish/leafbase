@@ -1,4 +1,4 @@
-import { AiOutlineClose } from 'react-icons/ai';
+
 import { MdLocationPin } from 'react-icons/md';
 import Image from 'next/image';
 import React from 'react';
@@ -7,6 +7,8 @@ import { getServerUserMetadata } from '@/lib/utils/getServerUserMetadata';
 import { updateUser } from '@/lib/actions/user/updateUser';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs';
 import SubmitButton from '@/components/SubmitButton';
+import TextAreaAuto from '@/components/TextAreaAuto';
+import CloseButton from '@/components/CloseButton';
 
 export const metadata = {
   title: 'Edit Profile - Leafbase',
@@ -29,9 +31,7 @@ async function EditPage() {
       >
         <div id="vertical 1" className="flex flex-col gap-4 lg:w-1/3">
           <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
-            <button aria-label="Stop editing">
-              <AiOutlineClose size={20} className="absolute top-6 right-6" />
-            </button>
+            <CloseButton />
             <Image
               src={
                 user_metadata?.image ||
@@ -84,7 +84,7 @@ async function EditPage() {
               <div className="text-gray-400">
                 <input
                   name="phone"
-                  placeholder="Enter phone number"
+                  placeholder={session?.user.phone || 'Enter phone number'}
                   type="text"
                   className="bg-transparent border rounded border-zinc-500 px-0.5 w-60"
                 />
@@ -101,11 +101,7 @@ async function EditPage() {
             <h1 className="text-xl font-bold">General information</h1>
             <span className="mt-3 text-sm dark:text-white">About me</span>
             <div className="mt-1 text-sm text-zinc-400 lg:w-4/5">
-              {/* <TextareaAutosize
-                className="w-full p-1 bg-transparent border rounded border-zinc-500"
-                value={aboutMe}
-                onChange={(e) => setAboutMe(e.target.value)}
-              ></TextareaAutosize> */}
+              <TextAreaAuto placeholder={user_metadata?.aboutMe} />
             </div>
           </div>
         </div>

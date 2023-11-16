@@ -94,7 +94,7 @@ function Pairing({ pairing }: Props) {
         width={90}
         height={90}
       />
-      <p>{body}</p>
+      <p>{generating ? body : 'loading...'}</p>
     </Link>
   );
 }

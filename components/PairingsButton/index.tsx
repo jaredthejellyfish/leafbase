@@ -2,8 +2,6 @@
 
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
-
-import { Database } from '@/lib/database';
 import Pairing from './Pairing';
 import Modal from '../Modal';
 
@@ -31,7 +29,7 @@ async function fetchPairings(id: string, slug: string) {
 function PairingsButton({ slug, id }: Props) {
   const [open, setOpen] = useState(false);
 
-  const { data, error, isFetching } = useQuery({
+  const { data, isFetching } = useQuery({
     queryKey: ['pairings', slug, id],
     queryFn: () => fetchPairings(id, slug),
     enabled: open,

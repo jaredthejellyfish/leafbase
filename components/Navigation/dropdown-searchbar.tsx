@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic';
 
 const SearchResults = dynamic(() => import('../SearchResults'), { ssr: false });
 
-function DrowdownSearchbar() {
+function DropdownSearchbar() {
   const [query, setQuery] = useState('');
 
   const ref = useRef<HTMLDivElement | null>(null);
@@ -44,4 +44,4 @@ function DrowdownSearchbar() {
   );
 }
 
-export default DrowdownSearchbar;
+export default DropdownSearchbar;

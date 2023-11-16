@@ -2,8 +2,10 @@
 
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
+
 import Pairing from './Pairing';
 import Modal from '../Modal';
+import { FiMoreVertical } from 'react-icons/fi';
 
 type Props = {
   slug: string;
@@ -29,7 +31,7 @@ async function fetchPairings(id: string, slug: string) {
 function PairingsButton({ slug, id }: Props) {
   const [open, setOpen] = useState(false);
 
-  const { data, isFetching } = useQuery({
+  const { data: pairings, isFetching } = useQuery({
     queryKey: ['pairings', slug, id],
     queryFn: () => fetchPairings(id, slug),
     enabled: open,
@@ -38,18 +40,20 @@ function PairingsButton({ slug, id }: Props) {
   return (
     <>
       <button onClick={() => setOpen(true)}>
-        <p>Pairings</p>
+        <FiMoreVertical
+          className="cursor-pointer"
+          size={25}
+        />
       </button>
       <Modal title="Pairings" open={open} setOpen={setOpen}>
-        <div className='flex flex-col gap-y-2'>
-
-        {!isFetching &&
-          data &&
-          data.pairings.length >= 1 &&
-          data?.pairings.map((pairing) => (
-            <Pairing pairing={pairing} key={pairing.id || Math.random()} />
+        <div className="flex flex-col gap-y-2">
+          {!isFetching &&
+            pairings &&
+            pairings.pairings.length >= 1 &&
+            pairings?.pairings.map((pairing) => (
+              <Pairing pairing={pairing} key={pairing.id || Math.random()} />
             ))}
-            </div>
+        </div>
       </Modal>
     </>
   );

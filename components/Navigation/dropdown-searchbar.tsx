@@ -13,8 +13,7 @@ function DropdownSearchbar() {
   const ref = useRef<HTMLDivElement | null>(null);
 
   const handleClickOutside = () => {
-    // Your custom logic here
-    console.log('clicked outside');
+    setQuery('');
   };
 
   useOnClickOutside(ref, handleClickOutside);

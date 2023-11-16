@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
+import { useOnClickOutside } from 'usehooks-ts';
 import { motion } from 'framer-motion';
 
 type Props = {
@@ -43,10 +44,33 @@ const variants = {
 
 function Modal({ children, open, setOpen, title }: Props) {
   const [isOpen, setIsOpen] = useState(open);
+  const ref = React.useRef<HTMLDivElement | null>(null);
+
+  function handleClickOutside() {
+    setIsOpen(false);
+    if (setOpen) setOpen(false);
+  }
+
+  useOnClickOutside(ref, handleClickOutside);
 
   useEffect(() => {
     setIsOpen(open);
   }, [open]);
+
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (isOpen && event.key === 'Escape') {
+        setIsOpen(false);
+        if (setOpen) setOpen(false);
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, setOpen]);
 
   function handdleClose() {
     setIsOpen(false);
@@ -64,6 +88,7 @@ function Modal({ children, open, setOpen, title }: Props) {
         variants={variants.modal}
         animate={isOpen ? 'visible' : 'hidden'}
         initial="hidden"
+        ref={ref}
         className="dark:bg-zinc-800 z-50 inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full border-transparent relative"
       >
         <div className="w-full flex flex-row justify-between items-center dark:bg-zinc-950/40 bg-zinc-200 px-4 py-2">

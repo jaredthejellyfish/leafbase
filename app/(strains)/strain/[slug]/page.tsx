@@ -14,6 +14,7 @@ import StrainSoma from '@/components/StrainSoma';
 import defaultImage from '@/public/default.webp';
 import type { Database } from '@/lib/database';
 import { isLiked } from '@/lib/utils';
+import PairingsButton from '@/components/PairingsButton';
 
 const CommentSection = dynamic(() => import('@/components/CommentSection'));
 
@@ -110,13 +111,16 @@ const StrainSlugPage = async (props: Props) => {
         className="relative flex flex-col items-center justify-center pb-8 border rounded shadow border-zinc-300 dark:border-transparent dark:bg-zinc-900"
       >
         {typeof likes !== 'undefined' ? (
-          <StrainCardLikeButton
-            id={strain.id}
-            liked={isLiked(strain.id, likes)}
-            className="top-5 right-5 z-0"
-            width={25}
-            height={25}
-          />
+          <div className="absolute top-5 right-5 z-0 flex items-center justify-center">
+            <PairingsButton slug={strain.slug} id={strain.id} />
+            <StrainCardLikeButton
+              id={strain.id}
+              liked={isLiked(strain.id, likes)}
+              className='static'
+              width={25}
+              height={25}
+            />
+          </div>
         ) : null}
         <div
           id="header"
@@ -124,7 +128,7 @@ const StrainSlugPage = async (props: Props) => {
         >
           <div
             id="vertical-1"
-            className="flex items-center justify-center md:w-1/3 h-52 md:border rounded-sm md:dark:bg-zinc-950/10 md:dark:shadow md:shadow-sm "
+            className="flex items-center justify-center md:w-1/3 h-52 md:border rounded-sm md:dark:bg-zinc-950/10 md:dark:shadow md:shadow-sm"
           >
             <Image
               className="rounded"

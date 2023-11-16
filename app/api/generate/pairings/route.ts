@@ -4,14 +4,20 @@ import { cookies } from 'next/headers';
 
 import type { Database } from '@/lib/database';
 
-export async function GET(request: Request) {
-  const url = new URL(request.url);
-  const searchParams = new URLSearchParams(url.search);
-  const id = searchParams.get('id');
-  const search = searchParams.get('query');
-  const limit = searchParams.get('limit');
+type RequestData = {
+  strain_id: string;
+  strain_slug: string;
+  limit?: string;
+};
 
-  if (!search || !id)
+export async function POST(request: Request) {
+  const {
+    strain_id: id,
+    strain_slug: slug,
+    limit,
+  } = (await request.json()) as RequestData;
+
+  if (!slug && !id)
     return NextResponse.json({ error: 'No search query provided' });
 
   const cookieStore = cookies();
@@ -20,14 +26,18 @@ export async function GET(request: Request) {
   });
 
   const { data: existingPairings, error: existingPairingsError } =
-    await supabase.from('short_pairings').select('*').eq('strain1_id', id);
+    await supabase
+      .from('short_pairings')
+      .select('*')
+      .eq('strain1_id', id)
+      .limit(3);
 
   if (!existingPairingsError && existingPairings?.length > 0) {
     return NextResponse.json({ pairings: existingPairings });
   }
 
   const { data: pairings, error } = await supabase.rpc('find_closest_strains', {
-    input_slug: search,
+    input_slug: slug,
     limit_count: limit ? Math.min(parseInt(limit), 5) : 3,
   });
 

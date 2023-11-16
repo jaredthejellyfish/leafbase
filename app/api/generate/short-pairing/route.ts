@@ -25,7 +25,6 @@ export async function POST(request: Request) {
       cookies: () => cookieStore,
     });
 
-    // check for existing pairing
     const { data: existingPairing, error: existingPairingError } =
       await supabase
         .from('short_pairings')
@@ -39,29 +38,37 @@ export async function POST(request: Request) {
     }
 
     if (existingPairing) {
-      return new Response(existingPairing.body, { status: 200 });
+      return NextResponse.json(existingPairing.body, { status: 200 });
     }
 
-    const { data, error } = await supabase
+    const { data: strain1Data, error: strain1Error } = await supabase
       .from('strains')
       .select('*')
-      .in('id', [strain1, strain2]);
+      .eq('id', strain1)
+      .single();
+    const { data: strain2Data, error: strain2Error } = await supabase
+      .from('strains')
+      .select('*')
+      .eq('id', strain2)
+      .single();
 
-    if (error || data.length < 2) {
-      console.error(error || 'No strains in the database response');
+    if (strain1Error || strain2Error) {
+      console.error(
+        strain1Error || strain2Error || 'No strains in the database response'
+      );
       return NextResponse.json('No strains in the database response', {
         status: 400,
       });
     }
 
-    const strain1Name = data[0].name;
-    const strain2Name = data[1].name;
+    const strain1Name = strain1Data.name;
+    const strain2Name = strain2Data.name;
 
     const formattedStrain1 = `\`\`\`${strain1Name}\n${JSON.stringify(
-      data[0]
+      strain1Data
     )}\`\`\``;
     const formattedStrain2 = `\`\`\`${strain2Name}\n${JSON.stringify(
-      data[1]
+      strain2Data
     )}\`\`\``;
 
     const prompt = `${formattedStrain1}\n${formattedStrain2}\n\nDescribe why ${strain1Name} and ${strain2Name} are two strains that go well together.`;
@@ -92,7 +99,9 @@ export async function POST(request: Request) {
         body: completion.choices[0].message.content,
         strain1_id: strain1,
         strain2_id: strain2,
-        strain2_slug: data[1].slug,
+        strain2_slug: strain2Data.slug,
+        strain2_name: strain2Data.name,
+        image: strain2Data.nugImage,
       })
       .select()
       .single();

@@ -107,7 +107,7 @@ export async function POST(request: Request) {
       const { error: newPairingError } = await supabase
         .from('pairings')
         .insert([
-          { strain1_id: strain1id, strain2_id: strain2id, body: response },
+          { strain1_id: strain1id, strain2_id: strain2id, body: response, },
         ]);
 
       if (newPairingError) {

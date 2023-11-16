@@ -16,7 +16,6 @@ function SocialSignin() {
   ) {
     e.preventDefault();
     e.stopPropagation();
-    console.log('signing in with github');
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider,
     });

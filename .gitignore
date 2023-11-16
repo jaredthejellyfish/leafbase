@@ -37,7 +37,6 @@ next-env.d.ts
 
 clear-bg/
 
-*.lockb
 .VSCodeCounter
 database/remove-bg/downloads
 database/remove-bg/venv

@@ -16,11 +16,9 @@ function SocialSignin() {
   ) {
     e.preventDefault();
     e.stopPropagation();
-    const { data, error } = await supabase.auth.signInWithOAuth({
+    await supabase.auth.signInWithOAuth({
       provider,
     });
-
-    console.log(data, error);
   }
 
   return (

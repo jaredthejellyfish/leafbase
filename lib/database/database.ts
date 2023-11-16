@@ -223,6 +223,7 @@ export interface Database {
           image: string | null
           strain1_id: string
           strain2_id: string
+          strain2_slug: string
         }
         Insert: {
           body?: string | null
@@ -231,6 +232,7 @@ export interface Database {
           image?: string | null
           strain1_id: string
           strain2_id: string
+          strain2_slug: string
         }
         Update: {
           body?: string | null
@@ -239,6 +241,7 @@ export interface Database {
           image?: string | null
           strain1_id?: string
           strain2_id?: string
+          strain2_slug?: string
         }
         Relationships: [
           {

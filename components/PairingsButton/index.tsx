@@ -24,6 +24,7 @@ async function fetchPairings(id: string, slug: string) {
       image: null | string;
       strain1_id: string;
       strain2_id: string;
+      strain2_slug: string;
     }[];
   };
 }

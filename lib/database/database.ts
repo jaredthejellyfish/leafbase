@@ -135,6 +135,45 @@ export interface Database {
         }
         Relationships: []
       }
+      pairings: {
+        Row: {
+          body: string | null
+          created_at: string
+          id: string
+          strain1_id: string
+          strain2_id: string
+        }
+        Insert: {
+          body?: string | null
+          created_at?: string
+          id?: string
+          strain1_id: string
+          strain2_id: string
+        }
+        Update: {
+          body?: string | null
+          created_at?: string
+          id?: string
+          strain1_id?: string
+          strain2_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pairings_strain1_id_fkey"
+            columns: ["strain1_id"]
+            isOneToOne: false
+            referencedRelation: "strains"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pairings_strain2_id_fkey"
+            columns: ["strain2_id"]
+            isOneToOne: false
+            referencedRelation: "strains"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       profiles: {
         Row: {
           aboutMe: string | null
@@ -172,6 +211,48 @@ export interface Database {
             columns: ["id"]
             isOneToOne: true
             referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      short_pairings: {
+        Row: {
+          body: string | null
+          created_at: string
+          id: string
+          image: string | null
+          strain1_id: string
+          strain2_id: string
+        }
+        Insert: {
+          body?: string | null
+          created_at?: string
+          id?: string
+          image?: string | null
+          strain1_id: string
+          strain2_id: string
+        }
+        Update: {
+          body?: string | null
+          created_at?: string
+          id?: string
+          image?: string | null
+          strain1_id?: string
+          strain2_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "short_pairings_strain1_id_fkey"
+            columns: ["strain1_id"]
+            isOneToOne: false
+            referencedRelation: "strains"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "short_pairings_strain2_id_fkey"
+            columns: ["strain2_id"]
+            isOneToOne: false
+            referencedRelation: "strains"
             referencedColumns: ["id"]
           }
         ]
@@ -317,11 +398,57 @@ export interface Database {
         }
         Relationships: []
       }
+      strains_vectors: {
+        Row: {
+          id: string
+          slug: string
+          strain_id: string
+          vector: string
+        }
+        Insert: {
+          id?: string
+          slug: string
+          strain_id: string
+          vector: string
+        }
+        Update: {
+          id?: string
+          slug?: string
+          strain_id?: string
+          vector?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "strains_vectors_strain_id_fkey"
+            columns: ["strain_id"]
+            isOneToOne: false
+            referencedRelation: "strains"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
+      find_closest_strains: {
+        Args: {
+          input_slug: string
+          limit_count: number
+        }
+        Returns: {
+          id: string
+          slug: string
+          strain_id: string
+        }[]
+      }
+      ivfflathandler: {
+        Args: {
+          "": unknown
+        }
+        Returns: unknown
+      }
       pgroonga_command:
         | {
             Args: {
@@ -823,6 +950,42 @@ export interface Database {
           name: string
           nugimage: string
         }[]
+      }
+      vector_avg: {
+        Args: {
+          "": number[]
+        }
+        Returns: string
+      }
+      vector_dims: {
+        Args: {
+          "": string
+        }
+        Returns: number
+      }
+      vector_norm: {
+        Args: {
+          "": string
+        }
+        Returns: number
+      }
+      vector_out: {
+        Args: {
+          "": string
+        }
+        Returns: unknown
+      }
+      vector_send: {
+        Args: {
+          "": string
+        }
+        Returns: string
+      }
+      vector_typmod_in: {
+        Args: {
+          "": unknown[]
+        }
+        Returns: number
       }
     }
     Enums: {

@@ -111,7 +111,7 @@ const StrainSlugPage = async (props: Props) => {
         className="relative flex flex-col items-center justify-center pb-8 border rounded shadow border-zinc-300 dark:border-transparent dark:bg-zinc-900"
       >
         {typeof likes !== 'undefined' ? (
-          <div className="absolute top-5 right-5 z-0 flex items-center justify-center">
+          <div className="absolute top-5 right-5 z-0 flex items-center justify-center gap-4 dark:text-zinc-400 text-zinc-700">
             <PairingsButton slug={strain.slug} id={strain.id} />
             <StrainCardLikeButton
               id={strain.id}

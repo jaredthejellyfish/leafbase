@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,6 +12,7 @@ type Props = {
     strain1_id: string;
     strain2_id: string;
     strain2_slug: string;
+    strain2_name: string;
     image: null | string;
   };
 };
@@ -32,6 +34,8 @@ async function fetchPairing(strain1_id: string, strain2_id: string) {
     id: null | string;
     strain1_id: string;
     strain2_id: string;
+    strain2_slug: string;
+    strain2_name: string;
     image: null | string;
     slug: string;
   };
@@ -47,16 +51,33 @@ function Pairing({ pairing }: Props) {
   return (
     <Link
       href={`/strain/${pairing.strain2_slug}`}
-      className="flex flex-row items-center justify-between gap-3 border border-zinc-300 dark:border-zinc-700 py-2 rounded pl-1.5 pr-3"
+      className={cn(
+        'flex flex-row items-center gap-3 border border-zinc-300 dark:border-zinc-700 py-3 rounded pl-2 pr-3',
+        pairing.body && 'justify-between'
+      )}
     >
-      <Image
-        src={pairing.image || ''}
-        alt={pairing.id || ''}
-        width={90}
-        height={90}
-        className="aspect-square"
-      />
-      <p className='text-sm'>{pairing.body || generatedPairing?.body || 'loading...'}</p>
+      {pairing.image ? (
+        <Image
+          src={pairing.image}
+          alt={pairing.strain2_name}
+          width={96}
+          height={96}
+        />
+      ) : (
+        <div className="w-24 h-24 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
+      )}
+
+      <div className="text-sm max-w-[80%]">
+        <h2 className='dark:text-zinc-200 text-black font-semibold text-sm'>{pairing.strain2_name || generatedPairing?.strain2_name}</h2>
+        {pairing.body || generatedPairing?.body || (
+          <>
+            <div className="w-1/3 h-4 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
+            <div className="w-full h-3 mt-2 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
+            <div className="w-48 h-3 mt-1.5 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
+            <div className="w-[80%] h-3 mt-1.5 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
+          </>
+        )}
+      </div>
     </Link>
   );
 }

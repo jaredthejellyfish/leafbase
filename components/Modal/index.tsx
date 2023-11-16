@@ -64,9 +64,9 @@ function Modal({ children, open, setOpen, title }: Props) {
         variants={variants.modal}
         animate={isOpen ? 'visible' : 'hidden'}
         initial="hidden"
-        className="bg-zinc-800 z-50 inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full border-transparent relative"
+        className="dark:bg-zinc-800 z-50 inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full border-transparent relative"
       >
-        <div className="w-full flex flex-row justify-between items-center bg-zinc-950/40 px-4 py-2">
+        <div className="w-full flex flex-row justify-between items-center dark:bg-zinc-950/40 bg-zinc-200 px-4 py-2">
           <h2 className="text-lg font-semibold mt-0.5">{title}</h2>
           <button onClick={() => handdleClose()}>
             <AiOutlineClose size={20} />

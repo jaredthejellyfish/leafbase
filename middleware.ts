@@ -15,6 +15,10 @@ export async function middleware(req: NextRequest) {
     );
   }
 
+  if (req.nextUrl.pathname === '/strain') {
+    return NextResponse.redirect(new URL('/strains', req.nextUrl));
+  }
+
   if (!data.session && req.nextUrl.pathname !== '/auth/signin') {
     return NextResponse.redirect(new URL('/auth/signin', req.nextUrl));
   }
@@ -23,5 +27,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/profile', '/profile/edit', '/profile/(.*)', '/'],
+  matcher: ['/profile', '/profile/edit', '/profile/(.*)', '/', '/strain'],
 };

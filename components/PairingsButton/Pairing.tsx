@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
+import React from 'react';
 
 type Props = {
   pairing: {
@@ -36,7 +36,7 @@ async function fetchPairing(strain1_id: string, strain2_id: string) {
 }
 
 function Pairing({ pairing }: Props) {
-  const { data: generatedPairing, isFetching } = useQuery({
+  const { data: generatedPairing } = useQuery({
     queryKey: ['pairings', pairing.strain1_id, pairing.strain2_id],
     queryFn: () => fetchPairing(pairing.strain1_id, pairing.strain2_id),
     enabled: Boolean(!pairing.body),

@@ -14,7 +14,7 @@ export const pageview = (url: string) => {
       page: url,
     });
   } else {
-    console.log({
+    console.warn({
       event: 'pageview',
       page: url,
     });

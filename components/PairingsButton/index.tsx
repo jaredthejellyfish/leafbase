@@ -5,7 +5,9 @@ import { FiMoreVertical } from 'react-icons/fi';
 import React, { useState } from 'react';
 
 import Pairing from './Pairing';
-import Modal from '../Modal';
+import dynamic from 'next/dynamic';
+
+const Modal = dynamic(() => import('@/components/Modal'), {ssr: false});
 
 type Props = {
   slug: string;

@@ -92,8 +92,10 @@ export async function POST(request: Request) {
         body: completion.choices[0].message.content,
         strain1_id: strain1,
         strain2_id: strain2,
+        strain2_slug: data[1].slug,
       })
-      .select().single();
+      .select()
+      .single();
 
     if (newPairingError) {
       console.error(newPairingError);

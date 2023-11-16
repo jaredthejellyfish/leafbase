@@ -50,6 +50,7 @@ export async function GET(request: Request) {
     image: pairing.nug_image,
     strain1_id: id,
     strain2_id: pairing.strain_id,
+    strain2_slug: pairing.slug,
   }));
 
   return NextResponse.json({ pairings: formattedPairings });

@@ -441,6 +441,19 @@ export interface Database {
           id: string
           slug: string
           strain_id: string
+          nug_image: string
+        }[]
+      }
+      get_related_strains: {
+        Args: {
+          input_slug: string
+          limit_count: number
+        }
+        Returns: {
+          id: number
+          slug: string
+          strain_id: number
+          image: string
         }[]
       }
       ivfflathandler: {

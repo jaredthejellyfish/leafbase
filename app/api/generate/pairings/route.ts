@@ -47,7 +47,7 @@ export async function GET(request: Request) {
     body: null,
     created_at: null,
     id: null,
-    image: null,
+    image: pairing.nug_image,
     strain1_id: id,
     strain2_id: pairing.strain_id,
   }));

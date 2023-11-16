@@ -1,4 +1,5 @@
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import OpenAI from 'openai';
 
@@ -16,7 +17,7 @@ export async function POST(request: Request) {
     const { strain1, strain2 } = (await request.json()) as RequestData;
 
     if (!strain1 || !strain2) {
-      return new Response('No strains in the request', { status: 400 });
+      return NextResponse.json('No strains in the request', { status: 400 });
     }
 
     const cookieStore = cookies();
@@ -46,11 +47,9 @@ export async function POST(request: Request) {
       .select('*')
       .in('id', [strain1, strain2]);
 
-      console.log(strain2)
-
     if (error || data.length < 2) {
       console.error(error || 'No strains in the database response');
-      return new Response('No strains in the database response', {
+      return NextResponse.json('No strains in the database response', {
         status: 400,
       });
     }
@@ -85,41 +84,28 @@ export async function POST(request: Request) {
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
-      stream: true,
     });
 
-    const stream = new ReadableStream({
-      async start(controller) {
-        const encoder = new TextEncoder();
-        let response = '';
+    const { data: newPairing, error: newPairingError } = await supabase
+      .from('short_pairings')
+      .insert({
+        body: completion.choices[0].message.content,
+        strain1_id: strain1,
+        strain2_id: strain2,
+      })
+      .select().single();
 
-        for await (const part of completion) {
-          const text = part.choices[0]?.delta.content ?? '';
-          const chunk = encoder.encode(text);
-          response += text;
-          controller.enqueue(chunk);
-        }
+    if (newPairingError) {
+      console.error(newPairingError);
+      return NextResponse.json('Error generating pairing', { status: 400 });
+    }
 
-        const { error: newPairingError } = await supabase
-          .from('short_pairings')
-          .insert([
-            { strain1_id: strain1, strain2_id: strain2, body: response },
-          ]);
-
-        if (newPairingError) {
-          console.error(newPairingError);
-          controller.close();
-          return new Response('Error inserting new pairing', { status: 400 });
-        }
-
-        controller.close();
-      },
+    return NextResponse.json(newPairing, {
+      status: 200,
     });
-
-    return new Response(stream);
   } catch (error) {
     console.error(error);
-    return new Response('Error generating pairing', { status: 400 });
+    return NextResponse.json('Error generating pairing', { status: 400 });
   }
 }
 

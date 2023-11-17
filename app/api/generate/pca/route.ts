@@ -72,3 +72,5 @@ export async function GET() {
     return NextResponse.json('Error generating PCA', { status: 400 });
   }
 }
+
+export const dynamic = 'force-dynamic';

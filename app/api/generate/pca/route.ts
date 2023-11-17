@@ -58,12 +58,14 @@ export async function GET() {
     // Extract X and Y coordinates for each vector
     const pcaOutput = transformedData.transpose().to1DArray();
 
-    const xyCoordinates: { x: number; y: number }[] = [];
+    const xyCoordinates: { x: number; y: number; label: string }[] = [];
 
     for (let i = 0; i < pcaOutput.length; i += 2) {
       const x = pcaOutput[i];
       const y = pcaOutput[i + 1];
-      xyCoordinates.push({ x, y });
+      // Use a null check for strain_id and provide a fallback label if necessary
+      const label = likedStrains[i / 2].strain_id?.name || 'Unknown Strain';
+      xyCoordinates.push({ x, y, label });
     }
 
     return NextResponse.json({ pca: xyCoordinates }, { status: 200 });

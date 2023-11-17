@@ -7,7 +7,9 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import React from 'react';
 
-const DropdownSearchbar = dynamic(() => import('./dropdown-searchbar'));
+const DropdownSearchbar = dynamic(() => import('./dropdown-searchbar'), {
+  ssr: false,
+});
 
 type Props = {
   open: boolean;

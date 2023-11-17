@@ -1,7 +1,7 @@
 'use client';
 
+import React, { useEffect, useOptimistic, useTransition } from 'react';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
-import React, { useEffect, useOptimistic } from 'react';
 import { motion } from 'framer-motion';
 
 import { likeStrain } from '@/lib/actions/likeStrain';
@@ -37,18 +37,23 @@ const likeButtonVariants = {
 };
 
 const StrainCardLikeButton = (props: Props) => {
+  const [isPending, startTransition] = useTransition();
   const [optimisticLike, setOptimisticLike] = useOptimistic(
     props.liked || false, // Default to 0 likes if null
     (state) => !state
   );
 
   useEffect(() => {
-    setOptimisticLike(props.liked);
+    startTransition(() => {
+      setOptimisticLike(props.liked);
+    });
   }, [props.liked, setOptimisticLike]);
 
   function handleClick() {
-    likeStrain(!optimisticLike, props.id);
-    setOptimisticLike(!optimisticLike);
+    startTransition(() => {
+      likeStrain(!optimisticLike, props.id);
+      setOptimisticLike(!optimisticLike);
+    });
   }
 
   return (

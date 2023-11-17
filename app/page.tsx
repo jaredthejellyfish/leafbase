@@ -1,5 +1,11 @@
 import React from 'react';
 
+import LikedStrainsModal from '@/components/LikedStrainsModal';
+
 export default function Home() {
-  return <main></main>;
+  return (
+    <main>
+      <LikedStrainsModal />
+    </main>
+  );
 }

@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic';
 import React from 'react';
 
 import { getServerLikedStrains } from '@/lib/utils/getServerLikedStrains';
+import LikedStrainsModal from '../LikedStrainsModal';
 const LikedStrainsAccordion = dynamic(() => import('./LikedStrainsAccordion'));
 
 const LikedStrains = async (props: { userId?: string }) => {
@@ -16,6 +17,7 @@ const LikedStrains = async (props: { userId?: string }) => {
     <div className="px-1">
       <div className="flex flex-row items-center gap-5 text-xl font-bold">
         <p className="">Liked Strains ({strains?.length})</p>
+        <LikedStrainsModal />
       </div>
 
       {strains && strains.length > 0 ? (

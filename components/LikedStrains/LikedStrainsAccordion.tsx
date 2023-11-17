@@ -54,7 +54,7 @@ function LikedStrainsAccordion(props: Props) {
                 <Image
                   src={strain.strain_id.nugImage}
                   className="rounded-md"
-                  alt={strain.strain_id.name}
+                  alt={`An image of a nug of ${strain.strain_id.name}`}
                   width={90}
                   height={90}
                   priority={true}

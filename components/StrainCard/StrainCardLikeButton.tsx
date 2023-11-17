@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useOptimistic, useTransition } from 'react';
+import React, { useEffect, useOptimistic } from 'react';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { motion } from 'framer-motion';
 
@@ -37,23 +37,18 @@ const likeButtonVariants = {
 };
 
 const StrainCardLikeButton = (props: Props) => {
-  const [isPending, startTransition] = useTransition();
   const [optimisticLike, setOptimisticLike] = useOptimistic(
     props.liked || false, // Default to 0 likes if null
     (state) => !state
   );
 
   useEffect(() => {
-    startTransition(() => {
-      setOptimisticLike(props.liked);
-    });
+    setOptimisticLike(props.liked);
   }, [props.liked, setOptimisticLike]);
 
   function handleClick() {
-    startTransition(() => {
-      likeStrain(!optimisticLike, props.id);
-      setOptimisticLike(!optimisticLike);
-    });
+    likeStrain(!optimisticLike, props.id);
+    setOptimisticLike(!optimisticLike);
   }
 
   return (
@@ -74,7 +69,6 @@ const StrainCardLikeButton = (props: Props) => {
         e.preventDefault();
         handleClick();
       }}
-      disabled={isPending}
     >
       {optimisticLike ? (
         <AiFillHeart

@@ -43,7 +43,7 @@ async function ProfilePage() {
           <GeneralInformation user={user_metadata} />
           <ErrorBoundary fallback={<LikedStrainsError />}>
             <Suspense fallback={<LikedStrainsSkeleton />}>
-              <LikedStrains userId={session?.user.id} />
+              <LikedStrains userId={session?.user.id} modal />
             </Suspense>
           </ErrorBoundary>
         </div>

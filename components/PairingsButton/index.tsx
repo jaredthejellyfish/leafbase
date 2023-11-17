@@ -3,11 +3,16 @@
 import { useQuery } from '@tanstack/react-query';
 import { FiMoreVertical } from 'react-icons/fi';
 import React, { useState } from 'react';
-
-import Pairing from './Pairing';
 import dynamic from 'next/dynamic';
 
-const Modal = dynamic(() => import('@/components/Modal'), {ssr: false});
+import PairingSkeleton from './PairingSkeleton';
+
+const Pairing = dynamic(() => import('./Pairing'), {
+  ssr: false,
+  loading: () => <PairingSkeleton />,
+});
+
+const Modal = dynamic(() => import('@/components/Modal'), { ssr: false });
 
 type Props = {
   slug: string;
@@ -54,12 +59,17 @@ function PairingsButton({ slug, id }: Props) {
       </button>
       <Modal title="Pairings" open={open} setOpen={setOpen}>
         <div className="flex flex-col gap-y-2 pb-1.5">
-          {!isFetching &&
-            pairings &&
-            pairings.pairings.length >= 1 &&
+          {!isFetching && pairings && pairings.pairings.length >= 1 ? (
             pairings?.pairings.map((pairing) => (
               <Pairing pairing={pairing} key={pairing.id || Math.random()} />
-            ))}
+            ))
+          ) : (
+            <>
+              <PairingSkeleton />
+              <PairingSkeleton />
+              <PairingSkeleton />
+            </>
+          )}
         </div>
       </Modal>
     </>

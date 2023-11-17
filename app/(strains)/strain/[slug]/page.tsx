@@ -9,12 +9,12 @@ import StrainCardLikeButton from '@/components/StrainCard/StrainCardLikeButton';
 import { getServerLikedStrains } from '@/lib/utils/getServerLikedStrains';
 import StarRating from '@/components/StrainCard/StarRating';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs';
+import PairingsButton from '@/components/PairingsButton';
 import type { StrainWithComments } from '@/lib/types';
 import StrainSoma from '@/components/StrainSoma';
 import defaultImage from '@/public/default.webp';
 import type { Database } from '@/lib/database';
 import { isLiked } from '@/lib/utils';
-import PairingsButton from '@/components/PairingsButton';
 
 const CommentSection = dynamic(() => import('@/components/CommentSection'));
 
@@ -116,7 +116,7 @@ const StrainSlugPage = async (props: Props) => {
             <StrainCardLikeButton
               id={strain.id}
               liked={isLiked(strain.id, likes)}
-              className='block static z-0'
+              className="block static z-0"
               width={25}
               height={25}
             />

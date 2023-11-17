@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "analyze": "ANALYZE=true bun run build",
+    "prod": "tsc && bunx eslint . --fix && bun run dbtypes && vercel --prod",
     "dbtypes": "supabase gen types typescript --project-id euwnyenhzhztqztezjdn > ./lib/database/database.ts"
   },
   "dependencies": {

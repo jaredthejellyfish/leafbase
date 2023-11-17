@@ -1,8 +1,9 @@
-import { cn } from '@/lib/utils';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+
+import { cn } from '@/lib/utils';
 
 type Props = {
   pairing: {
@@ -68,7 +69,9 @@ function Pairing({ pairing }: Props) {
       )}
 
       <div className="text-sm max-w-[80%]">
-        <h2 className='dark:text-zinc-200 text-black font-semibold text-sm'>{pairing.strain2_name || generatedPairing?.strain2_name}</h2>
+        <h2 className="dark:text-zinc-200 text-black font-semibold text-sm">
+          {pairing.strain2_name || generatedPairing?.strain2_name}
+        </h2>
         {pairing.body || generatedPairing?.body || (
           <>
             <div className="w-1/3 h-4 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>

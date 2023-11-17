@@ -1,8 +1,8 @@
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
+import OpenAI from 'openai';
 
 import type { Database } from '@/lib/database';
-import OpenAI from 'openai';
 
 const openai = new OpenAI();
 
@@ -107,7 +107,7 @@ export async function POST(request: Request) {
       const { error: newPairingError } = await supabase
         .from('pairings')
         .insert([
-          { strain1_id: strain1id, strain2_id: strain2id, body: response, },
+          { strain1_id: strain1id, strain2_id: strain2id, body: response },
         ]);
 
       if (newPairingError) {

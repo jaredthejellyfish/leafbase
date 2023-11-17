@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useEffect, useOptimistic } from 'react';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import React, { useEffect, useOptimistic } from 'react';
 import { motion } from 'framer-motion';
 
 import { likeStrain } from '@/lib/actions/likeStrain';

@@ -133,7 +133,7 @@ const StrainSoma = (props: Props) => {
       )}
       {topThreeEffects.length >= 3 && (
         <div className="flex flex-row flex-wrap items-center w-full text-xs gap-y-2 gap-x-2">
-          <FiThumbsDown size={12} style={{ }} />
+          <FiThumbsDown size={12} style={{}} />
           <p className="hidden sm:hidden md:block xl:block">Negatives:</p>
           <div className="flex flex-row flex-wrap gap-y-2 gap-x-2">
             {topThreeEffectsNegative.map((effect) => (

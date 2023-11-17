@@ -1,4 +1,3 @@
-
 import { MdLocationPin } from 'react-icons/md';
 import Image from 'next/image';
 import React from 'react';

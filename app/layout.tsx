@@ -1,8 +1,8 @@
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import React from 'react';
 import { GeistSans } from 'geist/font';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
+import React from 'react';
 
 import { ThemeProvider, QueryProvider } from '@/components/Providers';
 import NavigationSkeleton from '@/components/Navigation/skeleton';

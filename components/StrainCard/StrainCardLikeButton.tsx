@@ -38,6 +38,7 @@ const likeButtonVariants = {
 
 const StrainCardLikeButton = (props: Props) => {
   const [isPending, startTransition] = useTransition();
+
   const [optimisticLike, setOptimisticLike] = useOptimistic(
     props.liked || false, // Default to 0 likes if null
     (state) => !state
@@ -74,6 +75,7 @@ const StrainCardLikeButton = (props: Props) => {
         e.preventDefault();
         handleClick();
       }}
+      disabled={isPending}
     >
       {optimisticLike ? (
         <AiFillHeart

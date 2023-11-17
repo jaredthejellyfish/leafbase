@@ -33,7 +33,13 @@ export async function POST(request: Request) {
       .limit(3);
 
   if (!existingPairingsError && existingPairings?.length > 0) {
-    return NextResponse.json({ pairings: existingPairings });
+    if (existingPairings.length !== 3) {
+      await supabase.from('short_pairings').delete().match({
+        strain1_id: id,
+      });
+    } else {
+      return NextResponse.json({ pairings: existingPairings });
+    }
   }
 
   const { data: pairings, error } = await supabase.rpc('find_closest_strains', {

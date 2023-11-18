@@ -1,8 +1,10 @@
+import { ErrorBoundary } from 'react-error-boundary';
+import { ClipboardXIcon } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import React from 'react';
 
 import { getServerLikedStrains } from '@/lib/utils/getServerLikedStrains';
-import LikedStrainsModal from '../LikedStrainsModal';
+import StrainSimilarityModal from './StrainSimilarityModal';
 const LikedStrainsAccordion = dynamic(() => import('./LikedStrainsAccordion'));
 
 const LikedStrains = async (props: { userId?: string; modal?: boolean }) => {
@@ -17,7 +19,9 @@ const LikedStrains = async (props: { userId?: string; modal?: boolean }) => {
     <div className="px-1">
       <div className="flex flex-row items-center gap-5 text-xl font-bold">
         <p className="">Liked Strains ({strains?.length})</p>
-        {props.modal && <LikedStrainsModal />}
+        <ErrorBoundary fallback={<ClipboardXIcon />}>
+          {props.modal && <StrainSimilarityModal />}
+        </ErrorBoundary>
       </div>
 
       {strains && strains.length > 0 ? (

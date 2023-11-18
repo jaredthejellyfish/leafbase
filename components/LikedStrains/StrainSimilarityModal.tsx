@@ -1,23 +1,28 @@
 'use client';
 
+import { BsClipboardFill, BsClipboardX } from 'react-icons/bs';
 import type { Context } from 'chartjs-plugin-datalabels';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { useQuery } from '@tanstack/react-query';
-import { BsClipboardFill } from 'react-icons/bs';
 import { Clipboard } from 'lucide-react';
 import React, { useState } from 'react';
 import { useTheme } from 'next-themes';
 import type { Align } from 'chart.js';
 import dynamic from 'next/dynamic';
 
-import Modal from '../Modal';
+import { toast } from '../ui/use-toast';
+const Modal = dynamic(() => import('../Modal'), { ssr: false });
 
 const DynamicScatter = dynamic(
   () => import('react-chartjs-2').then((mod) => mod.Scatter),
   { ssr: false }
 );
 
-async function fetchLikedStrainsPCA() {
+async function fetchLikedStrainsPCA(
+  errorSetter: React.Dispatch<React.SetStateAction<boolean>>,
+  openSetter: React.Dispatch<React.SetStateAction<boolean>>,
+  shouldFetchSetter: React.Dispatch<React.SetStateAction<boolean>>
+) {
   const response = await fetch(`/api/generate/pca`);
   const data = (await response.json()) as {
     pca: {
@@ -40,17 +45,36 @@ async function fetchLikedStrainsPCA() {
     pointRadius: 5,
   }));
 
+  if (datasets.length < 1) {
+    toast({
+      title: 'No liked strains',
+      description: 'You have not liked any strains yet!',
+    });
+    errorSetter(true);
+    openSetter(false);
+    shouldFetchSetter(false);
+    return null;
+  }
+
+  shouldFetchSetter(false);
+  openSetter(true);
+  errorSetter(false);
+
   return { datasets: datasets };
 }
 
-function LikedStrainsModal() {
+function StrainSimilarityModal() {
+  const [shouldFetch, setShouldFetch] = useState(false);
   const [open, setOpen] = useState(false);
+  const [error, setError] = useState(false);
+
   const { theme } = useTheme();
 
   const { data: likedCoords, isFetching } = useQuery({
+    // eslint-disable-next-line
     queryKey: ['liked-plot'],
-    queryFn: () => fetchLikedStrainsPCA(),
-    enabled: open,
+    queryFn: () => fetchLikedStrainsPCA(setError, setOpen, setShouldFetch),
+    enabled: shouldFetch,
   });
 
   const options = {
@@ -111,26 +135,38 @@ function LikedStrainsModal() {
     });
   }
 
+  function handleClick() {
+    if (likedCoords && likedCoords.datasets.length > 1) {
+      setOpen(true);
+      return;
+    }
+
+    setShouldFetch(true);
+  }
+
   return (
     <>
-      <button onClick={() => setOpen(!open)}>
-        {!open ? <BsClipboardFill /> : <Clipboard />}
+      <button onClick={() => handleClick()} disabled={isFetching || error}>
+        {!error && (!open ? <BsClipboardFill /> : <Clipboard />)}
+        {error && <BsClipboardX />}
       </button>
-      <Modal
-        title="Liked Strains Similarity"
-        open={open}
-        setOpen={setOpen}
-        containerClass="sm:max-w-[64%]"
-      >
-        {!isFetching && likedCoords ? (
-          <div style={{ width: '60vw', height: '60vh' }}>
-            {/* @ts-expect-error - wrong types in plugin config cant fix it */}
-            <DynamicScatter data={likedCoords} options={options} />
-          </div>
-        ) : null}
-      </Modal>
+      {likedCoords && likedCoords.datasets.length > 1 && (
+        <Modal
+          title="Liked Strains Similarity"
+          open={open}
+          setOpen={setOpen}
+          containerClass="sm:max-w-[64%]"
+        >
+          {!isFetching && likedCoords ? (
+            <div style={{ width: '60vw', height: '60vh' }}>
+              {/* @ts-expect-error - wrong types in plugin config cant fix it */}
+              <DynamicScatter data={likedCoords} options={options} />
+            </div>
+          ) : null}
+        </Modal>
+      )}
     </>
   );
 }
 
-export default LikedStrainsModal;
+export default StrainSimilarityModal;

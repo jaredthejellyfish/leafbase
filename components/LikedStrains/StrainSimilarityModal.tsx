@@ -4,25 +4,20 @@ import { BsClipboardFill, BsClipboardX } from 'react-icons/bs';
 import type { Context } from 'chartjs-plugin-datalabels';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { useQuery } from '@tanstack/react-query';
-import { Clipboard } from 'lucide-react';
 import React, { useState } from 'react';
 import { useTheme } from 'next-themes';
 import type { Align } from 'chart.js';
 import dynamic from 'next/dynamic';
 
 import { toast } from '../ui/use-toast';
-const Modal = dynamic(() => import('../Modal'), { ssr: false });
 
+const Modal = dynamic(() => import('../Modal'), { ssr: false });
 const DynamicScatter = dynamic(
   () => import('react-chartjs-2').then((mod) => mod.Scatter),
   { ssr: false }
 );
 
-async function fetchLikedStrainsPCA(
-  errorSetter: React.Dispatch<React.SetStateAction<boolean>>,
-  openSetter: React.Dispatch<React.SetStateAction<boolean>>,
-  shouldFetchSetter: React.Dispatch<React.SetStateAction<boolean>>
-) {
+async function fetchLikedStrainsPCA() {
   const response = await fetch(`/api/generate/pca`);
   const data = (await response.json()) as {
     pca: {
@@ -31,50 +26,57 @@ async function fetchLikedStrainsPCA(
       label: string;
     }[];
   };
+  const pcaData = data.pca || [];
 
-  if (!data.pca) {
-    return null;
-  }
-
-  const datasets = data.pca.map((point) => ({
-    label: point.label || 'Unknown',
-    data: [{ x: point.x, y: point.y }],
-    backgroundColor: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(
-      Math.random() * 256
-    )}, ${Math.floor(Math.random() * 256)}, 1)`,
-    pointRadius: 5,
-  }));
-
-  if (datasets.length < 1) {
+  if (pcaData.length === 0) {
     toast({
       title: 'No liked strains',
       description: 'You have not liked any strains yet!',
     });
-    errorSetter(true);
-    openSetter(false);
-    shouldFetchSetter(false);
     return null;
   }
 
-  shouldFetchSetter(false);
-  openSetter(true);
-  errorSetter(false);
+  import('chartjs-plugin-zoom').then((zoomModule) => {
+    const zoomPlugin = zoomModule.default;
+    import('chart.js').then(
+      ({ Chart, ArcElement, Tooltip, Legend, LinearScale, PointElement }) => {
+        Chart.register(
+          ArcElement,
+          Tooltip,
+          Legend,
+          LinearScale,
+          PointElement,
+          ChartDataLabels,
+          zoomPlugin
+        );
+      }
+    );
+  });
 
-  return { datasets: datasets };
+  return {
+    datasets: pcaData.map((point) => ({
+      label: point.label || 'Unknown',
+      data: [{ x: point.x, y: point.y }],
+      backgroundColor: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(
+        Math.random() * 256
+      )}, ${Math.floor(Math.random() * 256)}, 1)`,
+      pointRadius: 5,
+    })),
+  };
 }
 
 function StrainSimilarityModal() {
-  const [shouldFetch, setShouldFetch] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [error, setError] = useState(false);
-
+  const [modalOpen, setModalOpen] = useState(false);
   const { theme } = useTheme();
-
-  const { data: likedCoords, isFetching } = useQuery({
-    // eslint-disable-next-line
+  const {
+    data: likedCoords,
+    isFetching,
+    isError,
+    refetch,
+  } = useQuery({
     queryKey: ['liked-plot'],
-    queryFn: () => fetchLikedStrainsPCA(setError, setOpen, setShouldFetch),
-    enabled: shouldFetch,
+    queryFn: fetchLikedStrainsPCA,
+    enabled: false, // Do not run automatically
   });
 
   const options = {
@@ -96,10 +98,10 @@ function StrainSimilarityModal() {
         },
       },
       datalabels: {
-        formatter: function (
+        formatter: (
           value: { x: number; y: number; label: string },
           context: Context
-        ) {
+        ) => {
           return context.dataset.label;
         },
         display: true,
@@ -109,60 +111,32 @@ function StrainSimilarityModal() {
       },
       legend: {
         display: false,
-        labels: {
-          usePointStyle: true,
-        },
       },
     },
   };
 
-  if (open === true && typeof window !== 'undefined') {
-    import('chartjs-plugin-zoom').then((zoomModule) => {
-      const zoomPlugin = zoomModule.default;
-      import('chart.js').then(
-        ({ Chart, ArcElement, Tooltip, Legend, LinearScale, PointElement }) => {
-          Chart.register(
-            ArcElement,
-            Tooltip,
-            Legend,
-            LinearScale,
-            PointElement,
-            ChartDataLabels,
-            zoomPlugin
-          );
-        }
-      );
-    });
-  }
-
-  function handleClick() {
-    if (likedCoords && likedCoords.datasets.length > 1) {
-      setOpen(true);
-      return;
+  const handleButtonClick = async () => {
+    if (!isFetching && !likedCoords) {
+      await refetch();
     }
-
-    setShouldFetch(true);
-  }
-
+    setModalOpen(true);
+  };
   return (
     <>
-      <button onClick={() => handleClick()} disabled={isFetching || error}>
-        {!error && (!open ? <BsClipboardFill /> : <Clipboard />)}
-        {error && <BsClipboardX />}
+      <button onClick={handleButtonClick} disabled={isFetching || isError}>
+        {!isError ? <BsClipboardFill /> : <BsClipboardX />}
       </button>
-      {likedCoords && likedCoords.datasets.length > 1 && (
+      {modalOpen && likedCoords && (
         <Modal
           title="Liked Strains Similarity"
-          open={open}
-          setOpen={setOpen}
+          open={modalOpen}
+          setOpen={setModalOpen}
           containerClass="sm:max-w-[64%]"
         >
-          {!isFetching && likedCoords ? (
-            <div className={'w-[82vw] sm:w-[60vw] h-[60vh]'}>
-              {/* @ts-expect-error - wrong types in plugin config cant fix it */}
-              <DynamicScatter data={likedCoords} options={options} />
-            </div>
-          ) : null}
+          <div className={'w-[82vw] sm:w-[60vw] h-[60vh]'}>
+            {/* @ts-expect-error - config for plugin has incorrect type def */}
+            <DynamicScatter data={likedCoords} options={options} />
+          </div>
         </Modal>
       )}
     </>

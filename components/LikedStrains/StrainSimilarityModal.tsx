@@ -158,7 +158,7 @@ function StrainSimilarityModal() {
           containerClass="sm:max-w-[64%]"
         >
           {!isFetching && likedCoords ? (
-            <div style={{ width: '60vw', height: '60vh' }}>
+            <div className={"w-[82vw] sm:w-[60vw] h-[60vh]"}>
               {/* @ts-expect-error - wrong types in plugin config cant fix it */}
               <DynamicScatter data={likedCoords} options={options} />
             </div>

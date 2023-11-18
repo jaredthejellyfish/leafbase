@@ -6,7 +6,6 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { useMediaQuery } from '@/lib/hooks/useMediaQuery';
 import type { StrainLike } from '@/lib/types';
 
 type Props = {
@@ -16,10 +15,6 @@ type Props = {
 function LikedStrainsAccordion(props: Props) {
   const { strains } = props;
   const [isOpen, setIsOpen] = useState(false);
-  const matches = useMediaQuery('(min-width: 640px)');
-
-  const closedHeight =
-    typeof window !== 'undefined' ? (matches ? '293px' : '275px') : '293px';
 
   const variants = {
     open: {
@@ -28,7 +23,7 @@ function LikedStrainsAccordion(props: Props) {
       transition: { duration: 0.5 },
     },
     closed: {
-      height: strains && strains.length < 10 ? 'auto' : closedHeight,
+      height: strains && strains.length < 10 ? 'auto' : '296px',
       transition: { duration: 0.3 },
     },
   };
@@ -39,28 +34,26 @@ function LikedStrainsAccordion(props: Props) {
         variants={variants}
         initial="closed"
         animate={isOpen ? 'open' : 'closed'}
-        className={
-          'flex flex-row flex-wrap items-start justify-start mt-3 gap-x-1.5 gap-y-1.5 sm:gap-x-3 sm:gap-y-3 overflow-hidden'
-        }
+        className="w-full flex flex-row flex-wrap items-start justify-between mt-3 gap-x-1.5 gap-y-1.5 sm:gap-x-3 sm:gap-y-3  overflow-hidden"
       >
         {strains &&
           strains.map((strain) => (
             <Link
               key={strain.id}
-              className="flex flex-col gap-2 p-2 scale-95 border rounded shadow sm:scale-100 dark:border-zinc-600 dark:bg-zinc-800 "
+              className="flex-grow flex flex-col gap-2 p-2 scale-95 border rounded shadow dark:border-zinc-600 dark:bg-zinc-800 min-w-[15%] sm:min-w-[12%] md:min-w-[calc(33.333%-1em)] lg:min-w-[calc(25%-1em)] xl:min-w-[calc(20%-1em)]"
               href={`/strain/${strain.strain_id.slug}`}
             >
-              <div className="flex items-center justify-center rounded-md aspect-square max-h-24 max-w-24">
+              <div className="flex h-24 w-24 items-center justify-center rounded-md aspect-square max-h-24 w-full">
                 <Image
                   src={strain.strain_id.nugImage}
                   className="rounded-md"
                   alt={`An image of a nug of ${strain.strain_id.name}`}
-                  width={90}
-                  height={90}
+                  width={96}
+                  height={96}
                   priority={true}
                 />
               </div>
-              <h1 className="w-20 text-sm truncate text-semi">
+              <h1 className="w-full text-sm line-clamp-2 overflow-hidden text-semi">
                 {strain.strain_id.name}
               </h1>
             </Link>

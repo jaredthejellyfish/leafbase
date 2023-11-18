@@ -96,7 +96,7 @@ function Modal({ children, open, setOpen, title, containerClass }: Props) {
           initial="hidden"
           ref={ref}
           className={cn(
-            'dark:bg-zinc-800 z-50 inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full border-transparent relative',
+            'dark:bg-zinc-800 z-50 inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle w-full sm:max-w-lg sm:w-full border-transparent relative',
             containerClass || ''
           )}
         >

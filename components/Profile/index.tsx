@@ -46,12 +46,13 @@ const Profile = (props: Props) => {
       </div>
       {user.image && (
         <Image
-          src={user?.image}
+          src={user.image}
           alt="profile"
+          priority
+          unoptimized
           className="rounded-md"
           width={80}
           height={80}
-          priority
         />
       )}
       <p className={cn('mt-2 text-lg font-bold', !user?.name ? 'mt-0' : '')}>

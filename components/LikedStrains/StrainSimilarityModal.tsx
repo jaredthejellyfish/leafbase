@@ -124,7 +124,11 @@ function StrainSimilarityModal() {
   return (
     <>
       <button onClick={handleButtonClick} disabled={isFetching || isError}>
-        {!isError ? <BsClipboardFill /> : <BsClipboardX />}
+        {!isError && !isFetching && <BsClipboardFill />}
+        {isError && <BsClipboardX />}
+        {isFetching && (
+          <BsClipboardFill className="text-gradient-to-br from-gray-200 via-green-300 to-green-700 animate-pulse" />
+        )}
       </button>
       {modalOpen && likedCoords && (
         <Modal

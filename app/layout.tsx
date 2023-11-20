@@ -1,5 +1,5 @@
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { GeistSans } from 'geist/font';
+import { GeistSans } from 'geist/font/sans';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import React from 'react';

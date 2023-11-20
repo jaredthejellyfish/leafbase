@@ -1,13 +1,23 @@
 import { MdLocationPin } from 'react-icons/md';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React from 'react';
 
+import UpdateProfilePhotoSkeleton from '@/components/UpdateProfilePhoto/skeleton';
 import { getServerUserMetadata } from '@/lib/utils/getServerUserMetadata';
 import { updateUser } from '@/lib/actions/user/updateUser';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs';
 import SubmitButton from '@/components/SubmitButton';
 import TextAreaAuto from '@/components/TextAreaAuto';
 import CloseButton from '@/components/CloseButton';
+
+const UpdateProfilePhoto = dynamic(
+  () => import('@/components/UpdateProfilePhoto'),
+  {
+    ssr: false,
+    loading: () => <UpdateProfilePhotoSkeleton />,
+  }
+);
 
 export const metadata = {
   title: 'Edit Profile - Leafbase',
@@ -31,16 +41,20 @@ async function EditPage() {
         <div id="vertical 1" className="flex flex-col gap-4 lg:w-1/3">
           <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
             <CloseButton />
-            <Image
-              src={
-                user_metadata?.image ||
-                'https://utfs.io/f/a2004ba7-e7b4-4153-bebc-058ce1393a59-mou0mx.png'
-              }
-              alt="profile"
-              className="rounded-md"
-              width={80}
-              height={80}
-            />
+            <div className="relative w-20">
+              <Image
+                src={
+                  user_metadata?.image ||
+                  'https://utfs.io/f/a2004ba7-e7b4-4153-bebc-058ce1393a59-mou0mx.png'
+                }
+                alt="profile"
+                className="rounded-md"
+                width={80}
+                height={80}
+                unoptimized
+              />
+              <UpdateProfilePhoto className="absolute -top-4 -right-4" />
+            </div>
             <div className="mt-2 text-lg font-bold ">
               <input
                 className="bg-transparent border rounded border-zinc-500 px-0.5"

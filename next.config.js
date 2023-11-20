@@ -17,7 +17,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: '*.leafly.com',
+        hostname: 'euwnyenhzhztqztezjdn.supabase.co',
       },
       {
         protocol: 'https',

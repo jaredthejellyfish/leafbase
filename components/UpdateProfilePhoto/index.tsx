@@ -83,8 +83,6 @@ export default function UpdateProfilePhoto({
         image: newFileData.publicUrl,
       };
 
-      console.log(newFileData.publicUrl);
-
       const { data: newUser, error: updateError } =
         await supabase.auth.updateUser({
           data: newUserMetadata,

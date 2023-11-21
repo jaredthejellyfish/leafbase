@@ -3,8 +3,8 @@
 import { BsClipboardFill, BsClipboardX } from 'react-icons/bs';
 import type { Context } from 'chartjs-plugin-datalabels';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
 import { useTheme } from 'next-themes';
 import type { Align } from 'chart.js';
 import dynamic from 'next/dynamic';
@@ -36,23 +36,6 @@ async function fetchLikedStrainsPCA() {
     return null;
   }
 
-  import('chartjs-plugin-zoom').then((zoomModule) => {
-    const zoomPlugin = zoomModule.default;
-    import('chart.js').then(
-      ({ Chart, ArcElement, Tooltip, Legend, LinearScale, PointElement }) => {
-        Chart.register(
-          ArcElement,
-          Tooltip,
-          Legend,
-          LinearScale,
-          PointElement,
-          ChartDataLabels,
-          zoomPlugin
-        );
-      }
-    );
-  });
-
   return {
     datasets: pcaData.map((point) => ({
       label: point.label || 'Unknown',
@@ -78,6 +61,34 @@ function StrainSimilarityModal() {
     queryFn: fetchLikedStrainsPCA,
     enabled: false, // Do not run automatically
   });
+
+  useEffect(() => {
+    if (modalOpen) {
+      import('chartjs-plugin-zoom').then((zoomModule) => {
+        const zoomPlugin = zoomModule.default;
+        import('chart.js').then(
+          ({
+            Chart,
+            ArcElement,
+            Tooltip,
+            Legend,
+            LinearScale,
+            PointElement,
+          }) => {
+            Chart.register(
+              ArcElement,
+              Tooltip,
+              Legend,
+              LinearScale,
+              PointElement,
+              ChartDataLabels,
+              zoomPlugin
+            );
+          }
+        );
+      });
+    }
+  }, [modalOpen]);
 
   const options = {
     maintainAspectRatio: false,
@@ -124,10 +135,10 @@ function StrainSimilarityModal() {
   return (
     <>
       <button onClick={handleButtonClick} disabled={isFetching || isError}>
-        {!isError && !isFetching && <BsClipboardFill />}
-        {isError && <BsClipboardX />}
+        {!isError && !isFetching && <BsClipboardFill className="w-5 h-5" />}
+        {isError && <BsClipboardX className="w-5 h-5" />}
         {isFetching && (
-          <BsClipboardFill className="text-gradient-to-br from-gray-200 via-green-300 to-green-700 animate-pulse" />
+          <BsClipboardFill className="w-5 h-5 text-gradient-to-br from-gray-200 via-green-300 to-green-700 animate-pulse" />
         )}
       </button>
       {modalOpen && likedCoords && (

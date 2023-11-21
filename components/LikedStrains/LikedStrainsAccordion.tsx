@@ -53,7 +53,7 @@ function LikedStrainsAccordion(props: Props) {
                   priority={index < 10} // Set priority to true for the first 12 images
                 />
               </div>
-              <p className="pl-3 w-full text-sm overflow-hidden whitespace-nowrap text-semi">
+              <p className="sm:pl-3 w-full text-sm overflow-hidden whitespace-nowrap text-semi">
                 {strain.strain_id.name}
               </p>
             </Link>

@@ -14,7 +14,7 @@ function StrainsLoading() {
           number of comments.
         </p>
         <div className="flex items-center justify-between px-1 font-medium">
-          <span className="mt-4 text-xs text-zinc-400">6330 strains</span>
+          <span className="mt-4 text-xs text-zinc-400">6329 strains</span>
           <span className="flex flex-row items-center gap-1 mb-1 text-xs text-zinc-400">
             <FilterByMenuSkeleton />
           </span>

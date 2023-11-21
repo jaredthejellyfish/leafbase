@@ -141,16 +141,22 @@ const StrainSlugPage = async (props: Props) => {
           </div>
           <div id="vertical-2" className="w-full md:w-2/3">
             <div className="flex flex-row items-center gap-3 mb-2">
-              <div className="inline-block px-2 py-1 text-xs font-medium bg-gray-200 rounded dark:shadow dark:bg-zinc-700">
-                {strain.phenotype}
-              </div>
+              {strain.phenotype && (
+                <div className="inline-block px-2 py-1 text-xs font-medium bg-gray-200 rounded dark:shadow dark:bg-zinc-700">
+                  {strain.phenotype}
+                </div>
+              )}
               <div className="flex flex-row gap-4 px-1 text-xs text-zinc-500 dark:text-zinc-300">
-                <span className="">
-                  THC {strain.thcPercent && strain.thcPercent}%
-                </span>
-                <span className="">
-                  CBD: {strain && strain?.cannabinoids?.cbd?.percentile50}%
-                </span>
+                {strain.thcPercent && (
+                  <span className="">
+                    THC {strain.thcPercent && strain.thcPercent}%
+                  </span>
+                )}
+                {strain.cannabinoids?.cbd?.percentile50 && (
+                  <span className="">
+                    CBD: {strain && strain?.cannabinoids?.cbd?.percentile50}%
+                  </span>
+                )}
               </div>
             </div>
             <h1 className="text-2xl font-bold mb-0.5">{strain.name}</h1>

@@ -49,8 +49,6 @@ function SuggestedPairingsModal({ slug, id, open, setOpen }: Props) {
     enabled: open,
   });
 
-  console.log(pairings);
-
   return (
     <>
       {pairings?.pairings && pairings.pairings.length >= 1 && (

@@ -34,13 +34,13 @@ function LikedStrainsAccordion(props: Props) {
         variants={variants}
         initial="closed"
         animate={isOpen ? 'open' : 'closed'}
-        className="w-full flex flex-row flex-wrap items-start justify-between mt-3 gap-x-1.5 gap-y-1.5 sm:gap-x-3 sm:gap-y-3  overflow-hidden"
+        className="w-full flex flex-row flex-wrap items-start justify-start mt-3 gap-x-1.5 gap-y-1.5 sm:gap-x-3 sm:gap-y-3 overflow-hidden"
       >
         {strains &&
           strains.map((strain, index) => (
             <Link
               key={strain.id}
-              className="flex-grow flex flex-col gap-2 p-2 scale-95 border rounded shadow dark:border-zinc-600 dark:bg-zinc-800 min-w-[15%] sm:min-w-[12%] md:min-w-[calc(33.333%-1em)] lg:min-w-[calc(25%-1em)] xl:min-w-[calc(20%-1em)]"
+              className="flex-grow flex flex-col gap-2 p-2 scale-95 border rounded shadow dark:border-zinc-600 dark:bg-zinc-800 min-w-[15%] sm:min-w-[12%] md:min-w-[calc(33.333%-1em)] lg:min-w-[calc(25%-1em)] xl:min-w-[calc(20%-1em)] max-w-[130px]"
               href={`/strain/${strain.strain_id.slug}`}
             >
               <div className="flex h-24 w-24 items-center justify-center rounded-md aspect-square max-h-24 w-full">
@@ -53,7 +53,7 @@ function LikedStrainsAccordion(props: Props) {
                   priority={index < 10} // Set priority to true for the first 12 images
                 />
               </div>
-              <p className="pl-3 w-full text-sm line-clamp-2 overflow-hidden text-semi overflow-y-hidden">
+              <p className="pl-3 w-full text-sm overflow-hidden whitespace-nowrap text-semi">
                 {strain.strain_id.name}
               </p>
             </Link>

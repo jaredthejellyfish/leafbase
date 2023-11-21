@@ -6,10 +6,10 @@ import Image from 'next/image';
 import React from 'react';
 
 import StrainCardLikeButton from '@/components/StrainCard/StrainCardLikeButton';
+import StrainSuggestionsButton from '@/components/StrainSuggestionsButton';
 import { getServerLikedStrains } from '@/lib/utils/getServerLikedStrains';
 import StarRating from '@/components/StrainCard/StarRating';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs';
-import PairingsButton from '@/components/PairingsButton';
 import type { StrainWithComments } from '@/lib/types';
 import StrainSoma from '@/components/StrainSoma';
 import defaultImage from '@/public/default.webp';
@@ -112,7 +112,11 @@ const StrainSlugPage = async (props: Props) => {
       >
         {typeof likes !== 'undefined' ? (
           <div className="absolute top-5 right-5 z-0 flex items-center justify-center gap-4 dark:text-zinc-400 text-zinc-700">
-            <PairingsButton slug={strain.slug} id={strain.id} />
+            <StrainSuggestionsButton
+              slug={strain.slug}
+              id={strain.id}
+              image={strain.nugImage || ''}
+            />
             <StrainCardLikeButton
               id={strain.id}
               liked={isLiked(strain.id, likes)}

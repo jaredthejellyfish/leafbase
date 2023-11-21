@@ -1,9 +1,6 @@
-'use client';
-
 import { useQuery } from '@tanstack/react-query';
-import { FiMoreVertical } from 'react-icons/fi';
-import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
+import React from 'react';
 
 import PairingSkeleton from './PairingSkeleton';
 
@@ -15,8 +12,10 @@ const Pairing = dynamic(() => import('./Pairing'), {
 const Modal = dynamic(() => import('@/components/Modal'), { ssr: false });
 
 type Props = {
+  open: boolean;
   slug: string;
   id: string;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 async function fetchPairings(id: string, slug: string) {
@@ -43,37 +42,38 @@ async function fetchPairings(id: string, slug: string) {
   };
 }
 
-function PairingsButton({ slug, id }: Props) {
-  const [open, setOpen] = useState(false);
-
+function SuggestedPairingsModal({ slug, id, open, setOpen }: Props) {
   const { data: pairings, isFetching } = useQuery({
     queryKey: ['pairings', slug, id],
     queryFn: () => fetchPairings(id, slug),
     enabled: open,
   });
 
+  console.log(pairings);
+
   return (
     <>
-      <button onClick={() => setOpen(true)}>
-        <FiMoreVertical className="cursor-pointer" size={25} />
-      </button>
-      <Modal title="Pairings" open={open} setOpen={setOpen}>
-        <div className="flex flex-col gap-y-2 pb-1.5">
-          {!isFetching && pairings && pairings.pairings.length >= 1 ? (
-            pairings?.pairings.map((pairing) => (
-              <Pairing pairing={pairing} key={pairing.id || Math.random()} />
-            ))
-          ) : (
-            <>
-              <PairingSkeleton />
-              <PairingSkeleton />
-              <PairingSkeleton />
-            </>
-          )}
-        </div>
-      </Modal>
+      {pairings?.pairings && pairings.pairings.length >= 1 && (
+        <Modal title="Suggested Pairings" open={open} setOpen={setOpen}>
+          <div className="flex flex-col gap-y-2 pb-1.5">
+            {!isFetching &&
+            pairings?.pairings &&
+            pairings.pairings.length >= 1 ? (
+              pairings?.pairings.map((pairing) => (
+                <Pairing pairing={pairing} key={pairing.id || Math.random()} />
+              ))
+            ) : (
+              <>
+                <PairingSkeleton />
+                <PairingSkeleton />
+                <PairingSkeleton />
+              </>
+            )}
+          </div>
+        </Modal>
+      )}
     </>
   );
 }
 
-export default PairingsButton;
+export default SuggestedPairingsModal;

@@ -2,9 +2,8 @@
 
 import { BsClipboardFill, BsClipboardX } from 'react-icons/bs';
 import type { Context } from 'chartjs-plugin-datalabels';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
-import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import React, { useState } from 'react';
 import { useTheme } from 'next-themes';
 import type { Align } from 'chart.js';
 import dynamic from 'next/dynamic';
@@ -61,34 +60,6 @@ function StrainSimilarityModal() {
     queryFn: fetchLikedStrainsPCA,
     enabled: false, // Do not run automatically
   });
-
-  useEffect(() => {
-    if (modalOpen) {
-      import('chartjs-plugin-zoom').then((zoomModule) => {
-        const zoomPlugin = zoomModule.default;
-        import('chart.js').then(
-          ({
-            Chart,
-            ArcElement,
-            Tooltip,
-            Legend,
-            LinearScale,
-            PointElement,
-          }) => {
-            Chart.register(
-              ArcElement,
-              Tooltip,
-              Legend,
-              LinearScale,
-              PointElement,
-              ChartDataLabels,
-              zoomPlugin
-            );
-          }
-        );
-      });
-    }
-  }, [modalOpen]);
 
   const options = {
     maintainAspectRatio: false,

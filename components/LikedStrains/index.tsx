@@ -4,10 +4,9 @@ import dynamic from 'next/dynamic';
 import React from 'react';
 
 import { getServerLikedStrains } from '@/lib/utils/getServerLikedStrains';
-import StrainSimilarityModal from './StrainSimilarityModal';
 
+const Modals = dynamic(() => import('./Modals'));
 const LikedStrainsAccordion = dynamic(() => import('./LikedStrainsAccordion'));
-const SmokingProfileModal = dynamic(() => import('./SmokingProfileModal'));
 
 const LikedStrains = async (props: { userId?: string; modal?: boolean }) => {
   const { userId } = props;
@@ -22,10 +21,7 @@ const LikedStrains = async (props: { userId?: string; modal?: boolean }) => {
       <div className="flex flex-row items-center gap-5 text-xl font-bold">
         <p className="">Liked Strains ({strains?.length})</p>
         <ErrorBoundary fallback={<ClipboardXIcon />}>
-          {props.modal && <StrainSimilarityModal />}
-        </ErrorBoundary>
-        <ErrorBoundary fallback={<ClipboardXIcon />}>
-          {props.modal && <SmokingProfileModal />}
+          <Modals modal={props.modal || false} />
         </ErrorBoundary>
       </div>
 

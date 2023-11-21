@@ -71,12 +71,14 @@ async function fetchSmokingProfile(): Promise<
     generatePastelColor(array.slice(0, index))
   );
 
+  const roundedValues = Object.values(json).map((value) => Math.round(value));
+
   const graphData: ChartData<'pie', unknown, unknown> = {
     labels: Object.keys(json),
     datasets: [
       {
         label: 'Smoking Profile',
-        data: Object.values(json),
+        data: roundedValues,
         backgroundColor: colors,
         borderWidth: 1,
         borderColor: colors,
@@ -86,6 +88,25 @@ async function fetchSmokingProfile(): Promise<
 
   return graphData;
 }
+
+const options = {
+  plugins: {
+    datalabels: {
+      display: false,
+    },
+    zoom: {
+      zoom: {
+        drag: {
+          enabled: false,
+        },
+        pinch: {
+          enabled: false,
+        },
+        mode: 'xy',
+      },
+    },
+  },
+};
 
 export default function SmokingProfileModal() {
   const [open, setOpen] = useState(false);
@@ -98,12 +119,6 @@ export default function SmokingProfileModal() {
     queryFn: fetchSmokingProfile,
     enabled: open,
   });
-
-  if (open) {
-    import('chart.js').then(({ Chart, ArcElement, Tooltip, Legend }) => {
-      Chart.register(ArcElement, Tooltip, Legend);
-    });
-  }
 
   return (
     <main>
@@ -120,19 +135,8 @@ export default function SmokingProfileModal() {
       <ErrorBoundary fallback={<p>Something went wrong</p>}>
         {smokingProfile && smokingProfile.datasets.length > 0 && (
           <Modal open={open} setOpen={setOpen} title={'Smoker Profile'}>
-            <Pie
-              data={smokingProfile}
-              className="mb-2"
-              options={{
-                plugins: {
-                  legend: {
-                    labels: {
-                      padding: 10, // Adjust this value as needed
-                    },
-                  },
-                },
-              }}
-            />
+            {/* @ts-expect-error - zoom plugin options broken */}
+            <Pie data={smokingProfile} className="mb-2" options={options} />
           </Modal>
         )}
       </ErrorBoundary>

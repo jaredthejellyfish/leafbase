@@ -13,6 +13,7 @@ type Props = {
   setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   title: string;
   containerClass?: string;
+  onModalClose?: () => void;
 };
 
 const variants = {
@@ -45,7 +46,14 @@ const variants = {
   },
 };
 
-function Modal({ children, open, setOpen, title, containerClass }: Props) {
+function Modal({
+  children,
+  open,
+  setOpen,
+  title,
+  containerClass,
+  onModalClose,
+}: Props) {
   const [isOpen, setIsOpen] = useState(open);
   const ref = React.useRef<HTMLDivElement | null>(null);
 
@@ -77,6 +85,7 @@ function Modal({ children, open, setOpen, title, containerClass }: Props) {
 
   function handdleClose() {
     setIsOpen(false);
+    if (onModalClose) onModalClose();
     if (setOpen) setOpen(false);
   }
 

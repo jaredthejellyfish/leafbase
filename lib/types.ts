@@ -105,3 +105,35 @@ export type StrainWithCommentsWithUser = Omit<
   StrainWithComments,
   'strain_comments' & { strain_comments: StrainCommentWithUser[] }
 >[];
+
+interface ProfileEffect {
+  icon: null | string;
+  name: string;
+  type: null | string;
+  score: number;
+  votes: null | number;
+}
+
+interface ProfileTerpene {
+  name: string;
+  score: number;
+  description: null | string;
+}
+
+export interface StrainData {
+  thcPercent: number | null;
+  effects: { [key: string]: ProfileEffect };
+  terps: { [key: string]: ProfileTerpene };
+}
+
+export interface AggregatedData {
+  averageThcPercent: number;
+  effectScores: { [effectName: string]: number };
+  terpeneScores: { [terpeneName: string]: number };
+}
+
+export interface NormalizedData {
+  averageThcPercent: number;
+  effectPercentages: { [effectName: string]: number };
+  terpenePercentages: { [terpeneName: string]: number };
+}

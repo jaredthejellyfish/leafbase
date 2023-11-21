@@ -105,7 +105,6 @@ async function EditPage() {
             </span>
             <div className="w-full flex h-fit">
               <SubmitButton text="Save" whilePending="Saving..." />
-              {/* <DeleteAccount /> */}
             </div>
           </div>
         </div>

@@ -135,38 +135,47 @@ export interface Database {
         }
         Relationships: []
       }
-      pairings: {
+      long_pairings: {
         Row: {
           body: string | null
           created_at: string
           id: string
+          image: string | null
           strain1_id: string
           strain2_id: string
+          strain2_name: string
+          strain2_slug: string
         }
         Insert: {
           body?: string | null
           created_at?: string
           id?: string
+          image?: string | null
           strain1_id: string
           strain2_id: string
+          strain2_name: string
+          strain2_slug: string
         }
         Update: {
           body?: string | null
           created_at?: string
           id?: string
+          image?: string | null
           strain1_id?: string
           strain2_id?: string
+          strain2_name?: string
+          strain2_slug?: string
         }
         Relationships: [
           {
-            foreignKeyName: "pairings_strain1_id_fkey"
+            foreignKeyName: "long_pairings_strain1_id_fkey"
             columns: ["strain1_id"]
             isOneToOne: false
             referencedRelation: "strains"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "pairings_strain2_id_fkey"
+            foreignKeyName: "long_pairings_strain2_id_fkey"
             columns: ["strain2_id"]
             isOneToOne: false
             referencedRelation: "strains"

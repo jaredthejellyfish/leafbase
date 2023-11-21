@@ -5,7 +5,9 @@ import React from 'react';
 
 import { getServerLikedStrains } from '@/lib/utils/getServerLikedStrains';
 import StrainSimilarityModal from './StrainSimilarityModal';
+
 const LikedStrainsAccordion = dynamic(() => import('./LikedStrainsAccordion'));
+const SmokingProfileModal = dynamic(() => import('./SmokingProfileModal'));
 
 const LikedStrains = async (props: { userId?: string; modal?: boolean }) => {
   const { userId } = props;
@@ -21,6 +23,9 @@ const LikedStrains = async (props: { userId?: string; modal?: boolean }) => {
         <p className="">Liked Strains ({strains?.length})</p>
         <ErrorBoundary fallback={<ClipboardXIcon />}>
           {props.modal && <StrainSimilarityModal />}
+        </ErrorBoundary>
+        <ErrorBoundary fallback={<ClipboardXIcon />}>
+          {props.modal && <SmokingProfileModal />}
         </ErrorBoundary>
       </div>
 

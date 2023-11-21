@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { CameraIcon } from 'lucide-react';
 
 import type { Database } from '@/lib/database';
+import { toast } from '../ui/use-toast';
 
 export default function UpdateProfilePhoto({
   className,
@@ -50,12 +51,15 @@ export default function UpdateProfilePhoto({
 
       if (!existingFileError && existingFile && existingFile.length > 0) {
         for (const file of existingFile) {
-          const { error, data } = await supabase.storage
+          await supabase.storage
             .from('profile_pictures')
-            .remove([`${userId}/${file.name}`]);
-
-          console.log(`Removed file ${userId}/${data && data[0].name}`);
-          console.log(error, data);
+            .remove([`${userId}/${file.name}`])
+            .finally(() => {
+              toast({
+                title: 'Profile picture updated',
+                description: 'Your profile picture has been updated.',
+              });
+            });
         }
       }
 

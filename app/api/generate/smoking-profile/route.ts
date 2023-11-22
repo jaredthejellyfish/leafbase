@@ -10,7 +10,9 @@ export async function GET(request: NextRequest) {
   try {
     const url = new URL(request.url);
     const searchParams = new URLSearchParams(url.search);
-    const partial = searchParams.get('partial');
+    const returnPartial = searchParams.get('combo');
+    const returnTerpenes = searchParams.get('terpenes');
+    const returnEffects = searchParams.get('effects');
 
     const supabase = createRouteHandlerClient<Database>({
       cookies: () => cookies(),
@@ -90,15 +92,21 @@ export async function GET(request: NextRequest) {
     // Calculate average THC percent
     aggregatedData.averageThcPercent = thcTotal / thcCount;
 
+    const amountToReturn = returnEffects ? 8 : 4;
+
     const effects = Object.entries(aggregatedData.effectScores)
       .sort(([, a], [, b]) => b - a)
-      .slice(0, partial === 'true' ? 4 : undefined)
-      .reduce((obj, [key, val]) => ({ ...obj, [key]: val }), {});
+      .slice(0, returnPartial ? amountToReturn : undefined)
+      .reduce((obj, [key, val]) => ({ ...obj, [key]: val }), {}) as {
+      [key: string]: number;
+    };
 
     const terpenes = Object.entries(aggregatedData.terpeneScores)
       .sort(([, a], [, b]) => b - a)
-      .slice(0, partial === 'true' ? 4 : undefined)
-      .reduce((obj, [key, val]) => ({ ...obj, [key]: val }), {});
+      .slice(0, returnPartial ? amountToReturn : undefined)
+      .reduce((obj, [key, val]) => ({ ...obj, [key]: val }), {}) as {
+      [key: string]: number;
+    };
 
     // Merge the flattened effects and terpenes into a single object
     const flattenedResponse = {
@@ -121,7 +129,25 @@ export async function GET(request: NextRequest) {
       normalizedResponse[key] = ((val + shift) / (maxVal + shift)) * 50;
     }
 
-    return NextResponse.json(normalizedResponse, { status: 200 });
+    if (returnEffects) {
+      const normalizedEffects: { [key: string]: number } = {};
+      for (const [key, val] of Object.entries(effects)) {
+        normalizedEffects[key] = ((val + shift) / (maxVal + shift)) * 50;
+      }
+
+      return NextResponse.json({ data: normalizedEffects }, { status: 200 });
+    }
+
+    if (returnTerpenes) {
+      const normalizedTerpenes: { [key: string]: number } = {};
+      for (const [key, val] of Object.entries(terpenes)) {
+        normalizedTerpenes[key] = ((val + shift) / (maxVal + shift)) * 50;
+      }
+
+      return NextResponse.json({ data: normalizedTerpenes }, { status: 200 });
+    }
+
+    return NextResponse.json({ data: normalizedResponse }, { status: 200 });
   } catch (error) {
     console.error(error);
     return NextResponse.json('Error generating smoking profile', {

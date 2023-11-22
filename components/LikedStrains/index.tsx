@@ -21,7 +21,7 @@ const LikedStrains = async (props: { userId?: string; modal?: boolean }) => {
       <div className="flex flex-row items-center gap-5 text-xl font-bold">
         <p className="">Liked Strains ({strains?.length})</p>
         <ErrorBoundary fallback={<ClipboardXIcon />}>
-          <Modals modal={props.modal || false} />
+          {!props.modal ? null : <Modals modal={props.modal || false} />}
         </ErrorBoundary>
       </div>
 

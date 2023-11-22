@@ -40,7 +40,7 @@ function LikedStrainsAccordion(props: Props) {
           strains.map((strain, index) => (
             <Link
               key={strain.id}
-              className="flex-grow flex flex-col gap-2 p-2 scale-95 border rounded shadow dark:border-zinc-600 dark:bg-zinc-800 min-w-[15%] sm:min-w-[12%] md:min-w-[calc(33.333%-1em)] lg:min-w-[calc(25%-1em)] xl:min-w-[calc(20%-1em)] max-w-[130px]"
+              className="flex-grow flex flex-col gap-2 p-2 scale-95 border rounded shadow dark:border-zinc-600 dark:bg-zinc-800 min-w-[11%] sm:min-w-[12%] md:min-w-[calc(33.333%-1em)] lg:min-w-[calc(25%-1em)] xl:min-w-[calc(20%-1em)] sm:max-w-[130px]"
               href={`/strain/${strain.strain_id.slug}`}
             >
               <div className="flex h-24 w-24 items-center justify-center rounded-md aspect-square max-h-24 w-full">

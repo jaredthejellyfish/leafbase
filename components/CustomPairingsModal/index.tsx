@@ -48,18 +48,20 @@ function CustomPairingsModal({ open, setOpen, id, image }: Props) {
   const [query, setQuery] = useState('');
   const supabase = createClientComponentClient<Database>();
 
-  const { data: searchData } = useQuery({
+  const findPairings = async () => {
+    const { data, error } = await supabase.rpc('search_strains', {
+      search_term: query ?? '',
+      limit_num: 5,
+    });
+
+    if (error) throw error;
+
+    return data;
+  };
+
+  const { data: searchData, isFetching: fetchingSearchData } = useQuery({
     queryKey: ['custom-pairing-search', query],
-    queryFn: async () => {
-      const { data, error } = await supabase.rpc('search_strains', {
-        search_term: query ?? '',
-        limit_num: 5,
-      });
-
-      if (error) throw error;
-
-      return data;
-    },
+    queryFn: () => findPairings(),
     enabled: Boolean(
       !searchId && query && query.length >= 3 && query.length < 20
     ),
@@ -117,8 +119,8 @@ function CustomPairingsModal({ open, setOpen, id, image }: Props) {
         <div>
           {searchData.map((strain) => (
             <button
+              key={strain.slug} // Add a unique key prop here
               onClick={() => setSearchId(strain.slug)}
-              key={strain.slug}
               className="flex flex-col items-start"
             >
               <div className="flex flex-row items-center gap-2">
@@ -138,19 +140,23 @@ function CustomPairingsModal({ open, setOpen, id, image }: Props) {
       {!fetchingPairingData && !pairingError && pairingData && (
         <div>
           <div className="w-full flex flex-row justify-between items-center px-[5%] sm:px-[10%] mt-3">
-            {[image, pairingData.image ?? ''].map((img, index) => (
-              <>
-                <Image
-                  key={index}
-                  className="p-2 border border-zinc-600 rounded-lg"
-                  src={img}
-                  alt={pairingData.strain2_name}
-                  width={100}
-                  height={100}
-                />
-                {index < 1 && <ArrowLeftRight size={45} />}
-              </>
-            ))}
+            <Image
+              className="p-2 border border-zinc-600 rounded-lg"
+              src={image}
+              alt={pairingData.strain2_name}
+              width={100}
+              height={100}
+              priority={true}
+            />
+            <ArrowLeftRight size={45} />
+            <Image
+              className="p-2 border border-zinc-600 rounded-lg"
+              src={pairingData.image || ''}
+              alt={pairingData.strain2_name}
+              width={100}
+              height={100}
+              priority={true}
+            />
           </div>
           <div className="px-0.5 mt-3 mb-2">
             <p className="border border-zinc-600 rounded-lg p-2">
@@ -160,7 +166,7 @@ function CustomPairingsModal({ open, setOpen, id, image }: Props) {
         </div>
       )}
 
-      {fetchingPairingData && (
+      {fetchingPairingData && !fetchingSearchData && (
         <div>
           <div className="w-full flex flex-row justify-between items-center px-[5%] sm:px-[10%] mt-3">
             <div className="w-24 h-24 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
@@ -178,6 +184,29 @@ function CustomPairingsModal({ open, setOpen, id, image }: Props) {
             </div>
           </div>
         </div>
+      )}
+
+      {!fetchingPairingData && fetchingSearchData && (
+        <>
+          <div className="flex flex-col items-start mb-1">
+            <div className="flex flex-row items-center gap-2">
+              <div className="w-14 h-14 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse" />
+              <div className="w-24 h-4 mt-2 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
+            </div>
+          </div>
+          <div className="flex flex-col items-start mb-1">
+            <div className="flex flex-row items-center gap-2">
+              <div className="w-14 h-14 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse" />
+              <div className="w-24 h-4 mt-2 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
+            </div>
+          </div>
+          <div className="flex flex-col items-start">
+            <div className="flex flex-row items-center gap-2">
+              <div className="w-14 h-14 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse" />
+              <div className="w-24 h-4 mt-2 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
+            </div>
+          </div>
+        </>
       )}
 
       {pairingError && <p>Something went wrong...</p>}

@@ -1,9 +1,9 @@
 'use client';
 
+import { ArrowLeft, ArrowRight, PieChart } from 'lucide-react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { useQuery } from '@tanstack/react-query';
 import type { ChartData } from 'chart.js';
-import { PieChart } from 'lucide-react';
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 
@@ -11,6 +11,7 @@ const Modal = dynamic(() => import('@/components/Modal'), { ssr: false });
 
 const Pie = dynamic(() => import('react-chartjs-2').then((mod) => mod.Pie), {
   ssr: false,
+  loading: () => <GraphSkeleton />,
 });
 
 const generatePastelColor = (usedColors: string[]) => {
@@ -51,30 +52,51 @@ const generatePastelColor = (usedColors: string[]) => {
   return randomColor;
 };
 
-async function fetchSmokingProfile(): Promise<
-  ChartData<'pie', unknown, unknown>
-> {
-  const data = await fetch('/api/generate/smoking-profile?partial=true');
+function GraphSkeleton() {
+  return (
+    <div className="flex flex-col items-center flex-wrap">
+      <div className="flex flex-row flex-wrap mb-2">
+        {[...Array(12)].map((_, index) => (
+          <div
+            key={index}
+            className="w-12 h-5 mb-2 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse ml-2 flex-shrink-0"
+          ></div>
+        ))}
+      </div>
+      <div
+        className={
+          'w-96 h-96 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse ml-2 rounded-full'
+        }
+      ></div>
+    </div>
+  );
+}
 
-  // Check if the response is successful (status code 200)
+async function fetchSmokingProfile(
+  profileType: 'combo' | 'terpenes' | 'effects'
+): Promise<ChartData<'pie', unknown, unknown>> {
+  const url = `/api/generate/smoking-profile?${profileType}=true`;
+  const data = await fetch(url);
+
   if (!data.ok) {
     throw new Error(`Failed to fetch smoking profile: ${data.statusText}`);
   }
 
-  const json = (await data.json()) as { [key: string]: number };
+  const json = (await data.json()) as { data: { [key: string]: number } };
 
-  // Check if json is undefined or null
   if (!json) {
     throw new Error('Invalid data received');
   }
-  const colors = Object.keys(json).map((_, index, array) =>
+  const colors = Object.keys(json.data).map((_, index, array) =>
     generatePastelColor(array.slice(0, index))
   );
 
-  const roundedValues = Object.values(json).map((value) => Math.round(value));
+  const roundedValues = Object.values(json.data).map((value) =>
+    Math.round(value)
+  );
 
   const graphData: ChartData<'pie', unknown, unknown> = {
-    labels: Object.keys(json),
+    labels: Object.keys(json.data),
     datasets: [
       {
         label: 'Smoking Profile',
@@ -110,15 +132,39 @@ const options = {
 
 export default function SmokingProfileModal() {
   const [open, setOpen] = useState(false);
+  const [profileType, setProfileType] = useState<
+    'combo' | 'terpenes' | 'effects'
+  >('effects');
+
   const {
     data: smokingProfile,
     isFetching,
     isError,
   } = useQuery({
-    queryKey: ['smoking-profile'],
-    queryFn: fetchSmokingProfile,
+    queryKey: ['smoking-profile', profileType],
+    queryFn: () => fetchSmokingProfile(profileType),
     enabled: open,
   });
+
+  const handleBack = () => {
+    if (profileType === 'combo') {
+      setProfileType('effects');
+    } else if (profileType === 'terpenes') {
+      setProfileType('combo');
+    } else {
+      setProfileType('terpenes');
+    }
+  };
+
+  const handleForward = () => {
+    if (profileType === 'effects') {
+      setProfileType('combo');
+    } else if (profileType === 'combo') {
+      setProfileType('terpenes');
+    } else {
+      setProfileType('effects');
+    }
+  };
 
   return (
     <main>
@@ -133,12 +179,26 @@ export default function SmokingProfileModal() {
         {isError && <PieChart className="text-red-500" />}
       </button>
       <ErrorBoundary fallback={<p>Something went wrong</p>}>
-        {smokingProfile && smokingProfile.datasets.length > 0 && (
-          <Modal open={open} setOpen={setOpen} title={'Smoker Profile'}>
-            {/* @ts-expect-error - zoom plugin options broken */}
+        <Modal open={open} setOpen={setOpen} title={'Smoker Profile'}>
+          <div className="flex flex-row items-center justify-between px-3 mb-1">
+            <button onClick={handleBack}>
+              <ArrowLeft className="w-6 h-6" />
+            </button>
+            <span className="capitalize text-base font-regular">
+              {profileType}
+            </span>
+            <button onClick={handleForward}>
+              <ArrowRight className="w-6 h-6" />
+            </button>
+          </div>
+
+          {smokingProfile && smokingProfile.datasets.length > 0 ? (
+            // @ts-expect-error - zoom plugin options broken
             <Pie data={smokingProfile} className="mb-2" options={options} />
-          </Modal>
-        )}
+          ) : (
+            <GraphSkeleton />
+          )}
+        </Modal>
       </ErrorBoundary>
     </main>
   );

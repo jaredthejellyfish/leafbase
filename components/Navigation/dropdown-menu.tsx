@@ -50,7 +50,7 @@ const DropdownMenu = (props: Props) => {
       animate={isOpen ? 'open' : 'closed'}
       initial="closed"
     >
-      {!matches && isOpen && <DropdownSearchbar />}
+      {!matches && <DropdownSearchbar />}
       <motion.div
         variants={variants.children}
         animate={isOpen ? 'open' : 'closed'}

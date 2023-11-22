@@ -151,16 +151,16 @@ const StrainSlugPage = async (props: Props) => {
                 </div>
               )}
               <div className="flex flex-row gap-4 px-1 text-xs text-zinc-500 dark:text-zinc-300">
-                {strain.thcPercent && (
+                {strain.thcPercent ? (
                   <span className="">
                     THC {strain.thcPercent && strain.thcPercent}%
                   </span>
-                )}
-                {strain.cannabinoids?.cbd?.percentile50 && (
+                ) : null}
+                {strain.cannabinoids?.cbd?.percentile50 ? (
                   <span className="">
                     CBD: {strain && strain?.cannabinoids?.cbd?.percentile50}%
                   </span>
-                )}
+                ) : null}
               </div>
             </div>
             <h1 className="text-2xl font-bold mb-0.5">{strain.name}</h1>

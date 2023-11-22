@@ -65,7 +65,7 @@ function GraphSkeleton() {
       </div>
       <div
         className={
-          'w-96 h-96 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse ml-2 rounded-full'
+          'w-60 h-60 sm:w-96 sm:h-96 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse ml-2 mb-2 rounded-full'
         }
       ></div>
     </div>

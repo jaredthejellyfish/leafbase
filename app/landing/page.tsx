@@ -61,7 +61,7 @@ export default async function Component() {
         </div>
         <div className="w-full absolute bottom-0 flex items-center justify-center h-10">
           <NextSectionButton>
-            <RxCaretDown className=" w-10 h-10 text-green-600 animate-bounce" />
+            <RxCaretDown className=" w-12 h-12 animate-bounce" />
           </NextSectionButton>
         </div>
       </section>

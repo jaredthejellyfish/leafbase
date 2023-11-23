@@ -6,6 +6,7 @@ import StrainCardLikeButton from './StrainCardLikeButton';
 import defaultImage from '@/public/strain.png';
 import type { Strain } from '@/lib/types';
 import StarRating from './StarRating';
+import { cn } from '@/lib/utils/cn';
 
 type Colors = {
   [key: string]: string;
@@ -44,15 +45,20 @@ const StrainCard = ({
   strain,
   priority,
   liked,
+  className,
 }: {
   strain: Strain;
   priority?: boolean;
   liked?: boolean;
+  className?: string;
 }) => {
   return (
     <Link
       href={`/strain/${strain.slug}`}
-      className="relative z-10 flex gap-5 p-5 mt-4 transition-transform border shadow rounded-xl dark:bg-zinc-900 md:flex-wrap flex-nowrap w-full md:max-w-xs dark:border-opacity-0 border-zinc-100 hover:scale-101"
+      className={cn(
+        'relative z-10 flex gap-5 p-5 mt-4 transition-transform border shadow rounded-xl dark:bg-zinc-900 md:flex-wrap flex-nowrap w-full md:max-w-xs dark:border-opacity-0 border-zinc-100 hover:scale-101',
+        className
+      )}
     >
       {typeof liked !== 'undefined' && (
         <StrainCardLikeButton liked={liked} id={strain.id} />

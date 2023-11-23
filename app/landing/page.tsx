@@ -66,7 +66,7 @@ export default async function Component() {
         </div>
       </section>
       {!error && strains && (
-        <section className="w-full snap-center relative bg-white dark:bg-zinc-900/50 py-8">
+        <section className="w-full snap-center relative bg-white dark:bg-zinc-900/50 py-8 border bonrder-transparent border-top-zinc-500">
           <div className="w-full h-full ">
             <div className="container px-4 md:px-6">
               <h2 className="text-3xl font-bold">Top Strains:</h2>

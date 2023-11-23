@@ -17,8 +17,11 @@ const config: Config = {
       },
     },
     extend: {
+      fontSize: {
+        '6xl': '4rem',
+      },
       height: {
-        'screen-bar': 'calc(92vh - 0.3rem)',
+        'screen-bar': 'calc(94vh)',
       },
       colors: {
         border: 'hsl(var(--border))',
@@ -81,7 +84,10 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [
+    require('tailwindcss-animate'),
+    require('@tailwindcss/aspect-ratio'),
+  ],
 };
 
 export default config;

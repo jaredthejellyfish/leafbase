@@ -3,6 +3,7 @@ import { RxCaretDown } from 'react-icons/rx';
 import Link from 'next/link';
 import React from 'react';
 
+import NextSectionButton from '@/components/NextSectionButton';
 import StrainCard from '@/components/StrainCard';
 import type { Database } from '@/lib/database';
 import type { Strain } from '@/lib/types';
@@ -18,22 +19,34 @@ export default async function Component() {
     .returns<Strain[]>();
 
   return (
-    <main className="flex-1 snap-y">
-      <section className="w-full h-screen-bar py-[20%] snap-center">
+    <main className="flex-1 snap-y snap-proximity">
+      <section className="w-full h-screen-bar py-[60%] sm:py-[40%] lg:py-[20%] snap-center">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
-              <h1 className="text-6xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-green-600">
+              <h1 className="xl:text-7xl text-6xl font-bold leading-tight bg-gradient-to-br from-green-700 via-green-500 to-green-300 text-transparent bg-clip-text animate-pulse-slow">
                 Welcome to Leafbase
               </h1>
+
               <p className="mx-auto max-w-[700px] text-zinc-500 md:text-xl dark:text-zinc-400">
-                The most comprehensive database of strains on the web.
+                The most comprehensive database of{' '}
+                <Link href="/strains" className="underline text-green-700/90">
+                  strains
+                </Link>{' '}
+                on the web.
               </p>
             </div>
-            <div className="space-x-4">
+            <div className="space-x-3">
               <Link
-                className="inline-flex h-9 items-center justify-center rounded-md bg-green-500 px-4 py-2 text-sm font-medium text-zinc-50 shadow transition-colors hover:bg-green-500/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-zinc-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-zinc-50 dark:text-black dark:hover:bg-zinc-50/90 dark:focus-visible:ring-zinc-300"
-                href="/profile"
+                className="border border-zinc-500 inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium "
+                href="/auth/signin"
+              >
+                Log in
+              </Link>
+              <span>or</span>
+              <Link
+                className="border border-zinc-500 inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium "
+                href="/auth/signup"
               >
                 Sign up
               </Link>
@@ -41,7 +54,9 @@ export default async function Component() {
           </div>
         </div>
         <div className="w-full absolute bottom-0 flex items-center justify-center h-10">
-          <RxCaretDown className=" w-10 h-10 text-green-600 animate-bounce" />
+          <NextSectionButton>
+            <RxCaretDown className=" w-10 h-10 text-green-600 animate-bounce" />
+          </NextSectionButton>
         </div>
       </section>
       {!error && strains && (

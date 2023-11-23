@@ -41,10 +41,7 @@ async function Navigation() {
           <line x1="5" y1="0" x2="5" y2="200" strokeWidth="1.3" />
         </svg>
         <ThemeToggle />
-        <UserAvatar
-          avatarUrl={user_metadata?.image}
-          username={user_metadata?.displayName}
-        />
+        <UserAvatar avatarUrl={user_metadata?.image} />
         <HamburgerMenu />
       </div>
     </nav>

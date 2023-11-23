@@ -32,7 +32,7 @@ const NavigationSkeleton = () => {
           <Moon className="absolute h-[1.15rem] w-[1.15rem] sm:h-[1.3rem] sm:w-[1.3rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>
         </Button>
-        <UserAvatar username={'N/A'} />
+        <UserAvatar />
 
         <svg
           className="text-dark rounded dark:text-white hover:bg-gray-300 dark:hover:bg-zinc-700 transition-colors select-none hover:cursor-pointer"

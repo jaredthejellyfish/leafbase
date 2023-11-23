@@ -193,6 +193,7 @@ export interface Database {
           languages: string | null
           location: string | null
           name: string | null
+          profile_id: string
         }
         Insert: {
           aboutMe?: string | null
@@ -203,6 +204,7 @@ export interface Database {
           languages?: string | null
           location?: string | null
           name?: string | null
+          profile_id?: string
         }
         Update: {
           aboutMe?: string | null
@@ -213,6 +215,7 @@ export interface Database {
           languages?: string | null
           location?: string | null
           name?: string | null
+          profile_id?: string
         }
         Relationships: [
           {

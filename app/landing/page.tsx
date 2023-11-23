@@ -26,11 +26,11 @@ export default async function Component() {
   return (
     <main className="flex-1 snap-y snap-proximity">
       <section className="w-full h-screen-bar py-[60%] sm:py-[40%] lg:py-[20%] snap-center">
-        <ClientParticles className="absolute top-16 left-0 w-full z-0 h-[93%]" />
-        <div className="container px-4 md:px-6">
+        <ClientParticles className="absolute top-16 left-0 w-full -z-10 h-[93%]" />
+        <div className="container px-4 md:px-6 ">
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
-              <h1 className="text-5xl sm:text-6xl xl:text-7xl font-bold leading-tight bg-gradient-to-br from-green-700 via-green-500 to-green-300 text-transparent bg-clip-text animate-pulse-slow">
+              <h1 className="z-50 text-5xl sm:text-6xl xl:text-7xl font-bold leading-tight bg-gradient-to-br from-green-800 via-green-600 to-green-300 text-transparent bg-clip-text">
                 Welcome to Leafbase
               </h1>
 
@@ -42,7 +42,7 @@ export default async function Component() {
                 on the web.
               </p>
             </div>
-            <div className="space-x-3">
+            <div className="space-x-3 z-50">
               <Link
                 className="border border-zinc-500 inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium bg-zinc-900"
                 href="/auth/signin"

@@ -1,23 +1,22 @@
 'use client';
 import React from 'react';
 
-type Props = { children: React.ReactNode };
+type Props = { children: React.ReactNode; nextSectionId: string };
 
-function NextSectionButton({ children }: Props) {
+function NextSectionButton({ children, nextSectionId }: Props) {
   function handleClick() {
-    // Calculate the current viewport height.
-    const screenHeight = window.innerHeight;
+    // Find the element with the specified ID.
+    const sectionElement = document.getElementById(nextSectionId);
 
-    // Advance the scroll position by one screen height.
-    window.scrollBy({
-      top: screenHeight, // Scroll down by one screen height.
-      left: 0, // No horizontal scroll.
-      behavior: 'smooth', // Optional: Adds smooth scrolling.
-    });
-
-    console.log(
-      'NextSectionButton clicked and page scrolled by one screen height'
-    );
+    if (sectionElement) {
+      // Scroll the element into view.
+      sectionElement.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start', // Align the top of the element with the top of the viewport.
+      });
+    } else {
+      console.error(`Element with id '${nextSectionId}' not found.`);
+    }
   }
 
   return (

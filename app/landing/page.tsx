@@ -4,10 +4,17 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import React from 'react';
 
-import NextSectionButton from '@/components/NextSectionButton';
 import StrainCard from '@/components/StrainCard';
 import type { Database } from '@/lib/database';
 import type { Strain } from '@/lib/types';
+
+const NextSectionButton = dynamic(
+  () => import('@/components/NextSectionButton'),
+  {
+    ssr: false,
+    loading: () => <RxCaretDown className=" w-12 h-12" />,
+  }
+);
 
 const ClientParticles = dynamic(() => import('@/components/ClientParticles'), {
   ssr: false,
@@ -60,13 +67,16 @@ export default async function Component() {
           </div>
         </div>
         <div className="w-full absolute bottom-0 flex items-center justify-center h-10">
-          <NextSectionButton>
+          <NextSectionButton nextSectionId="top-strains">
             <RxCaretDown className=" w-12 h-12 animate-bounce" />
           </NextSectionButton>
         </div>
       </section>
       {!error && strains && (
-        <section className="w-full snap-center relative bg-white dark:bg-zinc-900/50 py-8 border bonrder-transparent border-top-zinc-500">
+        <section
+          className="w-full snap-center relative bg-white dark:bg-zinc-900/50 py-8 border bonrder-transparent border-top-zinc-500"
+          id="top-strains"
+        >
           <div className="w-full h-full ">
             <div className="container px-4 md:px-6">
               <h2 className="text-3xl font-bold">Top Strains:</h2>

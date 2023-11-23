@@ -44,14 +44,14 @@ export default async function Component() {
             </div>
             <div className="space-x-3 z-50">
               <Link
-                className="border border-zinc-500 inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium bg-zinc-900"
+                className="border border-zinc-500 inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium bg-white dark:bg-zinc-900"
                 href="/auth/signin"
               >
                 Log in
               </Link>
               <span>or</span>
               <Link
-                className="border border-zinc-500 inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium bg-zinc-900"
+                className="border border-zinc-500 inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium bg-white dark:bg-zinc-900"
                 href="/auth/signup"
               >
                 Sign up

@@ -30,7 +30,7 @@ export default async function Component() {
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
-              <h1 className="xl:text-7xl text-6xl font-bold leading-tight bg-gradient-to-br from-green-700 via-green-500 to-green-300 text-transparent bg-clip-text animate-pulse-slow">
+              <h1 className="text-5xl sm:text-6xl xl:text-7xl font-bold leading-tight bg-gradient-to-br from-green-700 via-green-500 to-green-300 text-transparent bg-clip-text animate-pulse-slow">
                 Welcome to Leafbase
               </h1>
 

@@ -1,6 +1,7 @@
 'use server';
 
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import { z } from 'zod';
 
@@ -28,7 +29,7 @@ export async function signUpUser(formData: FormData) {
     return { status: null, error: validated.error.message };
   }
 
-  await supabase.auth.signUp({
+  const { error } = await supabase.auth.signUp({
     email: validated.data.email,
     password: validated.data.password,
     options: {
@@ -41,4 +42,10 @@ export async function signUpUser(formData: FormData) {
       },
     },
   });
+
+  if (error) {
+    return { status: null, error: error.message };
+  }
+
+  redirect('/auth/verify');
 }

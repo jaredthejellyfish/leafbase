@@ -71,7 +71,7 @@ export async function POST(request: Request) {
       strain2Data
     )}\`\`\``;
 
-    const prompt = `${formattedStrain1}\n${formattedStrain2}\n\nDescribe why ${strain1Name} and ${strain2Name} are two strains that go well together.`;
+    const prompt = `${formattedStrain1}\n${formattedStrain2}\n\nDescribe how ${strain1Name} and ${strain2Name} would mix together.`;
 
     const completion = await openai.chat.completions.create({
       model: 'gpt-4-1106-preview',

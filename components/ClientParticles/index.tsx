@@ -10,7 +10,7 @@ import type { Engine } from 'tsparticles-engine';
 
 type Props = { disabled?: boolean; className?: string; id?: string };
 
-function ClientParticles({ disabled, className , id = "tsparticles"}: Props) {
+function ClientParticles({ disabled, className, id = 'tsparticles' }: Props) {
   const { theme } = useTheme();
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadSlim(engine);

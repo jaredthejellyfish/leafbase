@@ -10,7 +10,9 @@
     "lint": "next lint",
     "prod": "bun run dbtypes && bunx prettier . --write && tsc && bunx eslint . --fix && vercel --prod",
     "dbtypes": "supabase gen types typescript --project-id euwnyenhzhztqztezjdn > ./lib/database/database.ts",
-    "pretty": "bunx prettier . --write"
+    "pretty": "bunx prettier . --write",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^14.0.3",
@@ -29,6 +31,7 @@
     "chartjs-plugin-zoom": "^2.0.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "cypress": "latest",
     "date-fns": "^2.30.0",
     "framer-motion": "^10.16.4",
     "geist": "^1.0.0",
@@ -62,6 +65,8 @@
     "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "autoprefixer": "^10",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-localstorage-commands": "^2.2.5",
     "eslint": "^8",
     "eslint-config-next": "14.0.0",
     "eslint-plugin-react": "^7.33.2",

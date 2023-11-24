@@ -30,8 +30,12 @@ export async function updateUser(formData: FormData) {
   const location =
     formData.get('location') || session?.user.user_metadata.location;
 
+  const aboutMe =
+    formData.get('aboutMe') || session?.user.user_metadata.aboutMe;
+
   const newUserMetadata = {
     ...session.user.user_metadata,
+    aboutMe,
     name,
     displayName: username,
     phone,

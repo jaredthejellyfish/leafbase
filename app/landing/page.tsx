@@ -31,8 +31,11 @@ export default async function Component() {
     .returns<Strain[]>();
 
   return (
-    <main className="flex-1 snap-y snap-proximity">
-      <section className="w-full h-screen-bar py-[60%] sm:py-[40%] lg:py-[20%] snap-center">
+    <main className="flex-1">
+      <section
+        className="w-full h-screen-bar py-[60%] sm:py-[40%] lg:py-[20%]"
+        style={{ scrollSnapAlign: 'start', scrollMarginTop: "5rem"}}
+      >
         <ClientParticles className="absolute top-16 left-0 w-full -z-10 h-[93%]" />
         <div className="container px-4 md:px-6 ">
           <div className="flex flex-col items-center space-y-4 text-center">
@@ -74,7 +77,8 @@ export default async function Component() {
       </section>
       {!error && strains && (
         <section
-          className="w-full snap-center relative bg-white dark:bg-zinc-900/50 py-8 border bonrder-transparent border-top-zinc-500"
+        style={{ scrollSnapAlign: 'start'}}
+          className="w-full relative bg-white dark:bg-zinc-900/50 py-8 border bonrder-transparent border-top-zinc-500"
           id="top-strains"
         >
           <div className="w-full h-full ">

@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('create-account-and-signin', () => {
+describe('create account and sign in', () => {
   it('creates a new user', () => {
     cy.visit('http://localhost:3000/auth/signup');
     cy.viewport(1280, 720);

@@ -90,7 +90,6 @@ function Modal({
   }
 
   useEffect(() => {
-    // Disable scrolling when the modal is open
     if (isOpen) {
       document.body.style.overflow = 'hidden';
     } else {

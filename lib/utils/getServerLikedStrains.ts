@@ -38,7 +38,6 @@ export async function getServerLikedStrains(userId?: string): Promise<{
     const session = data.session;
 
     if (error || !session) {
-      console.error(error || 'No session found');
       return {
         error: error || 'No session found',
         data: undefined,

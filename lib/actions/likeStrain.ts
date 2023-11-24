@@ -16,14 +16,12 @@ export async function likeStrain(liked: boolean, strain_id: string) {
   const session = data.session;
 
   if (error || !session) {
-    console.error(error || 'No session found');
     return;
   }
 
   const user_id = session.user.id;
 
   if (!strain_id || !user_id) {
-    console.error('Invalid like arguments');
     return;
   }
 

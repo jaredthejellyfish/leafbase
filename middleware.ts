@@ -27,8 +27,8 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL('/auth/signin', req.nextUrl));
   }
 
-  if (!data.session && req.nextUrl.pathname === '/') {
-    return NextResponse.redirect(new URL('/landing', req.nextUrl));
+  if (data.session && req.nextUrl.pathname === '/') {
+    return NextResponse.redirect(new URL('/home', req.nextUrl));
   }
 
   return res;

@@ -6,7 +6,7 @@ import LoginReloader from '@/components/LoginReloader';
 import SubmitButton from '@/components/SubmitButton';
 import SocialSignin from '@/components/SocialSignin';
 
-export default function Login() {
+export default function AuthSignIn() {
   return (
     <main className="flex items-center justify-center py-32 bg-zinc-50/50 dark:bg-zinc-950 px-4 sm:px-0">
       <div className="mx-auto max-w-sm space-y-3 bg-white dark:bg-zinc-900 p-5 sm:p-8 rounded-lg shadow-xl">

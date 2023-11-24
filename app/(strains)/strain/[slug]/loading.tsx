@@ -2,7 +2,7 @@ import React from 'react';
 
 import NavBreadcrumbsSkeleton from '@/components/NavBreadcrumbs/skeleton';
 
-const StrainLoading = () => {
+export default async function StrainLoading() {
   return (
     <main className="justify-center px-5 md:px-16 py-3">
       <NavBreadcrumbsSkeleton urls={[{ name: 'Strains' }, { name: '...' }]} />
@@ -55,6 +55,4 @@ const StrainLoading = () => {
       </div>
     </main>
   );
-};
-
-export default StrainLoading;
+}

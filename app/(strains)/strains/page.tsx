@@ -30,7 +30,9 @@ const StrainCardLoader = dynamic(
   }
 );
 
-async function StrainsPage(request: { searchParams: { filter?: string } }) {
+export default async function Strains(request: {
+  searchParams: { filter?: string };
+}) {
   const filter = request.searchParams.filter;
 
   const perPage = 12;
@@ -85,5 +87,3 @@ async function StrainsPage(request: { searchParams: { filter?: string } }) {
     </main>
   );
 }
-
-export default StrainsPage;

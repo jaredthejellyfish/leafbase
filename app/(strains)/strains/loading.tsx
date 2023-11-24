@@ -3,7 +3,7 @@ import React from 'react';
 import FilterByMenuSkeleton from '@/components/FilterByMenu/skeleton';
 import StrainCardSkeleton from '@/components/StrainCard/skeleton';
 
-function StrainsLoading() {
+export default function StrainsLoading() {
   return (
     <main className="pb-8 px-5 md:px-16 xl:px-36 py-3">
       <div className="">
@@ -33,5 +33,3 @@ function StrainsLoading() {
     </main>
   );
 }
-
-export default StrainsLoading;

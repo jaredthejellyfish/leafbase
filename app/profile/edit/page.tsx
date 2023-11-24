@@ -23,7 +23,7 @@ export const metadata = {
   title: 'Edit Profile - Leafbase',
 };
 
-async function EditPage() {
+export default async function ProfileEdit() {
   const { user_metadata, session } = await getServerUserMetadata();
 
   return (
@@ -121,5 +121,3 @@ async function EditPage() {
     </div>
   );
 }
-
-export default EditPage;

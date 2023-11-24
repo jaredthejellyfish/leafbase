@@ -7,7 +7,7 @@ import SubmitButton from '@/components/SubmitButton';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
-export default function SignUp() {
+export default function AuthSignUp() {
   return (
     <main className="flex items-center justify-center py-32 bg-zinc-50/50 dark:bg-zinc-950 px-4 sm:px-0">
       <div className="flex justify-center items-center h-full w-full">

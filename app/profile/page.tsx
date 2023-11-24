@@ -8,7 +8,7 @@ import { getServerUserMetadata } from '@/lib/utils/getServerUserMetadata';
 import GeneralInformation from '@/components/GeneralInformation';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs';
 import LikedStrains from '@/components/LikedStrains';
-import Profile from '@/components/Profile';
+import ProfileSection from '@/components/Profile';
 
 const Notifier = dynamic(() => import('@/components/Notifier'), { ssr: false });
 
@@ -18,7 +18,7 @@ export const metadata = {
     'Explore your personal user page, showcasing your profile, comments, and a curated list of your favorite cannabis strains. Stay updated and engaged with the community.',
 };
 
-async function ProfilePage() {
+export default async function Profile() {
   const { user_metadata, session } = await getServerUserMetadata();
 
   if (!user_metadata) {
@@ -37,7 +37,7 @@ async function ProfilePage() {
       />
       <div className="flex flex-col gap-6 mt-3 lg:flex-row">
         <div id="vertical 1" className="flex flex-col gap-4 lg:w-1/3">
-          <Profile user={user_metadata} session={session} />
+          <ProfileSection user={user_metadata} session={session} />
         </div>
         <div id="vertical 2" className="flex flex-col gap-4 pb-3 lg:w-2/3">
           <GeneralInformation user={user_metadata} />
@@ -52,5 +52,3 @@ async function ProfilePage() {
     </div>
   );
 }
-
-export default ProfilePage;

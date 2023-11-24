@@ -20,7 +20,7 @@ const ClientParticles = dynamic(() => import('@/components/ClientParticles'), {
   ssr: false,
 });
 
-export default async function Component() {
+export default async function Landing() {
   const supabase = createClientComponentClient<Database>();
 
   const { data: strains, error } = await supabase
@@ -40,7 +40,7 @@ export default async function Component() {
         <div className="container px-4 md:px-6 ">
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
-              <h1 className="z-50 text-5xl sm:text-6xl xl:text-7xl font-bold leading-tight bg-gradient-to-br from-green-800 via-green-600 to-green-300 text-transparent bg-clip-text">
+              <h1 className="z-50 text-5xl sm:text-6xl xl:text-7xl font-bold leading-tight bg-gradient-to-br from-green-800 via-green-600 to-green-300 text-transparent bg-clip-text bg-300x animate-gradient">
                 Welcome to Leafbase
               </h1>
 

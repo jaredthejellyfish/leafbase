@@ -11,7 +11,7 @@ import Profile from '@/components/Profile';
 
 type Props = { params: { username: string } };
 
-async function UsernamePage(props: Props) {
+export default async function ProfileUser(props: Props) {
   if (!props.params.username) return null;
 
   const { userProfile: user } = await getServerUserProfileFromUsername(
@@ -49,5 +49,3 @@ async function UsernamePage(props: Props) {
     </div>
   );
 }
-
-export default UsernamePage;

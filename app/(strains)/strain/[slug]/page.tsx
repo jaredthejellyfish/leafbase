@@ -73,7 +73,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   };
 }
 
-const StrainSlugPage = async (props: Props) => {
+export default async function StrainSlug(props: Props) {
   const { slug } = props.params;
 
   const cookieStore = cookies();
@@ -213,6 +213,4 @@ const StrainSlugPage = async (props: Props) => {
       </div>
     </main>
   );
-};
-
-export default StrainSlugPage;
+}

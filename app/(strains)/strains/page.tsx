@@ -49,11 +49,11 @@ export default async function Strains(request: {
       <div className="flex flex-col items-center">
         <div id="heading" className="sm:max-w-[992px] xl:max-w-[1328px] w-full">
           <h1 className="mt-4 mb-2 text-3xl font-bold ">All strains</h1>
-          <p className="">
+          <h3 className="">
             Browse the most comprehensive weed strain library on the web. Browse
             weed strains by cannabis type (indica, sativa, or hybrid), effects,
             or number of comments.
-          </p>
+          </h3>
           <div className="flex items-center justify-between px-1 font-medium">
             <span className="mt-4 text-xs text-zinc-400">{count} strains</span>
             <span className="flex flex-row items-center gap-1 mb-1 text-xs text-zinc-400">
@@ -69,7 +69,7 @@ export default async function Strains(request: {
             for professional medical advice.
           </span>
         </div>
-        <div className="flex flex-col gap-4 items-center justify-center w-full">
+        <div  className="flex flex-col gap-4 items-center justify-center w-full">
           <ErrorBoundary fallback={<div>Something went wrong</div>}>
             {strains && count && count > perPage && (
               <StrainCardLoader

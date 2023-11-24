@@ -29,6 +29,7 @@ const StarRating = (props: { rating: number; className?: string }) => {
   return (
     <div
       style={{ display: 'flex' }}
+      id="strain-star-rating"
       className={`flex flex-row text-black ${
         props.className ? props.className : 'dark:text-white'
       } `}

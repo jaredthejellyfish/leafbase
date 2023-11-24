@@ -29,15 +29,12 @@ const HamburgerMenu = () => {
   };
 
   const hamburgerRef = useRef<HTMLDivElement>(null);
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
         hamburgerRef.current &&
-        !hamburgerRef.current.contains(event.target as Node) &&
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
+        !hamburgerRef.current.contains(event.target as Node)
       ) {
         setIsOpen(false);
       }
@@ -51,7 +48,7 @@ const HamburgerMenu = () => {
 
   return (
     <>
-      <div ref={hamburgerRef}>
+      <div ref={hamburgerRef} id="hamburger-menu">
         <svg
           className="text-dark rounded dark:text-white hover:bg-gray-300 dark:hover:bg-zinc-700 transition-colors select-none hover:cursor-pointer"
           width={25}
@@ -82,8 +79,6 @@ const HamburgerMenu = () => {
             d="M3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
           ></motion.path>
         </svg>
-      </div>
-      <div ref={dropdownRef} className="absolute top-0 left-0">
         <DropdownMenu open={isOpen} setOpen={setIsOpen} />
       </div>
     </>

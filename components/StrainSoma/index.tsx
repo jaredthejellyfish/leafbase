@@ -118,7 +118,7 @@ const StrainSoma = (props: Props) => {
   const positives = getPositivesFromTopThree(strain);
 
   return (
-    <div className="flex flex-col gap-2 p-2 px-3 border rounded border-zinc-200 dark:border-zinc-600 dark:bg-zinc-800 md:mt-7">
+    <div className="flex flex-col gap-2 p-2 px-3 border rounded border-zinc-200 dark:border-zinc-600 dark:bg-zinc-800 md:mt-7" id="strain-soma">
       <h3 className="text-sm font-bold uppercase">Strain soma</h3>
       {topThreeEffects.length >= 3 && (
         <div className="flex flex-row flex-wrap items-center w-full gap-2 text-xs">

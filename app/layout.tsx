@@ -1,5 +1,5 @@
 import { Analytics as NextAnalytics } from '@vercel/analytics/react';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+// import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { GeistSans } from 'geist/font/sans';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
@@ -48,7 +48,7 @@ export default function RootLayout({
             {children}
             <Toaster />
             <CookieBanner />
-            <ReactQueryDevtools initialIsOpen={false} />
+            {/* <ReactQueryDevtools initialIsOpen={false} /> */}
           </QueryProvider>
         </ThemeProvider>
         <NextAnalytics />

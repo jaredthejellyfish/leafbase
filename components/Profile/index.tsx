@@ -29,6 +29,7 @@ const Profile = (props: Props) => {
           <>
             {user.displayName && (
               <Link
+                id="view-profile"
                 className="text-zinc-500 dark:text-zinc-300"
                 href={`/profile/${user.displayName}`}
               >
@@ -36,6 +37,7 @@ const Profile = (props: Props) => {
               </Link>
             )}
             <Link
+              id="edit-profile"
               className="text-zinc-500 dark:text-zinc-300"
               href="/profile/edit"
             >

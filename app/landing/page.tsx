@@ -33,8 +33,8 @@ export default async function Landing() {
   return (
     <main className="flex-1">
       <section
-        className="w-full h-screen-bar py-[60%] sm:py-[40%] lg:py-[20%]"
-        style={{ scrollSnapAlign: 'start', scrollMarginTop: '5rem' }}
+        className="w-full h-screen-bar flex items-center justify-center "
+        style={{ scrollSnapAlign: 'start', scrollMarginTop: '6rem' }}
       >
         <ClientParticles className="absolute top-16 left-0 w-full -z-10 h-[93%]" />
         <div className="container px-4 md:px-6 ">
@@ -54,6 +54,7 @@ export default async function Landing() {
             </div>
             <div className="space-x-3 z-50">
               <Link
+                id="login"
                 className="border border-zinc-500 inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium bg-white dark:bg-zinc-900"
                 href="/auth/signin"
               >
@@ -61,6 +62,7 @@ export default async function Landing() {
               </Link>
               <span>or</span>
               <Link
+                id="signup"
                 className="border border-zinc-500 inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium bg-white dark:bg-zinc-900"
                 href="/auth/signup"
               >
@@ -84,7 +86,10 @@ export default async function Landing() {
           <div className="w-full h-full ">
             <div className="container px-4 md:px-6">
               <h2 className="text-3xl font-bold">Top Strains:</h2>
-              <div className="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <div
+                id={'top-strain-cards'}
+                className="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+              >
                 {strains.map((strain) => (
                   <StrainCard key={strain.id} strain={strain} />
                 ))}

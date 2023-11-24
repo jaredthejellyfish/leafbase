@@ -35,9 +35,14 @@ function NextSectionButton({ children, nextSectionId }: Props) {
   }
 
   return (
-    <div onClick={handleClick} className="cursor-pointer">
+    <button
+      id="next-section"
+      name="next-section"
+      onClick={handleClick}
+      className="cursor-pointer"
+    >
       {children}
-    </div>
+    </button>
   );
 }
 

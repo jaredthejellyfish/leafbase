@@ -104,7 +104,7 @@ export default async function ProfileEdit() {
               </div>
             </span>
             <div className="w-full flex h-fit">
-              <SubmitButton text="Save" whilePending="Saving..." />
+              <SubmitButton text="Save" id="submit-edit-profile" whilePending="Saving..." />
             </div>
           </div>
         </div>

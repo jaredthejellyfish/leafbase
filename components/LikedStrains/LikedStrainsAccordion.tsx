@@ -33,6 +33,7 @@ function LikedStrainsAccordion(props: Props) {
       <motion.div
         variants={variants}
         initial="closed"
+        id="liked-strains-accordion"
         animate={isOpen ? 'open' : 'closed'}
         className="w-full flex flex-row flex-wrap items-start justify-start mt-3 gap-x-1.5 gap-y-1.5 sm:gap-x-3 sm:gap-y-3 overflow-hidden"
       >

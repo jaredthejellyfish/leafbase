@@ -46,14 +46,17 @@ const StrainCard = ({
   priority,
   liked,
   className,
+  id,
 }: {
   strain: Strain;
   priority?: boolean;
   liked?: boolean;
   className?: string;
+  id?: string;
 }) => {
   return (
     <Link
+      id={id}
       href={`/strain/${strain.slug}`}
       className={cn(
         'relative z-10 flex gap-5 p-5 mt-4 transition-transform border shadow rounded-xl dark:bg-zinc-900 md:flex-wrap flex-nowrap w-full md:max-w-xs dark:border-opacity-0 border-zinc-100 hover:scale-101',

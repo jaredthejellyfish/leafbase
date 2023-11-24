@@ -1,3 +1,4 @@
+import { Analytics as NextAnalytics } from '@vercel/analytics/react';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { GeistSans } from 'geist/font/sans';
 import type { Metadata } from 'next';
@@ -5,7 +6,6 @@ import dynamic from 'next/dynamic';
 import React from 'react';
 
 import { ThemeProvider, QueryProvider } from '@/components/Providers';
-import { Analytics as NextAnalytics } from '@vercel/analytics/react';
 import NavigationSkeleton from '@/components/Navigation/skeleton';
 import './globals.css';
 

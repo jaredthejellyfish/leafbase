@@ -89,6 +89,20 @@ function Modal({
     if (setOpen) setOpen(false);
   }
 
+  useEffect(() => {
+    // Disable scrolling when the modal is open
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    // Re-enable scrolling when the component unmounts
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   return (
     <LazyMotion
       features={() => import('framer-motion').then((res) => res.domAnimation)}

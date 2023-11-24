@@ -69,7 +69,7 @@ export default async function Strains(request: {
             for professional medical advice.
           </span>
         </div>
-        <div  className="flex w-full flex-col items-center justify-center gap-4">
+        <div className="flex w-full flex-col items-center justify-center gap-4">
           <ErrorBoundary fallback={<div>Something went wrong</div>}>
             {strains && count && count > perPage && (
               <StrainCardLoader

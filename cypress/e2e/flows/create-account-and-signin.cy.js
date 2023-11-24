@@ -47,5 +47,4 @@ describe('create account and sign in', () => {
     cy.url().should('include', '/profile');
     cy.contains('Welcome to Leafbase!').should('be.visible');
   });
-
 });

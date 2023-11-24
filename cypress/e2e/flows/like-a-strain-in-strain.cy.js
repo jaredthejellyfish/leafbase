@@ -16,10 +16,17 @@ describe('like a strain', () => {
   it('likes a strain in the strain page', () => {
     cy.visit('http://localhost:3000/strain/original-glue');
 
-    cy.get('#strain-options').children().should('have.length', 3).eq(2).as('likeButton')
+    cy.get('#strain-options')
+      .children()
+      .should('have.length', 3)
+      .eq(2)
+      .as('likeButton');
 
     cy.get('@likeButton').click();
-    cy.get('@likeButton').children().first().should('have.class', 'text-green-600/75');
+    cy.get('@likeButton')
+      .children()
+      .first()
+      .should('have.class', 'text-green-600/75');
   });
 
   it('checks if the strain is in the profile page', () => {
@@ -36,9 +43,16 @@ describe('like a strain', () => {
   it('unlikes a strain in the strain page', () => {
     cy.visit('http://localhost:3000/strain/original-glue');
 
-    cy.get('#strain-options').children().should('have.length', 3).eq(2).as('likeButton')
+    cy.get('#strain-options')
+      .children()
+      .should('have.length', 3)
+      .eq(2)
+      .as('likeButton');
 
     cy.get('@likeButton').click();
-    cy.get('@likeButton').children().first().should('not.have.class', 'text-green-600/75');
+    cy.get('@likeButton')
+      .children()
+      .first()
+      .should('not.have.class', 'text-green-600/75');
   });
 });

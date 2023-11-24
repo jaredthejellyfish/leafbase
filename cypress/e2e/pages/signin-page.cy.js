@@ -19,9 +19,9 @@ describe('signin page', () => {
     cy.get('input[name="email"]').type('ger.almenara+testing@gmail.com');
     cy.get('input[name="password"]').type('password');
     cy.get('button[type="submit"]').click();
-    cy.wait(1000)
+    cy.wait(1000);
     cy.url().should('include', '/profile');
-    cy.contains("Welcome to Leafbase!").should('be.visible');
+    cy.contains('Welcome to Leafbase!').should('be.visible');
   });
 
   it('should have a link to the signup page', () => {
@@ -29,7 +29,6 @@ describe('signin page', () => {
   });
 
   it('takes a screenshot of the signin page in dark mode', () => {
-
     cy.wait(100).then(() => {
       cy.scrollTo('top');
       cy.screenshot('signin-page-dark');

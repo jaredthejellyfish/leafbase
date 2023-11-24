@@ -99,7 +99,10 @@ const StrainCardLoader = (props: Props) => {
 
   return (
     <>
-      <div id="strain-card-loader" className="relative grid gap-x-4 md:grid-cols-3 xl:grid-cols-4">
+      <div
+        id="strain-card-loader"
+        className="relative grid gap-x-4 md:grid-cols-3 xl:grid-cols-4"
+      >
         {data &&
           data.pages
             .flatMap((page) => page.strains)

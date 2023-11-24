@@ -111,7 +111,10 @@ export default async function StrainSlug(props: Props) {
         className="relative flex flex-col items-center justify-center rounded border border-zinc-300 pb-8 shadow dark:border-transparent dark:bg-zinc-900"
       >
         {typeof likes !== 'undefined' ? (
-          <div id="strain-options" className="absolute right-5 top-5 z-0 flex items-center justify-center gap-4 text-zinc-700 dark:text-zinc-400">
+          <div
+            id="strain-options"
+            className="absolute right-5 top-5 z-0 flex items-center justify-center gap-4 text-zinc-700 dark:text-zinc-400"
+          >
             <StrainSuggestionsButton
               slug={strain.slug}
               id={strain.id}
@@ -204,7 +207,9 @@ export default async function StrainSlug(props: Props) {
           <div className="mt-3 md:w-1/3">
             <StrainSoma strain={strain as unknown as StrainWithComments} />
           </div>
-          <div className="px-0.5 md:w-2/3" id="strain-description">{strain.description}</div>
+          <div className="px-0.5 md:w-2/3" id="strain-description">
+            {strain.description}
+          </div>
         </div>
       </div>
       <div className="mt-5">

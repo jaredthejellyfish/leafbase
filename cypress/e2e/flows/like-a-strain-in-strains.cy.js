@@ -22,7 +22,11 @@ describe('like a strain', () => {
     cy.get('@strainCardLoader').children().first().as('firstStrainCard');
 
     cy.get('@firstStrainCard').find('button').click();
-    cy.get('@firstStrainCard').find('button').children().first().should('have.class', 'text-green-600/75');
+    cy.get('@firstStrainCard')
+      .find('button')
+      .children()
+      .first()
+      .should('have.class', 'text-green-600/75');
   });
 
   it('checks if the strain is in the profile page', () => {
@@ -45,6 +49,10 @@ describe('like a strain', () => {
     cy.get('@strainCardLoader').children().first().as('firstStrainCard');
 
     cy.get('@firstStrainCard').find('button').click();
-    cy.get('@firstStrainCard').find('button').children().first().should('not.have.class', 'text-green-600/75');
+    cy.get('@firstStrainCard')
+      .find('button')
+      .children()
+      .first()
+      .should('not.have.class', 'text-green-600/75');
   });
 });

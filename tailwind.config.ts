@@ -21,7 +21,7 @@ const config: Config = {
         '6xl': '4rem',
       },
       height: {
-        'screen-bar': 'calc(94vh)',
+        'screen-bar': 'calc(93vh)',
       },
       colors: {
         border: 'hsl(var(--border))',

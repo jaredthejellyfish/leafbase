@@ -8,9 +8,9 @@ import { Button } from '../ui/button';
 
 const NavigationSkeleton = () => {
   return (
-    <nav className="justify-between px-6 bg-gray-100 dark:bg-zinc-900 h-14 sm:h-16 flex items-center">
+    <nav className="flex h-14 items-center justify-between bg-gray-100 px-6 dark:bg-zinc-900 sm:h-16">
       <div>
-        <div className="flex items-center justify-start gap-2.5 sm:gap-4 text-xl">
+        <div className="flex items-center justify-start gap-2.5 text-xl sm:gap-4">
           <Image
             className="rounded-sm sm:scale-125"
             src={SiteLogo}
@@ -18,24 +18,24 @@ const NavigationSkeleton = () => {
             width={33}
             alt="site logo"
           />
-          <span className="font-medium text-base sm:text-xl">Leafbase</span>
+          <span className="text-base font-medium sm:text-xl">Leafbase</span>
         </div>
       </div>
-      <div className="flex flex-row items-center sm:gap-5 gap-3">
+      <div className="flex flex-row items-center gap-3 sm:gap-5">
         <Button
           variant="outline"
           size="icon"
-          className="sm:h-[1.6rem] sm:w-[1.6rem] h-[1.4rem] w-[1.4rem] hover:bg-gray-300 dark:hover:bg-zinc-700 bg-transparent border-transparent"
+          className="h-[1.4rem] w-[1.4rem] border-transparent bg-transparent hover:bg-gray-300 dark:hover:bg-zinc-700 sm:h-[1.6rem] sm:w-[1.6rem]"
           disabled
         >
-          <Sun className="h-[1.15rem] w-[1.15rem] sm:h-[1.3rem] sm:w-[1.3rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.15rem] w-[1.15rem] sm:h-[1.3rem] sm:w-[1.3rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <Sun className="h-[1.15rem] w-[1.15rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 sm:h-[1.3rem] sm:w-[1.3rem]" />
+          <Moon className="absolute h-[1.15rem] w-[1.15rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 sm:h-[1.3rem] sm:w-[1.3rem]" />
           <span className="sr-only">Toggle theme</span>
         </Button>
         <UserAvatar />
 
         <svg
-          className="text-dark rounded dark:text-white hover:bg-gray-300 dark:hover:bg-zinc-700 transition-colors select-none hover:cursor-pointer"
+          className="text-dark select-none rounded transition-colors hover:cursor-pointer hover:bg-gray-300 dark:text-white dark:hover:bg-zinc-700"
           width={25}
           height={25}
           fill="currentColor"

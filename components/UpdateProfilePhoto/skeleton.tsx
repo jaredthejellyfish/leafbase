@@ -3,11 +3,11 @@ import React from 'react';
 
 function UpdateProfilePhotoSkeleton() {
   return (
-    <div className="absolute -top-4 -right-4">
+    <div className="absolute -right-4 -top-4">
       <input className="hidden" />
 
       <label
-        className="cursor-pointer inline-block p-2 bg-green-700 text-white flex items-center justify-center rounded-full"
+        className="flex cursor-pointer items-center justify-center rounded-full bg-green-700 p-2 text-white"
         htmlFor="fileInput"
       >
         <CameraIcon size={20} />

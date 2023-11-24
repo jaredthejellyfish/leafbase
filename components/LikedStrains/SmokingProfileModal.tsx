@@ -54,18 +54,18 @@ const generatePastelColor = (usedColors: string[]) => {
 
 function GraphSkeleton() {
   return (
-    <div className="flex flex-col items-center flex-wrap">
-      <div className="flex flex-row flex-wrap mb-2">
+    <div className="flex flex-col flex-wrap items-center">
+      <div className="mb-2 flex flex-row flex-wrap">
         {[...Array(12)].map((_, index) => (
           <div
             key={index}
-            className="w-12 h-5 mb-2 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse ml-2 flex-shrink-0"
+            className="mb-2 ml-2 h-5 w-12 shrink-0 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"
           ></div>
         ))}
       </div>
       <div
         className={
-          'w-60 h-60 sm:w-96 sm:h-96 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse ml-2 mb-2 rounded-full'
+          'mb-2 ml-2 h-60 w-60 animate-pulse rounded-full bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 sm:h-96 sm:w-96'
         }
       ></div>
     </div>
@@ -172,23 +172,23 @@ export default function SmokingProfileModal() {
         className={'flex items-center justify-center'}
         onClick={() => setOpen(true)}
       >
-        {!isFetching && !isError && <PieChart className="w-6 h-6" />}
+        {!isFetching && !isError && <PieChart className="h-6 w-6" />}
         {isFetching && (
-          <PieChart className="text-gradient-to-br from-gray-200 via-green-300 to-green-700 animate-pulse" />
+          <PieChart className="text-gradient-to-br animate-pulse from-gray-200 via-green-300 to-green-700" />
         )}
         {isError && <PieChart className="text-red-500" />}
       </button>
       <ErrorBoundary fallback={<p>Something went wrong</p>}>
         <Modal open={open} setOpen={setOpen} title={'Smoker Profile'}>
-          <div className="flex flex-row items-center justify-between px-3 mb-1">
+          <div className="mb-1 flex flex-row items-center justify-between px-3">
             <button onClick={handleBack}>
-              <ArrowLeft className="w-6 h-6" />
+              <ArrowLeft className="h-6 w-6" />
             </button>
-            <span className="capitalize text-base font-regular">
+            <span className="font-regular text-base capitalize">
               {profileType}
             </span>
             <button onClick={handleForward}>
-              <ArrowRight className="w-6 h-6" />
+              <ArrowRight className="h-6 w-6" />
             </button>
           </div>
 

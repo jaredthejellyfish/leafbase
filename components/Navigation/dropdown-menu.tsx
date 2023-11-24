@@ -45,7 +45,7 @@ const DropdownMenu = (props: Props) => {
   const matches = useMediaQuery('(min-width: 768px)');
   return (
     <motion.div
-      className="w-screen top-[56px] sm:top-16 absolute left-0 bg-slate-200 dark:bg-zinc-800/100 z-50 origin-top px-4 py-2 sm:px-5 sm:py-3 divide-y divide-dashed divide-slate-400/25"
+      className="absolute left-0 top-[56px] z-50 w-screen origin-top divide-y divide-dashed divide-slate-400/25 bg-slate-200 px-4 py-2 dark:bg-zinc-800/100 sm:top-16 sm:px-5 sm:py-3"
       variants={variants.container}
       animate={isOpen ? 'open' : 'closed'}
       initial="closed"
@@ -55,14 +55,14 @@ const DropdownMenu = (props: Props) => {
         variants={variants.children}
         animate={isOpen ? 'open' : 'closed'}
         initial="closed"
-        className="flex items-center justify-start w-full h-10 py-5 pl-3.5 text-base sm:text-lg font-medium transition-colors cursor-pointer md:pl-10 hover:background-slate-200 dark:hover:bg-zinc-800"
+        className="hover:background-slate-200 flex h-10 w-full cursor-pointer items-center justify-start py-5 pl-3.5 text-base font-medium transition-colors dark:hover:bg-zinc-800 sm:text-lg md:pl-10"
       >
         <Link
           onClick={() => setOpen(!isOpen)}
           href="/strains?filter=re"
           className={`w-full ${
             pathName === '/strains'
-              ? 'text-green-500 pointer-events-none cursor-not-allowed'
+              ? 'pointer-events-none cursor-not-allowed text-green-500'
               : ''
           }`}
         >
@@ -74,7 +74,7 @@ const DropdownMenu = (props: Props) => {
         variants={variants.children}
         animate={isOpen ? 'open' : 'closed'}
         initial="closed"
-        className="flex items-center justify-start w-full h-10 py-5 pl-3.5 text-base sm:text-lg font-medium transition-colors cursor-pointer md:pl-10 hover:background-slate-200 dark:hover:bg-zinc-800"
+        className="hover:background-slate-200 flex h-10 w-full cursor-pointer items-center justify-start py-5 pl-3.5 text-base font-medium transition-colors dark:hover:bg-zinc-800 sm:text-lg md:pl-10"
       >
         <Link
           onClick={() => setOpen(!isOpen)}
@@ -90,7 +90,7 @@ const DropdownMenu = (props: Props) => {
         variants={variants.children}
         animate={isOpen ? 'open' : 'closed'}
         initial="closed"
-        className="flex items-center justify-start w-full h-10 py-5 pl-3.5 text-base sm:text-lg font-medium transition-colors cursor-pointer md:pl-10 hover:background-slate-200 dark:hover:bg-zinc-800"
+        className="hover:background-slate-200 flex h-10 w-full cursor-pointer items-center justify-start py-5 pl-3.5 text-base font-medium transition-colors dark:hover:bg-zinc-800 sm:text-lg md:pl-10"
       >
         <Link
           onClick={() => setOpen(!isOpen)}

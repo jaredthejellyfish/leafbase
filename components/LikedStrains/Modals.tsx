@@ -11,13 +11,13 @@ import dynamic from 'next/dynamic';
 const StrainSimilarityModal = dynamic(() => import('./StrainSimilarityModal'), {
   ssr: false,
   loading: () => (
-    <BsClipboardFill className="w-5 h-5 text-gradient-to-br from-gray-200 via-green-300 to-green-700 animate-pulse" />
+    <BsClipboardFill className="text-gradient-to-br h-5 w-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
   ),
 });
 const SmokingProfileModal = dynamic(() => import('./SmokingProfileModal'), {
   ssr: false,
   loading: () => (
-    <PieChart className="text-gradient-to-br from-gray-200 via-green-300 to-green-700 animate-pulse" />
+    <PieChart className="text-gradient-to-br animate-pulse from-gray-200 via-green-300 to-green-700" />
   ),
 });
 
@@ -56,10 +56,10 @@ function Modals({ modal }: Props) {
 
   return (
     <>
-      <ErrorBoundary fallback={<BsClipboardX className="w-5 h-5" />}>
+      <ErrorBoundary fallback={<BsClipboardX className="h-5 w-5" />}>
         <StrainSimilarityModal />
       </ErrorBoundary>
-      <ErrorBoundary fallback={<MdError className="w-6 h-6" />}>
+      <ErrorBoundary fallback={<MdError className="h-6 w-6" />}>
         <SmokingProfileModal />
       </ErrorBoundary>
     </>

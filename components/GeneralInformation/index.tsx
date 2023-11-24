@@ -13,7 +13,7 @@ const GeneralInformation = (props: Props) => {
   const user = plainUser as UserMetadataExtended;
 
   return (
-    <div className="flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
+    <div className="flex w-full flex-col rounded-xl p-7 shadow-md dark:bg-zinc-900">
       <h1 className="text-xl font-bold">General information</h1>
       <>
         <span className="mt-3 text-sm dark:text-white">About me</span>
@@ -24,12 +24,12 @@ const GeneralInformation = (props: Props) => {
       <div
         className={`flex flex-col justify-between ${
           user?.aboutMe && 'mt-6'
-        } md:flex-row md:w-4/5`}
+        } md:w-4/5 md:flex-row`}
       >
         {user.birthDate && (
           <span className="mt-3 text-sm dark:text-white">
             Birthday:
-            <p className="text-gray-400 w-60">
+            <p className="w-60 text-gray-400">
               {`${format(new Date(user?.birthDate), 'PP')}`}
             </p>
           </span>
@@ -37,7 +37,7 @@ const GeneralInformation = (props: Props) => {
         {user.languages && (
           <span className="mt-3 text-sm dark:text-white">
             Languages:
-            <p className="text-gray-400 w-60">{user?.languages}</p>
+            <p className="w-60 text-gray-400">{user?.languages}</p>
           </span>
         )}
       </div>

@@ -7,18 +7,18 @@ const LikedStrainsSkeleton = () => (
       <p className="">Liked Strains (-)</p>
       <ClipboardXIcon />
     </div>
-    <div className="max-h-[296px] w-full flex flex-row flex-wrap items-start justify-between mt-3 gap-x-1.5 gap-y-1.5 sm:gap-x-3 sm:gap-y-3 overflow-hidden">
+    <div className="mt-3 flex max-h-[296px] w-full flex-row flex-wrap items-start justify-between gap-1.5 overflow-hidden sm:gap-3">
       {/* Placeholder strains */}
       {Array.from({ length: 10 }, (_, index) => (
         <div
           key={index}
-          className="flex-grow flex flex-col gap-2 p-2 scale-95 border rounded shadow dark:border-zinc-600 dark:bg-zinc-800 min-w-[15%] sm:min-w-[12%] md:min-w-[calc(33.333%-1em)] lg:min-w-[calc(25%-1em)] xl:min-w-[calc(20%-1em)]"
+          className="flex min-w-[15%] grow scale-95 flex-col gap-2 rounded border p-2 shadow dark:border-zinc-600 dark:bg-zinc-800 sm:min-w-[12%] md:min-w-[calc(33.333%-1em)] lg:min-w-[calc(25%-1em)] xl:min-w-[calc(20%-1em)]"
         >
-          <div className="flex h-24 w-24 items-center justify-center rounded-md aspect-square max-h-24 w-full">
-            <div className="rounded-md h-24 w-24 bg-gray-300 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse" />
+          <div className="flex aspect-square h-24 max-h-24 w-full items-center justify-center rounded-md">
+            <div className="h-24 w-24 animate-pulse rounded-md bg-gray-300 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400" />
           </div>
-          <div className="text-sm text-semi">
-            <div className="w-14 h-4 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse ml-3"></div>
+          <div className="text-semi text-sm">
+            <div className="ml-3 h-4 w-14 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
           </div>
         </div>
       ))}

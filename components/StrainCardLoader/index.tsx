@@ -99,7 +99,7 @@ const StrainCardLoader = (props: Props) => {
 
   return (
     <>
-      <div id="strain-card-loader" className="relative grid md:grid-cols-3 xl:grid-cols-4 gap-x-4">
+      <div id="strain-card-loader" className="relative grid gap-x-4 md:grid-cols-3 xl:grid-cols-4">
         {data &&
           data.pages
             .flatMap((page) => page.strains)
@@ -119,7 +119,7 @@ const StrainCardLoader = (props: Props) => {
               );
             })}
       </div>
-      <div className="w-full block items-center justify-center mt-4 contents">
+      <div className="mt-4 contents w-full items-center justify-center">
         <Button
           ref={loadMoreRef}
           onClick={() => debouncedFetchNextPage()}

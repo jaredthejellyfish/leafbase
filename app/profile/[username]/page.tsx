@@ -21,7 +21,7 @@ export default async function ProfileUser(props: Props) {
   if (!user) return <div>404</div>;
 
   return (
-    <div className="px-5 md:px-16 py-3">
+    <div className="px-5 py-3 md:px-16">
       <NavBreadcrumbs
         urls={[
           { name: 'Profile', url: '/profile' },
@@ -31,7 +31,7 @@ export default async function ProfileUser(props: Props) {
           },
         ]}
       />
-      <div className="flex flex-col gap-6 mt-3 lg:flex-row">
+      <div className="mt-3 flex flex-col gap-6 lg:flex-row">
         <div id="vertical 1" className="flex flex-col gap-4 lg:w-1/3">
           <Profile user={user} hideOptions />
         </div>

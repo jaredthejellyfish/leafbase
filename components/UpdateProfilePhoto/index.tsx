@@ -116,7 +116,7 @@ export default function UpdateProfilePhoto({
       />
 
       <label
-        className="cursor-pointer inline-block p-2 bg-green-700 text-white flex items-center justify-center rounded-full"
+        className="flex cursor-pointer items-center justify-center rounded-full bg-green-700 p-2 text-white"
         htmlFor="fileInput"
       >
         <CameraIcon size={20} />

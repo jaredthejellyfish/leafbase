@@ -106,10 +106,10 @@ function StrainSimilarityModal() {
   return (
     <>
       <button onClick={handleButtonClick} disabled={isFetching || isError}>
-        {!isError && !isFetching && <BsClipboardFill className="w-5 h-5" />}
-        {isError && <BsClipboardX className="w-5 h-5" />}
+        {!isError && !isFetching && <BsClipboardFill className="h-5 w-5" />}
+        {isError && <BsClipboardX className="h-5 w-5" />}
         {isFetching && (
-          <BsClipboardFill className="w-5 h-5 text-gradient-to-br from-gray-200 via-green-300 to-green-700 animate-pulse" />
+          <BsClipboardFill className="text-gradient-to-br h-5 w-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
         )}
       </button>
       {modalOpen && likedCoords && (
@@ -119,7 +119,7 @@ function StrainSimilarityModal() {
           setOpen={setModalOpen}
           containerClass="sm:max-w-[64%]"
         >
-          <div className={'w-[82vw] sm:w-[60vw] h-[60vh]'}>
+          <div className={'h-[60vh] w-[82vw] sm:w-[60vw]'}>
             {/* @ts-expect-error - config for plugin has incorrect type def */}
             <DynamicScatter data={likedCoords} options={options} />
           </div>

@@ -118,13 +118,13 @@ const StrainSoma = (props: Props) => {
   const positives = getPositivesFromTopThree(strain);
 
   return (
-    <div className="flex flex-col gap-2 p-2 px-3 border rounded border-zinc-200 dark:border-zinc-600 dark:bg-zinc-800 md:mt-7" id="strain-soma">
+    <div className="flex flex-col gap-2 rounded border border-zinc-200 p-2 px-3 dark:border-zinc-600 dark:bg-zinc-800 md:mt-7" id="strain-soma">
       <h3 className="text-sm font-bold uppercase">Strain soma</h3>
       {topThreeEffects.length >= 3 && (
-        <div className="flex flex-row flex-wrap items-center w-full gap-2 text-xs">
+        <div className="flex w-full flex-row flex-wrap items-center gap-2 text-xs">
           <FiThumbsUp className={'z-auto'} size={12} />
           <p className="hidden sm:hidden md:block xl:block">Feelings:</p>
-          <div className="flex flex-row flex-wrap gap-y-2 gap-x-2">
+          <div className="flex flex-row flex-wrap gap-2">
             {topThreeEffects.map((effect) => (
               <Badge key={effect} text={effect} color={effectColors[effect]} />
             ))}
@@ -132,10 +132,10 @@ const StrainSoma = (props: Props) => {
         </div>
       )}
       {topThreeEffects.length >= 3 && (
-        <div className="flex flex-row flex-wrap items-center w-full text-xs gap-y-2 gap-x-2">
+        <div className="flex w-full flex-row flex-wrap items-center gap-2 text-xs">
           <FiThumbsDown size={12} style={{}} />
           <p className="hidden sm:hidden md:block xl:block">Negatives:</p>
-          <div className="flex flex-row flex-wrap gap-y-2 gap-x-2">
+          <div className="flex flex-row flex-wrap gap-2">
             {topThreeEffectsNegative.map((effect) => (
               <Badge key={effect} text={effect} color={effectColors[effect]} />
             ))}
@@ -143,10 +143,10 @@ const StrainSoma = (props: Props) => {
         </div>
       )}
       {positives.length >= 3 && (
-        <div className="flex flex-row flex-wrap items-center w-full gap-2 text-xs">
+        <div className="flex w-full flex-row flex-wrap items-center gap-2 text-xs">
           <TbMedicalCross size={12} />
           <p className="hidden sm:hidden md:block xl:block">Helps with:</p>
-          <div className="flex flex-row flex-wrap gap-y-2 -gap-x-2">
+          <div className="-gap-x-2 flex flex-row flex-wrap gap-y-2">
             {positives.map((effect) => (
               <Badge key={effect} text={effect} color={effectColors[effect]} />
             ))}
@@ -154,12 +154,12 @@ const StrainSoma = (props: Props) => {
         </div>
       )}
       <div className="mt-2">
-        <div className="flex flex-row items-center justify-between px-1 mb-1 text-xs">
+        <div className="mb-1 flex flex-row items-center justify-between px-1 text-xs">
           <p>calm</p> <p>energizing</p>
         </div>
-        <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+        <div className="h-2.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
           <div
-            className="bg-green-700/70 h-2.5 rounded-full"
+            className="h-2.5 rounded-full bg-green-700/70"
             style={{
               width:
                 strain?.effects?.relaxed?.score &&
@@ -172,12 +172,12 @@ const StrainSoma = (props: Props) => {
         </div>
       </div>
       <div className="mt-2">
-        <div className="flex flex-row items-center justify-between px-1 mb-1 text-xs">
+        <div className="mb-1 flex flex-row items-center justify-between px-1 text-xs">
           <p>low THC</p> <p>high THC</p>
         </div>
-        <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+        <div className="h-2.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
           <div
-            className="bg-green-700/70 h-2.5 rounded-full"
+            className="h-2.5 rounded-full bg-green-700/70"
             style={{
               width: `${Math.min(
                 Math.ceil(

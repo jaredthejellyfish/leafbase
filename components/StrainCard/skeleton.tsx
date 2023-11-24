@@ -3,27 +3,27 @@ import React from 'react';
 
 const StrainCardSkeleton = () => {
   return (
-    <div className="relative z-10 flex gap-5 p-5 mt-4 transition-transform border shadow rounded-xl dark:bg-zinc-900 md:flex-wrap flex-nowrap md:max-w-xs dark:border-opacity-0 border-zinc-100 hover:scale-101">
-      <div className="flex items-center justify-center w-1/2 border rounded-lg md:w-full dark:border-opacity-0 border-zinc-200">
+    <div className="hover:scale-101 relative z-10 mt-4 flex flex-nowrap gap-5 rounded-xl border border-zinc-100 p-5 shadow transition-transform dark:border-transparent dark:bg-zinc-900 md:max-w-xs md:flex-wrap">
+      <div className="flex w-1/2 items-center justify-center rounded-lg border border-zinc-200 dark:border-transparent md:w-full">
         <div
           style={{ maxHeight: '250px' }}
-          className="bg-zinc-300/10 dark:opacity-90 dark:bg-zinc-950/30 object-contain w-full h-full border border-white dark:border-zinc-800 rounded-lg aspect-square p-4 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"
+          className="aspect-square h-full w-full animate-pulse rounded-lg border border-white bg-zinc-300/10 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 object-contain p-4 dark:border-zinc-800 dark:bg-zinc-950/30 dark:opacity-90"
         ></div>
       </div>
       <div className="w-1/2 md:w-full">
-        <div className="text-transparent inline-block w-14 flex items-center justify-center px-2 py-1 text-xs font-medium bg-gray-200 rounded dark:shadow dark:bg-zinc-700">
+        <div className="flex w-14 items-center justify-center rounded bg-gray-200 px-2 py-1 text-xs font-medium text-transparent dark:bg-zinc-700 dark:shadow">
           Pheno
         </div>
         <div className="mt-2 font-medium">
-          <div className="mb-1.5 w-1/2 h-4 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
+          <div className="mb-1.5 h-4 w-1/2 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
         </div>
-        <div className="mt-2 text-sm font-normal text-gray-500 h-14 line-clamp-3">
-          <div className="mb-1.5 w-full h-2.5 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-          <div className="mb-1.5 w-2/3 h-2.5 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-          <div className="w-1/2 h-2.5 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
+        <div className="mt-2 line-clamp-3 h-14 text-sm font-normal text-gray-500">
+          <div className="mb-1.5 h-2.5 w-full animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
+          <div className="mb-1.5 h-2.5 w-2/3 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
+          <div className="h-2.5 w-1/2 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
         </div>
-        <div className="flex flex-row items-center gap-1 p-1 mt-2 text-sm">
-          <span className="flex items-center justify-center w-6 h-4">5.0</span>
+        <div className="mt-2 flex flex-row items-center gap-1 p-1 text-sm">
+          <span className="flex h-4 w-6 items-center justify-center">5.0</span>
           <div
             style={{ display: 'flex' }}
             className={'flex flex-row text-black dark:text-white'}
@@ -39,15 +39,15 @@ const StrainCardSkeleton = () => {
           <span className="">THC: ?%</span>
           <span className="">CBD: ?%</span>
         </div>
-        <div className="flex flex-col px-1 mt-2 text-xs font-medium capitalize md:flex-row md:gap-3 md:items-center gap-y-1">
+        <div className="mt-2 flex flex-col gap-y-1 px-1 text-xs font-medium capitalize md:flex-row md:items-center md:gap-3">
           <span className="flex flex-row items-center gap-1">
             <div
               style={{
                 backgroundColor: '#778899',
               }}
-              className="rounded-full w-2.5 h-2.5"
+              className="h-2.5 w-2.5 rounded-full"
             ></div>
-            <div className="w-14 h-3 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
+            <div className="h-3 w-14 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
           </span>
 
           <span className="flex flex-row items-center gap-1">
@@ -55,9 +55,9 @@ const StrainCardSkeleton = () => {
               style={{
                 backgroundColor: '#778899',
               }}
-              className="rounded-full w-2.5 h-2.5"
+              className="h-2.5 w-2.5 rounded-full"
             ></div>
-            <div className="w-14 h-3 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
+            <div className="h-3 w-14 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
           </span>
         </div>
       </div>

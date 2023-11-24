@@ -110,7 +110,7 @@ function Modal({
         variants={variants.background}
         animate={isOpen ? 'visible' : 'hidden'}
         initial="hidden"
-        className="fixed top-0 w-full h-screen z-50 px-6 bg-zinc-900/75 overflow-y-hidden flex items-center justify-center border-transparent right-0 left-0 bottom-0"
+        className="fixed inset-0 z-50 flex h-screen w-full items-center justify-center overflow-y-hidden border-transparent bg-zinc-900/75 px-6"
       >
         <m.div
           variants={variants.modal}
@@ -122,8 +122,8 @@ function Modal({
             containerClass || ''
           )}
         >
-          <div className="w-full flex flex-row justify-between items-center dark:bg-zinc-950/40 bg-zinc-200 px-4 py-2">
-            <h2 className="text-lg font-semibold mt-0.5">{title}</h2>
+          <div className="flex w-full flex-row items-center justify-between bg-zinc-200 px-4 py-2 dark:bg-zinc-950/40">
+            <h2 className="mt-0.5 text-lg font-semibold">{title}</h2>
             <button onClick={() => handdleClose()}>
               <AiOutlineClose size={20} />
             </button>

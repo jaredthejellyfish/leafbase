@@ -24,7 +24,7 @@ function SocialSignin() {
   return (
     <div className="flex justify-center space-x-4">
       <Button
-        className="w-14 h-14 flex items-center justify-center dark:bg-zinc-700 border border-zinc-400 dark:border-zinc-600 text-white"
+        className="flex h-14 w-14 items-center justify-center border border-zinc-400 text-white dark:border-zinc-600 dark:bg-zinc-700"
         variant="outline"
         onClick={(e) => signInWithProvider(e, 'google')}
       >
@@ -48,12 +48,12 @@ function SocialSignin() {
         </svg>
       </Button>
       <Button
-        className="w-14 h-14 flex items-center justify-center dark:bg-zinc-700 border border-zinc-400 dark:border-zinc-600 text-white"
+        className="flex h-14 w-14 items-center justify-center border border-zinc-400 text-white dark:border-zinc-600 dark:bg-zinc-700"
         variant="outline"
         onClick={(e) => signInWithProvider(e, 'github')}
       >
         <svg
-          className="h-5 w-5 dark:text-white text-black"
+          className="h-5 w-5 text-black dark:text-white"
           fill="none"
           height="24"
           stroke="currentColor"
@@ -69,7 +69,7 @@ function SocialSignin() {
         </svg>
       </Button>
       <Button
-        className="w-14 h-14 flex items-center justify-center dark:bg-zinc-700 border border-zinc-400 dark:border-zinc-600 text-white"
+        className="flex h-14 w-14 items-center justify-center border border-zinc-400 text-white dark:border-zinc-600 dark:bg-zinc-700"
         variant="outline"
         onClick={(e) => signInWithProvider(e, 'twitch')}
       >
@@ -89,7 +89,7 @@ function SocialSignin() {
         </svg>
       </Button>
       <Button
-        className="w-14 h-14 flex items-center justify-center dark:bg-zinc-700 border border-zinc-400 dark:border-zinc-600 text-white"
+        className="flex h-14 w-14 items-center justify-center border border-zinc-400 text-white dark:border-zinc-600 dark:bg-zinc-700"
         variant="outline"
         onClick={(e) => signInWithProvider(e, 'discord')}
       >

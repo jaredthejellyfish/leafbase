@@ -10,7 +10,7 @@ type Props = {
 function TextAreaAuto({ placeholder }: Props) {
   return (
     <TextareaAutosize
-      className="w-full p-1 bg-transparent border rounded border-zinc-500"
+      className="w-full rounded border border-zinc-500 bg-transparent p-1"
       name="aboutMe"
       id='about-me-textarea'
       minRows={3}

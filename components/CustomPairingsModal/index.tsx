@@ -95,7 +95,7 @@ function CustomPairingsModal({ open, setOpen, id, image }: Props) {
       setOpen={setOpen}
       onModalClose={resetSearch}
     >
-      <div className="mb-2 pl-4 py-1.5 pr-5 px-10 flex-row gap-3 bg-white rounded text-black flex flex-row dark:bg-zinc-700/60 items-center border border-zinc-400 dark:border-zinc-600">
+      <div className="mb-2 flex flex-row items-center gap-3 rounded border border-zinc-400 bg-white px-10 py-1.5 pl-4 pr-5 text-black dark:border-zinc-600 dark:bg-zinc-700/60">
         <input
           type="text"
           value={query}
@@ -106,7 +106,7 @@ function CustomPairingsModal({ open, setOpen, id, image }: Props) {
         />
         {searchId ? (
           <BsX
-            className="text-zinc-400/80 dark:text-gray-400 cursor-pointer"
+            className="cursor-pointer text-zinc-400/80 dark:text-gray-400"
             onClick={resetSearch}
             size={30}
           />
@@ -139,9 +139,9 @@ function CustomPairingsModal({ open, setOpen, id, image }: Props) {
 
       {!fetchingPairingData && !pairingError && pairingData && (
         <div>
-          <div className="w-full flex flex-row justify-between items-center px-[5%] sm:px-[10%] mt-3">
+          <div className="mt-3 flex w-full flex-row items-center justify-between px-[5%] sm:px-[10%]">
             <Image
-              className="p-2 border border-zinc-600 rounded-lg"
+              className="rounded-lg border border-zinc-600 p-2"
               src={image}
               alt={pairingData.strain2_name}
               width={100}
@@ -150,7 +150,7 @@ function CustomPairingsModal({ open, setOpen, id, image }: Props) {
             />
             <ArrowLeftRight size={45} />
             <Image
-              className="p-2 border border-zinc-600 rounded-lg"
+              className="rounded-lg border border-zinc-600 p-2"
               src={pairingData.image || ''}
               alt={pairingData.strain2_name}
               width={100}
@@ -158,8 +158,8 @@ function CustomPairingsModal({ open, setOpen, id, image }: Props) {
               priority={true}
             />
           </div>
-          <div className="px-0.5 mt-3 mb-2">
-            <p className="border border-zinc-600 rounded-lg p-2">
+          <div className="mb-2 mt-3 px-0.5">
+            <p className="rounded-lg border border-zinc-600 p-2">
               {pairingData.body}
             </p>
           </div>
@@ -168,19 +168,19 @@ function CustomPairingsModal({ open, setOpen, id, image }: Props) {
 
       {fetchingPairingData && !fetchingSearchData && (
         <div>
-          <div className="w-full flex flex-row justify-between items-center px-[5%] sm:px-[10%] mt-3">
-            <div className="w-24 h-24 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
+          <div className="mt-3 flex w-full flex-row items-center justify-between px-[5%] sm:px-[10%]">
+            <div className="h-24 w-24 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
             <ArrowLeftRight size={45} />
-            <div className="w-24 h-24 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
+            <div className="h-24 w-24 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
           </div>
-          <div className="px-0.5 mt-3 mb-2">
-            <div className="border border-zinc-600 rounded-lg p-2">
-              <div className="w-full h-4 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-              <div className="w-full h-4 mt-2 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-              <div className="w-full h-4 mt-2 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-              <div className="w-full h-4 mt-2 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-              <div className="w-full h-4 mt-2 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-              <div className="w-1/2 h-4 mt-2 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
+          <div className="mb-2 mt-3 px-0.5">
+            <div className="rounded-lg border border-zinc-600 p-2">
+              <div className="h-4 w-full animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
+              <div className="mt-2 h-4 w-full animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
+              <div className="mt-2 h-4 w-full animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
+              <div className="mt-2 h-4 w-full animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
+              <div className="mt-2 h-4 w-full animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
+              <div className="mt-2 h-4 w-1/2 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
             </div>
           </div>
         </div>
@@ -188,22 +188,22 @@ function CustomPairingsModal({ open, setOpen, id, image }: Props) {
 
       {!fetchingPairingData && fetchingSearchData && (
         <>
-          <div className="flex flex-col items-start mb-1">
+          <div className="mb-1 flex flex-col items-start">
             <div className="flex flex-row items-center gap-2">
-              <div className="w-14 h-14 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse" />
-              <div className="w-24 h-4 mt-2 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
+              <div className="h-14 w-14 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400" />
+              <div className="mt-2 h-4 w-24 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
             </div>
           </div>
-          <div className="flex flex-col items-start mb-1">
+          <div className="mb-1 flex flex-col items-start">
             <div className="flex flex-row items-center gap-2">
-              <div className="w-14 h-14 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse" />
-              <div className="w-24 h-4 mt-2 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
+              <div className="h-14 w-14 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400" />
+              <div className="mt-2 h-4 w-24 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
             </div>
           </div>
           <div className="flex flex-col items-start">
             <div className="flex flex-row items-center gap-2">
-              <div className="w-14 h-14 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse" />
-              <div className="w-24 h-4 mt-2 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
+              <div className="h-14 w-14 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400" />
+              <div className="mt-2 h-4 w-24 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
             </div>
           </div>
         </>

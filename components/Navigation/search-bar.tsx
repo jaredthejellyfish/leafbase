@@ -13,7 +13,7 @@ function SearchBar() {
 
   return (
     <>
-      <div className="pl-4 py-1.5 pr-5 flex-row gap-3 bg-white rounded text-black hidden md:flex dark:bg-zinc-800 items-center md:w-46 xl:w-80">
+      <div className="md:w-46 hidden flex-row items-center gap-3 rounded bg-white py-1.5 pl-4 pr-5 text-black dark:bg-zinc-800 md:flex xl:w-80">
         <input
           type="text"
           value={query}
@@ -25,7 +25,7 @@ function SearchBar() {
       </div>
       {query.length > 1 && matches && (
         <div
-          className="flex z-50 absolute top-16 bg-zinc-800 max-w-[265px] xl:max-w-[320px] w-full py-2 px-3 rounded flex-col gap-y-2.5"
+          className="absolute top-16 z-50 flex w-full max-w-[265px] flex-col gap-y-2.5 rounded bg-zinc-800 px-3 py-2 xl:max-w-[320px]"
           onClick={() => setQuery('')}
         >
           <SearchResults query={query} />

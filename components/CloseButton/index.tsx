@@ -19,7 +19,7 @@ function CloseButton() {
       aria-label="Stop editing"
       onClick={(e) => preventDefault(e)}
     >
-      <AiOutlineClose size={20} className="absolute top-6 right-6" />
+      <AiOutlineClose size={20} className="absolute right-6 top-6" />
     </button>
   );
 }

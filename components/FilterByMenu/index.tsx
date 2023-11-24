@@ -85,46 +85,46 @@ const FilterByMenu = (props: Props) => {
   return (
     <div className="relative flex flex-row items-center">
       <span
-        className="flex flex-row items-center justify-end w-40 gap-1 mt-4 text-xs text text-zinc-400"
+        className="text mt-4 flex w-40 flex-row items-center justify-end gap-1 text-xs text-zinc-400"
         onClick={() => setOpen(!isOpen)}
         ref={spanRef}
       >
         Sort by
-        <span className="flex flex-row items-center cursor-pointer dark:text-zinc-300 text-zinc-500">
+        <span className="flex cursor-pointer flex-row items-center text-zinc-500 dark:text-zinc-300">
           {generateFilterFromQuery(props.filter)}
-          <RxCaretDown className="ml-1.5 arrow" size={14} />
+          <RxCaretDown className="arrow ml-1.5" size={14} />
         </span>
       </span>
 
       <motion.div
-        className="dark:border-zinc-900 absolute z-40 box-border origin-top flex flex-col ml-1.5 dark:bg-zinc-800 bg-white border border-zinc-200 shadow-xl w-36 right-0 top-10 dark:text-white text-zinc-600 gap-0.5 items-start rounded-lg p-1 filter-menu font-bold"
+        className="filter-menu absolute right-0 top-10 z-40 ml-1.5 box-border flex w-36 origin-top flex-col items-start gap-0.5 rounded-lg border border-zinc-200 bg-white p-1 font-bold text-zinc-600 shadow-xl dark:border-zinc-900 dark:bg-zinc-800 dark:text-white"
         ref={menuRef}
         initial={{ scaleY: 0 }}
       >
         <Link
           href="/strains?filter=re"
-          className="flex items-start w-full px-3 py-3 rounded dark:dark:hover:bg-zinc-500 hover:bg-zinc-100/80 filter-item"
+          className="filter-item flex w-full items-start rounded p-3 hover:bg-zinc-100/80 dark:dark:hover:bg-zinc-500"
           onClick={() => setOpen(false)}
         >
           Recommended
         </Link>
         <Link
           href="/strains?filter=az"
-          className="flex items-start w-full px-3 py-3 rounded dark:hover:bg-zinc-500 hover:bg-zinc-100/80 filter-item"
+          className="filter-item flex w-full items-start rounded p-3 hover:bg-zinc-100/80 dark:hover:bg-zinc-500"
           onClick={() => setOpen(false)}
         >
           A-Z
         </Link>
         <Link
           href="/strains?filter=za"
-          className="flex items-start w-full px-3 py-3 rounded dark:hover:bg-zinc-500 hover:bg-zinc-100/80 filter-item"
+          className="filter-item flex w-full items-start rounded p-3 hover:bg-zinc-100/80 dark:hover:bg-zinc-500"
           onClick={() => setOpen(false)}
         >
           Z-A
         </Link>
         <Link
           href="/strains?filter=sr"
-          className="flex items-start w-full px-3 py-3 rounded dark:hover:bg-zinc-500 hover:bg-zinc-100/80 filter-item"
+          className="filter-item flex w-full items-start rounded p-3 hover:bg-zinc-100/80 dark:hover:bg-zinc-500"
           onClick={() => setOpen(false)}
         >
           Star Rating

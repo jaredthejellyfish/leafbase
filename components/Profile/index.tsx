@@ -23,8 +23,8 @@ const Profile = (props: Props) => {
   const user = plainUser as UserMetadataExtended;
 
   return (
-    <div className="relative z-0 flex flex-col w-full shadow-md p-7 rounded-xl dark:bg-zinc-900">
-      <div className="absolute flex items-center justify-center gap-6 top-6 right-8 ">
+    <div className="relative z-0 flex w-full flex-col rounded-xl p-7 shadow-md dark:bg-zinc-900">
+      <div className="absolute right-8 top-6 flex items-center justify-center gap-6 ">
         {!props.hideOptions && (
           <>
             {user.displayName && (
@@ -89,7 +89,7 @@ const Profile = (props: Props) => {
         </span>
       )}
       {user.phone && (
-        <span className="flex flex-col mt-3 text-sm dark:text-white">
+        <span className="mt-3 flex flex-col text-sm dark:text-white">
           Phone number:
           <span className="text-gray-400">{user.phone}</span>
         </span>

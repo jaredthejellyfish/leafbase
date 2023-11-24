@@ -14,11 +14,11 @@ async function Navigation() {
   const { user_metadata } = await getServerUserMetadata();
 
   return (
-    <nav className="justify-between px-6 bg-gray-100 dark:bg-zinc-900 h-14 sm:h-16 flex items-center">
+    <nav className="flex h-14 items-center justify-between bg-gray-100 px-6 dark:bg-zinc-900 sm:h-16">
       <div>
         <Link
           href="/"
-          className="flex items-center justify-start gap-2.5 sm:gap-4 text-xl"
+          className="flex items-center justify-start gap-2.5 text-xl sm:gap-4"
         >
           <Image
             className="rounded-sm sm:scale-125"
@@ -27,10 +27,10 @@ async function Navigation() {
             width={33}
             alt="site logo"
           />
-          <span className="font-medium text-base sm:text-xl">Leafbase</span>
+          <span className="text-base font-medium sm:text-xl">Leafbase</span>
         </Link>
       </div>
-      <div className="flex flex-row items-center sm:gap-5 gap-3">
+      <div className="flex flex-row items-center gap-3 sm:gap-5">
         <SearchBar />
         <svg
           xmlns="http://www.w3.org/2000/svg"

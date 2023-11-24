@@ -96,7 +96,7 @@ export default async function StrainSlug(props: Props) {
   }
 
   return (
-    <main className="justify-center px-5 md:px-16 py-3">
+    <main className="justify-center px-5 py-3 md:px-16">
       <NavBreadcrumbs
         urls={[
           { name: 'Strains', url: '/strains' },
@@ -108,10 +108,10 @@ export default async function StrainSlug(props: Props) {
       />
       <div
         id="card"
-        className="relative flex flex-col items-center justify-center pb-8 border rounded shadow border-zinc-300 dark:border-transparent dark:bg-zinc-900"
+        className="relative flex flex-col items-center justify-center rounded border border-zinc-300 pb-8 shadow dark:border-transparent dark:bg-zinc-900"
       >
         {typeof likes !== 'undefined' ? (
-          <div id="strain-options" className="absolute top-5 right-5 z-0 flex items-center justify-center gap-4 dark:text-zinc-400 text-zinc-700">
+          <div id="strain-options" className="absolute right-5 top-5 z-0 flex items-center justify-center gap-4 text-zinc-700 dark:text-zinc-400">
             <StrainSuggestionsButton
               slug={strain.slug}
               id={strain.id}
@@ -120,7 +120,7 @@ export default async function StrainSlug(props: Props) {
             <StrainCardLikeButton
               id={strain.id}
               liked={isLiked(strain.id, likes)}
-              className="block static z-0"
+              className="static z-0 block"
               width={25}
               height={25}
             />
@@ -128,11 +128,11 @@ export default async function StrainSlug(props: Props) {
         ) : null}
         <div
           id="header"
-          className="flex flex-col items-center justify-center w-full gap-8 px-5 pt-8 md:flex-row md:px-8"
+          className="flex w-full flex-col items-center justify-center gap-8 px-5 pt-8 md:flex-row md:px-8"
         >
           <div
             id="vertical-1"
-            className="flex items-center justify-center md:w-1/3 h-52 md:border rounded-sm md:dark:bg-zinc-950/10 md:dark:shadow md:shadow-sm"
+            className="flex h-52 items-center justify-center rounded-sm md:w-1/3 md:border md:shadow-sm md:dark:bg-zinc-950/10 md:dark:shadow"
           >
             <Image
               className="rounded"
@@ -145,9 +145,9 @@ export default async function StrainSlug(props: Props) {
             />
           </div>
           <div id="vertical-2" className="w-full md:w-2/3">
-            <div className="flex flex-row items-center gap-3 mb-2">
+            <div className="mb-2 flex flex-row items-center gap-3">
               {strain.phenotype && (
-                <div className="inline-block px-2 py-1 text-xs font-medium bg-gray-200 rounded dark:shadow dark:bg-zinc-700">
+                <div className="inline-block rounded bg-gray-200 px-2 py-1 text-xs font-medium dark:bg-zinc-700 dark:shadow">
                   {strain.phenotype}
                 </div>
               )}
@@ -164,23 +164,23 @@ export default async function StrainSlug(props: Props) {
                 ) : null}
               </div>
             </div>
-            <h1 className="text-2xl font-bold mb-0.5">{strain.name}</h1>
-            <h2 className="font-semi text-zinc-400 md:w-2/3 min-h-10">
+            <h1 className="mb-0.5 text-2xl font-bold">{strain.name}</h1>
+            <h2 className="font-semi min-h-10 text-zinc-400 md:w-2/3">
               {strain.subtitle}
             </h2>
-            <span className="flex items-center justify-start w-48 gap-3 mt-1 text-zinc-800 dark:text-zinc-200">
+            <span className="mt-1 flex w-48 items-center justify-start gap-3 text-zinc-800 dark:text-zinc-200">
               {strain.averageRating &&
                 Math.round(strain.averageRating * 10) / 10}
               <StarRating rating={strain.averageRating || 0} />
             </span>
-            <div className="flex flex-row gap-3 mt-1 text-sm font-medium capitalize">
+            <div className="mt-1 flex flex-row gap-3 text-sm font-medium capitalize">
               <span className="flex flex-row items-center gap-1">
                 <div
                   style={{
                     backgroundColor:
                       effects[strain.topEffect || 'rgb(70, 130, 180)'],
                   }}
-                  className="rounded-full w-2.5 h-2.5"
+                  className="h-2.5 w-2.5 rounded-full"
                 ></div>
                 <p className="p-0">{strain.topEffect}</p>
               </span>
@@ -190,7 +190,7 @@ export default async function StrainSlug(props: Props) {
                     backgroundColor:
                       terpenes[strain.topTerpene || 'rgb(70, 130, 180)'],
                   }}
-                  className="rounded-full w-2.5 h-2.5"
+                  className="h-2.5 w-2.5 rounded-full"
                 ></div>
                 <p className="p-0">{strain.topTerpene}</p>
               </span>
@@ -199,7 +199,7 @@ export default async function StrainSlug(props: Props) {
         </div>
         <div
           id="body"
-          className="flex flex-col justify-center w-full gap-5 px-5 md:flex-row md:px-8"
+          className="flex w-full flex-col justify-center gap-5 px-5 md:flex-row md:px-8"
         >
           <div className="mt-3 md:w-1/3">
             <StrainSoma strain={strain as unknown as StrainWithComments} />

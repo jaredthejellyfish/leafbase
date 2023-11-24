@@ -8,8 +8,8 @@ import SocialSignin from '@/components/SocialSignin';
 
 export default function AuthSignIn() {
   return (
-    <main className="flex items-center justify-center py-32 bg-zinc-50/50 dark:bg-zinc-950 px-4 sm:px-0">
-      <div className="mx-auto max-w-sm space-y-3 bg-white dark:bg-zinc-900 p-5 sm:p-8 rounded-lg shadow-xl">
+    <main className="flex items-center justify-center bg-zinc-50/50 px-4 py-32 dark:bg-zinc-950 sm:px-0">
+      <div className="mx-auto max-w-sm space-y-3 rounded-lg bg-white p-5 shadow-xl dark:bg-zinc-900 sm:p-8">
         <div className="space-y-2 text-center">
           <h2 className="mt-6 text-center text-3xl font-extrabold text-zinc-900 dark:text-white">
             Log in
@@ -53,14 +53,14 @@ export default function AuthSignIn() {
           <SubmitButton text={'Sign in'} whilePending={'Signing in...'} />
           <div className="mt-0 text-center text-sm">
             Dont have an account?
-            <Link className="underline ml-2" href="/auth/signup">
+            <Link className="ml-2 underline" href="/auth/signup">
               Sign up
             </Link>
           </div>
-          <div className="flex items-center justify-center mt-4 mb-2">
-            <hr className="border-zinc-600 w-full" />
+          <div className="mb-2 mt-4 flex items-center justify-center">
+            <hr className="w-full border-zinc-600" />
             <p className="px-2 text-center text-zinc-400">Or</p>
-            <hr className="border-zinc-600 w-full" />
+            <hr className="w-full border-zinc-600" />
           </div>
           <SocialSignin />
         </form>

@@ -9,20 +9,20 @@ import { Label } from '@/components/ui/label';
 
 export default function AuthSignUp() {
   return (
-    <main className="flex items-center justify-center py-32 bg-zinc-50/50 dark:bg-zinc-950 px-4 sm:px-0">
-      <div className="flex justify-center items-center h-full w-full">
-        <div className="max-w-md w-full space-y-3 bg-white dark:bg-zinc-900 px-5 sm:px-8 py-5 rounded-lg shadow-xl">
+    <main className="flex items-center justify-center bg-zinc-50/50 px-4 py-32 dark:bg-zinc-950 sm:px-0">
+      <div className="flex h-full w-full items-center justify-center">
+        <div className="w-full max-w-md space-y-3 rounded-lg bg-white p-5 shadow-xl dark:bg-zinc-900 sm:px-8">
           <div className="flex flex-col gap-y-2">
             <h2 className="mt-6 text-center text-3xl font-extrabold text-zinc-900 dark:text-white">
               Sign up
             </h2>
-            <p className="text-zinc-500 dark:text-zinc-400 text-center">
+            <p className="text-center text-zinc-500 dark:text-zinc-400">
               Enter your email below to login to your account
             </p>
           </div>
           <form action={signUpUser} className="mt-8 flex flex-col gap-y-4">
             <input name="remember" type="hidden" value="true" />
-            <div className="rounded-md shadow-sm flex flex-col gap-3">
+            <div className="flex flex-col gap-3 rounded-md shadow-sm">
               <div>
                 <Label htmlFor="name">Name</Label>
                 <Input
@@ -68,7 +68,7 @@ export default function AuthSignUp() {
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input
-                  className="h-4 w-4 text-zinc-600 focus:ring-zinc-500 border-zinc-300 rounded"
+                  className="h-4 w-4 rounded border-zinc-300 text-zinc-600 focus:ring-zinc-500"
                   id="terms"
                   name="terms"
                   type="checkbox"
@@ -92,7 +92,7 @@ export default function AuthSignUp() {
             </div>
             <div className="mt-0 text-center text-sm">
               Already have an account?
-              <Link className="underline ml-2" href="/auth/signin">
+              <Link className="ml-2 underline" href="/auth/signin">
                 Log in
               </Link>
             </div>

@@ -61,7 +61,7 @@ function SearchResults({ query }: Props) {
               {index !== 0 && (
                 <div
                   key={`divider-${Math.random()}`}
-                  className="border-b dark:border-gray-600 border-gray-300"
+                  className="border-b border-gray-300 dark:border-gray-600"
                 ></div>
               )}
               <SearchResult

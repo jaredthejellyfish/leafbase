@@ -59,7 +59,7 @@ const StrainCard = ({
       id={id}
       href={`/strain/${strain.slug}`}
       className={cn(
-        'relative z-10 flex gap-5 p-5 mt-4 transition-transform border shadow rounded-xl dark:bg-zinc-900 md:flex-wrap flex-nowrap w-full md:max-w-xs dark:border-opacity-0 border-zinc-100 hover:scale-101',
+        'relative z-10 flex gap-5 p-5 mt-4 transition-transform border shadow rounded-xl dark:bg-zinc-900 md:flex-wrap flex-nowrap w-full md:max-w-xs dark:border-transparent border-zinc-100 hover:scale-101',
         className
       )}
     >
@@ -67,10 +67,10 @@ const StrainCard = ({
         <StrainCardLikeButton liked={liked} id={strain.id} />
       )}
       {strain.nugImage && strain.name && (
-        <div className="flex items-center justify-center w-1/2 border rounded-lg md:w-full dark:border-opacity-0 border-zinc-200">
+        <div className="flex w-1/2 items-center justify-center rounded-lg border border-zinc-200 dark:border-transparent md:w-full">
           <Image
             style={{ maxHeight: '250px' }}
-            className="bg-zinc-300/10 dark:opacity-90 dark:bg-zinc-950/30 object-contain w-full h-full border border-white dark:border-zinc-800 rounded-lg aspect-square p-4"
+            className="aspect-square h-full w-full rounded-lg border border-white bg-zinc-300/10 object-contain p-4 dark:border-zinc-800 dark:bg-zinc-950/30 dark:opacity-90"
             src={strain.nugImage ? strain.nugImage : defaultImage}
             alt={strain.name}
             width={300}
@@ -80,17 +80,17 @@ const StrainCard = ({
         </div>
       )}
       <div className="w-1/2 md:w-full">
-        <div className="inline-block w-14 flex items-center justify-center px-2 py-1 text-xs font-medium bg-gray-200 rounded dark:shadow dark:bg-zinc-700">
+        <div className="flex w-14 items-center justify-center rounded bg-gray-200 px-2 py-1 text-xs font-medium dark:bg-zinc-700 dark:shadow">
           {strain.phenotype || 'N/A'}
         </div>
-        <p className="px-1 mt-1 font-medium">{strain.name}</p>
-        <p className="px-1 text-sm font-normal text-gray-500 h-14 line-clamp-3">
+        <p className="mt-1 px-1 font-medium">{strain.name}</p>
+        <p className="line-clamp-3 h-14 px-1 text-sm font-normal text-gray-500">
           {strain.subtitle
             ? strain.subtitle
             : `No description found for ${strain.name}`}
         </p>
-        <div className="flex flex-row items-center gap-1 p-1 mt-2 text-sm">
-          <span className="flex items-center justify-center w-6 h-4">
+        <div className="mt-2 flex flex-row items-center gap-1 p-1 text-sm">
+          <span className="flex h-4 w-6 items-center justify-center">
             {strain.averageRating
               ? (Math.round(strain.averageRating * 10) / 10).toFixed(1)
               : '0.0'}
@@ -106,14 +106,14 @@ const StrainCard = ({
             </span>
           ) : null}
         </div>
-        <div className="flex flex-col px-1 mt-2 text-xs font-medium capitalize md:flex-row md:gap-3 md:items-center">
+        <div className="mt-2 flex flex-col px-1 text-xs font-medium capitalize md:flex-row md:items-center md:gap-3">
           {strain.topEffect && (
             <span className="flex flex-row items-center gap-1">
               <div
                 style={{
                   backgroundColor: effects[strain.topEffect || 'Unknown'],
                 }}
-                className="rounded-full w-2.5 h-2.5"
+                className="h-2.5 w-2.5 rounded-full"
               ></div>
               <p className="p-0">{strain.topEffect}</p>
             </span>
@@ -124,7 +124,7 @@ const StrainCard = ({
                 style={{
                   backgroundColor: terpenes[strain.topTerpene || 'Unknown'],
                 }}
-                className="rounded-full w-2.5 h-2.5"
+                className="h-2.5 w-2.5 rounded-full"
               ></div>
               <p className="p-0">{strain.topTerpene}</p>
             </span>

@@ -65,19 +65,19 @@ function Pairing({ pairing }: Props) {
           height={96}
         />
       ) : (
-        <div className="w-24 h-24 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
+        <div className="h-24 w-24 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
       )}
 
-      <div className="text-sm max-w-[80%]">
-        <h2 className="dark:text-zinc-200 text-black font-semibold text-sm">
+      <div className="max-w-[80%] text-sm">
+        <h2 className="text-sm font-semibold text-black dark:text-zinc-200">
           {pairing.strain2_name || generatedPairing?.strain2_name}
         </h2>
         {pairing.body || generatedPairing?.body || (
           <>
-            <div className="w-1/3 h-4 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-            <div className="w-full h-3 mt-2 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-            <div className="w-48 h-3 mt-1.5 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
-            <div className="w-[80%] h-3 mt-1.5 rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 animate-pulse"></div>
+            <div className="h-4 w-1/3 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
+            <div className="mt-2 h-3 w-full animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
+            <div className="mt-1.5 h-3 w-48 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
+            <div className="mt-1.5 h-3 w-[80%] animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
           </>
         )}
       </div>

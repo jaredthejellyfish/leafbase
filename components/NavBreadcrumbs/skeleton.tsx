@@ -10,13 +10,13 @@ type Props = {
 const NavBreadcrumbsSkeleton = (props: Props) => {
   if (!props.urls) return null;
   return (
-    <nav className="flex w-full mb-2 ml-1 md:w-4/5" aria-label="Breadcrumb">
+    <nav className="mb-2 ml-1 flex w-full md:w-4/5" aria-label="Breadcrumb">
       <ol className="inline-flex items-center space-x-1 md:space-x-3">
         <li className="inline-flex items-center">
           <div className="inline-flex items-center text-lg font-medium text-gray-700 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-400">
             <svg
               aria-hidden="true"
-              className="w-4 h-4 mr-2"
+              className="mr-2 h-4 w-4"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +34,7 @@ const NavBreadcrumbsSkeleton = (props: Props) => {
               <div className="flex items-center">
                 <svg
                   aria-hidden="true"
-                  className="w-6 h-6 text-gray-400"
+                  className="h-6 w-6 text-gray-400"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +45,7 @@ const NavBreadcrumbsSkeleton = (props: Props) => {
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                <div className="ml-1 text-lg font-medium text-gray-700 hover:text-green-600 md:ml-2 dark:text-gray-400 dark:hover:text-green-400">
+                <div className="ml-1 text-lg font-medium text-gray-700 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-400 md:ml-2">
                   {url.name}
                 </div>
               </div>

@@ -22,10 +22,10 @@ export function ThemeToggle() {
           variant="outline"
           size="icon"
           id="theme-toggle"
-          className="sm:h-[1.6rem] sm:w-[1.6rem] h-[1.4rem] w-[1.4rem] hover:bg-gray-300 dark:hover:bg-zinc-700 bg-transparent border-transparent"
+          className="h-[1.4rem] w-[1.4rem] border-transparent bg-transparent hover:bg-gray-300 dark:hover:bg-zinc-700 sm:h-[1.6rem] sm:w-[1.6rem]"
         >
-          <Sun className="h-[1.15rem] w-[1.15rem] sm:h-[1.3rem] sm:w-[1.3rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.15rem] w-[1.15rem] sm:h-[1.3rem] sm:w-[1.3rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <Sun className="h-[1.15rem] w-[1.15rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 sm:h-[1.3rem] sm:w-[1.3rem]" />
+          <Moon className="absolute h-[1.15rem] w-[1.15rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 sm:h-[1.3rem] sm:w-[1.3rem]" />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>

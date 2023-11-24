@@ -26,14 +26,14 @@ const CommentCard = (props: Props) => {
 
   return (
     <motion.div
-      className="relative p-4 mb-5 border rounded shadow border-zinc-200 dark:border-transparent dark:bg-zinc-900"
+      className="relative mb-5 rounded border border-zinc-200 p-4 shadow dark:border-transparent dark:bg-zinc-900"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { duration: 0.2 } }}
       exit={{ opacity: 0 }}
     >
       <DeleteCommentButton comment_id={comment.id} />
       <div className="relative mb-2">
-        <div className="absolute top-0 right-0 flex text-sm">
+        <div className="absolute right-0 top-0 flex text-sm">
           <span>
             {comment?.created_at &&
               format(parseJSON(comment.created_at), 'MMMM dd, h:mm a')}
@@ -54,7 +54,7 @@ const CommentCard = (props: Props) => {
           y1="0"
           x2="99%"
           y2="0"
-          className="mb-1 stroke-1 stroke-zinc-500"
+          className="mb-1 stroke-zinc-500 stroke-1"
         />
       </svg>
       <div className="text-sm">{comment.comment}</div>

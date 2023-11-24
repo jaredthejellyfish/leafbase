@@ -50,7 +50,7 @@ const HamburgerMenu = () => {
     <>
       <div ref={hamburgerRef} id="hamburger-menu">
         <svg
-          className="text-dark rounded dark:text-white hover:bg-gray-300 dark:hover:bg-zinc-700 transition-colors select-none hover:cursor-pointer"
+          className="text-dark select-none rounded transition-colors hover:cursor-pointer hover:bg-gray-300 dark:text-white dark:hover:bg-zinc-700"
           width={25}
           height={25}
           fill="currentColor"

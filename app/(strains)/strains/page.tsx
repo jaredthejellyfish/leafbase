@@ -45,10 +45,10 @@ export default async function Strains(request: {
   const { likes } = await getServerLikedStrains();
 
   return (
-    <main className="pb-8 px-5 md:px-16 xl:px-36 py-3">
+    <main className="px-5 py-3 pb-8 md:px-16 xl:px-36">
       <div className="flex flex-col items-center">
-        <div id="heading" className="sm:max-w-[992px] xl:max-w-[1328px] w-full">
-          <h1 className="mt-4 mb-2 text-3xl font-bold ">All strains</h1>
+        <div id="heading" className="w-full sm:max-w-[992px] xl:max-w-[1328px]">
+          <h1 className="mb-2 mt-4 text-3xl font-bold ">All strains</h1>
           <h3 className="">
             Browse the most comprehensive weed strain library on the web. Browse
             weed strains by cannabis type (indica, sativa, or hybrid), effects,
@@ -56,7 +56,7 @@ export default async function Strains(request: {
           </h3>
           <div className="flex items-center justify-between px-1 font-medium">
             <span className="mt-4 text-xs text-zinc-400">{count} strains</span>
-            <span className="flex flex-row items-center gap-1 mb-1 text-xs text-zinc-400">
+            <span className="mb-1 flex flex-row items-center gap-1 text-xs text-zinc-400">
               <ErrorBoundary fallback={<FilterByMenuSkeleton />}>
                 <Suspense fallback={<FilterByMenuSkeleton />}>
                   <FilterByMenu filter={request.searchParams.filter} />
@@ -64,12 +64,12 @@ export default async function Strains(request: {
               </ErrorBoundary>
             </span>
           </div>
-          <span className="hidden w-full p-2 mt-1 text-xs border rounded md:block border-zinc-600/50 text-zinc-600">
+          <span className="mt-1 hidden w-full rounded border border-zinc-600/50 p-2 text-xs text-zinc-600 md:block">
             These results are based on user comments and are not a substitute
             for professional medical advice.
           </span>
         </div>
-        <div  className="flex flex-col gap-4 items-center justify-center w-full">
+        <div  className="flex w-full flex-col items-center justify-center gap-4">
           <ErrorBoundary fallback={<div>Something went wrong</div>}>
             {strains && count && count > perPage && (
               <StrainCardLoader

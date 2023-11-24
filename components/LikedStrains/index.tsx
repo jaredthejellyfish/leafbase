@@ -28,7 +28,7 @@ const LikedStrains = async (props: { userId?: string; modal?: boolean }) => {
       {strains && strains.length > 0 ? (
         <LikedStrainsAccordion strains={strains} />
       ) : (
-        <div className="mt-6 text-sm text-semi text-zinc-400">
+        <div className="text-semi mt-6 text-sm text-zinc-400">
           You haven&apos;t liked any strains yet!
         </div>
       )}

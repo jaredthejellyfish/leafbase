@@ -70,6 +70,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.0.0",
     "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-tailwindcss": "^3.13.0",
     "postcss": "^8",
     "prettier-plugin-sort-imports": "^1.7.2",
     "tailwindcss": "^3",

@@ -9,6 +9,7 @@ module.exports = {
     'next/core-web-vitals',
     'plugin:react/recommended',
     'plugin:@tanstack/eslint-plugin-query/recommended',
+    "plugin:tailwindcss/recommended"
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -20,5 +21,6 @@ module.exports = {
   rules: {
     'react/jsx-uses-vars': 'off',
     '@typescript-eslint/consistent-type-imports': 'error',
+    'tailwindcss/no-custom-classname': 'off'
   },
 };

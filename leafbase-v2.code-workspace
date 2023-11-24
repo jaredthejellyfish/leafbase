@@ -17,6 +17,10 @@
       "path": "lib"
     },
     {
+      "name": "cypress",
+      "path": "cypress"
+    },
+    {
       "name": "root",
       "path": "."
     }

@@ -1,0 +1,58 @@
+name: Cypress Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    services:
+      # Define a service for the Next.js app to ensure it's running for Cypress tests
+      app:
+        image: node:16
+        ports:
+          - 3000:3000
+        options: --health-cmd "curl --fail http://localhost:3000 || exit 1" --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Install bun
+      run: |
+        curl -fsSL https://bun.sh/install | bash
+        echo "$HOME/.bun/bin" >> $GITHUB_PATH
+
+    - name: Install dependencies with bun
+      run: bun install
+
+    - name: Build the project
+      run: bun run build
+
+    - name: Start the server
+      run: bun run start &
+      # The '&' at the end of the command is used to run the server in the background
+
+    - name: Wait for server to be up
+      run: |
+        until curl --output /dev/null --silent --head --fail http://localhost:3000; do
+          printf '.'
+          sleep 5
+        done
+
+    - name: Install Cypress dependencies
+      run: bun add cypress -D
+
+    - name: Run Cypress tests
+      uses: cypress-io/github-action@v2
+      with:
+        start: next start

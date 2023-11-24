@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import React from 'react';
 
 import { ThemeProvider, QueryProvider } from '@/components/Providers';
+import { Analytics as NextAnalytics } from '@vercel/analytics/react';
 import NavigationSkeleton from '@/components/Navigation/skeleton';
 import './globals.css';
 
@@ -38,7 +39,7 @@ export default function RootLayout({
       <body className={GeistSans.className}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
@@ -50,6 +51,7 @@ export default function RootLayout({
             <ReactQueryDevtools initialIsOpen={false} />
           </QueryProvider>
         </ThemeProvider>
+        <NextAnalytics />
         <Analytics />
       </body>
     </html>

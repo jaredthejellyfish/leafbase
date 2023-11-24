@@ -1,12 +1,15 @@
 'use client';
 import React, { useEffect } from 'react';
 
+import { cn } from '@/lib/utils';
+
 type Props = {
   children: React.ReactNode;
   nextSectionId: string;
+  className?: string;
 };
 
-function NextSectionButton({ children, nextSectionId }: Props) {
+function NextSectionButton({ children, nextSectionId, className }: Props) {
   useEffect(() => {
     const htmlElement = document.getElementsByTagName('html')[0];
     // set the style scroll-snap-type: y proximity;
@@ -39,7 +42,7 @@ function NextSectionButton({ children, nextSectionId }: Props) {
       id="next-section"
       name="next-section"
       onClick={handleClick}
-      className="cursor-pointer"
+      className={cn('cursor-pointer', className)}
     >
       {children}
     </button>

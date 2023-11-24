@@ -21,7 +21,7 @@ describe('landing page', () => {
 
     const sections = cy.get('section');
 
-    const firstSection = sections.should('have.length', 2).first();
+    const firstSection = sections.should('have.length', 3).first();
 
     firstSection.should('contain.text', 'Welcome to Leafbase');
 
@@ -33,7 +33,7 @@ describe('landing page', () => {
 
     firstSection
       .get('button')
-      .should('have.length', 2)
+      .should('have.length', 3)
       .eq(1)
       .click({ force: true });
 

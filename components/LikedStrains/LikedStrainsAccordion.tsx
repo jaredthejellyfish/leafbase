@@ -51,7 +51,7 @@ function LikedStrainsAccordion(props: Props) {
                   alt={`An image of a nug of ${strain.strain_id.name}`}
                   width={96}
                   height={96}
-                  priority={index < 10} // Set priority to true for the first 12 images
+                  priority={index < 10}
                 />
               </div>
               <p className="text-semi w-full overflow-hidden whitespace-nowrap text-sm sm:pl-3">

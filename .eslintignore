@@ -2,3 +2,5 @@
 .gitignore
 *.cfgi.js
 cypress/**
+node_modules/**
+supabase/**

@@ -116,7 +116,7 @@ function StrainSimilarityModal() {
         <Tooltip>
           <TooltipTrigger>
             <button
-            className='flex items-center justify-center'
+              className="flex items-center justify-center"
               onClick={handleButtonClick}
               disabled={isFetching || isError}
             >

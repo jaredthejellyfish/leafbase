@@ -9,7 +9,6 @@ import { updateUser } from '@/lib/actions/user/updateUser';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs';
 import SubmitButton from '@/components/SubmitButton';
 import TextAreaAuto from '@/components/TextAreaAuto';
-import { DatePicker } from '@/components/DatePicker';
 import CloseButton from '@/components/CloseButton';
 
 const UpdateProfilePhoto = dynamic(
@@ -19,7 +18,9 @@ const UpdateProfilePhoto = dynamic(
     loading: () => <UpdateProfilePhotoSkeleton />,
   }
 );
+
 const LanguageSelect = dynamic(() => import('@/components/LanguageSelect'));
+const DatePicker = dynamic(() => import('@/components/DatePicker'));
 
 export const metadata = {
   title: 'Edit Profile - Leafbase',

@@ -33,6 +33,14 @@ export async function updateUser(formData: FormData) {
   const aboutMe =
     formData.get('aboutMe') || session?.user.user_metadata.aboutMe;
 
+  const languages =
+    formData.get('language') || session?.user.user_metadata.languages;
+
+  const birthDate =
+    formData.get('birthDate') || session?.user.user_metadata.birthDate;
+
+  console.log('formData', formData);
+
   const newUserMetadata = {
     ...session.user.user_metadata,
     aboutMe,
@@ -40,6 +48,8 @@ export async function updateUser(formData: FormData) {
     displayName: username,
     phone,
     location,
+    languages,
+    birthDate,
   };
 
   const { data: newUser, error: updateError } = await supabase.auth.updateUser({

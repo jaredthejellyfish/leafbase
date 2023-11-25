@@ -9,6 +9,7 @@ import { updateUser } from '@/lib/actions/user/updateUser';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs';
 import SubmitButton from '@/components/SubmitButton';
 import TextAreaAuto from '@/components/TextAreaAuto';
+import { DatePicker } from '@/components/DatePicker';
 import CloseButton from '@/components/CloseButton';
 
 const UpdateProfilePhoto = dynamic(
@@ -18,6 +19,7 @@ const UpdateProfilePhoto = dynamic(
     loading: () => <UpdateProfilePhotoSkeleton />,
   }
 );
+const LanguageSelect = dynamic(() => import('@/components/LanguageSelect'));
 
 export const metadata = {
   title: 'Edit Profile - Leafbase',
@@ -119,6 +121,20 @@ export default async function ProfileEdit() {
             <div className="mt-1 text-sm text-zinc-400 lg:w-4/5">
               <TextAreaAuto placeholder={user_metadata?.aboutMe} />
             </div>
+
+            <span className="mt-3 text-sm dark:text-white">
+              Birthday:
+              <div className="mt-1">
+                <DatePicker initialDate={user_metadata?.birthDate} />
+              </div>
+            </span>
+
+            <span className="mt-3 text-sm dark:text-white">
+              Language:
+              <div className="mt-1">
+                <LanguageSelect initialLanguage={user_metadata?.languages} />
+              </div>
+            </span>
           </div>
         </div>
       </form>

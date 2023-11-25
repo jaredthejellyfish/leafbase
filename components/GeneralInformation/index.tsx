@@ -5,6 +5,7 @@ import { format } from 'date-fns';
 import React from 'react';
 
 import type { UserMetadataExtended } from '@/lib/database/database_types';
+import { languages } from '@/lib/utils/languages';
 
 type Props = { user: UserMetadata };
 
@@ -36,8 +37,13 @@ const GeneralInformation = (props: Props) => {
         )}
         {user.languages && (
           <span className="mt-3 text-sm dark:text-white">
-            Languages:
-            <p className="w-60 text-gray-400">{user?.languages}</p>
+            Language:
+            <p className="w-60 text-gray-400">
+              {
+                languages.find((language) => language.value === user?.languages)
+                  ?.label
+              }
+            </p>
           </span>
         )}
       </div>

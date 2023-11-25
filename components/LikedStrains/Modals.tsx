@@ -1,9 +1,8 @@
 'use client';
 
-import { BsClipboardFill, BsClipboardX } from 'react-icons/bs';
+import { TbGraphFilled, TbGraphOff } from 'react-icons/tb';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { ErrorBoundary } from 'react-error-boundary';
-import { MdError } from 'react-icons/md';
 import React, { useEffect } from 'react';
 import { PieChart } from 'lucide-react';
 import dynamic from 'next/dynamic';
@@ -11,13 +10,13 @@ import dynamic from 'next/dynamic';
 const StrainSimilarityModal = dynamic(() => import('./StrainSimilarityModal'), {
   ssr: false,
   loading: () => (
-    <BsClipboardFill className="text-gradient-to-br h-5 w-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
+    <TbGraphFilled className="text-gradient-to-br h-6 w-6 animate-pulse from-gray-200 via-green-300 to-green-700" />
   ),
 });
 const SmokingProfileModal = dynamic(() => import('./SmokingProfileModal'), {
   ssr: false,
   loading: () => (
-    <PieChart className="text-gradient-to-br animate-pulse from-gray-200 via-green-300 to-green-700" />
+    <PieChart className="text-gradient-to-br h-5 w-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
   ),
 });
 
@@ -55,14 +54,14 @@ function Modals({ modal }: Props) {
   if (!modal) return null;
 
   return (
-    <>
-      <ErrorBoundary fallback={<BsClipboardX className="h-5 w-5" />}>
+    <div className='flex flex-row items-center gap-x-3 px-2'>
+      <ErrorBoundary fallback={<TbGraphOff className="h-6 w-6 text-red-500" />}>
         <StrainSimilarityModal />
       </ErrorBoundary>
-      <ErrorBoundary fallback={<MdError className="h-6 w-6" />}>
+      <ErrorBoundary fallback={<PieChart className="h-5 w-5 text-red-500" />}>
         <SmokingProfileModal />
       </ErrorBoundary>
-    </>
+    </div>
   );
 }
 

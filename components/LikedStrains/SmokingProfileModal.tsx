@@ -172,11 +172,11 @@ export default function SmokingProfileModal() {
         className={'flex items-center justify-center'}
         onClick={() => setOpen(true)}
       >
-        {!isFetching && !isError && <PieChart className="h-6 w-6" />}
+        {!isFetching && !isError && <PieChart className="h-5 w-5" />}
         {isFetching && (
-          <PieChart className="text-gradient-to-br animate-pulse from-gray-200 via-green-300 to-green-700" />
+          <PieChart className="text-gradient-to-br h-5 w-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
         )}
-        {isError && <PieChart className="text-red-500" />}
+        {isError && <PieChart className="h-5 w-5 text-red-500" />}
       </button>
       <ErrorBoundary fallback={<p>Something went wrong</p>}>
         <Modal open={open} setOpen={setOpen} title={'Smoker Profile'}>

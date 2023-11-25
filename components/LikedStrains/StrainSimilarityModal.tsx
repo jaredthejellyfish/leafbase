@@ -1,6 +1,6 @@
 'use client';
 
-import { BsClipboardFill, BsClipboardX } from 'react-icons/bs';
+import { TbGraphFilled, TbGraphOff } from 'react-icons/tb';
 import type { Context } from 'chartjs-plugin-datalabels';
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
@@ -103,14 +103,15 @@ function StrainSimilarityModal() {
     }
     setModalOpen(true);
   };
+
   return (
     <>
       <button onClick={handleButtonClick} disabled={isFetching || isError}>
-        {!isError && !isFetching && <BsClipboardFill className="h-5 w-5" />}
-        {isError && <BsClipboardX className="h-5 w-5" />}
+        {!isError && !isFetching && <TbGraphFilled className="h-6 w-6" />}
         {isFetching && (
-          <BsClipboardFill className="text-gradient-to-br h-5 w-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
+          <TbGraphFilled className="text-gradient-to-br h-7 w-7 animate-pulse from-gray-200 via-green-300 to-green-700" />
         )}
+        {isError && <TbGraphOff className="h-6 w-6 text-red-500" />}
       </button>
       {modalOpen && likedCoords && (
         <Modal

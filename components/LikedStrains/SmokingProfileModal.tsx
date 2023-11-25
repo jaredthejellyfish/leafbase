@@ -1,8 +1,9 @@
 'use client';
 
-import { ArrowLeft, ArrowRight, PieChart } from 'lucide-react';
 import { ErrorBoundary } from 'react-error-boundary';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
+import { RiPieChart2Fill } from 'react-icons/ri';
 import type { ChartData } from 'chart.js';
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
@@ -172,11 +173,11 @@ export default function SmokingProfileModal() {
         className={'flex items-center justify-center'}
         onClick={() => setOpen(true)}
       >
-        {!isFetching && !isError && <PieChart className="h-5 w-5" />}
+        {!isFetching && !isError && <RiPieChart2Fill className="h-5 w-5" />}
         {isFetching && (
-          <PieChart className="text-gradient-to-br h-5 w-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
+          <RiPieChart2Fill className="text-gradient-to-br h-5 w-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
         )}
-        {isError && <PieChart className="h-5 w-5 text-red-500" />}
+        {isError && <RiPieChart2Fill className="h-5 w-5 text-red-500" />}
       </button>
       <ErrorBoundary fallback={<p>Something went wrong</p>}>
         <Modal open={open} setOpen={setOpen} title={'Smoker Profile'}>

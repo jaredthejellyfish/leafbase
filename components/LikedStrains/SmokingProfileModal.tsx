@@ -8,6 +8,13 @@ import type { ChartData } from 'chart.js';
 import React, { useState } from 'react';
 import dynamic from 'next/dynamic';
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+
 const Modal = dynamic(() => import('@/components/Modal'), { ssr: false });
 
 const Pie = dynamic(() => import('react-chartjs-2').then((mod) => mod.Pie), {
@@ -168,17 +175,25 @@ export default function SmokingProfileModal() {
   };
 
   return (
-    <main>
-      <button
-        className={'flex items-center justify-center'}
-        onClick={() => setOpen(true)}
-      >
-        {!isFetching && !isError && <RiPieChart2Fill className="h-5 w-5" />}
-        {isFetching && (
-          <RiPieChart2Fill className="text-gradient-to-br h-5 w-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
-        )}
-        {isError && <RiPieChart2Fill className="h-5 w-5 text-red-500" />}
-      </button>
+    <>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger className="flex items-center justify-center">
+            <button onClick={() => setOpen(true)}>
+              {!isFetching && !isError && (
+                <RiPieChart2Fill className="h-5 w-5" />
+              )}
+              {isFetching && (
+                <RiPieChart2Fill className="text-gradient-to-br h-5 w-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
+              )}
+              {isError && <RiPieChart2Fill className="h-5 w-5 text-red-500" />}
+            </button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p className="font-semibold">Smoker Profile</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
       <ErrorBoundary fallback={<p>Something went wrong</p>}>
         <Modal open={open} setOpen={setOpen} title={'Smoker Profile'}>
           <div className="mb-1 flex flex-row items-center justify-between px-3">
@@ -201,6 +216,6 @@ export default function SmokingProfileModal() {
           )}
         </Modal>
       </ErrorBoundary>
-    </main>
+    </>
   );
 }

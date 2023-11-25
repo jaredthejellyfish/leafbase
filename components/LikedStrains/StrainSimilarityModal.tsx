@@ -8,6 +8,12 @@ import { useTheme } from 'next-themes';
 import type { Align } from 'chart.js';
 import dynamic from 'next/dynamic';
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import { toast } from '../ui/use-toast';
 
 const Modal = dynamic(() => import('../Modal'), { ssr: false });
@@ -106,13 +112,26 @@ function StrainSimilarityModal() {
 
   return (
     <>
-      <button onClick={handleButtonClick} disabled={isFetching || isError}>
-        {!isError && !isFetching && <TbGraphFilled className="h-6 w-6" />}
-        {isFetching && (
-          <TbGraphFilled className="text-gradient-to-br h-6 w-6 animate-pulse from-gray-200 via-green-300 to-green-700" />
-        )}
-        {isError && <TbGraphOff className="h-6 w-6 text-red-500" />}
-      </button>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger>
+            <button
+            className='flex items-center justify-center'
+              onClick={handleButtonClick}
+              disabled={isFetching || isError}
+            >
+              {!isError && !isFetching && <TbGraphFilled className="h-6 w-6" />}
+              {isFetching && (
+                <TbGraphFilled className="text-gradient-to-br h-6 w-6 animate-pulse from-gray-200 via-green-300 to-green-700" />
+              )}
+              {isError && <TbGraphOff className="h-6 w-6 text-red-500" />}
+            </button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p className="font-semibold">Strain Similarity</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
       {modalOpen && likedCoords && (
         <Modal
           title="Liked Strains Similarity"

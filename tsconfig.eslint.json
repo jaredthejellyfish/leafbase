@@ -1,10 +1,10 @@
 {
-    "extends": "./tsconfig.json",
-    "include": [
-      "supabase/**/*",
-      "postcss.config.js",
-      "next.config.js",
-      ".eslintrc.js",
-      // any other folders or files you want ESLint to cover
-    ]
-  }
+  "extends": "./tsconfig.json",
+  "include": [
+    "supabase/**/*",
+    "postcss.config.js",
+    "next.config.js",
+    ".eslintrc.js",
+    "cypress/**/*"
+  ]
+}

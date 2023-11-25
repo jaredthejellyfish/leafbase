@@ -109,7 +109,7 @@ function StrainSimilarityModal() {
       <button onClick={handleButtonClick} disabled={isFetching || isError}>
         {!isError && !isFetching && <TbGraphFilled className="h-6 w-6" />}
         {isFetching && (
-          <TbGraphFilled className="text-gradient-to-br h-7 w-7 animate-pulse from-gray-200 via-green-300 to-green-700" />
+          <TbGraphFilled className="text-gradient-to-br h-6 w-6 animate-pulse from-gray-200 via-green-300 to-green-700" />
         )}
         {isError && <TbGraphOff className="h-6 w-6 text-red-500" />}
       </button>

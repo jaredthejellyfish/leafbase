@@ -30,7 +30,7 @@ export default async function Landing() {
   return (
     <main className="flex-1">
       <section
-        className="h-screen-bar flex w-full items-center justify-center"
+        className="flex h-screen-bar w-full items-center justify-center"
         style={{ scrollSnapAlign: 'start', scrollMarginTop: '6rem' }}
       >
         <ClientParticles
@@ -40,7 +40,7 @@ export default async function Landing() {
         <div className="container px-4 md:px-6 ">
           <div className="flex flex-col items-center space-y-4 text-center">
             <div className="space-y-2">
-              <h1 className="animate-gradient bg-300x z-50 bg-gradient-to-br from-green-800 via-green-600 to-green-300 bg-clip-text text-5xl font-bold leading-tight text-transparent sm:text-6xl xl:text-7xl">
+              <h1 className="z-50 animate-gradient bg-gradient-to-br from-green-800 via-green-600 to-green-300 bg-300x bg-clip-text text-5xl font-bold leading-tight text-transparent sm:text-6xl xl:text-7xl">
                 Welcome to Leafbase
               </h1>
 

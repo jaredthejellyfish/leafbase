@@ -14,7 +14,11 @@ import {
 import SuggestedPairingsModal from '../SuggestedPairingsModal';
 import CustomPairingsModal from '../CustomPairingsModal';
 
-type Props = { id: string; slug: string; image: string };
+type Props = {
+  id: string;
+  slug: string;
+  image: string;
+};
 
 function StrainSuggestionsButton({ slug, id, image }: Props) {
   const [suggestedPairingsOpen, setSuggestedPairingsOpen] = useState(false);

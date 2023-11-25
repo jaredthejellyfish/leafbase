@@ -18,7 +18,7 @@ type Props = {
   initialDate?: string;
 };
 
-export function DatePicker({ initialDate }: Props) {
+export default function DatePicker({ initialDate }: Props) {
   const [date, setDate] = useState(
     initialDate ? parse(initialDate, 'yyyy-MM-dd', new Date()) : undefined
   );

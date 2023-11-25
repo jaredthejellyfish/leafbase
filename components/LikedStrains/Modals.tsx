@@ -4,8 +4,9 @@ import { TbGraphFilled, TbGraphOff } from 'react-icons/tb';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { ErrorBoundary } from 'react-error-boundary';
 import React, { useEffect } from 'react';
-import { PieChart } from 'lucide-react';
+
 import dynamic from 'next/dynamic';
+import { RiPieChart2Fill } from "react-icons/ri";
 
 const StrainSimilarityModal = dynamic(() => import('./StrainSimilarityModal'), {
   ssr: false,
@@ -16,7 +17,7 @@ const StrainSimilarityModal = dynamic(() => import('./StrainSimilarityModal'), {
 const SmokingProfileModal = dynamic(() => import('./SmokingProfileModal'), {
   ssr: false,
   loading: () => (
-    <PieChart className="text-gradient-to-br h-5 w-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
+    <RiPieChart2Fill className="text-gradient-to-br h-5 w-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
   ),
 });
 
@@ -58,7 +59,7 @@ function Modals({ modal }: Props) {
       <ErrorBoundary fallback={<TbGraphOff className="h-6 w-6 text-red-500" />}>
         <StrainSimilarityModal />
       </ErrorBoundary>
-      <ErrorBoundary fallback={<PieChart className="h-5 w-5 text-red-500" />}>
+      <ErrorBoundary fallback={<RiPieChart2Fill className="h-5 w-5 text-red-500" />}>
         <SmokingProfileModal />
       </ErrorBoundary>
     </div>

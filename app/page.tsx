@@ -45,7 +45,7 @@ export default async function Landing() {
               </h1>
 
               <p className="mx-auto max-w-[700px] text-zinc-500 dark:text-zinc-400 md:text-xl">
-                The most comprehensive database of{' '}
+                The most comprehensive database of cannabis{' '}
                 <Link href="/strains" className="text-green-700 underline">
                   strains
                 </Link>{' '}

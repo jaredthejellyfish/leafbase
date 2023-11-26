@@ -1,11 +1,20 @@
-import { ClipboardXIcon } from 'lucide-react';
+import { RiPieChart2Fill } from 'react-icons/ri';
+import { TbGraphFilled } from 'react-icons/tb';
 import React from 'react';
 
 const LikedStrainsSkeleton = () => (
   <div className="px-1">
     <div className="flex flex-row items-center gap-5 text-xl font-bold">
-      <p className="">Liked Strains (-)</p>
-      <ClipboardXIcon />
+      <div className="flex flex-row items-end gap-x-3">
+        <span>Liked Strains</span>
+        <span className="text-gradient-to-br animate-pulse from-gray-200 via-green-300 to-green-700 text-lg text-zinc-400">
+          (--)
+        </span>
+      </div>
+      <div className="flex flex-row items-center gap-x-3 px-2">
+        <RiPieChart2Fill className="text-gradient-to-br h-5 w-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
+        <TbGraphFilled className="text-gradient-to-br h-6 w-6 animate-pulse from-gray-200 via-green-300 to-green-700" />
+      </div>
     </div>
     <div className="mt-3 flex max-h-[296px] w-full flex-row flex-wrap items-start justify-between gap-1.5 overflow-hidden sm:gap-3">
       {/* Placeholder strains */}

@@ -91,7 +91,11 @@ export default async function Landing() {
                 className="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
               >
                 {strains.map((strain) => (
-                  <StrainCard key={strain.id} strain={strain} />
+                  <StrainCard
+                    key={strain.id}
+                    strain={strain}
+                    priority={false}
+                  />
                 ))}
               </div>
             </div>

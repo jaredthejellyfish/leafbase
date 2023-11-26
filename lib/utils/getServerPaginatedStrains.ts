@@ -3,8 +3,9 @@ import { cookies } from 'next/headers';
 
 import type { Database } from '@/lib/database';
 import type { Strain } from '@/lib/types';
+import { cache } from 'react';
 
-export async function getServerPaginatedStrains({
+export default cache(async function getServerPaginatedStrains({
   filter,
   page = 0,
   perPage,
@@ -84,4 +85,4 @@ export async function getServerPaginatedStrains({
     nextPage: page + 1,
     totalPages,
   };
-}
+});

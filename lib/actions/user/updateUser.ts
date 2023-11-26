@@ -39,8 +39,6 @@ export async function updateUser(formData: FormData) {
   const birthDate =
     formData.get('birthDate') || session?.user.user_metadata.birthDate;
 
-  console.log('formData', formData);
-
   const newUserMetadata = {
     ...session.user.user_metadata,
     aboutMe,

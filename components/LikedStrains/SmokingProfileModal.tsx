@@ -190,12 +190,12 @@ export default function SmokingProfileModal() {
             </button>
           </TooltipTrigger>
           <TooltipContent>
-            <p className="font-semibold">Smoker Profile</p>
+            <p className="font-semibold">Smoking Profile</p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
       <ErrorBoundary fallback={<p>Something went wrong</p>}>
-        <Modal open={open} setOpen={setOpen} title={'Smoker Profile'}>
+        <Modal open={open} setOpen={setOpen} title={'Smoking Profile'}>
           <div className="mb-1 flex flex-row items-center justify-between px-3">
             <button onClick={handleBack}>
               <ArrowLeft className="h-6 w-6" />

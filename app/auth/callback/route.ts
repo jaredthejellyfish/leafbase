@@ -6,6 +6,7 @@ import { cookies } from 'next/headers';
 export async function GET(request: NextRequest) {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get('code');
+  const redirect = requestUrl.searchParams.get('redirect');
 
   if (code) {
     const cookieStore = cookies();
@@ -14,5 +15,8 @@ export async function GET(request: NextRequest) {
   }
 
   // URL to redirect to after sign in process completes
+  if (redirect && redirect !== '/auth/callback') {
+    return NextResponse.redirect(requestUrl.origin + redirect);
+  }
   return NextResponse.redirect(requestUrl.origin);
 }

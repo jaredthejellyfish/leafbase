@@ -8,10 +8,11 @@ export async function middleware(req: NextRequest) {
   const { data } = await supabase.auth.getSession();
 
   const code = req.nextUrl.searchParams.get('code');
+  const currentUrl = req.nextUrl.pathname;
 
   if (code && req.nextUrl.pathname !== '/auth/callback') {
     return NextResponse.redirect(
-      new URL(`/auth/callback?code=${code}`, req.nextUrl)
+      new URL(`/auth/callback?code=${code}&redirect=${currentUrl}`, req.nextUrl)
     );
   }
 

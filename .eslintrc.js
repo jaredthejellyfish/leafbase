@@ -27,5 +27,6 @@ module.exports = {
     '@typescript-eslint/consistent-type-imports': 'error',
     'tailwindcss/no-custom-classname': 'off',
     '@typescript-eslint/prefer-readonly': 'warn',
+    'no-console': ['error', { allow: ['warn', 'error'] }],
   },
 };

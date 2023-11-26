@@ -3,7 +3,7 @@ import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 
-import { getServerPaginatedStrains } from '@/lib/utils/getServerPaginatedStrains';
+import getServerPaginatedStrains from '@/lib/utils/getServerPaginatedStrains';
 import { getServerLikedStrains } from '@/lib/utils/getServerLikedStrains';
 import FilterByMenuSkeleton from '@/components/FilterByMenu/skeleton';
 import StrainCardSkeleton from '@/components/StrainCard/skeleton';

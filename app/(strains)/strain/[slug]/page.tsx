@@ -214,7 +214,10 @@ export default async function StrainSlug(props: Props) {
       </div>
       <div className="mt-5">
         {strain.strain_comments.length > 0 && (
-          <CommentSection comments={strain.strain_comments} />
+          <CommentSection
+            strainName={strain.name}
+            comments={strain.strain_comments}
+          />
         )}
       </div>
     </main>

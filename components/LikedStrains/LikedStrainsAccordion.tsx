@@ -38,27 +38,30 @@ function LikedStrainsAccordion(props: Props) {
         className="mt-3 flex w-full flex-row flex-wrap items-start justify-start gap-1.5 overflow-hidden sm:gap-3"
       >
         {strains &&
-          strains.map((strain, index) => (
-            <Link
-              key={strain.id}
-              className="flex min-w-[11%] grow scale-95 flex-col gap-2 rounded border p-2 shadow dark:border-zinc-600 dark:bg-zinc-800 sm:min-w-[12%] sm:max-w-[130px] md:min-w-[calc(33.333%-1em)] lg:min-w-[calc(25%-1em)] xl:min-w-[calc(20%-1em)]"
-              href={`/strain/${strain.strain_id.slug}`}
-            >
-              <div className="flex aspect-square h-24 max-h-24 w-full items-center justify-center rounded-md">
-                <Image
-                  src={strain.strain_id.nugImage}
-                  className="rounded-md"
-                  alt={`An image of a nug of ${strain.strain_id.name}`}
-                  width={96}
-                  height={96}
-                  priority={index < 10}
-                />
-              </div>
-              <p className="text-semi w-full overflow-hidden whitespace-nowrap text-sm sm:pl-3">
-                {strain.strain_id.name}
-              </p>
-            </Link>
-          ))}
+          strains.map((strain, index) => {
+            if (index > 9 && !isOpen) return null;
+            return (
+              <Link
+                key={strain.id}
+                className="flex min-w-[11%] grow scale-95 flex-col gap-2 rounded border p-2 shadow dark:border-zinc-600 dark:bg-zinc-800 sm:min-w-[12%] sm:max-w-[130px] md:min-w-[calc(33.333%-1em)] lg:min-w-[calc(25%-1em)] xl:min-w-[calc(20%-1em)]"
+                href={`/strain/${strain.strain_id.slug}`}
+              >
+                <div className="flex aspect-square h-24 max-h-24 w-full items-center justify-center rounded-md">
+                  <Image
+                    src={strain.strain_id.nugImage}
+                    className="rounded-md"
+                    alt={`An image of a nug of ${strain.strain_id.name}`}
+                    width={96}
+                    height={96}
+                    priority={index < 10}
+                  />
+                </div>
+                <p className="text-semi w-full overflow-hidden whitespace-nowrap text-sm sm:pl-3">
+                  {strain.strain_id.name}
+                </p>
+              </Link>
+            );
+          })}
       </motion.div>
       {props.strains.length > 10 ? (
         <button

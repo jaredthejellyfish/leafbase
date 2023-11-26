@@ -7,7 +7,7 @@
   <a href="https://wakatime.com/badge/user/61cabc84-7492-4f6a-b301-5bbbdd324bc5/project/5d1cd45b-d781-442d-838e-f453723d9542"><img src="https://wakatime.com/badge/user/61cabc84-7492-4f6a-b301-5bbbdd324bc5/project/5d1cd45b-d781-442d-838e-f453723d9542.svg" alt="wakatime"></a>
 </p>
 
-> The most comprehensive weed strain library on the web.
+> The most comprehensive cannabis strain library on the web.
 
 ### 🏠 [Homepage](https://leafbase.xyz/strains)
 

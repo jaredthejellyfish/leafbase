@@ -8,6 +8,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import type { UserMetadataExtended } from '@/lib/database/database_types';
 import SignoutButton from './SignoutButton';
 import { cn } from '@/lib/utils';
@@ -28,21 +34,39 @@ const Profile = (props: Props) => {
         {!props.hideOptions && (
           <>
             {user.displayName && (
-              <Link
-                id="view-profile"
-                className="text-zinc-500 dark:text-zinc-300"
-                href={`/profile/${user.displayName}`}
-              >
-                <AiFillEye size={20} />
-              </Link>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger className="flex items-center justify-center">
+                    <Link
+                      id="view-profile"
+                      className="text-zinc-500 dark:text-zinc-300"
+                      href={`/profile/${user.displayName}`}
+                    >
+                      <AiFillEye size={20} />
+                    </Link>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p className="font-semibold">View profile</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             )}
-            <Link
-              id="edit-profile"
-              className="text-zinc-500 dark:text-zinc-300"
-              href="/profile/edit"
-            >
-              <BsFillGearFill size={18} />
-            </Link>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger className="flex items-center justify-center">
+                  <Link
+                    id="edit-profile"
+                    className="text-zinc-500 dark:text-zinc-300"
+                    href="/profile/edit"
+                  >
+                    <BsFillGearFill size={18} />
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="font-semibold">Edit profile</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </>
         )}
       </div>

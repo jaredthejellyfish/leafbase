@@ -21,7 +21,7 @@ bun install
 
 👤 **Gerard Almenara Hernandez**
 
-- Website: https://www.instagram.com/photoniks_
+- Website: [https://www.instagram.com/photoniks_](https://www.instagram.com/photoniks_)
 - Github: [@jaredthejellyfish](https://github.com/jaredthejellyfish)
 
 ## Show your support

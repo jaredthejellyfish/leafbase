@@ -5,8 +5,6 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React from 'react';
 
-import DeleteCommentButton from './DeleteCommentButton';
-
 type Props = {
   comment: {
     comment: string;
@@ -31,7 +29,7 @@ const CommentCard = (props: Props) => {
       animate={{ opacity: 1, transition: { duration: 0.2 } }}
       exit={{ opacity: 0 }}
     >
-      <DeleteCommentButton comment_id={comment.id} />
+      {/* <DeleteCommentButton comment_id={comment.id} /> */}
       <div className="relative mb-2">
         <div className="absolute right-0 top-0 flex text-sm">
           <span>

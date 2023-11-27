@@ -8,6 +8,7 @@ import GeneralInformation from '@/components/GeneralInformation';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs';
 import LikedStrains from '@/components/LikedStrains';
 import Profile from '@/components/Profile';
+import { notFound } from 'next/navigation';
 
 type Props = { params: { username: string } };
 
@@ -18,7 +19,7 @@ export default async function ProfileUser(props: Props) {
     props.params.username
   );
 
-  if (!user) return <div>404</div>;
+  if (!user) notFound();
 
   return (
     <div className="px-5 py-3 md:px-16">
@@ -26,8 +27,8 @@ export default async function ProfileUser(props: Props) {
         urls={[
           { name: 'Profile', url: '/profile' },
           {
-            name: user.displayName,
-            url: `/profile/${user?.displayName}`,
+            name: user.username,
+            url: `/profile/${user?.username}`,
           },
         ]}
       />
@@ -36,7 +37,7 @@ export default async function ProfileUser(props: Props) {
           <Profile user={user} hideOptions />
         </div>
         <div id="vertical 2" className="flex flex-col gap-4 pb-3 lg:w-2/3">
-          {user && (user.aboutMe || user.birthDate || user.languages) && (
+          {user && (user.about || user.birth_date || user.language) && (
             <GeneralInformation user={user} />
           )}
           <ErrorBoundary fallback={<LikedStrainsError />}>

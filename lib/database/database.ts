@@ -185,37 +185,46 @@ export interface Database {
       }
       profiles: {
         Row: {
-          aboutMe: string | null
-          birthDate: string | null
-          displayName: string
+          about: string | null
+          birth_date: string | null
+          comment_notify: boolean
+          dispensary_notify: boolean
           id: string
           image: string | null
-          languages: string | null
+          language: string | null
           location: string | null
           name: string | null
+          phone: string | null
           profile_id: string
+          username: string
         }
         Insert: {
-          aboutMe?: string | null
-          birthDate?: string | null
-          displayName: string
+          about?: string | null
+          birth_date?: string | null
+          comment_notify?: boolean
+          dispensary_notify?: boolean
           id: string
           image?: string | null
-          languages?: string | null
+          language?: string | null
           location?: string | null
           name?: string | null
+          phone?: string | null
           profile_id?: string
+          username: string
         }
         Update: {
-          aboutMe?: string | null
-          birthDate?: string | null
-          displayName?: string
+          about?: string | null
+          birth_date?: string | null
+          comment_notify?: boolean
+          dispensary_notify?: boolean
           id?: string
           image?: string | null
-          languages?: string | null
+          language?: string | null
           location?: string | null
           name?: string | null
+          phone?: string | null
           profile_id?: string
+          username?: string
         }
         Relationships: [
           {

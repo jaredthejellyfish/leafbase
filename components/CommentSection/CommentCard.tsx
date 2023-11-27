@@ -40,9 +40,9 @@ const CommentCard = (props: Props) => {
         <div className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400">
           <Link
             className="font-semibold"
-            href={`/profile/${comment.profile.displayName}`}
+            href={`/profile/${comment.profile.username}`}
           >
-            {comment.profile.displayName}
+            {comment.profile.username}
           </Link>
         </div>
       </div>

@@ -1,18 +1,20 @@
 import type { Database } from '@/lib/database';
 
 export type DatabaseStrain = Database['public']['Tables']['strains']['Row'];
+
 export type UserMetadataExtended = {
-  aboutMe: string;
-  birthDate: string;
-  commentNotify: boolean;
-  dispensaryNotify: boolean;
-  displayName: string;
+  about: string;
+  birth_date: string;
+  comment_notify: boolean;
+  dispensary_notify: boolean;
+  username: string;
   image: string;
-  languages: string;
+  language: string;
   location: string;
   name: string;
   phone: string;
 };
+
 export type PublicProfile = Database['public']['Tables']['profiles']['Row'];
 
 export type SearchStrain =

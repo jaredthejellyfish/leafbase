@@ -19,28 +19,28 @@ const GeneralInformation = (props: Props) => {
       <>
         <span className="mt-3 text-sm dark:text-white">About me</span>
         <p className="mt-1 text-sm text-zinc-400 lg:w-4/5">
-          {user?.aboutMe || 'Add a bio in the edit page.'}
+          {user?.about || 'Add a bio in the edit page.'}
         </p>
       </>
       <div
         className={`flex flex-col justify-between ${
-          user?.aboutMe && 'mt-6'
+          user?.about && 'mt-6'
         } md:w-4/5 md:flex-row`}
       >
-        {user.birthDate && (
+        {user.birth_date && (
           <span className="mt-3 text-sm dark:text-white">
             Birthday:
             <p className="w-60 text-gray-400">
-              {`${format(new Date(user?.birthDate), 'PP')}`}
+              {`${format(new Date(user?.birth_date), 'PP')}`}
             </p>
           </span>
         )}
-        {user.languages && (
+        {user.language && (
           <span className="mt-3 text-sm dark:text-white">
             Language:
             <p className="w-60 text-gray-400">
               {
-                languages.find((language) => language.value === user?.languages)
+                languages.find((language) => language.value === user?.language)
                   ?.label
               }
             </p>

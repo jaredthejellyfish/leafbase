@@ -1,4 +1,5 @@
 import { ErrorBoundary } from 'react-error-boundary';
+import { notFound } from 'next/navigation';
 import React, { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 
@@ -21,9 +22,7 @@ export const metadata = {
 export default async function Profile() {
   const { user_metadata, session } = await getServerUserMetadata();
 
-  if (!user_metadata) {
-    return null;
-  }
+  if (!user_metadata) return notFound();
 
   return (
     <div className="px-5 py-3 md:px-16">
@@ -31,7 +30,7 @@ export default async function Profile() {
         urls={[
           {
             name: 'Profile',
-            url: `/profile/${user_metadata?.displayName}`,
+            url: `/profile/${user_metadata?.username}`,
           },
         ]}
       />

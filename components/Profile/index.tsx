@@ -33,14 +33,14 @@ const Profile = (props: Props) => {
       <div className="absolute right-8 top-6 flex items-center justify-center gap-6 ">
         {!props.hideOptions && (
           <>
-            {user.displayName && (
+            {user.username && (
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger className="flex items-center justify-center">
                     <Link
                       id="view-profile"
                       className="text-zinc-500 dark:text-zinc-300"
-                      href={`/profile/${user.displayName}`}
+                      href={`/profile/${user.username}`}
                     >
                       <AiFillEye size={20} />
                     </Link>
@@ -84,10 +84,10 @@ const Profile = (props: Props) => {
       <p className={cn('mt-2 text-lg font-bold', !user?.name ? 'mt-0' : '')}>
         {user?.name}
       </p>
-      {user?.displayName ? (
+      {user?.username ? (
         <>
           <span className="flex flex-row items-center gap-1 text-sm text-zinc-300">
-            <span className="text-zinc-400">{user?.displayName}</span>
+            <span className="text-zinc-400">{user?.username}</span>
           </span>
           {user?.location && (
             <span className="mt-3 text-sm dark:text-white">

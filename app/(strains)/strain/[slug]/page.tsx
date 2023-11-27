@@ -15,6 +15,7 @@ import StrainSoma from '@/components/StrainSoma';
 import defaultImage from '@/public/default.webp';
 import type { Database } from '@/lib/database';
 import { isLiked } from '@/lib/utils';
+import { notFound } from 'next/navigation';
 
 const CommentSection = dynamic(() => import('@/components/CommentSection'));
 
@@ -84,7 +85,7 @@ export default async function StrainSlug(props: Props) {
   const { data: strainLikes } = await getServerLikedStrains();
   const likes = strainLikes?.map((strainLike) => strainLike.strain_id.id);
 
-  const { data: strain, error } = await supabase
+  const { data: strain } = await supabase
     .from('strains')
     .select('*, strain_comments ( *, profile:profiles ( displayName, image ) )')
     .eq('slug', slug)
@@ -92,7 +93,7 @@ export default async function StrainSlug(props: Props) {
     .maybeSingle();
 
   if (!strain) {
-    return <pre>{JSON.stringify(error, null, 2)}</pre>;
+    return notFound();
   }
 
   return (

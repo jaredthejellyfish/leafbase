@@ -5,7 +5,7 @@ import type { PublicProfile } from '../database/database_types';
 import type { Database } from '@/lib//database';
 
 export async function getServerUserProfileFromUsername(
-  displayName: string
+  username: string
 ): Promise<{
   status: 'success' | null;
   error: string | null;
@@ -19,7 +19,7 @@ export async function getServerUserProfileFromUsername(
   const { data: user, error } = await supabase
     .from('profiles')
     .select('*')
-    .eq('displayName', displayName)
+    .eq('username', username)
     .single();
 
   if (error) {

@@ -1,6 +1,7 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 
+import type { UserMetadataExtended } from '../database/database_types';
 import type { Database } from '@/lib/database';
 
 export async function getServerUserMetadata(session?: boolean) {
@@ -22,7 +23,10 @@ export async function getServerUserMetadata(session?: boolean) {
     const { data: userData } = await supabase.auth.getUser();
     const user = userData?.user;
 
-    return { session: userSession, user_metadata: user?.user_metadata || null };
+    return {
+      session: userSession,
+      user_metadata: (user?.user_metadata as UserMetadataExtended) || null,
+    };
   }
 
   return { session: null, user_metadata: null };

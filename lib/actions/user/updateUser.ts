@@ -1,6 +1,7 @@
 'use server';
 
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import { z } from 'zod';
@@ -79,7 +80,7 @@ export async function updateUser(
 
   // validate form data and ensure it is different from current metadata
   try {
-    const validatedData = UserProfileSchema.parse({
+    UserProfileSchema.parse({
       about,
       name,
       username,
@@ -88,20 +89,6 @@ export async function updateUser(
       language,
       birth_date,
     });
-
-    if (
-      validatedData.about === currentMetadata.about &&
-      validatedData.name === currentMetadata.name &&
-      validatedData.username === currentMetadata.username &&
-      validatedData.phone === currentMetadata.phone &&
-      validatedData.location === currentMetadata.location &&
-      validatedData.language === currentMetadata.language &&
-      validatedData.birth_date === currentMetadata.birth_date
-    ) {
-      return {
-        error: 'No changes made',
-      };
-    }
   } catch (error) {
     const zodError = error as z.ZodError;
     const issues = zodError.issues.map((issue) => issue.message);
@@ -151,6 +138,9 @@ export async function updateUser(
       error: 'Could not update profile.',
     };
   }
+
+  revalidatePath('/profile');
+  revalidatePath('/profile/edit');
 
   redirect('/profile?updated=true');
 }

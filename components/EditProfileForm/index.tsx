@@ -37,13 +37,13 @@ function EditProfileForm({ user_metadata, session }: Props) {
   });
 
   useEffect(() => {
-    if (state.error) {
+    if (state.error !== null) {
       toast({
         title: 'Error',
         description: state.error,
       });
     }
-  }, [state.error]);
+  }, [state]);
 
   return (
     <form className="mt-3 flex flex-col gap-6 lg:flex-row" action={formAction}>

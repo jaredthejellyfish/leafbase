@@ -1,4 +1,5 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { notFound } from 'next/navigation';
 import { cookies } from 'next/headers';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
@@ -15,7 +16,6 @@ import StrainSoma from '@/components/StrainSoma';
 import defaultImage from '@/public/default.webp';
 import type { Database } from '@/lib/database';
 import { isLiked } from '@/lib/utils';
-import { notFound } from 'next/navigation';
 
 const CommentSection = dynamic(() => import('@/components/CommentSection'));
 
@@ -87,7 +87,7 @@ export default async function StrainSlug(props: Props) {
 
   const { data: strain } = await supabase
     .from('strains')
-    .select('*, strain_comments ( *, profile:profiles ( displayName, image ) )')
+    .select('*, strain_comments ( *, profile:profiles ( username, image ) )')
     .eq('slug', slug)
     .returns<StrainWithComments[]>()
     .maybeSingle();

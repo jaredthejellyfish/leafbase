@@ -36,9 +36,9 @@ export async function signUpUser(formData: FormData) {
       emailRedirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback`,
 
       data: {
-        name: name,
-        email: email,
-        displayName: username,
+        name,
+        email,
+        username,
       },
     },
   });

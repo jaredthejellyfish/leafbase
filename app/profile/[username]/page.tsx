@@ -1,4 +1,5 @@
 import { ErrorBoundary } from 'react-error-boundary';
+import { notFound } from 'next/navigation';
 import React, { Suspense } from 'react';
 
 import { getServerUserProfileFromUsername } from '@/lib/utils/getServerUserProfileFromUsername';
@@ -8,7 +9,6 @@ import GeneralInformation from '@/components/GeneralInformation';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs';
 import LikedStrains from '@/components/LikedStrains';
 import Profile from '@/components/Profile';
-import { notFound } from 'next/navigation';
 
 type Props = { params: { username: string } };
 

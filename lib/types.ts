@@ -26,7 +26,7 @@ export interface Effects {
 
 interface Cannabinoid {
   order: number;
-  displayName: string;
+  username: string;
   percentile25: number | null;
   percentile50: number;
   percentile75: number | null;
@@ -43,7 +43,7 @@ export interface Cannabinoids {
 export interface Strain extends DatabaseStrain {
   cannabinoids: {
     [key: string]: {
-      displayName: string;
+      username: string;
       order: number;
       percentile25: number | null;
       percentile50: number;
@@ -76,7 +76,7 @@ export interface StrainWithComments extends Strain {
     strain_id: string;
     user_id: string;
     profile: {
-      displayName: string;
+      username: string;
       image: string | null;
     };
   }[];
@@ -96,7 +96,7 @@ export type StrainLike = {
 export interface StrainCommentWithUser extends StrainComment {
   profile: {
     id: string;
-    displayName: string;
+    username: string;
     image: string;
   };
 }

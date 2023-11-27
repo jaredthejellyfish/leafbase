@@ -13,7 +13,7 @@ type Props = {
     strain_id: string;
     user_id: string;
     profile: {
-      displayName: string;
+      username: string;
       image: string | null;
     };
   };

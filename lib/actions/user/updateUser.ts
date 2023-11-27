@@ -11,15 +11,24 @@ import type { Database } from '@/lib/database';
 // add a custom message to about that says: "This is a custom message"
 
 const UserProfileSchema = z.object({
-  about: z.string().max(500, { message: "About section must not exceed 500 characters." }),
-  name: z.string().max(30, { message: "Name must not exceed 30 characters." }),
-  username: z.string().max(30, { message: "Username must not exceed 30 characters." }),
-  phone: z.string().max(30, { message: "Phone number must not exceed 30 characters." }),
-  location: z.string().max(30, { message: "Location must not exceed 30 characters." }),
-  language: z.string().max(30, { message: "Language must not exceed 30 characters." }),
+  about: z
+    .string()
+    .max(500, { message: 'About section must not exceed 500 characters.' }),
+  name: z.string().max(30, { message: 'Name must not exceed 30 characters.' }),
+  username: z
+    .string()
+    .max(30, { message: 'Username must not exceed 30 characters.' }),
+  phone: z
+    .string()
+    .max(30, { message: 'Phone number must not exceed 30 characters.' }),
+  location: z
+    .string()
+    .max(30, { message: 'Location must not exceed 30 characters.' }),
+  language: z
+    .string()
+    .max(30, { message: 'Language must not exceed 30 characters.' }),
   birth_date: z.string(),
 });
-
 
 export async function updateUser(
   state: { error: null | string },

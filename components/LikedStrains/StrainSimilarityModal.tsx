@@ -115,17 +115,16 @@ function StrainSimilarityModal() {
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger>
-            <button
+            <div
               className="flex items-center justify-center"
-              onClick={handleButtonClick}
-              disabled={isFetching || isError}
+              onClick={isFetching || isError ? () => {} : handleButtonClick}
             >
               {!isError && !isFetching && <TbGraphFilled className="h-6 w-6" />}
               {isFetching && (
                 <TbGraphFilled className="text-gradient-to-br h-6 w-6 animate-pulse from-gray-200 via-green-300 to-green-700" />
               )}
               {isError && <TbGraphOff className="h-6 w-6 text-red-500" />}
-            </button>
+            </div>
           </TooltipTrigger>
           <TooltipContent>
             <p className="font-semibold">Strain Similarity</p>

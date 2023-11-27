@@ -179,7 +179,7 @@ export default function SmokingProfileModal() {
       <TooltipProvider>
         <Tooltip>
           <TooltipTrigger className="flex items-center justify-center">
-            <button onClick={() => setOpen(true)}>
+            <div onClick={() => setOpen(true)}>
               {!isFetching && !isError && (
                 <RiPieChart2Fill className="h-5 w-5" />
               )}
@@ -187,7 +187,7 @@ export default function SmokingProfileModal() {
                 <RiPieChart2Fill className="text-gradient-to-br h-5 w-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
               )}
               {isError && <RiPieChart2Fill className="h-5 w-5 text-red-500" />}
-            </button>
+            </div>
           </TooltipTrigger>
           <TooltipContent>
             <p className="font-semibold">Smoking Profile</p>

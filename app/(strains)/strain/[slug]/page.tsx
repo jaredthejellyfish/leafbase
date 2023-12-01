@@ -218,6 +218,7 @@ export default async function StrainSlug(props: Props) {
           <CommentSection
             strainName={strain.name}
             comments={strain.strain_comments}
+            strainSlug={strain.slug}
           />
         )}
       </div>

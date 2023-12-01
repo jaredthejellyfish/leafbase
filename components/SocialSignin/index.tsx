@@ -27,7 +27,7 @@ function SocialSignin() {
   return (
     <div className="flex justify-center space-x-4">
       <Button
-        className="flex aspect-square w-14 h-14 items-center justify-center border border-zinc-400 text-white dark:border-zinc-600 dark:bg-zinc-700"
+        className="flex aspect-square h-14 w-14 items-center justify-center border border-zinc-400 text-white dark:border-zinc-600 dark:bg-zinc-700"
         variant="outline"
         onClick={(e) => signInWithProvider(e, 'google')}
       >

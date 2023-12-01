@@ -15,7 +15,7 @@ const GeneralInformation = (props: Props) => {
 
   return (
     <div className="flex w-full flex-col rounded-xl p-7 shadow-md dark:bg-zinc-900">
-      <h1 className="text-xl font-bold">General information</h1>
+      <h3 className="text-xl font-bold">General information</h3>
       <>
         <span className="mt-3 text-sm dark:text-white">About me</span>
         <p className="mt-1 text-sm text-zinc-400 lg:w-4/5">

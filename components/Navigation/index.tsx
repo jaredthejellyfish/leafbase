@@ -21,7 +21,7 @@ async function Navigation() {
           className="flex items-center justify-start gap-2.5 text-xl sm:gap-4"
         >
           <Image
-            className="rounded-sm sm:scale-125"
+            className="aspect-square rounded-sm border border-zinc-300 bg-white dark:border-zinc-700 dark:bg-zinc-700/60 sm:scale-125"
             src={SiteLogo}
             height={33}
             width={33}

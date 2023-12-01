@@ -50,6 +50,12 @@ export default async function Friends({ session }: Props) {
     };
   });
 
+  friends.sort((a, b) => {
+    if (a.pending && !b.pending) return -1;
+    if (!a.pending && b.pending) return 1;
+    return 0;
+  });
+
   return (
     <div
       className={cn(

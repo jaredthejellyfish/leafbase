@@ -145,7 +145,7 @@ export interface Database {
         }
         Insert: {
           created_at?: string
-          from?: string
+          from: string
           id?: string
           pending?: boolean
           to: string
@@ -162,14 +162,14 @@ export interface Database {
             foreignKeyName: "friends_from_fkey"
             columns: ["from"]
             isOneToOne: false
-            referencedRelation: "users"
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
           {
             foreignKeyName: "friends_to_fkey"
             columns: ["to"]
             isOneToOne: false
-            referencedRelation: "users"
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
           }
         ]

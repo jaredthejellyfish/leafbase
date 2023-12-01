@@ -11,10 +11,11 @@ type Props = {
   children: React.ReactNode;
   open: boolean;
   setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
-  title: string;
+  title?: string;
   containerClass?: string;
+  noTitle?: boolean;
   onModalClose?: () => void;
-};
+} & ({ noTitle: true } | { noTitle?: false; title: string });
 
 const variants = {
   background: {
@@ -53,6 +54,7 @@ function Modal({
   title,
   containerClass,
   onModalClose,
+  noTitle,
 }: Props) {
   const [isOpen, setIsOpen] = useState(open);
   const ref = React.useRef<HTMLDivElement | null>(null);
@@ -123,7 +125,9 @@ function Modal({
           )}
         >
           <div className="flex w-full flex-row items-center justify-between bg-zinc-200 px-4 py-2 dark:bg-zinc-950/40">
-            <h2 className="mt-0.5 text-lg font-semibold">{title}</h2>
+            {!noTitle && (
+              <h2 className="mt-0.5 text-lg font-semibold">{title}</h2>
+            )}
             <button onClick={() => handdleClose()}>
               <AiOutlineClose size={20} />
             </button>

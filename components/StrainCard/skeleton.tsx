@@ -6,9 +6,9 @@ const StrainCardSkeleton = () => {
     <div className="hover:scale-101 relative z-10 mt-4 flex flex-nowrap gap-5 rounded-xl border border-zinc-100 p-5 shadow transition-transform dark:border-transparent dark:bg-zinc-900 md:max-w-xs md:flex-wrap">
       <div className="flex w-1/2 items-center justify-center rounded-lg border border-zinc-200 dark:border-transparent md:w-full">
         <div
-          style={{ maxHeight: '250px' }}
+          style={{ maxHeight: '250px', maxWidth: '250px' }}
           className="aspect-square h-full w-full animate-pulse rounded-lg border border-white bg-zinc-300/10 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 object-contain p-4 dark:border-zinc-800 dark:bg-zinc-950/30 dark:opacity-90"
-        ></div>
+        />
       </div>
       <div className="w-1/2 md:w-full">
         <div className="flex w-14 items-center justify-center rounded bg-gray-200 px-2 py-1 text-xs font-medium text-transparent dark:bg-zinc-700 dark:shadow">

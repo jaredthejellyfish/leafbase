@@ -1,5 +1,5 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import type { AuthError, PostgrestError } from '@supabase/supabase-js';
+import type { AuthError } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
 
 import type { Database } from '@/lib//database';
@@ -22,7 +22,7 @@ function sortStrainsByName(strains: StrainLike[]): StrainLike[] {
 }
 
 export async function getServerLikedStrains(userId?: string): Promise<{
-  error: PostgrestError | null | string | AuthError;
+  error: null | string | AuthError;
   data: StrainLike[] | undefined;
   likes: string[] | undefined;
 }> {
@@ -39,7 +39,7 @@ export async function getServerLikedStrains(userId?: string): Promise<{
 
     if (error || !session) {
       return {
-        error: error || 'No session found',
+        error: (error as unknown as AuthError | null) || 'No session found',
         data: undefined,
         likes: undefined,
       };
@@ -67,7 +67,8 @@ export async function getServerLikedStrains(userId?: string): Promise<{
   if (strainLikesError) {
     console.error(strainLikesError);
     return {
-      error: strainLikesError,
+      error:
+        (strainLikesError as unknown as AuthError | null) || 'No session found',
       data: undefined,
       likes: undefined,
     };

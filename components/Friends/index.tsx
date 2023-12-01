@@ -77,7 +77,7 @@ export default async function Friends({ session }: Props) {
                     <span className="-mb-1.5 font-semibold sm:text-lg">
                       {friend.name}
                     </span>
-                    <span className="mt-1 text-green-700 sm:mt-0.5 text-sm">
+                    <span className="mt-1 text-sm text-green-700 sm:mt-0.5">
                       @{friend.username}
                     </span>
                   </div>

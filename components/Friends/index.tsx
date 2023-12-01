@@ -8,6 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
+import AcceptRequestButton from './AcceptRequestButton';
 import { cn } from '@/lib/utils/cn';
 
 type Props = {
@@ -22,19 +23,32 @@ export default async function Friends({ session }: Props) {
   const { data: friendsData } = await supabase
     .from('friends')
     .select(
-      `*, to:profiles!friends_to_fkey (
+      `*,
+    to:profiles!friends_to_fkey (
+      id,
       username,
       name,
       image
+    ),
+    from:profiles!friends_from_fkey (
+      id,
+      username,
+      name,
+      image
+    )`
     )
-  `
-    )
-    .eq('from', session.user.id)
-    .is('pending', false);
+    .or(`from.eq.${session.user.id},to.eq.${session.user.id}`);
 
   if (!friendsData || friendsData.length < 1) return null;
 
-  const friends = friendsData?.map((friend) => friend.to);
+  const friends = friendsData?.map((friend) => {
+    return {
+      ...friend.to,
+      pending: friend.pending,
+      from: friend.from,
+      to: friend.to,
+    };
+  });
 
   return (
     <div
@@ -59,34 +73,89 @@ export default async function Friends({ session }: Props) {
                 </div>
               );
             if (index > 2) return null;
-            return (
-              <Link
-                key={index}
-                href={`/profile/${friend.username}`}
-                className="flex flex-row items-center justify-between rounded-xl border border-zinc-300 bg-zinc-50 px-4 py-1.5 dark:border-zinc-700 dark:bg-zinc-800"
-              >
-                <div className="flex flex-row items-center justify-start gap-x-4">
-                  <Image
-                    src={friend?.image}
-                    alt={friend?.name}
-                    width={50}
-                    height={50}
-                    className="aspect-square rounded-full"
-                  />
-                  <div className="flex flex-col gap-0">
-                    <span className="-mb-1.5 font-semibold sm:text-lg">
-                      {friend.name}
-                    </span>
-                    <span className="mt-1 text-sm text-green-700 sm:mt-0.5">
-                      @{friend.username}
-                    </span>
-                  </div>
-                </div>
-                <RxCaretRight size={35} className="justify-self-end" />
-              </Link>
-            );
+
+            if (friend.pending && friend.from.id === session.user.id)
+              return (
+                <Friend
+                  key={index}
+                  friend={friend}
+                  status={'pending'}
+                  useTo={friend.to.id !== session.user.id}
+                />
+              );
+            if (friend.from.id !== session.user.id && friend.pending)
+              return (
+                <Friend
+                  key={index}
+                  friend={friend}
+                  status={'toAccept'}
+                  useTo={friend.to.id !== session.user.id}
+                />
+              );
+            if (
+              (friend.from.id === session.user.id && !friend.pending) ||
+              (friend.to.id === session.user.id && !friend.pending)
+            )
+              return (
+                <Friend
+                  key={index}
+                  friend={friend}
+                  status={'accepted'}
+                  useTo={friend.to.id !== session.user.id}
+                />
+              );
           })}
       </div>
     </div>
+  );
+}
+
+function Friend({
+  friend: { to, from },
+  status,
+  useTo,
+}: {
+  friend: {
+    to: { id: string; username: string; name: string; image: string };
+    from: { id: string; username: string; name: string; image: string };
+  };
+  status: string;
+  useTo?: boolean;
+}) {
+  const user = useTo ? to : from;
+  return (
+    <Link
+      href={`/profile/${user.username}`}
+      className="flex flex-row items-center justify-between rounded-xl border border-zinc-300 bg-zinc-50 px-4 py-1.5 dark:border-zinc-700 dark:bg-zinc-800"
+    >
+      <div className="flex flex-row items-center justify-start gap-x-4">
+        <Image
+          src={user.image}
+          alt={user.name}
+          width={50}
+          height={50}
+          className="aspect-square rounded-full"
+        />
+        <div className="flex flex-col gap-0">
+          <span className="-mb-1.5 font-semibold sm:text-lg">{user.name}</span>
+          <span className="mt-1 text-sm text-green-700 sm:mt-0.5">
+            @{user.username}
+          </span>
+        </div>
+      </div>
+      {status === 'pending' && (
+        <div className="cursor-not-allowed rounded border border-zinc-400 px-2 py-1 text-sm text-zinc-400">
+          Pending
+        </div>
+      )}
+
+      {status === 'toAccept' && (
+        <AcceptRequestButton from={from.id} to={to.id} />
+      )}
+
+      {status === 'accepted' && (
+        <RxCaretRight size={35} className="justify-self-end" />
+      )}
+    </Link>
   );
 }

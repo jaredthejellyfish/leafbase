@@ -74,8 +74,10 @@ export default async function Friends({ session }: Props) {
                     className="aspect-square rounded-full"
                   />
                   <div className="flex flex-col gap-0">
-                    <span className="-mb-1.5 font-semibold">{friend.name}</span>
-                    <span className="mt-1 text-xs text-green-700 sm:mt-0.5 sm:text-sm">
+                    <span className="-mb-1.5 font-semibold sm:text-lg">
+                      {friend.name}
+                    </span>
+                    <span className="mt-1 text-green-700 sm:mt-0.5 text-sm">
                       @{friend.username}
                     </span>
                   </div>

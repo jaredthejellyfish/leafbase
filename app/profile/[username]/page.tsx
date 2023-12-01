@@ -15,10 +15,10 @@ type Props = { params: { username: string } };
 export default async function ProfileUser(props: Props) {
   if (!props.params.username) return null;
 
-  const { user, hasPendingFriendRequest, isFriends } =
+  const { user, hasPendingFriendRequest, isFriends, session } =
     await getServerUserProfileFromUsername(props.params.username);
 
-  if (!user) notFound();
+  if (!user || !session?.user.user_metadata.username) notFound();
 
   return (
     <div className="px-5 py-3 md:px-16">
@@ -39,6 +39,7 @@ export default async function ProfileUser(props: Props) {
             allowFriendRequest
             pendingFriendRequest={hasPendingFriendRequest}
             isFriends={isFriends}
+            username={session?.user.user_metadata.username}
           />
         </div>
         <div id="vertical 2" className="flex flex-col gap-4 pb-3 lg:w-2/3">

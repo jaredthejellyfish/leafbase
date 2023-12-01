@@ -36,7 +36,7 @@ export default async function Profile() {
           },
         ]}
       />
-      <div className="mt-3 flex flex-col gap-6 lg:flex-row">
+      <div className="mt-3 flex flex-col gap-x-6 gap-y-4 lg:flex-row">
         <div id="vertical 1" className="flex flex-col gap-4 lg:w-1/3">
           <ProfileSection user={user_metadata} session={session} />
           <ErrorBoundary fallback={<FriendsSkeleton />}>

@@ -26,7 +26,7 @@ export default function FriendsSkeleton() {
     <div className="flex w-full flex-col rounded-xl px-7 py-3 pb-4 shadow-md dark:bg-zinc-900">
       <h3 className="mb-1.5 text-xl font-bold">Friends</h3>
       <div className="flex flex-col gap-y-2">
-        {Array.from({ length: 3 }).map((_, index) => (
+        {Array.from({ length: 2 }).map((_, index) => (
           <FriendSkeleton key={index} />
         ))}
       </div>

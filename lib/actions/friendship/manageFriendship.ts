@@ -6,9 +6,13 @@ import { cookies } from 'next/headers';
 
 import type { Database } from '@/lib/database';
 
-export async function manageFriendship(to: string, username: string) {
+export async function manageFriendship(
+  to: string,
+  from: string,
+  username: string
+) {
   try {
-    if (!to) {
+    if (!to || !from || !username) {
       return { error: 'Invalid request', created: false, deleted: false };
     }
 
@@ -26,18 +30,12 @@ export async function manageFriendship(to: string, username: string) {
       return { error: 'Error getting session', created: false, deleted: false };
     }
 
-    const from = session.user.id;
-
-    if (session.user.id !== from) {
-      return { error: 'Invalid user', created: false, deleted: false };
-    }
-
     const { data: existingFriendRequest, error: existingFriendRequestError } =
       await supabase
         .from('friends')
         .select('*')
         .match({
-          from: session.user.id,
+          from,
           to,
         })
         .maybeSingle();
@@ -52,7 +50,7 @@ export async function manageFriendship(to: string, username: string) {
 
     if (existingFriendRequest) {
       await supabase.from('friends').delete().match({
-        from: session.user.id,
+        from,
         to,
       });
 
@@ -62,7 +60,7 @@ export async function manageFriendship(to: string, username: string) {
     const { error: newFriendRequestError } = await supabase
       .from('friends')
       .insert({
-        from: session.user.id,
+        from,
         to,
       })
       .select()
@@ -87,5 +85,6 @@ export async function manageFriendship(to: string, username: string) {
     };
   } finally {
     revalidatePath(`/profile/${username}`);
+    revalidatePath('/profile');
   }
 }

@@ -12,6 +12,7 @@ export async function getServerUserProfileFromUsername(
   error: string | null;
   user: PublicProfile | null;
   session: Session | null;
+
   friendRequest?: {
     created_at: string;
     from: string;
@@ -60,7 +61,7 @@ export async function getServerUserProfileFromUsername(
       .from('friends')
       .select('*')
       .or(`to.eq.${user.id},from.eq.${user.id}`)
-      .maybeSingle();
+      .limit(1);
 
   if (pendingFriendRequestError) {
     console.error(pendingFriendRequestError);
@@ -78,6 +79,6 @@ export async function getServerUserProfileFromUsername(
     error: null,
     session: session,
     user,
-    friendRequest: pendingFriendRequest,
+    friendRequest: pendingFriendRequest?.[0] || null,
   };
 }

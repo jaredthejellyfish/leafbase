@@ -7,7 +7,7 @@
     "dev": "bun run dbtypes && next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "bunx eslint . --fix",
     "prod": "bun run dbtypes && bunx prettier . --write && tsc && bunx eslint . --fix && vercel --prod",
     "dbtypes": "supabase gen types typescript --project-id euwnyenhzhztqztezjdn > ./lib/database/database.ts",
     "pretty": "bunx prettier . --write",
@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@next/bundle-analyzer": "^14.0.3",
+    "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-dropdown-menu": "^2.0.6",

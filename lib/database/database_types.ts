@@ -22,3 +22,19 @@ export type SearchStrain =
 
 export type StrainComment =
   Database['public']['Tables']['strain_comments']['Row'];
+
+export type FriendExtended = {
+  from: {
+    id: string;
+    username: string;
+    name: string;
+    image: string;
+  };
+  to: {
+    id: string;
+    username: string;
+    name: string;
+    image: string;
+  };
+  pending: boolean;
+}

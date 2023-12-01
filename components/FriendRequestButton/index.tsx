@@ -14,6 +14,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import { manageFriendship } from '@/lib/actions/friendship/manageFriendship';
 import type { PublicProfile } from '@/lib/database/database_types';
 import { toast } from '../ui/use-toast';
@@ -37,6 +43,10 @@ function FriendRequestButton({ user, pending, friends }: Props) {
       created: boolean;
       deleted: boolean;
     };
+
+    if (!result) {
+      return;
+    }
 
     if (result.error) {
       toast({
@@ -68,6 +78,10 @@ function FriendRequestButton({ user, pending, friends }: Props) {
       created: boolean;
       deleted: boolean;
     };
+
+    if (!result) {
+      return;
+    }
 
     if (result.error) {
       toast({
@@ -103,33 +117,51 @@ function FriendRequestButton({ user, pending, friends }: Props) {
   };
 
   return !isFriends ? (
-    <button
-      className={cn(
-        'border border-zinc-500 p-2 rounded-full text-zinc-500',
-        isPending ? 'border-zinc-300 text-zinc-300' : null,
-        isFriends ? 'text-green-700 border-green-700 bg-zinc-800' : null
-      )}
-      onClick={handleClick}
-    >
-      <FaUserFriends className="h-5 w-5" />
-    </button>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger className="flex items-center justify-center">
+          <div
+            className={cn(
+              'border border-zinc-600 p-2 rounded-full text-zinc-600',
+              isPending
+                ? 'dark:border-zinc-300 border-zinc-400  dark:text-zinc-300 text-zinc-400 '
+                : null,
+              isFriends
+                ? 'text-green-600 border-green-600 dark:bg-zinc-800'
+                : null
+            )}
+            onClick={handleClick}
+          >
+            <FaUserFriends className="h-5 w-5" />
+          </div>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p className="font-semibold">
+            {isPending
+              ? 'Cancel pending friend request'
+              : 'Send a friend request'}
+          </p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   ) : (
     <AlertDialog>
-      <AlertDialogTrigger
-        className={cn(
-          'border border-zinc-500 p-1.5 rounded-full text-zinc-500 hover:text-green-700 aspect-square',
-          isPending ? 'border-zinc-300 text-zinc-300' : null,
-          isFriends ? 'text-green-700 border-green-700 bg-zinc-800' : null
-        )}
-      >
-        <FaUserFriends className="h-5 w-5" />
+      <AlertDialogTrigger className="flex items-center justify-center border-transparent bg-transparent p-0 hover:bg-transparent">
+        <div
+          className={cn(
+            'border border-zinc-600 p-2 rounded-full text-zinc-600 hover:text-green-600 aspect-square hover:scale-101',
+            'text-green-600 border-green-600 dark:bg-zinc-800'
+          )}
+        >
+          <FaUserFriends className="h-5 w-5" />
+        </div>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone. This will permanently remove{' '}
-            <span className="text-green-700">@{user.username}</span> from your
+            <span className="text-green-600">@{user.username}</span> from your
             friends.
           </AlertDialogDescription>
         </AlertDialogHeader>

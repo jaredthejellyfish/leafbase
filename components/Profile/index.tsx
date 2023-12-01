@@ -3,7 +3,9 @@
 import type { Session, UserMetadata } from '@supabase/supabase-js';
 import { BsFillGearFill } from 'react-icons/bs';
 import { MdLocationPin } from 'react-icons/md';
+import { FaUserFriends } from 'react-icons/fa';
 import { AiFillEye } from 'react-icons/ai';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -18,9 +20,21 @@ import type {
   PublicProfile,
   UserMetadataExtended,
 } from '@/lib/database/database_types';
-import FriendRequestButton from '../FriendRequestButton';
 import SignoutButton from './SignoutButton';
 import { cn } from '@/lib/utils';
+
+const FriendRequestButton = dynamic(() => import('../FriendRequestButton'), {
+  ssr: false,
+  loading: () => (
+    <button
+      className={
+        'text-gradient-to-br animate-pulse rounded-full border border-zinc-500 from-gray-200 via-green-300 to-green-700 p-2 text-zinc-500'
+      }
+    >
+      <FaUserFriends className="h-5 w-5" />
+    </button>
+  ),
+});
 
 type Props = {
   user: UserMetadata;
@@ -29,6 +43,7 @@ type Props = {
   allowFriendRequest?: boolean;
   pendingFriendRequest?: boolean;
   isFriends?: boolean;
+  username?: string;
 } & (
   | { allowFriendRequest: true; user: PublicProfile }
   | { allowFriendRequest?: false; user: UserMetadataExtended }
@@ -79,13 +94,14 @@ const Profile = (props: Props) => {
             </TooltipProvider>
           </>
         )}
-        {props.allowFriendRequest && (
+
+        {props.allowFriendRequest && props.username !== user.username ? (
           <FriendRequestButton
             user={user as PublicProfile}
             pending={props.pendingFriendRequest}
             friends={props.isFriends}
           />
-        )}
+        ) : null}
       </div>
       {user.image && (
         <Image

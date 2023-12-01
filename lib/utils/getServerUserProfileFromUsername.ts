@@ -1,4 +1,5 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import type { Session } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 
 import type { PublicProfile } from '../database/database_types';
@@ -12,6 +13,7 @@ export async function getServerUserProfileFromUsername(
   user: PublicProfile | null;
   hasPendingFriendRequest: boolean;
   isFriends: boolean;
+  session: Session | null;
 }> {
   const cookieStore = cookies();
   const supabase = createServerComponentClient<Database>({
@@ -29,6 +31,7 @@ export async function getServerUserProfileFromUsername(
       user: null,
       hasPendingFriendRequest: false,
       isFriends: false,
+      session: null,
     };
   }
 
@@ -45,6 +48,7 @@ export async function getServerUserProfileFromUsername(
       user: null,
       hasPendingFriendRequest: false,
       isFriends: false,
+      session: null,
     };
   }
 
@@ -65,6 +69,7 @@ export async function getServerUserProfileFromUsername(
       user: null,
       hasPendingFriendRequest: false,
       isFriends: false,
+      session: null,
     };
   }
 
@@ -76,6 +81,7 @@ export async function getServerUserProfileFromUsername(
   return {
     status: 'success',
     error: null,
+    session: session,
     user,
     hasPendingFriendRequest,
     isFriends,

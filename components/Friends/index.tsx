@@ -75,7 +75,9 @@ export default async function Friends({ session }: Props) {
                   />
                   <div className="flex flex-col gap-0">
                     <span className="-mb-1.5 font-semibold">{friend.name}</span>
-                    <span className="text-green-700 text-xs mt-1 sm:mt-0.5 sm:text-sm">@{friend.username}</span>
+                    <span className="mt-1 text-xs text-green-700 sm:mt-0.5 sm:text-sm">
+                      @{friend.username}
+                    </span>
                   </div>
                 </div>
                 <RxCaretRight size={35} className="justify-self-end" />

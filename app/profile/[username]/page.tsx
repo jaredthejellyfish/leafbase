@@ -15,9 +15,8 @@ type Props = { params: { username: string } };
 export default async function ProfileUser(props: Props) {
   if (!props.params.username) return null;
 
-  const { userProfile: user } = await getServerUserProfileFromUsername(
-    props.params.username
-  );
+  const { user, hasPendingFriendRequest, isFriends } =
+    await getServerUserProfileFromUsername(props.params.username);
 
   if (!user) notFound();
 
@@ -34,12 +33,18 @@ export default async function ProfileUser(props: Props) {
       />
       <div className="mt-3 flex flex-col gap-6 lg:flex-row">
         <div id="vertical 1" className="flex flex-col gap-4 lg:w-1/3">
-          <Profile user={user} hideOptions />
+          <Profile
+            user={user}
+            hideOptions
+            allowFriendRequest
+            pendingFriendRequest={hasPendingFriendRequest}
+            isFriends={isFriends}
+          />
         </div>
         <div id="vertical 2" className="flex flex-col gap-4 pb-3 lg:w-2/3">
-          {user && (user.about || user.birth_date || user.language) && (
+          {user && (user.about || user.birth_date || user.language) ? (
             <GeneralInformation user={user} />
-          )}
+          ) : null}
           <ErrorBoundary fallback={<LikedStrainsError />}>
             <Suspense fallback={<LikedStrainsSkeleton />}>
               <LikedStrains userId={user.id} />

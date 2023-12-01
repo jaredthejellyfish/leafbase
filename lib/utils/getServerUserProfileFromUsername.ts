@@ -9,12 +9,28 @@ export async function getServerUserProfileFromUsername(
 ): Promise<{
   status: 'success' | null;
   error: string | null;
-  userProfile: PublicProfile | null;
+  user: PublicProfile | null;
+  hasPendingFriendRequest: boolean;
+  isFriends: boolean;
 }> {
   const cookieStore = cookies();
   const supabase = createServerComponentClient<Database>({
     cookies: () => cookieStore,
   });
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (!session) {
+    return {
+      status: null,
+      error: 'You must be logged in to view this page.',
+      user: null,
+      hasPendingFriendRequest: false,
+      isFriends: false,
+    };
+  }
 
   const { data: user, error } = await supabase
     .from('profiles')
@@ -22,17 +38,46 @@ export async function getServerUserProfileFromUsername(
     .eq('username', username)
     .single();
 
-  if (error) {
+  if (!user || error) {
     return {
       status: null,
       error: 'Could not find user.',
-      userProfile: null,
+      user: null,
+      hasPendingFriendRequest: false,
+      isFriends: false,
     };
   }
+
+  const { data: pendingFriendRequest, error: pendingFriendRequestError } =
+    await supabase
+      .from('friends')
+      .select('*')
+      .match({
+        to: user.id,
+        from: session.user.id,
+      })
+      .maybeSingle();
+
+  if (pendingFriendRequestError) {
+    return {
+      status: null,
+      error: 'Could not find user in friends.',
+      user: null,
+      hasPendingFriendRequest: false,
+      isFriends: false,
+    };
+  }
+
+  const hasPendingFriendRequest = pendingFriendRequest?.pending ?? false;
+  const isFriends = hasPendingFriendRequest
+    ? false
+    : pendingFriendRequest?.pending == false;
 
   return {
     status: 'success',
     error: null,
-    userProfile: user,
+    user,
+    hasPendingFriendRequest,
+    isFriends,
   };
 }

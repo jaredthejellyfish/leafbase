@@ -14,7 +14,11 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import type { UserMetadataExtended } from '@/lib/database/database_types';
+import type {
+  PublicProfile,
+  UserMetadataExtended,
+} from '@/lib/database/database_types';
+import FriendRequestButton from '../FriendRequestButton';
 import SignoutButton from './SignoutButton';
 import { cn } from '@/lib/utils';
 
@@ -22,7 +26,13 @@ type Props = {
   user: UserMetadata;
   session?: Session | null;
   hideOptions?: boolean;
-};
+  allowFriendRequest?: boolean;
+  pendingFriendRequest?: boolean;
+  isFriends?: boolean;
+} & (
+  | { allowFriendRequest: true; user: PublicProfile }
+  | { allowFriendRequest?: false; user: UserMetadataExtended }
+);
 
 const Profile = (props: Props) => {
   const { user: plainUser, session } = props;
@@ -68,6 +78,13 @@ const Profile = (props: Props) => {
               </Tooltip>
             </TooltipProvider>
           </>
+        )}
+        {props.allowFriendRequest && (
+          <FriendRequestButton
+            user={user as PublicProfile}
+            pending={props.pendingFriendRequest}
+            friends={props.isFriends}
+          />
         )}
       </div>
       {user.image && (

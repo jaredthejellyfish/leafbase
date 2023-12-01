@@ -21,24 +21,23 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { manageFriendship } from '@/lib/actions/friendship/manageFriendship';
-import type { PublicProfile } from '@/lib/database/database_types';
 import { toast } from '../ui/use-toast';
 import { cn } from '@/lib/utils';
 
 type Props = {
-  user: PublicProfile;
-  pending?: boolean;
-  friends?: boolean;
+  from: string;
+  to: string;
+  pending: boolean;
+  username: string;
+  exists: boolean;
 };
 
-function FriendRequestButton({ user, pending, friends }: Props) {
-  const [isPending, setIsPending] = useState(pending || false);
-  const [isFriends, setIsFriends] = useState(friends || false);
-
-  const to = user.id;
+function FriendRequestButton({ from, to, username, pending, exists }: Props) {
+  const [isPending, setIsPending] = useState(exists && pending === true);
+  const [isFriends, setIsFriends] = useState(exists && pending === false);
 
   const removeFriend = async () => {
-    const result = (await manageFriendship(to, user.username)) as {
+    const result = (await manageFriendship(to, from, username)) as {
       error: string | null;
       created: boolean;
       deleted: boolean;
@@ -63,7 +62,7 @@ function FriendRequestButton({ user, pending, friends }: Props) {
 
       toast({
         title: 'Friend removed',
-        description: `You removed ${user.username} from your friends`,
+        description: `You removed ${username} from your friends`,
       });
     }
   };
@@ -73,7 +72,7 @@ function FriendRequestButton({ user, pending, friends }: Props) {
       return;
     }
 
-    const result = (await manageFriendship(to, user.username)) as {
+    const result = (await manageFriendship(to, from, username)) as {
       error: string | null;
       created: boolean;
       deleted: boolean;
@@ -98,7 +97,7 @@ function FriendRequestButton({ user, pending, friends }: Props) {
 
       toast({
         title: 'Friend request sent',
-        description: `You sent a friend request to ${user.username}`,
+        description: `You sent a friend request to ${username}`,
       });
       return;
     }
@@ -110,7 +109,7 @@ function FriendRequestButton({ user, pending, friends }: Props) {
       toast({
         title: 'Friend request canceled',
         variant: 'destructive',
-        description: `You canceled your friend request to ${user.username}`,
+        description: `You canceled your friend request to ${username}`,
       });
       return;
     }
@@ -161,7 +160,7 @@ function FriendRequestButton({ user, pending, friends }: Props) {
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone. This will permanently remove{' '}
-            <span className="text-green-600">@{user.username}</span> from your
+            <span className="text-green-600">@{username}</span> from your
             friends.
           </AlertDialogDescription>
         </AlertDialogHeader>

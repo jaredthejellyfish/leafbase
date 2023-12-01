@@ -11,9 +11,14 @@ export async function getServerUserProfileFromUsername(
   status: 'success' | null;
   error: string | null;
   user: PublicProfile | null;
-  hasPendingFriendRequest: boolean;
-  isFriends: boolean;
   session: Session | null;
+  friendRequest?: {
+    created_at: string;
+    from: string;
+    id: string;
+    pending: boolean;
+    to: string;
+  } | null;
 }> {
   const cookieStore = cookies();
   const supabase = createServerComponentClient<Database>({
@@ -29,9 +34,8 @@ export async function getServerUserProfileFromUsername(
       status: null,
       error: 'You must be logged in to view this page.',
       user: null,
-      hasPendingFriendRequest: false,
-      isFriends: false,
       session: null,
+      friendRequest: null,
     };
   }
 
@@ -46,9 +50,8 @@ export async function getServerUserProfileFromUsername(
       status: null,
       error: 'Could not find user.',
       user: null,
-      hasPendingFriendRequest: false,
-      isFriends: false,
       session: null,
+      friendRequest: null,
     };
   }
 
@@ -56,34 +59,25 @@ export async function getServerUserProfileFromUsername(
     await supabase
       .from('friends')
       .select('*')
-      .match({
-        to: user.id,
-        from: session.user.id,
-      })
+      .or(`to.eq.${user.id},from.eq.${user.id}`)
       .maybeSingle();
 
   if (pendingFriendRequestError) {
+    console.error(pendingFriendRequestError);
     return {
       status: null,
       error: 'Could not find user in friends.',
       user: null,
-      hasPendingFriendRequest: false,
-      isFriends: false,
       session: null,
+      friendRequest: null,
     };
   }
-
-  const hasPendingFriendRequest = pendingFriendRequest?.pending ?? false;
-  const isFriends = hasPendingFriendRequest
-    ? false
-    : pendingFriendRequest?.pending == false;
 
   return {
     status: 'success',
     error: null,
     session: session,
     user,
-    hasPendingFriendRequest,
-    isFriends,
+    friendRequest: pendingFriendRequest,
   };
 }

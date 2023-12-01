@@ -1,6 +1,6 @@
 'use client';
 
-import type { Session, UserMetadata } from '@supabase/supabase-js';
+import type { Session } from '@supabase/supabase-js';
 import { BsFillGearFill } from 'react-icons/bs';
 import { MdLocationPin } from 'react-icons/md';
 import { FaUserFriends } from 'react-icons/fa';
@@ -37,12 +37,17 @@ const FriendRequestButton = dynamic(() => import('../FriendRequestButton'), {
 });
 
 type Props = {
-  user: UserMetadata;
+  user: UserMetadataExtended | PublicProfile;
   session?: Session | null;
   hideOptions?: boolean;
   allowFriendRequest?: boolean;
-  pendingFriendRequest?: boolean;
-  isFriends?: boolean;
+  friendRequest?: {
+    created_at: string;
+    from: string;
+    id: string;
+    pending: boolean;
+    to: string;
+  } | null;
   username?: string;
 } & (
   | { allowFriendRequest: true; user: PublicProfile }
@@ -50,8 +55,9 @@ type Props = {
 );
 
 const Profile = (props: Props) => {
-  const { user: plainUser, session } = props;
+  const { user: plainUser } = props;
   const user = plainUser as UserMetadataExtended;
+  const session = props.session as Session;
 
   return (
     <div className="relative z-0 flex w-full flex-col rounded-xl p-7 shadow-md dark:bg-zinc-900">
@@ -95,11 +101,16 @@ const Profile = (props: Props) => {
           </>
         )}
 
-        {props.allowFriendRequest && props.username !== user.username ? (
+        {props.session &&
+        props.allowFriendRequest &&
+        props.username !== user.username ? (
           <FriendRequestButton
-            user={user as PublicProfile}
-            pending={props.pendingFriendRequest}
-            friends={props.isFriends}
+            from={props.friendRequest?.from || session.user.id}
+            // @ts-expect-error -- conditional typing broken here
+            to={props.friendRequest?.to || user.id}
+            username={user.username}
+            pending={props.friendRequest?.pending || false}
+            exists={!!props.friendRequest?.id}
           />
         ) : null}
       </div>

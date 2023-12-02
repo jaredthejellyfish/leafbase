@@ -150,13 +150,13 @@ const Profile = (props: Props) => {
         </span>
       )}
 
-      {session && session?.user.email && (
+      {!props.allowFriendRequest && session && session?.user.email && (
         <span className="mt-3 text-sm dark:text-white">
           Email Address:
           <p className="text-gray-400">{session?.user.email}</p>
         </span>
       )}
-      {user.phone && (
+      {!props.allowFriendRequest && user.phone && (
         <span className="mt-3 flex flex-col text-sm dark:text-white">
           Phone number:
           <span className="text-gray-400">{user.phone}</span>

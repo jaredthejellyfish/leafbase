@@ -2,19 +2,24 @@ import {
   createServerComponentClient,
   type Session,
 } from '@supabase/auth-helpers-nextjs';
+import { ArrowRight } from 'lucide-react';
 import { cookies } from 'next/headers';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import React from 'react';
 
 import type { FriendExtended } from '@/lib/database/database_types';
-import FullScreenButton from './FullScreenButton';
-import { cn } from '@/lib/utils/cn';
 import Friend from './Friend';
+
+const FullScreenButton = dynamic(() => import('./FullScreenButton'), {
+  ssr: false,
+});
 
 type Props = {
   session: Session | null;
 };
 
-export default async function Friends({ session }: Props) {
+export default async function ProfileFriends({ session }: Props) {
   if (!session) return null;
 
   const supabase = createServerComponentClient({ cookies: () => cookies() });
@@ -57,14 +62,18 @@ export default async function Friends({ session }: Props) {
   });
 
   return (
-    <div
-      className={cn(
-        'flex w-full flex-col rounded-xl px-7 py-3 pb-4 shadow-md dark:bg-zinc-900 relative',
-        friends.length > 2 && 'pb-3'
-      )}
-    >
-      <FullScreenButton session={session} friends={friends} />
-      <h3 className="mb-1.5 text-xl font-bold">Friends</h3>
+    <div className="relative flex w-full flex-col rounded-xl px-7 py-3 pb-4 shadow-md dark:bg-zinc-900">
+      <div className="mb-1.5 flex w-full flex-row items-center justify-between">
+        <div className="flex flex-row gap-x-3">
+          <h3 className="text-xl font-bold">Friends</h3>
+          {friends.length > 2 && (
+            <FullScreenButton session={session} friends={friends} />
+          )}
+        </div>
+        <Link href={'/profile?cr=comments'}>
+          <ArrowRight className="cursor-pointer text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200" />
+        </Link>
+      </div>
       <div className="flex flex-col gap-y-2">
         {friends &&
           friends.length > 0 &&

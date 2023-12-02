@@ -6,12 +6,13 @@ import dynamic from 'next/dynamic';
 import LikedStrainsSkeleton from '@/components/LikedStrains/LikedStrainsSkeleton';
 import LikedStrainsError from '@/components/LikedStrains/LikedStrainsError';
 import { getServerUserMetadata } from '@/lib/utils/getServerUserMetadata';
+import FriendsSkeleton from '@/components/ProfileFriends/skeleton';
 import GeneralInformation from '@/components/GeneralInformation';
-import FriendsSkeleton from '@/components/Friends/skeleton';
+import ProfileComments from '@/components/ProfileComments';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs';
+import ProfileFriends from '@/components/ProfileFriends';
 import LikedStrains from '@/components/LikedStrains';
 import ProfileSection from '@/components/Profile';
-import Friends from '@/components/Friends';
 
 const Notifier = dynamic(() => import('@/components/Notifier'), { ssr: false });
 
@@ -21,7 +22,11 @@ export const metadata = {
     'Explore your personal user page, showcasing your profile, comments, and a curated list of your favorite cannabis strains. Stay updated and engaged with the community.',
 };
 
-export default async function Profile() {
+export default async function Profile({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
   const { user_metadata, session } = await getServerUserMetadata();
 
   if (!user_metadata) return notFound();
@@ -41,7 +46,13 @@ export default async function Profile() {
           <ProfileSection user={user_metadata} session={session} />
           <ErrorBoundary fallback={<FriendsSkeleton />}>
             <Suspense fallback={<FriendsSkeleton />}>
-              <Friends session={session} />
+              {!searchParams ||
+                (searchParams.cr !== 'comments' && (
+                  <ProfileFriends session={session} />
+                ))}
+              {searchParams && searchParams.cr === 'comments' && (
+                <ProfileComments session={session} />
+              )}
             </Suspense>
           </ErrorBoundary>
         </div>

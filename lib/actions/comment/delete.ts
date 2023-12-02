@@ -72,14 +72,3 @@ export async function deleteComment(comment_id: string) {
     return { error: 'Error deleting comment', deleted: false };
   }
 }
-
-// ts type for the following:
-
-// {
-//   id: '7305d568-ed96-4009-94bd-429122bef80f',
-//   created_at: '2023-12-02T02:35:18.470834+00:00',
-//   strain_id: '85ab24a5-d332-440c-93b6-97d6f4031ff1',
-//   user_id: '1580e43b-3639-48e3-b6f9-137ce38d099e',
-//   comment: 'I like cock and ball torture',
-//   strain: { slug: 'jealousy' }
-// }

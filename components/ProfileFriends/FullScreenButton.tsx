@@ -26,7 +26,7 @@ function FullScreenButton({ friends, session }: Props) {
     <>
       <TooltipProvider>
         <Tooltip>
-          <TooltipTrigger className="absolute right-6 top-3.5">
+          <TooltipTrigger>
             <FullscreenIcon
               onClick={() => setOpen(!open)}
               className="h-5 w-6 text-zinc-600 dark:text-zinc-300"

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 
 import NavBreadcrumbsSkeleton from './skeleton';
+import type { Route } from 'next';
 
 type Props = {
   urls: {
@@ -52,7 +53,7 @@ const NavBreadcrumbs = (props: Props) => {
                   ></path>
                 </svg>
                 <Link
-                  href={url.url}
+                  href={url.url as Route}
                   className="ml-1 text-lg font-medium text-gray-700 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-400 md:ml-2"
                 >
                   {url.name}

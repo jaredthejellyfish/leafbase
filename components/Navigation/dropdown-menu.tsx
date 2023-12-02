@@ -78,7 +78,7 @@ const DropdownMenu = (props: Props) => {
       >
         <Link
           onClick={() => setOpen(!isOpen)}
-          href="/dispensaries"
+          href="#"
           className={`w-full ${
             pathName === '/dispensaries' ? 'text-green-500' : ''
           }`}
@@ -95,7 +95,7 @@ const DropdownMenu = (props: Props) => {
         <Link
           onClick={() => setOpen(!isOpen)}
           className={`w-full ${pathName === '/about' ? 'text-green-500' : ''}`}
-          href="/about"
+          href="#"
         >
           About Us
         </Link>

@@ -30,7 +30,7 @@ export default async function Landing() {
   return (
     <main className="flex-1">
       <section
-        className="flex h-screen-bar w-full items-center justify-center"
+        className={'flex h-screen-bar w-full items-center justify-center'}
         style={{ scrollSnapAlign: 'start', scrollMarginTop: '6rem' }}
       >
         <ClientParticles

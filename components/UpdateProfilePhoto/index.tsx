@@ -24,13 +24,17 @@ export default function UpdateProfilePhoto({
         return;
       }
 
-      const { data: sessionData, error: sessionError } =
-        await supabase.auth.getSession();
-
-      const session = sessionData.session;
+      const {
+        data: { session },
+        error: sessionError,
+      } = await supabase.auth.getSession();
 
       if (sessionError) {
         console.error(sessionError);
+        return;
+      }
+
+      if (!session || !session.user || !session.user.id) {
         return;
       }
 
@@ -93,8 +97,20 @@ export default function UpdateProfilePhoto({
         return;
       }
 
+      const { error: updateProfileError } = await supabase
+        .from('profiles')
+        .update({
+          image: newFileData.publicUrl,
+        })
+        .eq('id', session?.user.id);
+
+      if (updateProfileError) {
+        console.error(updateProfileError);
+        return;
+      }
       if (newUser) {
         router.refresh();
+        setFile(null);
       }
     }
 

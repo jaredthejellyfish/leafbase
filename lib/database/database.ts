@@ -323,11 +323,48 @@ export interface Database {
           }
         ]
       }
+      strain_comment_likes: {
+        Row: {
+          comment_id: string
+          created_at: string
+          id: string
+          user_id: string | null
+        }
+        Insert: {
+          comment_id: string
+          created_at?: string
+          id?: string
+          user_id?: string | null
+        }
+        Update: {
+          comment_id?: string
+          created_at?: string
+          id?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "strain_comment_likes_comment_id_fkey"
+            columns: ["comment_id"]
+            isOneToOne: false
+            referencedRelation: "strain_comments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "strain_comment_likes_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       strain_comments: {
         Row: {
           comment: string
           created_at: string
           id: string
+          likes_count: number
           strain_id: string
           user_id: string
         }
@@ -335,6 +372,7 @@ export interface Database {
           comment: string
           created_at?: string
           id?: string
+          likes_count?: number
           strain_id: string
           user_id: string
         }
@@ -342,6 +380,7 @@ export interface Database {
           comment?: string
           created_at?: string
           id?: string
+          likes_count?: number
           strain_id?: string
           user_id?: string
         }

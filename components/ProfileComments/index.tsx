@@ -2,7 +2,7 @@ import {
   createServerComponentClient,
   type Session,
 } from '@supabase/auth-helpers-nextjs';
-import { ArrowRight } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -46,9 +46,9 @@ async function ProfileComments({ session }: Props) {
       }
     >
       <div className="mb-1.5 flex w-full flex-row items-center justify-between">
-        <h3 className="text-xl font-bold">Comments</h3>
+        <h3 className="text-xl font-bold">Top Comments</h3>
         <Link href={'/profile'} scroll={false}>
-          <ArrowRight className="cursor-pointer text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200" />
+          <ChevronLeft className="cursor-pointer text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200" />
         </Link>
       </div>
       <div className="flex flex-col gap-y-2.5">
@@ -60,19 +60,19 @@ async function ProfileComments({ session }: Props) {
               href={`/strain/${comment.strain.slug}#${comment.id}`}
               className="flex flex-row items-center justify-between rounded-xl border border-zinc-300 bg-zinc-50 px-4 py-1.5 dark:border-zinc-700 dark:bg-zinc-800"
             >
-              <div className="flex flex-row items-center justify-start gap-x-4">
+              <div className="flex flex-row items-center justify-start gap-x-2.5 sm:gap-x-4">
                 <Image
                   src={comment.strain.nugImage}
                   alt={comment.strain.name}
                   width={50}
                   height={50}
-                  className="aspect-square rounded-full"
+                  className="aspect-square h-[47px] w-[47px] sm:h-12 sm:w-12"
                 />
                 <div className="flex flex-col gap-0">
-                  <span className="-mb-1.5 font-semibold sm:text-base">
+                  <span className="-mb-1.5 text-sm font-semibold sm:text-base">
                     {comment.strain.name}
                   </span>
-                  <span className="mt-1 text-sm text-zinc-400 sm:mt-0.5">
+                  <span className="mt-1 text-xs text-zinc-400 sm:mt-0.5 sm:text-sm">
                     {comment.comment}
                   </span>
                 </div>

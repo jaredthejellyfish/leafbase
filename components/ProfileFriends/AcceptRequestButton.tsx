@@ -36,7 +36,7 @@ export default function AcceptRequestButton({ from, to }: Props) {
   }
   return (
     <button
-      className="rounded-md bg-green-700 px-2 py-1.5 text-sm text-white"
+      className="rounded-md bg-green-700 px-1.5 py-1 text-xs text-white transition-colors hover:bg-green-800 sm:px-2 sm:py-1.5 sm:text-sm"
       onClick={(e) => handleClick(e)}
     >
       Accept

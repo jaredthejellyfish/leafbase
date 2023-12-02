@@ -2,7 +2,7 @@ import {
   createServerComponentClient,
   type Session,
 } from '@supabase/auth-helpers-nextjs';
-import { ArrowRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { cookies } from 'next/headers';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
@@ -71,7 +71,7 @@ export default async function ProfileFriends({ session }: Props) {
           )}
         </div>
         <Link href={'/profile?cr=comments'} scroll={false}>
-          <ArrowRight className="cursor-pointer text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200" />
+          <ChevronRight className="cursor-pointer text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200" />
         </Link>
       </div>
       <div className="flex flex-col gap-y-2">

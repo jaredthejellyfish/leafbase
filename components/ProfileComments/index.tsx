@@ -57,7 +57,7 @@ async function ProfileComments({ session }: Props) {
           return (
             <Link
               key={index}
-              href={`/strain/${comment.strain.slug}`}
+              href={`/strain/${comment.strain.slug}#${comment.id}`}
               className="flex flex-row items-center justify-between rounded-xl border border-zinc-300 bg-zinc-50 px-4 py-1.5 dark:border-zinc-700 dark:bg-zinc-800"
             >
               <div className="flex flex-row items-center justify-start gap-x-4">

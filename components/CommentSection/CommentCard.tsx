@@ -31,6 +31,7 @@ const CommentCard = (props: Props) => {
 
   return (
     <motion.div
+      id={comment.id}
       className="relative mb-5 rounded border border-zinc-200 p-4 shadow dark:border-transparent dark:bg-zinc-900"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { duration: 0.2 } }}

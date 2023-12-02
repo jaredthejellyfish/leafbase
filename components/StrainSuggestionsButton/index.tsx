@@ -42,8 +42,14 @@ function StrainSuggestionsButton({ slug, id, image }: Props) {
           >
             Custom Pairing
           </DropdownMenuItem>
-          <DropdownMenuLabel>Pairings</DropdownMenuLabel>
           <DropdownMenuSeparator />
+          <DropdownMenuLabel>Experience Tools</DropdownMenuLabel>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem
+            onClick={() => alert('This feature is not yet implemented')}
+          >
+            Smoke Timer
+          </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
 

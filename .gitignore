@@ -40,3 +40,6 @@ clear-bg/
 .VSCodeCounter
 database/remove-bg/downloads
 database/remove-bg/venv
+
+
+old_*.tsx

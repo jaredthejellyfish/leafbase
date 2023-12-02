@@ -70,7 +70,7 @@ export default async function ProfileFriends({ session }: Props) {
             <FullScreenButton session={session} friends={friends} />
           )}
         </div>
-        <Link href={'/profile?cr=comments'}>
+        <Link href={'/profile?cr=comments'} scroll={false}>
           <ArrowRight className="cursor-pointer text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200" />
         </Link>
       </div>

@@ -47,7 +47,7 @@ async function ProfileComments({ session }: Props) {
     >
       <div className="mb-1.5 flex w-full flex-row items-center justify-between">
         <h3 className="text-xl font-bold">Comments</h3>
-        <Link href={'/profile'}>
+        <Link href={'/profile'} scroll={false}>
           <ArrowRight className="cursor-pointer text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200" />
         </Link>
       </div>

@@ -79,6 +79,10 @@ export interface StrainWithComments extends Strain {
       username: string;
       image: string | null;
     };
+    comment_likes: {
+      user_id: string;
+      id: string;
+    }[];
   }[];
 }
 

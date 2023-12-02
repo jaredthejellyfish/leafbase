@@ -1030,6 +1030,12 @@ export interface Database {
           nugimage: string
         }[]
       }
+      send_email_sendgrid: {
+        Args: {
+          message: Json
+        }
+        Returns: Json
+      }
       vector_avg: {
         Args: {
           "": number[]

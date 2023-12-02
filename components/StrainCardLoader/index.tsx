@@ -10,7 +10,6 @@ import type { Database } from '@/lib/database';
 import type { Strain } from '@/lib/types';
 import StrainCard from '../StrainCard';
 import { Button } from '../ui/button';
-import { isLiked } from '@/lib/utils';
 
 const supabase = createClientComponentClient<Database>();
 
@@ -115,7 +114,7 @@ const StrainCardLoader = (props: Props) => {
                   priority={true}
                   liked={
                     typeof props.likes !== 'undefined'
-                      ? isLiked(strain.id, props.likes)
+                      ? props.likes?.includes(strain.id)
                       : undefined
                   }
                 />

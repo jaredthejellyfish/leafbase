@@ -42,6 +42,8 @@ function StrainSuggestionsButton({ slug, id, image }: Props) {
           >
             Custom Pairing
           </DropdownMenuItem>
+          <DropdownMenuLabel>Pairings</DropdownMenuLabel>
+          <DropdownMenuSeparator />
         </DropdownMenuContent>
       </DropdownMenu>
 

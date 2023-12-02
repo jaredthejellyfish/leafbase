@@ -11,46 +11,15 @@ import StrainSuggestionsButton from '@/components/StrainSuggestionsButton';
 import { getServerLikedStrains } from '@/lib/utils/getServerLikedStrains';
 import StarRating from '@/components/StrainCard/StarRating';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs';
+import { effects, terpenes } from '@/lib/data/colors';
 import type { StrainWithComments } from '@/lib/types';
 import StrainSoma from '@/components/StrainSoma';
 import defaultImage from '@/public/default.webp';
 import type { Database } from '@/lib/database';
-import { isLiked } from '@/lib/utils';
 
 const CommentSection = dynamic(() => import('@/components/CommentSection'));
 
 type Props = { params: { slug: string } };
-
-type Colors = {
-  [key: string]: string;
-};
-
-const terpenes: Colors = {
-  myrcene: '#7EBF73',
-  caryophyllene: '#B25C52',
-  terpinolene: '#4A7597',
-  linalool: '#9A67B5',
-  pinene: '#3B8A5A',
-  limonene: '#F9B122',
-  ocimene: '#2AA39F',
-};
-
-const effects: Colors = {
-  Hungry: '#FF8C00',
-  Giggly: '#FF69B4',
-  Euphoric: '#9370DB',
-  Energetic: '#F5A623',
-  Uplifted: '#20B2AA',
-  Aroused: '#FF4500',
-  Tingly: '#BA55D3',
-  Happy: '#00FF00',
-  Focused: '#FFD700',
-  null: '#778899',
-  Talkative: '#4682B4',
-  Creative: '#FFA07A',
-  Relaxed: '#8B4513',
-  Sleepy: '#1E90FF',
-};
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const { slug } = props.params;
@@ -127,7 +96,7 @@ export default async function StrainSlug(props: Props) {
             />
             <StrainCardLikeButton
               id={strain.id}
-              liked={isLiked(strain.id, likes)}
+              liked={likes?.includes(strain.id)}
               className="static z-0 block"
               width={25}
               height={25}

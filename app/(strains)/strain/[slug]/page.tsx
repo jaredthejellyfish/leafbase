@@ -85,6 +85,10 @@ export default async function StrainSlug(props: Props) {
   const { data: strainLikes } = await getServerLikedStrains();
   const likes = strainLikes?.map((strainLike) => strainLike.strain_id.id);
 
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
   const { data: strain } = await supabase
     .from('strains')
     .select('*, strain_comments ( *, profile:profiles ( username, image ) )')
@@ -214,13 +218,13 @@ export default async function StrainSlug(props: Props) {
         </div>
       </div>
       <div className="mt-5">
-        {strain.strain_comments.length > 0 && (
-          <CommentSection
-            strainName={strain.name}
-            comments={strain.strain_comments}
-            strainSlug={strain.slug}
-          />
-        )}
+        <CommentSection
+          strainName={strain.name}
+          comments={strain.strain_comments}
+          strainId={strain.id}
+          strainSlug={strain.slug}
+          session={session}
+        />
       </div>
     </main>
   );

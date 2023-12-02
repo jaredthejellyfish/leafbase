@@ -5,7 +5,10 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React from 'react';
 
+import DeleteCommentButton from './DeleteCommentButton';
+
 type Props = {
+  canDelete: boolean;
   comment: {
     comment: string;
     created_at: string;
@@ -20,7 +23,7 @@ type Props = {
 };
 
 const CommentCard = (props: Props) => {
-  const { comment } = props;
+  const { comment, canDelete } = props;
 
   return (
     <motion.div
@@ -29,9 +32,9 @@ const CommentCard = (props: Props) => {
       animate={{ opacity: 1, transition: { duration: 0.2 } }}
       exit={{ opacity: 0 }}
     >
-      {/* <DeleteCommentButton comment_id={comment.id} /> */}
       <div className="relative mb-2">
-        <div className="absolute right-0 top-0 flex text-sm">
+        <div className="absolute right-0 top-0 flex flex-row items-center gap-x-3 text-sm">
+          <DeleteCommentButton comment_id={comment.id} canDelete={canDelete} />
           <span>
             {comment?.created_at &&
               format(parseJSON(comment.created_at), 'MMMM dd, h:mm a')}
@@ -42,7 +45,7 @@ const CommentCard = (props: Props) => {
             className="font-semibold"
             href={`/profile/${comment.profile.username}`}
           >
-            {comment.profile.username}
+            @{comment.profile.username}
           </Link>
         </div>
       </div>

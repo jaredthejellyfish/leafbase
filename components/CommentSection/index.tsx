@@ -1,13 +1,20 @@
+'use client';
+
+import type { Session } from '@supabase/auth-helpers-nextjs';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Plus } from 'lucide-react';
-import Link from 'next/link';
 import React from 'react';
 
+import { comment } from '@/lib/actions/comment/comment';
+import TextAreaAuto from '../TextAreaAuto';
 import CommentCard from './CommentCard';
+import Modal from '../Modal';
 
 type Props = {
   strainName: string;
+  strainId: string;
   strainSlug: string;
+  session: Session | null;
   comments: {
     comment: string;
     created_at: string;
@@ -21,28 +28,72 @@ type Props = {
   }[];
 };
 
-function CommentSection({ comments, strainName, strainSlug }: Props) {
+function CommentSection({
+  comments,
+  strainName,
+  strainId,
+  strainSlug,
+  session,
+}: Props) {
+  const [open, setOpen] = React.useState(false);
+
+  const [commentValue, setCommentValue] = React.useState('');
+  const commentWithSlug = comment.bind(null, strainId).bind(null, strainSlug);
+
+  function handleClick() {
+    commentWithSlug(commentValue);
+    setCommentValue('');
+    setOpen(false);
+  }
+
+  if (!session) return null;
+
   return (
     <ErrorBoundary fallback={<div></div>}>
       <>
         <div className="my-3 flex flex-row items-center justify-between">
           <div className="flex flex-row items-center gap-x-3 text-[1.3em] font-bold">
-            <span>Reviews for {strainName}</span>
+            <span>Comments for {strainName}</span>
             <span className="text-[0.9em] text-zinc-400">
-              ({comments?.length})
+              ({comments?.length || 0})
             </span>
           </div>
-          <Link
+          <button
+            onClick={() => setOpen(!open)}
             className="mt-0.5 rounded border border-zinc-400 p-0.5"
-            href={`/strain/${strainSlug}/review`}
           >
             <Plus className="h-6 w-6" />
-          </Link>
+          </button>
         </div>
 
-        {comments.map((comment) => (
-          <CommentCard comment={comment} key={comment.id} />
-        ))}
+        {comments &&
+          comments.length > 0 &&
+          comments.map((comment) => (
+            <CommentCard
+              canDelete={session?.user.id === comment.user_id}
+              comment={comment}
+              key={comment.id}
+            />
+          ))}
+
+        <Modal open={open} setOpen={setOpen} title="Comment">
+          <TextAreaAuto
+            value={commentValue}
+            setValue={setCommentValue}
+            name="comment"
+            id="leave-a-comment"
+            placeholder="Leave a comment..."
+            className="w-full"
+          />
+          <div className="flex w-full items-center justify-center">
+            <button
+              onClick={() => handleClick()}
+              className="mr-2 mt-1 w-2/3 rounded-xl bg-green-700 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-green-700 dark:hover:bg-green-800 dark:focus:ring-blue-800"
+            >
+              Submit
+            </button>
+          </div>
+        </Modal>
       </>
     </ErrorBoundary>
   );

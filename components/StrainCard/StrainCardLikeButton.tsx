@@ -52,8 +52,8 @@ const StrainCardLikeButton = (props: Props) => {
 
   function handleClick() {
     startTransition(() => {
-      likeStrain(!optimisticLike, props.id);
       setOptimisticLike(!optimisticLike);
+      likeStrain(!optimisticLike, props.id);
     });
   }
 

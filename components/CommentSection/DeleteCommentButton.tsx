@@ -7,9 +7,10 @@ import { toast } from '../ui/use-toast';
 type Props = {
   comment_id: string;
   canDelete: boolean;
+  className?: string;
 };
 
-function DeleteCommentButton({ comment_id, canDelete }: Props) {
+function DeleteCommentButton({ comment_id, canDelete, className }: Props) {
   async function handleClick() {
     const result = await deleteComment(comment_id);
     if (result.error) {
@@ -30,7 +31,7 @@ function DeleteCommentButton({ comment_id, canDelete }: Props) {
   if (!canDelete) return null;
 
   return (
-    <button onClick={handleClick}>
+    <button onClick={handleClick} className={className}>
       <Trash2Icon className="h-5 w-5" />
     </button>
   );

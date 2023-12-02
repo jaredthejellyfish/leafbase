@@ -1,14 +1,18 @@
 'use client';
 
-import { format, parseJSON } from 'date-fns';
+import { formatDistanceToNow, parseJSON } from 'date-fns';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
 import DeleteCommentButton from './DeleteCommentButton';
+import LikeCommentButton from './LikeCommentButton';
+import defaultPfp from '@/public/default.webp';
 
 type Props = {
   canDelete: boolean;
+  isLiked: boolean;
   comment: {
     comment: string;
     created_at: string;
@@ -23,7 +27,7 @@ type Props = {
 };
 
 const CommentCard = (props: Props) => {
-  const { comment, canDelete } = props;
+  const { comment, canDelete, isLiked } = props;
 
   return (
     <motion.div
@@ -32,33 +36,43 @@ const CommentCard = (props: Props) => {
       animate={{ opacity: 1, transition: { duration: 0.2 } }}
       exit={{ opacity: 0 }}
     >
-      <div className="relative mb-2">
-        <div className="absolute right-0 top-0 flex flex-row items-center gap-x-3 text-sm">
-          <DeleteCommentButton comment_id={comment.id} canDelete={canDelete} />
-          <span>
-            {comment?.created_at &&
-              format(parseJSON(comment.created_at), 'MMMM dd, h:mm a')}
-          </span>
-        </div>
-        <div className="flex items-center gap-2 text-zinc-500 dark:text-zinc-400">
-          <Link
-            className="font-semibold"
-            href={`/profile/${comment.profile.username}`}
-          >
-            @{comment.profile.username}
-          </Link>
+      <div className="mb-3.5 flex flex-row justify-between">
+        <Link
+          href={`/profile/${comment.profile.username}`}
+          className="flex flex-row items-center gap-x-4"
+        >
+          <Image
+            src={comment.profile.image || defaultPfp}
+            alt={`@${comment.profile.username}'s profile picture`}
+            width={40}
+            height={40}
+            className="rounded-full"
+          />
+          <div className="flex flex-col">
+            <span className="font-semibold">@{comment.profile.username}</span>
+            {comment?.created_at && (
+              <span className="text-sm text-zinc-500">
+                {formatDistanceToNow(parseJSON(comment.created_at), {
+                  includeSeconds: true,
+                  addSuffix: true,
+                })}
+              </span>
+            )}
+          </div>
+        </Link>
+        <div className="px-2">
+          {!canDelete && (
+            <DeleteCommentButton
+              comment_id={comment.id}
+              canDelete={canDelete}
+            />
+          )}
+          {canDelete && (
+            <LikeCommentButton comment_id={comment.id} isLiked={isLiked} />
+          )}
         </div>
       </div>
-      <svg width="100%" height="1" className="mb-3">
-        <line
-          x1="0.5%"
-          y1="0"
-          x2="99%"
-          y2="0"
-          className="mb-1 stroke-zinc-500 stroke-1"
-        />
-      </svg>
-      <div className="text-sm">{comment.comment}</div>
+      <span>{comment.comment.length > 0 && comment.comment}</span>
     </motion.div>
   );
 };

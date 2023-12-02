@@ -2,8 +2,8 @@
 
 import type { Session } from '@supabase/auth-helpers-nextjs';
 import { ErrorBoundary } from 'react-error-boundary';
+import React, { useState } from 'react';
 import { Plus } from 'lucide-react';
-import React from 'react';
 
 import { comment } from '@/lib/actions/comment/comment';
 import TextAreaAuto from '../TextAreaAuto';
@@ -25,6 +25,10 @@ type Props = {
       username: string;
       image: string | null;
     };
+    comment_likes: {
+      user_id: string;
+      id: string;
+    }[];
   }[];
 };
 
@@ -35,9 +39,9 @@ function CommentSection({
   strainSlug,
   session,
 }: Props) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
-  const [commentValue, setCommentValue] = React.useState('');
+  const [commentValue, setCommentValue] = useState('');
   const commentWithSlug = comment.bind(null, strainId).bind(null, strainSlug);
 
   function handleClick() {
@@ -73,6 +77,11 @@ function CommentSection({
               canDelete={session?.user.id === comment.user_id}
               comment={comment}
               key={comment.id}
+              isLiked={
+                comment.comment_likes.filter(
+                  (like) => like.user_id === session?.user.id
+                ).length > 0
+              }
             />
           ))}
 

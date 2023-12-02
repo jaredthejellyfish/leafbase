@@ -61,13 +61,13 @@ const CommentCard = (props: Props) => {
           </div>
         </Link>
         <div className="px-2">
-          {!canDelete && (
+          {canDelete && (
             <DeleteCommentButton
               comment_id={comment.id}
               canDelete={canDelete}
             />
           )}
-          {canDelete && (
+          {!canDelete && (
             <LikeCommentButton comment_id={comment.id} isLiked={isLiked} />
           )}
         </div>

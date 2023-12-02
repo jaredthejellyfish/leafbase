@@ -60,7 +60,9 @@ export default async function StrainSlug(props: Props) {
 
   const { data: strain } = await supabase
     .from('strains')
-    .select('*, strain_comments ( *, profile:profiles ( username, image ) )')
+    .select(
+      '*, strain_comments ( *, profile:profiles ( username, image ), comment_likes:strain_comment_likes ( user_id, id ) )'
+    )
     .eq('slug', slug)
     .returns<StrainWithComments[]>()
     .maybeSingle();

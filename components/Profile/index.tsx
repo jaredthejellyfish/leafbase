@@ -131,7 +131,7 @@ const Profile = (props: Props) => {
       {user?.username ? (
         <>
           <span className="flex flex-row items-center gap-1 text-sm text-zinc-300">
-            <span className="text-zinc-400">{user?.username}</span>
+            <span className="text-zinc-400">@{user?.username}</span>
           </span>
           {user?.location && (
             <span className="mt-3 text-sm dark:text-white">

@@ -5,6 +5,8 @@
     "postcss.config.js",
     "next.config.js",
     ".eslintrc.js",
-    "cypress/**/*"
+    "cypress/**/*",
+    "app/**/*",
+    "components/**/*"
   ]
 }

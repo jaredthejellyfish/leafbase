@@ -73,6 +73,7 @@ function EditProfileForm({ user_metadata, session }: Props) {
           </div>
 
           <div className="flex flex-row items-center gap-1 text-sm text-zinc-300">
+            <span>@</span>
             <input
               className="mt-1 rounded border border-zinc-500 bg-transparent px-0.5"
               name="username"

@@ -4,6 +4,7 @@ import { useOnClickOutside } from 'usehooks-ts';
 import React, { useRef, useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import dynamic from 'next/dynamic';
+import { X } from 'lucide-react';
 
 const SearchResults = dynamic(() => import('../SearchResults'), { ssr: false });
 
@@ -28,7 +29,17 @@ function DropdownSearchbar() {
           placeholder="Search..."
           className="w-full bg-transparent focus:outline-none dark:text-white"
         ></input>
-        <BsSearch className="text-zinc-400/80 dark:text-gray-400" size={20} />
+        {query.length > 0 ? (
+          <X
+            className="cursor-pointer text-zinc-400/80 transition-colors dark:text-gray-400 hover:dark:text-white"
+            size={20}
+            onClick={() => {
+              setQuery('');
+            }}
+          />
+        ) : (
+          <BsSearch className="text-zinc-400/80 dark:text-gray-400" size={20} />
+        )}
       </div>
       {query.length > 1 && (
         <div

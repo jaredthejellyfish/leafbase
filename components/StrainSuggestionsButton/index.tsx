@@ -43,7 +43,7 @@ function StrainSuggestionsButton({ slug, id, image }: Props) {
             Custom Pairing
           </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuLabel>Experience Tools</DropdownMenuLabel>
+          <DropdownMenuLabel>Tools</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem
             onClick={() => alert('This feature is not yet implemented')}

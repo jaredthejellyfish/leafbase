@@ -7,6 +7,8 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import React from 'react';
 
+import { Separator } from '../ui/separator';
+
 const DropdownSearchbar = dynamic(() => import('./dropdown-searchbar'), {
   ssr: false,
 });
@@ -45,7 +47,7 @@ const DropdownMenu = (props: Props) => {
   const matches = useMediaQuery('(min-width: 768px)');
   return (
     <motion.div
-      className="absolute left-0 top-[56px] z-50 w-screen origin-top divide-y divide-dashed divide-slate-400/25 bg-slate-200 px-4 py-2 dark:bg-zinc-800/100 sm:top-16 sm:px-5 sm:py-3"
+      className="absolute left-0 top-[56px] z-50 w-screen origin-top px-4 py-2 dark:bg-zinc-800/100 sm:top-16 sm:px-5 sm:py-3"
       variants={variants.container}
       animate={isOpen ? 'open' : 'closed'}
       initial="closed"
@@ -69,7 +71,7 @@ const DropdownMenu = (props: Props) => {
           Strains
         </Link>
       </motion.div>
-
+      <Separator className="rounded-xl bg-zinc-700" />
       <motion.div
         variants={variants.children}
         animate={isOpen ? 'open' : 'closed'}
@@ -86,6 +88,7 @@ const DropdownMenu = (props: Props) => {
           Dispensaries
         </Link>
       </motion.div>
+      <Separator className="rounded-xl bg-zinc-700" />
       <motion.div
         variants={variants.children}
         animate={isOpen ? 'open' : 'closed'}

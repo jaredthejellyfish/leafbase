@@ -30,6 +30,21 @@ export async function manageFriendship(
       return { error: 'Error getting session', created: false, deleted: false };
     }
 
+    const { data: profile, error: profileError } = await supabase
+      .from('profiles')
+      .select('image, username')
+      .eq('id', session.user.id)
+      .single();
+
+    if (profileError) {
+      console.error(profileError);
+      return {
+        error: 'Error getting profile',
+        created: false,
+        deleted: false,
+      };
+    }
+
     const { data: existingFriendRequest, error: existingFriendRequestError } =
       await supabase
         .from('friends')
@@ -73,6 +88,21 @@ export async function manageFriendship(
         created: false,
         deleted: false,
       };
+    }
+
+    const { error: notificationError } = await supabase
+      .from('notifications')
+      .insert({
+        initiator: session.user.id,
+        recipient: to,
+        type: 'friend-request',
+        content: `@${profile.username} sent you a friend request!`,
+        archived: false,
+        image: profile.image,
+      });
+
+    if (notificationError) {
+      console.error(notificationError);
     }
 
     return { created: true, deleted: false, error: null };

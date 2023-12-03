@@ -1,7 +1,7 @@
 'use client';
 
-import { Archive, Bell, Delete, Trash } from 'lucide-react';
 import { formatDistanceToNow, parseJSON } from 'date-fns';
+import { Archive, Bell, Trash } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { BsGear } from 'react-icons/bs';
 import Image from 'next/image';

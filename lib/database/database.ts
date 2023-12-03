@@ -222,6 +222,54 @@ export interface Database {
           }
         ]
       }
+      notifications: {
+        Row: {
+          archived: boolean
+          content: string
+          created_at: string
+          id: string
+          image: string | null
+          initiator: string
+          recipient: string
+          type: string
+        }
+        Insert: {
+          archived?: boolean
+          content: string
+          created_at?: string
+          id?: string
+          image?: string | null
+          initiator: string
+          recipient: string
+          type: string
+        }
+        Update: {
+          archived?: boolean
+          content?: string
+          created_at?: string
+          id?: string
+          image?: string | null
+          initiator?: string
+          recipient?: string
+          type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notifications_initiator_fkey"
+            columns: ["initiator"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "notifications_recipient_fkey"
+            columns: ["recipient"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       profiles: {
         Row: {
           about: string | null

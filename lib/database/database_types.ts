@@ -15,6 +15,8 @@ export type UserMetadataExtended = {
   phone: string;
 };
 
+export type Notification = Database['public']['Tables']['notifications']['Row'];
+
 export type PublicProfile = Database['public']['Tables']['profiles']['Row'];
 
 export type SearchStrain =

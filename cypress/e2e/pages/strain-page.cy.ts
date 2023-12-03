@@ -2,7 +2,7 @@
 
 describe('strains page', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/strain/original-glue');
+    cy.visit('http://localhost:3000/strains/original-glue'); // <- /strain
     cy.viewport(1280, 720);
     cy.get('#cookie-consent-accept').should('have.length', 1);
     cy.get('#cookie-consent-accept').click();
@@ -63,7 +63,8 @@ describe('strains page', () => {
   });
 
   it('takes a screenshot of the strain page in light mode', () => {
-    cy.visit('http://localhost:3000/strain/original-glue', {
+    cy.visit('http://localhost:3000/strains/original-glue', {
+      // <- /strain
       onBeforeLoad: function (window) {
         window.localStorage.setItem('theme', 'light');
       },

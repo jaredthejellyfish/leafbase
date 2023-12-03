@@ -44,7 +44,7 @@ function LikedStrainsAccordion(props: Props) {
               <Link
                 key={strain.id}
                 className="flex min-w-[11%] grow scale-95 flex-col gap-2 rounded border p-2 shadow dark:border-zinc-600 dark:bg-zinc-800 sm:min-w-[12%] sm:max-w-[130px] md:min-w-[calc(33.333%-1em)] lg:min-w-[calc(25%-1em)] xl:min-w-[calc(20%-1em)]"
-                href={`/strain/${strain.strain_id.slug}`}
+                href={`/strains/${strain.strain_id.slug}`}  // <- /strain
               >
                 <div className="flex aspect-square h-24 max-h-24 w-full items-center justify-center rounded-md">
                   <Image

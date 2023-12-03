@@ -37,7 +37,7 @@ describe('like a strain', () => {
       .should('have.length', 1);
     cy.get('@likedStrains').children().first().as('firstLikedStrain');
     cy.get('@firstLikedStrain').click();
-    cy.url().should('include', '/strain/');
+    cy.url().should('include', '/strains/'); // <- /strain
   });
 
   it('unlikes a strain in the strain page', () => {

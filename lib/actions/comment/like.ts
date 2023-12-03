@@ -68,6 +68,6 @@ export async function likeComment(comment_id: string, strainSlug: string) {
     console.error(error);
     return { error: 'Error deleting comment', liked: false };
   } finally {
-    revalidatePath(`/strain/${strainSlug}`);
+    revalidatePath(`/strains/${strainSlug}`); // <- /strain
   }
 }

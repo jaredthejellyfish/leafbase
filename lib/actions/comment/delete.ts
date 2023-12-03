@@ -65,7 +65,7 @@ export async function deleteComment(comment_id: string) {
       return { error: 'Error deleting comment', deleted: false };
     }
 
-    revalidatePath(`/strain/${strainSlug}`);
+    revalidatePath(`/strains/${strainSlug}`); // <- /strain
     return { error: null, deleted: true };
   } catch (error) {
     console.error(error);

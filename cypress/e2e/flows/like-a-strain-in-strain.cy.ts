@@ -14,7 +14,7 @@ describe('like a strain', () => {
   });
 
   it('likes a strain in the strain page', () => {
-    cy.visit('http://localhost:3000/strain/original-glue');
+    cy.visit('http://localhost:3000/strains/original-glue'); // <- /strain
 
     cy.get('#strain-options')
       .children()
@@ -37,11 +37,11 @@ describe('like a strain', () => {
       .should('have.length', 1);
     cy.get('@likedStrains').children().first().as('firstLikedStrain');
     cy.get('@firstLikedStrain').click();
-    cy.url().should('include', '/strain/');
+    cy.url().should('include', '/strains/'); // <- /strain
   });
 
   it('unlikes a strain in the strain page', () => {
-    cy.visit('http://localhost:3000/strain/original-glue');
+    cy.visit('http://localhost:3000/strains/original-glue'); // <- /strain
 
     cy.get('#strain-options')
       .children()

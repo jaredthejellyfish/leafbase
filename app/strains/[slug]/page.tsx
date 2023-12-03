@@ -78,7 +78,7 @@ export default async function StrainSlug(props: Props) {
           { name: 'Strains', url: '/strains' },
           {
             name: strain.name as string,
-            url: `/strain/${strain.slug}`,
+            url: `/strains/${strain.slug}`, // <- /strain
           },
         ]}
       />

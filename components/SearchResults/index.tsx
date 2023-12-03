@@ -21,7 +21,8 @@ function SearchResult({
   imageSize: number;
 }) {
   return (
-    <Link href={`/strain/${strain.slug}`} className="flex flex-col items-start">
+    // <- /strain
+    <Link href={`/strains/${strain.slug}`} className="flex flex-col items-start">
       <div className="flex flex-row items-center gap-2">
         <Image
           src={strain.nugimage}

@@ -47,6 +47,6 @@ export async function comment(
     console.error(error);
     return { error: 'Error accepting friend request', created: false };
   } finally {
-    revalidatePath(`/strain/${strainSlug}`);
+    revalidatePath(`/strains/${strainSlug}`); // <- /strain
   }
 }

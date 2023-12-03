@@ -2,37 +2,35 @@ import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
+const AUTH_CALLBACK_PATH = '/auth/callback';
+const AUTH_SIGNIN_PATH = '/auth/signin';
+const HOME_PATH = '/home';
+const ROOT_PATH = '/';
+
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
   const supabase = createMiddlewareClient({ req, res });
   const { data } = await supabase.auth.getSession();
-
-  const code = req.nextUrl.searchParams.get('code');
   const currentUrl = req.nextUrl.pathname;
 
-  if (code && req.nextUrl.pathname !== '/auth/callback') {
-    return NextResponse.redirect(
-      new URL(`/auth/callback?code=${code}&redirect=${currentUrl}`, req.nextUrl)
+  const code = req.nextUrl.searchParams.get('code');
+  if (code && currentUrl !== AUTH_CALLBACK_PATH) {
+    const callbackUrl = new URL(
+      `${AUTH_CALLBACK_PATH}?code=${code}&redirect=${currentUrl}`,
+      req.nextUrl
     );
+    return NextResponse.redirect(callbackUrl);
   }
 
-  if (req.nextUrl.pathname === '/strain') {
-    return NextResponse.redirect(new URL('/strains', req.nextUrl));
+  if (!data.session && ![AUTH_SIGNIN_PATH, ROOT_PATH].includes(currentUrl)) {
+    return NextResponse.redirect(new URL(AUTH_SIGNIN_PATH, req.nextUrl));
   }
 
-  if (
-    !data.session &&
-    req.nextUrl.pathname !== '/auth/signin' &&
-    req.nextUrl.pathname !== '/'
-  ) {
-    return NextResponse.redirect(new URL('/auth/signin', req.nextUrl));
+  if (data.session && currentUrl === ROOT_PATH) {
+    return NextResponse.redirect(new URL(HOME_PATH, req.nextUrl));
   }
 
-  if (data.session && req.nextUrl.pathname === '/') {
-    return NextResponse.redirect(new URL('/home', req.nextUrl));
-  }
-
-  return res;
+  return NextResponse.next();
 }
 
 export const config = {

@@ -103,7 +103,7 @@ function NotifcationMenu({
       <DropdownMenuContent
         align="start"
         id="notification-toggle-content"
-        className="mr-5 sm:w-[380px]"
+        className="mr-5 w-[380px]"
       >
         <div className="h-10 flex-row items-center justify-between px-3">
           <div className="flex flex-row ">

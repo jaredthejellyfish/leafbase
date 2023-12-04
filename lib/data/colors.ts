@@ -10,6 +10,7 @@ export const terpenes: Colors = {
   pinene: '#3B8A5A',
   limonene: '#F9B122',
   ocimene: '#2AA39F',
+  null: '#778899',
 };
 
 export const effects: Colors = {

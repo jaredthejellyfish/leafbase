@@ -26,7 +26,6 @@ export async function manageFriendship(
     } = await supabase.auth.getSession();
 
     if (sessionError || !session || !session.user) {
-      console.error(sessionError);
       return { error: 'Error getting session', created: false, deleted: false };
     }
 
@@ -37,7 +36,6 @@ export async function manageFriendship(
       .single();
 
     if (profileError) {
-      console.error(profileError);
       return {
         error: 'Error getting profile',
         created: false,
@@ -82,7 +80,6 @@ export async function manageFriendship(
       .maybeSingle();
 
     if (newFriendRequestError) {
-      console.error(newFriendRequestError);
       return {
         error: 'Error managing friendship status',
         created: false,
@@ -90,24 +87,17 @@ export async function manageFriendship(
       };
     }
 
-    const { error: notificationError } = await supabase
-      .from('notifications')
-      .insert({
-        initiator: session.user.id,
-        recipient: to,
-        type: 'friend-request',
-        content: `@${profile.username} sent you a friend request!`,
-        archived: false,
-        image: profile.image,
-      });
-
-    if (notificationError) {
-      console.error(notificationError);
-    }
+    await supabase.from('notifications').insert({
+      initiator: session.user.id,
+      recipient: to,
+      type: 'friend-request',
+      content: `@${profile.username} sent you a friend request!`,
+      archived: false,
+      image: profile.image,
+    });
 
     return { created: true, deleted: false, error: null };
   } catch (error) {
-    console.error(error);
     return {
       error: 'Error managing friendship status',
       created: false,

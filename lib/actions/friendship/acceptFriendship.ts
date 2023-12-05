@@ -21,7 +21,6 @@ export async function acceptFriendship(to: string, from: string) {
     } = await supabase.auth.getSession();
 
     if (sessionError || !session || !session.user) {
-      console.error(sessionError);
       return { error: 'Error getting session', accepted: false };
     }
 
@@ -64,16 +63,30 @@ export async function acceptFriendship(to: string, from: string) {
       .single();
 
     if (newFriendRequestError) {
-      console.error(newFriendRequestError);
       return {
         error: 'Error accepting friend request',
         accepted: false,
       };
     }
+    const { data: profile, error: profileError } = await supabase
+      .from('profiles')
+      .select('*')
+      .match({ id: to })
+      .single();
+
+    if (!profileError && profile) {
+      await supabase.from('notifications').insert({
+        initiator: session.user.id,
+        recipient: from,
+        type: 'friend-request',
+        content: `@${profile.username} accepted your friend request!`,
+        archived: false,
+        image: profile.image,
+      });
+    }
 
     return { accepted: true, error: null };
   } catch (error) {
-    console.error(error);
     return { error: 'Error accepting friend request', accepted: false };
   } finally {
     revalidatePath('/profile');

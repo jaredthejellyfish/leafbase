@@ -24,7 +24,6 @@ export async function GET(request: NextRequest) {
     const { session } = sessionData;
 
     if (sessionError || !session || !session.user) {
-      console.error(sessionError);
       return NextResponse.json('Error getting session', { status: 400 });
     }
 
@@ -34,7 +33,6 @@ export async function GET(request: NextRequest) {
       .eq('user_id', session.user.id);
 
     if (likedStrainsError) {
-      console.error(likedStrainsError);
       return NextResponse.json('Error getting liked strains', { status: 400 });
     }
 
@@ -52,7 +50,6 @@ export async function GET(request: NextRequest) {
       .returns<StrainData[]>();
 
     if (strainEffectsError) {
-      console.error(strainEffectsError);
       return NextResponse.json('Error getting strain effects', { status: 400 });
     }
 
@@ -149,7 +146,6 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ data: normalizedResponse }, { status: 200 });
   } catch (error) {
-    console.error(error);
     return NextResponse.json('Error generating smoking profile', {
       status: 500,
     });

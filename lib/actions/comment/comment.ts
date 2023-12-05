@@ -25,7 +25,6 @@ export async function comment(
     } = await supabase.auth.getSession();
 
     if (sessionError || !session || !session.user) {
-      console.error(sessionError);
       return { error: 'Error getting session', created: false };
     }
 
@@ -38,13 +37,11 @@ export async function comment(
       });
 
     if (newCommentError) {
-      console.error(newCommentError);
       return { error: 'Error adding comment', created: false };
     }
 
     return { error: null, created: true };
   } catch (error) {
-    console.error(error);
     return { error: 'Error accepting friend request', created: false };
   } finally {
     revalidatePath(`/strains/${strainSlug}`); // <- /strain

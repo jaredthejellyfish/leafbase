@@ -21,7 +21,6 @@ export async function deleteNotification(id: string) {
     } = await supabase.auth.getSession();
 
     if (sessionError || !session || !session.user) {
-      console.error(sessionError);
       return { error: 'Error getting session', deleted: false };
     }
 
@@ -60,7 +59,6 @@ export async function deleteNotification(id: string) {
 
     return { error: null, deleted: true };
   } catch (error) {
-    console.error(error);
     return { error: 'Error accepting friend request', deleted: false };
   } finally {
     revalidatePath('/profile');

@@ -30,7 +30,6 @@ export default cache(async function getServerPaginatedStrains({
     .select('*', { count: 'estimated', head: true });
 
   if (!totalCount) {
-    console.error('No strains found');
     return {
       strains: [],
       nextPage: 0,
@@ -42,7 +41,6 @@ export default cache(async function getServerPaginatedStrains({
   const totalPages = Math.ceil(totalCount / perPage);
 
   if (page > totalPages) {
-    console.error('Page out of range');
     return {
       strains: [],
       nextPage: 0,

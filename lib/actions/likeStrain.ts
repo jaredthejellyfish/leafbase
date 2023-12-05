@@ -37,7 +37,6 @@ export async function likeStrain(liked: boolean, strain_id: string) {
       .insert([{ user_id, strain_id }]);
 
     if (error) {
-      console.error(error || 'No like data returned');
       return;
     }
   }
@@ -50,7 +49,6 @@ export async function likeStrain(liked: boolean, strain_id: string) {
       .eq('strain_id', strain_id);
 
     if (error) {
-      console.error(error || 'No like data returned');
       return;
     }
   }

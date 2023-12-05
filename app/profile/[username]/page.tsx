@@ -18,9 +18,7 @@ export default async function ProfileUser(props: Props) {
   const { user, friendRequest, session, error } =
     await getServerUserProfileFromUsername(props.params.username);
 
-  console.error(error);
-
-  if (!user) notFound();
+  if (!user || error) notFound();
 
   return (
     <div className="px-5 py-3 md:px-16">

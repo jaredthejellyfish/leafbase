@@ -21,7 +21,6 @@ export async function likeComment(comment_id: string, strainSlug: string) {
     } = await supabase.auth.getSession();
 
     if (sessionError || !session || !session.user) {
-      console.error(sessionError);
       return { error: 'Error getting session', liked: false };
     }
 
@@ -33,7 +32,6 @@ export async function likeComment(comment_id: string, strainSlug: string) {
       .maybeSingle();
 
     if (existingLikeError) {
-      console.error(existingLikeError);
       return { error: 'Error getting existing like', liked: false };
     }
 
@@ -46,7 +44,6 @@ export async function likeComment(comment_id: string, strainSlug: string) {
         .eq('comment_id', comment_id);
 
       if (deleteLikeError) {
-        console.error(deleteLikeError);
         return { error: 'Error deleting like', liked: false };
       }
       return { error: null, liked: false };
@@ -59,13 +56,11 @@ export async function likeComment(comment_id: string, strainSlug: string) {
         .select('id');
 
       if (insertLikeError) {
-        console.error(insertLikeError);
         return { error: 'Error inserting like', liked: false };
       }
       return { error: null, liked: true };
     }
   } catch (error) {
-    console.error(error);
     return { error: 'Error deleting comment', liked: false };
   } finally {
     revalidatePath(`/strains/${strainSlug}`); // <- /strain

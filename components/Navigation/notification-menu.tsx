@@ -24,11 +24,13 @@ import { cn } from '@/lib/utils';
 type Props = {
   pendingNotifications: Notification[] | null;
   archivedNotifications?: Notification[] | null;
+  id: string;
 };
 
 function NotifcationMenu({
   pendingNotifications,
   archivedNotifications,
+  id,
 }: Props) {
   const [notifications, setNotifications] = useState(
     pendingNotifications || []
@@ -48,6 +50,7 @@ function NotifcationMenu({
         },
         (payload) => {
           const notification = payload.new as Notification;
+          if (notification.recipient !== id) return;
           setNotifications((notifications) => [...notifications, notification]);
         }
       )
@@ -56,13 +59,12 @@ function NotifcationMenu({
     return () => {
       supabase.removeChannel(channel);
     };
-  }, []);
+  }, [id]);
 
   async function handleArchive(id: string) {
     const result = await archiveNotification(id);
 
     if (result.error) {
-      console.error(result.error);
       return;
     }
 
@@ -75,7 +77,6 @@ function NotifcationMenu({
     const result = await deleteNotification(id);
 
     if (result.error) {
-      console.error(result.error);
       return;
     }
 

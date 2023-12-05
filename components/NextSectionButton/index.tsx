@@ -32,8 +32,6 @@ function NextSectionButton({ children, nextSectionId, className }: Props) {
         block: 'start', // Align the top of the element with the top of the viewport.
         inline: 'nearest', // Align the nearest edge of the element with the nearest edge of the viewport.
       });
-    } else {
-      console.error(`Element with id '${nextSectionId}' not found.`);
     }
   }
 

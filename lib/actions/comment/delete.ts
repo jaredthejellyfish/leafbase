@@ -30,7 +30,6 @@ export async function deleteComment(comment_id: string) {
     } = await supabase.auth.getSession();
 
     if (sessionError || !session || !session.user) {
-      console.error(sessionError);
       return { error: 'Error getting session', deleted: false };
     }
 
@@ -41,7 +40,6 @@ export async function deleteComment(comment_id: string) {
       .returns<ExtendedComment[]>();
 
     if (commentError) {
-      console.error(commentError);
       return { error: 'Error getting comment', deleted: false };
     }
 
@@ -49,7 +47,6 @@ export async function deleteComment(comment_id: string) {
       commentData.length === 1 &&
       commentData[0].user_id !== session.user.id
     ) {
-      console.error('User does not own comment');
       return { error: 'Error deleting comment', deleted: false };
     }
 
@@ -61,14 +58,12 @@ export async function deleteComment(comment_id: string) {
       .eq('id', comment_id);
 
     if (deleteCommentError) {
-      console.error(deleteCommentError);
       return { error: 'Error deleting comment', deleted: false };
     }
 
     revalidatePath(`/strains/${strainSlug}`); // <- /strain
     return { error: null, deleted: true };
   } catch (error) {
-    console.error(error);
     return { error: 'Error deleting comment', deleted: false };
   }
 }

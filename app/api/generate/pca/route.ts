@@ -17,7 +17,6 @@ export async function GET() {
     const { session } = sessionData;
 
     if (sessionError || !session || !session.user) {
-      console.error(sessionError);
       return NextResponse.json('Error getting session', { status: 400 });
     }
 
@@ -27,7 +26,6 @@ export async function GET() {
       .eq('user_id', session.user.id);
 
     if (likedStrainsError) {
-      console.error(likedStrainsError);
       return NextResponse.json('Error getting liked strains', { status: 400 });
     }
 
@@ -40,7 +38,6 @@ export async function GET() {
         .in('strain_id', likedStrainIds);
 
     if (likedStrainsVectorsError) {
-      console.error(likedStrainsVectorsError);
       return NextResponse.json('Error getting liked strains vectors', {
         status: 400,
       });
@@ -70,7 +67,6 @@ export async function GET() {
 
     return NextResponse.json({ pca: xyCoordinates }, { status: 200 });
   } catch (error) {
-    console.error(error);
     return NextResponse.json('Error generating PCA', { status: 400 });
   }
 }

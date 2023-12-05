@@ -81,9 +81,8 @@ function getTopThreeEffects(strain: Strain): string[] {
     const topThree = sortedEffects.slice(0, 3);
     return topThree.map((effect) => effect.name);
   } catch (error) {
-    console.error(error);
+    return [];
   }
-  return [];
 }
 
 function getTopThreeEffectsNegative(strain: Strain): string[] {
@@ -93,9 +92,8 @@ function getTopThreeEffectsNegative(strain: Strain): string[] {
     const topThree = sortedEffects.slice(0, 3);
     return topThree.map((effect) => effect.name);
   } catch (error) {
-    console.error(error);
+    return [];
   }
-  return [];
 }
 
 function getPositivesFromTopThree(strain: Strain): string[] {
@@ -104,9 +102,8 @@ function getPositivesFromTopThree(strain: Strain): string[] {
     const positives = topThree.map((effect) => positiveEffects[effect]);
     return positives;
   } catch (error) {
-    console.error(error);
+    return [];
   }
-  return [];
 }
 
 const StrainSoma = (props: Props) => {

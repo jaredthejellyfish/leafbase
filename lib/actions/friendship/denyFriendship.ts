@@ -21,7 +21,6 @@ export async function denyFriendship(to: string, from: string) {
     } = await supabase.auth.getSession();
 
     if (sessionError || !session || !session.user) {
-      console.error(sessionError);
       return { error: 'Error getting session', accepted: false };
     }
 
@@ -62,7 +61,6 @@ export async function denyFriendship(to: string, from: string) {
       });
 
     if (newFriendRequestError) {
-      console.error(newFriendRequestError);
       return {
         error: 'Error accepting friend request',
         accepted: false,
@@ -71,7 +69,6 @@ export async function denyFriendship(to: string, from: string) {
 
     return { accepted: true, error: null };
   } catch (error) {
-    console.error(error);
     return { error: 'Error accepting friend request', accepted: false };
   } finally {
     revalidatePath('/profile');

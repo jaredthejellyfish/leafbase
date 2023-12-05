@@ -16,7 +16,6 @@ function sortStrainsByName(strains: StrainLike[]): StrainLike[] {
       return 0;
     });
   } catch (error) {
-    console.error(error);
     return [];
   }
 }
@@ -65,7 +64,6 @@ export async function getServerLikedStrains(userId?: string): Promise<{
     .returns<StrainLike[]>();
 
   if (strainLikesError) {
-    console.error(strainLikesError);
     return {
       error:
         (strainLikesError as unknown as AuthError | null) || 'No session found',

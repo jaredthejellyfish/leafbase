@@ -22,12 +22,13 @@ const NotifcationMenu = dynamic(() => import('./notification-menu'), {
 });
 
 async function Navigation() {
-  const { user_metadata } = await getServerUserMetadata();
+  const { user_metadata, id } = await getServerUserMetadata();
 
   const { data: notifications } = await supabase
     .from('notifications')
     .select('*')
     .eq('archived', false)
+    .eq('recipient', id!)
     .order('created_at', { ascending: false })
     .limit(10)
     .returns<Notification[]>();
@@ -36,6 +37,7 @@ async function Navigation() {
     .from('notifications')
     .select('*')
     .eq('archived', true)
+    .eq('recipient', id!)
     .order('created_at', { ascending: false })
     .limit(10)
     .returns<Notification[]>();
@@ -71,6 +73,7 @@ async function Navigation() {
           <NotifcationMenu
             pendingNotifications={notifications}
             archivedNotifications={arcivedNotifications}
+            id={id!}
           />
         )}
         <ThemeToggle />

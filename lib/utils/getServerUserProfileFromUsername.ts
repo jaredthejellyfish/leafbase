@@ -64,7 +64,6 @@ export async function getServerUserProfileFromUsername(
       .limit(1);
 
   if (pendingFriendRequestError) {
-    console.error(pendingFriendRequestError);
     return {
       status: null,
       error: 'Could not find user in friends.',

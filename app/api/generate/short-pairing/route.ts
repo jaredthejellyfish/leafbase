@@ -25,17 +25,12 @@ export async function POST(request: Request) {
       cookies: () => cookieStore,
     });
 
-    const { data: existingPairing, error: existingPairingError } =
-      await supabase
-        .from('short_pairings')
-        .select('*')
-        .eq('strain1_id', strain1)
-        .eq('strain2_id', strain2)
-        .maybeSingle();
-
-    if (existingPairingError) {
-      console.error(existingPairingError);
-    }
+    const { data: existingPairing } = await supabase
+      .from('short_pairings')
+      .select('*')
+      .eq('strain1_id', strain1)
+      .eq('strain2_id', strain2)
+      .maybeSingle();
 
     if (existingPairing) {
       return NextResponse.json(existingPairing.body, { status: 200 });
@@ -53,9 +48,6 @@ export async function POST(request: Request) {
       .single();
 
     if (strain1Error || strain2Error) {
-      console.error(
-        strain1Error || strain2Error || 'No strains in the database response'
-      );
       return NextResponse.json('No strains in the database response', {
         status: 400,
       });
@@ -107,7 +99,6 @@ export async function POST(request: Request) {
       .single();
 
     if (newPairingError) {
-      console.error(newPairingError);
       return NextResponse.json('Error generating pairing', { status: 400 });
     }
 
@@ -115,7 +106,6 @@ export async function POST(request: Request) {
       status: 200,
     });
   } catch (error) {
-    console.error(error);
     return NextResponse.json('Error generating pairing', { status: 400 });
   }
 }

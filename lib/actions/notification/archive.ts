@@ -21,7 +21,6 @@ export async function archiveNotification(id: string) {
     } = await supabase.auth.getSession();
 
     if (sessionError || !session || !session.user) {
-      console.error(sessionError);
       return { error: 'Error getting session', archived: false };
     }
 
@@ -60,7 +59,6 @@ export async function archiveNotification(id: string) {
 
     return { error: null, archived: true };
   } catch (error) {
-    console.error(error);
     return { error: 'Error accepting friend request', archived: false };
   } finally {
     revalidatePath('/profile');

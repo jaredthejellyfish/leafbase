@@ -30,7 +30,6 @@ export default function UpdateProfilePhoto({
       } = await supabase.auth.getSession();
 
       if (sessionError) {
-        console.error(sessionError);
         return;
       }
 
@@ -74,7 +73,6 @@ export default function UpdateProfilePhoto({
         });
 
       if (error) {
-        console.error(error);
         return;
       }
 
@@ -93,7 +91,6 @@ export default function UpdateProfilePhoto({
         });
 
       if (updateError) {
-        console.error(updateError);
         return;
       }
 
@@ -105,7 +102,6 @@ export default function UpdateProfilePhoto({
         .eq('id', session?.user.id);
 
       if (updateProfileError) {
-        console.error(updateProfileError);
         return;
       }
       if (newUser) {

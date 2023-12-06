@@ -40,6 +40,17 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     title: `${strain?.name} - Leafbase` || 'Strain',
     description:
       strain?.shortDescription || `Description page for ${strain?.name}`,
+    openGraph: {
+      images: [
+        {
+          url: `${
+            process.env.NODE_ENV === 'development'
+              ? 'http://localhost:3000'
+              : 'https://leafbase.xyz'
+          }/api/og/strain/${slug}`,
+        },
+      ],
+    },
   };
 }
 

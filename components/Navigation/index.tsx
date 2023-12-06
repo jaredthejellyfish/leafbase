@@ -1,3 +1,4 @@
+import { ErrorBoundary } from 'react-error-boundary';
 import { Bell } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
@@ -69,13 +70,15 @@ async function Navigation() {
         >
           <line x1="5" y1="0" x2="5" y2="200" strokeWidth="1.3" />
         </svg>
-        {user_metadata?.username && (
-          <NotifcationMenu
-            pendingNotifications={notifications}
-            archivedNotifications={arcivedNotifications}
-            id={id!}
-          />
-        )}
+        <ErrorBoundary fallback={<></>}>
+          {user_metadata?.username && (
+            <NotifcationMenu
+              pendingNotifications={notifications}
+              archivedNotifications={arcivedNotifications}
+              id={id!}
+            />
+          )}
+        </ErrorBoundary>
         <ThemeToggle />
         <UserAvatar avatarUrl={user_metadata?.image} />
         <HamburgerMenu />

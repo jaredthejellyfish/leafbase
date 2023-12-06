@@ -1,4 +1,5 @@
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { ImageResponse } from 'next/og';
 import { cookies } from 'next/headers';
@@ -8,14 +9,16 @@ import type { DatabaseStrain } from '@/lib/database/database_types';
 import { terpenes, effects } from '@/lib/data/colors';
 import type { Database } from '@/lib/database';
 
-export const alt = 'Leafbase strain image';
-export const size = {
+const size = {
   width: 1200,
   height: 630,
 };
-export const contentType = 'image/png';
 
-export default async function Image({ params }: { params: { slug: string } }) {
+export async function GET(request: NextRequest) {
+  const slug = request.nextUrl.pathname.split('/').pop();
+  if (!slug) {
+    return NextResponse.json({ error: 'No slug!' }, { status: 404 });
+  }
   const supabase = createRouteHandlerClient<Database>({
     cookies: () => cookies(),
   });
@@ -23,7 +26,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
   const { data: strain } = await supabase
     .from('strains')
     .select('*')
-    .eq('slug', params.slug)
+    .eq('slug', slug)
     .maybeSingle<DatabaseStrain>();
 
   if (!strain) {
@@ -70,7 +73,11 @@ export default async function Image({ params }: { params: { slug: string } }) {
             alt={strain.name}
             width={450}
             height={450}
-            style={{ border: '3px solid #3f3f46', borderRadius: '5%' }}
+            style={{
+              border: '3px solid #3f3f46',
+              borderRadius: '5%',
+              padding: '35px',
+            }}
           />
         </div>
         <div
@@ -79,6 +86,7 @@ export default async function Image({ params }: { params: { slug: string } }) {
             flexDirection: 'column',
             alignItems: 'flex-start',
             justifyContent: 'center',
+            margin: '0 0 0 20px',
           }}
         >
           {strain.phenotype && (

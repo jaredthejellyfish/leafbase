@@ -3,6 +3,7 @@
 import { formatDistanceToNow, parseJSON } from 'date-fns';
 import { Archive, Bell, Trash } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { BsGear } from 'react-icons/bs';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -37,6 +38,7 @@ function NotifcationMenu({
   );
   const [archived, setArchived] = useState(archivedNotifications || []);
   const [tab, setTab] = useState('inbox');
+  const router = useRouter();
 
   useEffect(() => {
     const channel = supabase
@@ -52,6 +54,7 @@ function NotifcationMenu({
           const notification = payload.new as Notification;
           if (notification.recipient !== id) return;
           setNotifications((notifications) => [...notifications, notification]);
+          router.refresh();
         }
       )
       .subscribe();
@@ -59,7 +62,7 @@ function NotifcationMenu({
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [id]);
+  }, [id, router]);
 
   async function handleArchive(id: string) {
     const result = await archiveNotification(id);
@@ -96,7 +99,7 @@ function NotifcationMenu({
             {notifications.length > 0 && (
               <div className="absolute -top-0.5 right-0 z-10 h-2 w-2 animate-pulse rounded-full bg-red-500" />
             )}
-            <Bell className="z-0 h-[1.15rem] w-[1.15rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 sm:h-[1.3rem] sm:w-[1.3rem]" />
+            <Bell className="z-0 h-[1.15rem] w-[1.15rem] text-black dark:text-white sm:h-[1.3rem] sm:w-[1.3rem]" />
           </div>
           <span className="sr-only">Notifications</span>
         </Button>

@@ -12,8 +12,8 @@ const LikedStrainsSkeleton = () => (
         </span>
       </div>
       <div className="flex flex-row items-center gap-x-3 px-2">
-        <RiPieChart2Fill className="text-gradient-to-br h-5 w-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
         <TbGraphFilled className="text-gradient-to-br h-6 w-6 animate-pulse from-gray-200 via-green-300 to-green-700" />
+        <RiPieChart2Fill className="text-gradient-to-br h-5 w-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
       </div>
     </div>
     <div className="mt-3 flex max-h-[296px] w-full flex-row flex-wrap items-start justify-between gap-1.5 overflow-hidden sm:gap-3">

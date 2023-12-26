@@ -1,11 +1,11 @@
+// Modals.tsx
 'use client';
 
 import { TbGraphFilled, TbGraphOff } from 'react-icons/tb';
-import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { ErrorBoundary } from 'react-error-boundary';
 import { RiPieChart2Fill } from 'react-icons/ri';
-import React, { useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import React from 'react';
 
 const StrainSimilarityModal = dynamic(() => import('./StrainSimilarityModal'), {
   ssr: false,
@@ -13,6 +13,7 @@ const StrainSimilarityModal = dynamic(() => import('./StrainSimilarityModal'), {
     <TbGraphFilled className="text-gradient-to-br h-6 w-6 animate-pulse from-gray-200 via-green-300 to-green-700" />
   ),
 });
+
 const SmokingProfileModal = dynamic(() => import('./SmokingProfileModal'), {
   ssr: false,
   loading: () => (
@@ -23,34 +24,6 @@ const SmokingProfileModal = dynamic(() => import('./SmokingProfileModal'), {
 type Props = { modal: boolean };
 
 function Modals({ modal }: Props) {
-  useEffect(() => {
-    if (modal) {
-      import('chartjs-plugin-zoom').then((zoomModule) => {
-        const zoomPlugin = zoomModule.default;
-        import('chart.js').then(
-          ({
-            Chart,
-            ArcElement,
-            Tooltip,
-            Legend,
-            LinearScale,
-            PointElement,
-          }) => {
-            Chart.register(
-              ArcElement,
-              Tooltip,
-              Legend,
-              LinearScale,
-              PointElement,
-              ChartDataLabels,
-              zoomPlugin
-            );
-          }
-        );
-      });
-    }
-  }, [modal]);
-
   if (!modal) return null;
 
   return (

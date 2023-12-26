@@ -6,11 +6,16 @@ import dynamic from 'next/dynamic';
 import React from 'react';
 
 import { ThemeProvider, QueryProvider } from '@/components/Providers';
-import NavigationSkeleton from '@/components/Navigation/skeleton';
+import { NavigationSkeleton } from '@/components/Navigation';
 import './globals.css';
 
 const CookieBanner = dynamic(() => import('@/components/CookieBanner'), {
   ssr: false,
+});
+
+const Navigation = dynamic(() => import('@/components/Navigation'), {
+  ssr: false,
+  loading: () => <NavigationSkeleton />,
 });
 
 const Analytics = dynamic(() => import('@/components/Analytics'), {
@@ -19,10 +24,6 @@ const Analytics = dynamic(() => import('@/components/Analytics'), {
 
 const Toaster = dynamic(() => import('@/components/ui/toaster'), {
   ssr: false,
-});
-
-const Navigation = dynamic(() => import('@/components/Navigation'), {
-  loading: () => <NavigationSkeleton />,
 });
 
 export const metadata: Metadata = {

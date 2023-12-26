@@ -1,9 +1,10 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import type { Session } from '@supabase/auth-helpers-nextjs';
+
 import { cookies } from 'next/headers';
 
 import type { PublicProfile } from '../database/database_types';
 import type { Database } from '@/lib//database';
+import type { Session } from '@supabase/supabase-js';
 
 export async function getServerUserProfileFromUsername(
   username: string
@@ -76,7 +77,7 @@ export async function getServerUserProfileFromUsername(
   return {
     status: 'success',
     error: null,
-    session: session,
+    session: session as Session,
     user,
     friendRequest: pendingFriendRequest?.[0] || null,
   };

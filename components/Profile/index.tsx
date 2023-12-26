@@ -38,7 +38,7 @@ const FriendRequestButton = dynamic(() => import('../FriendRequestButton'), {
 
 type Props = {
   user: UserMetadataExtended | PublicProfile;
-  session?: Session | null;
+  session: Session | null;
   hideOptions?: boolean;
   allowFriendRequest?: boolean;
   friendRequest?: {

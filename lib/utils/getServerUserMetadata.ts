@@ -3,6 +3,7 @@ import { cookies } from 'next/headers';
 
 import type { UserMetadataExtended } from '../database/database_types';
 import type { Database } from '@/lib/database';
+import type { Session } from '@supabase/supabase-js';
 
 export async function getServerUserMetadata(session?: boolean) {
   const cookieStore = cookies();
@@ -24,7 +25,7 @@ export async function getServerUserMetadata(session?: boolean) {
     const user = userData?.user;
 
     return {
-      session: userSession,
+      session: userSession as Session,
       user_metadata: (user?.user_metadata as UserMetadataExtended) || null,
       id: (user?.id as string) || (sessionData.session?.user.id as string),
     };

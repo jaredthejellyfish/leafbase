@@ -1,12 +1,8 @@
 'use client';
 
 import { TbGraphFilled, TbGraphOff } from 'react-icons/tb';
-import type { Context } from 'chartjs-plugin-datalabels';
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
-import { useTheme } from 'next-themes';
-import type { Align } from 'chart.js';
-import dynamic from 'next/dynamic';
 
 import {
   Tooltip,
@@ -15,12 +11,8 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { toast } from '../ui/use-toast';
-
-const Modal = dynamic(() => import('../Modal'), { ssr: false });
-const DynamicScatter = dynamic(
-  () => import('react-chartjs-2').then((mod) => mod.Scatter),
-  { ssr: false }
-);
+import ScatterPlot from './scatter';
+import Modal from '../Modal';
 
 async function fetchLikedStrainsPCA() {
   const response = await fetch(`/api/generate/pca`);
@@ -41,21 +33,17 @@ async function fetchLikedStrainsPCA() {
     return null;
   }
 
-  return {
-    datasets: pcaData.map((point) => ({
-      label: point.label || 'Unknown',
-      data: [{ x: point.x, y: point.y }],
-      backgroundColor: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(
-        Math.random() * 256
-      )}, ${Math.floor(Math.random() * 256)}, 1)`,
-      pointRadius: 5,
-    })),
-  };
+  return pcaData.map((point) => ({
+    x: point.x,
+    y: point.y,
+    label: point.label,
+    size: 7,
+  }));
 }
 
 function StrainSimilarityModal() {
   const [modalOpen, setModalOpen] = useState(false);
-  const { theme } = useTheme();
+
   const {
     data: likedCoords,
     isFetching,
@@ -64,50 +52,14 @@ function StrainSimilarityModal() {
   } = useQuery({
     queryKey: ['liked-plot'],
     queryFn: fetchLikedStrainsPCA,
-    enabled: false, // Do not run automatically
+    enabled: modalOpen,
   });
 
-  const options = {
-    maintainAspectRatio: false,
-    plugins: {
-      zoom: {
-        pan: {
-          enabled: true,
-          mode: 'xy',
-        },
-        zoom: {
-          wheel: {
-            enabled: true,
-          },
-          pinch: {
-            enabled: true,
-          },
-          mode: 'xy',
-        },
-      },
-      datalabels: {
-        formatter: (
-          value: { x: number; y: number; label: string },
-          context: Context
-        ) => {
-          return context.dataset.label;
-        },
-        display: true,
-        color: theme === 'dark' ? 'white' : 'black',
-        align: 'right' as Align,
-        offset: 8,
-      },
-      legend: {
-        display: false,
-      },
-    },
-  };
-
   const handleButtonClick = async () => {
+    setModalOpen(!modalOpen);
     if (!isFetching && !likedCoords) {
       await refetch();
     }
-    setModalOpen(true);
   };
 
   return (
@@ -119,11 +71,7 @@ function StrainSimilarityModal() {
               className="flex items-center justify-center"
               onClick={isFetching || isError ? () => {} : handleButtonClick}
             >
-              {!isError && !isFetching && <TbGraphFilled className="h-6 w-6" />}
-              {isFetching && (
-                <TbGraphFilled className="text-gradient-to-br h-6 w-6 animate-pulse from-gray-200 via-green-300 to-green-700" />
-              )}
-              {isError && <TbGraphOff className="h-6 w-6 text-red-500" />}
+              <GraphIcon isFetching={isFetching} isError={isError} />
             </div>
           </TooltipTrigger>
           <TooltipContent>
@@ -131,21 +79,39 @@ function StrainSimilarityModal() {
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
-      {modalOpen && likedCoords && (
-        <Modal
-          title="Liked Strains Similarity"
-          open={modalOpen}
-          setOpen={setModalOpen}
-          containerClass="sm:max-w-[64%]"
-        >
-          <div className={'h-[60vh] w-[82vw] sm:w-[60vw]'}>
-            {/* @ts-expect-error - config for plugin has incorrect type def */}
-            <DynamicScatter data={likedCoords} options={options} />
-          </div>
-        </Modal>
-      )}
+
+      <Modal
+        title={`Liked Strains Similarityㅤ(${
+          likedCoords ? likedCoords.length : '--'
+        })`}
+        open={modalOpen}
+        setOpen={setModalOpen}
+        containerClass="sm:max-w-[64%]"
+      >
+        <div className={'h-[60vh] w-[82vw] sm:w-[60vw]'}>
+          <ScatterPlot data={likedCoords} />
+        </div>
+      </Modal>
     </>
   );
+}
+
+function GraphIcon({
+  isFetching,
+  isError,
+}: {
+  isFetching: boolean;
+  isError: boolean;
+}) {
+  if (isFetching) {
+    return (
+      <TbGraphFilled className="text-gradient-to-br h-6 w-6 animate-pulse from-gray-200 via-green-300 to-green-700" />
+    );
+  }
+  if (isError) {
+    return <TbGraphOff className="h-6 w-6 text-red-500" />;
+  }
+  return <TbGraphFilled className="h-6 w-6" />;
 }
 
 export default StrainSimilarityModal;

@@ -1,13 +1,17 @@
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { ErrorBoundary } from 'react-error-boundary';
+import { cookies } from 'next/headers';
 import { Bell } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-import { getServerUserMetadata } from '@/lib/utils/getServerUserMetadata';
-import type { Notification } from '@/lib/database/database_types';
-import { supabase } from '@/lib/database/supabase_rsc';
+import type {
+  Notification,
+  UserMetadataExtended,
+} from '@/lib/database/database_types';
+import type { Database } from '@/lib/database';
 import SiteLogo from '@/public/site-logo.png';
 import HamburgerMenu from './hamburger-menu';
 import { ThemeToggle } from './theme-toggle';
@@ -23,7 +27,18 @@ const NotifcationMenu = dynamic(() => import('./notification-menu'), {
 });
 
 async function Navigation() {
-  const { user_metadata, id } = await getServerUserMetadata();
+  const cookieStore = cookies();
+  const supabase = createServerComponentClient<Database>({
+    cookies: () => cookieStore,
+  });
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const user_metadata = user?.user_metadata as UserMetadataExtended;
+
+  const id = user?.id;
 
   const { data: notifications } = await supabase
     .from('notifications')

@@ -7,6 +7,7 @@ import { useTheme } from 'next-themes';
 import { Circle } from '@visx/shape';
 import { Group } from '@visx/group';
 import { Zoom } from '@visx/zoom';
+import { Text } from '@visx/text';
 import React from 'react';
 
 import {
@@ -15,7 +16,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '../ui/tooltip';
-import { Text } from '@visx/text';
 
 type Data = {
   x: number;
@@ -174,7 +174,12 @@ export const ScatterPlot = ({ data }: { data?: Data | null }) => {
                           fill={point.color || stringToColor(point.label)}
                         />
                         <Text
-                          x={xScale(point.x)}
+                          x={
+                            xScale(point.x) +
+                            (point.size < 5
+                              ? 25 / zoom.transformMatrix.scaleX
+                              : 22 / zoom.transformMatrix.scaleX)
+                          }
                           y={yScale(point.y)}
                           fill={axisColor}
                           fontSize={
@@ -182,7 +187,8 @@ export const ScatterPlot = ({ data }: { data?: Data | null }) => {
                               ? 0
                               : 12 / zoom.transformMatrix.scaleX
                           }
-                          textAnchor="end"
+                          fontWeight={400}
+                          textAnchor="start"
                           verticalAnchor="middle"
                         >
                           {point.label}

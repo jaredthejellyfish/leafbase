@@ -121,7 +121,7 @@ function Modal({
           ref={ref}
           className={cn(
             'dark:bg-zinc-800 z-50 inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle w-full sm:max-w-lg sm:w-full border-transparent relative',
-            containerClass || ''
+            containerClass || '',
           )}
         >
           <div className="flex w-full flex-row items-center justify-between bg-zinc-200 px-4 py-2 dark:bg-zinc-950/40">

@@ -12,7 +12,7 @@ type Props = {
 
 export default function AcceptRequestButton({ from, to }: Props) {
   async function handleClick(
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) {
     e.preventDefault();
     e.stopPropagation();

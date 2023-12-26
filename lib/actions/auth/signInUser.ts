@@ -36,6 +36,6 @@ export async function signInUser(formData: FormData) {
   redirect(
     `/profile?notify=Welcome ${
       session?.user.user_metadata.username || 'to Leafbase'
-    }!&title=Logged in`
+    }!&title=Logged in`,
   );
 }

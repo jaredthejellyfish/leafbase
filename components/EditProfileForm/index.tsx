@@ -24,7 +24,7 @@ const UpdateProfilePhoto = dynamic(
   {
     ssr: false,
     loading: () => <UpdateProfilePhotoSkeleton />,
-  }
+  },
 );
 
 const LanguageSelect = dynamic(() => import('@/components/LanguageSelect'));

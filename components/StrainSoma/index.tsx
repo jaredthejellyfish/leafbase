@@ -110,7 +110,7 @@ const StrainSoma = (props: Props) => {
   const { strain } = props;
   const topThreeEffects = getTopThreeEffects(strain);
   const topThreeEffectsNegative = getTopThreeEffectsNegative(strain).map(
-    (effect) => effects[effect]
+    (effect) => effects[effect],
   );
   const positives = getPositivesFromTopThree(strain);
 
@@ -165,7 +165,7 @@ const StrainSoma = (props: Props) => {
                 strain?.effects?.relaxed?.score &&
                 `${Math.min(
                   Math.ceil(strain.effects.relaxed.score * 100),
-                  100
+                  100,
                 )}%`,
             }}
           ></div>
@@ -183,10 +183,10 @@ const StrainSoma = (props: Props) => {
                 Math.ceil(
                   Math.max(
                     0,
-                    Math.min(100, ((strain.thcPercent || 0 - 10) / 20) * 100)
-                  )
+                    Math.min(100, ((strain.thcPercent || 0 - 10) / 20) * 100),
+                  ),
                 ),
-                100
+                100,
               )}%`,
             }}
           ></div>

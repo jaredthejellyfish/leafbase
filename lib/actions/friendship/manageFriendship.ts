@@ -9,7 +9,7 @@ import type { Database } from '@/lib/database';
 export async function manageFriendship(
   to: string,
   from: string,
-  username: string
+  username: string,
 ) {
   try {
     if (!to || !from || !username) {

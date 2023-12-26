@@ -54,7 +54,7 @@ export async function POST(request: Request) {
   if (error) {
     return NextResponse.json(
       { error: 'Error fetching search results' },
-      { status: 500 }
+      { status: 500 },
     );
   }
 

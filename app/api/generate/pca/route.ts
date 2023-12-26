@@ -44,7 +44,7 @@ export async function GET() {
     }
 
     const likedStrainsVectorsArray = likedStrainsVectors.map(
-      (strain) => JSON.parse(strain.vector) as number[]
+      (strain) => JSON.parse(strain.vector) as number[],
     );
 
     const pca = new PCA(likedStrainsVectorsArray);

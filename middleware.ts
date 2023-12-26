@@ -17,7 +17,7 @@ export async function middleware(req: NextRequest) {
   if (code && currentUrl !== AUTH_CALLBACK_PATH) {
     const callbackUrl = new URL(
       `${AUTH_CALLBACK_PATH}?code=${code}&redirect=${currentUrl}`,
-      req.nextUrl
+      req.nextUrl,
     );
     return NextResponse.redirect(callbackUrl);
   }

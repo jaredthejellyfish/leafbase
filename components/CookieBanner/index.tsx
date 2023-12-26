@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 function CookieBanner() {
   const [cookieConsent, setCookieConsent] = useState<boolean>(
-    localStorage.getItem('cookie_consent') === 'true'
+    localStorage.getItem('cookie_consent') === 'true',
   );
 
   useEffect(() => {

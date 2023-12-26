@@ -34,7 +34,7 @@ function NotifcationMenu({
   id,
 }: Props) {
   const [notifications, setNotifications] = useState(
-    pendingNotifications || []
+    pendingNotifications || [],
   );
   const [archived, setArchived] = useState(archivedNotifications || []);
   const [tab, setTab] = useState('inbox');
@@ -55,7 +55,7 @@ function NotifcationMenu({
           if (notification.recipient !== id) return;
           setNotifications((notifications) => [...notifications, notification]);
           router.refresh();
-        }
+        },
       )
       .subscribe();
 
@@ -115,7 +115,7 @@ function NotifcationMenu({
               onClick={() => setTab('inbox')}
               className={cn(
                 'border py-2 border-transparent px-2',
-                tab === 'inbox' && 'border-b-white'
+                tab === 'inbox' && 'border-b-white',
               )}
             >
               Inbox
@@ -129,7 +129,7 @@ function NotifcationMenu({
               onClick={() => setTab('archived')}
               className={cn(
                 'border py-2 border-transparent px-2 ml-2',
-                tab === 'archived' && 'border-b-white'
+                tab === 'archived' && 'border-b-white',
               )}
             >
               Archived
@@ -157,7 +157,7 @@ function NotifcationMenu({
                 <div
                   className={cn(
                     'border-b-zinc-600 flex flex-row items-center justify-start px-4 py-1.5',
-                    index !== notifications.length - 1 && 'border-b'
+                    index !== notifications.length - 1 && 'border-b',
                   )}
                   key={notification.id}
                 >
@@ -179,7 +179,7 @@ function NotifcationMenu({
                           {
                             includeSeconds: true,
                             addSuffix: true,
-                          }
+                          },
                         )}
                       </span>
                     </div>
@@ -209,7 +209,7 @@ function NotifcationMenu({
                 <div
                   className={cn(
                     'border-b-zinc-600 flex flex-row items-center justify-start px-4 py-1.5',
-                    index !== archived.length - 1 && 'border-b'
+                    index !== archived.length - 1 && 'border-b',
                   )}
                   key={notification.id}
                 >
@@ -231,7 +231,7 @@ function NotifcationMenu({
                           {
                             includeSeconds: true,
                             addSuffix: true,
-                          }
+                          },
                         )}
                       </span>
                     </div>

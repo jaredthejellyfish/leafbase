@@ -15,7 +15,7 @@ function SocialSignin() {
 
   async function signInWithProvider(
     e: React.MouseEvent<HTMLButtonElement>,
-    provider: Provider
+    provider: Provider,
   ) {
     e.preventDefault();
     e.stopPropagation();

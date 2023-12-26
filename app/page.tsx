@@ -10,7 +10,7 @@ import type { Database } from '@/lib/database';
 import type { Strain } from '@/lib/types';
 
 const NextSectionButton = dynamic(
-  () => import('@/components/NextSectionButton')
+  () => import('@/components/NextSectionButton'),
 );
 
 const ClientParticles = dynamic(() => import('@/components/ClientParticles'), {

@@ -58,7 +58,7 @@ export async function getServerLikedStrains(userId?: string): Promise<{
       slug,
       id
     )
-  `
+  `,
     )
     .eq('user_id', user_id)
     .returns<StrainLike[]>();

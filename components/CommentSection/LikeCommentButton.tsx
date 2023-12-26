@@ -14,7 +14,7 @@ function LikeCommentButton({ comment_id, isLiked }: Props) {
     isLiked || false,
     (state) => {
       return !state;
-    }
+    },
   );
 
   const strainSlug = pathname.split('/').pop();

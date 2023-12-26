@@ -32,7 +32,7 @@ export default function LanguageSelect({ initialLanguage }: Props) {
             role="combobox"
             className={cn(
               'w-[200px] justify-between',
-              !value && 'text-muted-foreground'
+              !value && 'text-muted-foreground',
             )}
           >
             {value
@@ -57,7 +57,7 @@ export default function LanguageSelect({ initialLanguage }: Props) {
                   <Check
                     className={cn(
                       'mr-2 h-4 w-4',
-                      language.value === value ? 'opacity-100' : 'opacity-0'
+                      language.value === value ? 'opacity-100' : 'opacity-0',
                     )}
                   />
                   {language.label}

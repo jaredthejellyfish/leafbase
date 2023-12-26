@@ -9,7 +9,7 @@ import type { Database } from '@/lib/database';
 export async function comment(
   strainId: string,
   strainSlug: string,
-  comment: string
+  comment: string,
 ) {
   try {
     if (!comment || !strainId || !strainSlug) {

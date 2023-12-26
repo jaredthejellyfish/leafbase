@@ -10,8 +10,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import ScatterPlot from '../ScatterPlot';
 import { toast } from '../ui/use-toast';
-import ScatterPlot from './scatter';
 import Modal from '../Modal';
 
 async function fetchLikedStrainsPCA() {

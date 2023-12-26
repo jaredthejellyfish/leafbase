@@ -57,10 +57,10 @@ export async function POST(request: Request) {
     const strain2Name = strain2Data.name;
 
     const formattedStrain1 = `\`\`\`${strain1Name}\n${JSON.stringify(
-      strain1Data
+      strain1Data,
     )}\`\`\``;
     const formattedStrain2 = `\`\`\`${strain2Name}\n${JSON.stringify(
-      strain2Data
+      strain2Data,
     )}\`\`\``;
 
     const prompt = `${formattedStrain1}\n${formattedStrain2}\n\nDescribe why ${strain1Name} and ${strain2Name} are two strains that go well together.`;

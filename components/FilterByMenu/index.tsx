@@ -67,7 +67,7 @@ const FilterByMenu = (props: Props) => {
         type: 'spring',
         bounce: 0,
         duration: 0.5,
-      }
+      },
     );
 
     animate(
@@ -78,7 +78,7 @@ const FilterByMenu = (props: Props) => {
       {
         duration: 0.2,
         delay: isOpen ? staggerMenuItems : 0,
-      }
+      },
     );
   }, [isOpen]);
 

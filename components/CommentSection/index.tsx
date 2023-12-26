@@ -79,7 +79,7 @@ function CommentSection({
               key={comment.id}
               isLiked={
                 comment.comment_likes.filter(
-                  (like) => like.user_id === session?.user.id
+                  (like) => like.user_id === session?.user.id,
                 ).length > 0
               }
             />

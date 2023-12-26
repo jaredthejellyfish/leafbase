@@ -26,7 +26,7 @@ function TextAreaAuto({
     <TextareaAutosize
       className={cn(
         'w-full rounded border border-zinc-500 bg-transparent p-1',
-        className
+        className,
       )}
       name={name || 'aboutMe'}
       id={id || 'about-me-textarea'}

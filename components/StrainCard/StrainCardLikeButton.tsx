@@ -41,7 +41,7 @@ const StrainCardLikeButton = (props: Props) => {
 
   const [optimisticLike, setOptimisticLike] = useOptimistic(
     props.liked || false, // Default to 0 likes if null
-    (state) => !state
+    (state) => !state,
   );
 
   useEffect(() => {
@@ -64,7 +64,7 @@ const StrainCardLikeButton = (props: Props) => {
         `z-50 absolute top-1.5 right-2 border bg-white dark:bg-zinc-800 text-zinc-400/75 transition-colors rounded-full p-1.5 dark:text-zinc-400 ${
           optimisticLike ? 'border-green-600/40' : 'dark:border-zinc-700'
         }`,
-        props.className
+        props.className,
       )}
       variants={likeButtonVariants}
       whileHover="hover"

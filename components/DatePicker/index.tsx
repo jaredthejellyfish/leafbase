@@ -20,7 +20,7 @@ type Props = {
 
 export default function DatePicker({ initialDate }: Props) {
   const [date, setDate] = useState(
-    initialDate ? parse(initialDate, 'yyyy-MM-dd', new Date()) : undefined
+    initialDate ? parse(initialDate, 'yyyy-MM-dd', new Date()) : undefined,
   );
 
   return (
@@ -31,7 +31,7 @@ export default function DatePicker({ initialDate }: Props) {
             variant={'outline'}
             className={cn(
               'w-[280px] justify-start text-left font-normal',
-              !date && 'text-muted-foreground'
+              !date && 'text-muted-foreground',
             )}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />

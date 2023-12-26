@@ -44,7 +44,7 @@ describe('edit profile', () => {
     cy.get('@aboutMeInput')
       .clear()
       .type(
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam nisl nunc eu nisl.'
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam nisl nunc eu nisl.',
       );
 
     cy.get('#submit-edit-profile').should('have.length', 1).click();
@@ -58,7 +58,7 @@ describe('edit profile', () => {
     cy.contains('Test Location, Edited').should('be.visible');
     cy.contains('+34 123 456 789').should('be.visible');
     cy.contains(
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam nisl nunc eu nisl.'
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vitae aliquam nisl nunc eu nisl.',
     ).should('be.visible');
     cy.get('img[alt="profile"]').should('have.length', 1);
   });

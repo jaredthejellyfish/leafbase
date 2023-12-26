@@ -39,7 +39,7 @@ export default async function ProfileFriends({ session }: Props) {
       username,
       name,
       image
-    )`
+    )`,
     )
     .or(`from.eq.${session.user.id},to.eq.${session.user.id}`)
     .returns<FriendExtended[]>();

@@ -127,7 +127,7 @@ function FriendRequestButton({ from, to, username, pending, exists }: Props) {
                 : null,
               isFriends
                 ? 'text-green-600 border-green-600 dark:bg-zinc-800'
-                : null
+                : null,
             )}
             onClick={handleClick}
           >
@@ -149,7 +149,7 @@ function FriendRequestButton({ from, to, username, pending, exists }: Props) {
         <div
           className={cn(
             'border border-zinc-600 p-2 rounded-full text-zinc-600 hover:text-green-600 aspect-square hover:scale-101',
-            'text-green-600 border-green-600 dark:bg-zinc-800'
+            'text-green-600 border-green-600 dark:bg-zinc-800',
           )}
         >
           <FaUserFriends className="h-5 w-5" />

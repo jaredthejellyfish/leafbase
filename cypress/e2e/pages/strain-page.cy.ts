@@ -16,7 +16,7 @@ describe('strains page', () => {
     cy.get('h1').should('have.text', 'GG4');
     cy.get('h2').should(
       'have.text',
-      'aka Gorilla Glue, Original Glue, Gorilla Glue #4, Glue, Sticky Glue'
+      'aka Gorilla Glue, Original Glue, Gorilla Glue #4, Glue, Sticky Glue',
     );
   });
 
@@ -31,7 +31,7 @@ describe('strains page', () => {
   it("should have a strain's description", () => {
     cy.get('#strain-description').should(
       'contain.text',
-      'Original Glue, also known as'
+      'Original Glue, also known as',
     );
   });
 

@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
       .select('thcPercent, effects, terps')
       .in(
         'id',
-        likedStrainIds.map((strain) => strain.id)
+        likedStrainIds.map((strain) => strain.id),
       )
       .returns<StrainData[]>();
 

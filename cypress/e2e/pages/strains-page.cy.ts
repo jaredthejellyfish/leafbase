@@ -12,7 +12,7 @@ describe('strains page', () => {
     cy.get('h1').should('have.text', 'All strains');
     cy.get('h3').should(
       'have.text',
-      'Browse the most comprehensive weed strain library on the web. Browse weed strains by cannabis type (indica, sativa, or hybrid), effects, or number of comments.'
+      'Browse the most comprehensive weed strain library on the web. Browse weed strains by cannabis type (indica, sativa, or hybrid), effects, or number of comments.',
     );
   });
 

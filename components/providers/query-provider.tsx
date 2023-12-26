@@ -9,7 +9,7 @@ type Props = {
 
 const QueryProvider = (props: Props) => {
   const [client] = useState(
-    new QueryClient({ defaultOptions: { queries: { staleTime: 300000 } } })
+    new QueryClient({ defaultOptions: { queries: { staleTime: 300000 } } }),
   );
   return (
     <QueryClientProvider client={client}>{props.children}</QueryClientProvider>

@@ -33,7 +33,7 @@ const UserProfileSchema = z.object({
 
 export async function updateUser(
   state: { error: null | string },
-  formData: FormData
+  formData: FormData,
 ) {
   const cookieStore = cookies();
   const supabase = createRouteHandlerClient<Database>({

@@ -4,9 +4,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { RiPieChart2Fill } from 'react-icons/ri';
-import type { ChartData } from 'chart.js';
 import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
 
 import {
   Tooltip,
@@ -14,51 +12,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-
-const Modal = dynamic(() => import('@/components/Modal'), { ssr: false });
-
-const Pie = dynamic(() => import('react-chartjs-2').then((mod) => mod.Pie), {
-  ssr: false,
-  loading: () => <GraphSkeleton />,
-});
-
-const generatePastelColor = (usedColors: string[]) => {
-  const min = 150; // Minimum value for red, green, and blue to ensure pastel colors
-  const max = 255; // Maximum value for red, green, and blue to ensure pastel colors
-
-  let randomColor: string;
-  let colorIsClose;
-
-  do {
-    randomColor = `rgba(${Math.floor(Math.random() * (max - min + 1)) + min}, ${
-      Math.floor(Math.random() * (max - min + 1)) + min
-    }, ${Math.floor(Math.random() * (max - min + 1)) + min}, 0.5)`;
-
-    // Check if the generated color is too close to any existing color
-    colorIsClose = usedColors.some((existingColor) => {
-      // You can adjust this threshold as needed
-      const colorDistanceThreshold = 100;
-
-      // Calculate the Euclidean distance between the two colors
-      const colorDistance = Math.sqrt(
-        existingColor
-          .split(',')
-          .slice(0, 3)
-          .map((c, i) =>
-            Math.pow(
-              parseInt(c, 10) - parseInt(randomColor.split(',')[i], 10),
-              2
-            )
-          )
-          .reduce((acc, val) => acc + val, 0)
-      );
-
-      return colorDistance < colorDistanceThreshold;
-    });
-  } while (colorIsClose);
-
-  return randomColor;
-};
+import Modal from '../Modal';
 
 function GraphSkeleton() {
   return (
@@ -81,8 +35,8 @@ function GraphSkeleton() {
 }
 
 async function fetchSmokingProfile(
-  profileType: 'combo' | 'terpenes' | 'effects'
-): Promise<ChartData<'pie', unknown, unknown>> {
+  profileType: 'combo' | 'terpenes' | 'effects',
+) {
   const url = `/api/generate/smoking-profile?${profileType}=true`;
   const data = await fetch(url);
 
@@ -95,48 +49,13 @@ async function fetchSmokingProfile(
   if (!json) {
     throw new Error('Invalid data received');
   }
-  const colors = Object.keys(json.data).map((_, index, array) =>
-    generatePastelColor(array.slice(0, index))
-  );
 
   const roundedValues = Object.values(json.data).map((value) =>
-    Math.round(value)
+    Math.round(value),
   );
 
-  const graphData: ChartData<'pie', unknown, unknown> = {
-    labels: Object.keys(json.data),
-    datasets: [
-      {
-        label: 'Smoking Profile',
-        data: roundedValues,
-        backgroundColor: colors,
-        borderWidth: 1,
-        borderColor: colors,
-      },
-    ],
-  };
-
-  return graphData;
+  return roundedValues;
 }
-
-const options = {
-  plugins: {
-    datalabels: {
-      display: false,
-    },
-    zoom: {
-      zoom: {
-        drag: {
-          enabled: false,
-        },
-        pinch: {
-          enabled: false,
-        },
-        mode: 'xy',
-      },
-    },
-  },
-};
 
 export default function SmokingProfileModal() {
   const [open, setOpen] = useState(false);
@@ -176,25 +95,29 @@ export default function SmokingProfileModal() {
 
   return (
     <>
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger className="flex items-center justify-center">
-            <div onClick={() => setOpen(true)}>
-              {!isFetching && !isError && (
-                <RiPieChart2Fill className="h-5 w-5" />
-              )}
-              {isFetching && (
-                <RiPieChart2Fill className="text-gradient-to-br h-5 w-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
-              )}
-              {isError && <RiPieChart2Fill className="h-5 w-5 text-red-500" />}
-            </div>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p className="font-semibold">Smoking Profile</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
-      <ErrorBoundary fallback={<p>Something went wrong</p>}>
+      <ErrorBoundary
+        fallback={<RiPieChart2Fill className="h-5 w-5 text-red-500" />}
+      >
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger className="flex items-center justify-center">
+              <div onClick={() => setOpen(true)}>
+                {!isFetching && !isError && (
+                  <RiPieChart2Fill className="h-5 w-5" />
+                )}
+                {isFetching && (
+                  <RiPieChart2Fill className="text-gradient-to-br h-5 w-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
+                )}
+                {isError && (
+                  <RiPieChart2Fill className="h-5 w-5 text-red-500" />
+                )}
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p className="font-semibold">Smoking Profile</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
         <Modal open={open} setOpen={setOpen} title={'Smoking Profile'}>
           <div className="mb-1 flex flex-row items-center justify-between px-3">
             <button onClick={handleBack}>
@@ -207,12 +130,11 @@ export default function SmokingProfileModal() {
               <ArrowRight className="h-6 w-6" />
             </button>
           </div>
-
-          {smokingProfile && smokingProfile.datasets.length > 0 ? (
-            // @ts-expect-error - zoom plugin options broken
-            <Pie data={smokingProfile} className="mb-2" options={options} />
-          ) : (
-            <GraphSkeleton />
+          {isFetching && <GraphSkeleton />}
+          {smokingProfile && (
+            <pre>
+              <code>{JSON.stringify(smokingProfile, null, 2)}</code>
+            </pre>
           )}
         </Modal>
       </ErrorBoundary>

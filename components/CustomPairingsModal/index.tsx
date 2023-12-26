@@ -63,7 +63,7 @@ function CustomPairingsModal({ open, setOpen, id, image }: Props) {
     queryKey: ['custom-pairing-search', query],
     queryFn: () => findPairings(),
     enabled: Boolean(
-      !searchId && query && query.length >= 3 && query.length < 20
+      !searchId && query && query.length >= 3 && query.length < 20,
     ),
   });
 

@@ -27,7 +27,7 @@ const StrainCardLoader = dynamic(
         ))}
       </>
     ),
-  }
+  },
 );
 
 export default async function Strains(request: {

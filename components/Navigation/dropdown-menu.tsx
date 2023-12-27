@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import type { UrlObject } from 'url';
 import { useMediaQuery } from 'usehooks-ts';
 
 import { Separator } from '../ui/separator';
@@ -18,6 +19,21 @@ type Props = {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
+const paths = [
+  {
+    name: 'Strains',
+    path: '/strains',
+  },
+  {
+    name: 'Dispensaries',
+    path: '/dispensaries',
+  },
+  {
+    name: 'About Us',
+    path: '/about',
+  },
+];
 
 const variants = {
   container: {
@@ -54,56 +70,30 @@ const DropdownMenu = (props: Props) => {
       initial="closed"
     >
       {!matches && <DropdownSearchbar />}
-      <motion.div
-        variants={variants.children}
-        animate={isOpen ? 'open' : 'closed'}
-        initial="closed"
-        className="hover:background-slate-200 flex h-10 w-full cursor-pointer items-center justify-start py-5 pl-3.5 text-base font-medium transition-colors dark:hover:bg-zinc-800 sm:text-lg md:pl-10"
-      >
-        <Link
-          onClick={() => setOpen(!isOpen)}
-          href="/strains?filter=re"
-          className={`w-full ${
-            pathName === '/strains'
-              ? 'pointer-events-none cursor-not-allowed text-green-500'
-              : ''
-          }`}
-        >
-          Strains
-        </Link>
-      </motion.div>
-      <Separator className="rounded-xl bg-zinc-700" />
-      <motion.div
-        variants={variants.children}
-        animate={isOpen ? 'open' : 'closed'}
-        initial="closed"
-        className="hover:background-slate-200 flex h-10 w-full cursor-pointer items-center justify-start py-5 pl-3.5 text-base font-medium transition-colors dark:hover:bg-zinc-800 sm:text-lg md:pl-10"
-      >
-        <Link
-          onClick={() => setOpen(!isOpen)}
-          href="#"
-          className={`w-full ${
-            pathName === '/dispensaries' ? 'text-green-500' : ''
-          }`}
-        >
-          Dispensaries
-        </Link>
-      </motion.div>
-      <Separator className="rounded-xl bg-zinc-700" />
-      <motion.div
-        variants={variants.children}
-        animate={isOpen ? 'open' : 'closed'}
-        initial="closed"
-        className="hover:background-slate-200 flex h-10 w-full cursor-pointer items-center justify-start py-5 pl-3.5 text-base font-medium transition-colors dark:hover:bg-zinc-800 sm:text-lg md:pl-10"
-      >
-        <Link
-          onClick={() => setOpen(!isOpen)}
-          className={`w-full ${pathName === '/about' ? 'text-green-500' : ''}`}
-          href="#"
-        >
-          About Us
-        </Link>
-      </motion.div>
+      {paths.map((path, i) => (
+        <>
+          <motion.div
+            variants={variants.children}
+            animate={isOpen ? 'open' : 'closed'}
+            initial="closed"
+            key={i}
+            className="hover:background-slate-200 flex h-10 w-full cursor-pointer items-center justify-start py-5 pl-3.5 text-base font-medium transition-colors dark:hover:bg-zinc-800 sm:text-lg md:pl-10"
+          >
+            <Link
+              onClick={() => setOpen(!isOpen)}
+              href={path.path as unknown as UrlObject}
+              className={`w-full ${
+                pathName === path.path ? 'text-green-500' : ''
+              }`}
+            >
+              {path.name}
+            </Link>
+          </motion.div>
+          {i !== paths.length - 1 && (
+            <Separator className="rounded-xl bg-zinc-700" />
+          )}
+        </>
+      ))}
     </motion.div>
   );
 };

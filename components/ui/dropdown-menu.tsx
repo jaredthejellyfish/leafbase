@@ -1,32 +1,12 @@
-/* eslint-disable react/prop-types */
 'use client';
 
+/* eslint-disable react/prop-types */
 import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
 import { Check, ChevronRight, Circle } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 
 import * as React from 'react';
-
-/* eslint-disable react/prop-types */
-
-/* eslint-disable react/prop-types */
-
-/* eslint-disable react/prop-types */
-
-/* eslint-disable react/prop-types */
-
-/* eslint-disable react/prop-types */
-
-/* eslint-disable react/prop-types */
-
-/* eslint-disable react/prop-types */
-
-/* eslint-disable react/prop-types */
-
-/* eslint-disable react/prop-types */
-
-/* eslint-disable react/prop-types */
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
 

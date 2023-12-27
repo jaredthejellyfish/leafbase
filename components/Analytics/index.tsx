@@ -1,29 +1,8 @@
-// components/GoogleAnalytics.tsx
 'use client';
 
 import Script from 'next/script';
 
 import React from 'react';
-
-// components/GoogleAnalytics.tsx
-
-// components/GoogleAnalytics.tsx
-
-// components/GoogleAnalytics.tsx
-
-// components/GoogleAnalytics.tsx
-
-// components/GoogleAnalytics.tsx
-
-// components/GoogleAnalytics.tsx
-
-// components/GoogleAnalytics.tsx
-
-// components/GoogleAnalytics.tsx
-
-// components/GoogleAnalytics.tsx
-
-// components/GoogleAnalytics.tsx
 
 export default function Analytics({
   GA_MEASUREMENT_ID,

@@ -124,7 +124,7 @@ export default function SmokingProfileModal() {
             </button>
           </div>
           {isFetching && <GraphSkeleton />}
-          {displayData && (
+          {!isFetching && displayData && (
             <div className="mt-3 h-[40vh]">
               <ResponsivePieChart data={displayData} />
             </div>

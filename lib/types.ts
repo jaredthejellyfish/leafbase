@@ -141,3 +141,32 @@ export interface NormalizedData {
   effectPercentages: { [effectName: string]: number };
   terpenePercentages: { [terpeneName: string]: number };
 }
+
+export type SmokingProfile = {
+  thc: number;
+  effects: {
+    happy: number;
+    giggly: number;
+    hungry: number;
+    sleepy: number;
+    tingly: number;
+    aroused: number;
+    focused: number;
+    relaxed: number;
+    creative: number;
+    euphoric: number;
+    uplifted: number;
+    energetic: number;
+    talkative: number;
+  };
+  terps: {
+    pinene: number;
+    myrcene: number;
+    ocimene: number;
+    humulene: number;
+    limonene: number;
+    linalool: number;
+    terpinolene: number;
+    caryophyllene: number;
+  };
+};

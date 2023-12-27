@@ -1,19 +1,44 @@
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
-import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 
-import type { AggregatedData, StrainData } from '@/lib/types';
+import type { StrainData } from '@/lib/types';
 import type { Database } from '@/lib/database';
 
-export async function GET(request: NextRequest) {
-  try {
-    const url = new URL(request.url);
-    const searchParams = new URLSearchParams(url.search);
-    const returnPartial = searchParams.get('combo');
-    const returnTerpenes = searchParams.get('terpenes');
-    const returnEffects = searchParams.get('effects');
+interface Score {
+  [key: string]: number;
+}
 
+type Data = {
+  thc: number,
+  effects: Record<string, number>,
+  terps: Record<string, number>
+};
+
+function mapValues(data: Data): Data {
+  const mapToRange = (value: number, min: number, max: number) => (value - min) / (max - min);
+
+  const effectsValues = Object.values(data.effects);
+  const effectsMin = Math.min(...effectsValues);
+  const effectsMax = Math.max(...effectsValues);
+
+  const terpsValues = Object.values(data.terps);
+  const terpsMin = Math.min(...terpsValues);
+  const terpsMax = Math.max(...terpsValues);
+
+  const mappedEffects = Object.fromEntries(
+      Object.entries(data.effects).map(([key, value]) => [key, mapToRange(value, effectsMin, effectsMax)])
+  );
+
+  const mappedTerps = Object.fromEntries(
+      Object.entries(data.terps).map(([key, value]) => [key, mapToRange(value, terpsMin, terpsMax)])
+  );
+
+  return { ...data, effects: mappedEffects, terps: mappedTerps };
+}
+
+export async function GET() {
+  try {
     const supabase = createRouteHandlerClient<Database>({
       cookies: () => cookies(),
     });
@@ -40,111 +65,78 @@ export async function GET(request: NextRequest) {
       return { id: strain.strain_id?.id };
     });
 
-    const { data: strainEffects, error: strainEffectsError } = await supabase
+    const { data: strainsData, error: strainsDataError } = await supabase
       .from('strains')
-      .select('thcPercent, effects, terps')
+      .select('slug, thcPercent, effects, terps')
       .in(
         'id',
         likedStrainIds.map((strain) => strain.id),
       )
       .returns<StrainData[]>();
 
-    if (strainEffectsError) {
-      return NextResponse.json('Error getting strain effects', { status: 400 });
+    if (strainsDataError) {
+      return NextResponse.json('Error getting strain data', { status: 400 });
     }
 
-    const aggregatedData: AggregatedData = {
-      averageThcPercent: 0,
-      effectScores: {},
-      terpeneScores: {},
-    };
-
-    let thcTotal = 0;
-    let thcCount = 0;
-
-    strainEffects.forEach((strain) => {
-      // Aggregate THC percent
-      if (strain.thcPercent !== null) {
-        thcTotal += strain.thcPercent;
-        thcCount++;
-      }
-
-      // Aggregate effects
-      Object.values(strain.effects).forEach((effect) => {
-        if (!aggregatedData.effectScores[effect.name]) {
-          aggregatedData.effectScores[effect.name] = 0;
-        }
-        aggregatedData.effectScores[effect.name] += effect.score;
-      });
-
-      // Aggregate terpenes
-      Object.values(strain.terps).forEach((terpene) => {
-        if (!aggregatedData.terpeneScores[terpene.name]) {
-          aggregatedData.terpeneScores[terpene.name] = 0;
-        }
-        aggregatedData.terpeneScores[terpene.name] += terpene.score;
+    const effects = strainsData.map((strain) => {
+      const effectNames = Object.keys(strain.effects);
+      return effectNames.map((effectName) => {
+        return {
+          name: effectName,
+          score: strain.effects[effectName].score,
+        };
       });
     });
 
-    // Calculate average THC percent
-    aggregatedData.averageThcPercent = thcTotal / thcCount;
+    const terps = strainsData.map((strain) => {
+      const terpNames = Object.keys(strain.terps);
+      return terpNames.map((terpName) => {
+        return {
+          name: terpName,
+          score: strain.terps[terpName].score,
+        };
+      });
+    });
 
-    const amountToReturn = returnEffects ? 8 : 4;
+    const aggregatedEffects = effects.reduce((acc, effect) => {
+      effect.forEach((e) => {
+        if (acc[e.name]) {
+          acc[e.name] += e.score;
+        } else {
+          acc[e.name] = e.score;
+        }
+      });
+      return acc;
+    }, {} as Score);
 
-    const effects = Object.entries(aggregatedData.effectScores)
-      .sort(([, a], [, b]) => b - a)
-      .slice(0, returnPartial ? amountToReturn : undefined)
-      .reduce((obj, [key, val]) => ({ ...obj, [key]: val }), {}) as {
-      [key: string]: number;
-    };
+    const aggregatedTerps = terps.reduce((acc, terp) => {
+      terp.forEach((t) => {
+        if (acc[t.name]) {
+          acc[t.name] += t.score;
+        } else {
+          acc[t.name] = t.score;
+        }
+      });
+      return acc;
+    }, {} as Score);
 
-    const terpenes = Object.entries(aggregatedData.terpeneScores)
-      .sort(([, a], [, b]) => b - a)
-      .slice(0, returnPartial ? amountToReturn : undefined)
-      .reduce((obj, [key, val]) => ({ ...obj, [key]: val }), {}) as {
-      [key: string]: number;
-    };
+    const aggregatedTHCPercents = Number(
+      (
+        strainsData.reduce((acc, strain) => {
+          acc += strain.thcPercent || 0;
+          return acc;
+        }, 1) / strainsData.length
+      ).toFixed(2),
+    );
 
-    // Merge the flattened effects and terpenes into a single object
-    const flattenedResponse = {
-      thc: aggregatedData.averageThcPercent,
-      ...effects,
-      ...terpenes,
-    };
-
-    // Find the maximum and minimum values in the flattenedResponse object
-    const values = Object.values(flattenedResponse);
-    const maxVal = Math.max(...values);
-    const minVal = Math.min(...values);
-
-    // Calculate the shift needed to make all values positive
-    const shift = minVal < 0 ? Math.abs(minVal) : 0;
-
-    // Normalize each value in the flattenedResponse object
-    const normalizedResponse: { [key: string]: number } = {};
-    for (const [key, val] of Object.entries(flattenedResponse)) {
-      normalizedResponse[key] = ((val + shift) / (maxVal + shift)) * 50;
-    }
-
-    if (returnEffects) {
-      const normalizedEffects: { [key: string]: number } = {};
-      for (const [key, val] of Object.entries(effects)) {
-        normalizedEffects[key] = ((val + shift) / (maxVal + shift)) * 50;
-      }
-
-      return NextResponse.json({ data: normalizedEffects }, { status: 200 });
-    }
-
-    if (returnTerpenes) {
-      const normalizedTerpenes: { [key: string]: number } = {};
-      for (const [key, val] of Object.entries(terpenes)) {
-        normalizedTerpenes[key] = ((val + shift) / (maxVal + shift)) * 50;
-      }
-
-      return NextResponse.json({ data: normalizedTerpenes }, { status: 200 });
-    }
-
-    return NextResponse.json({ data: normalizedResponse }, { status: 200 });
+    return NextResponse.json(
+      mapValues({
+        thc: aggregatedTHCPercents,
+        effects: aggregatedEffects,
+        terps: aggregatedTerps,
+      }),
+      { status: 200 },
+    );
   } catch (error) {
     return NextResponse.json('Error generating smoking profile', {
       status: 500,

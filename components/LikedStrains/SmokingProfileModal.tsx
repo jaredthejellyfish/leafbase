@@ -13,18 +13,12 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import Modal from '../Modal';
+import ResponsivePieChart from '../PieChart';
+import type { SmokingProfile } from '@/lib/types';
 
 function GraphSkeleton() {
   return (
     <div className="flex flex-col flex-wrap items-center">
-      <div className="mb-2 flex flex-row flex-wrap">
-        {[...Array(12)].map((_, index) => (
-          <div
-            key={index}
-            className="mb-2 ml-2 h-5 w-12 shrink-0 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"
-          ></div>
-        ))}
-      </div>
       <div
         className={
           'mb-2 ml-2 h-60 w-60 animate-pulse rounded-full bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 sm:h-96 sm:w-96'
@@ -34,33 +28,25 @@ function GraphSkeleton() {
   );
 }
 
-async function fetchSmokingProfile(
-  profileType: 'combo' | 'terpenes' | 'effects',
-) {
-  const url = `/api/generate/smoking-profile?${profileType}=true`;
-  const data = await fetch(url);
+async function fetchSmokingProfile() {
+  const data = await fetch('/api/generate/smoking-profile');
 
   if (!data.ok) {
     throw new Error(`Failed to fetch smoking profile: ${data.statusText}`);
   }
 
-  const json = (await data.json()) as { data: { [key: string]: number } };
+  const json = (await data.json()) as SmokingProfile;
 
   if (!json) {
     throw new Error('Invalid data received');
   }
 
-  const roundedValues = Object.values(json.data).map((value) =>
-    Math.round(value),
-  );
-
-  return roundedValues;
+  return json;
 }
 
 export default function SmokingProfileModal() {
   const [open, setOpen] = useState(false);
-  const [profileType, setProfileType] = useState<
-    'combo' | 'terpenes' | 'effects'
+  const [profileType, setProfileType] = useState< 'terpenes' | 'effects'
   >('effects');
 
   const {
@@ -68,30 +54,33 @@ export default function SmokingProfileModal() {
     isFetching,
     isError,
   } = useQuery({
-    queryKey: ['smoking-profile', profileType],
-    queryFn: () => fetchSmokingProfile(profileType),
+    queryKey: ['smoking-profile'],
+    queryFn: () => fetchSmokingProfile(),
     enabled: open,
   });
 
   const handleBack = () => {
-    if (profileType === 'combo') {
+  if (profileType === 'terpenes') {
       setProfileType('effects');
-    } else if (profileType === 'terpenes') {
-      setProfileType('combo');
     } else {
       setProfileType('terpenes');
     }
   };
 
   const handleForward = () => {
-    if (profileType === 'effects') {
-      setProfileType('combo');
-    } else if (profileType === 'combo') {
-      setProfileType('terpenes');
-    } else {
+    if (profileType === 'terpenes') {
       setProfileType('effects');
+    } else {
+      setProfileType('terpenes');
     }
   };
+
+  const displayData: { [key: string]: number } | undefined =
+    profileType === 'effects'
+      ? smokingProfile?.effects
+      : profileType === 'terpenes'
+        ? smokingProfile?.terps
+        : { ...smokingProfile?.effects, ...smokingProfile?.terps };
 
   return (
     <>
@@ -131,10 +120,10 @@ export default function SmokingProfileModal() {
             </button>
           </div>
           {isFetching && <GraphSkeleton />}
-          {smokingProfile && (
-            <pre>
-              <code>{JSON.stringify(smokingProfile, null, 2)}</code>
-            </pre>
+          {displayData && (
+            <div className="mt-3 h-[40vh]">
+              <ResponsivePieChart data={displayData} />
+            </div>
           )}
         </Modal>
       </ErrorBoundary>

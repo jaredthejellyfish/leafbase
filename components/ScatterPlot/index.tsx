@@ -16,6 +16,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '../ui/tooltip';
+import { FaSpinner } from 'react-icons/fa';
 
 type Data = {
   x: number;
@@ -46,22 +47,35 @@ function LoadingScatterPlot({
   axisColor?: string;
 }) {
   return (
-    <svg width={width} height={height} style={{ touchAction: 'none' }}>
-      <GridRows
-        scale={scaleLinear({ domain: [0, 1], range: [height, 0] })}
-        width={width}
-        strokeDasharray="2, 2"
-        strokeOpacity={0.2}
-        stroke={axisColor}
+    <div className="relative">
+      <FaSpinner
+        className="h-10 w-10"
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          animation: 'spin 1s linear infinite', // Add this line for animation
+        }}
       />
-      <GridColumns
-        scale={scaleLinear({ domain: [0, 1], range: [width, 0] })}
-        height={height}
-        strokeDasharray="2, 2"
-        strokeOpacity={0.2}
-        stroke={axisColor}
-      />
-    </svg>
+
+      <svg width={width} height={height} style={{ touchAction: 'none' }}>
+        <GridRows
+          scale={scaleLinear({ domain: [0, 1], range: [height, 0] })}
+          width={width}
+          strokeDasharray="2, 2"
+          strokeOpacity={0.2}
+          stroke={axisColor}
+        />
+        <GridColumns
+          scale={scaleLinear({ domain: [0, 1], range: [width, 0] })}
+          height={height}
+          strokeDasharray="2, 2"
+          strokeOpacity={0.2}
+          stroke={axisColor}
+        />
+      </svg>
+    </div>
   );
 }
 

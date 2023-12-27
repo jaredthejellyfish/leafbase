@@ -1,8 +1,7 @@
 'use client';
 
-import { TbGraphFilled, TbGraphOff } from 'react-icons/tb';
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import { TbGraphFilled, TbGraphOff } from 'react-icons/tb';
 
 import {
   Tooltip,
@@ -10,9 +9,12 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+
+import Modal from '../Modal';
 import ScatterPlot from '../ScatterPlot';
 import { toast } from '../ui/use-toast';
-import Modal from '../Modal';
+
+import React, { useState } from 'react';
 
 async function fetchLikedStrainsPCA() {
   const response = await fetch(`/api/generate/pca`);

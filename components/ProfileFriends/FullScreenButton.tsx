@@ -2,17 +2,19 @@
 
 import type { Session } from '@supabase/auth-helpers-nextjs';
 import { FullscreenIcon } from 'lucide-react';
-import React from 'react';
 
+import type { FriendExtended } from '@/lib/database/database_types';
+
+import Modal from '../Modal';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '../ui/tooltip';
-import type { FriendExtended } from '@/lib/database/database_types';
 import Friend from './Friend';
-import Modal from '../Modal';
+
+import React from 'react';
 
 type Props = {
   friends: FriendExtended[];

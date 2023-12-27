@@ -1,15 +1,17 @@
 'use client';
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import React, { useEffect, useRef, useState } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { useIntersectionObserver } from 'usehooks-ts';
 import { debounce } from 'lodash';
+import { useIntersectionObserver } from 'usehooks-ts';
 
 import type { Database } from '@/lib/database';
 import type { Strain } from '@/lib/types';
+
 import StrainCard from '../StrainCard';
 import { Button } from '../ui/button';
+
+import React, { useEffect, useRef, useState } from 'react';
 
 const supabase = createClientComponentClient<Database>();
 
@@ -130,8 +132,8 @@ const StrainCardLoader = (props: Props) => {
           {isFetchingNextPage || isFetching
             ? 'Loading more...'
             : hasNextPage
-            ? 'Load More'
-            : 'Nothing more to load'}
+              ? 'Load More'
+              : 'Nothing more to load'}
         </Button>
       </div>
     </>

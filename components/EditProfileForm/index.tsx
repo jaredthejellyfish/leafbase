@@ -1,18 +1,22 @@
 'use client';
+
 import type { Session } from '@supabase/auth-helpers-nextjs';
-import { MdLocationPin } from 'react-icons/md';
-import { useFormState } from 'react-dom';
-import React, { useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import { useFormState } from 'react-dom';
+import { MdLocationPin } from 'react-icons/md';
 
-import UpdateProfilePhotoSkeleton from '@/components/UpdateProfilePhoto/skeleton';
-import type { UserMetadataExtended } from '@/lib/database/database_types';
-import { updateUser } from '@/lib/actions/user/updateUser';
-import SubmitButton from '@/components/SubmitButton';
 import CloseButton from '@/components/CloseButton';
+import SubmitButton from '@/components/SubmitButton';
+import UpdateProfilePhotoSkeleton from '@/components/UpdateProfilePhoto/skeleton';
+
+import { updateUser } from '@/lib/actions/user/updateUser';
+import type { UserMetadataExtended } from '@/lib/database/database_types';
+
 import TextAreaAuto from '../TextAreaAuto';
 import { toast } from '../ui/use-toast';
+
+import React, { useEffect } from 'react';
 
 type Props = {
   user_metadata: UserMetadataExtended;

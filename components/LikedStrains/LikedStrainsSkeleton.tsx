@@ -1,5 +1,6 @@
 import { RiPieChart2Fill } from 'react-icons/ri';
 import { TbGraphFilled } from 'react-icons/tb';
+
 import React from 'react';
 
 const LikedStrainsSkeleton = () => (

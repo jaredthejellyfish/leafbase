@@ -2,8 +2,9 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import type { Session } from '@supabase/supabase-js';
 import { cookies } from 'next/headers';
 
-import type { UserMetadataExtended } from '../database/database_types';
 import type { Database } from '@/lib/database';
+
+import type { UserMetadataExtended } from '../database/database_types';
 
 export async function getServerUserMetadata(session?: boolean) {
   const cookieStore = cookies();

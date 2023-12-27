@@ -1,11 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
 
-import protonmailLogo from '@/public/svg/protonmail-logo.svg';
-import outlookLogo from '@/public/svg/outlook-logo.svg';
-import gmailLogo from '@/public/svg/gmail-logo.svg';
 import appleLogo from '@/public/svg/apple-logo.svg';
+import gmailLogo from '@/public/svg/gmail-logo.svg';
+import outlookLogo from '@/public/svg/outlook-logo.svg';
+import protonmailLogo from '@/public/svg/protonmail-logo.svg';
+
+import React from 'react';
 
 const AuthVerify = () => {
   return (

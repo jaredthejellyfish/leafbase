@@ -28,5 +28,5 @@
   "settings": {
     "git-blame.gitWebUrl": ""
     // Workspace-specific settings go here
-  },
+  }
 }

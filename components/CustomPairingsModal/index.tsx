@@ -1,14 +1,16 @@
 'use client';
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { BsSearch, BsX } from 'react-icons/bs';
 import { ArrowLeftRight } from 'lucide-react';
 import Image from 'next/image';
+import { BsSearch, BsX } from 'react-icons/bs';
 
 import type { Database } from '@/lib/database';
+
 import Modal from '../Modal';
+
+import React, { useEffect, useState } from 'react';
 
 type Props = {
   open: boolean;

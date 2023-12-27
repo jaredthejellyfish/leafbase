@@ -1,10 +1,12 @@
 import Link from 'next/link';
-import React from 'react';
+
+import LoginReloader from '@/components/LoginReloader';
+import SocialSignin from '@/components/SocialSignin';
+import SubmitButton from '@/components/SubmitButton';
 
 import { signInUser } from '@/lib/actions/auth/signInUser';
-import LoginReloader from '@/components/LoginReloader';
-import SubmitButton from '@/components/SubmitButton';
-import SocialSignin from '@/components/SocialSignin';
+
+import React from 'react';
 
 export default function AuthSignIn() {
   return (

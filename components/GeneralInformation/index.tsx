@@ -2,10 +2,11 @@
 
 import type { UserMetadata } from '@supabase/supabase-js';
 import { format } from 'date-fns';
-import React from 'react';
 
 import type { UserMetadataExtended } from '@/lib/database/database_types';
 import { languages } from '@/lib/utils/languages';
+
+import React from 'react';
 
 type Props = { user: UserMetadata };
 

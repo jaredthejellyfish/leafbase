@@ -1,7 +1,8 @@
 'use client';
-import React, { useState } from 'react';
 
 import Modal from '@/components/Modal';
+
+import React, { useState } from 'react';
 
 function WriteReview() {
   const [isOpen, setIsOpen] = useState(false);

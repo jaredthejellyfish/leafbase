@@ -4,10 +4,11 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
 
-import type { SearchStrain } from '@/lib/database/database_types';
 import type { Database } from '@/lib/database';
+import type { SearchStrain } from '@/lib/database/database_types';
+
+import React from 'react';
 
 type Props = {
   query?: string;

@@ -1,18 +1,20 @@
-import { ErrorBoundary } from 'react-error-boundary';
-import { notFound } from 'next/navigation';
-import React, { Suspense } from 'react';
 import dynamic from 'next/dynamic';
+import { notFound } from 'next/navigation';
+import { ErrorBoundary } from 'react-error-boundary';
 
-import LikedStrainsSkeleton from '@/components/LikedStrains/LikedStrainsSkeleton';
-import LikedStrainsError from '@/components/LikedStrains/LikedStrainsError';
-import { getServerUserMetadata } from '@/lib/utils/getServerUserMetadata';
-import FriendsSkeleton from '@/components/ProfileFriends/skeleton';
 import GeneralInformation from '@/components/GeneralInformation';
-import ProfileComments from '@/components/ProfileComments';
-import NavBreadcrumbs from '@/components/NavBreadcrumbs';
-import ProfileFriends from '@/components/ProfileFriends';
 import LikedStrains from '@/components/LikedStrains';
+import LikedStrainsError from '@/components/LikedStrains/LikedStrainsError';
+import LikedStrainsSkeleton from '@/components/LikedStrains/LikedStrainsSkeleton';
+import NavBreadcrumbs from '@/components/NavBreadcrumbs';
 import ProfileSection from '@/components/Profile';
+import ProfileComments from '@/components/ProfileComments';
+import ProfileFriends from '@/components/ProfileFriends';
+import FriendsSkeleton from '@/components/ProfileFriends/skeleton';
+
+import { getServerUserMetadata } from '@/lib/utils/getServerUserMetadata';
+
+import React, { Suspense } from 'react';
 
 const Notifier = dynamic(() => import('@/components/Notifier'), { ssr: false });
 

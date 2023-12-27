@@ -1,10 +1,9 @@
 'use client';
 
-import { ErrorBoundary } from 'react-error-boundary';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { RiPieChart2Fill } from 'react-icons/ri';
-import React, { useState } from 'react';
 
 import {
   Tooltip,
@@ -12,9 +11,13 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+
+import type { SmokingProfile } from '@/lib/types';
+
 import Modal from '../Modal';
 import ResponsivePieChart from '../PieChart';
-import type { SmokingProfile } from '@/lib/types';
+
+import React, { useState } from 'react';
 
 function GraphSkeleton() {
   return (
@@ -46,8 +49,9 @@ async function fetchSmokingProfile() {
 
 export default function SmokingProfileModal() {
   const [open, setOpen] = useState(false);
-  const [profileType, setProfileType] = useState< 'terpenes' | 'effects'
-  >('effects');
+  const [profileType, setProfileType] = useState<'terpenes' | 'effects'>(
+    'effects',
+  );
 
   const {
     data: smokingProfile,
@@ -60,7 +64,7 @@ export default function SmokingProfileModal() {
   });
 
   const handleBack = () => {
-  if (profileType === 'terpenes') {
+    if (profileType === 'terpenes') {
       setProfileType('effects');
     } else {
       setProfileType('terpenes');

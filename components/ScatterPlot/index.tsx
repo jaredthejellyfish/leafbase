@@ -1,14 +1,14 @@
-import ParentSize from '@visx/responsive/lib/components/ParentSize';
-import type { TransformMatrix } from '@visx/zoom/lib/types';
-import { GridRows, GridColumns } from '@visx/grid';
-import { RefreshCcw } from 'lucide-react';
-import { scaleLinear } from '@visx/scale';
-import { useTheme } from 'next-themes';
-import { Circle } from '@visx/shape';
+import { GridColumns, GridRows } from '@visx/grid';
 import { Group } from '@visx/group';
-import { Zoom } from '@visx/zoom';
+import ParentSize from '@visx/responsive/lib/components/ParentSize';
+import { scaleLinear } from '@visx/scale';
+import { Circle } from '@visx/shape';
 import { Text } from '@visx/text';
-import React from 'react';
+import { Zoom } from '@visx/zoom';
+import type { TransformMatrix } from '@visx/zoom/lib/types';
+import { RefreshCcw } from 'lucide-react';
+import { useTheme } from 'next-themes';
+import { FaSpinner } from 'react-icons/fa';
 
 import {
   Tooltip,
@@ -16,7 +16,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '../ui/tooltip';
-import { FaSpinner } from 'react-icons/fa';
+
+import React from 'react';
 
 type Data = {
   x: number;

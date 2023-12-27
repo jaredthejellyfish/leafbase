@@ -1,12 +1,14 @@
-import { ErrorBoundary } from 'react-error-boundary';
-import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
+import { ErrorBoundary } from 'react-error-boundary';
 
-import getServerPaginatedStrains from '@/lib/utils/getServerPaginatedStrains';
-import { getServerLikedStrains } from '@/lib/utils/getServerLikedStrains';
 import FilterByMenuSkeleton from '@/components/FilterByMenu/skeleton';
 import StrainCardSkeleton from '@/components/StrainCard/skeleton';
+
+import { getServerLikedStrains } from '@/lib/utils/getServerLikedStrains';
+import getServerPaginatedStrains from '@/lib/utils/getServerPaginatedStrains';
+
+import React, { Suspense } from 'react';
 
 export const metadata: Metadata = {
   title: 'All Strains - Leafbase',

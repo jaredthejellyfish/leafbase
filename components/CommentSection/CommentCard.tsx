@@ -4,11 +4,13 @@ import { formatDistanceToNow, parseJSON } from 'date-fns';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+
+import defaultPfp from '@/public/default.webp';
 
 import DeleteCommentButton from './DeleteCommentButton';
 import LikeCommentButton from './LikeCommentButton';
-import defaultPfp from '@/public/default.webp';
+
+import React from 'react';
 
 type Props = {
   canDelete: boolean;

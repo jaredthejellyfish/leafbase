@@ -1,9 +1,10 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
-import { cache } from 'react';
 
 import type { Database } from '@/lib/database';
 import type { Strain } from '@/lib/types';
+
+import { cache } from 'react';
 
 export default cache(async function getServerPaginatedStrains({
   filter,

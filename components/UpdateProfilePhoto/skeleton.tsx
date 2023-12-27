@@ -1,4 +1,5 @@
 import { CameraIcon } from 'lucide-react';
+
 import React from 'react';
 
 function UpdateProfilePhotoSkeleton() {

@@ -1,9 +1,10 @@
 'use client';
 
 import TextareaAutosize from 'react-textarea-autosize';
-import React from 'react';
 
 import { cn } from '@/lib/utils';
+
+import React from 'react';
 
 type Props = {
   placeholder: string;

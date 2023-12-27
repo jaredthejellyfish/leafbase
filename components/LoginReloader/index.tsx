@@ -2,9 +2,10 @@
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 
 import type { Database } from '@/lib/database';
+
+import { useEffect } from 'react';
 
 const LoginReloader = () => {
   const supabase = createClientComponentClient<Database>();

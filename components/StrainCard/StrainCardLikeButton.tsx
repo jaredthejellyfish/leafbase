@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useEffect, useOptimistic, useTransition } from 'react';
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { motion } from 'framer-motion';
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 import { likeStrain } from '@/lib/actions/likeStrain';
 import { cn } from '@/lib/utils';
+
+import React, { useEffect, useOptimistic, useTransition } from 'react';
 
 type Props = {
   liked: boolean;

@@ -1,12 +1,13 @@
 'use client';
 
-import { ChevronDownIcon } from 'lucide-react';
-import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { ChevronDownIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import type { StrainLike } from '@/lib/types';
+
+import React, { useState } from 'react';
 
 type Props = {
   strains: StrainLike[];

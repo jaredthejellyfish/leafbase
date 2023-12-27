@@ -1,16 +1,17 @@
-import React from 'react';
 import { Group } from '@visx/group';
-import { Pie } from '@visx/shape';
-import { scaleOrdinal } from '@visx/scale';
 import { ParentSize } from '@visx/responsive';
+import { scaleOrdinal } from '@visx/scale';
+import { Pie } from '@visx/shape';
 import { Text } from '@visx/text';
 import { useTheme } from 'next-themes';
+
+import React from 'react';
 
 const PieChart = ({ data }: { data: { [key: string]: number } }) => {
   const { theme } = useTheme();
 
   const axisColor = theme === 'dark' ? '#FFFFFF' : '#000000';
-  
+
   const parsedData = Object.keys(data).map((key) => ({
     label: key,
     value: data[key],

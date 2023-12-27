@@ -1,8 +1,9 @@
-import React from 'react';
-
-import { getServerUserMetadata } from '@/lib/utils/getServerUserMetadata';
 import EditProfileForm from '@/components/EditProfileForm';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs';
+
+import { getServerUserMetadata } from '@/lib/utils/getServerUserMetadata';
+
+import React from 'react';
 
 export const metadata = {
   title: 'Edit Profile - Leafbase',

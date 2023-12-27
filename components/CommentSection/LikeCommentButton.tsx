@@ -1,10 +1,11 @@
 'use client';
 
-import React, { startTransition, useOptimistic } from 'react';
-import { BsHeart, BsHeartFill } from 'react-icons/bs';
 import { usePathname } from 'next/navigation';
+import { BsHeart, BsHeartFill } from 'react-icons/bs';
 
 import { likeComment } from '@/lib/actions/comment/like';
+
+import React, { startTransition, useOptimistic } from 'react';
 
 type Props = { comment_id: string; isLiked: boolean };
 

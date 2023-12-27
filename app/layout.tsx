@@ -1,13 +1,15 @@
-import { Analytics as NextAnalytics } from '@vercel/analytics/react';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { Analytics as NextAnalytics } from '@vercel/analytics/react';
 import { GeistSans } from 'geist/font/sans';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
-import React from 'react';
 
-import { ThemeProvider, QueryProvider } from '@/components/Providers';
 import { NavigationSkeleton } from '@/components/Navigation';
+import { QueryProvider, ThemeProvider } from '@/components/providers';
+
 import './globals.css';
+
+import React from 'react';
 
 const CookieBanner = dynamic(() => import('@/components/CookieBanner'), {
   ssr: false,

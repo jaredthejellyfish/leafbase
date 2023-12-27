@@ -1,12 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
 
-import StrainCardLikeButton from './StrainCardLikeButton';
-import defaultImage from '@/public/strain.png';
 import type { Strain } from '@/lib/types';
-import StarRating from './StarRating';
 import { cn } from '@/lib/utils/cn';
+
+import defaultImage from '@/public/strain.png';
+
+import StarRating from './StarRating';
+import StrainCardLikeButton from './StrainCardLikeButton';
+
+import React from 'react';
 
 type Colors = {
   [key: string]: string;

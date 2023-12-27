@@ -1,10 +1,12 @@
-import { RxCaretRight } from 'react-icons/rx';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import { RxCaretRight } from 'react-icons/rx';
 
 import AcceptRequestButton from './AcceptRequestButton';
 import DenyRequestButton from './DenyRequestButton';
+
+import React from 'react';
+
 export default function Friend({
   friend: { to, from },
   status,

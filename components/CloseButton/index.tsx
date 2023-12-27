@@ -1,7 +1,8 @@
 'use client';
 
-import { AiOutlineClose } from 'react-icons/ai';
 import { useRouter } from 'next/navigation';
+import { AiOutlineClose } from 'react-icons/ai';
+
 import React from 'react';
 
 function CloseButton() {

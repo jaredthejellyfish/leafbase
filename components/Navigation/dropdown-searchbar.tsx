@@ -1,10 +1,11 @@
 'use client';
 
-import { useOnClickOutside } from 'usehooks-ts';
-import React, { useRef, useState } from 'react';
-import { BsSearch } from 'react-icons/bs';
-import dynamic from 'next/dynamic';
 import { X } from 'lucide-react';
+import dynamic from 'next/dynamic';
+import { BsSearch } from 'react-icons/bs';
+import { useOnClickOutside } from 'usehooks-ts';
+
+import React, { useRef, useState } from 'react';
 
 const SearchResults = dynamic(() => import('../SearchResults'), { ssr: false });
 

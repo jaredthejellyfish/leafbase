@@ -1,22 +1,23 @@
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
-import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import { NextResponse } from 'next/server';
 
-import type { StrainData } from '@/lib/types';
 import type { Database } from '@/lib/database';
+import type { StrainData } from '@/lib/types';
 
 interface Score {
   [key: string]: number;
 }
 
 type Data = {
-  thc: number,
-  effects: Record<string, number>,
-  terps: Record<string, number>
+  thc: number;
+  effects: Record<string, number>;
+  terps: Record<string, number>;
 };
 
 function mapValues(data: Data): Data {
-  const mapToRange = (value: number, min: number, max: number) => (value - min) / (max - min);
+  const mapToRange = (value: number, min: number, max: number) =>
+    (value - min) / (max - min);
 
   const effectsValues = Object.values(data.effects);
   const effectsMin = Math.min(...effectsValues);
@@ -27,11 +28,17 @@ function mapValues(data: Data): Data {
   const terpsMax = Math.max(...terpsValues);
 
   const mappedEffects = Object.fromEntries(
-      Object.entries(data.effects).map(([key, value]) => [key, mapToRange(value, effectsMin, effectsMax)])
+    Object.entries(data.effects).map(([key, value]) => [
+      key,
+      mapToRange(value, effectsMin, effectsMax),
+    ]),
   );
 
   const mappedTerps = Object.fromEntries(
-      Object.entries(data.terps).map(([key, value]) => [key, mapToRange(value, terpsMin, terpsMax)])
+    Object.entries(data.terps).map(([key, value]) => [
+      key,
+      mapToRange(value, terpsMin, terpsMax),
+    ]),
   );
 
   return { ...data, effects: mappedEffects, terps: mappedTerps };

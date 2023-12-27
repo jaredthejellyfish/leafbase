@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
-import React from 'react';
 
 import PairingSkeleton from './PairingSkeleton';
+
+import React from 'react';
 
 const Pairing = dynamic(() => import('./Pairing'), {
   ssr: false,

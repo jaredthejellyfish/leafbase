@@ -1,7 +1,6 @@
 'use client';
 
 import { Check, ChevronsUpDown } from 'lucide-react';
-import React from 'react';
 
 import {
   Command,
@@ -15,9 +14,13 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { languages } from '@/lib/utils/languages';
-import { Button } from '../ui/button';
+
 import { cn } from '@/lib/utils';
+import { languages } from '@/lib/utils/languages';
+
+import { Button } from '../ui/button';
+
+import React from 'react';
 
 type Props = { initialLanguage?: string };
 

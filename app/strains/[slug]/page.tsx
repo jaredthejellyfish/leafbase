@@ -1,21 +1,24 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { notFound } from 'next/navigation';
-import { cookies } from 'next/headers';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
+import { cookies } from 'next/headers';
 import Image from 'next/image';
-import React from 'react';
+import { notFound } from 'next/navigation';
 
-import StrainCardLikeButton from '@/components/StrainCard/StrainCardLikeButton';
-import StrainSuggestionsButton from '@/components/StrainSuggestionsButton';
-import { getServerLikedStrains } from '@/lib/utils/getServerLikedStrains';
-import StarRating from '@/components/StrainCard/StarRating';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs';
-import { effects, terpenes } from '@/lib/data/colors';
-import type { StrainWithComments } from '@/lib/types';
+import StarRating from '@/components/StrainCard/StarRating';
+import StrainCardLikeButton from '@/components/StrainCard/StrainCardLikeButton';
 import StrainSoma from '@/components/StrainSoma';
-import defaultImage from '@/public/default.webp';
+import StrainSuggestionsButton from '@/components/StrainSuggestionsButton';
+
+import { effects, terpenes } from '@/lib/data/colors';
 import type { Database } from '@/lib/database';
+import type { StrainWithComments } from '@/lib/types';
+import { getServerLikedStrains } from '@/lib/utils/getServerLikedStrains';
+
+import defaultImage from '@/public/default.webp';
+
+import React from 'react';
 
 const CommentSection = dynamic(() => import('@/components/CommentSection'));
 

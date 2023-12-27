@@ -1,13 +1,14 @@
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
+import { ImageResponse } from 'next/og';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
-import { ImageResponse } from 'next/og';
-import { cookies } from 'next/headers';
-import React from 'react';
 
-import type { DatabaseStrain } from '@/lib/database/database_types';
-import { terpenes, effects } from '@/lib/data/colors';
+import { effects, terpenes } from '@/lib/data/colors';
 import type { Database } from '@/lib/database';
+import type { DatabaseStrain } from '@/lib/database/database_types';
+
+import React from 'react';
 
 const size = {
   width: 1200,

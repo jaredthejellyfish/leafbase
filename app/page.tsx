@@ -1,13 +1,15 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { RxCaretDown, RxCaretUp } from 'react-icons/rx';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import { RxCaretDown, RxCaretUp } from 'react-icons/rx';
 
 import StrainCard from '@/components/StrainCard';
+
 import type { Database } from '@/lib/database';
 import type { Strain } from '@/lib/types';
+
+import React from 'react';
 
 const NextSectionButton = dynamic(
   () => import('@/components/NextSectionButton'),

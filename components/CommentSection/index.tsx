@@ -1,14 +1,17 @@
 'use client';
 
 import type { Session } from '@supabase/auth-helpers-nextjs';
-import { ErrorBoundary } from 'react-error-boundary';
-import React, { useState } from 'react';
 import { Plus } from 'lucide-react';
+import { ErrorBoundary } from 'react-error-boundary';
+
+import Modal from '@/components/Modal';
+import TextAreaAuto from '@/components/TextAreaAuto';
 
 import { comment } from '@/lib/actions/comment/comment';
-import TextAreaAuto from '../TextAreaAuto';
+
 import CommentCard from './CommentCard';
-import Modal from '../Modal';
+
+import React, { useState } from 'react';
 
 type Props = {
   strainName: string;

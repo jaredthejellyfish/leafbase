@@ -1,9 +1,11 @@
-import { FiThumbsUp, FiThumbsDown } from 'react-icons/fi';
+import { FiThumbsDown, FiThumbsUp } from 'react-icons/fi';
 import { TbMedicalCross } from 'react-icons/tb';
-import React from 'react';
 
 import type { Strain } from '@/lib/types';
+
 import Badge from './Badge';
+
+import React from 'react';
 
 type Effect = {
   [key: string]: string;

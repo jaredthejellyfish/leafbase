@@ -1,8 +1,10 @@
 import { Trash2Icon } from 'lucide-react';
-import React from 'react';
+
+import { toast } from '@/components/ui/use-toast';
 
 import { deleteComment } from '@/lib/actions/comment/delete';
-import { toast } from '../ui/use-toast';
+
+import React from 'react';
 
 type Props = {
   comment_id: string;

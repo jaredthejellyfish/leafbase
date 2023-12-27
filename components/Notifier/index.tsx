@@ -1,9 +1,10 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
 
 import { useToast } from '../ui/use-toast';
+
+import { useEffect } from 'react';
 
 const Notifier = () => {
   const { toast } = useToast();

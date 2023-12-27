@@ -1,10 +1,11 @@
 'use client';
 
-import { useMediaQuery } from 'usehooks-ts';
-import { BsSearch } from 'react-icons/bs';
-import React, { useState } from 'react';
-import dynamic from 'next/dynamic';
 import { X } from 'lucide-react';
+import dynamic from 'next/dynamic';
+import { BsSearch } from 'react-icons/bs';
+import { useMediaQuery } from 'usehooks-ts';
+
+import React, { useState } from 'react';
 
 const SearchResults = dynamic(() => import('../SearchResults'));
 

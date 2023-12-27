@@ -1,10 +1,11 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
 import { animate, motion, stagger } from 'framer-motion';
-import { RxCaretDown } from 'react-icons/rx';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { RxCaretDown } from 'react-icons/rx';
+
+import React, { useEffect, useRef, useState } from 'react';
 
 interface Props {
   filter?: string;

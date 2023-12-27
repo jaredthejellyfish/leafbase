@@ -2,12 +2,12 @@
 
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
-import type { UserMetadataExtended } from '@/lib/database/database_types';
 import type { Database } from '@/lib/database';
+import type { UserMetadataExtended } from '@/lib/database/database_types';
 
 // add a custom message to about that says: "This is a custom message"
 

@@ -1,11 +1,13 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+//changed motion to m and imported LazyMotion, domAnimation
+import { LazyMotion, m } from 'framer-motion';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useOnClickOutside } from 'usehooks-ts';
-import { LazyMotion, m } from 'framer-motion'; //changed motion to m and imported LazyMotion, domAnimation
 
 import { cn } from '@/lib/utils';
+
+import React, { useEffect, useState } from 'react';
 
 type Props = {
   children: React.ReactNode;

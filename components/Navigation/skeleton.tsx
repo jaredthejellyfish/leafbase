@@ -1,10 +1,12 @@
 import { Bell, Moon, Sun } from 'lucide-react';
 import Image from 'next/image';
-import React from 'react';
 
 import SiteLogo from '@/public/site-logo.png';
-import UserAvatar from './user-avatar';
+
 import { Button } from '../ui/button';
+import UserAvatar from './user-avatar';
+
+import React from 'react';
 
 const NavigationSkeleton = () => {
   return (

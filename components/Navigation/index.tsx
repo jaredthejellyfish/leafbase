@@ -1,23 +1,26 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { ErrorBoundary } from 'react-error-boundary';
-import { cookies } from 'next/headers';
 import { Bell } from 'lucide-react';
 import dynamic from 'next/dynamic';
+import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 
+import type { Database } from '@/lib/database';
 import type {
   Notification,
   UserMetadataExtended,
 } from '@/lib/database/database_types';
-import type { Database } from '@/lib/database';
+
 import SiteLogo from '@/public/site-logo.png';
+
 import HamburgerMenu from './hamburger-menu';
-import { ThemeToggle } from './theme-toggle';
-import NavigationSkeleton from './skeleton';
-import UserAvatar from './user-avatar';
 import SearchBar from './search-bar';
+import NavigationSkeleton from './skeleton';
+import { ThemeToggle } from './theme-toggle';
+import UserAvatar from './user-avatar';
+
+import React from 'react';
 
 const NotifcationMenu = dynamic(() => import('./notification-menu'), {
   ssr: false,

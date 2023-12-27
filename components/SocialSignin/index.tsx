@@ -3,12 +3,15 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import type { Provider } from '@supabase/supabase-js';
 import Image from 'next/image';
-import React from 'react';
 
-import google from '@/public/provider-logos/google.png';
-import github from '@/public/provider-logos/github.png';
 import { Button } from '@/components/ui/button';
+
 import type { Database } from '@/lib/database';
+
+import github from '@/public/provider-logos/github.png';
+import google from '@/public/provider-logos/google.png';
+
+import React from 'react';
 
 function SocialSignin() {
   const supabase = createClientComponentClient<Database>();

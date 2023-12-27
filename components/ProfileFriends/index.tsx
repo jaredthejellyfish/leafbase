@@ -1,15 +1,17 @@
 import {
-  createServerComponentClient,
   type Session,
+  createServerComponentClient,
 } from '@supabase/auth-helpers-nextjs';
 import { ChevronRight } from 'lucide-react';
-import { cookies } from 'next/headers';
 import dynamic from 'next/dynamic';
+import { cookies } from 'next/headers';
 import Link from 'next/link';
-import React from 'react';
 
 import type { FriendExtended } from '@/lib/database/database_types';
+
 import Friend from './Friend';
+
+import React from 'react';
 
 const FullScreenButton = dynamic(() => import('./FullScreenButton'), {
   ssr: false,

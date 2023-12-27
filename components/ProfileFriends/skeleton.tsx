@@ -1,4 +1,5 @@
 import { RxCaretRight } from 'react-icons/rx';
+
 import React from 'react';
 
 function FriendSkeleton() {

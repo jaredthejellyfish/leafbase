@@ -1,11 +1,26 @@
 // Modals.tsx
 'use client';
 
-import { TbGraphFilled, TbGraphOff } from 'react-icons/tb';
+import dynamic from 'next/dynamic';
 import { ErrorBoundary } from 'react-error-boundary';
 import { RiPieChart2Fill } from 'react-icons/ri';
-import dynamic from 'next/dynamic';
+import { TbGraphFilled, TbGraphOff } from 'react-icons/tb';
+
 import React from 'react';
+
+// Modals.tsx
+
+// Modals.tsx
+
+// Modals.tsx
+
+// Modals.tsx
+
+// Modals.tsx
+
+// Modals.tsx
+
+// Modals.tsx
 
 const StrainSimilarityModal = dynamic(() => import('./StrainSimilarityModal'), {
   ssr: false,

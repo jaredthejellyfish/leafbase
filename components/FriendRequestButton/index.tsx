@@ -1,7 +1,6 @@
 'use client';
 
 import { FaUserFriends } from 'react-icons/fa';
-import React, { useState } from 'react';
 
 import {
   AlertDialog,
@@ -20,9 +19,13 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+
 import { manageFriendship } from '@/lib/actions/friendship/manageFriendship';
-import { toast } from '../ui/use-toast';
 import { cn } from '@/lib/utils';
+
+import { toast } from '../ui/use-toast';
+
+import React, { useState } from 'react';
 
 type Props = {
   from: string;

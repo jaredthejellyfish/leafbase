@@ -1,8 +1,8 @@
 'use server';
 
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
-import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 export async function signOutUser() {
   const cookieStore = cookies();

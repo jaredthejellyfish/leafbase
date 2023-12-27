@@ -1,4 +1,5 @@
-import { FaStar, FaRegStar, FaStarHalfAlt } from 'react-icons/fa';
+import { FaRegStar, FaStar, FaStarHalfAlt } from 'react-icons/fa';
+
 import React from 'react';
 
 const StarRating = (props: { rating: number; className?: string }) => {

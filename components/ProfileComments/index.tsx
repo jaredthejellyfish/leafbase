@@ -1,11 +1,12 @@
 import {
-  createServerComponentClient,
   type Session,
+  createServerComponentClient,
 } from '@supabase/auth-helpers-nextjs';
 import { ChevronLeft } from 'lucide-react';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import React from 'react';
 
 type Props = {

@@ -1,12 +1,14 @@
 'use client';
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { CameraIcon } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 import type { Database } from '@/lib/database';
+
 import { toast } from '../ui/use-toast';
+
+import React, { useEffect, useState } from 'react';
 
 export default function UpdateProfilePhoto({
   className,

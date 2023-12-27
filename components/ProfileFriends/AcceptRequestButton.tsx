@@ -1,9 +1,10 @@
 'use client';
 
-import React from 'react';
-
 import { acceptFriendship } from '@/lib/actions/friendship/acceptFriendship';
+
 import { toast } from '../ui/use-toast';
+
+import React from 'react';
 
 type Props = {
   from: string;

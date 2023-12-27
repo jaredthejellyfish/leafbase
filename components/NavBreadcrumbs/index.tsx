@@ -1,8 +1,9 @@
 import type { Route } from 'next';
 import Link from 'next/link';
-import React from 'react';
 
 import NavBreadcrumbsSkeleton from './skeleton';
+
+import React from 'react';
 
 type Props = {
   urls: {

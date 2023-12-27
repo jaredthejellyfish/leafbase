@@ -1,6 +1,6 @@
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
-import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
+import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
 import type { Database } from '@/lib/database';

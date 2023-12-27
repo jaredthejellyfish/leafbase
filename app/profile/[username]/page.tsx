@@ -1,14 +1,16 @@
-import { ErrorBoundary } from 'react-error-boundary';
 import { notFound } from 'next/navigation';
-import React, { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+
+import GeneralInformation from '@/components/GeneralInformation';
+import LikedStrains from '@/components/LikedStrains';
+import LikedStrainsError from '@/components/LikedStrains/LikedStrainsError';
+import LikedStrainsSkeleton from '@/components/LikedStrains/LikedStrainsSkeleton';
+import NavBreadcrumbs from '@/components/NavBreadcrumbs';
+import Profile from '@/components/Profile';
 
 import { getServerUserProfileFromUsername } from '@/lib/utils/getServerUserProfileFromUsername';
-import LikedStrainsSkeleton from '@/components/LikedStrains/LikedStrainsSkeleton';
-import LikedStrainsError from '@/components/LikedStrains/LikedStrainsError';
-import GeneralInformation from '@/components/GeneralInformation';
-import NavBreadcrumbs from '@/components/NavBreadcrumbs';
-import LikedStrains from '@/components/LikedStrains';
-import Profile from '@/components/Profile';
+
+import React, { Suspense } from 'react';
 
 type Props = { params: { username: string } };
 

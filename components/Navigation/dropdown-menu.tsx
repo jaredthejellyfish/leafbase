@@ -1,13 +1,14 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-import { useMediaQuery } from 'usehooks-ts';
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import React from 'react';
+import { usePathname } from 'next/navigation';
+import { useMediaQuery } from 'usehooks-ts';
 
 import { Separator } from '../ui/separator';
+
+import React from 'react';
 
 const DropdownSearchbar = dynamic(() => import('./dropdown-searchbar'), {
   ssr: false,

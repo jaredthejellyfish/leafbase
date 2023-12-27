@@ -1,14 +1,13 @@
 'use client';
 
 import type { Session } from '@supabase/supabase-js';
-import { BsFillGearFill } from 'react-icons/bs';
-import { MdLocationPin } from 'react-icons/md';
-import { FaUserFriends } from 'react-icons/fa';
-import { AiFillEye } from 'react-icons/ai';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import { AiFillEye } from 'react-icons/ai';
+import { BsFillGearFill } from 'react-icons/bs';
+import { FaUserFriends } from 'react-icons/fa';
+import { MdLocationPin } from 'react-icons/md';
 
 import {
   Tooltip,
@@ -16,12 +15,16 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+
 import type {
   PublicProfile,
   UserMetadataExtended,
 } from '@/lib/database/database_types';
-import SignoutButton from './SignoutButton';
 import { cn } from '@/lib/utils';
+
+import SignoutButton from './SignoutButton';
+
+import React from 'react';
 
 const FriendRequestButton = dynamic(() => import('../FriendRequestButton'), {
   ssr: false,

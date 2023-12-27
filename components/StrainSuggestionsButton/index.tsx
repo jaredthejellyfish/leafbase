@@ -1,7 +1,6 @@
 'use client';
 
 import { FiMoreVertical } from 'react-icons/fi';
-import React, { useState } from 'react';
 
 import {
   DropdownMenu,
@@ -11,8 +10,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import SuggestedPairingsModal from '../SuggestedPairingsModal';
+
 import CustomPairingsModal from '../CustomPairingsModal';
+import SuggestedPairingsModal from '../SuggestedPairingsModal';
+
+import React, { useState } from 'react';
 
 type Props = {
   id: string;

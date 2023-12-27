@@ -1,9 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+
 import ProfileIcon from '@/public/svg/profile-icon.svg';
+
+import React from 'react';
 
 type Props = {
   avatarUrl?: string | null;

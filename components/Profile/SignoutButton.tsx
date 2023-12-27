@@ -1,7 +1,8 @@
-import React from 'react';
-
 import { signOutUser } from '@/lib/actions/auth/signOutUser';
+
 import SubmitButton from '../SubmitButton';
+
+import React from 'react';
 
 const SignoutButton = () => {
   return (

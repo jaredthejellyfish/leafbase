@@ -1,9 +1,10 @@
-import { ErrorBoundary } from 'react-error-boundary';
 import { ClipboardXIcon } from 'lucide-react';
 import dynamic from 'next/dynamic';
-import React from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 
 import { getServerLikedStrains } from '@/lib/utils/getServerLikedStrains';
+
+import React from 'react';
 
 const Modals = dynamic(() => import('./Modals'));
 const LikedStrainsAccordion = dynamic(() => import('./LikedStrainsAccordion'));

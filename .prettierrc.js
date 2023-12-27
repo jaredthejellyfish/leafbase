@@ -4,10 +4,8 @@ module.exports = {
   singleQuote: true,
   tabWidth: 2,
   useTabs: false,
-  sortingMethod: 'lineLength',
-  stripNewlines: true,
-  importTypeOrder: ['NPMPackages', 'localImports'],
-  newlineBetweenTypes: true,
-  plugins: ['prettier-plugin-sort-imports'],
-  sortingMethod: 'lineLength',
+  importOrder: ["<THIRD_PARTY_MODULES>", "^@/components/(.*)$","^@/lib/(.*)$", "^@/public/(.*)$", "^[./]", "^react$"],
+  importOrderSeparation: true,
+  importOrderSortSpecifiers: true,
+  plugins: ["@trivago/prettier-plugin-sort-imports"]
 };

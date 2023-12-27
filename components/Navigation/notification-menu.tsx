@@ -2,25 +2,29 @@
 
 import { formatDistanceToNow, parseJSON } from 'date-fns';
 import { Archive, Bell, Trash } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { BsGear } from 'react-icons/bs';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { BsGear } from 'react-icons/bs';
 
-import {
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-  DropdownMenu,
-} from '../ui/dropdown-menu';
+import { Separator } from '@/components/ui/separator';
+
 import { archiveNotification } from '@/lib/actions/notification/archive';
 import { deleteNotification } from '@/lib/actions/notification/delete';
 import type { Notification } from '@/lib/database/database_types';
 import { supabase } from '@/lib/database/supabase_client';
-import { Separator } from '@/components/ui/separator';
-import defaultPfp from '@/public/default.webp';
-import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
+
+import defaultPfp from '@/public/default.webp';
+
+import { Button } from '../ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from '../ui/dropdown-menu';
+
+import React, { useEffect, useState } from 'react';
 
 type Props = {
   pendingNotifications: Notification[] | null;

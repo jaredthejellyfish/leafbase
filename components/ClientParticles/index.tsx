@@ -1,9 +1,10 @@
 'use client';
 
+import { useTheme } from 'next-themes';
+import Particles from 'react-particles';
 import type { Engine } from 'tsparticles-engine';
 import { loadSlim } from 'tsparticles-slim';
-import Particles from 'react-particles';
-import { useTheme } from 'next-themes';
+
 import { useCallback } from 'react';
 import React from 'react';
 

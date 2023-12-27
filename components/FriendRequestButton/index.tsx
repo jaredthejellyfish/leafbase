@@ -124,12 +124,12 @@ function FriendRequestButton({ from, to, username, pending, exists }: Props) {
         <TooltipTrigger className="flex items-center justify-center">
           <div
             className={cn(
-              'border border-zinc-600 p-2 rounded-full text-zinc-600',
+              'rounded-full border border-zinc-600 p-2 text-zinc-600',
               isPending
-                ? 'dark:border-zinc-300 border-zinc-400  dark:text-zinc-300 text-zinc-400 '
+                ? 'border-zinc-400 text-zinc-400  dark:border-zinc-300 dark:text-zinc-300 '
                 : null,
               isFriends
-                ? 'text-green-600 border-green-600 dark:bg-zinc-800'
+                ? 'border-green-600 text-green-600 dark:bg-zinc-800'
                 : null,
             )}
             onClick={handleClick}
@@ -151,8 +151,8 @@ function FriendRequestButton({ from, to, username, pending, exists }: Props) {
       <AlertDialogTrigger className="flex items-center justify-center border-transparent bg-transparent p-0 hover:bg-transparent">
         <div
           className={cn(
-            'border border-zinc-600 p-2 rounded-full text-zinc-600 hover:text-green-600 aspect-square hover:scale-101',
-            'text-green-600 border-green-600 dark:bg-zinc-800',
+            'hover:scale-101 aspect-square rounded-full border border-zinc-600 p-2 text-zinc-600 hover:text-green-600',
+            'border-green-600 text-green-600 dark:bg-zinc-800',
           )}
         >
           <FaUserFriends className="h-5 w-5" />

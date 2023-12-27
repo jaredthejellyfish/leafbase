@@ -28,13 +28,13 @@ type Props = {
   };
 };
 
-const CommentCard = (props: Props) => {
+export default function CommentCard(props: Props) {
   const { comment, canDelete, isLiked } = props;
 
   return (
     <motion.div
       id={comment.id}
-      className="relative mb-5 rounded border border-zinc-200 p-4 shadow dark:border-transparent dark:bg-zinc-900"
+      className="relative z-0 mb-5 rounded border border-zinc-200 p-4 shadow dark:border-transparent dark:bg-zinc-900"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { duration: 0.2 } }}
       exit={{ opacity: 0 }}
@@ -78,6 +78,4 @@ const CommentCard = (props: Props) => {
       <span>{comment.comment.length > 0 && comment.comment}</span>
     </motion.div>
   );
-};
-
-export default CommentCard;
+}

@@ -122,7 +122,7 @@ function Modal({
           initial="hidden"
           ref={ref}
           className={cn(
-            'dark:bg-zinc-800 z-50 inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle w-full sm:max-w-lg sm:w-full border-transparent relative',
+            'relative z-50 inline-block w-full transform overflow-hidden rounded-lg border-transparent bg-white text-left align-bottom shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:align-middle dark:bg-zinc-800',
             containerClass || '',
           )}
         >

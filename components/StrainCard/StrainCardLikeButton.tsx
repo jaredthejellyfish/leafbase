@@ -62,7 +62,7 @@ const StrainCardLikeButton = (props: Props) => {
     <motion.button
       aria-label="Like Strain"
       className={cn(
-        `z-50 absolute top-1.5 right-2 border bg-white dark:bg-zinc-800 text-zinc-400/75 transition-colors rounded-full p-1.5 dark:text-zinc-400 ${
+        `absolute right-2 top-1.5 z-50 rounded-full border bg-white p-1.5 text-zinc-400/75 transition-colors dark:bg-zinc-800 dark:text-zinc-400 ${
           optimisticLike ? 'border-green-600/40' : 'dark:border-zinc-700'
         }`,
         props.className,

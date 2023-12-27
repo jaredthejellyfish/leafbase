@@ -118,7 +118,7 @@ function NotifcationMenu({
             <button
               onClick={() => setTab('inbox')}
               className={cn(
-                'border py-2 border-transparent px-2',
+                'border border-transparent px-2 py-2',
                 tab === 'inbox' && 'border-b-white',
               )}
             >
@@ -132,7 +132,7 @@ function NotifcationMenu({
             <button
               onClick={() => setTab('archived')}
               className={cn(
-                'border py-2 border-transparent px-2 ml-2',
+                'ml-2 border border-transparent px-2 py-2',
                 tab === 'archived' && 'border-b-white',
               )}
             >
@@ -160,7 +160,7 @@ function NotifcationMenu({
               return (
                 <div
                   className={cn(
-                    'border-b-zinc-600 flex flex-row items-center justify-start px-4 py-1.5',
+                    'flex flex-row items-center justify-start border-b-zinc-600 px-4 py-1.5',
                     index !== notifications.length - 1 && 'border-b',
                   )}
                   key={notification.id}
@@ -212,7 +212,7 @@ function NotifcationMenu({
               return (
                 <div
                   className={cn(
-                    'border-b-zinc-600 flex flex-row items-center justify-start px-4 py-1.5',
+                    'flex flex-row items-center justify-start border-b-zinc-600 px-4 py-1.5',
                     index !== archived.length - 1 && 'border-b',
                   )}
                   key={notification.id}

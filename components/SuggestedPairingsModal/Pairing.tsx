@@ -54,7 +54,7 @@ function Pairing({ pairing }: Props) {
     <Link
       href={`/strains/${pairing.strain2_slug}`} // <- /strain
       className={cn(
-        'flex flex-row items-center gap-3 border border-zinc-300 dark:border-zinc-700 py-3 rounded pl-2 pr-3',
+        'flex flex-row items-center gap-3 rounded border border-zinc-300 py-3 pl-2 pr-3 dark:border-zinc-700',
         pairing.body && 'justify-between',
       )}
     >

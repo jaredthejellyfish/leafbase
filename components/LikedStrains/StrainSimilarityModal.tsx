@@ -17,7 +17,7 @@ import { toast } from '../ui/use-toast';
 import React, { useState } from 'react';
 
 async function fetchLikedStrainsPCA() {
-  const response = await fetch(`/api/generate/pca`);
+  const response = await fetch(`/api/graph/pca`);
   const data = (await response.json()) as {
     pca: {
       x: number;

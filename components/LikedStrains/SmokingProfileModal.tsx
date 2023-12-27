@@ -32,7 +32,7 @@ function GraphSkeleton() {
 }
 
 async function fetchSmokingProfile() {
-  const data = await fetch('/api/generate/smoking-profile');
+  const data = await fetch('/api/graph/smoking-profile');
 
   if (!data.ok) {
     throw new Error(`Failed to fetch smoking profile: ${data.statusText}`);

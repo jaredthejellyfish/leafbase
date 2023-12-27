@@ -1,0 +1,25 @@
+.scrollingWrapper {
+  border: 1px solid #cbd5e1; /* Replace with the color you want for the border */
+  border-left: none;
+  border-right: none;
+  padding: 0.5rem;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  margin-top: 10px;
+}
+
+.scrollText {
+  display: inline-block;
+  animation: scroll 30s linear infinite;
+  font-weight: bold;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

@@ -21,6 +21,8 @@ import * as React from 'react';
 
 /* eslint-disable react/prop-types */
 
+/* eslint-disable react/prop-types */
+
 const Avatar = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>

@@ -22,6 +22,8 @@ import React from 'react';
 
 // Modals.tsx
 
+// Modals.tsx
+
 const StrainSimilarityModal = dynamic(() => import('./StrainSimilarityModal'), {
   ssr: false,
   loading: () => (

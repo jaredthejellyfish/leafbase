@@ -69,6 +69,7 @@ const PieChart = ({ data }: { data: { [key: string]: number } }) => {
                         <Text
                           x={centroidX}
                           y={centroidY}
+                          fontWeight={400}
                           dy=".33em"
                           fontSize={10}
                           textAnchor="middle"

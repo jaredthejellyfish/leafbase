@@ -15,6 +15,7 @@ type Props = {
 function LikedStrainsAccordion(props: Props) {
   const { strains } = props;
   const [isOpen, setIsOpen] = useState(false);
+  const [hasOpened, setHasOpened] = useState(false);
 
   const variants = {
     open: {
@@ -39,7 +40,7 @@ function LikedStrainsAccordion(props: Props) {
       >
         {strains &&
           strains.map((strain, index) => {
-            if (index > 9 && !isOpen) return null;
+            if (!hasOpened && index > 9 && !isOpen) return null;
             return (
               <Link
                 key={strain.id}
@@ -65,7 +66,10 @@ function LikedStrainsAccordion(props: Props) {
       </motion.div>
       {props.strains.length > 10 ? (
         <button
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => {
+            setIsOpen(!isOpen);
+            setHasOpened(true);
+          }}
           className="mt-1 flex w-full flex-row items-center justify-center gap-2 font-semibold"
         >
           <motion.div animate={{ rotate: isOpen ? 180 : 0 }}>

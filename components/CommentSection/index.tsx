@@ -58,7 +58,7 @@ function CommentSection({
   return (
     <ErrorBoundary fallback={<div></div>}>
       <>
-        <div className="my-3 flex flex-row items-center justify-between">
+        <div className="z-0 my-3 flex flex-row items-center justify-between">
           <div className="flex flex-row items-center gap-x-3 text-[1.3em] font-bold">
             <span>Comments for {strainName}</span>
             <span className="text-[0.9em] text-zinc-400">

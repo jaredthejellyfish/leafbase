@@ -68,11 +68,16 @@ function EditProfileForm({ user_metadata, session }: Props) {
             />
             <UpdateProfilePhoto className="absolute -right-4 -top-4" />
           </div>
-          <div className="mt-2 text-lg font-bold ">
+          <div className="text-lg font-bold flex xl:flex-row lg:flex-col md:flex-row gap-y-1 mt-1.5">
             <input
-              className="rounded border border-zinc-500 bg-transparent px-0.5"
+              className="rounded border border-zinc-500 bg-transparent px-0.5 mr-2"
               name="name"
               placeholder={user_metadata?.name || 'Enter name'}
+            />
+            <input
+              className="rounded border border-zinc-500 bg-transparent px-0.5 xl:w-1/3 text-sm w-1/3"
+              name="pronouns"
+              placeholder={user_metadata?.pronouns || 'Pronouns'}
             />
           </div>
 

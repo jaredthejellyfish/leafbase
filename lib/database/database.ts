@@ -283,6 +283,7 @@ export interface Database {
           name: string | null
           phone: string | null
           profile_id: string
+          pronouns: string | null
           username: string
         }
         Insert: {
@@ -297,6 +298,7 @@ export interface Database {
           name?: string | null
           phone?: string | null
           profile_id?: string
+          pronouns?: string | null
           username: string
         }
         Update: {
@@ -311,6 +313,7 @@ export interface Database {
           name?: string | null
           phone?: string | null
           profile_id?: string
+          pronouns?: string | null
           username?: string
         }
         Relationships: [

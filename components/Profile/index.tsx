@@ -109,7 +109,6 @@ const Profile = (props: Props) => {
         props.username !== user.username ? (
           <FriendRequestButton
             from={props.friendRequest?.from || session.user.id}
-            // @ts-expect-error -- conditional typing broken here
             to={props.friendRequest?.to || user.id}
             username={user.username}
             pending={props.friendRequest?.pending || false}
@@ -128,9 +127,14 @@ const Profile = (props: Props) => {
           height={80}
         />
       )}
-      <p className={cn('mt-2 text-lg font-bold', !user?.name ? 'mt-0' : '')}>
+      <span className={cn('mt-2 text-lg font-bold', !user?.name ? 'mt-0' : '')}>
         {user?.name}
-      </p>
+        {user?.pronouns && (
+          <span className="ml-1.5 text-sm text-zinc-400">
+            ({user?.pronouns})
+          </span>
+        )}
+      </span>
       {user?.username ? (
         <>
           <span className="flex flex-row items-center gap-1 text-sm text-zinc-300">

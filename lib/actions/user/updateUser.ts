@@ -28,6 +28,9 @@ const UserProfileSchema = z.object({
   language: z
     .string()
     .max(30, { message: 'Language must not exceed 30 characters.' }),
+  pronouns: z
+    .string()
+    .max(30, { message: 'Pronouns must not exceed 30 characters.' }).nullable(),
   birth_date: z.string(),
 });
 
@@ -78,9 +81,13 @@ export async function updateUser(
   const birth_date: string =
     formData.get('birthDate') || session?.user.user_metadata.birthDate;
 
+  const pronouns: string =
+    formData.get('pronouns') || session?.user.user_metadata.pronouns || null;
+
   // validate form data and ensure it is different from current metadata
   try {
     UserProfileSchema.parse({
+      pronouns,
       about,
       name,
       username,
@@ -106,6 +113,7 @@ export async function updateUser(
     location,
     language,
     birth_date,
+    pronouns,
   };
 
   const { data: userMetatdataUpdated, error: updateError } =
@@ -129,6 +137,7 @@ export async function updateUser(
       location,
       language,
       birth_date,
+      pronouns,
     })
     .eq('id', session.user.id)
     .select();

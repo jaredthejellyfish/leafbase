@@ -3,6 +3,7 @@ import type { Database } from '@/lib/database';
 export type DatabaseStrain = Database['public']['Tables']['strains']['Row'];
 
 export type UserMetadataExtended = {
+  id: string;
   about: string;
   birth_date: string;
   comment_notify: boolean;
@@ -13,6 +14,7 @@ export type UserMetadataExtended = {
   location: string;
   name: string;
   phone: string;
+  pronouns: string;
 };
 
 export type Notification = Database['public']['Tables']['notifications']['Row'];

@@ -62,7 +62,7 @@ const StrainCard = ({
       id={id}
       href={`/strains/${strain.slug}`} // <- /strain
       className={cn(
-        'hover:scale-101 relative z-10 mt-4 flex w-full flex-nowrap gap-5 rounded-xl border border-zinc-100 p-5 shadow transition-transform md:max-w-xs md:flex-wrap dark:border-transparent dark:bg-zinc-900',
+        'hover:scale-101 relative z-10 mt-4 flex max-h-[250px] min-h-[250px] w-full min-w-[240px] flex-nowrap gap-5 rounded-xl border border-zinc-100 p-5 shadow transition-transform md:max-h-fit md:min-h-[440px] md:max-w-xs md:flex-wrap dark:border-transparent dark:bg-zinc-900 ',
         className,
       )}
     >
@@ -70,7 +70,7 @@ const StrainCard = ({
         <StrainCardLikeButton liked={liked} id={strain.id} />
       )}
       {strain.nugImage && strain.name && (
-        <div className="flex w-1/2 items-center justify-center rounded-lg border border-zinc-200 dark:border-transparent md:w-full">
+        <div className="flex w-1/2 items-center justify-center rounded-lg border border-zinc-200 md:w-full dark:border-transparent">
           <Image
             style={{ maxHeight: '250px' }}
             className="aspect-square h-full w-full rounded-lg border border-white bg-zinc-300/10 object-contain p-4 dark:border-zinc-800 dark:bg-zinc-950/30 dark:opacity-90"

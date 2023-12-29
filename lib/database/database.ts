@@ -609,6 +609,46 @@ export interface Database {
           image: string
         }[]
       }
+      get_strains_by_preference:
+        | {
+            Args: {
+              liked_strains: string[]
+            }
+            Returns: {
+              id: string
+              name: string
+              distance: number
+            }[]
+          }
+        | {
+            Args: {
+              liked_strains: string[]
+              limit_val: number
+              offset_val: number
+            }
+            Returns: {
+              id: string
+              slug: string
+              name: string
+              subtitle: string
+              category: string
+              phenotype: string
+              averageRating: number
+              shortDescription: string
+              description: string
+              nugImage: string
+              flowerImageSvg: string
+              topTerpene: string
+              thcPercent: number
+              topEffect: string
+              cannabinoids: Json
+              effects: Json
+              terps: Json
+              dispensaryMenuId: string
+              likes_count: number
+              distance: number
+            }[]
+          }
       ivfflathandler: {
         Args: {
           "": unknown

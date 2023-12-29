@@ -71,12 +71,11 @@ const DropdownMenu = (props: Props) => {
     >
       {!matches && <DropdownSearchbar />}
       {paths.map((path, i) => (
-        <>
+        <div key={path.name}>
           <motion.div
             variants={variants.children}
             animate={isOpen ? 'open' : 'closed'}
             initial="closed"
-            key={i}
             className="hover:background-slate-200 flex h-10 w-full cursor-pointer items-center justify-start py-5 pl-3.5 text-base font-medium transition-colors dark:hover:bg-zinc-800 sm:text-lg md:pl-10"
           >
             <Link
@@ -92,7 +91,7 @@ const DropdownMenu = (props: Props) => {
           {i !== paths.length - 1 && (
             <Separator className="rounded-xl bg-zinc-700" />
           )}
-        </>
+        </div>
       ))}
     </motion.div>
   );

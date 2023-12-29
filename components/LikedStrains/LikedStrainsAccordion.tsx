@@ -73,10 +73,10 @@ function LikedStrainsAccordion(props: Props) {
           }}
           className="mt-1 flex w-full flex-row items-center justify-center gap-2 font-semibold"
         >
+          {isOpen ? 'Show less' : 'Show all'}
           <motion.div animate={{ rotate: isOpen ? 180 : 0 }}>
             <ChevronDownIcon className="h-4 w-4" />
           </motion.div>
-          {isOpen ? 'Show less' : 'Show all'}
         </button>
       ) : null}
     </>

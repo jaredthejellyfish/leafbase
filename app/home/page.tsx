@@ -1,14 +1,13 @@
+import ForYou from '@/components/ForYou';
 import UnderConstruction from '@/components/UnderConstruction';
 
 import React from 'react';
 
-function HomePage() {
+export default function HomePage() {
   return (
     <main>
       <UnderConstruction>HOME PAGE IS UNDER CONSTRUCTION</UnderConstruction>
-      <span>HomePage</span>
+      <ForYou />
     </main>
   );
 }
-
-export default HomePage;

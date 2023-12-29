@@ -8,6 +8,7 @@ import type { Database } from '@/lib/database';
 export async function GET(request: NextRequest) {
   const requestUrl = new URL(request.url);
   const page = Number(requestUrl.searchParams.get('page')) || 0;
+  const limit = Number(requestUrl.searchParams.get('limit')) || 5;
 
   const supabase = createRouteHandlerClient<Database>({
     cookies: () => cookies(),
@@ -39,15 +40,14 @@ export async function GET(request: NextRequest) {
     'get_strains_by_preference',
     {
       liked_strains: flattenedLikedStrains,
-      limit_val: 5,
-      offset_val: page * 5,
+      limit_val: limit,
+      offset_val: page * limit,
     },
   );
 
   if (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
-
 
   return NextResponse.json({ pairings });
 }

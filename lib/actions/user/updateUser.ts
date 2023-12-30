@@ -30,7 +30,8 @@ const UserProfileSchema = z.object({
     .max(30, { message: 'Language must not exceed 30 characters.' }),
   pronouns: z
     .string()
-    .max(30, { message: 'Pronouns must not exceed 30 characters.' }).nullable(),
+    .max(30, { message: 'Pronouns must not exceed 30 characters.' })
+    .nullable(),
   birth_date: z.string(),
 });
 

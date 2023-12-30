@@ -63,7 +63,7 @@ function ForYou() {
           >
             <ChevronLeft size={23} />
           </button>
-          <span className="w-5 text-center font-semibold text-zinc-500 dark:text-zinc-300 select-none">
+          <span className="w-5 select-none text-center font-semibold text-zinc-500 dark:text-zinc-300">
             {page + 1}
           </span>
           <button onClick={() => setPage((page) => page + 1)}>

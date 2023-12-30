@@ -43,7 +43,7 @@ export default async function Landing() {
                 Welcome to Leafbase
               </h1>
 
-              <p className="mx-auto max-w-[700px] text-zinc-500 md:text-xl dark:text-zinc-400">
+              <p className="mx-auto max-w-[700px] text-zinc-500 dark:text-zinc-400 md:text-xl">
                 The most comprehensive database of cannabis{' '}
                 <Link href="/strains" className="text-green-700 underline">
                   strains
@@ -78,7 +78,7 @@ export default async function Landing() {
       </section>
       {!error && strains && (
         <section
-          className="bonrder-transparent border-top-zinc-500 relative w-full border bg-white py-8 sm:snap-start dark:bg-zinc-900/50"
+          className="bonrder-transparent border-top-zinc-500 relative w-full border bg-white py-8 dark:bg-zinc-900/50 sm:snap-start"
           id="top-strains"
         >
           <div className="h-full w-full ">
@@ -115,7 +115,7 @@ export default async function Landing() {
           <div id="vertical-1" className="w-full xl:w-1/2">
             <div className="bg-white/60 p-3 dark:bg-zinc-950/60">
               <h2 className="text-3xl font-bold">About Leafbase</h2>
-              <p className="mt-1 text-zinc-500 sm:w-3/4 dark:text-zinc-400">
+              <p className="mt-1 text-zinc-500 dark:text-zinc-400 sm:w-3/4">
                 Welcome to Leafbase, your premier destination for delving into
                 the diverse realm of cannabis strains. We pride ourselves on
                 being more than a database; we&apos;re your personalized guide
@@ -134,7 +134,7 @@ export default async function Landing() {
             id="vertical-2"
             className="flex w-full items-center justify-center xl:w-1/2"
           >
-            <div className="flex max-w-2xl flex-col rounded-xl border border-zinc-300 bg-white px-5 py-4 shadow-md sm:flex-row dark:border-transparent dark:bg-zinc-900">
+            <div className="flex max-w-2xl flex-col rounded-xl border border-zinc-300 bg-white px-5 py-4 shadow-md dark:border-transparent dark:bg-zinc-900 sm:flex-row">
               <Image
                 src="https://avatars.githubusercontent.com/u/50416421?v=4"
                 alt="Leafbase Logo"

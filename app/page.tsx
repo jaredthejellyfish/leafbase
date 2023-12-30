@@ -31,10 +31,7 @@ export default async function Landing() {
 
   return (
     <main className="flex-1">
-      <section
-        className={'flex h-screen-bar w-full items-center justify-center'}
-        style={{ scrollSnapAlign: 'start', scrollMarginTop: '6rem' }}
-      >
+      <section className="flex h-screen-bar w-full scroll-mt-[6em] items-center justify-center sm:snap-start">
         <ClientParticles
           id="tsparticles1"
           className="absolute left-0 top-16 -z-10 h-[93%] w-full"
@@ -46,7 +43,7 @@ export default async function Landing() {
                 Welcome to Leafbase
               </h1>
 
-              <p className="mx-auto max-w-[700px] text-zinc-500 dark:text-zinc-400 md:text-xl">
+              <p className="mx-auto max-w-[700px] text-zinc-500 md:text-xl dark:text-zinc-400">
                 The most comprehensive database of cannabis{' '}
                 <Link href="/strains" className="text-green-700 underline">
                   strains
@@ -81,8 +78,7 @@ export default async function Landing() {
       </section>
       {!error && strains && (
         <section
-          style={{ scrollSnapAlign: 'start' }}
-          className="bonrder-transparent border-top-zinc-500 relative w-full border bg-white py-8 dark:bg-zinc-900/50"
+          className="bonrder-transparent border-top-zinc-500 relative w-full border bg-white py-8 sm:snap-start dark:bg-zinc-900/50"
           id="top-strains"
         >
           <div className="h-full w-full ">
@@ -104,10 +100,7 @@ export default async function Landing() {
           </div>
         </section>
       )}
-      <section
-        style={{ scrollSnapAlign: 'start' }}
-        className="relative flex h-screen w-full items-center justify-center"
-      >
+      <section className="relative flex h-screen w-full items-center justify-center sm:snap-start">
         <ClientParticles
           id="tsparticles2"
           className="absolute -z-10 h-screen"
@@ -122,7 +115,7 @@ export default async function Landing() {
           <div id="vertical-1" className="w-full xl:w-1/2">
             <div className="bg-white/60 p-3 dark:bg-zinc-950/60">
               <h2 className="text-3xl font-bold">About Leafbase</h2>
-              <p className="mt-1 text-zinc-500 dark:text-zinc-400 sm:w-3/4">
+              <p className="mt-1 text-zinc-500 sm:w-3/4 dark:text-zinc-400">
                 Welcome to Leafbase, your premier destination for delving into
                 the diverse realm of cannabis strains. We pride ourselves on
                 being more than a database; we&apos;re your personalized guide
@@ -141,7 +134,7 @@ export default async function Landing() {
             id="vertical-2"
             className="flex w-full items-center justify-center xl:w-1/2"
           >
-            <div className="flex max-w-2xl flex-col rounded-xl border border-zinc-300 bg-white px-5 py-4 shadow-md dark:border-transparent dark:bg-zinc-900 sm:flex-row">
+            <div className="flex max-w-2xl flex-col rounded-xl border border-zinc-300 bg-white px-5 py-4 shadow-md sm:flex-row dark:border-transparent dark:bg-zinc-900">
               <Image
                 src="https://avatars.githubusercontent.com/u/50416421?v=4"
                 alt="Leafbase Logo"

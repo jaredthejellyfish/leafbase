@@ -13,6 +13,7 @@ import UpdateProfilePhotoSkeleton from '@/components/UpdateProfilePhoto/skeleton
 import { updateUser } from '@/lib/actions/user/updateUser';
 import type { UserMetadataExtended } from '@/lib/database/database_types';
 
+import LoginConnections from '../LoginConnections';
 import TextAreaAuto from '../TextAreaAuto';
 import { toast } from '../ui/use-toast';
 
@@ -21,6 +22,7 @@ import React, { useEffect } from 'react';
 type Props = {
   user_metadata: UserMetadataExtended;
   session: Session;
+  providers: string[];
 };
 
 const UpdateProfilePhoto = dynamic(
@@ -34,7 +36,7 @@ const UpdateProfilePhoto = dynamic(
 const LanguageSelect = dynamic(() => import('@/components/LanguageSelect'));
 const DatePicker = dynamic(() => import('@/components/DatePicker'));
 
-function EditProfileForm({ user_metadata, session }: Props) {
+function EditProfileForm({ user_metadata, session, providers }: Props) {
   // @ts-expect-error - useFormState is not typed properly yet as it is a React canary feature
   const [state, formAction] = useFormState(updateUser, {
     error: null,
@@ -130,6 +132,7 @@ function EditProfileForm({ user_metadata, session }: Props) {
             />
           </div>
         </div>
+        <LoginConnections providers={providers} />
       </div>
       <div id="vertical 2" className="flex flex-col gap-4 lg:w-2/3">
         <div className="flex w-full flex-col rounded-xl p-7 shadow-md dark:bg-zinc-900">

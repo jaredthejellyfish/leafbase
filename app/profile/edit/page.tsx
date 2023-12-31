@@ -1,3 +1,5 @@
+import type { UserAppMetadata } from '@supabase/supabase-js';
+
 import EditProfileForm from '@/components/EditProfileForm';
 import NavBreadcrumbs from '@/components/NavBreadcrumbs';
 
@@ -10,7 +12,8 @@ export const metadata = {
 };
 
 export default async function ProfileEdit() {
-  const { user_metadata, session } = await getServerUserMetadata();
+  const { user_metadata, session, app_metadata } =
+    await getServerUserMetadata();
 
   if (!session) {
     return null;
@@ -24,7 +27,11 @@ export default async function ProfileEdit() {
           { name: 'Edit', url: '/profile/edit' },
         ]}
       />
-      <EditProfileForm user_metadata={user_metadata} session={session} />
+      <EditProfileForm
+        user_metadata={user_metadata}
+        session={session}
+        providers={(app_metadata as UserAppMetadata).providers}
+      />
     </div>
   );
 }

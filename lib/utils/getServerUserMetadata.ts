@@ -28,6 +28,7 @@ export async function getServerUserMetadata(session?: boolean) {
     return {
       session: userSession as Session,
       user_metadata: (user?.user_metadata as UserMetadataExtended) || null,
+      app_metadata: user?.app_metadata || null,
       id: (user?.id as string) || (sessionData.session?.user.id as string),
     };
   }

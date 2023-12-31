@@ -24,6 +24,11 @@ const config: Config = {
         'screen-bar': 'calc(93vh)',
       },
       colors: {
+        discord: '#5865F2',
+        twitch: '#6441a5',
+        github: '#333',
+        google: '#DB4437',
+
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -94,7 +99,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
 };
 
 export default config;

@@ -118,7 +118,7 @@ const StrainSoma = (props: Props) => {
 
   return (
     <div
-      className="flex flex-col gap-2 rounded border border-zinc-200 p-2 px-3 dark:border-zinc-600 dark:bg-zinc-800 md:mt-7"
+      className="flex flex-col gap-2 rounded border border-zinc-200 p-2 px-3 md:mt-7 dark:border-zinc-600 dark:bg-zinc-800"
       id="strain-soma"
     >
       <h3 className="text-sm font-bold uppercase">Strain soma</h3>

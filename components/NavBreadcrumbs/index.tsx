@@ -55,7 +55,7 @@ const NavBreadcrumbs = (props: Props) => {
                 </svg>
                 <Link
                   href={url.url as Route}
-                  className="ml-1 text-lg font-medium text-gray-700 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-400 md:ml-2"
+                  className="ml-1 text-lg font-medium text-gray-700 hover:text-green-600 md:ml-2 dark:text-gray-400 dark:hover:text-green-400"
                 >
                   {url.name}
                 </Link>

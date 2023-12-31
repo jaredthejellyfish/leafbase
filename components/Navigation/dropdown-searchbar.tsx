@@ -22,7 +22,7 @@ function DropdownSearchbar() {
 
   return (
     <>
-      <div className="mb-2 flex flex-row items-center gap-3 rounded border border-zinc-400 bg-white px-10 py-1.5 pl-4 pr-5 text-black dark:border-zinc-700 dark:bg-zinc-700/60 md:hidden">
+      <div className="mb-2 flex flex-row items-center gap-3 rounded border border-zinc-400 bg-white px-10 py-1.5 pl-4 pr-5 text-black md:hidden dark:border-zinc-700 dark:bg-zinc-700/60">
         <input
           type="text"
           value={query}
@@ -44,7 +44,7 @@ function DropdownSearchbar() {
       </div>
       {query.length > 1 && (
         <div
-          className="top-13 absolute z-50 flex w-full max-w-[93%] flex-col gap-y-2.5 rounded border border-solid border-zinc-600 bg-white p-3 dark:bg-zinc-800 xl:max-w-[320px]"
+          className="top-13 absolute z-50 flex w-full max-w-[93%] flex-col gap-y-2.5 rounded border border-solid border-zinc-600 bg-white p-3 xl:max-w-[320px] dark:bg-zinc-800"
           onClick={() => setQuery('')}
           ref={ref}
         >

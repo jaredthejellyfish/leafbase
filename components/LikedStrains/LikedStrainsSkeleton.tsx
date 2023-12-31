@@ -22,7 +22,7 @@ const LikedStrainsSkeleton = () => (
       {Array.from({ length: 10 }, (_, index) => (
         <div
           key={index}
-          className="flex min-w-[15%] grow scale-95 flex-col gap-2 rounded border p-2 shadow dark:border-zinc-600 dark:bg-zinc-800 sm:min-w-[12%] md:min-w-[calc(33.333%-1em)] lg:min-w-[calc(25%-1em)] xl:min-w-[calc(20%-1em)]"
+          className="flex min-w-[15%] grow scale-95 flex-col gap-2 rounded border p-2 shadow sm:min-w-[12%] md:min-w-[calc(33.333%-1em)] lg:min-w-[calc(25%-1em)] xl:min-w-[calc(20%-1em)] dark:border-zinc-600 dark:bg-zinc-800"
         >
           <div className="flex aspect-square h-24 max-h-24 w-full items-center justify-center rounded-md">
             <div className="h-24 w-24 animate-pulse rounded-md bg-gray-300 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400" />

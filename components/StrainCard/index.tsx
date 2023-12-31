@@ -70,7 +70,7 @@ const StrainCard = ({
         <StrainCardLikeButton liked={liked} id={strain.id} />
       )}
       {strain.nugImage && strain.name && (
-        <div className="flex w-1/2 items-center justify-center rounded-lg border border-zinc-200 dark:border-transparent md:w-full">
+        <div className="flex w-1/2 items-center justify-center rounded-lg border border-zinc-200 md:w-full dark:border-transparent">
           <Image
             style={{ maxHeight: '250px' }}
             className="aspect-square h-full w-full rounded-lg border border-white bg-zinc-300/10 object-contain p-4 dark:border-zinc-800 dark:bg-zinc-950/30 dark:opacity-90"

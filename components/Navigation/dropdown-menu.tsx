@@ -64,7 +64,7 @@ const DropdownMenu = (props: Props) => {
   const matches = useMediaQuery('(min-width: 768px)');
   return (
     <motion.div
-      className="absolute left-0 top-[56px] z-50 w-screen origin-top px-4 py-2 dark:bg-zinc-800/100 sm:top-16 sm:px-5 sm:py-3"
+      className="absolute left-0 top-[56px] z-50 w-screen origin-top px-4 py-2 sm:top-16 sm:px-5 sm:py-3 dark:bg-zinc-800/100"
       variants={variants.container}
       animate={isOpen ? 'open' : 'closed'}
       initial="closed"
@@ -76,7 +76,7 @@ const DropdownMenu = (props: Props) => {
             variants={variants.children}
             animate={isOpen ? 'open' : 'closed'}
             initial="closed"
-            className="hover:background-slate-200 flex h-10 w-full cursor-pointer items-center justify-start py-5 pl-3.5 text-base font-medium transition-colors dark:hover:bg-zinc-800 sm:text-lg md:pl-10"
+            className="hover:background-slate-200 flex h-10 w-full cursor-pointer items-center justify-start py-5 pl-3.5 text-base font-medium transition-colors sm:text-lg md:pl-10 dark:hover:bg-zinc-800"
           >
             <Link
               onClick={() => setOpen(!isOpen)}

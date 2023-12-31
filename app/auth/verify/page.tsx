@@ -10,8 +10,8 @@ import React from 'react';
 
 const AuthVerify = () => {
   return (
-    <main className="flex items-center justify-center bg-zinc-50/50 px-4 py-64 dark:bg-zinc-950 sm:px-0">
-      <div className="flex w-full flex-col items-center justify-center gap-3 rounded-lg px-8 py-10 shadow-lg dark:bg-zinc-900 md:w-96">
+    <main className="flex items-center justify-center bg-zinc-50/50 px-4 py-64 sm:px-0 dark:bg-zinc-950">
+      <div className="flex w-full flex-col items-center justify-center gap-3 rounded-lg px-8 py-10 shadow-lg md:w-96 dark:bg-zinc-900">
         <h1 className="mb-1 text-2xl font-medium dark:text-white">
           Check your email!
         </h1>

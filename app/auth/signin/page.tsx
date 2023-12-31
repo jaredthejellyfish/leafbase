@@ -10,8 +10,8 @@ import React from 'react';
 
 export default function AuthSignIn() {
   return (
-    <main className="flex h-[85vh] items-center justify-center bg-zinc-50/50 px-4 dark:bg-zinc-950 sm:h-screen-bar sm:px-0">
-      <div className="mx-auto max-w-sm space-y-3 rounded-lg bg-white p-5 shadow-xl dark:bg-zinc-900 sm:p-8">
+    <main className="flex h-[85vh] items-center justify-center bg-zinc-50/50 px-4 sm:h-screen-bar sm:px-0 dark:bg-zinc-950">
+      <div className="mx-auto max-w-sm space-y-3 rounded-lg bg-white p-5 shadow-xl sm:p-8 dark:bg-zinc-900">
         <div className="space-y-2 text-center">
           <h2 className="mt-6 text-center text-3xl font-extrabold text-zinc-900 dark:text-white">
             Log in

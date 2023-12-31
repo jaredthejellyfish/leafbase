@@ -97,13 +97,13 @@ function NotifcationMenu({
           variant="outline"
           size="icon"
           id="theme-toggle"
-          className="h-[1.4rem] w-[1.4rem] border-transparent bg-transparent hover:bg-gray-300 dark:hover:bg-zinc-700 sm:h-[1.6rem] sm:w-[1.6rem]"
+          className="h-[1.4rem] w-[1.4rem] border-transparent bg-transparent hover:bg-gray-300 sm:h-[1.6rem] sm:w-[1.6rem] dark:hover:bg-zinc-700"
         >
           <div className="relative">
             {notifications.length > 0 && (
               <div className="absolute -top-0.5 right-0 z-10 h-2 w-2 animate-pulse rounded-full bg-red-500" />
             )}
-            <Bell className="z-0 h-[1.15rem] w-[1.15rem] text-black dark:text-white sm:h-[1.3rem] sm:w-[1.3rem]" />
+            <Bell className="z-0 h-[1.15rem] w-[1.15rem] text-black sm:h-[1.3rem] sm:w-[1.3rem] dark:text-white" />
           </div>
           <span className="sr-only">Notifications</span>
         </Button>

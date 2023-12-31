@@ -9,7 +9,7 @@
 
 > The most comprehensive cannabis strain library on the web.
 
-### 🏠 [Homepage](https://leafbase.xyz/strains)
+### 🏠 [Homepage](https://leafbase.xyz)
 
 ## Install
 

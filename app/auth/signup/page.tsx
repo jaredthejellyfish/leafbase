@@ -9,6 +9,10 @@ import { signUpUser } from '@/lib/actions/auth/signUpUser';
 
 import React from 'react';
 
+export const metadata = {
+  title: 'Sign up - Leafbase',
+};
+
 export default function AuthSignUp() {
   return (
     <main className="flex h-[85vh] items-center justify-center bg-zinc-50/50 px-4 sm:h-screen-bar sm:px-0 dark:bg-zinc-950">

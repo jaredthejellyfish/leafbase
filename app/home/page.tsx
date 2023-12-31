@@ -3,6 +3,10 @@ import UnderConstruction from '@/components/UnderConstruction';
 
 import React from 'react';
 
+export const metadata = {
+  title: 'Home - Leafbase',
+};
+
 export default function HomePage() {
   return (
     <main>

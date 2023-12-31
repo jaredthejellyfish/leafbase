@@ -2,6 +2,10 @@ import UnderConstruction from '@/components/UnderConstruction';
 
 import React from 'react';
 
+export const metadata = {
+  title: 'Dispensaries - Leafbase',
+};
+
 function DispensariesPage() {
   return (
     <main>

@@ -19,6 +19,10 @@ const ClientParticles = dynamic(() => import('@/components/ClientParticles'), {
   ssr: false,
 });
 
+export const metadata = {
+  title: 'Leafbase',
+};
+
 export default async function Landing() {
   const supabase = createClientComponentClient<Database>();
 

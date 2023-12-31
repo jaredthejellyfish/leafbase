@@ -8,6 +8,10 @@ import protonmailLogo from '@/public/svg/protonmail-logo.svg';
 
 import React from 'react';
 
+export const metadata = {
+  title: 'Email - Leafbase',
+};
+
 const AuthVerify = () => {
   return (
     <main className="flex items-center justify-center bg-zinc-50/50 px-4 py-64 sm:px-0 dark:bg-zinc-950">

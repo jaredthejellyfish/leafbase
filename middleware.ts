@@ -2,31 +2,28 @@ import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
-const unauthorizedRedirects = [
+const authRedirects = [
   {
     matcher: '/profile',
     redirect: '/auth/signin',
+    isAuth: false,
   },
   {
     matcher: '/profile/(.*)',
     redirect: '/auth/signin',
+    isAuth: false,
   },
   {
     matcher: '/home',
     redirect: '/auth/signin',
+    isAuth: false,
+  },
+  {
+    matcher: '/',
+    redirect: '/home',
+    isAuth: true,
   },
 ];
-
-export const config = {
-  matcher: [
-    '/profile',
-    '/profile/edit',
-    '/profile/(.*)',
-    '/',
-    '/strain',
-    '/home',
-  ],
-};
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
@@ -45,14 +42,15 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(callbackUrl);
   }
 
-  const authPathMatchers = unauthorizedRedirects.map((r) => r.matcher);
-
-  for (const matcher of authPathMatchers) {
-    if (new RegExp(`^${matcher}$`).test(currentUrl)) {
-      const redirect = unauthorizedRedirects.find((r) =>
-        new RegExp(`^${r.matcher}$`).test(matcher),
+  for (const path of authRedirects) {
+    if (new RegExp(`^${path.matcher}$`).test(currentUrl)) {
+      const redirect = authRedirects.find((r) =>
+        new RegExp(`^${r.matcher}$`).test(path.matcher),
       );
-      if (redirect && !session) {
+      if (redirect && !session && !redirect.isAuth) {
+        return NextResponse.redirect(new URL(redirect.redirect, req.nextUrl));
+      }
+      if (redirect && session && redirect.isAuth) {
         return NextResponse.redirect(new URL(redirect.redirect, req.nextUrl));
       }
     }
@@ -60,3 +58,14 @@ export async function middleware(req: NextRequest) {
 
   return NextResponse.next();
 }
+
+export const config = {
+  matcher: [
+    '/profile',
+    '/profile/edit',
+    '/profile/(.*)',
+    '/',
+    '/strain',
+    '/home',
+  ],
+};

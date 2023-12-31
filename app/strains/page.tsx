@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { unstable_cache } from 'next/cache';
 import dynamic from 'next/dynamic';
 import { ErrorBoundary } from 'react-error-boundary';
 
@@ -32,6 +33,12 @@ const StrainCardLoader = dynamic(
   },
 );
 
+const getCachedServerPaginatedStrains = unstable_cache(
+  async ({ filter, perPage }: { filter: string; perPage: number }) =>
+    getServerPaginatedStrains({ filter, perPage }),
+  ['server-paginated-strains'],
+);
+
 export default async function Strains(request: {
   searchParams: { filter?: string };
 }) {
@@ -39,8 +46,8 @@ export default async function Strains(request: {
 
   const perPage = 12;
 
-  const { strains, count, nextPage } = await getServerPaginatedStrains({
-    filter,
+  const { strains, count, nextPage } = await getCachedServerPaginatedStrains({
+    filter: filter || 're',
     perPage,
   });
 

@@ -1,5 +1,7 @@
+import type { SupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import type { Metadata } from 'next';
+import { unstable_cache } from 'next/cache';
 import dynamic from 'next/dynamic';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
@@ -57,21 +59,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   };
 }
 
-export default async function StrainSlug(props: Props) {
-  const { slug } = props.params;
-
-  const cookieStore = cookies();
-  const supabase = createServerComponentClient<Database>({
-    cookies: () => cookieStore,
-  });
-
-  const { data: strainLikes } = await getServerLikedStrains();
-  const likes = strainLikes?.map((strainLike) => strainLike.strain_id.id);
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-
+async function getServerStrain(
+  supabase: SupabaseClient<Database>,
+  slug: string,
+) {
   const { data: strain } = await supabase
     .from('strains')
     .select(
@@ -80,10 +71,40 @@ export default async function StrainSlug(props: Props) {
     .eq('slug', slug)
     .returns<StrainWithComments[]>()
     .maybeSingle();
+  return strain;
+}
+
+const getCachedServerStrain = unstable_cache(
+  async ({
+    supabase,
+    slug,
+  }: {
+    supabase: SupabaseClient<Database>;
+    slug: string;
+  }) => getServerStrain(supabase, slug),
+  ['strain'],
+);
+
+export default async function StrainSlug(props: Props) {
+  const { slug } = props.params;
+
+  const cookieStore = cookies();
+  const supabase = createServerComponentClient<Database>({
+    cookies: () => cookieStore,
+  });
+
+  const strain = await getCachedServerStrain({ supabase, slug });
 
   if (!strain) {
     return notFound();
   }
+
+  const { data: strainLikes } = await getServerLikedStrains();
+  const likes = strainLikes?.map((strainLike) => strainLike.strain_id.id);
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
   return (
     <main className="justify-center px-5 py-3 md:px-16">

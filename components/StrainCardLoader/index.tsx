@@ -1,19 +1,15 @@
 'use client';
 
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { debounce } from 'lodash';
 import { useIntersectionObserver } from 'usehooks-ts';
 
-import type { Database } from '@/lib/database';
 import type { Strain } from '@/lib/types';
 
 import StrainCard from '../StrainCard';
 import { Button } from '../ui/button';
 
 import React, { useEffect, useRef, useState } from 'react';
-
-const supabase = createClientComponentClient<Database>();
 
 type Props = {
   initialData?: Strain[];
@@ -24,38 +20,16 @@ type Props = {
   likes?: string[];
 };
 
+const fetchStrains = async ({ pageParam }: { pageParam: number }) => {
+  const data = await fetch(`/api/strains?page=${pageParam}`, {
+    next: { revalidate: 3600 },
+  });
+  const json = (await data.json()) as { strains: Strain[]; page: number };
+
+  return json;
+};
+
 const StrainCardLoader = (props: Props) => {
-  const fetchStrains = async ({
-    filter = props.filter,
-    pageParam = 0,
-    perPage = props.perPage || 6,
-  }) => {
-    const offset = pageParam * perPage;
-
-    const nameFilter = filter === 'za' ? false : true;
-
-    const orderByLikes = filter && filter !== 're' ? false : true;
-
-    let query = supabase
-      .from('strains')
-      .select('*', { count: 'estimated', head: false });
-
-    if (orderByLikes) {
-      query = query.order('likes_count', { ascending: false });
-    }
-
-    query = query
-      .order('name', { ascending: nameFilter })
-      .range(offset, offset + perPage - 1);
-
-    const { data: strains } = await query.returns<Strain[]>();
-
-    return {
-      strains,
-      page: pageParam,
-    };
-  };
-
   const loadMoreRef = useRef<HTMLButtonElement>(null);
   const entry = useIntersectionObserver(loadMoreRef, {});
   const shouldFetchMore = !!entry?.isIntersecting;

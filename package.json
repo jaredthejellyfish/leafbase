@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "bunx eslint . --fix",
-    "prod": "bun run dbtypes && bunx prettier . --write && tsc && bunx eslint . --fix && vercel --prod",
+    "prod": "bun run dbtypes && bunx prettier . --write && tsc && bunx eslint . --fix && vercel --prod && echo -e \"\nVercel build finished at $(date +\"%H:%M:%S\")\n\"",
     "dbtypes": "supabase gen types typescript --project-id euwnyenhzhztqztezjdn > ./lib/database/database.ts",
     "pretty": "bunx prettier . --write",
     "cypress:open": "cypress open",

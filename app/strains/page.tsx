@@ -37,6 +37,9 @@ const getCachedServerPaginatedStrains = unstable_cache(
   async ({ filter, perPage }: { filter: string; perPage: number }) =>
     getServerPaginatedStrains({ filter, perPage }),
   ['server-paginated-strains'],
+  {
+    revalidate: 3600,
+  },
 );
 
 export default async function Strains(request: {

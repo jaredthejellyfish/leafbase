@@ -25,23 +25,29 @@ export async function GET(req: NextRequest) {
       cookies: () => cookies(),
     });
 
-    const getData = unstable_cache(async () => {
-      let query = supabase
-        .from('strains')
-        .select('*', { count: 'estimated', head: false });
+    const getData = unstable_cache(
+      async () => {
+        let query = supabase
+          .from('strains')
+          .select('*', { count: 'estimated', head: false });
 
-      if (orderByLikes) {
-        query = query.order('likes_count', { ascending: false });
-      }
+        if (orderByLikes) {
+          query = query.order('likes_count', { ascending: false });
+        }
 
-      query = query
-        .order('name', { ascending: nameFilter })
-        .range(offset, offset + perPage - 1);
+        query = query
+          .order('name', { ascending: nameFilter })
+          .range(offset, offset + perPage - 1);
 
-      const { data: strains } = await query.returns<Strain[]>();
+        const { data: strains } = await query.returns<Strain[]>();
 
-      return strains;
-    }, ['dynamic-pages', filter, pageParam.toString()]);
+        return strains;
+      },
+      ['dynamic-pages', filter, pageParam.toString()],
+      {
+        revalidate: 3600,
+      },
+    );
 
     const strains = await getData();
 

@@ -74,19 +74,22 @@ async function getServerStrain(
   return strain;
 }
 
-const getCachedServerStrain = unstable_cache(
-  async ({
-    supabase,
-    slug,
-  }: {
-    supabase: SupabaseClient<Database>;
-    slug: string;
-  }) => getServerStrain(supabase, slug),
-  ['strain'],
-);
-
 export default async function StrainSlug(props: Props) {
   const { slug } = props.params;
+
+  const getCachedServerStrain = unstable_cache(
+    async ({
+      supabase,
+      slug,
+    }: {
+      supabase: SupabaseClient<Database>;
+      slug: string;
+    }) => getServerStrain(supabase, slug),
+    ['strain', slug],
+    {
+      revalidate: 3600,
+    },
+  );
 
   const cookieStore = cookies();
   const supabase = createServerComponentClient<Database>({

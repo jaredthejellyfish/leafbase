@@ -4,7 +4,7 @@ import Modal from '@/components/Modal';
 
 import React, { useState } from 'react';
 
-function WriteReview() {
+export default function NewReview() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -17,4 +17,3 @@ function WriteReview() {
   );
 }
 
-export default WriteReview;

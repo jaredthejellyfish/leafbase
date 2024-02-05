@@ -2,31 +2,31 @@
   "folders": [
     {
       "name": "api",
-      "path": "app/api"
+      "path": "app/api",
     },
     {
       "name": "app",
-      "path": "app"
+      "path": "app",
     },
     {
       "name": "components",
-      "path": "components"
+      "path": "components",
     },
     {
       "name": "lib",
-      "path": "lib"
+      "path": "lib",
     },
     {
       "name": "cypress",
-      "path": "cypress"
+      "path": "cypress",
     },
     {
       "name": "root",
-      "path": "."
-    }
+      "path": ".",
+    },
   ],
   "settings": {
-    "git-blame.gitWebUrl": ""
+    "git-blame.gitWebUrl": "",
     // Workspace-specific settings go here
-  }
+  },
 }

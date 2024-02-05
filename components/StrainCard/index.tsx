@@ -62,7 +62,7 @@ const StrainCard = ({
       id={id}
       href={`/strains/${strain.slug}`} // <- /strain
       className={cn(
-        'hover:scale-101 relative z-10 mt-4 flex max-h-[250px] min-h-[250px] w-full min-w-[240px] flex-nowrap gap-5 rounded-xl border border-zinc-100 p-5 shadow transition-transform md:max-h-fit md:min-h-[440px] md:max-w-xs md:flex-wrap dark:border-transparent dark:bg-zinc-900 ',
+        'hover:scale-101 relative z-10 mt-4 flex max-h-[250px] min-h-[250px] w-full min-w-[240px] flex-nowrap gap-5 rounded-xl border border-zinc-100 p-5 shadow transition-transform dark:border-transparent dark:bg-zinc-900 md:max-h-fit md:min-h-[440px] md:max-w-xs md:flex-wrap ',
         className,
       )}
     >

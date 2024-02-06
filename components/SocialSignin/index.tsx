@@ -30,7 +30,7 @@ function SocialSignin() {
   return (
     <div className="flex justify-center space-x-4">
       <Button
-        className="flex aspect-square h-14 w-14 items-center justify-center border border-zinc-400 text-white dark:border-zinc-600 dark:bg-zinc-700"
+        className="flex aspect-square size-14 items-center justify-center border border-zinc-400 text-white dark:border-zinc-600 dark:bg-zinc-700"
         variant="outline"
         onClick={(e) => signInWithProvider(e, 'google')}
       >
@@ -43,7 +43,7 @@ function SocialSignin() {
         />
       </Button>
       <Button
-        className="flex h-14 w-14 items-center justify-center border border-zinc-400 text-white dark:border-zinc-600 dark:bg-zinc-700"
+        className="flex size-14 items-center justify-center border border-zinc-400 text-white dark:border-zinc-600 dark:bg-zinc-700"
         variant="outline"
         onClick={(e) => signInWithProvider(e, 'github')}
       >
@@ -57,12 +57,12 @@ function SocialSignin() {
         />
       </Button>
       <Button
-        className="flex h-14 w-14 items-center justify-center border border-zinc-400 text-white dark:border-zinc-600 dark:bg-zinc-700"
+        className="flex size-14 items-center justify-center border border-zinc-400 text-white dark:border-zinc-600 dark:bg-zinc-700"
         variant="outline"
         onClick={(e) => signInWithProvider(e, 'twitch')}
       >
         <svg
-          className=" h-5 w-5 text-purple-500"
+          className=" size-5 text-purple-500"
           fill="none"
           height="24"
           stroke="currentColor"
@@ -77,7 +77,7 @@ function SocialSignin() {
         </svg>
       </Button>
       <Button
-        className="flex h-14 w-14 items-center justify-center border border-zinc-400 text-white dark:border-zinc-600 dark:bg-zinc-700"
+        className="flex size-14 items-center justify-center border border-zinc-400 text-white dark:border-zinc-600 dark:bg-zinc-700"
         variant="outline"
         onClick={(e) => signInWithProvider(e, 'discord')}
       >

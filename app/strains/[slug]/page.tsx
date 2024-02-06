@@ -197,7 +197,7 @@ export default async function StrainSlug(props: Props) {
                     backgroundColor:
                       effects[strain.topEffect || 'rgb(70, 130, 180)'],
                   }}
-                  className="h-2.5 w-2.5 rounded-full"
+                  className="size-2.5 rounded-full"
                 ></div>
                 <p className="p-0">{strain.topEffect}</p>
               </span>
@@ -207,7 +207,7 @@ export default async function StrainSlug(props: Props) {
                     backgroundColor:
                       terpenes[strain.topTerpene || 'rgb(70, 130, 180)'],
                   }}
-                  className="h-2.5 w-2.5 rounded-full"
+                  className="size-2.5 rounded-full"
                 ></div>
                 <p className="p-0">{strain.topTerpene}</p>
               </span>

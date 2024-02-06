@@ -107,13 +107,13 @@ function GraphIcon({
 }) {
   if (isFetching) {
     return (
-      <TbGraphFilled className="text-gradient-to-br h-6 w-6 animate-pulse from-gray-200 via-green-300 to-green-700" />
+      <TbGraphFilled className="text-gradient-to-br size-6 animate-pulse from-gray-200 via-green-300 to-green-700" />
     );
   }
   if (isError) {
-    return <TbGraphOff className="h-6 w-6 text-red-500" />;
+    return <TbGraphOff className="size-6 text-red-500" />;
   }
-  return <TbGraphFilled className="h-6 w-6" />;
+  return <TbGraphFilled className="size-6" />;
 }
 
 export default StrainSimilarityModal;

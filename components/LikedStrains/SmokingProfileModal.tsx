@@ -24,7 +24,7 @@ function GraphSkeleton() {
     <div className="flex flex-col flex-wrap items-center">
       <div
         className={
-          'mb-2 ml-2 h-60 w-60 animate-pulse rounded-full bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 sm:h-96 sm:w-96'
+          'mb-2 ml-2 size-60 animate-pulse rounded-full bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 sm:size-96'
         }
       ></div>
     </div>
@@ -89,20 +89,20 @@ export default function SmokingProfileModal() {
   return (
     <>
       <ErrorBoundary
-        fallback={<RiPieChart2Fill className="h-5 w-5 text-red-500" />}
+        fallback={<RiPieChart2Fill className="size-5 text-red-500" />}
       >
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger className="flex items-center justify-center">
               <div onClick={() => setOpen(true)}>
                 {!isFetching && !isError && (
-                  <RiPieChart2Fill className="h-5 w-5" />
+                  <RiPieChart2Fill className="size-5" />
                 )}
                 {isFetching && (
-                  <RiPieChart2Fill className="text-gradient-to-br h-5 w-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
+                  <RiPieChart2Fill className="text-gradient-to-br size-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
                 )}
                 {isError && (
-                  <RiPieChart2Fill className="h-5 w-5 text-red-500" />
+                  <RiPieChart2Fill className="size-5 text-red-500" />
                 )}
               </div>
             </TooltipTrigger>
@@ -114,13 +114,13 @@ export default function SmokingProfileModal() {
         <Modal open={open} setOpen={setOpen} title={'Smoking Profile'}>
           <div className="mb-1 flex flex-row items-center justify-between px-3">
             <button onClick={handleBack}>
-              <ArrowLeft className="h-6 w-6" />
+              <ArrowLeft className="size-6" />
             </button>
             <span className="font-regular text-base capitalize">
               {profileType}
             </span>
             <button onClick={handleForward}>
-              <ArrowRight className="h-6 w-6" />
+              <ArrowRight className="size-6" />
             </button>
           </div>
           {isFetching && <GraphSkeleton />}

@@ -10,14 +10,14 @@ import React from 'react';
 const StrainSimilarityModal = dynamic(() => import('./StrainSimilarityModal'), {
   ssr: false,
   loading: () => (
-    <TbGraphFilled className="text-gradient-to-br h-6 w-6 animate-pulse from-gray-200 via-green-300 to-green-700" />
+    <TbGraphFilled className="text-gradient-to-br size-6 animate-pulse from-gray-200 via-green-300 to-green-700" />
   ),
 });
 
 const SmokingProfileModal = dynamic(() => import('./SmokingProfileModal'), {
   ssr: false,
   loading: () => (
-    <RiPieChart2Fill className="text-gradient-to-br h-5 w-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
+    <RiPieChart2Fill className="text-gradient-to-br size-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
   ),
 });
 
@@ -28,11 +28,11 @@ function Modals({ modal }: Props) {
 
   return (
     <div className="flex flex-row items-center gap-x-3 px-2">
-      <ErrorBoundary fallback={<TbGraphOff className="h-6 w-6 text-red-500" />}>
+      <ErrorBoundary fallback={<TbGraphOff className="size-6 text-red-500" />}>
         <StrainSimilarityModal />
       </ErrorBoundary>
       <ErrorBoundary
-        fallback={<RiPieChart2Fill className="h-5 w-5 text-red-500" />}
+        fallback={<RiPieChart2Fill className="size-5 text-red-500" />}
       >
         <SmokingProfileModal />
       </ErrorBoundary>

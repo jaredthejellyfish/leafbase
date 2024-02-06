@@ -15,7 +15,7 @@ function SearchBar() {
 
   return (
     <>
-      <div className="md:w-46 hidden flex-row items-center gap-3 rounded bg-white py-1.5 pl-4 pr-5 text-black md:flex xl:w-80 dark:bg-zinc-800">
+      <div className="md:w-46 hidden flex-row items-center gap-3 rounded bg-white py-1.5 pl-4 pr-5 text-black dark:bg-zinc-800 md:flex xl:w-80">
         <input
           type="text"
           value={query}

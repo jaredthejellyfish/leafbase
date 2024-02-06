@@ -34,7 +34,7 @@ function DeleteCommentButton({ comment_id, canDelete, className }: Props) {
 
   return (
     <button onClick={handleClick} className={className}>
-      <Trash2Icon className="h-5 w-5" />
+      <Trash2Icon className="size-5" />
     </button>
   );
 }

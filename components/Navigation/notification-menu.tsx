@@ -97,13 +97,13 @@ function NotifcationMenu({
           variant="outline"
           size="icon"
           id="theme-toggle"
-          className="h-[1.4rem] w-[1.4rem] border-transparent bg-transparent hover:bg-gray-300 sm:h-[1.6rem] sm:w-[1.6rem] dark:hover:bg-zinc-700"
+          className="size-[1.4rem] border-transparent bg-transparent hover:bg-gray-300 dark:hover:bg-zinc-700 sm:size-[1.6rem]"
         >
           <div className="relative">
             {notifications.length > 0 && (
-              <div className="absolute -top-0.5 right-0 z-10 h-2 w-2 animate-pulse rounded-full bg-red-500" />
+              <div className="absolute -top-0.5 right-0 z-10 size-2 animate-pulse rounded-full bg-red-500" />
             )}
-            <Bell className="z-0 h-[1.15rem] w-[1.15rem] text-black sm:h-[1.3rem] sm:w-[1.3rem] dark:text-white" />
+            <Bell className="z-0 size-[1.15rem] text-black dark:text-white sm:size-[1.3rem]" />
           </div>
           <span className="sr-only">Notifications</span>
         </Button>
@@ -147,7 +147,7 @@ function NotifcationMenu({
               href="/profile/edit"
               className="ml-auto flex items-center justify-center"
             >
-              <BsGear className="h-4 w-4 text-zinc-400" />
+              <BsGear className="size-4 text-zinc-400" />
             </Link>
           </div>
         </div>
@@ -192,7 +192,7 @@ function NotifcationMenu({
                     className="text-zinc-400 transition-colors hover:text-white"
                     onClick={() => handleArchive(notification.id)}
                   >
-                    <Archive className="h-5 w-5" />
+                    <Archive className="size-5" />
                   </button>
                 </div>
               );
@@ -244,7 +244,7 @@ function NotifcationMenu({
                     className="text-zinc-400 transition-colors hover:text-white"
                     onClick={() => handleDelete(notification.id)}
                   >
-                    <Trash className="h-5 w-5" />
+                    <Trash className="size-5" />
                   </button>
                 </div>
               );

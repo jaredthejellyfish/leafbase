@@ -69,7 +69,7 @@ function CommentSection({
             onClick={() => setOpen(!open)}
             className="mt-0.5 rounded border border-zinc-400 p-0.5"
           >
-            <Plus className="h-6 w-6" />
+            <Plus className="size-6" />
           </button>
         </div>
 

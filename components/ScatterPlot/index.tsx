@@ -50,7 +50,7 @@ function LoadingScatterPlot({
   return (
     <div className="relative">
       <FaSpinner
-        className="h-10 w-10"
+        className="size-10"
         style={{
           position: 'absolute',
           top: '50%',

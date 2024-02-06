@@ -66,7 +66,7 @@ function Pairing({ pairing }: Props) {
           height={96}
         />
       ) : (
-        <div className="h-24 w-24 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
+        <div className="size-24 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
       )}
 
       <div className="max-w-[80%] text-sm">

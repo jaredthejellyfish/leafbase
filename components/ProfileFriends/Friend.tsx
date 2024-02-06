@@ -31,7 +31,7 @@ export default function Friend({
           alt={user.name}
           width={50}
           height={50}
-          className="aspect-square h-11 w-11 rounded-full sm:h-12 sm:w-12"
+          className="aspect-square size-11 rounded-full sm:size-12"
         />
         <div className="flex flex-col gap-0">
           <span className="-mb-1.5 text-sm font-semibold sm:text-base">

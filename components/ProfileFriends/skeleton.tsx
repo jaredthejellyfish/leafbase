@@ -6,7 +6,7 @@ function FriendSkeleton() {
   return (
     <div className="flex flex-row items-center justify-between rounded-xl border border-zinc-300 bg-zinc-50 px-4 py-2 dark:border-zinc-700 dark:bg-zinc-800">
       <div className="flex flex-row items-center justify-start gap-x-4">
-        <div className="aspect-square h-12 w-12 animate-pulse rounded-full bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400" />
+        <div className="aspect-square size-12 animate-pulse rounded-full bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400" />
         <div className="flex flex-col gap-0">
           <div className="h-4 w-24 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
           <div className="flex flex-row items-center gap-x-0.5 text-green-700">

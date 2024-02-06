@@ -134,7 +134,7 @@ function FriendRequestButton({ from, to, username, pending, exists }: Props) {
             )}
             onClick={handleClick}
           >
-            <FaUserFriends className="h-5 w-5" />
+            <FaUserFriends className="size-5" />
           </div>
         </TooltipTrigger>
         <TooltipContent>
@@ -155,7 +155,7 @@ function FriendRequestButton({ from, to, username, pending, exists }: Props) {
             'border-green-600 text-green-600 dark:bg-zinc-800',
           )}
         >
-          <FaUserFriends className="h-5 w-5" />
+          <FaUserFriends className="size-5" />
         </div>
       </AlertDialogTrigger>
       <AlertDialogContent>

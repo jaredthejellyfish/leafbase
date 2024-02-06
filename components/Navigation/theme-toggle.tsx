@@ -23,10 +23,10 @@ export function ThemeToggle() {
           variant="outline"
           size="icon"
           id="theme-toggle"
-          className="h-[1.4rem] w-[1.4rem] border-transparent bg-transparent hover:bg-gray-300 sm:h-[1.6rem] sm:w-[1.6rem] dark:hover:bg-zinc-700"
+          className="size-[1.4rem] border-transparent bg-transparent hover:bg-gray-300 dark:hover:bg-zinc-700 sm:size-[1.6rem]"
         >
-          <MdLightMode className="h-[1.15rem] w-[1.15rem] rotate-0 scale-100 transition-all sm:h-[1.3rem] sm:w-[1.3rem] dark:-rotate-90 dark:scale-0" />
-          <MdDarkMode className="absolute h-[1.15rem] w-[1.15rem] rotate-90 scale-0 transition-all sm:h-[1.3rem] sm:w-[1.3rem] dark:rotate-0 dark:scale-100" />
+          <MdLightMode className="size-[1.15rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 sm:size-[1.3rem]" />
+          <MdDarkMode className="absolute size-[1.15rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 sm:size-[1.3rem]" />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>

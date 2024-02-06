@@ -31,9 +31,9 @@ function LikeCommentButton({ comment_id, isLiked }: Props) {
   return (
     <button onClick={handleClick}>
       {optimisticLiked ? (
-        <BsHeartFill className="h-5 w-5 text-green-700" />
+        <BsHeartFill className="size-5 text-green-700" />
       ) : (
-        <BsHeart className="h-5 w-5" />
+        <BsHeart className="size-5" />
       )}
     </button>
   );

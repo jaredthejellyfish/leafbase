@@ -10,7 +10,7 @@ import React from 'react';
 
 const NavigationSkeleton = () => {
   return (
-    <nav className="flex h-14 items-center justify-between bg-gray-100 px-6 sm:h-16 dark:bg-zinc-900">
+    <nav className="flex h-14 items-center justify-between bg-gray-100 px-6 dark:bg-zinc-900 sm:h-16">
       <div>
         <div className="flex items-center justify-start gap-2.5 text-xl sm:gap-4">
           <Image
@@ -27,19 +27,19 @@ const NavigationSkeleton = () => {
         <Button
           variant="outline"
           size="icon"
-          className="h-[1.4rem] w-[1.4rem] border-transparent bg-transparent hover:bg-gray-300 sm:h-[1.6rem] sm:w-[1.6rem] dark:hover:bg-zinc-700"
+          className="size-[1.4rem] border-transparent bg-transparent hover:bg-gray-300 dark:hover:bg-zinc-700 sm:size-[1.6rem]"
           disabled
         >
-          <Bell className="absolute h-[1.15rem] w-[1.15rem] rotate-90 scale-0 transition-all sm:h-[1.3rem] sm:w-[1.3rem] dark:rotate-0 dark:scale-100" />
+          <Bell className="absolute size-[1.15rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 sm:size-[1.3rem]" />
         </Button>
         <Button
           variant="outline"
           size="icon"
-          className="h-[1.4rem] w-[1.4rem] border-transparent bg-transparent hover:bg-gray-300 sm:h-[1.6rem] sm:w-[1.6rem] dark:hover:bg-zinc-700"
+          className="size-[1.4rem] border-transparent bg-transparent hover:bg-gray-300 dark:hover:bg-zinc-700 sm:size-[1.6rem]"
           disabled
         >
-          <Sun className="h-[1.15rem] w-[1.15rem] rotate-0 scale-100 transition-all sm:h-[1.3rem] sm:w-[1.3rem] dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.15rem] w-[1.15rem] rotate-90 scale-0 transition-all sm:h-[1.3rem] sm:w-[1.3rem] dark:rotate-0 dark:scale-100" />
+          <Sun className="size-[1.15rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 sm:size-[1.3rem]" />
+          <Moon className="absolute size-[1.15rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 sm:size-[1.3rem]" />
         </Button>
         <UserAvatar />
 

@@ -171,9 +171,9 @@ function CustomPairingsModal({ open, setOpen, id, image }: Props) {
       {fetchingPairingData && !fetchingSearchData && (
         <div>
           <div className="mt-3 flex w-full flex-row items-center justify-between px-[5%] sm:px-[10%]">
-            <div className="h-24 w-24 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
+            <div className="size-24 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
             <ArrowLeftRight size={45} />
-            <div className="h-24 w-24 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
+            <div className="size-24 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
           </div>
           <div className="mb-2 mt-3 px-0.5">
             <div className="rounded-lg border border-zinc-600 p-2">
@@ -192,19 +192,19 @@ function CustomPairingsModal({ open, setOpen, id, image }: Props) {
         <>
           <div className="mb-1 flex flex-col items-start">
             <div className="flex flex-row items-center gap-2">
-              <div className="h-14 w-14 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400" />
+              <div className="size-14 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400" />
               <div className="mt-2 h-4 w-24 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
             </div>
           </div>
           <div className="mb-1 flex flex-col items-start">
             <div className="flex flex-row items-center gap-2">
-              <div className="h-14 w-14 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400" />
+              <div className="size-14 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400" />
               <div className="mt-2 h-4 w-24 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
             </div>
           </div>
           <div className="flex flex-col items-start">
             <div className="flex flex-row items-center gap-2">
-              <div className="h-14 w-14 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400" />
+              <div className="size-14 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400" />
               <div className="mt-2 h-4 w-24 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
             </div>
           </div>

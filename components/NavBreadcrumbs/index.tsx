@@ -24,7 +24,7 @@ const NavBreadcrumbs = (props: Props) => {
           >
             <svg
               aria-hidden="true"
-              className="mr-2 h-4 w-4"
+              className="mr-2 size-4"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,7 @@ const NavBreadcrumbs = (props: Props) => {
               <div className="flex items-center">
                 <svg
                   aria-hidden="true"
-                  className="h-6 w-6 text-gray-400"
+                  className="size-6 text-gray-400"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -55,7 +55,7 @@ const NavBreadcrumbs = (props: Props) => {
                 </svg>
                 <Link
                   href={url.url as Route}
-                  className="ml-1 text-lg font-medium text-gray-700 hover:text-green-600 md:ml-2 dark:text-gray-400 dark:hover:text-green-400"
+                  className="ml-1 text-lg font-medium text-gray-700 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-400 md:ml-2"
                 >
                   {url.name}
                 </Link>

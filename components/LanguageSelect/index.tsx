@@ -41,7 +41,7 @@ export default function LanguageSelect({ initialLanguage }: Props) {
             {value
               ? languages.find((language) => language.value === value)?.label
               : 'Select language'}
-            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+            <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-[200px] p-0">

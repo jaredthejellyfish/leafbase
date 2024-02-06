@@ -67,7 +67,7 @@ async function ProfileComments({ session }: Props) {
                   alt={comment.strain.name}
                   width={50}
                   height={50}
-                  className="aspect-square h-[47px] w-[47px] sm:h-12 sm:w-12"
+                  className="aspect-square size-[47px] sm:size-12"
                 />
                 <div className="flex flex-col gap-0">
                   <span className="-mb-1.5 text-sm font-semibold sm:text-base">

@@ -25,7 +25,7 @@ import React from 'react';
 const NotifcationMenu = dynamic(() => import('./notification-menu'), {
   ssr: false,
   loading: () => (
-    <Bell className="z-0 h-[1.15rem] w-[1.15rem] rotate-90 scale-0 animate-pulse transition-all sm:h-[1.3rem] sm:w-[1.3rem] dark:rotate-0 dark:scale-100" />
+    <Bell className="z-0 size-[1.15rem] rotate-90 scale-0 animate-pulse transition-all dark:rotate-0 dark:scale-100 sm:size-[1.3rem]" />
   ),
 });
 
@@ -62,14 +62,14 @@ async function Navigation() {
     .returns<Notification[]>();
 
   return (
-    <nav className="flex h-14 items-center justify-between bg-gray-100 px-6 sm:h-16 dark:bg-zinc-900">
+    <nav className="flex h-14 items-center justify-between bg-gray-100 px-6 dark:bg-zinc-900 sm:h-16">
       <div>
         <Link
           href="/"
           className="flex items-center justify-start gap-2.5 text-xl sm:gap-4"
         >
           <Image
-            className="aspect-square rounded-sm border border-zinc-300 bg-white sm:scale-125 dark:border-zinc-700 dark:bg-zinc-700/60"
+            className="aspect-square rounded-sm border border-zinc-300 bg-white dark:border-zinc-700 dark:bg-zinc-700/60 sm:scale-125"
             src={SiteLogo}
             height={33}
             width={33}
@@ -84,7 +84,7 @@ async function Navigation() {
           xmlns="http://www.w3.org/2000/svg"
           width="10"
           height="20"
-          className="hidden stroke-black md:block dark:stroke-white"
+          className="hidden stroke-black dark:stroke-white md:block"
         >
           <line x1="5" y1="0" x2="5" y2="200" strokeWidth="1.3" />
         </svg>

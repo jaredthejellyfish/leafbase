@@ -16,7 +16,7 @@ const UserAvatar = (props: Props) => {
 
   return (
     <Link href="/profile">
-      <Avatar className="h-8 w-8 sm:h-9 sm:w-9">
+      <Avatar className="size-8 sm:size-9">
         <AvatarImage src={avatarUrl || undefined} />
         <AvatarFallback className="text-xs sm:text-base">
           <Image

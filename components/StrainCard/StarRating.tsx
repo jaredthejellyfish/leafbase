@@ -9,19 +9,19 @@ const StarRating = (props: { rating: number; className?: string }) => {
   for (let i = 0; i < 5; i++) {
     if (i < Math.floor(rating)) {
       stars.push(
-        <span className="flex h-4 w-4 items-center justify-center" key={i}>
+        <span className="flex size-4 items-center justify-center" key={i}>
           <FaStar data-testid="full-star" />
         </span>,
       );
     } else if (i === Math.floor(rating) && rating % 1 !== 0) {
       stars.push(
-        <span className="flex h-4 w-4 items-center justify-center" key={i}>
+        <span className="flex size-4 items-center justify-center" key={i}>
           <FaStarHalfAlt data-testid="half-star" />
         </span>,
       );
     } else {
       stars.push(
-        <span className="flex h-4 w-4 items-center justify-center" key={i}>
+        <span className="flex size-4 items-center justify-center" key={i}>
           <FaRegStar data-testid="empty-star" />
         </span>,
       );

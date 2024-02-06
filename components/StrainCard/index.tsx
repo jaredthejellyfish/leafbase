@@ -70,10 +70,10 @@ const StrainCard = ({
         <StrainCardLikeButton liked={liked} id={strain.id} />
       )}
       {strain.nugImage && strain.name && (
-        <div className="flex w-1/2 items-center justify-center rounded-lg border border-zinc-200 md:w-full dark:border-transparent">
+        <div className="flex w-1/2 items-center justify-center rounded-lg border border-zinc-200 dark:border-transparent md:w-full">
           <Image
             style={{ maxHeight: '250px' }}
-            className="aspect-square h-full w-full rounded-lg border border-white bg-zinc-300/10 object-contain p-4 dark:border-zinc-800 dark:bg-zinc-950/30 dark:opacity-90"
+            className="aspect-square size-full rounded-lg border border-white bg-zinc-300/10 object-contain p-4 dark:border-zinc-800 dark:bg-zinc-950/30 dark:opacity-90"
             src={strain.nugImage ? strain.nugImage : defaultImage}
             alt={strain.name}
             width={300}
@@ -116,7 +116,7 @@ const StrainCard = ({
                 style={{
                   backgroundColor: effects[strain.topEffect || 'Unknown'],
                 }}
-                className="h-2.5 w-2.5 rounded-full"
+                className="size-2.5 rounded-full"
               ></div>
               <p className="p-0">{strain.topEffect}</p>
             </span>
@@ -127,7 +127,7 @@ const StrainCard = ({
                 style={{
                   backgroundColor: terpenes[strain.topTerpene || 'Unknown'],
                 }}
-                className="h-2.5 w-2.5 rounded-full"
+                className="size-2.5 rounded-full"
               ></div>
               <p className="p-0">{strain.topTerpene}</p>
             </span>

@@ -4,11 +4,11 @@ import React from 'react';
 
 const StrainCardSkeleton = () => {
   return (
-    <div className="hover:scale-101 relative z-10 mt-4 flex max-h-[250px] min-h-[250px] w-full min-w-[240px] flex-nowrap gap-5 rounded-xl border border-zinc-100 p-5 shadow transition-transform md:max-h-fit md:min-h-[440px] md:max-w-xs md:flex-wrap dark:border-transparent dark:bg-zinc-900">
-      <div className="flex w-1/2 items-center justify-center rounded-lg border border-zinc-200 md:w-full dark:border-transparent">
+    <div className="hover:scale-101 relative z-10 mt-4 flex max-h-[250px] min-h-[250px] w-full min-w-[240px] flex-nowrap gap-5 rounded-xl border border-zinc-100 p-5 shadow transition-transform dark:border-transparent dark:bg-zinc-900 md:max-h-fit md:min-h-[440px] md:max-w-xs md:flex-wrap">
+      <div className="flex w-1/2 items-center justify-center rounded-lg border border-zinc-200 dark:border-transparent md:w-full">
         <div
           style={{ maxHeight: '250px', maxWidth: '250px' }}
-          className="aspect-square h-full w-full animate-pulse rounded-lg border border-white bg-zinc-300/10 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 object-contain p-4 dark:border-zinc-800 dark:bg-zinc-950/30 dark:opacity-90"
+          className="aspect-square size-full animate-pulse rounded-lg border border-white bg-zinc-300/10 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 object-contain p-4 dark:border-zinc-800 dark:bg-zinc-950/30 dark:opacity-90"
         />
       </div>
       <div className="w-1/2 md:w-full">
@@ -46,7 +46,7 @@ const StrainCardSkeleton = () => {
               style={{
                 backgroundColor: '#778899',
               }}
-              className="h-2.5 w-2.5 rounded-full"
+              className="size-2.5 rounded-full"
             ></div>
             <div className="h-3 w-14 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
           </span>
@@ -56,7 +56,7 @@ const StrainCardSkeleton = () => {
               style={{
                 backgroundColor: '#778899',
               }}
-              className="h-2.5 w-2.5 rounded-full"
+              className="size-2.5 rounded-full"
             ></div>
             <div className="h-3 w-14 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
           </span>

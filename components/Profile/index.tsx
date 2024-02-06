@@ -34,7 +34,7 @@ const FriendRequestButton = dynamic(() => import('../FriendRequestButton'), {
         'text-gradient-to-br animate-pulse rounded-full border border-zinc-500 from-gray-200 via-green-300 to-green-700 p-2 text-zinc-500'
       }
     >
-      <FaUserFriends className="h-5 w-5" />
+      <FaUserFriends className="size-5" />
     </button>
   ),
 });

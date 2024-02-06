@@ -83,7 +83,7 @@ function ConnectionLabel({ connection }: { connection: Connection }) {
         connection.bg || '',
       )}
     >
-      <div className="mr-2 flex h-[24px] w-[24px] items-center justify-center text-black">
+      <div className="mr-2 flex size-[24px] items-center justify-center text-black">
         {connection.icon}
       </div>
       <span className="mr-2 text-sm font-medium text-white">
@@ -109,8 +109,8 @@ export default function LoginConnections({
       <div className="relative flex w-full flex-col rounded-xl px-7 py-3 pb-4 shadow-md dark:bg-zinc-900">
         <h3 className="text-xl font-bold">Login Conenctions</h3>
         <div className="mt-1.5 flex flex-row items-center gap-x-2.5">
-          <div className="h-10 w-10">
-            <MdError className="h-full w-full text-green-700" />
+          <div className="size-10">
+            <MdError className="size-full text-green-700" />
           </div>
           <span className="leading-tight">
             There was an error fetching the login connections.

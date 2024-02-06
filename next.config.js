@@ -3,7 +3,6 @@
 const nextConfig = {
   experimental: {
     typedRoutes: true,
-    ppr: true,
   },
   reactStrictMode: true,
   devIndicators: {

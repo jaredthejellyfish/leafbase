@@ -101,9 +101,7 @@ export default function SmokingProfileModal() {
                 {isFetching && (
                   <RiPieChart2Fill className="text-gradient-to-br size-5 animate-pulse from-gray-200 via-green-300 to-green-700" />
                 )}
-                {isError && (
-                  <RiPieChart2Fill className="size-5 text-red-500" />
-                )}
+                {isError && <RiPieChart2Fill className="size-5 text-red-500" />}
               </div>
             </TooltipTrigger>
             <TooltipContent>

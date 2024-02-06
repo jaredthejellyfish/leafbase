@@ -19,7 +19,7 @@ bun install
 
 ## Author
 
-👤 **Gerard Almenara Hernandez**
+👤 **Gerard Hernandez**
 
 - Website: [https://www.instagram.com/photoniks_](https://www.instagram.com/photoniks_)
 - Github: [@jaredthejellyfish](https://github.com/jaredthejellyfish)

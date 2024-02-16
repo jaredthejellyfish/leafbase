@@ -37,7 +37,7 @@ export async function middleware(req: NextRequest) {
   if (code && currentUrl !== '/auth/callback') {
     const callbackUrl = new URL(
       `/auth/callback?code=${code}&redirect=${currentUrl}`,
-      req.nextUrl,
+      req.nextUrl.toString(),
     );
     return NextResponse.redirect(callbackUrl);
   }
@@ -48,10 +48,14 @@ export async function middleware(req: NextRequest) {
         new RegExp(`^${r.matcher}$`).test(path.matcher),
       );
       if (redirect && !session && !redirect.isAuth) {
-        return NextResponse.redirect(new URL(redirect.redirect, req.nextUrl.toString()));
+        return NextResponse.redirect(
+          new URL(redirect.redirect, req.nextUrl.toString()),
+        );
       }
       if (redirect && session && redirect.isAuth) {
-        return NextResponse.redirect(new URL(redirect.redirect, req.nextUrl.toString()));
+        return NextResponse.redirect(
+          new URL(redirect.redirect, req.nextUrl.toString()),
+        );
       }
     }
   }

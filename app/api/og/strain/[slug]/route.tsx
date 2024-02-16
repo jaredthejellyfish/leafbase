@@ -153,7 +153,7 @@ export async function GET(request: NextRequest) {
                   margin: '0 0 15px 10px',
                 }}
               >
-                32%
+                {strain.thcPercent || 'Unknown'}
               </div>
             </div>
           </div>

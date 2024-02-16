@@ -6,7 +6,7 @@ export type Json =
   | { [key: string]: Json | undefined }
   | Json[]
 
-export interface Database {
+export type Database = {
   public: {
     Tables: {
       backup_strains: {
@@ -489,6 +489,72 @@ export interface Database {
         ]
       }
       strains: {
+        Row: {
+          averageRating: number | null
+          cannabinoids: Json | null
+          category: string | null
+          description: string | null
+          dispensaryMenuId: string | null
+          effects: Json | null
+          flowerImageSvg: string | null
+          id: string
+          likes_count: number | null
+          name: string
+          nugImage: string | null
+          phenotype: string | null
+          shortDescription: string | null
+          slug: string
+          subtitle: string
+          terps: Json | null
+          thcPercent: number | null
+          topEffect: string | null
+          topTerpene: string | null
+        }
+        Insert: {
+          averageRating?: number | null
+          cannabinoids?: Json | null
+          category?: string | null
+          description?: string | null
+          dispensaryMenuId?: string | null
+          effects?: Json | null
+          flowerImageSvg?: string | null
+          id: string
+          likes_count?: number | null
+          name: string
+          nugImage?: string | null
+          phenotype?: string | null
+          shortDescription?: string | null
+          slug: string
+          subtitle: string
+          terps?: Json | null
+          thcPercent?: number | null
+          topEffect?: string | null
+          topTerpene?: string | null
+        }
+        Update: {
+          averageRating?: number | null
+          cannabinoids?: Json | null
+          category?: string | null
+          description?: string | null
+          dispensaryMenuId?: string | null
+          effects?: Json | null
+          flowerImageSvg?: string | null
+          id?: string
+          likes_count?: number | null
+          name?: string
+          nugImage?: string | null
+          phenotype?: string | null
+          shortDescription?: string | null
+          slug?: string
+          subtitle?: string
+          terps?: Json | null
+          thcPercent?: number | null
+          topEffect?: string | null
+          topTerpene?: string | null
+        }
+        Relationships: []
+      }
+      strains_pg: {
         Row: {
           averageRating: number | null
           cannabinoids: Json | null

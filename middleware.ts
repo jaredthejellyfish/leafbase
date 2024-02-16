@@ -48,10 +48,10 @@ export async function middleware(req: NextRequest) {
         new RegExp(`^${r.matcher}$`).test(path.matcher),
       );
       if (redirect && !session && !redirect.isAuth) {
-        return NextResponse.redirect(new URL(redirect.redirect, req.nextUrl));
+        return NextResponse.redirect(new URL(redirect.redirect, req.nextUrl.toString()));
       }
       if (redirect && session && redirect.isAuth) {
-        return NextResponse.redirect(new URL(redirect.redirect, req.nextUrl));
+        return NextResponse.redirect(new URL(redirect.redirect, req.nextUrl.toString()));
       }
     }
   }

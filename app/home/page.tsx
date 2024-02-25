@@ -1,5 +1,4 @@
 import ForYou from '@/components/ForYou';
-import UnderConstruction from '@/components/UnderConstruction';
 import WhatToOrder from '@/components/WhatToOrder';
 
 import React from 'react';

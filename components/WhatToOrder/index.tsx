@@ -16,7 +16,7 @@ function WhatToOrder() {
     queryFn: () => getWhatToOrder(),
   });
   return (
-    <div className="rounded-lg bg-zinc-900 px-4 py-3">
+    <div className="rounded-lg border border-zinc-100 bg-white px-4 py-3 shadow-md dark:border-transparent dark:bg-zinc-900">
       <h3 className="mb-1.5 text-xl font-bold">Suggested Order:</h3>
       {!orderError && fetchingOrder ? (
         <>

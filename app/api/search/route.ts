@@ -30,3 +30,5 @@ export async function GET(request: Request) {
 
   return NextResponse.json({ searchResults });
 }
+
+export const runtime = 'edge';

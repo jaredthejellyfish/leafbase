@@ -20,13 +20,9 @@ type Props = {
 };
 
 async function fetchPairing(strain1_id: string, strain2_id: string) {
-  const res = await fetch(`/api/generate/short-pairing`, {
-    method: 'POST',
-    body: JSON.stringify({
-      strain1: strain1_id,
-      strain2: strain2_id,
-    }),
-  });
+  const res = await fetch(
+    `/api/generate/short-pairing?strain1=${strain1_id}&strain2=${strain2_id}`,
+  );
 
   const data = await res.json();
 

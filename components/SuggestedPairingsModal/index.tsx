@@ -19,28 +19,27 @@ type Props = {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-async function fetchPairings(id: string, slug: string) {
-  const res = await fetch(`/api/generate/pairings`, {
-    method: 'POST',
-    body: JSON.stringify({ strain_id: id, strain_slug: slug, limit: 3 }),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+type Pairing = {
+  body: null | string;
+  created_at: null | string;
+  id: null | string;
+  image: null | string;
+  strain1_id: string;
+  strain2_id: string;
+  strain2_slug: string;
+  strain2_name: string;
+};
+
+async function fetchPairings(
+  id: string,
+  slug: string,
+): Promise<{ pairings: Pairing[] }> {
+  const res = await fetch(
+    `/api/generate/pairings?id=${id}&slug=${slug}&limit=3`,
+  );
   const data = await res.json();
 
-  return data as {
-    pairings: {
-      body: null | string;
-      created_at: null | string;
-      id: null | string;
-      image: null | string;
-      strain1_id: string;
-      strain2_id: string;
-      strain2_slug: string;
-      strain2_name: string;
-    }[];
-  };
+  return data as { pairings: Pairing[] };
 }
 
 function SuggestedPairingsModal({ slug, id, open, setOpen }: Props) {
@@ -58,7 +57,7 @@ function SuggestedPairingsModal({ slug, id, open, setOpen }: Props) {
             {!isFetching &&
             pairings?.pairings &&
             pairings.pairings.length >= 1 ? (
-              pairings?.pairings.map((pairing) => (
+              pairings?.pairings.map((pairing: Pairing) => (
                 <Pairing pairing={pairing} key={pairing.id || Math.random()} />
               ))
             ) : (

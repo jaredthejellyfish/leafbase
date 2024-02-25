@@ -142,7 +142,14 @@ export async function GET() {
         effects: aggregatedEffects,
         terps: aggregatedTerps,
       }),
-      { status: 200 },
+      {
+        status: 200,
+        headers: {
+          'Cache-Control': 'max-age=90',
+          'CDN-Cache-Control': 'max-age=3600',
+          'Vercel-CDN-Cache-Control': 'max-age=28800',
+        },
+      },
     );
   } catch (error) {
     return NextResponse.json('Error generating smoking profile', {
@@ -151,4 +158,4 @@ export async function GET() {
   }
 }
 
-export const dynamic = 'force-dynamic';
+export const runtime = 'edge';

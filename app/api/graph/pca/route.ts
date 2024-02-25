@@ -65,10 +65,20 @@ export async function GET() {
       xyCoordinates.push({ x, y, label });
     }
 
-    return NextResponse.json({ pca: xyCoordinates }, { status: 200 });
+    return NextResponse.json(
+      { pca: xyCoordinates },
+      {
+        status: 200,
+        headers: {
+          'Cache-Control': 'max-age=90',
+          'CDN-Cache-Control': 'max-age=3600',
+          'Vercel-CDN-Cache-Control': 'max-age=28800',
+        },
+      },
+    );
   } catch (error) {
     return NextResponse.json('Error generating PCA', { status: 400 });
   }
 }
 
-export const dynamic = 'force-dynamic';
+export const runtime = 'edge';

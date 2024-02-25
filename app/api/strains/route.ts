@@ -56,9 +56,18 @@ export async function GET(req: NextRequest) {
         strains,
         page: pageParam,
       },
-      { status: 200 },
+      {
+        status: 200,
+        headers: {
+          'Cache-Control': 'max-age=90',
+          'CDN-Cache-Control': 'max-age=3600',
+          'Vercel-CDN-Cache-Control': 'max-age=28800',
+        },
+      },
     );
   } catch (error) {
     return NextResponse.json('Something went wrong', { status: 500 });
   }
 }
+
+export const runtime = 'edge';

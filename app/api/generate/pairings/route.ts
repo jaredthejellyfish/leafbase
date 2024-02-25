@@ -4,20 +4,14 @@ import { NextResponse } from 'next/server';
 
 import type { Database } from '@/lib/database';
 
-type RequestData = {
-  strain_id: string;
-  strain_slug: string;
-  limit?: string;
-};
+export async function GET(request: Request) {
+  const url = new URL(request.url);
+  const searchParams = new URLSearchParams(url.search);
+  const id = searchParams.get('id');
+  const slug = searchParams.get('slug');
+  const limit = searchParams.get('limit');
 
-export async function POST(request: Request) {
-  const {
-    strain_id: id,
-    strain_slug: slug,
-    limit,
-  } = (await request.json()) as RequestData;
-
-  if (!slug && !id)
+  if (!slug || !id)
     return NextResponse.json({ error: 'No search query provided' });
 
   const cookieStore = cookies();
@@ -38,7 +32,17 @@ export async function POST(request: Request) {
         strain1_id: id,
       });
     } else {
-      return NextResponse.json({ pairings: existingPairings });
+      return NextResponse.json(
+        { pairings: existingPairings },
+        {
+          status: 200,
+          headers: {
+            'Cache-Control': 'max-age=90',
+            'CDN-Cache-Control': 'max-age=3600',
+            'Vercel-CDN-Cache-Control': 'max-age=28800',
+          },
+        },
+      );
     }
   }
 
@@ -68,7 +72,17 @@ export async function POST(request: Request) {
     strain2_slug: pairing.slug,
   }));
 
-  return NextResponse.json({ pairings: formattedPairings });
+  return NextResponse.json(
+    { pairings: formattedPairings },
+    {
+      status: 200,
+      headers: {
+        'Cache-Control': 'max-age=90',
+        'CDN-Cache-Control': 'max-age=3600',
+        'Vercel-CDN-Cache-Control': 'max-age=28800',
+      },
+    },
+  );
 }
 
 export const runtime = 'edge';

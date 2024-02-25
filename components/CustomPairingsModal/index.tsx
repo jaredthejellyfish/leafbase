@@ -23,13 +23,9 @@ type Props = {
 async function fetchLongPairing(id: string, searchId: string | null) {
   if (!searchId) return null;
 
-  const res = await fetch(`/api/generate/long-pairing`, {
-    method: 'POST',
-    body: JSON.stringify({
-      strain1: id,
-      strain2: searchId,
-    }),
-  });
+  const res = await fetch(
+    `/api/generate/long-pairing?strain1=${id}&strain2=${searchId}`,
+  );
 
   const data = await res.json();
   return data as {

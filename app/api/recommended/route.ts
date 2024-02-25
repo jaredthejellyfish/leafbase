@@ -5,6 +5,8 @@ import { NextResponse } from 'next/server';
 
 import type { Database } from '@/lib/database';
 
+export const runtime = 'edge';
+
 export async function GET(request: NextRequest) {
   const requestUrl = new URL(request.url);
   const page = Number(requestUrl.searchParams.get('page')) || 0;
@@ -49,5 +51,15 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error }, { status: 500 });
   }
 
-  return NextResponse.json({ pairings });
+  return NextResponse.json(
+    { pairings },
+    {
+      status: 200,
+      headers: {
+        'Cache-Control': 'max-age=90',
+        'CDN-Cache-Control': 'max-age=3600',
+        'Vercel-CDN-Cache-Control': 'max-age=28800',
+      },
+    },
+  );
 }

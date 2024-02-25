@@ -7,14 +7,12 @@ import type { Database } from '@/lib/database';
 
 const openai = new OpenAI();
 
-type RequestData = {
-  strain1: string;
-  strain2: string;
-};
-
-export async function POST(request: Request) {
+export async function GET(request: Request) {
   try {
-    const { strain1, strain2 } = (await request.json()) as RequestData;
+    const url = new URL(request.url);
+    const searchParams = new URLSearchParams(url.search);
+    const strain1 = searchParams.get('strain1');
+    const strain2 = searchParams.get('strain2');
 
     if (!strain1 || !strain2) {
       return NextResponse.json('No strains in the request', { status: 400 });
@@ -104,9 +102,14 @@ export async function POST(request: Request) {
 
     return NextResponse.json(newPairing, {
       status: 200,
+      headers: {
+        'Cache-Control': 'max-age=90',
+        'CDN-Cache-Control': 'max-age=3600',
+        'Vercel-CDN-Cache-Control': 'max-age=28800',
+      },
     });
   } catch (error) {
-    return NextResponse.json('Error generating pairing', { status: 400 });
+    return NextResponse.json('Error generating pairing', { status: 500 });
   }
 }
 

@@ -43,3 +43,5 @@ database/remove-bg/venv
 
 
 old_*.tsx
+
+.env

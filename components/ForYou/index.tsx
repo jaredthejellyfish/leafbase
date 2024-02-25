@@ -6,21 +6,12 @@ import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { MdError } from 'react-icons/md';
 import { useMediaQuery } from 'usehooks-ts';
 
-import type { Strain } from '@/lib/types';
+import { getForYouPage } from '@/lib/utils/getForYouPage';
 
 import StrainCard from '../StrainCard';
 import StrainCardSkeleton from '../StrainCard/skeleton';
 
 import React, { useState } from 'react';
-
-async function fetchForYouStrains(page: number) {
-  const res = await fetch(
-    `/api/recommended?limit=10&page=${page < 0 ? 0 : page}`,
-  );
-  const data = (await res.json()) as { pairings: Strain[] };
-
-  return data.pairings;
-}
 
 function ForYou() {
   const [page, setPage] = useState(0);
@@ -34,7 +25,7 @@ function ForYou() {
     isFetching: fetchingForYou,
   } = useQuery({
     queryKey: ['for-you', page],
-    queryFn: () => fetchForYouStrains(page),
+    queryFn: () => getForYouPage(page),
   });
 
   if (forYouError) {

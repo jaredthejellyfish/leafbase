@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { ChevronDownIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useMediaQuery } from 'usehooks-ts';
 
 import type { StrainLike } from '@/lib/types';
 
@@ -13,10 +14,34 @@ type Props = {
   strains: StrainLike[];
 };
 
+function LikedStrain({
+  name,
+  image,
+  slug,
+}: {
+  name: string;
+  image: string;
+  slug: string;
+}) {
+  return (
+    <Link
+      className="xs:w-[110px] xs:scale-95 flex w-[100] flex-col items-center rounded-lg border bg-zinc-100/20 shadow dark:border-transparent dark:bg-zinc-800/70 sm:w-[125px]"
+      href={`/strains/${slug}`}
+    >
+      <div className="mx-2 mb-1 mt-2 size-[98px] rounded border bg-zinc-300/50 p-0.5 shadow dark:border-zinc-700/80 dark:bg-zinc-700/30">
+        <Image alt={slug} width={96} height={96} src={image} />
+      </div>
+      <span className="mb-1.5 max-w-[94px] truncate py-1 text-xs sm:text-base">
+        {name}
+      </span>
+    </Link>
+  );
+}
+
 function LikedStrainsAccordion(props: Props) {
   const { strains } = props;
   const [isOpen, setIsOpen] = useState(false);
-  const [hasOpened, setHasOpened] = useState(false);
+  const match = useMediaQuery('(max-width: 640px)');
 
   const variants = {
     open: {
@@ -25,7 +50,8 @@ function LikedStrainsAccordion(props: Props) {
       transition: { duration: 0.5 },
     },
     closed: {
-      height: strains && strains.length < 10 ? 'auto' : '296px',
+      height:
+        strains && strains.length < 10 ? 'auto' : match ? '294px' : '316px',
       transition: { duration: 0.3 },
     },
   };
@@ -40,28 +66,14 @@ function LikedStrainsAccordion(props: Props) {
         className="mt-3 flex w-full flex-row flex-wrap items-start justify-start gap-1.5 overflow-hidden sm:gap-3"
       >
         {strains &&
-          strains.map((strain, index) => {
-            if (!hasOpened && index > 9 && !isOpen) return null;
+          strains.map((strain) => {
             return (
-              <Link
+              <LikedStrain
                 key={strain.id}
-                className="flex min-w-[11%] grow scale-95 flex-col gap-2 rounded border p-2 shadow dark:border-zinc-600 dark:bg-zinc-800 sm:min-w-[12%] sm:max-w-[130px] md:min-w-[calc(33.333%-1em)] lg:min-w-[calc(25%-1em)] xl:min-w-[calc(20%-1em)]"
-                href={`/strains/${strain.strain_id.slug}`} // <- /strain
-              >
-                <div className="flex aspect-square h-24 max-h-24 w-full items-center justify-center rounded-md">
-                  <Image
-                    src={strain.strain_id.nugImage}
-                    className="rounded-md"
-                    alt={`An image of a nug of ${strain.strain_id.name}`}
-                    width={96}
-                    height={96}
-                    priority={index < 10}
-                  />
-                </div>
-                <p className="text-semi w-full overflow-hidden whitespace-nowrap text-sm sm:pl-3">
-                  {strain.strain_id.name}
-                </p>
-              </Link>
+                name={strain.strain_id.name}
+                image={strain.strain_id.nugImage}
+                slug={strain.strain_id.slug}
+              />
             );
           })}
       </motion.div>
@@ -69,7 +81,6 @@ function LikedStrainsAccordion(props: Props) {
         <button
           onClick={() => {
             setIsOpen(!isOpen);
-            setHasOpened(true);
           }}
           className="mt-1 flex w-full flex-row items-center justify-center gap-2 font-semibold"
         >

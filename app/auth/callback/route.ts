@@ -20,3 +20,5 @@ export async function GET(request: NextRequest) {
   }
   return NextResponse.redirect(requestUrl.origin);
 }
+
+export const runtime = 'edge';

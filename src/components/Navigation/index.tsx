@@ -13,7 +13,7 @@ async function Navigation() {
 
   return (
     <>
-      <nav className="fixed left-0 right-0 top-0 flex h-14 items-center justify-between bg-gray-100 px-6 dark:bg-zinc-900">
+      <nav className="fixed left-0 right-0 top-0 flex h-14 items-center justify-between bg-gray-100 px-6 dark:bg-zinc-900 z-50">
         <div>
           <Link
             href="/"

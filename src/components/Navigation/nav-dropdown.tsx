@@ -3,6 +3,7 @@
 import navDropdownStore from "@/lib/store/nav-dropdown";
 import { cn } from "@/lib/utils/cn";
 import { usePathname } from "next/navigation";
+import NavDropdownOverlay from "./nav-dropdown-overlay";
 
 const paths = [
   {
@@ -22,7 +23,7 @@ const paths = [
 function NavDropdown() {
   const pathname = usePathname();
   const open = navDropdownStore((state) => state.isOpen);
-  
+
   return (
     <>
       <div
@@ -49,7 +50,7 @@ function NavDropdown() {
             className="text-black dark:text-zinc-400"
             stroke="currentColor"
             fill="currentColor"
-            stroke-width="0"
+            strokeWidth="0"
             viewBox="0 0 512 512"
             height="20px"
             width="20px"
@@ -60,7 +61,7 @@ function NavDropdown() {
           <svg
             stroke="currentColor"
             fill="currentColor"
-            stroke-width="0"
+            strokeWidth="0"
             viewBox="0 0 24 24"
             id="search-close-icon-dropdown"
             className="hidden cursor-pointer text-black dark:text-zinc-400"
@@ -92,19 +93,13 @@ function NavDropdown() {
                 height="1"
                 className="my-0.5 stroke-zinc-300 dark:stroke-zinc-600"
               >
-                <line x1="0" y1="0.5" x2="100%" y2="0.5" stroke-width="1" />
+                <line x1="0" y1="0.5" x2="100%" y2="0.5" strokeWidth="1" />
               </svg>
             )}
           </div>
         ))}
       </div>
-      <div
-        id="nav-dropdown-overlay"
-        className={cn(
-          "fixed bottom-0 left-0 right-0 top-16 z-10 bg-zinc-950 opacity-20 transition-opacity",
-          !open && "opacity-0",
-        )}
-      ></div>
+      <NavDropdownOverlay />
     </>
   );
 }

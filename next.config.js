@@ -5,11 +5,24 @@
 await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
-const config = {
+const nextConfig = {
   reactStrictMode: true,
-  experimental: {
-    ppr: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.amazonaws.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**.githubusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "euwnyenhzhztqztezjdn.supabase.co",
+      },
+    ],
   },
 };
 
-export default config;
+export default nextConfig;

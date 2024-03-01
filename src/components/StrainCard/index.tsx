@@ -1,5 +1,5 @@
 import Image from "next/image";
-import StarRating from "./star-rating";
+import StarRating from "../StarRating";
 
 import type { Strain } from "@/lib/types";
 import Link from "next/link";

@@ -27,6 +27,7 @@ function StrainCardLoader({ filter, count = 6329, perPage = 12 }: Props) {
   const { data, fetchNextPage } = useInfiniteQuery({
     queryKey: ["strains", filter],
     queryFn: fetchStrains,
+    enabled: true,
     initialPageParam: 2,
     getNextPageParam: (lastPage) => {
       const lastPageNumber = lastPage.page;

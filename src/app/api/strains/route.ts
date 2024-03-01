@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
     const searchParams = new URLSearchParams(url.search);
 
     const pageParam = Number(searchParams.get('page') ?? 0);
-    const perPage = Number(searchParams.get('perPage') ?? 8);
+    const perPage = Number(searchParams.get('perPage') ?? 12);
     const filter = searchParams.get('filter') ?? 're';
 
     const offset = pageParam * perPage;
@@ -45,7 +45,7 @@ export async function GET(req: NextRequest) {
       },
       ['dynamic-pages', filter, pageParam.toString()],
       {
-        revalidate: 3600,
+        revalidate: 28800,
       },
     );
 

@@ -1,7 +1,15 @@
-import supabase from "../supabase-server";
+import { cookies } from "next/headers";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import type { Database } from "../database";
 
 export default async function getServerUserProfile() {
   try {
+    const cookieStore = cookies();
+
+    const supabase = createServerComponentClient<Database>({
+      cookies: () => cookieStore,
+    });
+    
     const {
       data: { session },
       error,

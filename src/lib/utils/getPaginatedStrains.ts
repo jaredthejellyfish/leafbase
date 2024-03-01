@@ -1,10 +1,20 @@
-import supabase from "../supabase-server";
+import { cookies } from "next/headers";
 import type { Strain } from "../types";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import type { Database } from "../database";
 
 export async function getPaginatedStrains(
   filter: "re" | "az" | "za" | "sr",
   page: number,
 ) {
+
+  const cookieStore = cookies();
+
+  const supabase = createServerComponentClient<Database>({
+    cookies: () => cookieStore,
+  });
+  
+
   const nameFilter = filter === "za" ? false : true;
 
   const orderByLikes = filter && filter !== "re" ? false : true;

@@ -1,9 +1,9 @@
-import type { Route } from 'next';
-import Link from 'next/link';
+import type { Route } from "next";
+import Link from "next/link";
 
-import NavBreadcrumbsSkeleton from './skeleton';
+import NavBreadcrumbsSkeleton from "./skeleton";
 
-import React from 'react';
+import React from "react";
 
 type Props = {
   urls: {
@@ -12,7 +12,7 @@ type Props = {
   }[];
 };
 
-const NavBreadcrumbs = (props: Props) => {
+function NavBreadcrumbs(props: Props) {
   if (!props.urls) return null;
   return (
     <nav className="mb-2 ml-1 flex w-full md:w-4/5" aria-label="Breadcrumb">
@@ -65,7 +65,7 @@ const NavBreadcrumbs = (props: Props) => {
       </ol>
     </nav>
   );
-};
+}
 
 export default NavBreadcrumbs;
 export { NavBreadcrumbsSkeleton };

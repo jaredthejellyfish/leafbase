@@ -7,13 +7,20 @@ import ProfileIcon from "@p/svg/profile-icon.svg";
 import { ThemeToggle } from "./theme-toggle";
 import HamburgerMenu from "./hamburger-menu";
 import NavDropdown from "./nav-dropdown";
+import { cookies } from "next/headers";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import type { Database } from "@/lib/database";
 
 async function Navigation() {
-  const { user } = await getServerUserProfile();
+  const cookieStore = cookies();
+  const supabase = createServerComponentClient<Database>({
+    cookies: () => cookieStore,
+  });
+  const { user } = await getServerUserProfile(supabase);
 
   return (
     <>
-      <nav className="fixed left-0 right-0 top-0 flex h-14 items-center justify-between bg-gray-100 px-6 dark:bg-zinc-900 z-50">
+      <nav className="fixed left-0 right-0 top-0 z-50 flex h-14 items-center justify-between bg-gray-100 px-6 dark:bg-zinc-900">
         <div>
           <Link
             href="/"

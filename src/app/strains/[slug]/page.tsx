@@ -40,7 +40,7 @@ async function StrainPage({ params: {slug} }: Props) {
           { name: 'Strains', url: '/strains' },
           {
             name: strain.name,
-            url: `/strains/${strain.slug}`, // <- /strain
+            url: `/strains/${strain.slug}`, 
           },
         ]}
       />

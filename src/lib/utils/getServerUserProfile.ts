@@ -1,15 +1,10 @@
-import { cookies } from "next/headers";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import type { SupabaseClient } from "@supabase/auth-helpers-nextjs";
 import type { Database } from "../database";
 
-export default async function getServerUserProfile() {
+export default async function getServerUserProfile(
+  supabase: SupabaseClient<Database>,
+) {
   try {
-    const cookieStore = cookies();
-
-    const supabase = createServerComponentClient<Database>({
-      cookies: () => cookieStore,
-    });
-    
     const {
       data: { session },
       error,
@@ -21,7 +16,7 @@ export default async function getServerUserProfile() {
 
     const { data, error: profileError } = await supabase
       .from("profiles")
-      .select("id, username, image")
+      .select("*")
       .eq("id", session.user.id)
       .single();
 
@@ -29,7 +24,7 @@ export default async function getServerUserProfile() {
       return { user: null, error: profileError };
     }
 
-    return { user: data, error };
+    return { user: data, session, error };
   } catch (error) {
     return { user: null, error };
   }

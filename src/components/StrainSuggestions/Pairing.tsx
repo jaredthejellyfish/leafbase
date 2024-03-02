@@ -1,5 +1,6 @@
 'use client';
 
+import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
@@ -31,43 +32,52 @@ function Pairing({
 }: Props) {
   const [body, setBody] = useState(existingBody ?? '');
 
-  useEffect(() => {
-    async function streamedCompletion() {
-      try {
-        const response = await fetch(
-          `/api/generate/short-pairing?strain1=${strain1_id}&strain2=${strain2_id}`,
-        );
+  async function streamedCompletion() {
+    try {
+      const response = await fetch(
+        `/api/generate/short-pairing?strain1=${strain1_id}&strain2=${strain2_id}`,
+      );
 
-        if (!response.ok || !response.body) {
-          throw response.statusText;
-        }
-
-        if (body.length > 0) {
-          await response.body.cancel();
-        }
-
-        const reader = response.body.getReader();
-        const decoder = new TextDecoder();
-        const loopRunner = true;
-        while (loopRunner) {
-          const { value, done } = await reader.read();
-          if (done) {
-            break;
-          }
-          const decodedChunk = decoder.decode(value, { stream: true });
-          setBody((answer) => (answer + decodedChunk).replace('"', ''));
-        }
-      } catch (error) {
-        setBody('Error generating pairing...');
-      } finally {
-        setBody((answer) => answer.replace('"', ''));
+      if (!response.ok || !response.body) {
+        throw response.statusText;
       }
+
+      if (body.length > 0) {
+        await response.body.cancel();
+      }
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      const loopRunner = true;
+      while (loopRunner) {
+        const { value, done } = await reader.read();
+        if (done) {
+          break;
+        }
+        const decodedChunk = decoder.decode(value, { stream: true });
+        setBody((answer) => (answer + decodedChunk).replace('"', ''));
+      }
+    } catch (error) {
+      return { ok: false, error: (error as Error).message };
+    } finally {
+      setBody((answer) => answer.replace('"', ''));
+      return { ok: true, error: null };
     }
-    // Check if the body is already set, if not, fetch the data
-    if (!body || body.length < 1) {
-      streamedCompletion().catch(console.error);
-    }
-  }, [body, strain1_id, strain2_id]);
+  }
+
+  const { data, isFetching } = useQuery({
+    queryKey: ['pairing', strain1_id, strain2_id],
+    queryFn: () => streamedCompletion(),
+    refetchOnWindowFocus: false,
+    refetchInterval: false,
+    refetchIntervalInBackground: false,
+    refetchOnMount: false,
+    enabled: Boolean(!existingBody?.length),
+  });
+
+  if (!isFetching && !data?.ok && !existingBody?.length) {
+    return <div>Error generating recommendation...</div>;
+  }
 
   return (
     <Link
@@ -83,11 +93,13 @@ function Pairing({
         <div className="size-24 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
       )}
 
-      <div className="max-w-[80%] text-sm">
+      <div className="max-w-[80%] text-sm w-full flex flex-col items-start justify-center">
         <h2 className="text-sm font-semibold text-black dark:text-zinc-200">
           {strain2_name || strain2_name}
         </h2>
-        {body.length > 0 ? (
+        {existingBody && existingBody?.length > 0 ? (
+          existingBody
+        ) : body.length > 0 ? (
           body
         ) : (
           <>

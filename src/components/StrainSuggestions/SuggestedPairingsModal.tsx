@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import dynamic from 'next/dynamic';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import PairingSkeleton from './PairingSkeleton';
 
@@ -42,11 +42,22 @@ async function fetchPairings(
 }
 
 function SuggestedPairingsModal({ slug, id, open, setOpen }: Props) {
-  const { data: pairings, isFetching } = useQuery({
+  const {
+    data: pairings,
+    isFetching,
+    refetch,
+  } = useQuery({
     queryKey: ['pairings', slug, id],
     queryFn: () => fetchPairings(id, slug),
     enabled: open,
+    refetchOnMount: 'always',
   });
+
+  useEffect(() => {
+    if (open) {
+      void refetch();
+    }
+  }, [open, refetch]);
 
   return (
     pairings?.pairings &&

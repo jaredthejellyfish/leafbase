@@ -1,20 +1,19 @@
-"use client";
+'use client';
 
-import dynamic from "next/dynamic";
-import { ErrorBoundary } from "react-error-boundary";
-import { RiPieChart2Fill } from "react-icons/ri";
-import { TbGraphFilled, TbGraphOff } from "react-icons/tb";
+import dynamic from 'next/dynamic';
+import React from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import { RiPieChart2Fill } from 'react-icons/ri';
+import { TbGraphFilled, TbGraphOff } from 'react-icons/tb';
 
-import React from "react";
-
-const StrainSimilarityModal = dynamic(() => import("./StrainSimilarityModal"), {
+const StrainSimilarityModal = dynamic(() => import('./StrainSimilarityModal'), {
   ssr: false,
   loading: () => (
     <TbGraphFilled className="text-gradient-to-br size-6 animate-pulse from-gray-200 via-green-300 to-green-700" />
   ),
 });
 
-const SmokingProfileModal = dynamic(() => import("./SmokingProfileModal"), {
+const SmokingProfileModal = dynamic(() => import('./SmokingProfileModal'), {
   ssr: false,
   loading: () => (
     <RiPieChart2Fill className="text-gradient-to-br size-5 animate-pulse from-gray-200 via-green-300 to-green-700" />

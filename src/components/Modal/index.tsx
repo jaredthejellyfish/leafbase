@@ -1,11 +1,10 @@
-"use client";
+'use client';
 
-import { AiOutlineClose } from "react-icons/ai";
-import { useOnClickOutside } from "usehooks-ts";
+import React, { useEffect, useState } from 'react';
+import { AiOutlineClose } from 'react-icons/ai';
+import { useOnClickOutside } from 'usehooks-ts';
 
-import { cn } from "@/lib/utils/cn";
-
-import React, { useEffect, useState } from "react";
+import { cn } from '@l/utils/cn';
 
 type Props = {
   children: React.ReactNode;
@@ -42,16 +41,16 @@ function Modal({
 
   useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
-      if (isOpen && event.key === "Escape") {
+      if (isOpen && event.key === 'Escape') {
         setIsOpen(false);
         if (setOpen) setOpen(false);
       }
     }
 
-    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen, setOpen]);
 
@@ -63,29 +62,29 @@ function Modal({
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = "";
+      document.body.style.overflow = '';
     }
 
     // Re-enable scrolling when the component unmounts
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = '';
     };
   }, [isOpen]);
 
   return (
     <div
       className={cn(
-        "fixed inset-0 z-50 flex h-screen w-full items-center justify-center overflow-y-hidden border-transparent bg-zinc-900/75 px-6 transition-all duration-500",
-        open ? "opacity-100" : "pointer-events-none opacity-0",
+        'fixed inset-0 z-50 flex h-screen w-full items-center justify-center overflow-y-hidden border-transparent bg-zinc-900/75 px-6 transition-all duration-500',
+        open ? 'opacity-100' : 'pointer-events-none opacity-0',
       )}
     >
       <div
         ref={ref}
         className={cn(
-          "relative z-50 inline-block w-full transform overflow-hidden rounded-lg border-transparent bg-white text-left align-bottom shadow-xl transition-all duration-300 dark:bg-zinc-800 sm:my-8 sm:w-full sm:max-w-lg sm:align-middle",
-          open ? "scale-100" : "scale-0",
+          'relative z-50 inline-block w-full transform overflow-hidden rounded-lg border-transparent bg-white text-left align-bottom shadow-xl transition-all duration-300 dark:bg-zinc-800 sm:my-8 sm:w-full sm:max-w-lg sm:align-middle',
+          open ? 'scale-100' : 'scale-0',
           containerClass,
         )}
       >

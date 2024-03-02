@@ -1,19 +1,18 @@
-"use client";
+'use client';
 
-import { useQuery } from "@tanstack/react-query";
-import { TbGraphFilled, TbGraphOff } from "react-icons/tb";
+import { useQuery } from '@tanstack/react-query';
+import React, { useState } from 'react';
+import { TbGraphFilled, TbGraphOff } from 'react-icons/tb';
 
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@c/ui/tooltip";
+} from '@c/ui/tooltip';
 
-import Modal from "../Modal";
-import ScatterPlot from "./ScatterPlot";
-
-import React, { useState } from "react";
+import Modal from '../Modal';
+import ScatterPlot from './ScatterPlot';
 
 async function fetchLikedStrainsPCA() {
   const response = await fetch(`/api/graph/pca`);
@@ -47,7 +46,7 @@ function StrainSimilarityModal() {
     isError,
     refetch,
   } = useQuery({
-    queryKey: ["liked-plot"],
+    queryKey: ['liked-plot'],
     queryFn: fetchLikedStrainsPCA,
     enabled: modalOpen,
   });
@@ -69,7 +68,7 @@ function StrainSimilarityModal() {
               onClick={
                 isFetching || isError
                   ? () => {
-                      alert("not loaded pal, sorry :)");
+                      alert('not loaded pal, sorry :)');
                     }
                   : handleButtonClick
               }
@@ -85,13 +84,13 @@ function StrainSimilarityModal() {
 
       <Modal
         title={`Liked Strains Similarityㅤ(${
-          likedCoords ? likedCoords.length : "--"
+          likedCoords ? likedCoords.length : '--'
         })`}
         open={modalOpen}
         setOpen={setModalOpen}
         containerClass="sm:max-w-[64%]"
       >
-        <div className={"h-[60vh] w-[82vw] sm:w-[60vw]"}>
+        <div className={'h-[60vh] w-[82vw] sm:w-[60vw]'}>
           <ScatterPlot data={likedCoords} />
         </div>
       </Modal>

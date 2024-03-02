@@ -3,8 +3,8 @@ import { unstable_cache } from 'next/cache';
 import { cookies } from 'next/headers';
 import { type NextRequest, NextResponse } from 'next/server';
 
-import type { Database } from '@/lib/database';
-import type { Strain } from '@/lib/types';
+import type { Database } from '@l/database';
+import type { Strain } from '@l/types';
 
 export async function GET(req: NextRequest) {
   try {

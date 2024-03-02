@@ -1,6 +1,7 @@
 'use client';
 
 import { useTheme } from 'next-themes';
+import * as React from 'react';
 import { MdDarkMode, MdLightMode } from 'react-icons/md';
 
 import { Button } from '@c/ui/button';
@@ -10,8 +11,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@c/ui/dropdown-menu';
-
-import * as React from 'react';
 
 export function ThemeToggle() {
   const { setTheme } = useTheme();

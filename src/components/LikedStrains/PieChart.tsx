@@ -1,18 +1,17 @@
-import { Group } from "@visx/group";
-import { ParentSize } from "@visx/responsive";
-import { scaleOrdinal } from "@visx/scale";
-import { Pie } from "@visx/shape";
-import { Text } from "@visx/text";
-import { isEqual } from "lodash";
-import { useTheme } from "next-themes";
-
-import React from "react";
+import { Group } from '@visx/group';
+import { ParentSize } from '@visx/responsive';
+import { scaleOrdinal } from '@visx/scale';
+import { Pie } from '@visx/shape';
+import { Text } from '@visx/text';
+import { isEqual } from 'lodash';
+import { useTheme } from 'next-themes';
+import React from 'react';
 
 const PieChart = React.memo(
   ({ data }: { data: Record<string, number> }) => {
     const { theme } = useTheme();
 
-    const axisColor = theme === "dark" ? "#FFFFFF" : "#000000";
+    const axisColor = theme === 'dark' ? '#FFFFFF' : '#000000';
 
     const parsedData = Object.keys(data).map((key) => ({
       label: key,
@@ -22,19 +21,19 @@ const PieChart = React.memo(
     const colorScale = scaleOrdinal({
       domain: parsedData.map((item) => item.label),
       range: [
-        "#f00e",
-        "#0f0",
-        "#00f",
-        "#ff0",
-        "#0ff",
-        "#f0f",
-        "#f90",
-        "#09f",
-        "#90f",
-        "#9f0",
-        "#f09",
-        "#0f9",
-        "#09f",
+        '#f00e',
+        '#0f0',
+        '#00f',
+        '#ff0',
+        '#0ff',
+        '#f0f',
+        '#f90',
+        '#09f',
+        '#90f',
+        '#9f0',
+        '#f09',
+        '#0f9',
+        '#09f',
       ],
     });
 
@@ -96,6 +95,6 @@ const PieChart = React.memo(
   },
 );
 
-PieChart.displayName = "PieChart";
+PieChart.displayName = 'PieChart';
 
 export default PieChart;

@@ -1,11 +1,11 @@
-import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
-import { OpenAIStream, StreamingTextResponse } from "ai";
-import { cookies } from "next/headers";
-import { NextResponse } from "next/server";
-import OpenAI from "openai";
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { OpenAIStream, StreamingTextResponse } from 'ai';
+import { cookies } from 'next/headers';
+import { NextResponse } from 'next/server';
+import OpenAI from 'openai';
 
-import { type Database } from "@/lib/database";
-import { type StrainData } from "@/lib/types";
+import { type Database } from '@l/database';
+import { type StrainData } from '@l/types';
 
 type Score = Record<string, number>;
 
@@ -35,16 +35,16 @@ export async function GET() {
   const { session } = sessionData;
 
   if (sessionError ?? !session?.user) {
-    return NextResponse.json("Error getting session", { status: 400 });
+    return NextResponse.json('Error getting session', { status: 400 });
   }
 
   const { data: likedStrains, error: likedStrainsError } = await supabase
-    .from("strain_likes")
-    .select("strain_id, strain_id:strains (effects, id)")
-    .eq("user_id", session.user.id);
+    .from('strain_likes')
+    .select('strain_id, strain_id:strains (effects, id)')
+    .eq('user_id', session.user.id);
 
   if (likedStrainsError) {
-    return NextResponse.json("Error getting liked strains", { status: 400 });
+    return NextResponse.json('Error getting liked strains', { status: 400 });
   }
 
   const likedStrainIds = likedStrains.map((strain) => {
@@ -52,16 +52,16 @@ export async function GET() {
   });
 
   const { data: strainsData, error: strainsDataError } = await supabase
-    .from("strains")
-    .select("slug, thcPercent, effects, terps")
+    .from('strains')
+    .select('slug, thcPercent, effects, terps')
     .in(
-      "id",
+      'id',
       likedStrainIds.map((strain) => strain.id),
     )
     .returns<StrainData[]>();
 
   if (strainsDataError) {
-    return NextResponse.json("Error getting strain data", { status: 400 });
+    return NextResponse.json('Error getting strain data', { status: 400 });
   }
 
   const effects = strainsData.map((strain) => {
@@ -116,14 +116,15 @@ export async function GET() {
   );
 
   const completion = await openai.chat.completions.create({
-    model: "gpt-4-turbo-preview",
+    model: 'gpt-4-turbo-preview',
     messages: [
       {
-        role: "system",
-        content: "You specialise in generating recommendations for what kind of marijuana strains to order.",
+        role: 'system',
+        content:
+          'You specialise in generating recommendations for what kind of marijuana strains to order.',
       },
       {
-        role: "user",
+        role: 'user',
         content: basePrompt(
           {
             thc: aggregatedTHCPercents,
@@ -146,4 +147,4 @@ export async function GET() {
   return new StreamingTextResponse(stream);
 }
 
-export const runtime = "edge";
+export const runtime = 'edge';

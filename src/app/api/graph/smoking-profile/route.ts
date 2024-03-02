@@ -2,11 +2,10 @@ import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
-import type { Database } from '@/lib/database';
-import type { StrainData } from '@/lib/types';
+import type { Database } from '@l/database';
+import type { StrainData } from '@l/types';
 
 type Score = Record<string, number>;
-
 
 type Data = {
   thc: number;

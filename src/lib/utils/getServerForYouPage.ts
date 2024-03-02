@@ -1,8 +1,8 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
 
-import type { Database } from "../database";
-import { cookies } from "next/headers";
-import type { Strain } from "../types";
+import type { Database } from '../database';
+import type { Strain } from '../types';
 
 export async function getServerForYouPage(page: number, limit: number) {
   const supabase = createServerComponentClient<Database>({
@@ -19,9 +19,9 @@ export async function getServerForYouPage(page: number, limit: number) {
   }
 
   const { data: likedStrains, error: likedStrainsError } = await supabase
-    .from("strain_likes")
-    .select("strain_id")
-    .eq("user_id", session?.user.id);
+    .from('strain_likes')
+    .select('strain_id')
+    .eq('user_id', session?.user.id);
 
   if (likedStrainsError) {
     return { error: likedStrainsError, data: null };
@@ -32,7 +32,7 @@ export async function getServerForYouPage(page: number, limit: number) {
     .filter((strain) => strain !== null) as string[];
 
   const { data: pairings, error } = await supabase.rpc(
-    "get_strains_by_preference",
+    'get_strains_by_preference',
     {
       liked_strains: flattenedLikedStrains,
       limit_val: limit,

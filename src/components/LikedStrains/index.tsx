@@ -1,16 +1,18 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import LikedStrain from "./LikedStrain";
-import type { StrainLike } from "@/lib/types";
-import { cn } from "@/lib/utils/cn";
-import dynamic from "next/dynamic";
+import dynamic from 'next/dynamic';
+import React, { useState } from 'react';
 
-const Modals = dynamic(() => import("./modals"));
+import type { StrainLike } from '@l/types';
+import { cn } from '@l/utils/cn';
 
-type Props = { likes?: StrainLike[] };
+import LikedStrain from './LikedStrain';
 
-function LikedStrains({ likes = [] }: Props) {
+const Modals = dynamic(() => import('./modals'));
+
+type Props = { likes?: StrainLike[]; noModals?: boolean };
+
+function LikedStrains({ likes = [], noModals = false }: Props) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -18,8 +20,8 @@ function LikedStrains({ likes = [] }: Props) {
       <div
         id="liked-strains-container"
         className={cn(
-          "overflow-y-hidden px-2 pt-3 transition-all duration-500 ease-in-out",
-          open ? "max-h-[5000px]" : "max-h-[305px] sm:max-h-[360px]",
+          'overflow-y-hidden px-2 pt-3 transition-all duration-500 ease-in-out',
+          open ? 'max-h-[5000px]' : 'max-h-[305px] sm:max-h-[360px]',
         )}
       >
         <div className="flex flex-row gap-x-1.5 items-center mb-1.5">
@@ -27,7 +29,7 @@ function LikedStrains({ likes = [] }: Props) {
           <h3 className="mt-[1.5px] text-lg font-bold text-zinc-400/90">
             ({likes?.length ?? 0})
           </h3>
-          <Modals modal={true} />
+          {!noModals && <Modals modal={true} />}
         </div>
         <div className="flex w-full flex-row flex-wrap gap-x-1.5 gap-y-1.5 sm:justify-start sm:gap-x-1.5 sm:gap-y-2">
           {likes?.map((strain, i) => (
@@ -53,10 +55,10 @@ function LikedStrains({ likes = [] }: Props) {
           height="35px"
           width="35px"
           className={cn(
-            "transition-transform duration-200",
-            open && "rotate-180",
+            'transition-transform duration-200',
+            open && 'rotate-180',
           )}
-          style={{ pointerEvents: "none" }}
+          style={{ pointerEvents: 'none' }}
           xmlns="http://www.w3.org/2000/svg"
         >
           <path

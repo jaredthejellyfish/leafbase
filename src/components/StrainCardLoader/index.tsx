@@ -1,10 +1,12 @@
-"use client";
+'use client';
 
-import React, { useEffect } from "react";
-import { useIntersectionObserver } from "usehooks-ts";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import type { Filter, Strain } from "@/lib/types";
-import StrainCard from "@c/StrainCard";
+import { useInfiniteQuery } from '@tanstack/react-query';
+import React, { useEffect } from 'react';
+import { useIntersectionObserver } from 'usehooks-ts';
+
+import StrainCard from '@c/StrainCard';
+
+import type { Filter, Strain } from '@l/types';
 
 type Props = { filter: Filter; count?: number; perPage?: number };
 
@@ -25,7 +27,7 @@ function StrainCardLoader({ filter, count = 6329, perPage = 12 }: Props) {
   const totalPages = Math.ceil(count / (perPage || 6));
 
   const { data, fetchNextPage } = useInfiniteQuery({
-    queryKey: ["strains", filter],
+    queryKey: ['strains', filter],
     queryFn: fetchStrains,
     enabled: true,
     initialPageParam: 2,

@@ -1,13 +1,14 @@
-import StrainCard from "@c/StrainCard";
-import type { Filter } from "@/lib/types";
+import React from 'react';
 
-import { getPaginatedStrains } from "@/lib/utils/getPaginatedStrains";
-import React from "react";
-import SortBy from "@c/SortBy";
-import StrainCardLoader from "@c/StrainCardLoader";
+import SortBy from '@c/SortBy';
+import StrainCard from '@c/StrainCard';
+import StrainCardLoader from '@c/StrainCardLoader';
+
+import type { Filter } from '@l/types';
+import { getPaginatedStrains } from '@l/utils/getPaginatedStrains';
 
 async function StrainsPage(request: { searchParams: { filter?: Filter } }) {
-  const filter = (request.searchParams.filter ?? "re") as Filter;
+  const filter = (request.searchParams.filter ?? 're') as Filter;
   const { strains, count } = await getPaginatedStrains(filter, 1);
 
   return (
@@ -46,4 +47,3 @@ async function StrainsPage(request: { searchParams: { filter?: Filter } }) {
 }
 
 export default StrainsPage;
-

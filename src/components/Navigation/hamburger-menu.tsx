@@ -1,8 +1,9 @@
-"use client";
+'use client';
 
-import navDropdownStore from "@/lib/store/nav-dropdown";
-import { cn } from "@/lib/utils/cn";
-import React from "react";
+import React from 'react';
+
+import navDropdownStore from '@l/store/nav-dropdown';
+import { cn } from '@l/utils/cn';
 
 function HamburgerMenu() {
   const toggle = navDropdownStore((state) => state.toggle);
@@ -21,19 +22,19 @@ function HamburgerMenu() {
       <path
         d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
         className={cn(
-          "transition-transform",
-          open && "-translate-y-[0.5px] translate-x-[6.5px] rotate-45",
+          'transition-transform',
+          open && '-translate-y-[0.5px] translate-x-[6.5px] rotate-45',
         )}
       ></path>
       <path
         d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-        className={open ? "hidden" : ""}
+        className={open ? 'hidden' : ''}
       ></path>
       <path
         d="M3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
         className={cn(
-          "transition-transform",
-          open && "-translate-x-[7.5px] translate-y-[6.5px] -rotate-45",
+          'transition-transform',
+          open && '-translate-x-[7.5px] translate-y-[6.5px] -rotate-45',
         )}
       ></path>
     </svg>

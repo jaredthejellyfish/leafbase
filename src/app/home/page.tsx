@@ -1,7 +1,9 @@
-import { getServerForYouPage } from "@/lib/utils/getServerForYouPage";
-import ForYou from "@c/ForYou";
-import WhatToOrder from "@c/WhatToOrder";
-import React from "react";
+import React from 'react';
+
+import ForYou from '@c/ForYou';
+import WhatToOrder from '@c/WhatToOrder';
+
+import { getServerForYouPage } from '@l/utils/getServerForYouPage';
 
 async function Home() {
   const { data } = await getServerForYouPage(0, 5);
@@ -20,4 +22,4 @@ async function Home() {
 
 export default Home;
 
-export const dynamic = "force-dynamic"
+export const dynamic = 'force-dynamic';

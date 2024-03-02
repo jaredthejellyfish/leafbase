@@ -1,15 +1,18 @@
-import Link from "next/link";
-import React from "react";
-import Image from "next/image";
-import SiteLogo from "@p/site-logo.png";
-import getServerUserProfile from "@/lib/utils/getServerUserProfile";
-import ProfileIcon from "@p/svg/profile-icon.svg";
-import { ThemeToggle } from "./theme-toggle";
-import HamburgerMenu from "./hamburger-menu";
-import NavDropdown from "./nav-dropdown";
-import { cookies } from "next/headers";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import type { Database } from "@/lib/database";
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
+
+import type { Database } from '@l/database';
+import getServerUserProfile from '@l/utils/getServerUserProfile';
+
+import SiteLogo from '@p/site-logo.png';
+import ProfileIcon from '@p/svg/profile-icon.svg';
+
+import HamburgerMenu from './hamburger-menu';
+import NavDropdown from './nav-dropdown';
+import { ThemeToggle } from './theme-toggle';
 
 async function Navigation() {
   const cookieStore = cookies();
@@ -38,7 +41,7 @@ async function Navigation() {
         </div>
         <div className="flex w-1/2 items-center justify-end gap-x-3">
           <ThemeToggle />
-          <Link href={user?.image ? "/profile" : "/auth/login"}>
+          <Link href={user?.image ? '/profile' : '/auth/login'}>
             <Image
               alt={`${user?.username}'s profile image`}
               src={user?.image ?? (ProfileIcon as unknown as string)}

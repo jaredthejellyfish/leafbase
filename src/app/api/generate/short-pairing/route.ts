@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
-import type { Database } from '@/lib/database';
+import type { Database } from '@l/database';
 
 const openai = new OpenAI();
 

@@ -1,17 +1,16 @@
-"use client";
+'use client';
 
-import { useQuery } from "@tanstack/react-query";
-import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
-import { MdError } from "react-icons/md";
-import { useMediaQuery } from "usehooks-ts";
+import { useQuery } from '@tanstack/react-query';
+import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { MdError } from 'react-icons/md';
+import { useMediaQuery } from 'usehooks-ts';
 
-import { getForYouPage } from "@/lib/utils/getForYouPage";
+import type { Strain } from '@l/types';
+import { cn } from '@l/utils/cn';
+import { getForYouPage } from '@l/utils/getForYouPage';
 
-import StrainCard from "../StrainCard";
-
-import React, { useEffect, useState } from "react";
-import type { Strain } from "@/lib/types";
-import { cn } from "@/lib/utils/cn";
+import StrainCard from '../StrainCard';
 
 type Props = {
   initialData?: Strain[];
@@ -22,10 +21,10 @@ function ForYou({ initialData }: Props) {
   const [open, setOpen] = useState(false);
   const [strains, setStrains] = useState<Strain[]>([]);
 
-  const matches = useMediaQuery("(min-width: 768px)");
+  const matches = useMediaQuery('(min-width: 768px)');
 
   const { data: strainsData, error: forYouError } = useQuery({
-    queryKey: ["for-you", page],
+    queryKey: ['for-you', page],
     queryFn: () => getForYouPage(page),
   });
 
@@ -71,8 +70,8 @@ function ForYou({ initialData }: Props) {
       </div>
       <div
         className={cn(
-          "flex flex-col gap-y-3 transition-all duration-500 ease-in-out overflow-hidden px-3 sm:gap-x-3 sm:pl-4 md:flex-row md:items-center md:gap-y-0 md:overflow-scroll max-h-[2000px]",
-          !matches && !open && "max-h-[450px]",
+          'flex flex-col gap-y-3 transition-all duration-500 ease-in-out overflow-hidden px-3 sm:gap-x-3 sm:pl-4 md:flex-row md:items-center md:gap-y-0 md:overflow-scroll max-h-[2000px]',
+          !matches && !open && 'max-h-[450px]',
         )}
       >
         {initialData &&
@@ -95,9 +94,14 @@ function ForYou({ initialData }: Props) {
         >
           <div className="flex flex-row items-center justify-center gap-x-2">
             <span className="py-3 font-semibold">
-              {open ? "Show less" : "Show more"}
+              {open ? 'Show less' : 'Show more'}
             </span>
-            <div className={cn("rotate-0 transition-all duration-300", open && "rotate-180")}>
+            <div
+              className={cn(
+                'rotate-0 transition-all duration-300',
+                open && 'rotate-180',
+              )}
+            >
               <ChevronDown size={23} />
             </div>
           </div>

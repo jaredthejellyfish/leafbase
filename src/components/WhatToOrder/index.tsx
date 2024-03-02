@@ -1,17 +1,16 @@
-"use client";
+'use client';
 
-import { Bot, Loader } from "lucide-react";
-
-import React, { useState } from "react";
+import { Bot, Loader } from 'lucide-react';
+import React, { useState } from 'react';
 
 function WhatToOrder() {
-  const [text, setText] = useState("");
+  const [text, setText] = useState('');
   const [loading, setLoading] = useState(false);
 
   async function streamedCompletion() {
     setLoading(true);
     try {
-      const response = await fetch("/api/generate/what-to-order");
+      const response = await fetch('/api/generate/what-to-order');
       if (!response.ok || !response.body) {
         throw response.statusText;
       }
@@ -24,10 +23,10 @@ function WhatToOrder() {
           break;
         }
         const decodedChunk = decoder.decode(value, { stream: true });
-        setText((answer) => (answer + decodedChunk).replace('"', ""));
+        setText((answer) => (answer + decodedChunk).replace('"', ''));
       }
     } catch (error) {
-      setText("Error generating recommendation...");
+      setText('Error generating recommendation...');
     } finally {
       setLoading(false);
     }
@@ -50,9 +49,9 @@ function WhatToOrder() {
                 width={31}
                 height={31}
                 style={{
-                  animation: "spin 1s linear infinite",
+                  animation: 'spin 1s linear infinite',
                 }}
-              />{" "}
+              />{' '}
               <span className="mt-0.5 font-medium text-zinc-500 dark:text-zinc-400">
                 Generating recommendation
               </span>

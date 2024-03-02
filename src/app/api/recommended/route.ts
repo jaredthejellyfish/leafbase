@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
-import type { Database } from '@/lib/database';
+import type { Database } from '@l/database';
 
 export const runtime = 'edge';
 
@@ -29,7 +29,6 @@ export async function GET(request: NextRequest) {
     .from('strain_likes')
     .select('strain_id')
     .eq('user_id', session?.user.id);
-
 
   if (likedStrainsError) {
     return NextResponse.json({ error: likedStrainsError }, { status: 500 });

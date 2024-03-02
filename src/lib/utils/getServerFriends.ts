@@ -1,15 +1,16 @@
-import type { Session, SupabaseClient } from "@supabase/auth-helpers-nextjs";
-import type { Database } from "../database";
-import type { FriendExtended } from "../types";
+import type { Session, SupabaseClient } from '@supabase/auth-helpers-nextjs';
+
+import type { Database } from '../database';
+import type { FriendExtended } from '../types';
 
 export async function getServerFriends(
   supabase: SupabaseClient<Database>,
   session?: Session,
 ) {
-  if (!session) return { friends: null, error: "No session" };
+  if (!session) return { friends: null, error: 'No session' };
 
   const { data: friendsData, error } = await supabase
-    .from("friends")
+    .from('friends')
     .select(
       `*,
   to:profiles!friends_to_fkey (

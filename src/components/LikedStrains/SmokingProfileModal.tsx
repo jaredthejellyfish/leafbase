@@ -1,30 +1,29 @@
-"use client";
+'use client';
 
-import { useQuery } from "@tanstack/react-query";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { ErrorBoundary } from "react-error-boundary";
-import { RiPieChart2Fill } from "react-icons/ri";
+import { useQuery } from '@tanstack/react-query';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import { RiPieChart2Fill } from 'react-icons/ri';
 
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@c/ui/tooltip";
+} from '@c/ui/tooltip';
 
-import type { SmokingProfile } from "@/lib/types";
+import type { SmokingProfile } from '@l/types';
 
-import Modal from "../Modal";
-import ResponsivePieChart from "./PieChart";
-
-import React, { useState } from "react";
+import Modal from '../Modal';
+import ResponsivePieChart from './PieChart';
 
 function GraphSkeleton() {
   return (
     <div className="flex flex-col flex-wrap items-center">
       <div
         className={
-          "mb-2 ml-2 size-60 animate-pulse rounded-full bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 sm:size-96"
+          'mb-2 ml-2 size-60 animate-pulse rounded-full bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 sm:size-96'
         }
       ></div>
     </div>
@@ -32,7 +31,7 @@ function GraphSkeleton() {
 }
 
 async function fetchSmokingProfile() {
-  const data = await fetch("/api/graph/smoking-profile");
+  const data = await fetch('/api/graph/smoking-profile');
 
   if (!data.ok) {
     throw new Error(`Failed to fetch smoking profile: ${data.statusText}`);
@@ -41,7 +40,7 @@ async function fetchSmokingProfile() {
   const json = (await data.json()) as SmokingProfile;
 
   if (!json) {
-    throw new Error("Invalid data received");
+    throw new Error('Invalid data received');
   }
 
   return json;
@@ -49,8 +48,8 @@ async function fetchSmokingProfile() {
 
 export default function SmokingProfileModal() {
   const [open, setOpen] = useState(false);
-  const [profileType, setProfileType] = useState<"terpenes" | "effects">(
-    "effects",
+  const [profileType, setProfileType] = useState<'terpenes' | 'effects'>(
+    'effects',
   );
 
   const {
@@ -58,31 +57,31 @@ export default function SmokingProfileModal() {
     isFetching,
     isError,
   } = useQuery({
-    queryKey: ["smoking-profile"],
+    queryKey: ['smoking-profile'],
     queryFn: () => fetchSmokingProfile(),
     enabled: open,
   });
 
   const handleBack = () => {
-    if (profileType === "terpenes") {
-      setProfileType("effects");
+    if (profileType === 'terpenes') {
+      setProfileType('effects');
     } else {
-      setProfileType("terpenes");
+      setProfileType('terpenes');
     }
   };
 
   const handleForward = () => {
-    if (profileType === "terpenes") {
-      setProfileType("effects");
+    if (profileType === 'terpenes') {
+      setProfileType('effects');
     } else {
-      setProfileType("terpenes");
+      setProfileType('terpenes');
     }
   };
 
   const displayData: Record<string, number> | undefined =
-    profileType === "effects"
+    profileType === 'effects'
       ? smokingProfile?.effects
-      : profileType === "terpenes"
+      : profileType === 'terpenes'
         ? smokingProfile?.terps
         : { ...smokingProfile?.effects, ...smokingProfile?.terps };
 
@@ -109,7 +108,7 @@ export default function SmokingProfileModal() {
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
-        <Modal open={open} setOpen={setOpen} title={"Smoking Profile"}>
+        <Modal open={open} setOpen={setOpen} title={'Smoking Profile'}>
           <div className="mb-1 flex flex-row items-center justify-between px-3">
             <button onClick={handleBack}>
               <ArrowLeft className="size-6" />

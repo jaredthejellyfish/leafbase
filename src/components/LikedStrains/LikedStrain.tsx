@@ -1,6 +1,6 @@
-import Link from "next/link";
-import Image from "next/image";
-import React from "react";
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 
 function LikedStrain({
   name,
@@ -26,5 +26,4 @@ function LikedStrain({
   );
 }
 
-
-export default LikedStrain
+export default LikedStrain;

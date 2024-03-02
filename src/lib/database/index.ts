@@ -4,1366 +4,1366 @@ export type Json =
   | boolean
   | null
   | { [key: string]: Json | undefined }
-  | Json[]
+  | Json[];
 
 export type Database = {
   public: {
     Tables: {
       backup_strains: {
         Row: {
-          averageRating: number | null
-          cannabinoids: Json | null
-          category: string | null
-          description: string | null
-          dispensaryMenuId: string | null
-          effects: Json | null
-          flowerImageSvg: string | null
-          id: string
-          likes_count: number | null
-          name: string | null
-          nugImage: string | null
-          phenotype: string | null
-          shortDescription: string | null
-          slug: string
-          subtitle: string | null
-          terps: Json | null
-          thcPercent: number | null
-          topEffect: string | null
-          topTerpene: string | null
-        }
+          averageRating: number | null;
+          cannabinoids: Json | null;
+          category: string | null;
+          description: string | null;
+          dispensaryMenuId: string | null;
+          effects: Json | null;
+          flowerImageSvg: string | null;
+          id: string;
+          likes_count: number | null;
+          name: string | null;
+          nugImage: string | null;
+          phenotype: string | null;
+          shortDescription: string | null;
+          slug: string;
+          subtitle: string | null;
+          terps: Json | null;
+          thcPercent: number | null;
+          topEffect: string | null;
+          topTerpene: string | null;
+        };
         Insert: {
-          averageRating?: number | null
-          cannabinoids?: Json | null
-          category?: string | null
-          description?: string | null
-          dispensaryMenuId?: string | null
-          effects?: Json | null
-          flowerImageSvg?: string | null
-          id: string
-          likes_count?: number | null
-          name?: string | null
-          nugImage?: string | null
-          phenotype?: string | null
-          shortDescription?: string | null
-          slug: string
-          subtitle?: string | null
-          terps?: Json | null
-          thcPercent?: number | null
-          topEffect?: string | null
-          topTerpene?: string | null
-        }
+          averageRating?: number | null;
+          cannabinoids?: Json | null;
+          category?: string | null;
+          description?: string | null;
+          dispensaryMenuId?: string | null;
+          effects?: Json | null;
+          flowerImageSvg?: string | null;
+          id: string;
+          likes_count?: number | null;
+          name?: string | null;
+          nugImage?: string | null;
+          phenotype?: string | null;
+          shortDescription?: string | null;
+          slug: string;
+          subtitle?: string | null;
+          terps?: Json | null;
+          thcPercent?: number | null;
+          topEffect?: string | null;
+          topTerpene?: string | null;
+        };
         Update: {
-          averageRating?: number | null
-          cannabinoids?: Json | null
-          category?: string | null
-          description?: string | null
-          dispensaryMenuId?: string | null
-          effects?: Json | null
-          flowerImageSvg?: string | null
-          id?: string
-          likes_count?: number | null
-          name?: string | null
-          nugImage?: string | null
-          phenotype?: string | null
-          shortDescription?: string | null
-          slug?: string
-          subtitle?: string | null
-          terps?: Json | null
-          thcPercent?: number | null
-          topEffect?: string | null
-          topTerpene?: string | null
-        }
-        Relationships: []
-      }
+          averageRating?: number | null;
+          cannabinoids?: Json | null;
+          category?: string | null;
+          description?: string | null;
+          dispensaryMenuId?: string | null;
+          effects?: Json | null;
+          flowerImageSvg?: string | null;
+          id?: string;
+          likes_count?: number | null;
+          name?: string | null;
+          nugImage?: string | null;
+          phenotype?: string | null;
+          shortDescription?: string | null;
+          slug?: string;
+          subtitle?: string | null;
+          terps?: Json | null;
+          thcPercent?: number | null;
+          topEffect?: string | null;
+          topTerpene?: string | null;
+        };
+        Relationships: [];
+      };
       dispensaries: {
         Row: {
-          address: string | null
-          averageRating: number | null
-          city: string | null
-          createdAt: string
-          description: string | null
-          email: string | null
-          hours: string | null
-          id: string
-          image: string | null
-          latitude: number | null
-          logo: string | null
-          longitude: number | null
-          name: string | null
-          phone: string | null
-          slug: string
-          updatedAt: string
-          website: string | null
-        }
+          address: string | null;
+          averageRating: number | null;
+          city: string | null;
+          createdAt: string;
+          description: string | null;
+          email: string | null;
+          hours: string | null;
+          id: string;
+          image: string | null;
+          latitude: number | null;
+          logo: string | null;
+          longitude: number | null;
+          name: string | null;
+          phone: string | null;
+          slug: string;
+          updatedAt: string;
+          website: string | null;
+        };
         Insert: {
-          address?: string | null
-          averageRating?: number | null
-          city?: string | null
-          createdAt?: string
-          description?: string | null
-          email?: string | null
-          hours?: string | null
-          id: string
-          image?: string | null
-          latitude?: number | null
-          logo?: string | null
-          longitude?: number | null
-          name?: string | null
-          phone?: string | null
-          slug: string
-          updatedAt: string
-          website?: string | null
-        }
+          address?: string | null;
+          averageRating?: number | null;
+          city?: string | null;
+          createdAt?: string;
+          description?: string | null;
+          email?: string | null;
+          hours?: string | null;
+          id: string;
+          image?: string | null;
+          latitude?: number | null;
+          logo?: string | null;
+          longitude?: number | null;
+          name?: string | null;
+          phone?: string | null;
+          slug: string;
+          updatedAt: string;
+          website?: string | null;
+        };
         Update: {
-          address?: string | null
-          averageRating?: number | null
-          city?: string | null
-          createdAt?: string
-          description?: string | null
-          email?: string | null
-          hours?: string | null
-          id?: string
-          image?: string | null
-          latitude?: number | null
-          logo?: string | null
-          longitude?: number | null
-          name?: string | null
-          phone?: string | null
-          slug?: string
-          updatedAt?: string
-          website?: string | null
-        }
-        Relationships: []
-      }
+          address?: string | null;
+          averageRating?: number | null;
+          city?: string | null;
+          createdAt?: string;
+          description?: string | null;
+          email?: string | null;
+          hours?: string | null;
+          id?: string;
+          image?: string | null;
+          latitude?: number | null;
+          logo?: string | null;
+          longitude?: number | null;
+          name?: string | null;
+          phone?: string | null;
+          slug?: string;
+          updatedAt?: string;
+          website?: string | null;
+        };
+        Relationships: [];
+      };
       friends: {
         Row: {
-          created_at: string
-          from: string
-          id: string
-          pending: boolean
-          to: string
-        }
+          created_at: string;
+          from: string;
+          id: string;
+          pending: boolean;
+          to: string;
+        };
         Insert: {
-          created_at?: string
-          from: string
-          id?: string
-          pending?: boolean
-          to: string
-        }
+          created_at?: string;
+          from: string;
+          id?: string;
+          pending?: boolean;
+          to: string;
+        };
         Update: {
-          created_at?: string
-          from?: string
-          id?: string
-          pending?: boolean
-          to?: string
-        }
+          created_at?: string;
+          from?: string;
+          id?: string;
+          pending?: boolean;
+          to?: string;
+        };
         Relationships: [
           {
-            foreignKeyName: "friends_from_fkey"
-            columns: ["from"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
+            foreignKeyName: 'friends_from_fkey';
+            columns: ['from'];
+            isOneToOne: false;
+            referencedRelation: 'profiles';
+            referencedColumns: ['id'];
           },
           {
-            foreignKeyName: "friends_to_fkey"
-            columns: ["to"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
+            foreignKeyName: 'friends_to_fkey';
+            columns: ['to'];
+            isOneToOne: false;
+            referencedRelation: 'profiles';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
       long_pairings: {
         Row: {
-          body: string | null
-          created_at: string
-          id: string
-          image: string | null
-          strain1_id: string
-          strain2_id: string
-          strain2_name: string
-          strain2_slug: string
-        }
+          body: string | null;
+          created_at: string;
+          id: string;
+          image: string | null;
+          strain1_id: string;
+          strain2_id: string;
+          strain2_name: string;
+          strain2_slug: string;
+        };
         Insert: {
-          body?: string | null
-          created_at?: string
-          id?: string
-          image?: string | null
-          strain1_id: string
-          strain2_id: string
-          strain2_name: string
-          strain2_slug: string
-        }
+          body?: string | null;
+          created_at?: string;
+          id?: string;
+          image?: string | null;
+          strain1_id: string;
+          strain2_id: string;
+          strain2_name: string;
+          strain2_slug: string;
+        };
         Update: {
-          body?: string | null
-          created_at?: string
-          id?: string
-          image?: string | null
-          strain1_id?: string
-          strain2_id?: string
-          strain2_name?: string
-          strain2_slug?: string
-        }
+          body?: string | null;
+          created_at?: string;
+          id?: string;
+          image?: string | null;
+          strain1_id?: string;
+          strain2_id?: string;
+          strain2_name?: string;
+          strain2_slug?: string;
+        };
         Relationships: [
           {
-            foreignKeyName: "long_pairings_strain1_id_fkey"
-            columns: ["strain1_id"]
-            isOneToOne: false
-            referencedRelation: "strains"
-            referencedColumns: ["id"]
+            foreignKeyName: 'long_pairings_strain1_id_fkey';
+            columns: ['strain1_id'];
+            isOneToOne: false;
+            referencedRelation: 'strains';
+            referencedColumns: ['id'];
           },
           {
-            foreignKeyName: "long_pairings_strain2_id_fkey"
-            columns: ["strain2_id"]
-            isOneToOne: false
-            referencedRelation: "strains"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
+            foreignKeyName: 'long_pairings_strain2_id_fkey';
+            columns: ['strain2_id'];
+            isOneToOne: false;
+            referencedRelation: 'strains';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
       notifications: {
         Row: {
-          archived: boolean
-          content: string
-          created_at: string
-          id: string
-          image: string | null
-          initiator: string
-          recipient: string
-          type: string
-        }
+          archived: boolean;
+          content: string;
+          created_at: string;
+          id: string;
+          image: string | null;
+          initiator: string;
+          recipient: string;
+          type: string;
+        };
         Insert: {
-          archived?: boolean
-          content: string
-          created_at?: string
-          id?: string
-          image?: string | null
-          initiator: string
-          recipient: string
-          type: string
-        }
+          archived?: boolean;
+          content: string;
+          created_at?: string;
+          id?: string;
+          image?: string | null;
+          initiator: string;
+          recipient: string;
+          type: string;
+        };
         Update: {
-          archived?: boolean
-          content?: string
-          created_at?: string
-          id?: string
-          image?: string | null
-          initiator?: string
-          recipient?: string
-          type?: string
-        }
+          archived?: boolean;
+          content?: string;
+          created_at?: string;
+          id?: string;
+          image?: string | null;
+          initiator?: string;
+          recipient?: string;
+          type?: string;
+        };
         Relationships: [
           {
-            foreignKeyName: "notifications_initiator_fkey"
-            columns: ["initiator"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
+            foreignKeyName: 'notifications_initiator_fkey';
+            columns: ['initiator'];
+            isOneToOne: false;
+            referencedRelation: 'profiles';
+            referencedColumns: ['id'];
           },
           {
-            foreignKeyName: "notifications_recipient_fkey"
-            columns: ["recipient"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
+            foreignKeyName: 'notifications_recipient_fkey';
+            columns: ['recipient'];
+            isOneToOne: false;
+            referencedRelation: 'profiles';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
       profiles: {
         Row: {
-          about: string | null
-          birth_date: string | null
-          comment_notify: boolean
-          dispensary_notify: boolean
-          id: string
-          image: string | null
-          language: string | null
-          location: string | null
-          name: string | null
-          phone: string | null
-          profile_id: string
-          pronouns: string | null
-          username: string
-        }
+          about: string | null;
+          birth_date: string | null;
+          comment_notify: boolean;
+          dispensary_notify: boolean;
+          id: string;
+          image: string | null;
+          language: string | null;
+          location: string | null;
+          name: string | null;
+          phone: string | null;
+          profile_id: string;
+          pronouns: string | null;
+          username: string;
+        };
         Insert: {
-          about?: string | null
-          birth_date?: string | null
-          comment_notify?: boolean
-          dispensary_notify?: boolean
-          id: string
-          image?: string | null
-          language?: string | null
-          location?: string | null
-          name?: string | null
-          phone?: string | null
-          profile_id?: string
-          pronouns?: string | null
-          username: string
-        }
+          about?: string | null;
+          birth_date?: string | null;
+          comment_notify?: boolean;
+          dispensary_notify?: boolean;
+          id: string;
+          image?: string | null;
+          language?: string | null;
+          location?: string | null;
+          name?: string | null;
+          phone?: string | null;
+          profile_id?: string;
+          pronouns?: string | null;
+          username: string;
+        };
         Update: {
-          about?: string | null
-          birth_date?: string | null
-          comment_notify?: boolean
-          dispensary_notify?: boolean
-          id?: string
-          image?: string | null
-          language?: string | null
-          location?: string | null
-          name?: string | null
-          phone?: string | null
-          profile_id?: string
-          pronouns?: string | null
-          username?: string
-        }
+          about?: string | null;
+          birth_date?: string | null;
+          comment_notify?: boolean;
+          dispensary_notify?: boolean;
+          id?: string;
+          image?: string | null;
+          language?: string | null;
+          location?: string | null;
+          name?: string | null;
+          phone?: string | null;
+          profile_id?: string;
+          pronouns?: string | null;
+          username?: string;
+        };
         Relationships: [
           {
-            foreignKeyName: "profiles_id_fkey"
-            columns: ["id"]
-            isOneToOne: true
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
+            foreignKeyName: 'profiles_id_fkey';
+            columns: ['id'];
+            isOneToOne: true;
+            referencedRelation: 'users';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
       short_pairings: {
         Row: {
-          body: string | null
-          created_at: string
-          id: string
-          image: string | null
-          strain1_id: string
-          strain2_id: string
-          strain2_name: string
-          strain2_slug: string
-        }
+          body: string | null;
+          created_at: string;
+          id: string;
+          image: string | null;
+          strain1_id: string;
+          strain2_id: string;
+          strain2_name: string;
+          strain2_slug: string;
+        };
         Insert: {
-          body?: string | null
-          created_at?: string
-          id?: string
-          image?: string | null
-          strain1_id: string
-          strain2_id: string
-          strain2_name: string
-          strain2_slug: string
-        }
+          body?: string | null;
+          created_at?: string;
+          id?: string;
+          image?: string | null;
+          strain1_id: string;
+          strain2_id: string;
+          strain2_name: string;
+          strain2_slug: string;
+        };
         Update: {
-          body?: string | null
-          created_at?: string
-          id?: string
-          image?: string | null
-          strain1_id?: string
-          strain2_id?: string
-          strain2_name?: string
-          strain2_slug?: string
-        }
+          body?: string | null;
+          created_at?: string;
+          id?: string;
+          image?: string | null;
+          strain1_id?: string;
+          strain2_id?: string;
+          strain2_name?: string;
+          strain2_slug?: string;
+        };
         Relationships: [
           {
-            foreignKeyName: "short_pairings_strain1_id_fkey"
-            columns: ["strain1_id"]
-            isOneToOne: false
-            referencedRelation: "strains"
-            referencedColumns: ["id"]
+            foreignKeyName: 'short_pairings_strain1_id_fkey';
+            columns: ['strain1_id'];
+            isOneToOne: false;
+            referencedRelation: 'strains';
+            referencedColumns: ['id'];
           },
           {
-            foreignKeyName: "short_pairings_strain2_id_fkey"
-            columns: ["strain2_id"]
-            isOneToOne: false
-            referencedRelation: "strains"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
+            foreignKeyName: 'short_pairings_strain2_id_fkey';
+            columns: ['strain2_id'];
+            isOneToOne: false;
+            referencedRelation: 'strains';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
       strain_comment_likes: {
         Row: {
-          comment_id: string
-          created_at: string
-          id: string
-          user_id: string | null
-        }
+          comment_id: string;
+          created_at: string;
+          id: string;
+          user_id: string | null;
+        };
         Insert: {
-          comment_id: string
-          created_at?: string
-          id?: string
-          user_id?: string | null
-        }
+          comment_id: string;
+          created_at?: string;
+          id?: string;
+          user_id?: string | null;
+        };
         Update: {
-          comment_id?: string
-          created_at?: string
-          id?: string
-          user_id?: string | null
-        }
+          comment_id?: string;
+          created_at?: string;
+          id?: string;
+          user_id?: string | null;
+        };
         Relationships: [
           {
-            foreignKeyName: "strain_comment_likes_comment_id_fkey"
-            columns: ["comment_id"]
-            isOneToOne: false
-            referencedRelation: "strain_comments"
-            referencedColumns: ["id"]
+            foreignKeyName: 'strain_comment_likes_comment_id_fkey';
+            columns: ['comment_id'];
+            isOneToOne: false;
+            referencedRelation: 'strain_comments';
+            referencedColumns: ['id'];
           },
           {
-            foreignKeyName: "strain_comment_likes_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
+            foreignKeyName: 'strain_comment_likes_user_id_fkey';
+            columns: ['user_id'];
+            isOneToOne: false;
+            referencedRelation: 'users';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
       strain_comments: {
         Row: {
-          comment: string
-          created_at: string
-          id: string
-          likes_count: number
-          strain_id: string
-          user_id: string
-        }
+          comment: string;
+          created_at: string;
+          id: string;
+          likes_count: number;
+          strain_id: string;
+          user_id: string;
+        };
         Insert: {
-          comment: string
-          created_at?: string
-          id?: string
-          likes_count?: number
-          strain_id: string
-          user_id: string
-        }
+          comment: string;
+          created_at?: string;
+          id?: string;
+          likes_count?: number;
+          strain_id: string;
+          user_id: string;
+        };
         Update: {
-          comment?: string
-          created_at?: string
-          id?: string
-          likes_count?: number
-          strain_id?: string
-          user_id?: string
-        }
+          comment?: string;
+          created_at?: string;
+          id?: string;
+          likes_count?: number;
+          strain_id?: string;
+          user_id?: string;
+        };
         Relationships: [
           {
-            foreignKeyName: "strain_comments_strain_id_fkey"
-            columns: ["strain_id"]
-            isOneToOne: false
-            referencedRelation: "strains"
-            referencedColumns: ["id"]
+            foreignKeyName: 'strain_comments_strain_id_fkey';
+            columns: ['strain_id'];
+            isOneToOne: false;
+            referencedRelation: 'strains';
+            referencedColumns: ['id'];
           },
           {
-            foreignKeyName: "strain_comments_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
+            foreignKeyName: 'strain_comments_user_id_fkey';
+            columns: ['user_id'];
+            isOneToOne: false;
+            referencedRelation: 'profiles';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
       strain_likes: {
         Row: {
-          created_at: string
-          id: string
-          strain_id: string | null
-          user_id: string | null
-        }
+          created_at: string;
+          id: string;
+          strain_id: string | null;
+          user_id: string | null;
+        };
         Insert: {
-          created_at?: string
-          id?: string
-          strain_id?: string | null
-          user_id?: string | null
-        }
+          created_at?: string;
+          id?: string;
+          strain_id?: string | null;
+          user_id?: string | null;
+        };
         Update: {
-          created_at?: string
-          id?: string
-          strain_id?: string | null
-          user_id?: string | null
-        }
+          created_at?: string;
+          id?: string;
+          strain_id?: string | null;
+          user_id?: string | null;
+        };
         Relationships: [
           {
-            foreignKeyName: "strain_likes_strain_id_fkey"
-            columns: ["strain_id"]
-            isOneToOne: false
-            referencedRelation: "strains"
-            referencedColumns: ["id"]
+            foreignKeyName: 'strain_likes_strain_id_fkey';
+            columns: ['strain_id'];
+            isOneToOne: false;
+            referencedRelation: 'strains';
+            referencedColumns: ['id'];
           },
           {
-            foreignKeyName: "strain_likes_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
+            foreignKeyName: 'strain_likes_user_id_fkey';
+            columns: ['user_id'];
+            isOneToOne: false;
+            referencedRelation: 'users';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
       strains: {
         Row: {
-          averageRating: number | null
-          cannabinoids: Json | null
-          category: string | null
-          description: string | null
-          dispensaryMenuId: string | null
-          effects: Json | null
-          flowerImageSvg: string | null
-          id: string
-          likes_count: number | null
-          name: string
-          nugImage: string | null
-          phenotype: string | null
-          shortDescription: string | null
-          slug: string
-          subtitle: string
-          terps: Json | null
-          thcPercent: number | null
-          topEffect: string | null
-          topTerpene: string | null
-        }
+          averageRating: number | null;
+          cannabinoids: Json | null;
+          category: string | null;
+          description: string | null;
+          dispensaryMenuId: string | null;
+          effects: Json | null;
+          flowerImageSvg: string | null;
+          id: string;
+          likes_count: number | null;
+          name: string;
+          nugImage: string | null;
+          phenotype: string | null;
+          shortDescription: string | null;
+          slug: string;
+          subtitle: string;
+          terps: Json | null;
+          thcPercent: number | null;
+          topEffect: string | null;
+          topTerpene: string | null;
+        };
         Insert: {
-          averageRating?: number | null
-          cannabinoids?: Json | null
-          category?: string | null
-          description?: string | null
-          dispensaryMenuId?: string | null
-          effects?: Json | null
-          flowerImageSvg?: string | null
-          id: string
-          likes_count?: number | null
-          name: string
-          nugImage?: string | null
-          phenotype?: string | null
-          shortDescription?: string | null
-          slug: string
-          subtitle: string
-          terps?: Json | null
-          thcPercent?: number | null
-          topEffect?: string | null
-          topTerpene?: string | null
-        }
+          averageRating?: number | null;
+          cannabinoids?: Json | null;
+          category?: string | null;
+          description?: string | null;
+          dispensaryMenuId?: string | null;
+          effects?: Json | null;
+          flowerImageSvg?: string | null;
+          id: string;
+          likes_count?: number | null;
+          name: string;
+          nugImage?: string | null;
+          phenotype?: string | null;
+          shortDescription?: string | null;
+          slug: string;
+          subtitle: string;
+          terps?: Json | null;
+          thcPercent?: number | null;
+          topEffect?: string | null;
+          topTerpene?: string | null;
+        };
         Update: {
-          averageRating?: number | null
-          cannabinoids?: Json | null
-          category?: string | null
-          description?: string | null
-          dispensaryMenuId?: string | null
-          effects?: Json | null
-          flowerImageSvg?: string | null
-          id?: string
-          likes_count?: number | null
-          name?: string
-          nugImage?: string | null
-          phenotype?: string | null
-          shortDescription?: string | null
-          slug?: string
-          subtitle?: string
-          terps?: Json | null
-          thcPercent?: number | null
-          topEffect?: string | null
-          topTerpene?: string | null
-        }
-        Relationships: []
-      }
+          averageRating?: number | null;
+          cannabinoids?: Json | null;
+          category?: string | null;
+          description?: string | null;
+          dispensaryMenuId?: string | null;
+          effects?: Json | null;
+          flowerImageSvg?: string | null;
+          id?: string;
+          likes_count?: number | null;
+          name?: string;
+          nugImage?: string | null;
+          phenotype?: string | null;
+          shortDescription?: string | null;
+          slug?: string;
+          subtitle?: string;
+          terps?: Json | null;
+          thcPercent?: number | null;
+          topEffect?: string | null;
+          topTerpene?: string | null;
+        };
+        Relationships: [];
+      };
       strains_pg: {
         Row: {
-          averageRating: number | null
-          cannabinoids: Json | null
-          category: string | null
-          description: string | null
-          dispensaryMenuId: string | null
-          effects: Json | null
-          flowerImageSvg: string | null
-          id: string
-          likes_count: number | null
-          name: string
-          nugImage: string | null
-          phenotype: string | null
-          shortDescription: string | null
-          slug: string
-          subtitle: string
-          terps: Json | null
-          thcPercent: number | null
-          topEffect: string | null
-          topTerpene: string | null
-        }
+          averageRating: number | null;
+          cannabinoids: Json | null;
+          category: string | null;
+          description: string | null;
+          dispensaryMenuId: string | null;
+          effects: Json | null;
+          flowerImageSvg: string | null;
+          id: string;
+          likes_count: number | null;
+          name: string;
+          nugImage: string | null;
+          phenotype: string | null;
+          shortDescription: string | null;
+          slug: string;
+          subtitle: string;
+          terps: Json | null;
+          thcPercent: number | null;
+          topEffect: string | null;
+          topTerpene: string | null;
+        };
         Insert: {
-          averageRating?: number | null
-          cannabinoids?: Json | null
-          category?: string | null
-          description?: string | null
-          dispensaryMenuId?: string | null
-          effects?: Json | null
-          flowerImageSvg?: string | null
-          id: string
-          likes_count?: number | null
-          name: string
-          nugImage?: string | null
-          phenotype?: string | null
-          shortDescription?: string | null
-          slug: string
-          subtitle: string
-          terps?: Json | null
-          thcPercent?: number | null
-          topEffect?: string | null
-          topTerpene?: string | null
-        }
+          averageRating?: number | null;
+          cannabinoids?: Json | null;
+          category?: string | null;
+          description?: string | null;
+          dispensaryMenuId?: string | null;
+          effects?: Json | null;
+          flowerImageSvg?: string | null;
+          id: string;
+          likes_count?: number | null;
+          name: string;
+          nugImage?: string | null;
+          phenotype?: string | null;
+          shortDescription?: string | null;
+          slug: string;
+          subtitle: string;
+          terps?: Json | null;
+          thcPercent?: number | null;
+          topEffect?: string | null;
+          topTerpene?: string | null;
+        };
         Update: {
-          averageRating?: number | null
-          cannabinoids?: Json | null
-          category?: string | null
-          description?: string | null
-          dispensaryMenuId?: string | null
-          effects?: Json | null
-          flowerImageSvg?: string | null
-          id?: string
-          likes_count?: number | null
-          name?: string
-          nugImage?: string | null
-          phenotype?: string | null
-          shortDescription?: string | null
-          slug?: string
-          subtitle?: string
-          terps?: Json | null
-          thcPercent?: number | null
-          topEffect?: string | null
-          topTerpene?: string | null
-        }
-        Relationships: []
-      }
+          averageRating?: number | null;
+          cannabinoids?: Json | null;
+          category?: string | null;
+          description?: string | null;
+          dispensaryMenuId?: string | null;
+          effects?: Json | null;
+          flowerImageSvg?: string | null;
+          id?: string;
+          likes_count?: number | null;
+          name?: string;
+          nugImage?: string | null;
+          phenotype?: string | null;
+          shortDescription?: string | null;
+          slug?: string;
+          subtitle?: string;
+          terps?: Json | null;
+          thcPercent?: number | null;
+          topEffect?: string | null;
+          topTerpene?: string | null;
+        };
+        Relationships: [];
+      };
       strains_vectors: {
         Row: {
-          id: string
-          slug: string
-          strain_id: string
-          vector: string
-        }
+          id: string;
+          slug: string;
+          strain_id: string;
+          vector: string;
+        };
         Insert: {
-          id?: string
-          slug: string
-          strain_id: string
-          vector: string
-        }
+          id?: string;
+          slug: string;
+          strain_id: string;
+          vector: string;
+        };
         Update: {
-          id?: string
-          slug?: string
-          strain_id?: string
-          vector?: string
-        }
+          id?: string;
+          slug?: string;
+          strain_id?: string;
+          vector?: string;
+        };
         Relationships: [
           {
-            foreignKeyName: "strains_vectors_strain_id_fkey"
-            columns: ["strain_id"]
-            isOneToOne: false
-            referencedRelation: "strains"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-    }
+            foreignKeyName: 'strains_vectors_strain_id_fkey';
+            columns: ['strain_id'];
+            isOneToOne: false;
+            referencedRelation: 'strains';
+            referencedColumns: ['id'];
+          },
+        ];
+      };
+    };
     Views: {
-      [_ in never]: never
-    }
+      [_ in never]: never;
+    };
     Functions: {
       find_closest_strains: {
         Args: {
-          input_slug: string
-          limit_count: number
-        }
+          input_slug: string;
+          limit_count: number;
+        };
         Returns: {
-          id: string
-          slug: string
-          strain_id: string
-          nug_image: string
-        }[]
-      }
+          id: string;
+          slug: string;
+          strain_id: string;
+          nug_image: string;
+        }[];
+      };
       get_related_strains: {
         Args: {
-          input_slug: string
-          limit_count: number
-        }
+          input_slug: string;
+          limit_count: number;
+        };
         Returns: {
-          id: number
-          slug: string
-          strain_id: number
-          image: string
-        }[]
-      }
+          id: number;
+          slug: string;
+          strain_id: number;
+          image: string;
+        }[];
+      };
       get_strains_by_preference:
         | {
             Args: {
-              liked_strains: string[]
-            }
+              liked_strains: string[];
+            };
             Returns: {
-              id: string
-              name: string
-              distance: number
-            }[]
+              id: string;
+              name: string;
+              distance: number;
+            }[];
           }
         | {
             Args: {
-              liked_strains: string[]
-              limit_val: number
-              offset_val: number
-            }
+              liked_strains: string[];
+              limit_val: number;
+              offset_val: number;
+            };
             Returns: {
-              id: string
-              slug: string
-              name: string
-              subtitle: string
-              category: string
-              phenotype: string
-              averageRating: number
-              shortDescription: string
-              description: string
-              nugImage: string
-              flowerImageSvg: string
-              topTerpene: string
-              thcPercent: number
-              topEffect: string
-              cannabinoids: Json
-              effects: Json
-              terps: Json
-              dispensaryMenuId: string
-              likes_count: number
-              distance: number
-            }[]
-          }
+              id: string;
+              slug: string;
+              name: string;
+              subtitle: string;
+              category: string;
+              phenotype: string;
+              averageRating: number;
+              shortDescription: string;
+              description: string;
+              nugImage: string;
+              flowerImageSvg: string;
+              topTerpene: string;
+              thcPercent: number;
+              topEffect: string;
+              cannabinoids: Json;
+              effects: Json;
+              terps: Json;
+              dispensaryMenuId: string;
+              likes_count: number;
+              distance: number;
+            }[];
+          };
       ivfflathandler: {
         Args: {
-          "": unknown
-        }
-        Returns: unknown
-      }
+          '': unknown;
+        };
+        Returns: unknown;
+      };
       pgroonga_command:
         | {
             Args: {
-              groongacommand: string
-            }
-            Returns: string
+              groongacommand: string;
+            };
+            Returns: string;
           }
         | {
             Args: {
-              groongacommand: string
-              arguments: string[]
-            }
-            Returns: string
-          }
+              groongacommand: string;
+              arguments: string[];
+            };
+            Returns: string;
+          };
       pgroonga_command_escape_value: {
         Args: {
-          value: string
-        }
-        Returns: string
-      }
+          value: string;
+        };
+        Returns: string;
+      };
       pgroonga_equal_query_text_array: {
         Args: {
-          targets: string[]
-          query: string
-        }
-        Returns: boolean
-      }
+          targets: string[];
+          query: string;
+        };
+        Returns: boolean;
+      };
       pgroonga_equal_query_varchar_array: {
         Args: {
-          targets: string[]
-          query: string
-        }
-        Returns: boolean
-      }
+          targets: string[];
+          query: string;
+        };
+        Returns: boolean;
+      };
       pgroonga_equal_text: {
         Args: {
-          target: string
-          other: string
-        }
-        Returns: boolean
-      }
+          target: string;
+          other: string;
+        };
+        Returns: boolean;
+      };
       pgroonga_equal_text_condition: {
         Args: {
-          target: string
-          condition: Database["public"]["CompositeTypes"]["pgroonga_full_text_search_condition"]
-        }
-        Returns: boolean
-      }
+          target: string;
+          condition: Database['public']['CompositeTypes']['pgroonga_full_text_search_condition'];
+        };
+        Returns: boolean;
+      };
       pgroonga_equal_varchar: {
         Args: {
-          target: string
-          other: string
-        }
-        Returns: boolean
-      }
+          target: string;
+          other: string;
+        };
+        Returns: boolean;
+      };
       pgroonga_equal_varchar_condition: {
         Args: {
-          target: string
-          condition: Database["public"]["CompositeTypes"]["pgroonga_full_text_search_condition"]
-        }
-        Returns: boolean
-      }
+          target: string;
+          condition: Database['public']['CompositeTypes']['pgroonga_full_text_search_condition'];
+        };
+        Returns: boolean;
+      };
       pgroonga_escape:
         | {
             Args: {
-              value: boolean
-            }
-            Returns: string
+              value: boolean;
+            };
+            Returns: string;
           }
         | {
             Args: {
-              value: number
-            }
-            Returns: string
+              value: number;
+            };
+            Returns: string;
           }
         | {
             Args: {
-              value: number
-            }
-            Returns: string
+              value: number;
+            };
+            Returns: string;
           }
         | {
             Args: {
-              value: number
-            }
-            Returns: string
+              value: number;
+            };
+            Returns: string;
           }
         | {
             Args: {
-              value: number
-            }
-            Returns: string
+              value: number;
+            };
+            Returns: string;
           }
         | {
             Args: {
-              value: number
-            }
-            Returns: string
+              value: number;
+            };
+            Returns: string;
           }
         | {
             Args: {
-              value: string
-            }
-            Returns: string
+              value: string;
+            };
+            Returns: string;
           }
         | {
             Args: {
-              value: string
-            }
-            Returns: string
+              value: string;
+            };
+            Returns: string;
           }
         | {
             Args: {
-              value: string
-            }
-            Returns: string
+              value: string;
+            };
+            Returns: string;
           }
         | {
             Args: {
-              value: string
-              special_characters: string
-            }
-            Returns: string
-          }
+              value: string;
+              special_characters: string;
+            };
+            Returns: string;
+          };
       pgroonga_flush: {
         Args: {
-          indexname: unknown
-        }
-        Returns: boolean
-      }
+          indexname: unknown;
+        };
+        Returns: boolean;
+      };
       pgroonga_handler: {
         Args: {
-          "": unknown
-        }
-        Returns: unknown
-      }
+          '': unknown;
+        };
+        Returns: unknown;
+      };
       pgroonga_highlight_html:
         | {
             Args: {
-              target: string
-              keywords: string[]
-            }
-            Returns: string
+              target: string;
+              keywords: string[];
+            };
+            Returns: string;
           }
         | {
             Args: {
-              target: string
-              keywords: string[]
-              indexname: unknown
-            }
-            Returns: string
+              target: string;
+              keywords: string[];
+              indexname: unknown;
+            };
+            Returns: string;
           }
         | {
             Args: {
-              targets: string[]
-              keywords: string[]
-            }
-            Returns: unknown
+              targets: string[];
+              keywords: string[];
+            };
+            Returns: unknown;
           }
         | {
             Args: {
-              targets: string[]
-              keywords: string[]
-              indexname: unknown
-            }
-            Returns: unknown
-          }
+              targets: string[];
+              keywords: string[];
+              indexname: unknown;
+            };
+            Returns: unknown;
+          };
       pgroonga_index_column_name:
         | {
             Args: {
-              indexname: unknown
-              columnindex: number
-            }
-            Returns: string
+              indexname: unknown;
+              columnindex: number;
+            };
+            Returns: string;
           }
         | {
             Args: {
-              indexname: unknown
-              columnname: string
-            }
-            Returns: string
-          }
+              indexname: unknown;
+              columnname: string;
+            };
+            Returns: string;
+          };
       pgroonga_is_writable: {
-        Args: Record<PropertyKey, never>
-        Returns: boolean
-      }
+        Args: Record<PropertyKey, never>;
+        Returns: boolean;
+      };
       pgroonga_match_positions_byte:
         | {
             Args: {
-              target: string
-              keywords: string[]
-            }
-            Returns: unknown
+              target: string;
+              keywords: string[];
+            };
+            Returns: unknown;
           }
         | {
             Args: {
-              target: string
-              keywords: string[]
-              indexname: unknown
-            }
-            Returns: unknown
-          }
+              target: string;
+              keywords: string[];
+              indexname: unknown;
+            };
+            Returns: unknown;
+          };
       pgroonga_match_positions_character:
         | {
             Args: {
-              target: string
-              keywords: string[]
-            }
-            Returns: unknown
+              target: string;
+              keywords: string[];
+            };
+            Returns: unknown;
           }
         | {
             Args: {
-              target: string
-              keywords: string[]
-              indexname: unknown
-            }
-            Returns: unknown
-          }
+              target: string;
+              keywords: string[];
+              indexname: unknown;
+            };
+            Returns: unknown;
+          };
       pgroonga_match_term:
         | {
             Args: {
-              target: string[]
-              term: string
-            }
-            Returns: boolean
+              target: string[];
+              term: string;
+            };
+            Returns: boolean;
           }
         | {
             Args: {
-              target: string[]
-              term: string
-            }
-            Returns: boolean
+              target: string[];
+              term: string;
+            };
+            Returns: boolean;
           }
         | {
             Args: {
-              target: string
-              term: string
-            }
-            Returns: boolean
+              target: string;
+              term: string;
+            };
+            Returns: boolean;
           }
         | {
             Args: {
-              target: string
-              term: string
-            }
-            Returns: boolean
-          }
+              target: string;
+              term: string;
+            };
+            Returns: boolean;
+          };
       pgroonga_match_text_array_condition: {
         Args: {
-          target: string[]
-          condition: Database["public"]["CompositeTypes"]["pgroonga_full_text_search_condition"]
-        }
-        Returns: boolean
-      }
+          target: string[];
+          condition: Database['public']['CompositeTypes']['pgroonga_full_text_search_condition'];
+        };
+        Returns: boolean;
+      };
       pgroonga_match_text_array_condition_with_scorers: {
         Args: {
-          target: string[]
-          condition: Database["public"]["CompositeTypes"]["pgroonga_full_text_search_condition_with_scorers"]
-        }
-        Returns: boolean
-      }
+          target: string[];
+          condition: Database['public']['CompositeTypes']['pgroonga_full_text_search_condition_with_scorers'];
+        };
+        Returns: boolean;
+      };
       pgroonga_match_text_condition: {
         Args: {
-          target: string
-          condition: Database["public"]["CompositeTypes"]["pgroonga_full_text_search_condition"]
-        }
-        Returns: boolean
-      }
+          target: string;
+          condition: Database['public']['CompositeTypes']['pgroonga_full_text_search_condition'];
+        };
+        Returns: boolean;
+      };
       pgroonga_match_text_condition_with_scorers: {
         Args: {
-          target: string
-          condition: Database["public"]["CompositeTypes"]["pgroonga_full_text_search_condition_with_scorers"]
-        }
-        Returns: boolean
-      }
+          target: string;
+          condition: Database['public']['CompositeTypes']['pgroonga_full_text_search_condition_with_scorers'];
+        };
+        Returns: boolean;
+      };
       pgroonga_match_varchar_condition: {
         Args: {
-          target: string
-          condition: Database["public"]["CompositeTypes"]["pgroonga_full_text_search_condition"]
-        }
-        Returns: boolean
-      }
+          target: string;
+          condition: Database['public']['CompositeTypes']['pgroonga_full_text_search_condition'];
+        };
+        Returns: boolean;
+      };
       pgroonga_match_varchar_condition_with_scorers: {
         Args: {
-          target: string
-          condition: Database["public"]["CompositeTypes"]["pgroonga_full_text_search_condition_with_scorers"]
-        }
-        Returns: boolean
-      }
+          target: string;
+          condition: Database['public']['CompositeTypes']['pgroonga_full_text_search_condition_with_scorers'];
+        };
+        Returns: boolean;
+      };
       pgroonga_normalize:
         | {
             Args: {
-              target: string
-            }
-            Returns: string
+              target: string;
+            };
+            Returns: string;
           }
         | {
             Args: {
-              target: string
-              normalizername: string
-            }
-            Returns: string
-          }
+              target: string;
+              normalizername: string;
+            };
+            Returns: string;
+          };
       pgroonga_prefix_varchar_condition: {
         Args: {
-          target: string
-          conditoin: Database["public"]["CompositeTypes"]["pgroonga_full_text_search_condition"]
-        }
-        Returns: boolean
-      }
+          target: string;
+          conditoin: Database['public']['CompositeTypes']['pgroonga_full_text_search_condition'];
+        };
+        Returns: boolean;
+      };
       pgroonga_query_escape: {
         Args: {
-          query: string
-        }
-        Returns: string
-      }
+          query: string;
+        };
+        Returns: string;
+      };
       pgroonga_query_expand: {
         Args: {
-          tablename: unknown
-          termcolumnname: string
-          synonymscolumnname: string
-          query: string
-        }
-        Returns: string
-      }
+          tablename: unknown;
+          termcolumnname: string;
+          synonymscolumnname: string;
+          query: string;
+        };
+        Returns: string;
+      };
       pgroonga_query_extract_keywords: {
         Args: {
-          query: string
-          index_name?: string
-        }
-        Returns: unknown
-      }
+          query: string;
+          index_name?: string;
+        };
+        Returns: unknown;
+      };
       pgroonga_query_text_array_condition: {
         Args: {
-          targets: string[]
-          condition: Database["public"]["CompositeTypes"]["pgroonga_full_text_search_condition"]
-        }
-        Returns: boolean
-      }
+          targets: string[];
+          condition: Database['public']['CompositeTypes']['pgroonga_full_text_search_condition'];
+        };
+        Returns: boolean;
+      };
       pgroonga_query_text_array_condition_with_scorers: {
         Args: {
-          targets: string[]
-          condition: Database["public"]["CompositeTypes"]["pgroonga_full_text_search_condition_with_scorers"]
-        }
-        Returns: boolean
-      }
+          targets: string[];
+          condition: Database['public']['CompositeTypes']['pgroonga_full_text_search_condition_with_scorers'];
+        };
+        Returns: boolean;
+      };
       pgroonga_query_text_condition: {
         Args: {
-          target: string
-          condition: Database["public"]["CompositeTypes"]["pgroonga_full_text_search_condition"]
-        }
-        Returns: boolean
-      }
+          target: string;
+          condition: Database['public']['CompositeTypes']['pgroonga_full_text_search_condition'];
+        };
+        Returns: boolean;
+      };
       pgroonga_query_text_condition_with_scorers: {
         Args: {
-          target: string
-          condition: Database["public"]["CompositeTypes"]["pgroonga_full_text_search_condition_with_scorers"]
-        }
-        Returns: boolean
-      }
+          target: string;
+          condition: Database['public']['CompositeTypes']['pgroonga_full_text_search_condition_with_scorers'];
+        };
+        Returns: boolean;
+      };
       pgroonga_query_varchar_condition: {
         Args: {
-          target: string
-          condition: Database["public"]["CompositeTypes"]["pgroonga_full_text_search_condition"]
-        }
-        Returns: boolean
-      }
+          target: string;
+          condition: Database['public']['CompositeTypes']['pgroonga_full_text_search_condition'];
+        };
+        Returns: boolean;
+      };
       pgroonga_query_varchar_condition_with_scorers: {
         Args: {
-          target: string
-          condition: Database["public"]["CompositeTypes"]["pgroonga_full_text_search_condition_with_scorers"]
-        }
-        Returns: boolean
-      }
+          target: string;
+          condition: Database['public']['CompositeTypes']['pgroonga_full_text_search_condition_with_scorers'];
+        };
+        Returns: boolean;
+      };
       pgroonga_result_to_jsonb_objects: {
         Args: {
-          result: Json
-        }
-        Returns: Json
-      }
+          result: Json;
+        };
+        Returns: Json;
+      };
       pgroonga_result_to_recordset: {
         Args: {
-          result: Json
-        }
-        Returns: Record<string, unknown>[]
-      }
+          result: Json;
+        };
+        Returns: Record<string, unknown>[];
+      };
       pgroonga_score:
         | {
             Args: {
-              row: Record<string, unknown>
-            }
-            Returns: number
+              row: Record<string, unknown>;
+            };
+            Returns: number;
           }
         | {
             Args: {
-              tableoid: unknown
-              ctid: unknown
-            }
-            Returns: number
-          }
+              tableoid: unknown;
+              ctid: unknown;
+            };
+            Returns: number;
+          };
       pgroonga_set_writable: {
         Args: {
-          newwritable: boolean
-        }
-        Returns: boolean
-      }
+          newwritable: boolean;
+        };
+        Returns: boolean;
+      };
       pgroonga_snippet_html: {
         Args: {
-          target: string
-          keywords: string[]
-          width?: number
-        }
-        Returns: unknown
-      }
+          target: string;
+          keywords: string[];
+          width?: number;
+        };
+        Returns: unknown;
+      };
       pgroonga_table_name: {
         Args: {
-          indexname: unknown
-        }
-        Returns: string
-      }
+          indexname: unknown;
+        };
+        Returns: string;
+      };
       pgroonga_tokenize: {
         Args: {
-          target: string
-        }
-        Returns: unknown
-      }
+          target: string;
+        };
+        Returns: unknown;
+      };
       pgroonga_vacuum: {
-        Args: Record<PropertyKey, never>
-        Returns: boolean
-      }
+        Args: Record<PropertyKey, never>;
+        Returns: boolean;
+      };
       pgroonga_wal_apply:
         | {
-            Args: Record<PropertyKey, never>
-            Returns: number
+            Args: Record<PropertyKey, never>;
+            Returns: number;
           }
         | {
             Args: {
-              indexname: unknown
-            }
-            Returns: number
-          }
+              indexname: unknown;
+            };
+            Returns: number;
+          };
       pgroonga_wal_set_applied_position:
         | {
-            Args: Record<PropertyKey, never>
-            Returns: boolean
+            Args: Record<PropertyKey, never>;
+            Returns: boolean;
           }
         | {
             Args: {
-              block: number
-              offset: number
-            }
-            Returns: boolean
+              block: number;
+              offset: number;
+            };
+            Returns: boolean;
           }
         | {
             Args: {
-              indexname: unknown
-            }
-            Returns: boolean
+              indexname: unknown;
+            };
+            Returns: boolean;
           }
         | {
             Args: {
-              indexname: unknown
-              block: number
-              offset: number
-            }
-            Returns: boolean
-          }
+              indexname: unknown;
+              block: number;
+              offset: number;
+            };
+            Returns: boolean;
+          };
       pgroonga_wal_status: {
-        Args: Record<PropertyKey, never>
+        Args: Record<PropertyKey, never>;
         Returns: {
-          name: string
-          oid: unknown
-          current_block: number
-          current_offset: number
-          current_size: number
-          last_block: number
-          last_offset: number
-          last_size: number
-        }[]
-      }
+          name: string;
+          oid: unknown;
+          current_block: number;
+          current_offset: number;
+          current_size: number;
+          last_block: number;
+          last_offset: number;
+          last_size: number;
+        }[];
+      };
       pgroonga_wal_truncate:
         | {
-            Args: Record<PropertyKey, never>
-            Returns: number
+            Args: Record<PropertyKey, never>;
+            Returns: number;
           }
         | {
             Args: {
-              indexname: unknown
-            }
-            Returns: number
-          }
+              indexname: unknown;
+            };
+            Returns: number;
+          };
       search_strains: {
         Args: {
-          search_term: string
-          limit_num: number
-        }
+          search_term: string;
+          limit_num: number;
+        };
         Returns: {
-          slug: string
-          name: string
-          nugimage: string
-        }[]
-      }
+          slug: string;
+          name: string;
+          nugimage: string;
+        }[];
+      };
       send_email_sendgrid: {
         Args: {
-          message: Json
-        }
-        Returns: Json
-      }
+          message: Json;
+        };
+        Returns: Json;
+      };
       vector_avg: {
         Args: {
-          "": number[]
-        }
-        Returns: string
-      }
+          '': number[];
+        };
+        Returns: string;
+      };
       vector_dims: {
         Args: {
-          "": string
-        }
-        Returns: number
-      }
+          '': string;
+        };
+        Returns: number;
+      };
       vector_norm: {
         Args: {
-          "": string
-        }
-        Returns: number
-      }
+          '': string;
+        };
+        Returns: number;
+      };
       vector_out: {
         Args: {
-          "": string
-        }
-        Returns: unknown
-      }
+          '': string;
+        };
+        Returns: unknown;
+      };
       vector_send: {
         Args: {
-          "": string
-        }
-        Returns: string
-      }
+          '': string;
+        };
+        Returns: string;
+      };
       vector_typmod_in: {
         Args: {
-          "": unknown[]
-        }
-        Returns: number
-      }
-    }
+          '': unknown[];
+        };
+        Returns: number;
+      };
+    };
     Enums: {
-      [_ in never]: never
-    }
+      [_ in never]: never;
+    };
     CompositeTypes: {
       pgroonga_full_text_search_condition: {
-        query: string
-        weigths: unknown
-        indexname: string
-      }
+        query: string;
+        weigths: unknown;
+        indexname: string;
+      };
       pgroonga_full_text_search_condition_with_scorers: {
-        query: string
-        weigths: unknown
-        scorers: unknown
-        indexname: string
-      }
-    }
-  }
-}
+        query: string;
+        weigths: unknown;
+        scorers: unknown;
+        indexname: string;
+      };
+    };
+  };
+};
 
 export type Tables<
   PublicTableNameOrOptions extends
-    | keyof (Database["public"]["Tables"] & Database["public"]["Views"])
+    | keyof (Database['public']['Tables'] & Database['public']['Views'])
     | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
-        Database[PublicTableNameOrOptions["schema"]]["Views"])
-    : never = never
+    ? keyof (Database[PublicTableNameOrOptions['schema']]['Tables'] &
+        Database[PublicTableNameOrOptions['schema']]['Views'])
+    : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
-      Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
-      Row: infer R
+  ? (Database[PublicTableNameOrOptions['schema']]['Tables'] &
+      Database[PublicTableNameOrOptions['schema']]['Views'])[TableName] extends {
+      Row: infer R;
     }
     ? R
     : never
-  : PublicTableNameOrOptions extends keyof (Database["public"]["Tables"] &
-      Database["public"]["Views"])
-  ? (Database["public"]["Tables"] &
-      Database["public"]["Views"])[PublicTableNameOrOptions] extends {
-      Row: infer R
-    }
-    ? R
-    : never
-  : never
+  : PublicTableNameOrOptions extends keyof (Database['public']['Tables'] &
+        Database['public']['Views'])
+    ? (Database['public']['Tables'] &
+        Database['public']['Views'])[PublicTableNameOrOptions] extends {
+        Row: infer R;
+      }
+      ? R
+      : never
+    : never;
 
 export type TablesInsert<
   PublicTableNameOrOptions extends
-    | keyof Database["public"]["Tables"]
+    | keyof Database['public']['Tables']
     | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
-    : never = never
+    ? keyof Database[PublicTableNameOrOptions['schema']]['Tables']
+    : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Insert: infer I
+  ? Database[PublicTableNameOrOptions['schema']]['Tables'][TableName] extends {
+      Insert: infer I;
     }
     ? I
     : never
-  : PublicTableNameOrOptions extends keyof Database["public"]["Tables"]
-  ? Database["public"]["Tables"][PublicTableNameOrOptions] extends {
-      Insert: infer I
-    }
-    ? I
-    : never
-  : never
+  : PublicTableNameOrOptions extends keyof Database['public']['Tables']
+    ? Database['public']['Tables'][PublicTableNameOrOptions] extends {
+        Insert: infer I;
+      }
+      ? I
+      : never
+    : never;
 
 export type TablesUpdate<
   PublicTableNameOrOptions extends
-    | keyof Database["public"]["Tables"]
+    | keyof Database['public']['Tables']
     | { schema: keyof Database },
   TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
-    : never = never
+    ? keyof Database[PublicTableNameOrOptions['schema']]['Tables']
+    : never = never,
 > = PublicTableNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
-      Update: infer U
+  ? Database[PublicTableNameOrOptions['schema']]['Tables'][TableName] extends {
+      Update: infer U;
     }
     ? U
     : never
-  : PublicTableNameOrOptions extends keyof Database["public"]["Tables"]
-  ? Database["public"]["Tables"][PublicTableNameOrOptions] extends {
-      Update: infer U
-    }
-    ? U
-    : never
-  : never
+  : PublicTableNameOrOptions extends keyof Database['public']['Tables']
+    ? Database['public']['Tables'][PublicTableNameOrOptions] extends {
+        Update: infer U;
+      }
+      ? U
+      : never
+    : never;
 
 export type Enums<
   PublicEnumNameOrOptions extends
-    | keyof Database["public"]["Enums"]
+    | keyof Database['public']['Enums']
     | { schema: keyof Database },
   EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
-    ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
-    : never = never
+    ? keyof Database[PublicEnumNameOrOptions['schema']]['Enums']
+    : never = never,
 > = PublicEnumNameOrOptions extends { schema: keyof Database }
-  ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
-  : PublicEnumNameOrOptions extends keyof Database["public"]["Enums"]
-  ? Database["public"]["Enums"][PublicEnumNameOrOptions]
-  : never
+  ? Database[PublicEnumNameOrOptions['schema']]['Enums'][EnumName]
+  : PublicEnumNameOrOptions extends keyof Database['public']['Enums']
+    ? Database['public']['Enums'][PublicEnumNameOrOptions]
+    : never;

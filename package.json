@@ -10,6 +10,7 @@
     "lint": "next lint",
     "preview": "vercel build && vercel deploy --prebuilt",
     "prod": "vercel build --prod && vercel deploy --prod --prebuilt",
+    "pretty": "prettier . --write",
     "dbtypes": "supabase gen types typescript --project-id euwnyenhzhztqztezjdn > ./src/lib/database/index.ts"
   },
   "dependencies": {
@@ -51,21 +52,22 @@
     "zustand": "^4.5.1"
   },
   "devDependencies": {
-    "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.11",
-    "@t3-oss/env-nextjs": "^0.9.2",
-    "@types/eslint": "^8.56.5",
-    "@typescript-eslint/eslint-plugin": "latest",
     "@million/lint": "latest",
+    "@t3-oss/env-nextjs": "^0.9.2",
     "@tanstack/eslint-plugin-query": "^5.20.1",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/eslint": "^8.56.5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@typescript-eslint/eslint-plugin": "latest",
     "autoprefixer": "^10.0.1",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.1.0",
     "million": "latest",
     "postcss": "^8",
+    "prettier": "^3.2.5",
+    "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "^3.3.0",
     "typescript": "^5"
   }

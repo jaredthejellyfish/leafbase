@@ -1,11 +1,10 @@
+import React from 'react';
 import { FiThumbsDown, FiThumbsUp } from 'react-icons/fi';
 import { TbMedicalCross } from 'react-icons/tb';
 
-import type { Strain } from '@/lib/types';
+import type { Strain } from '@l/types';
 
 import Badge from './Badge';
-
-import React from 'react';
 
 type Effect = Record<string, string>;
 
@@ -106,7 +105,7 @@ function getPositivesFromTopThree(strain: Strain): (string | undefined)[] {
   }
 }
 
-const StrainSoma = ({strain}: Props) => {
+const StrainSoma = ({ strain }: Props) => {
   const topThreeEffects = getTopThreeEffects(strain);
   const topThreeEffectsNegative = getTopThreeEffectsNegative(strain).map(
     (effect) => effects[effect],
@@ -136,7 +135,11 @@ const StrainSoma = ({strain}: Props) => {
           <p className="hidden sm:hidden md:block xl:block">Negatives:</p>
           <div className="flex flex-row flex-wrap gap-2">
             {topThreeEffectsNegative.map((effect) => (
-              <Badge key={effect} text={effect!} color={effectColors[effect!]!} />
+              <Badge
+                key={effect}
+                text={effect!}
+                color={effectColors[effect!]!}
+              />
             ))}
           </div>
         </div>
@@ -147,7 +150,11 @@ const StrainSoma = ({strain}: Props) => {
           <p className="hidden sm:hidden md:block xl:block">Helps with:</p>
           <div className="-gap-x-2 flex flex-row flex-wrap gap-y-2">
             {positives.map((effect) => (
-              <Badge key={effect} text={effect!} color={effectColors[effect!]!} />
+              <Badge
+                key={effect}
+                text={effect!}
+                color={effectColors[effect!]!}
+              />
             ))}
           </div>
         </div>
@@ -182,7 +189,7 @@ const StrainSoma = ({strain}: Props) => {
                 Math.ceil(
                   Math.max(
                     0,
-                    Math.min(100, ((strain.thcPercent?? 0 - 10) / 20) * 100),
+                    Math.min(100, ((strain.thcPercent ?? 0 - 10) / 20) * 100),
                   ),
                 ),
                 100,

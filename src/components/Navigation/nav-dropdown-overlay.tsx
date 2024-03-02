@@ -1,8 +1,9 @@
-"use client";
+'use client';
 
-import navDropdownStore from "@/lib/store/nav-dropdown";
-import { cn } from "@/lib/utils/cn";
-import React from "react";
+import React from 'react';
+
+import navDropdownStore from '@l/store/nav-dropdown';
+import { cn } from '@l/utils/cn';
 
 function NavDropdownOverlay() {
   const { isOpen: open, toggle } = navDropdownStore((state) => state);
@@ -10,8 +11,8 @@ function NavDropdownOverlay() {
     <div
       onClick={() => toggle(!open)}
       className={cn(
-        "fixed bottom-0 left-0 right-0 top-16 z-10 bg-zinc-950 opacity-20 transition-opacity",
-        !open && "hidden opacity-0",
+        'fixed bottom-0 left-0 right-0 top-16 z-10 bg-zinc-950 opacity-20 transition-opacity',
+        !open && 'hidden opacity-0',
       )}
     ></div>
   );

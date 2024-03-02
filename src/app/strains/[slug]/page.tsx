@@ -1,10 +1,12 @@
-import StrainSoma from "@c/StrainSoma";
-import { effects, terpenes } from "@/lib/data/colors";
-import Image from "next/image";
-import { notFound } from "next/navigation";
-import StarRating from "@c/StarRating";
-import NavBreadcrumbs from "@c/NavBreadcrumbs";
-import { getServerStrain } from "@/lib/utils/getServerStrain";
+import Image from 'next/image';
+import { notFound } from 'next/navigation';
+
+import NavBreadcrumbs from '@c/NavBreadcrumbs';
+import StarRating from '@c/StarRating';
+import StrainSoma from '@c/StrainSoma';
+
+import { effects, terpenes } from '@l/data/colors';
+import { getServerStrain } from '@l/utils/getServerStrain';
 
 type Props = { params: { slug: string } };
 
@@ -18,7 +20,7 @@ async function StrainPage({ params: { slug } }: Props) {
     <main className="justify-center px-5 py-3 md:px-16">
       <NavBreadcrumbs
         urls={[
-          { name: "Strains", url: "/strains" },
+          { name: 'Strains', url: '/strains' },
           {
             name: strain.name,
             url: `/strains/${strain.slug}`,
@@ -81,7 +83,7 @@ async function StrainPage({ params: { slug } }: Props) {
                 <div
                   style={{
                     backgroundColor:
-                      effects[strain.topEffect ?? "rgb(70, 130, 180)"],
+                      effects[strain.topEffect ?? 'rgb(70, 130, 180)'],
                   }}
                   className="h-2.5 w-2.5 rounded-full"
                 ></div>
@@ -91,7 +93,7 @@ async function StrainPage({ params: { slug } }: Props) {
                 <div
                   style={{
                     backgroundColor:
-                      terpenes[strain.topTerpene ?? "rgb(70, 130, 180)"],
+                      terpenes[strain.topTerpene ?? 'rgb(70, 130, 180)'],
                   }}
                   className="h-2.5 w-2.5 rounded-full"
                 ></div>

@@ -1,17 +1,18 @@
-"use client";
+'use client';
 
-import type { Filter } from "@/lib/types";
-import { cn } from "@/lib/utils/cn";
-import Link from "next/link";
-import React, { useState } from "react";
+import Link from 'next/link';
+import React, { useState } from 'react';
+
+import type { Filter } from '@l/types';
+import { cn } from '@l/utils/cn';
 
 type Props = { filter: Filter };
 
 const filters = {
-  re: "Recommended",
-  az: "A-Z",
-  za: "Z-A",
-  sr: "Star Rating",
+  re: 'Recommended',
+  az: 'A-Z',
+  za: 'Z-A',
+  sr: 'Star Rating',
 };
 
 function SortBy({ filter }: Props) {
@@ -44,16 +45,16 @@ function SortBy({ filter }: Props) {
       </span>
       <div
         className={cn(
-          "absolute -top-0.5 z-30 mt-5 rounded-md dark:bg-zinc-800 bg-white shadow-lg border border-neutral-100 dark:border-transparent p-0.5 transition-opacity duration-200",
-          !open && "scale-0 opacity-0",
+          'absolute -top-0.5 z-30 mt-5 rounded-md dark:bg-zinc-800 bg-white shadow-lg border border-neutral-100 dark:border-transparent p-0.5 transition-opacity duration-200',
+          !open && 'scale-0 opacity-0',
         )}
         id="sort-modal"
       >
         <Link
           href="/strains?filter=re"
           className={cn(
-            "filter-item flex w-full items-start rounded p-3 pr-3 hover:bg-zinc-100/80 dark:dark:hover:bg-zinc-500",
-            filter === "re" && "text-green-500",
+            'filter-item flex w-full items-start rounded p-3 pr-3 hover:bg-zinc-100/80 dark:dark:hover:bg-zinc-500',
+            filter === 're' && 'text-green-500',
           )}
         >
           Recommended
@@ -61,8 +62,8 @@ function SortBy({ filter }: Props) {
         <Link
           href="/strains?filter=az"
           className={cn(
-            "filter-item flex w-full items-start rounded p-3 pr-3 hover:bg-zinc-100/80 dark:hover:bg-zinc-500",
-            filter === "az" && "text-green-500",
+            'filter-item flex w-full items-start rounded p-3 pr-3 hover:bg-zinc-100/80 dark:hover:bg-zinc-500',
+            filter === 'az' && 'text-green-500',
           )}
         >
           A-Z
@@ -70,8 +71,8 @@ function SortBy({ filter }: Props) {
         <Link
           href="/strains?filter=za"
           className={cn(
-            "filter-item flex w-full items-start rounded p-3 pr-3 hover:bg-zinc-100/80 dark:hover:bg-zinc-500",
-            filter === "za" && "text-green-500",
+            'filter-item flex w-full items-start rounded p-3 pr-3 hover:bg-zinc-100/80 dark:hover:bg-zinc-500',
+            filter === 'za' && 'text-green-500',
           )}
         >
           Z-A
@@ -79,8 +80,8 @@ function SortBy({ filter }: Props) {
         <Link
           href="/strains?filter=sr"
           className={cn(
-            "filter-item flex w-full items-start rounded p-3 pr-3 hover:bg-zinc-100/80 dark:hover:bg-zinc-500",
-            filter === "sr" && "text-green-500",
+            'filter-item flex w-full items-start rounded p-3 pr-3 hover:bg-zinc-100/80 dark:hover:bg-zinc-500',
+            filter === 'sr' && 'text-green-500',
           )}
         >
           Star Rating

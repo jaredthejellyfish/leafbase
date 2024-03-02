@@ -1,16 +1,14 @@
-import type { Session, SupabaseClient } from '@supabase/supabase-js';
+import type { SupabaseClient } from '@supabase/supabase-js';
 
 import type { Database } from '../database';
 import type { StrainLike } from '../types';
 
-export default async function getServerLikes(
+export default async function getServerLikesByUserID(
   supabase: SupabaseClient<Database>,
-  session?: Session,
+  user_id?: string,
 ) {
   try {
-    if (!session) {
-      return { likes: null, error: 'No session' };
-    }
+    if (!user_id) return { likes: null, error: 'No user_id provided' };
     const { data: strainLikes, error: strainLikesError } = await supabase
       .from('strain_likes')
       .select(
@@ -24,7 +22,7 @@ export default async function getServerLikes(
     )
   `,
       )
-      .eq('user_id', session?.user.id)
+      .eq('user_id', user_id)
       .returns<StrainLike[]>();
 
     if (strainLikesError) return { likes: null, error: strainLikesError };

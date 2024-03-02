@@ -1,6 +1,6 @@
-import type { Database } from "@/lib/database";
+import type { Database } from '@l/database';
 
-export type DatabaseStrain = Database["public"]["Tables"]["strains"]["Row"];
+export type DatabaseStrain = Database['public']['Tables']['strains']['Row'];
 
 export type UserMetadataExtended = {
   id: string;
@@ -17,15 +17,15 @@ export type UserMetadataExtended = {
   pronouns: string;
 };
 
-export type Notification = Database["public"]["Tables"]["notifications"]["Row"];
+export type Notification = Database['public']['Tables']['notifications']['Row'];
 
-export type PublicProfile = Database["public"]["Tables"]["profiles"]["Row"];
+export type PublicProfile = Database['public']['Tables']['profiles']['Row'];
 
 export type SearchStrain =
-  Database["public"]["Functions"]["search_strains"]["Returns"][0];
+  Database['public']['Functions']['search_strains']['Returns'][0];
 
 export type StrainComment =
-  Database["public"]["Tables"]["strain_comments"]["Row"];
+  Database['public']['Tables']['strain_comments']['Row'];
 
 export type FriendExtended = {
   from: {
@@ -43,7 +43,7 @@ export type FriendExtended = {
   pending: boolean;
 };
 
-export type Profile = Database["public"]["Tables"]["profiles"]["Row"];
+export type Profile = Database['public']['Tables']['profiles']['Row'];
 
 interface Effect {
   icon: null;
@@ -155,7 +155,7 @@ export interface StrainCommentWithUser extends StrainComment {
 
 export type StrainWithCommentsWithUser = Omit<
   StrainWithComments,
-  "strain_comments" & { strain_comments: StrainCommentWithUser[] }
+  'strain_comments' & { strain_comments: StrainCommentWithUser[] }
 >[];
 
 interface ProfileEffect {
@@ -220,4 +220,4 @@ export type SmokingProfile = {
   };
 };
 
-export type Filter = "re" | "az" | "za" | "sr";
+export type Filter = 're' | 'az' | 'za' | 'sr';

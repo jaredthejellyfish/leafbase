@@ -1,24 +1,23 @@
-import { GridColumns, GridRows } from "@visx/grid";
-import { Group } from "@visx/group";
-import ParentSize from "@visx/responsive/lib/components/ParentSize";
-import { scaleLinear } from "@visx/scale";
-import { Circle } from "@visx/shape";
-import { Text } from "@visx/text";
-import { Zoom } from "@visx/zoom";
-import type { TransformMatrix } from "@visx/zoom/lib/types";
-import { RefreshCcw } from "lucide-react";
-import { useTheme } from "next-themes";
-import { FaSpinner } from "react-icons/fa";
+import { GridColumns, GridRows } from '@visx/grid';
+import { Group } from '@visx/group';
+import ParentSize from '@visx/responsive/lib/components/ParentSize';
+import { scaleLinear } from '@visx/scale';
+import { Circle } from '@visx/shape';
+import { Text } from '@visx/text';
+import { Zoom } from '@visx/zoom';
+import type { TransformMatrix } from '@visx/zoom/lib/types';
+import { isEqual } from 'lodash';
+import { RefreshCcw } from 'lucide-react';
+import { useTheme } from 'next-themes';
+import React from 'react';
+import { FaSpinner } from 'react-icons/fa';
 
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "../ui/tooltip";
-
-import React from "react";
-import { isEqual } from "lodash";
+} from '../ui/tooltip';
 
 type Data = {
   x: number;
@@ -42,7 +41,7 @@ function stringToColor(str: string) {
 function LoadingScatterPlot({
   width = 400,
   height = 400,
-  axisColor = "#FFFFFF",
+  axisColor = '#FFFFFF',
 }: {
   width?: number;
   height?: number;
@@ -53,15 +52,15 @@ function LoadingScatterPlot({
       <FaSpinner
         className="size-10"
         style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          animation: "spin 1s linear infinite", // Add this line for animation
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          animation: 'spin 1s linear infinite', // Add this line for animation
         }}
       />
 
-      <svg width={width} height={height} style={{ touchAction: "none" }}>
+      <svg width={width} height={height} style={{ touchAction: 'none' }}>
         <GridRows
           scale={scaleLinear({ domain: [0, 1], range: [height, 0] })}
           width={width}
@@ -85,7 +84,7 @@ export const ScatterPlot = React.memo(
   ({ data }: { data?: Data | null }) => {
     const { theme } = useTheme();
 
-    const axisColor = theme === "dark" ? "#FFFFFF" : "#000000";
+    const axisColor = theme === 'dark' ? '#FFFFFF' : '#000000';
     const initialTransform: TransformMatrix = {
       scaleX: 1,
       scaleY: 1,
@@ -133,10 +132,10 @@ export const ScatterPlot = React.memo(
             <Zoom
               width={width}
               height={height}
-              scaleXMin={0.5} 
-              scaleXMax={100} 
-              scaleYMin={0.5} 
-              scaleYMax={100} 
+              scaleXMin={0.5}
+              scaleXMax={100}
+              scaleYMin={0.5}
+              scaleYMax={100}
               initialTransformMatrix={initialTransform}
             >
               {(zoom) => (
@@ -160,7 +159,7 @@ export const ScatterPlot = React.memo(
                   <svg
                     width={width}
                     height={height}
-                    style={{ touchAction: "none" }}
+                    style={{ touchAction: 'none' }}
                     ref={zoom.containerRef as React.LegacyRef<SVGSVGElement>}
                   >
                     <GridRows
@@ -227,6 +226,6 @@ export const ScatterPlot = React.memo(
   },
 );
 
-ScatterPlot.displayName = "ScatterPlot";
+ScatterPlot.displayName = 'ScatterPlot';
 
 export default ScatterPlot;

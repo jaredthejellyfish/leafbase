@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 type Props = {
   friend: {
@@ -35,13 +35,13 @@ function Friend({ friend: { to, from }, status, useTo }: Props) {
           </span>
         </div>
       </div>
-      {status === "pending" && (
+      {status === 'pending' && (
         <div className="cursor-not-allowed rounded border border-zinc-400 px-2 py-1 text-xs text-zinc-400">
           Pending
         </div>
       )}
       {/* ?from=${from.id}&to=${to.id} */}
-      {status === "toAccept" && (
+      {status === 'toAccept' && (
         <div
           className="flex flex-row gap-x-2 sm:gap-x-1"
           id={`friendship-status-${user.id}`}
@@ -67,7 +67,7 @@ function Friend({ friend: { to, from }, status, useTo }: Props) {
         </div>
       )}
 
-      {status === "accepted" && (
+      {status === 'accepted' && (
         <svg
           className="justify-self-end"
           stroke="currentColor"

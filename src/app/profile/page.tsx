@@ -52,7 +52,7 @@ async function ProfilePage() {
               <Image
                 src={user.image}
                 alt="profile"
-                className="rounded-md"
+                className="rounded-md aspect-square object-cover"
                 width={80}
                 height={80}
               />

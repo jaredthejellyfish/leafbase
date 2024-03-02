@@ -8,10 +8,13 @@ import StrainSoma from '@c/StrainSoma';
 import { effects, terpenes } from '@l/data/colors';
 import { getServerStrain } from '@l/utils/getServerStrain';
 
+import StrainSuggestions from '@/components/StrainSuggestions';
+
 type Props = { params: { slug: string } };
 
 async function StrainPage({ params: { slug } }: Props) {
   const strain = await getServerStrain(slug);
+  const liked = undefined;
 
   if (!strain) {
     return notFound();
@@ -31,6 +34,11 @@ async function StrainPage({ params: { slug } }: Props) {
         id="card"
         className="relative flex flex-col items-center justify-center rounded border border-zinc-300 pb-8 shadow dark:border-transparent dark:bg-zinc-900"
       >
+        {liked ?? (
+          <div className="absolute top-4 right-10">
+            <StrainSuggestions slug={strain.slug} id={strain.id} />
+          </div>
+        )}
         <div
           id="header"
           className="flex w-full flex-col items-center justify-center gap-8 px-5 pt-8 md:flex-row md:px-8"
@@ -114,6 +122,7 @@ async function StrainPage({ params: { slug } }: Props) {
           </div>
         </div>
       </div>
+
       <div className="mt-5">
         {/* <CommentSection
       strainName={strain.name}

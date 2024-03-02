@@ -46,7 +46,12 @@ async function ProfilePage({ params: { username } }: Props) {
   }
   return (
     <div className="px-5 py-3 sm:px-10 xl:px-14">
-      <NavBreadcrumbs urls={[{ name: 'Profile', url: '/profile' }]} />
+      <NavBreadcrumbs
+        urls={[
+          { name: 'Profile', url: '/profile' },
+          { name: username, url: `/profile/${username}` },
+        ]}
+      />
       <div className={'flex flex-col gap-x-4 gap-y-3 sm:flex-row'}>
         <div className="w-full sm:w-1/2 lg:w-1/3">
           <div className="relative z-0 flex w-full flex-col rounded-xl px-7 pt-6 shadow-md dark:bg-zinc-900">
@@ -54,7 +59,7 @@ async function ProfilePage({ params: { username } }: Props) {
               <Image
                 src={user.image}
                 alt="profile"
-                className="rounded-md"
+                className="rounded-md aspect-square object-cover"
                 width={80}
                 height={80}
               />
@@ -158,7 +163,9 @@ async function ProfilePage({ params: { username } }: Props) {
               )}
             </div>
           </div>
-          <LikedStrains likes={likes ?? undefined} noModals />
+          {likes && likes.length > 0 && (
+            <LikedStrains likes={likes ?? undefined} noModals />
+          )}
         </div>
       </div>
     </div>

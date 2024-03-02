@@ -1,4 +1,5 @@
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { OpenAIStream, StreamingTextResponse } from 'ai';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
@@ -79,35 +80,29 @@ export async function GET(request: Request) {
       temperature: 0.1,
       max_tokens: 250,
       top_p: 1,
+      stream: true,
       frequency_penalty: 0,
       presence_penalty: 0,
     });
 
-    const { data: newPairing, error: newPairingError } = await supabase
-      .from('short_pairings')
-      .insert({
-        body: completion.choices[0]?.message.content,
-        strain1_id: strain1,
-        strain2_id: strain2,
-        strain2_slug: strain2Data.slug,
-        strain2_name: strain2Data.name,
-        image: strain2Data.nugImage,
-      })
-      .select()
-      .single();
+    const stream = OpenAIStream(completion, {
+      onCompletion: async (final) => {
+        const { error } = await supabase.from('short_pairings').insert({
+          body: final,
+          strain1_id: strain1,
+          strain2_id: strain2,
+          strain2_slug: strain2Data.slug,
+          strain2_name: strain2Data.name,
+          image: strain2Data.nugImage,
+        });
 
-    if (newPairingError) {
-      return NextResponse.json('Error generating pairing', { status: 400 });
-    }
-
-    return NextResponse.json(newPairing, {
-      status: 200,
-      headers: {
-        'Cache-Control': 'max-age=90',
-        'CDN-Cache-Control': 'max-age=3600',
-        'Vercel-CDN-Cache-Control': 'max-age=28800',
+        if (error) {
+          console.error('Error inserting pairing', error);
+        }
       },
     });
+
+    return new StreamingTextResponse(stream);
   } catch (error) {
     return NextResponse.json('Error generating pairing', { status: 500 });
   }

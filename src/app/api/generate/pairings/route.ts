@@ -70,6 +70,7 @@ export async function GET(request: Request) {
     strain1_id: id,
     strain2_id: pairing.strain_id,
     strain2_slug: pairing.slug,
+    strain2_name: pairing.name,
   }));
 
   return NextResponse.json(

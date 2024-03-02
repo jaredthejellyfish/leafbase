@@ -144,6 +144,7 @@ export async function GET() {
   });
 
   const stream = OpenAIStream(completion);
+
   return new StreamingTextResponse(stream);
 }
 

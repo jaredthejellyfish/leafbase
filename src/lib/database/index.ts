@@ -663,6 +663,7 @@ export type Database = {
           id: string;
           slug: string;
           strain_id: string;
+          name: string;
           nug_image: string;
         }[];
       };

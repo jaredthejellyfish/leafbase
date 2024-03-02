@@ -24,7 +24,7 @@ function Friend({ friend: { to, from }, status, useTo }: Props) {
           alt={user.name}
           width={50}
           height={50}
-          className="aspect-square size-11 rounded-full sm:size-12"
+          className="aspect-square size-11 rounded-full sm:size-12 object-cover"
         />
         <div className="flex flex-col gap-0">
           <span className="-mb-1.5 text-sm font-semibold sm:text-base">

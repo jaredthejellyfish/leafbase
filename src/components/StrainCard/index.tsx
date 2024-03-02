@@ -46,7 +46,7 @@ const StrainCard = forwardRef<HTMLAnchorElement, Props>(
     return (
       <Link
         ref={ref}
-        className="max-h-[280px] w-full rounded-xl p-3 shadow-md dark:bg-zinc-900 dark:shadow-none sm:max-h-full md:max-w-[280px]"
+        className="h-[220px] md:min-h-[460px] w-full rounded-xl p-3 shadow-md dark:bg-zinc-900 dark:shadow-none md:max-w-[280px] min-w-[250px]"
         href={`/strains/${strain.slug}`}
       >
         <div className="flex flex-row md:flex-col">
@@ -55,7 +55,7 @@ const StrainCard = forwardRef<HTMLAnchorElement, Props>(
             id="image"
           >
             <Image
-              className="aspect-square h-full max-h-[250px] w-full max-w-[250px] rounded-lg object-contain p-4 dark:opacity-90"
+              className="md:h-full md:max-h-[250px] md:w-full size-[190px] md:max-w-[250px] rounded-lg object-contain p-4 dark:opacity-90"
               width={250}
               height={250}
               alt={`${strain.name} nug shot`}

@@ -1,34 +1,15 @@
-
-
-import StrainSoma from '@c/StrainSoma';
-import { effects, terpenes } from '@/lib/data/colors';
-import type { Database } from '@/lib/database';
-
-import type { StrainWithComments } from '@/lib/types';
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
-import Image from 'next/image';
-import { notFound } from 'next/navigation';
-import StarRating from '@c/StarRating';
-import NavBreadcrumbs from '@c/NavBreadcrumbs';
+import StrainSoma from "@c/StrainSoma";
+import { effects, terpenes } from "@/lib/data/colors";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import StarRating from "@c/StarRating";
+import NavBreadcrumbs from "@c/NavBreadcrumbs";
+import { getServerStrain } from "@/lib/utils/getServerStrain";
 
 type Props = { params: { slug: string } };
 
-async function StrainPage({ params: {slug} }: Props) {
-  const cookieStore = cookies();
-  const supabase = createServerComponentClient<Database>({
-    cookies: () => cookieStore,
-  });
-
-  const { data: strain } = await supabase
-    .from('strains')
-    .select(
-      '*, strain_comments ( *, profile:profiles ( username, image ), comment_likes:strain_comment_likes ( user_id, id ) )',
-    )
-    .eq('slug', slug)
-    .returns<StrainWithComments[]>()
-    .maybeSingle();
-
+async function StrainPage({ params: { slug } }: Props) {
+  const strain = await getServerStrain(slug);
 
   if (!strain) {
     return notFound();
@@ -37,10 +18,10 @@ async function StrainPage({ params: {slug} }: Props) {
     <main className="justify-center px-5 py-3 md:px-16">
       <NavBreadcrumbs
         urls={[
-          { name: 'Strains', url: '/strains' },
+          { name: "Strains", url: "/strains" },
           {
             name: strain.name,
-            url: `/strains/${strain.slug}`, 
+            url: `/strains/${strain.slug}`,
           },
         ]}
       />
@@ -100,7 +81,7 @@ async function StrainPage({ params: {slug} }: Props) {
                 <div
                   style={{
                     backgroundColor:
-                      effects[strain.topEffect ?? 'rgb(70, 130, 180)'],
+                      effects[strain.topEffect ?? "rgb(70, 130, 180)"],
                   }}
                   className="h-2.5 w-2.5 rounded-full"
                 ></div>
@@ -110,7 +91,7 @@ async function StrainPage({ params: {slug} }: Props) {
                 <div
                   style={{
                     backgroundColor:
-                      terpenes[strain.topTerpene ?? 'rgb(70, 130, 180)'],
+                      terpenes[strain.topTerpene ?? "rgb(70, 130, 180)"],
                   }}
                   className="h-2.5 w-2.5 rounded-full"
                 ></div>

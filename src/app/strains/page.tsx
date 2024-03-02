@@ -11,7 +11,7 @@ async function StrainsPage(request: { searchParams: { filter?: Filter } }) {
   const { strains, count } = await getPaginatedStrains(filter, 1);
 
   return (
-    <main className="px-5 py-3 pb-8 md:px-16 xl:px-36">
+    <main className="px-5 py-3 pb-8 md:px-3 lg:px-16 xl:px-36">
       <div className="flex flex-col items-center">
         <div id="heading" className="">
           <h1 className="mb-2 mt-4 text-3xl font-bold ">All strains</h1>
@@ -46,3 +46,4 @@ async function StrainsPage(request: { searchParams: { filter?: Filter } }) {
 }
 
 export default StrainsPage;
+

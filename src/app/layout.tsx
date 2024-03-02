@@ -5,6 +5,7 @@ import Navigation from "@c/Navigation";
 import { cn } from "@/lib/utils/cn";
 import ThemeProvider from "@c/ThemeProvider";
 import QueryProvider from "@c/QueryClientProvider";
+import { Toaster } from "@c/ui/toaster";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -32,6 +33,7 @@ export default function RootLayout({
           <QueryProvider>
             <Navigation />
             {children}
+            <Toaster />
           </QueryProvider>
         </ThemeProvider>
       </body>

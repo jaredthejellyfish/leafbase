@@ -1,12 +1,9 @@
-import type { Session } from "@supabase/supabase-js";
 import { format } from "date-fns";
 
 import Friend from "@c/Friend";
 import NavBreadcrumbs from "@c/NavBreadcrumbs";
 
 import { cn } from "@/lib/utils/cn";
-
-import type { FriendExtended, Profile, StrainLike } from "@/lib/types";
 
 import Image from "next/image";
 import getServerUserProfile from "@/lib/utils/getServerUserProfile";
@@ -16,16 +13,9 @@ import { cookies } from "next/headers";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import type { Database } from "@/lib/database";
 import getServerLikes from "@/lib/utils/getServerLikes";
-import LikedStrain from "@c/LikedStrain";
+import dynamic from "next/dynamic";
 
-type Props = {
-  user: Profile;
-  session: Session;
-  friends: FriendExtended[] | null;
-  likes: StrainLike[] | null;
-};
-
-export const languages = [
+const languages = [
   { label: "English", value: "en" },
   { label: "French", value: "fr" },
   { label: "German", value: "de" },
@@ -37,9 +27,9 @@ export const languages = [
   { label: "Chinese", value: "zh" },
 ] as const;
 
+const LikedStrains = dynamic(() => import("@c/LikedStrains"), { ssr: true });
 
-
-async function ProfilePage({}: Props) {
+async function ProfilePage() {
   const cookieStore = cookies();
 
   const supabase = createServerComponentClient<Database>({
@@ -211,47 +201,7 @@ async function ProfilePage({}: Props) {
               )}
             </div>
           </div>
-          <div
-            id="liked-strains-container"
-            className="max-h-98 transition-max-w xs:max-h-100 sm:max-h-102 overflow-y-hidden px-2 pt-3"
-          >
-            <div className="flex flex-row gap-x-1.5">
-              <h2 className="mb-1.5 text-2xl font-bold">Liked Strains</h2>
-              <h3 className="mt-[1.5px] text-lg font-bold text-zinc-400/90">
-                ({likes?.length ?? 0})
-              </h3>
-            </div>
-            <div className="flex w-full flex-row flex-wrap gap-x-1.5 gap-y-1.5 sm:justify-start sm:gap-x-1.5 sm:gap-y-2">
-              {likes?.map((strain) => (
-                <LikedStrain
-                  key={strain.strain_id.id}
-                  name={strain.strain_id.name}
-                  image={strain.strain_id.nugImage}
-                  slug={strain.strain_id.slug}
-                />
-              ))}
-            </div>
-          </div>
-          <div className="mt-1 flex items-center justify-center px-2">
-            <svg
-              id="arrow-down-liked"
-              stroke="currentColor"
-              fill="none"
-              strokeWidth="0"
-              viewBox="0 0 15 15"
-              height="35px"
-              width="35px"
-              className="transition-transform duration-200"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M4.18179 6.18181C4.35753 6.00608 4.64245 6.00608 4.81819 6.18181L7.49999 8.86362L10.1818 6.18181C10.3575 6.00608 10.6424 6.00608 10.8182 6.18181C10.9939 6.35755 10.9939 6.64247 10.8182 6.81821L7.81819 9.81821C7.73379 9.9026 7.61934 9.95001 7.49999 9.95001C7.38064 9.95001 7.26618 9.9026 7.18179 9.81821L4.18179 6.81821C4.00605 6.64247 4.00605 6.35755 4.18179 6.18181Z"
-                fill="currentColor"
-              ></path>
-            </svg>
-          </div>
+          <LikedStrains likes={likes ?? undefined} />
         </div>
       </div>
     </div>

@@ -13,6 +13,7 @@ import {
 } from '@c/ui/dropdown-menu';
 
 import SuggestedPairingsModal from './SuggestedPairingsModal';
+import { useQueryClient } from '@tanstack/react-query';
 
 type Props = {
   id: string;
@@ -22,6 +23,7 @@ type Props = {
 function StrainSuggestions({ id, slug }: Props) {
   const [suggestedPairingsOpen, setSuggestedPairingsOpen] = useState(false);
   const [customPairingsOpen, setCustomPairingsOpen] = useState(false);
+  const queryClient = useQueryClient();
   return (
     <>
       <DropdownMenu>
@@ -35,7 +37,12 @@ function StrainSuggestions({ id, slug }: Props) {
           <DropdownMenuLabel>Pairings</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem
-            onClick={() => setSuggestedPairingsOpen(!suggestedPairingsOpen)}
+            onClick={async () => {
+              await queryClient.invalidateQueries({
+                queryKey: ['pairings', slug, id],
+              });
+              setSuggestedPairingsOpen(!suggestedPairingsOpen);
+            }}
           >
             Suggested Pairings
           </DropdownMenuItem>

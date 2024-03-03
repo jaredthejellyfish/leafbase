@@ -91,7 +91,7 @@ function LikeButton({ iconSize, liked, strain_id }: Props) {
       aria-label={isLiked ? 'Unlike' : 'Like'} // Improve accessibility
       onClick={(e) => toggleLike(e)}
       className={cn(
-        'rounded-full border bg-zinc-800 z-50 dark:border-zinc-400 border-zinc-500 dark:text-zinc-400 text-zinc-500 flex items-center justify-center transition-colors duration-200 focus:outline-none',
+        'rounded-full border shadow-lg bg-white dark:bg-zinc-800 dark:border-zinc-400 border-zinc-500 dark:text-zinc-400 text-zinc-500 flex items-center justify-center transition-colors duration-200 focus:outline-none',
         isLiked &&
           'border-green-700 text-green-700 dark:border-green-700 dark:text-green-700',
       )}

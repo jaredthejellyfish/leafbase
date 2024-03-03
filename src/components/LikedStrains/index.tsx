@@ -21,7 +21,7 @@ function LikedStrains({ likes = [], noModals = false }: Props) {
         id="liked-strains-container"
         className={cn(
           'overflow-y-hidden px-2 pt-3 transition-all duration-500 ease-in-out',
-          open ? 'max-h-[5000px]' : 'max-h-[305px] sm:max-h-[360px]',
+          open ? 'max-h-[5000px]' : 'max-h-[309px] sm:max-h-[350px]',
         )}
       >
         <div className="flex flex-row gap-x-1.5 items-center mb-1.5">

@@ -11,8 +11,8 @@ function NavDropdownOverlay() {
     <div
       onClick={() => toggle(!open)}
       className={cn(
-        'fixed bottom-0 left-0 right-0 top-16 z-10 bg-zinc-950 opacity-20 transition-opacity',
-        !open && 'hidden opacity-0',
+        'fixed bottom-0 left-0 right-0 top-16 z-40 bg-zinc-950 opacity-50 transition-opacity duration-500',
+        !open && 'pointer-events-none opacity-0',
       )}
     ></div>
   );

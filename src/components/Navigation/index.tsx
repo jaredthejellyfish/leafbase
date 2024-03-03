@@ -11,8 +11,11 @@ import SiteLogo from '@p/site-logo.png';
 import ProfileIcon from '@p/svg/profile-icon.svg';
 
 import HamburgerMenu from './hamburger-menu';
-import NavDropdown from './nav-dropdown';
+import SearchBar from './search-bar';
 import { ThemeToggle } from './theme-toggle';
+import dynamic from 'next/dynamic';
+
+const NavDropdown = dynamic(() => import('./nav-dropdown'));
 
 async function Navigation() {
   const cookieStore = cookies();
@@ -40,6 +43,15 @@ async function Navigation() {
           </Link>
         </div>
         <div className="flex w-1/2 items-center justify-end gap-x-3">
+          <SearchBar />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="10"
+            height="20"
+            className="hidden stroke-black dark:stroke-white md:block"
+          >
+            <line x1="5" y1="0" x2="5" y2="200" strokeWidth="1.3" />
+          </svg>
           <ThemeToggle />
           <Link href={user?.image ? '/profile' : '/auth/login'}>
             <Image

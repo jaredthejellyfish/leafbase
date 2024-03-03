@@ -49,17 +49,17 @@ const StrainCard = forwardRef<HTMLAnchorElement, Props>(
     return (
       <Link
         ref={ref}
-        className="h-[220px] md:min-h-[460px] w-full rounded-xl p-3 shadow-md dark:bg-zinc-900 dark:shadow-none md:max-w-[280px] min-w-[250px] relative"
+        className="h-[220px] md:min-h-[460px] w-full rounded-xl p-3 shadow-md dark:bg-zinc-900 dark:shadow-none md:max-w-[280px] min-w-[250px] relative border dar"
         href={`/strains/${strain.slug}`}
       >
         {typeof liked !== 'undefined' && (
-          <div className="absolute md:right-2 md:top-2 right-3 top-3 z-50">
+          <div className="absolute md:right-2 md:top-2 right-3 top-3 z-10">
             <LikeButton liked={liked} strain_id={strain.id} iconSize={18} />
           </div>
         )}
         <div className="flex flex-row md:flex-col z-0">
           <div
-            className="mr-3 flex max-h-[280px] w-1/2 max-w-[280px] items-center justify-center rounded-lg border border-white bg-zinc-300/10 dark:border-transparent dark:border-zinc-800 dark:bg-zinc-950/30 sm:mb-1 sm:mr-0 sm:w-full"
+            className="mr-3 flex max-h-[280px] w-1/2 max-w-[280px] items-center justify-center rounded-lg border border-zinc-200 bg-zinc-300/10 dark:border-transparent dark:border-zinc-800 dark:bg-zinc-950/30 sm:mb-1 sm:mr-0 sm:w-full"
             id="image"
           >
             <Image

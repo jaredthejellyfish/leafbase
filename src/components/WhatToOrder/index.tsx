@@ -3,8 +3,12 @@
 import { Bot, Loader, RefreshCcw } from 'lucide-react';
 import React, { useState } from 'react';
 
-function WhatToOrder() {
-  const [text, setText] = useState('');
+type Props = {
+  order: string | null;
+};
+
+function WhatToOrder({ order }: Props) {
+  const [text, setText] = useState(order ?? '');
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
 

@@ -1,4 +1,5 @@
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { kv } from '@vercel/kv';
 import { OpenAIStream, StreamingTextResponse } from 'ai';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
@@ -143,7 +144,11 @@ export async function GET() {
     stream: true,
   });
 
-  const stream = OpenAIStream(completion);
+  const stream = OpenAIStream(completion, {
+    onCompletion: async (completion) => {
+      await kv.set(`what-to-otder-${session.user.id}`, completion, { ex: 28800 });
+    },
+  });
 
   return new StreamingTextResponse(stream);
 }

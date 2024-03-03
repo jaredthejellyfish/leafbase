@@ -12,6 +12,11 @@ export const env = createEnv({
       .default('development'),
 
     OPENAI_API_KEY: z.string(),
+
+    KV_REST_API_READ_ONLY_TOKEN: z.string(),
+    KV_REST_API_TOKEN: z.string(),
+    KV_REST_API_URL: z.string(),
+    KV_URL: z.string(),
   },
 
   /**
@@ -32,6 +37,11 @@ export const env = createEnv({
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    
+    KV_REST_API_READ_ONLY_TOKEN: process.env.KV_REST_API_READ_ONLY_TOKEN,
+    KV_REST_API_TOKEN: process.env.KV_REST_API_TOKEN,
+    KV_REST_API_URL: process.env.KV_REST_API_URL,
+    KV_URL: process.env.KV_URL,
 
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,

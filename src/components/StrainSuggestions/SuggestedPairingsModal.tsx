@@ -35,6 +35,13 @@ async function fetchPairings(
 ): Promise<{ pairings: Pairing[] }> {
   const res = await fetch(
     `/api/generate/pairings?id=${id}&slug=${slug}&limit=3`,
+    {
+      headers: {
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        Pragma: 'no-cache',
+        Expires: '0',
+      },
+    },
   );
   const data = (await res.json()) as { pairings: Pairing[] };
 

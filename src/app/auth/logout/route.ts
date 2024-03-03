@@ -10,3 +10,5 @@ export async function POST() {
 
   redirect('/auth/login');
 }
+
+export const runtime = 'edge';

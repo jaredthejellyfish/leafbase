@@ -8,7 +8,12 @@ import StrainCard from '@c/StrainCard';
 
 import type { Filter, Strain } from '@l/types';
 
-type Props = { filter: Filter; count?: number; perPage?: number };
+type Props = {
+  filter: Filter;
+  count?: number;
+  perPage?: number;
+  likes?: string[];
+};
 
 const fetchStrains = async ({ pageParam }: { pageParam: number }) => {
   const data = await fetch(`/api/strains?page=${pageParam}`, {
@@ -19,7 +24,12 @@ const fetchStrains = async ({ pageParam }: { pageParam: number }) => {
   return json;
 };
 
-function StrainCardLoader({ filter, count = 6329, perPage = 12 }: Props) {
+function StrainCardLoader({
+  filter,
+  count = 6329,
+  perPage = 12,
+  likes,
+}: Props) {
   const { isIntersecting, ref } = useIntersectionObserver({
     threshold: 0.5,
   });
@@ -59,9 +69,17 @@ function StrainCardLoader({ filter, count = 6329, perPage = 12 }: Props) {
   return (
     <>
       {flatStrains.map((strain) => (
-        <StrainCard key={strain.id} strain={strain} />
+        <StrainCard
+          key={strain.id}
+          strain={strain}
+          liked={likes?.includes(strain.id)}
+        />
       ))}
-      <StrainCard ref={ref} strain={lastStrain} />
+      <StrainCard
+        ref={ref}
+        strain={lastStrain}
+        liked={likes?.includes(lastStrain.id)}
+      />
     </>
   );
 }

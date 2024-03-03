@@ -1,14 +1,14 @@
 'use client';
 
-import { Bot, Loader } from 'lucide-react';
+import { Bot, Loader, RefreshCcw } from 'lucide-react';
 import React, { useState } from 'react';
 
 function WhatToOrder() {
   const [text, setText] = useState('');
   const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
 
   async function streamedCompletion() {
-    setLoading(true);
     try {
       const response = await fetch('/api/generate/what-to-order');
       if (!response.ok || !response.body) {
@@ -17,6 +17,7 @@ function WhatToOrder() {
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
       const loopRunner = true;
+      setText('');
       while (loopRunner) {
         const { value, done } = await reader.read();
         if (done) {
@@ -29,20 +30,41 @@ function WhatToOrder() {
       setText('Error generating recommendation...');
     } finally {
       setLoading(false);
+      setRefreshing(false);
     }
   }
 
+  const handleClick = (reloaded?: boolean) => {
+    setText(!reloaded ? '' : 'Regenerating...');
+
+    if (reloaded) setRefreshing(true);
+    else setLoading(true);
+
+    void streamedCompletion();
+  };
+
   return (
-    <div className="rounded-lg border border-zinc-100 bg-white px-4 py-3 shadow-md dark:border-transparent dark:bg-zinc-900">
+    <div className="rounded-lg border border-zinc-100 bg-white px-4 py-3 shadow-md dark:border-transparent dark:bg-zinc-900 relative">
+      {text.length > 0 && !loading && (
+        <button
+          onClick={() => handleClick(true)}
+          className="absolute top-3 right-5"
+        >
+          <RefreshCcw
+            size={20}
+            className={refreshing ? 'animate-spin rotate-180' : ''}
+          />
+        </button>
+      )}
       <h3 className="mb-1.5 text-xl font-bold">Suggested Order:</h3>
       {text.length > 0 ? (
         <p className="text-zinc-400">{text}</p>
       ) : (
         <button
-          onClick={() => streamedCompletion()}
+          onClick={() => handleClick()}
           className="flex flex-row items-center justify-center gap-x-2 rounded border border-zinc-300 py-2 pl-3 pr-4 dark:border-zinc-600"
         >
-          {loading ? (
+          {text.length < 1 && loading ? (
             <>
               <Loader
                 className="p-1 text-green-700"

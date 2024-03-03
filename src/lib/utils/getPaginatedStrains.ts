@@ -1,8 +1,8 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 
-import type { Database } from '../database';
-import type { Strain } from '../types';
+import type { Database } from '@l/database';
+import type { Strain } from '@l/types';
 
 export async function getPaginatedStrains(
   filter: 're' | 'az' | 'za' | 'sr',

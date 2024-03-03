@@ -1,7 +1,5 @@
 'use client';
 
-// import CustomPairingsModal from '../CustomPairingsModal';
-// import SuggestedPairingsModal from '../SuggestedPairingsModal';
 import React, { useState } from 'react';
 import { FiMoreVertical } from 'react-icons/fi';
 
@@ -12,7 +10,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from '@c/ui/dropdown-menu';
 
 import SuggestedPairingsModal from './SuggestedPairingsModal';
 

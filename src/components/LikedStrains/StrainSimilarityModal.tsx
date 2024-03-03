@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { TbGraphFilled, TbGraphOff } from 'react-icons/tb';
 
+import Modal from '@c/Modal';
 import {
   Tooltip,
   TooltipContent,
@@ -11,7 +12,6 @@ import {
   TooltipTrigger,
 } from '@c/ui/tooltip';
 
-import Modal from '../Modal';
 import ScatterPlot from './ScatterPlot';
 
 async function fetchLikedStrainsPCA() {

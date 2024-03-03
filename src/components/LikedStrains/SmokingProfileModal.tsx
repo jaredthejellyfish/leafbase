@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { RiPieChart2Fill } from 'react-icons/ri';
 
+import Modal from '@c/Modal';
 import {
   Tooltip,
   TooltipContent,
@@ -15,7 +16,6 @@ import {
 
 import type { SmokingProfile } from '@l/types';
 
-import Modal from '../Modal';
 import ResponsivePieChart from './PieChart';
 
 function GraphSkeleton() {

@@ -3,7 +3,7 @@
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { cn } from '@l/utils/cn';
 
@@ -61,6 +61,7 @@ function Pairing({
       return { ok: false, error: (error as Error).message };
     } finally {
       setBody((answer) => answer.replace('"', ''));
+
       return { ok: true, error: null };
     }
   }
@@ -88,7 +89,15 @@ function Pairing({
       )}
     >
       {image ? (
-        <Image src={image} alt={strain2_name} width={96} height={96} />
+        <div className="size-[98px] flex items-center justify-center">
+          <Image
+            src={image}
+            alt={strain2_name}
+            width={96}
+            height={96}
+            priority
+          />
+        </div>
       ) : (
         <div className="size-24 animate-pulse rounded-md bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400"></div>
       )}

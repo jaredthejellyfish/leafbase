@@ -1,8 +1,8 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 
-import type { Database } from '../database';
-import type { StrainWithComments } from '../types';
+import type { Database } from '@l/database';
+import type { StrainWithComments } from '@l/types';
 
 export async function getServerStrain(slug: string) {
   const cookieStore = cookies();

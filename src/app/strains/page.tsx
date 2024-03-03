@@ -6,10 +6,12 @@ import StrainCardLoader from '@c/StrainCardLoader';
 
 import type { Filter } from '@l/types';
 import { getPaginatedStrains } from '@l/utils/getPaginatedStrains';
+import { getServerLikedStrains } from '@l/utils/getServerLikedStrains';
 
 async function StrainsPage(request: { searchParams: { filter?: Filter } }) {
   const filter = (request.searchParams.filter ?? 're') as Filter;
   const { strains, count } = await getPaginatedStrains(filter, 1);
+  const { likes } = await getServerLikedStrains();
 
   return (
     <main className="px-5 py-3 pb-8 md:px-3 lg:px-16 xl:px-36">
@@ -36,9 +38,17 @@ async function StrainsPage(request: { searchParams: { filter?: Filter } }) {
             className="relative mt-4 grid w-full gap-x-4 gap-y-4 md:w-auto md:grid-cols-3 xl:grid-cols-4"
           >
             {strains?.map((strain) => (
-              <StrainCard key={strain.id} strain={strain} />
+              <StrainCard
+                key={strain.id}
+                strain={strain}
+                liked={likes?.includes(strain.id)}
+              />
             ))}
-            <StrainCardLoader filter={filter} count={count ?? undefined} />
+            <StrainCardLoader
+              filter={filter}
+              count={count ?? undefined}
+              likes={likes}
+            />
           </div>
         </div>
       </div>

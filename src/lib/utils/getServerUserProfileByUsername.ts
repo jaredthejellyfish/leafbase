@@ -1,6 +1,6 @@
 import type { SupabaseClient } from '@supabase/auth-helpers-nextjs';
 
-import type { Database } from '../database';
+import type { Database } from '@l/database';
 
 export default async function getServerUserProfileByUsername(
   supabase: SupabaseClient<Database>,

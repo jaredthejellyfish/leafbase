@@ -1,7 +1,7 @@
 import type { Session, SupabaseClient } from '@supabase/supabase-js';
 
-import type { Database } from '../database';
-import type { StrainLike } from '../types';
+import type { Database } from '@l/database';
+import type { StrainLike } from '@l/types';
 
 export default async function getServerLikes(
   supabase: SupabaseClient<Database>,

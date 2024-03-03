@@ -1,7 +1,7 @@
 import type { Session, SupabaseClient } from '@supabase/auth-helpers-nextjs';
 
-import type { Database } from '../database';
-import type { FriendExtended } from '../types';
+import type { Database } from '@l/database';
+import type { FriendExtended } from '@l/types';
 
 export async function getServerFriends(
   supabase: SupabaseClient<Database>,

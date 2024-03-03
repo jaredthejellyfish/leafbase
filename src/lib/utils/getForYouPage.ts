@@ -1,4 +1,4 @@
-import { type Strain } from '../types';
+import { type Strain } from '@l/types';
 
 export async function getForYouPage(page: number) {
   const res = await fetch(

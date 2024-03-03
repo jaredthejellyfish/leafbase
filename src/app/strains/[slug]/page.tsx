@@ -1,20 +1,21 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
+import LikeButton from '@c/LikeButton';
 import NavBreadcrumbs from '@c/NavBreadcrumbs';
 import StarRating from '@c/StarRating';
 import StrainSoma from '@c/StrainSoma';
+import StrainSuggestions from '@c/StrainSuggestions';
 
 import { effects, terpenes } from '@l/data/colors';
+import { getServerLikedStrains } from '@l/utils/getServerLikedStrains';
 import { getServerStrain } from '@l/utils/getServerStrain';
-
-import StrainSuggestions from '@/components/StrainSuggestions';
 
 type Props = { params: { slug: string } };
 
 async function StrainPage({ params: { slug } }: Props) {
   const strain = await getServerStrain(slug);
-  const liked = undefined;
+  const { likes } = await getServerLikedStrains();
 
   if (!strain) {
     return notFound();
@@ -34,9 +35,14 @@ async function StrainPage({ params: { slug } }: Props) {
         id="card"
         className="relative flex flex-col items-center justify-center rounded border border-zinc-300 pb-8 shadow dark:border-transparent dark:bg-zinc-900"
       >
-        {liked ?? (
-          <div className="absolute top-4 right-10">
+        {likes && (
+          <div className="absolute top-4 right-10 flex flex-row items-center justify-center gap-x-4">
             <StrainSuggestions slug={strain.slug} id={strain.id} />
+            <LikeButton
+              iconSize={20}
+              liked={likes?.includes(strain.id)}
+              strain_id={strain.id}
+            />
           </div>
         )}
         <div

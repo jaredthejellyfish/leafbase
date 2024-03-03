@@ -2,13 +2,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { type RefObject, forwardRef } from 'react';
 
-import type { Strain } from '@l/types';
+import LikeButton from '@c/LikeButton';
+import StarRating from '@c/StarRating';
 
-import StarRating from '../StarRating';
+import type { Strain } from '@l/types';
 
 type Props = {
   strain: Strain;
   ref?: RefObject<HTMLAnchorElement>;
+  liked?: boolean;
 };
 
 type Colors = Record<string, string>;
@@ -43,14 +45,19 @@ const effects: Colors = {
 };
 
 const StrainCard = forwardRef<HTMLAnchorElement, Props>(
-  ({ strain }: Props, ref) => {
+  ({ strain, liked }: Props, ref) => {
     return (
       <Link
         ref={ref}
-        className="h-[220px] md:min-h-[460px] w-full rounded-xl p-3 shadow-md dark:bg-zinc-900 dark:shadow-none md:max-w-[280px] min-w-[250px]"
+        className="h-[220px] md:min-h-[460px] w-full rounded-xl p-3 shadow-md dark:bg-zinc-900 dark:shadow-none md:max-w-[280px] min-w-[250px] relative"
         href={`/strains/${strain.slug}`}
       >
-        <div className="flex flex-row md:flex-col">
+        {typeof liked !== 'undefined' && (
+          <div className="absolute md:right-2 md:top-2 right-3 top-3 z-50">
+            <LikeButton liked={liked} strain_id={strain.id} iconSize={18} />
+          </div>
+        )}
+        <div className="flex flex-row md:flex-col z-0">
           <div
             className="mr-3 flex max-h-[280px] w-1/2 max-w-[280px] items-center justify-center rounded-lg border border-white bg-zinc-300/10 dark:border-transparent dark:border-zinc-800 dark:bg-zinc-950/30 sm:mb-1 sm:mr-0 sm:w-full"
             id="image"

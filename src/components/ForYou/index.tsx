@@ -6,11 +6,11 @@ import React, { useEffect, useState } from 'react';
 import { MdError } from 'react-icons/md';
 import { useMediaQuery } from 'usehooks-ts';
 
+import StrainCard from '@c/StrainCard';
+
 import type { Strain } from '@l/types';
 import { cn } from '@l/utils/cn';
 import { getForYouPage } from '@l/utils/getForYouPage';
-
-import StrainCard from '../StrainCard';
 
 type Props = {
   initialData?: Strain[];

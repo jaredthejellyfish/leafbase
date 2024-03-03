@@ -73,17 +73,7 @@ export async function GET(request: Request) {
     strain2_name: pairing.name,
   }));
 
-  return NextResponse.json(
-    { pairings: formattedPairings },
-    {
-      status: 200,
-      headers: {
-        'Cache-Control': 'max-age=90',
-        'CDN-Cache-Control': 'max-age=3600',
-        'Vercel-CDN-Cache-Control': 'max-age=28800',
-      },
-    },
-  );
+  return NextResponse.json({ pairings: formattedPairings }, { status: 200 });
 }
 
 export const runtime = 'edge';

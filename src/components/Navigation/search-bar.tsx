@@ -35,9 +35,7 @@ function SearchBar() {
         )}
       </div>
       {query.length > 1 && matches && (
-        <div
-          onClick={() => setQuery('')}
-        >
+        <div onClick={() => setQuery('')}>
           <SearchResults query={query} />
         </div>
       )}

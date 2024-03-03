@@ -15,7 +15,10 @@ async function StrainsPage(request: { searchParams: { filter?: Filter } }) {
 
   return (
     <main className="px-5 py-3 pb-8 md:px-3 lg:px-16 xl:px-36">
-      <div className="flex flex-col items-center w-auto flex-shrink" id="main-container">
+      <div
+        className="flex flex-col items-center w-auto flex-shrink"
+        id="main-container"
+      >
         <div id="heading" className="">
           <h1 className="mb-2 mt-4 text-3xl font-bold ">All strains</h1>
           <h3 className="">
@@ -33,25 +36,24 @@ async function StrainsPage(request: { searchParams: { filter?: Filter } }) {
           </span>
         </div>
 
-          <div
-            id="response-div"
-            className="relative mt-4 grid gap-x-4 gap-y-4 md:grid-cols-3 xl:grid-cols-4"
-          >
-            {strains?.map((strain) => (
-              <StrainCard
-                key={strain.id}
-                strain={strain}
-                liked={likes?.includes(strain.id)}
-              />
-            ))}
-            <StrainCardLoader
-              filter={filter}
-              count={count ?? undefined}
-              likes={likes}
+        <div
+          id="response-div"
+          className="relative mt-4 grid gap-x-4 gap-y-4 md:grid-cols-3 xl:grid-cols-4"
+        >
+          {strains?.map((strain) => (
+            <StrainCard
+              key={strain.id}
+              strain={strain}
+              liked={likes?.includes(strain.id)}
             />
-          </div>
+          ))}
+          <StrainCardLoader
+            filter={filter}
+            count={count ?? undefined}
+            likes={likes}
+          />
         </div>
-
+      </div>
     </main>
   );
 }

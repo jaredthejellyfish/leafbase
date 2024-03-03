@@ -1,4 +1,5 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import dynamic from 'next/dynamic';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,9 +14,8 @@ import ProfileIcon from '@p/svg/profile-icon.svg';
 import HamburgerMenu from './hamburger-menu';
 import SearchBar from './search-bar';
 import { ThemeToggle } from './theme-toggle';
-import dynamic from 'next/dynamic';
 
-const NavDropdown = dynamic(() => import('./nav-dropdown'));
+const NavDropdown = dynamic(() => import('./nav-dropdown'), { ssr: false });
 
 async function Navigation() {
   const cookieStore = cookies();

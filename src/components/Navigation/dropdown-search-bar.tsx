@@ -8,7 +8,9 @@ import { useOnClickOutside } from 'usehooks-ts';
 
 import navDropdownStore from '@/lib/store/nav-dropdown';
 
-const SearchResults = dynamic(() => import('./search-results-dropdown'), { ssr: false });
+const SearchResults = dynamic(() => import('./search-results-dropdown'), {
+  ssr: false,
+});
 
 function DropdownSearchbar() {
   const [query, setQuery] = useState('');
@@ -46,7 +48,7 @@ function DropdownSearchbar() {
       </div>
       {open && query.length > 1 && (
         <div
-        className='w-full'
+          className="w-full"
           onClick={() => {
             setQuery('');
             toggle(false);

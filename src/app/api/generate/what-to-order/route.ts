@@ -146,7 +146,9 @@ export async function GET() {
 
   const stream = OpenAIStream(completion, {
     onCompletion: async (completion) => {
-      await kv.set(`what-to-otder-${session.user.id}`, completion, { ex: 28800 });
+      await kv.set(`what-to-otder-${session.user.id}`, completion, {
+        ex: 28800,
+      });
     },
   });
 

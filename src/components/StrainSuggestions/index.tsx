@@ -1,5 +1,6 @@
 'use client';
 
+import { useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { FiMoreVertical } from 'react-icons/fi';
 
@@ -13,7 +14,6 @@ import {
 } from '@c/ui/dropdown-menu';
 
 import SuggestedPairingsModal from './SuggestedPairingsModal';
-import { useQueryClient } from '@tanstack/react-query';
 
 type Props = {
   id: string;

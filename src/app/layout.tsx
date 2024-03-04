@@ -4,7 +4,6 @@ import { Inter as FontSans } from 'next/font/google';
 import Navigation from '@c/Navigation';
 import QueryProvider from '@c/QueryClientProvider';
 import ThemeProvider from '@c/ThemeProvider';
-import { Toaster } from '@c/ui/toaster';
 
 import { cn } from '@l/utils/cn';
 
@@ -36,7 +35,6 @@ export default function RootLayout({
           <QueryProvider>
             <Navigation />
             {children}
-            <Toaster />
           </QueryProvider>
         </ThemeProvider>
       </body>

@@ -63,7 +63,7 @@ const StrainCard = forwardRef<HTMLAnchorElement, Props>(
             id="image"
           >
             <Image
-              className="md:h-full md:max-h-[250px] md:w-full size-[190px] md:max-w-[250px] rounded-lg object-contain p-4 dark:opacity-90"
+              className="md:h-[390px] md:max-h-[250px] md:w-full size-[190px] md:max-w-[250px] rounded-lg object-contain p-4 dark:opacity-90"
               width={250}
               height={250}
               alt={`${strain.name} nug shot`}

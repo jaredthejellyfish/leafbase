@@ -6,7 +6,7 @@ import React, { useRef, useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { useOnClickOutside } from 'usehooks-ts';
 
-import navDropdownStore from '@/lib/store/nav-dropdown';
+import navDropdownStore from '@l/store/nav-dropdown';
 
 const SearchResults = dynamic(() => import('./search-results-dropdown'), {
   ssr: false,

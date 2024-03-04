@@ -12,6 +12,8 @@ import type { Strain } from '@l/types';
 import { cn } from '@l/utils/cn';
 import { getForYouPage } from '@l/utils/getForYouPage';
 
+import StrainCardSkeleton from '../StrainCard/skeleton';
+
 type Props = {
   initialData?: Strain[];
 };
@@ -23,9 +25,14 @@ function ForYou({ initialData }: Props) {
 
   const matches = useMediaQuery('(min-width: 768px)');
 
-  const { data: strainsData, error: forYouError } = useQuery({
+  const {
+    data: strainsData,
+    error: forYouError,
+    isFetching,
+  } = useQuery({
     queryKey: ['for-you', page],
     queryFn: () => getForYouPage(page),
+    enabled: Boolean(page > 0),
   });
 
   useEffect(() => {
@@ -74,20 +81,18 @@ function ForYou({ initialData }: Props) {
           !matches && !open && 'max-h-[450px]',
         )}
       >
-        {initialData &&
-          page > 0 &&
-          strains &&
-          strains.length > 0 &&
-          strains.map((strain, i) => <StrainCard key={i} strain={strain} />)}
-        {initialData &&
-          page < 1 &&
-          initialData.length > 0 &&
-          initialData.map((strain, i) => (
-            <StrainCard key={i} strain={strain} />
-          ))}
+        {isFetching
+          ? new Array(5).fill(0).map((_, i) => <StrainCardSkeleton key={i} />)
+          : initialData && page > 0 && strains && strains.length > 0
+            ? strains.map((strain, i) => <StrainCard key={i} strain={strain} />)
+            : page < 1 &&
+              initialData?.length &&
+              initialData?.map((strain, i) => (
+                <StrainCard key={i} strain={strain} />
+              ))}
       </div>
 
-      {!matches && strains && strains.length > 0 && (
+      {!matches && (strains?.length || isFetching || initialData) && (
         <button
           onClick={() => setOpen(!open)}
           className="flex w-full flex-row items-center justify-center"

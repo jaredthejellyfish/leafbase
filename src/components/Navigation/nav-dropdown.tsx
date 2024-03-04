@@ -1,6 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
 
 import navDropdownStore from '@l/store/nav-dropdown';
 import { cn } from '@l/utils/cn';
@@ -25,7 +26,21 @@ const paths = [
 
 function NavDropdown() {
   const pathname = usePathname();
-  const open = navDropdownStore((state) => state.isOpen);
+  const { isOpen: open, toggle } = navDropdownStore((state) => state);
+
+  useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (open && event.key === 'Escape') {
+        toggle(false);
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [open, toggle]);
 
   return (
     <>

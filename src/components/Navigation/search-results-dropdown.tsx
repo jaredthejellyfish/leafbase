@@ -1,14 +1,12 @@
 'use client';
 
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
 import type { SearchStrain } from '@l/types';
-
-import type { Database } from '@/lib/database';
+import { searchStrains } from '@l/utils/searchStrains';
 
 type Props = {
   query?: string;
@@ -41,20 +39,9 @@ function SearchResult({
 }
 
 function SearchResults({ query }: Props) {
-  const supabase = createClientComponentClient<Database>();
-
   const { data } = useQuery({
     queryKey: ['strains', 'search', query],
-    queryFn: async () => {
-      const { data, error } = await supabase.rpc('search_strains', {
-        search_term: query ?? '',
-        limit_num: 5,
-      });
-      if (error) {
-        throw error;
-      }
-      return data;
-    },
+    queryFn: async () => await searchStrains(query),
     enabled: Boolean(query && query.length >= 3 && query.length < 20),
   });
 

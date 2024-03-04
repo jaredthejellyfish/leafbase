@@ -65,7 +65,10 @@ function SuggestedPairingsModal({ slug, id, open, setOpen }: Props) {
           pairings?.pairings &&
           pairings.pairings.length >= 1 ? (
             pairings?.pairings.map((pairing: Pairing) => (
-              <Pairing pairing={pairing} key={pairing.id ?? Math.random()} />
+              <Pairing
+                pairing={pairing}
+                key={`${pairing?.id}-${(Math.random() * 100000).toFixed(0)}`}
+              />
             ))
           ) : (
             <>

@@ -41,7 +41,7 @@ function SearchResult({
 function SearchResults({ query }: Props) {
   const { data } = useQuery({
     queryKey: ['strains', 'search', query],
-    queryFn: async () => await searchStrains(query),
+    queryFn: async ({ signal }) => await searchStrains(signal, query),
     enabled: Boolean(query && query.length >= 3 && query.length < 20),
   });
 
@@ -53,12 +53,12 @@ function SearchResults({ query }: Props) {
         <>
           {index !== 0 && (
             <div
-              key={`divider-${Math.random()}`}
+              key={`divider-${(Math.random() * 100000).toFixed(0)}`}
               className="border-b border-gray-300 dark:border-gray-600"
             ></div>
           )}
           <SearchResult
-            key={`search-${strain.slug}-${Math.random()}`}
+            key={`search-${strain.slug}-${(Math.random() * 100000).toFixed(0)}`}
             imageSize={60}
             strain={strain}
           />

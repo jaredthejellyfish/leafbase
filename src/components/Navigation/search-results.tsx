@@ -7,15 +7,11 @@ import React from 'react';
 
 import type { SearchStrain } from '@l/types';
 
+import { searchStrains } from '@/lib/utils/searchStrains';
+
 type Props = {
   query?: string;
 };
-
-async function searchStrains(query?: string) {
-  const res = await fetch(`/api/strains/search?query=${query}`);
-  const data = (await res.json()) as SearchStrain[];
-  return data;
-}
 
 function SearchResult({
   strain,
@@ -46,14 +42,14 @@ function SearchResult({
 function SearchResults({ query }: Props) {
   const { data } = useQuery({
     queryKey: ['strains', 'search', query],
-    queryFn: async () => await searchStrains(query),
+    queryFn: async ({ signal }) => await searchStrains(signal, query),
     enabled: Boolean(query && query.length >= 3 && query.length < 20),
   });
 
   if (!data?.length) return null;
 
   return (
-    <div className="absolute top-16 z-50 flex w-full max-w-[380px] md:max-w-[265px] flex-col gap-y-2.5 rounded bg-zinc-800 px-3 py-2 xl:max-w-[320px]">
+    <div className="absolute top-16 z-50 flex w-full max-w-[380px] md:max-w-[265px] flex-col gap-y-2.5 rounded dark:bg-zinc-800 px-3 py-2 xl:max-w-[320px] bg-white">
       {data.map((strain, index) => (
         <>
           {index !== 0 && (

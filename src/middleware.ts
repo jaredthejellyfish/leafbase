@@ -2,25 +2,32 @@ import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
-const authRedirects = [
+import type { MiddlewareRedirects } from '@l/types';
+
+const authRedirects: MiddlewareRedirects = [
   {
     matcher: '/profile',
-    redirect: '/auth/signin',
+    redirect: '/auth/login',
     isAuth: false,
   },
   {
     matcher: '/profile/(.*)',
-    redirect: '/auth/signin',
+    redirect: '/auth/login',
     isAuth: false,
   },
   {
     matcher: '/home',
-    redirect: '/auth/signin',
+    redirect: '/auth/login',
     isAuth: false,
   },
   {
     matcher: '/',
     redirect: '/home',
+    isAuth: true,
+  },
+  {
+    matcher: '/auth/(.*)',
+    redirect: '/profile',
     isAuth: true,
   },
 ];

@@ -221,3 +221,9 @@ export type SmokingProfile = {
 };
 
 export type Filter = 're' | 'az' | 'za' | 'sr';
+
+export type MiddlewareRedirects = {
+  matcher: string;
+  redirect: string;
+  isAuth: boolean;
+}[];

@@ -97,7 +97,7 @@ function SignupForm() {
         </span>
       </div>
 
-      <div className="px-5 py-2 mb-1">
+      <div className="px-5 py-2">
         <button
           className="w-full bg-green-700 px-3 font-medium  py-2 rounded-xl disabled:bg-green-800"
           type="submit"
@@ -105,6 +105,14 @@ function SignupForm() {
         >
           Submit
         </button>
+      </div>
+      <div className="flex flex-row items-center jusitfy-start w-full gap-x-2 px-2 text-sm text-zinc-400">
+        <span>
+          Already have an account?{' '}
+          <Link href="/auth/login" className="underiline text-green-700/80">
+            Log in
+          </Link>
+        </span>
       </div>
     </form>
   );

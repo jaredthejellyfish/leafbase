@@ -1,6 +1,11 @@
+import type { Metadata } from 'next';
 import React from 'react';
 
 import SignupForm from '@c/SignupForm';
+
+export const metadata: Metadata = {
+  title: 'Leafbase - Sign Up',
+};
 
 function SignupPage() {
   return (

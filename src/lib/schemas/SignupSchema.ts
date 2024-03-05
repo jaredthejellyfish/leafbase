@@ -1,4 +1,3 @@
-import { delimiter } from 'path';
 import { z } from 'zod';
 
 const SignupSchema = z.object({

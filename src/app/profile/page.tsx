@@ -13,6 +13,7 @@ import { cn } from '@l/utils/cn';
 import { getServerFriends } from '@l/utils/getServerFriends';
 import getServerLikes from '@l/utils/getServerLikes';
 import getServerUserProfile from '@l/utils/getServerUserProfile';
+import type { Metadata } from 'next';
 
 const languages = [
   { label: 'English', value: 'en' },
@@ -25,6 +26,10 @@ const languages = [
   { label: 'Korean', value: 'ko' },
   { label: 'Chinese', value: 'zh' },
 ] as const;
+
+export const metadata: Metadata = {
+  title: 'Leafbase - Profile',
+};
 
 const LikedStrains = dynamic(() => import('@c/LikedStrains'), { ssr: true });
 
@@ -126,7 +131,7 @@ async function ProfilePage() {
                 <span className="text-gray-400">{user.phone}</span>
               </span>
             )}
-            <form method="POST" action="/api/auth//logout">
+            <form method="POST" action="/api/auth/logout">
               <button
                 type="submit"
                 className="mb-4 mr-2 mt-4 w-full rounded-xl bg-green-700 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-green-700 dark:hover:bg-green-800 dark:focus:ring-blue-800"

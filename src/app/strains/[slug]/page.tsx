@@ -11,7 +11,17 @@ import { effects, terpenes } from '@l/data/colors';
 import { getServerLikedStrains } from '@l/utils/getServerLikedStrains';
 import { getServerStrain } from '@l/utils/getServerStrain';
 
+import { getStrainsSSG } from '@/lib/utils/getStrainsSSG';
+
 type Props = { params: { slug: string } };
+
+export async function generateStaticParams() {
+  const slugs = await getStrainsSSG();
+
+  return slugs.map((slug) => ({
+    slug: slug,
+  }));
+}
 
 async function StrainPage({ params: { slug } }: Props) {
   const strain = await getServerStrain(slug);

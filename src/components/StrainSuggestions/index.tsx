@@ -12,8 +12,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@c/ui/dropdown-menu';
+import dynamic from 'next/dynamic';
 
-import SuggestedPairingsModal from './SuggestedPairingsModal';
+const SuggestedPairingsModal = dynamic(() => import('./SuggestedPairingsModal'), {ssr: false});
 
 type Props = {
   id: string;
@@ -24,6 +25,7 @@ function StrainSuggestions({ id, slug }: Props) {
   const [suggestedPairingsOpen, setSuggestedPairingsOpen] = useState(false);
   const [customPairingsOpen, setCustomPairingsOpen] = useState(false);
   const queryClient = useQueryClient();
+  
   return (
     <>
       <DropdownMenu>
@@ -54,12 +56,14 @@ function StrainSuggestions({ id, slug }: Props) {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <SuggestedPairingsModal
-        open={suggestedPairingsOpen}
-        setOpen={setSuggestedPairingsOpen}
-        slug={slug}
-        id={id}
-      />
+      {setSuggestedPairingsOpen && (
+        <SuggestedPairingsModal
+          open={suggestedPairingsOpen}
+          setOpen={setSuggestedPairingsOpen}
+          slug={slug}
+          id={id}
+        />
+      )}
       {/*
       <CustomPairingsModal
         open={customPairingsOpen}

@@ -7,7 +7,7 @@ import React from 'react';
 
 import type { SearchStrain } from '@l/types';
 
-import { searchStrains } from '@/lib/utils/searchStrains';
+import { searchStrains } from '@l/utils/searchStrains';
 
 type Props = {
   query?: string;

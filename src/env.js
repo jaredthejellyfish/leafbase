@@ -17,6 +17,9 @@ export const env = createEnv({
     KV_REST_API_TOKEN: z.string(),
     KV_REST_API_URL: z.string(),
     KV_URL: z.string(),
+
+    VERCEL_ENV: z.enum(['production', 'preview', 'development']),
+    VERCEL_URL: z.string().optional(),
   },
 
   /**
@@ -46,6 +49,9 @@ export const env = createEnv({
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+
+    VERCEL_ENV: process.env.VERCEL_ENV,
+    VERCEL_URL: process.env.VERCEL_URL,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

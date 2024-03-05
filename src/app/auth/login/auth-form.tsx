@@ -12,7 +12,7 @@ export default function AuthForm() {
   return (
     <Auth
       supabaseClient={supabase}
-      view="magic_link"
+      view="sign_in"
       appearance={{ theme: ThemeSupa }}
       theme="dark"
       showLinks={false}

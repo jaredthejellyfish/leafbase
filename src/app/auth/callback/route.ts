@@ -3,8 +3,6 @@ import { cookies } from 'next/headers';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
-import type { SignupSchemaType } from '@l/schemas/SignupSchema';
-
 export async function GET(req: NextRequest) {
   const cookieStore = cookies();
   const supabase = createRouteHandlerClient({ cookies: () => cookieStore });

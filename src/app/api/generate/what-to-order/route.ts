@@ -1,12 +1,17 @@
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { kv } from '@vercel/kv';
-import { OpenAIStream, StreamingTextResponse } from 'ai';
+import { MistralStream, StreamingTextResponse } from 'ai';
+import Groq from 'groq-sdk';
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
-import OpenAI from 'openai';
 
 import { type Database } from '@l/database';
 import { type StrainData } from '@l/types';
+import { env } from '@/env';
+
+const groq = new Groq({
+  apiKey: env.GROQ_API_KEY,
+});
 
 type Score = Record<string, number>;
 
@@ -15,8 +20,6 @@ type Data = {
   effects: Record<string, number>;
   terps: Record<string, number>;
 };
-
-const openai = new OpenAI();
 
 const basePrompt = (
   data: Data,
@@ -116,8 +119,7 @@ export async function GET() {
     ).toFixed(2),
   );
 
-  const completion = await openai.chat.completions.create({
-    model: 'gpt-4-turbo-preview',
+  const res = await groq.chat.completions.create({
     messages: [
       {
         role: 'system',
@@ -136,6 +138,7 @@ export async function GET() {
         ),
       },
     ],
+    model: 'mixtral-8x7b-32768',
     temperature: 1,
     max_tokens: 250,
     top_p: 1,
@@ -144,7 +147,8 @@ export async function GET() {
     stream: true,
   });
 
-  const stream = OpenAIStream(completion, {
+  // @ts-expect-error -- API response from groq is not iterpreted properly.
+  const stream = MistralStream(res, {
     onCompletion: async (completion) => {
       await kv.set(`what-to-otder-${session.user.id}`, completion, {
         ex: 28800,

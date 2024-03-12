@@ -14,6 +14,6 @@ export async function getStrainsSSG() {
   );
 
   const data = (await res.json()) as { slug: string }[];
-  console.log(data);
+
   return data.map((strain) => strain.slug);
 }

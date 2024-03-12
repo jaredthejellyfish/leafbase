@@ -7,7 +7,7 @@ interface NavDropdownState {
 
 const navDropdownStore = create<NavDropdownState>((set) => ({
   isOpen: false,
-  toggle: () => set((state) => ({ isOpen: !state.isOpen })),
+  toggle: () => set(({ isOpen }) => ({ isOpen: !isOpen })),
 }));
 
 export default navDropdownStore;

@@ -7,7 +7,6 @@ import navDropdownStore from '@l/store/nav-dropdown';
 import { cn } from '@l/utils/cn';
 
 import DropdownSearchbar from './dropdown-search-bar';
-import NavDropdownOverlay from './nav-dropdown-overlay';
 
 const paths = [
   {
@@ -47,7 +46,7 @@ function NavDropdown() {
       <div
         id="nav-dropdown"
         className={cn(
-          'fixed left-0 right-0 top-14 z-50 w-screen origin-top rounded-b bg-white px-4 py-2 shadow-lg transition-transform duration-300 dark:bg-zinc-800/100 sm:px-5 sm:py-3',
+          'fixed left-0 right-0 top-14 z-40 w-screen origin-top rounded-b bg-white px-4 py-2 shadow-lg transition-transform duration-300 dark:bg-zinc-800/100 sm:px-5 sm:py-3',
           !open && 'scale-y-0',
         )}
       >
@@ -79,7 +78,13 @@ function NavDropdown() {
           </div>
         ))}
       </div>
-      <NavDropdownOverlay />
+      <div
+        onClick={() => toggle(!open)}
+        className={cn(
+          'fixed bottom-0 left-0 right-0 top-16 z-30 bg-zinc-950 opacity-50 transition-opacity duration-500',
+          !open && 'pointer-events-none opacity-0',
+        )}
+      ></div>
     </>
   );
 }

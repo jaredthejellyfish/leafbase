@@ -6,7 +6,6 @@ import Link from 'next/link';
 import React from 'react';
 
 import type { SearchStrain } from '@l/types';
-
 import { searchStrains } from '@l/utils/searchStrains';
 
 type Props = {
@@ -24,7 +23,7 @@ function SearchResult({
     // <- /strain
     <Link
       href={`/strains/${strain.slug}`}
-      className="flex flex-col items-start"
+      className="flex flex-col items-start z-50"
     >
       <div className="flex flex-row items-center gap-2">
         <Image
@@ -49,7 +48,7 @@ function SearchResults({ query }: Props) {
   if (!data?.length) return null;
 
   return (
-    <div className="absolute top-16 z-50 flex w-full max-w-[380px] md:max-w-[265px] flex-col gap-y-2.5 rounded dark:bg-zinc-800 px-3 py-2 xl:max-w-[320px] bg-white">
+    <div className="absolute top-16 z-50 border dark:border-zinc-600 shadow-xl flex w-full max-w-[380px] md:max-w-[265px] flex-col gap-y-2.5 rounded dark:bg-zinc-800 px-3 py-2 xl:max-w-[320px] bg-white">
       {data.map((strain, index) => (
         <>
           {index !== 0 && (

@@ -2,9 +2,9 @@
 
 import { X } from 'lucide-react';
 import dynamic from 'next/dynamic';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
-import { useMediaQuery } from 'usehooks-ts';
+import { useMediaQuery, useOnClickOutside } from 'usehooks-ts';
 
 const SearchResults = dynamic(() => import('./search-results'));
 
@@ -12,8 +12,16 @@ function SearchBar() {
   const [query, setQuery] = useState('');
   const matches = useMediaQuery('(min-width: 768px)');
 
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  const handleClickOutside = () => {
+    setQuery('');
+  };
+
+  useOnClickOutside(ref, handleClickOutside);
+
   return (
-    <div className="relative">
+    <div className="relative" ref={ref}>
       <div className="md:w-46 hidden flex-row items-center gap-3 rounded bg-white py-1.5 pl-4 pr-5 text-black dark:bg-zinc-800 md:flex xl:w-80">
         <input
           type="text"

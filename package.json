@@ -37,6 +37,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "date-fns": "^3.3.1",
+    "groq-sdk": "^0.3.2",
     "lodash": "^4.17.21",
     "lucide-react": "^0.343.0",
     "ml-pca": "^4.1.1",

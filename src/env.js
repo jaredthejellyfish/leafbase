@@ -20,6 +20,8 @@ export const env = createEnv({
 
     VERCEL_ENV: z.enum(['production', 'preview', 'development']),
     VERCEL_URL: z.string().optional(),
+
+    GROQ_API_KEY: z.string(),
   },
 
   /**
@@ -52,6 +54,8 @@ export const env = createEnv({
 
     VERCEL_ENV: process.env.VERCEL_ENV,
     VERCEL_URL: process.env.VERCEL_URL,
+
+    GROQ_API_KEY: process.env.GROQ_API_KEY,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

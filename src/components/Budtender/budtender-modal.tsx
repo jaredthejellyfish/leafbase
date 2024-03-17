@@ -39,7 +39,7 @@ function BudtenderModal({ userName }: { userName: string }) {
       <button
         onClick={() => setOpen((o) => !o)}
         className={cn(
-          'fixed bottom-5 right-5 w-12 p-2.5 rounded-full h-12 bg-zinc-700 border-zinc-800 border-2 opacity-100 transition-all scale-100 z-50 flex items-center justify-center',
+          'fixed bottom-5 right-5 size-[3.2em] p-2.5 hover:bg-zinc-500 trasition-color duration-300 rounded-full bg-zinc-700 border-zinc-800 border-2 opacity-100 transition-all scale-100 z-50 flex items-center justify-center',
           open && 'scale-0',
         )}
       >

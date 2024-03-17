@@ -2,6 +2,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import { Inter as FontSans } from 'next/font/google';
 
+import Budtender from '@c/Budtender';
 import Navigation from '@c/Navigation';
 import QueryProvider from '@c/QueryClientProvider';
 import ThemeProvider from '@c/ThemeProvider';
@@ -37,6 +38,7 @@ export default function RootLayout({
             <Navigation />
             {children}
           </QueryProvider>
+          <Budtender />
         </ThemeProvider>
         <SpeedInsights />
       </body>

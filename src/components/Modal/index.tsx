@@ -76,7 +76,7 @@ function Modal({
   return (
     <div
       className={cn(
-        'fixed inset-0 z-50 flex h-screen w-full items-center justify-center overflow-y-hidden border-transparent bg-zinc-900/75 px-6 transition-all duration-500',
+        'fixed inset-0 z-50 flex h-screen w-full items-center justify-center overflow-y-hidden border-transparent bg-zinc-900/75 px-6 transition-all duration-500 backdrop-blur-sm',
         open ? 'opacity-100' : 'pointer-events-none opacity-0',
       )}
     >

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import StarRating from '../StarRating';
+import StarRating from '@c/StarRating';
 
 const StrainCardSkeleton = () => {
   return (

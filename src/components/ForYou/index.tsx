@@ -12,7 +12,7 @@ import type { Strain } from '@l/types';
 import { cn } from '@l/utils/cn';
 import { getForYouPage } from '@l/utils/getForYouPage';
 
-import StrainCardSkeleton from '../StrainCard/skeleton';
+import StrainCardSkeleton from '@c/StrainCard/skeleton';
 
 type Props = {
   initialData?: Strain[];

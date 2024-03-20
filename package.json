@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "preview": "vercel build && vercel deploy --prebuilt",
+    "preview": "bun run pretty && vercel build && vercel deploy --prebuilt",
     "prod": "rm -rf .next/ && bun run pretty && vercel build --prod && vercel deploy --prod --prebuilt",
     "pretty": "prettier . --write",
     "dbtypes": "supabase gen types typescript --project-id euwnyenhzhztqztezjdn > ./src/lib/database/index.ts"

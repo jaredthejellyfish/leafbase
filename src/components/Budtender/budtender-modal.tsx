@@ -137,8 +137,7 @@ function BudtenderModal({ userName }: { userName: string }) {
               </svg>
               <span className="w-[67%] text-center">
                 Start your conversation with{' '}
-                <span className="font-semibold">{name}</span>,
-                your budtender.
+                <span className="font-semibold">{name}</span>, your budtender.
               </span>
             </div>
           )}

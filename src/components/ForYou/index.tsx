@@ -7,12 +7,11 @@ import { MdError } from 'react-icons/md';
 import { useMediaQuery } from 'usehooks-ts';
 
 import StrainCard from '@c/StrainCard';
+import StrainCardSkeleton from '@c/StrainCard/skeleton';
 
 import type { Strain } from '@l/types';
 import { cn } from '@l/utils/cn';
 import { getForYouPage } from '@l/utils/getForYouPage';
-
-import StrainCardSkeleton from '@c/StrainCard/skeleton';
 
 type Props = {
   initialData?: Strain[];

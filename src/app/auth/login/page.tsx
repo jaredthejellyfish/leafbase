@@ -1,7 +1,7 @@
+import type { Metadata } from 'next';
 import React from 'react';
 
 import LoginForm from '@c/LoginForm';
-import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Leafbase - Login',

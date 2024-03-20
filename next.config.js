@@ -1,4 +1,4 @@
-// import MillionLint from '@million/lint';
+import MillionLint from '@million/lint';
 
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
@@ -32,4 +32,6 @@ const nextConfig = {
 };
 
 // export default MillionLint.next()(nextConfig);
-export default nextConfig;
+export default MillionLint.next({
+  rsc: true,
+})(nextConfig);

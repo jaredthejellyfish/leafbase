@@ -1,13 +1,14 @@
-import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
-  } from '@c/ui/tooltip';
-  import { cn } from '@l/utils/cn';
-  import React, { forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import { MdError } from 'react-icons/md';
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@c/ui/tooltip';
+
+import { cn } from '@l/utils/cn';
 
 const Input = forwardRef<
   HTMLInputElement,
@@ -52,4 +53,4 @@ const Input = forwardRef<
 
 Input.displayName = 'Input';
 
-export default Input
+export default Input;

@@ -1,6 +1,7 @@
 'use client';
 
 import { useQueryClient } from '@tanstack/react-query';
+import dynamic from 'next/dynamic';
 import React, { useState } from 'react';
 import { FiMoreVertical } from 'react-icons/fi';
 
@@ -12,9 +13,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@c/ui/dropdown-menu';
-import dynamic from 'next/dynamic';
 
-const SuggestedPairingsModal = dynamic(() => import('./SuggestedPairingsModal'), {ssr: false});
+const SuggestedPairingsModal = dynamic(
+  () => import('./SuggestedPairingsModal'),
+  { ssr: false },
+);
 
 type Props = {
   id: string;
@@ -25,7 +28,7 @@ function StrainSuggestions({ id, slug }: Props) {
   const [suggestedPairingsOpen, setSuggestedPairingsOpen] = useState(false);
   const [customPairingsOpen, setCustomPairingsOpen] = useState(false);
   const queryClient = useQueryClient();
-  
+
   return (
     <>
       <DropdownMenu>

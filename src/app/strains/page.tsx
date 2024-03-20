@@ -9,7 +9,7 @@ import { getPaginatedStrains } from '@l/utils/getPaginatedStrains';
 import { getServerLikedStrains } from '@l/utils/getServerLikedStrains';
 
 async function StrainsPage(request: { searchParams: { filter?: Filter } }) {
-  const filter = (request.searchParams.filter ?? 're') as Filter;
+  const filter = request.searchParams.filter ?? 're';
   const { strains, count } = await getPaginatedStrains(filter, 1);
   const { likes } = await getServerLikedStrains();
 

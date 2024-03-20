@@ -49,6 +49,8 @@ function SubmitMessageButton() {
         throw response.statusText;
       }
 
+      console.log('response', response);
+
       addMessage({
         id: lastUserMessage + 1,
         author: 'user',

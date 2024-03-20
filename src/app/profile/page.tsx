@@ -1,5 +1,6 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { format } from 'date-fns';
+import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
@@ -13,7 +14,6 @@ import { cn } from '@l/utils/cn';
 import { getServerFriends } from '@l/utils/getServerFriends';
 import getServerLikes from '@l/utils/getServerLikes';
 import getServerUserProfile from '@l/utils/getServerUserProfile';
-import type { Metadata } from 'next';
 
 const languages = [
   { label: 'English', value: 'en' },

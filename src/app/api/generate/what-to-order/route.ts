@@ -7,6 +7,7 @@ import { NextResponse } from 'next/server';
 
 import { type Database } from '@l/database';
 import { type StrainData } from '@l/types';
+
 import { env } from '@/env';
 
 const groq = new Groq({

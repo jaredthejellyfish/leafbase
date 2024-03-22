@@ -3,18 +3,22 @@
 import { useChat } from 'ai/react';
 import type { Message as AIMessage } from 'ai/react';
 import { Send, Trash } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import React, { useEffect, useRef, useState } from 'react';
 import { FaRegStopCircle } from 'react-icons/fa';
 import { RiMessage2Line } from 'react-icons/ri';
 import { useLocalStorage } from 'usehooks-ts';
 
-// import { Cannabis } from 'lucide-react';
 import Modal from '@c/Modal';
 
 import { cn } from '@l/utils/cn';
 
 import { names } from './data';
 import Message from './message';
+
+const SuggestedPrompts = dynamic(() => import('./suggested-prompts'), {
+  ssr: false,
+});
 
 function BudtenderModal({ userName }: { userName: string }) {
   const [name, setName] = useLocalStorage('budtender-name', '');
@@ -33,6 +37,7 @@ function BudtenderModal({ userName }: { userName: string }) {
     isLoading,
     stop,
     setMessages,
+    append,
   } = useChat({
     api: '/api/generate/chat',
     initialMessages: storedMessages,
@@ -68,6 +73,18 @@ function BudtenderModal({ userName }: { userName: string }) {
     };
 
     setStoredMessages((storedMessages) => [...storedMessages, newMessage]);
+  }
+
+  async function handleSendPremadeMessage(message: string) {
+    const newMessage: AIMessage = {
+      id: (storedMessages.length + 1).toString(),
+      role: 'user',
+      content: message,
+      createdAt: new Date(),
+    };
+
+    setStoredMessages((storedMessages) => [...storedMessages, newMessage]);
+    await append(newMessage);
   }
 
   function clearMessages() {
@@ -118,27 +135,32 @@ function BudtenderModal({ userName }: { userName: string }) {
               />
             ))
           ) : (
-            <div className="w-full flex items-center justify-center flex-col">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="size-[120px] mt-3 mb-4 dark:stroke-slate-100 stroke-zinc-800"
-                fill="none"
-                stroke-width="8"
-                height="800px"
-                width="800px"
-                viewBox="0 0 500 510"
-              >
-                <path
-                  id="XMLID_277_"
-                  d="M477.16,292.045c0,0-62.848-4.221-125.061,22.069c11.664-13.634,23.084-28.804,33.416-45.603  c51.428-83.723,56.047-174.385,56.047-174.385s-78.774,45.1-130.221,128.822c-7.563,12.3-13.99,24.738-19.668,37.029  c3.467-20.557,5.744-42.617,5.744-65.72C297.417,86.977,249.892,0,249.892,0s-47.506,86.977-47.506,194.259  c0,23.102,2.279,45.163,5.742,65.713c-5.68-12.293-12.123-24.723-19.67-37.023C137.017,139.227,58.238,94.127,58.238,94.127  s4.623,90.662,56.05,174.385c10.329,16.799,21.75,31.969,33.416,45.603C85.472,287.824,22.64,292.045,22.64,292.045  s37.99,47.329,100.418,73.905c23.818,10.137,47.734,15.764,68.231,18.881c-9.681,0.716-19.997,2.132-30.503,4.71  c-45.443,11.111-77.006,38.909-77.006,38.909s42.105,9.768,87.561-1.351c29.467-7.217,52.928-21.347,65.893-30.448l-10.852,86.821  c-0.506,4.125,0.635,8.272,3.157,11.404c2.522,3.125,6.147,4.923,9.974,4.923h20.791c3.826,0,7.451-1.798,9.975-4.923  c2.522-3.132,3.66-7.279,3.156-11.404l-10.852-86.814c12.967,9.103,36.426,23.225,65.875,30.441  c45.457,11.118,87.561,1.351,87.561,1.351s-31.564-27.798-77.002-38.909c-10.512-2.578-20.828-3.994-30.508-4.71  c20.504-3.117,44.42-8.744,68.238-18.881C439.173,339.374,477.16,292.045,477.16,292.045z"
-                />
-              </svg>
+            <>
+              <div className="w-full flex items-center justify-center flex-col">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="size-[120px] mt-3 mb-4 dark:stroke-slate-100 stroke-zinc-800"
+                  fill="none"
+                  strokeWidth="8"
+                  height="800px"
+                  width="800px"
+                  viewBox="0 0 500 510"
+                >
+                  <path
+                    id="XMLID_277_"
+                    d="M477.16,292.045c0,0-62.848-4.221-125.061,22.069c11.664-13.634,23.084-28.804,33.416-45.603  c51.428-83.723,56.047-174.385,56.047-174.385s-78.774,45.1-130.221,128.822c-7.563,12.3-13.99,24.738-19.668,37.029  c3.467-20.557,5.744-42.617,5.744-65.72C297.417,86.977,249.892,0,249.892,0s-47.506,86.977-47.506,194.259  c0,23.102,2.279,45.163,5.742,65.713c-5.68-12.293-12.123-24.723-19.67-37.023C137.017,139.227,58.238,94.127,58.238,94.127  s4.623,90.662,56.05,174.385c10.329,16.799,21.75,31.969,33.416,45.603C85.472,287.824,22.64,292.045,22.64,292.045  s37.99,47.329,100.418,73.905c23.818,10.137,47.734,15.764,68.231,18.881c-9.681,0.716-19.997,2.132-30.503,4.71  c-45.443,11.111-77.006,38.909-77.006,38.909s42.105,9.768,87.561-1.351c29.467-7.217,52.928-21.347,65.893-30.448l-10.852,86.821  c-0.506,4.125,0.635,8.272,3.157,11.404c2.522,3.125,6.147,4.923,9.974,4.923h20.791c3.826,0,7.451-1.798,9.975-4.923  c2.522-3.132,3.66-7.279,3.156-11.404l-10.852-86.814c12.967,9.103,36.426,23.225,65.875,30.441  c45.457,11.118,87.561,1.351,87.561,1.351s-31.564-27.798-77.002-38.909c-10.512-2.578-20.828-3.994-30.508-4.71  c20.504-3.117,44.42-8.744,68.238-18.881C439.173,339.374,477.16,292.045,477.16,292.045z"
+                  />
+                </svg>
 
-              <span className="w-[67%] text-center">
-                Start your conversation with{' '}
-                <span className="font-semibold">{name}</span>, your budtender.
-              </span>
-            </div>
+                <span className="w-[67%] text-center">
+                  Start your conversation with{' '}
+                  <span className="font-semibold">{name}</span>, your budtender.
+                </span>
+              </div>
+              <SuggestedPrompts
+                handleSendPremadeMessage={handleSendPremadeMessage}
+              />
+            </>
           )}
         </div>
         <form

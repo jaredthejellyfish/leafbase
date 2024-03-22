@@ -12,7 +12,7 @@ function StrainCards({
 }) {
   if (!strains.length) return null;
   return (
-    <div className="flex flex-row gap-x-3 flex-wrap max-w-[305px] sm:max-w-[600px] ">
+    <span className="flex flex-row gap-x-3 flex-wrap max-w-[305px] sm:max-w-[600px] ">
       {strains?.map(({ slug, image, name }) => (
         <Link
           className="xs:w-[80px] flex w-[85] flex-col items-center rounded-lg dark:border bg-zinc-100/20 shadow dark:border-transparent dark:bg-zinc-700/70 mt-2"
@@ -27,7 +27,7 @@ function StrainCards({
           </span>
         </Link>
       ))}
-    </div>
+    </span>
   );
 }
 

@@ -7,10 +7,13 @@ import StarRating from '@c/StarRating';
 
 import type { Strain } from '@l/types';
 
+import { cn } from '@/lib/utils/cn';
+
 type Props = {
   strain: Strain;
   ref?: RefObject<HTMLAnchorElement>;
   liked?: boolean;
+  className?: string;
 };
 
 type Colors = Record<string, string>;
@@ -45,11 +48,14 @@ const effects: Colors = {
 };
 
 const StrainCard = forwardRef<HTMLAnchorElement, Props>(
-  ({ strain, liked }: Props, ref) => {
+  ({ strain, liked, className }: Props, ref) => {
     return (
       <Link
         ref={ref}
-        className="h-[220px] md:min-h-[460px] w-full rounded-xl p-3 shadow-md dark:bg-zinc-900 dark:shadow-none md:max-w-[280px] min-w-[250px] relative border dar"
+        className={cn(
+          'h-[220px] md:min-h-[460px] w-full rounded-xl p-3 shadow-md dark:bg-zinc-900 dark:shadow-none md:max-w-[280px] min-w-[250px] relative border',
+          className,
+        )}
         href={`/strains/${strain.slug}`}
       >
         {typeof liked !== 'undefined' && (

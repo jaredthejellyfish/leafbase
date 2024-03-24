@@ -53,7 +53,7 @@ const StrainCard = forwardRef<HTMLAnchorElement, Props>(
       <Link
         ref={ref}
         className={cn(
-          'h-[220px] md:min-h-[460px] w-full rounded-xl p-3 shadow-md dark:bg-zinc-900 dark:shadow-none md:max-w-[280px] min-w-[250px] relative border',
+          'h-[220px] md:min-h-[460px] w-full rounded-xl p-3 shadow-md dark:bg-zinc-900 bg-white dark:shadow-none md:max-w-[280px] min-w-[250px] relative border',
           className,
         )}
         href={`/strains/${strain.slug}`}

@@ -11,7 +11,7 @@ export default async function Landing() {
   const { strains } = await getPaginatedStrains('re', 1, 4);
 
   return (
-    <main className="snap-y snap-mandatory">
+    <main className="snap-y snap-mandatory overflow-hidden">
       <section className="h-screen-bar relative sm:px-10">
         <div className="flex flex-col gap-y-1.5 absolute top-[33vh] sm:top-[36vh] lg:left-32 px-5 sm:px-0 z-50">
           <h1 className="text-4xl sm:text-7xl font-semibold">

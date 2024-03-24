@@ -23,7 +23,7 @@ export default async function Landing() {
   return (
     <main className="snap-y snap-mandatory overflow-hidden">
       <section className="h-screen-bar relative sm:px-10">
-        <div className="flex flex-col gap-y-2.5 sm:gap-y-1.5 absolute top-[33vh] sm:top-[36vh] lg:left-32 px-5 sm:px-0 z-50">
+        <div className="flex flex-col gap-y-2.5 sm:gap-y-1.5 absolute top-[33vh] sm:top-[36vh] lg:left-32 px-5 sm:px-0 z-30">
           <h1 className="hidden sm:flex sm:text-7xl font-semibold flex-row">
             Welcome to Leafbase
           </h1>

@@ -19,6 +19,9 @@ const config = {
       },
     },
     extend: {
+      height: {
+        'screen-bar': 'calc(100vh - 3.5rem)',
+      },
       fontFamily: {
         sans: ['var(--font-sans)', ...fontFamily.sans],
       },

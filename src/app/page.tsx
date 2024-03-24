@@ -13,9 +13,12 @@ export default async function Landing() {
   return (
     <main className="snap-y snap-mandatory overflow-hidden">
       <section className="h-screen-bar relative sm:px-10">
-        <div className="flex flex-col gap-y-1.5 absolute top-[33vh] sm:top-[36vh] lg:left-32 px-5 sm:px-0 z-50">
-          <h1 className="text-4xl sm:text-7xl font-semibold">
+        <div className="flex flex-col gap-y-2.5 sm:gap-y-1.5 absolute top-[33vh] sm:top-[36vh] lg:left-32 px-5 sm:px-0 z-50">
+          <h1 className="hidden sm:flex sm:text-7xl font-semibold flex-row">
             Welcome to Leafbase
+          </h1>
+          <h1 className="flex sm:hidden text-7xl font-semibold flex-row">
+            Leafbase
           </h1>
           <h3 className="text-lg sm:text-xl pl-1 sm:pl-1.5 text-zinc-600 dark:text-zinc-400">
             The most comprehensive database of cannabis{' '}
@@ -54,12 +57,10 @@ export default async function Landing() {
         <BsCaretDown className="absolute bottom-2 left-2/4 text-4xl animate-bounce" />
       </section>
       <section className="md:h-screen-bar snap-start snap-always border-x-0 border relative bg-zinc-950 opacity-100 py-8">
-
-          <h2 className="text-3xl md:text-5xl font-semibold sm:px-8 mb-3 md:mb-0 px-3">
-            Top strains
-          </h2>
-          <StrainsFan strains={strains} />
-
+        <h2 className="text-3xl md:text-5xl font-semibold sm:px-8 mb-3 md:mb-0 px-3">
+          Top strains
+        </h2>
+        <StrainsFan strains={strains} />
       </section>
       <section className="h-screen-bar relative sm:px-10 flex items-center lg:mx-16">
         <div className="flex lg:flex-row flex-col gap-y-10 px-5 sm:px-0 z-50 w-full justify-between gap-x-5">

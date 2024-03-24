@@ -58,7 +58,7 @@ const function_descriptions = [
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function runFunction(name: string, args: any) {
-  console.log('runFunction', name, args)
+  console.log('runFunction', name, args);
   switch (name) {
     case 'get_recommended_strains_data':
       const recommendedStrainsArgs =

@@ -39,7 +39,7 @@ function SuggestedPrompts({ handleSendPremadeMessage }: Props) {
           setPrompts(prompts.sort(() => Math.random() - 0.5).slice(0, 4))
         }
       >
-        <RefreshCw className='size-4' />
+        <RefreshCw className="size-4" />
       </button>
       <div className="flex flex-col gap-y-2 px-1 w-full">
         <div className="flex-col sm:flex-row flex gap-2">

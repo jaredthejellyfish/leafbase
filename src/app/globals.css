@@ -84,9 +84,9 @@
   }
 }
 
-
 @keyframes moveBlob1 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(100px, 100px) scale(1);
   }
   50% {
@@ -95,7 +95,8 @@
 }
 
 @keyframes moveBlob2 {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(100px, 80px) rotate(90deg) scale(1.3);
   }
   50% {

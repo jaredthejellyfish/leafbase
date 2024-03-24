@@ -1,12 +1,12 @@
+import dynamic from 'next/dynamic';
 import React from 'react';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 import { cn } from '@/lib/utils/cn';
-import dynamic from 'next/dynamic';
 
 const StrainCards = dynamic(() => import('./strain-card'), {
-  ssr: false
+  ssr: false,
 });
 
 function genDateString(dateString?: string) {
@@ -40,8 +40,6 @@ function preprocessMarkdown(content: string) {
     }
   });
 }
-
-
 
 function Message({
   author,

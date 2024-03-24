@@ -78,7 +78,8 @@ export async function POST(req: Request) {
       { name, arguments: args },
       createFunctionCallMessages,
     ) => {
-      const {data: result, system_message: newSystemMessage} = await runFunction(name, args);
+      const { data: result, system_message: newSystemMessage } =
+        await runFunction(name, args);
 
       const newMessages = createFunctionCallMessages(result);
 

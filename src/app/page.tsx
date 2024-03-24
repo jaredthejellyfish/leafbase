@@ -28,7 +28,7 @@ export default async function Landing() {
             on the web.
           </h3>
         </div>
-        <div className="h-screen-bar top-0 -z-30 relative blur-3xl opacity-50">
+        <div className="h-screen-bar top-0 -z-50 relative blur-3xl opacity-50">
           <svg
             viewBox="0 0 200 200"
             xmlns="http://www.w3.org/2000/svg"
@@ -53,11 +53,13 @@ export default async function Landing() {
         </div>
         <BsCaretDown className="absolute bottom-2 left-2/4 text-4xl animate-bounce" />
       </section>
-      <section className="md:h-screen-bar snap-start snap-always relative">
-        <h2 className="text-3xl md:text-5xl font-semibold sm:px-8 mb-2 sm:mb-0 px-3">
-          Top strains
-        </h2>
-        <StrainsFan strains={strains} />
+      <section className="md:h-screen-bar snap-start snap-always border-x-0 border relative bg-zinc-950 opacity-100 py-8">
+
+          <h2 className="text-3xl md:text-5xl font-semibold sm:px-8 mb-3 md:mb-0 px-3">
+            Top strains
+          </h2>
+          <StrainsFan strains={strains} />
+
       </section>
       <section className="h-screen-bar relative sm:px-10 flex items-center lg:mx-16">
         <div className="flex lg:flex-row flex-col gap-y-10 px-5 sm:px-0 z-50 w-full justify-between gap-x-5">
@@ -119,7 +121,7 @@ export default async function Landing() {
         <svg
           viewBox="0 0 200 200"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-[480px] absolute top-[-190px] left-2/4 blob-1 blur-3xl opacity-60 -z-40"
+          className="w-[480px] absolute top-[-190px] left-2/4 blob-1 blur-3xl opacity-60 -z-50"
         >
           <path
             fill="#24A148"
@@ -130,7 +132,7 @@ export default async function Landing() {
         <svg
           viewBox="0 0 200 200"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-[580px] absolute rotate-90 fill-green-700 blob-2 blur-3xl opacity-60 -z-40"
+          className="w-[580px] absolute rotate-90 fill-green-700 blob-2 blur-3xl opacity-60 -z-50"
         >
           <path
             d="M42.2,-64.8C55.6,-57.1,67.9,-46.9,72.3,-34C76.7,-21.1,73.1,-5.5,69.6,9.1C66.1,23.7,62.5,37.4,54.1,46.5C45.7,55.7,32.4,60.4,19.2,63.4C5.9,66.5,-7.2,68,-22,67.2C-36.8,66.4,-53.3,63.4,-60,53.3C-66.7,43.2,-63.6,25.9,-60.7,11.9C-57.7,-2.1,-54.7,-12.9,-50.5,-23.4C-46.3,-34,-40.7,-44.4,-32.1,-54.3C-23.5,-64.2,-11.7,-73.6,1.3,-75.7C14.4,-77.7,28.8,-72.5,42.2,-64.8Z"

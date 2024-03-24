@@ -8,11 +8,11 @@ import type { Strain } from '@/lib/types';
 import { cn } from '@/lib/utils/cn';
 
 const rotations = [
-  'md:-rotate-28 md:z-0 md:-translate-x-80 md:translate-y-20',
-  'md:-rotate-12 md:z-10 md:-translate-x-32',
-  'md:rotate-0 md:z-20 md:-translate-y-5',
-  'md:rotate-12 md:z-30 md:translate-x-32',
-  'md:rotate-28 md:z-40 md:translate-x-80 md:translate-y-20',
+  'md:-rotate-28 md:-z-20 md:-translate-x-80 md:translate-y-20',
+  'md:-rotate-12 md:-z-10 md:-translate-x-32',
+  'md:rotate-0 md:z-0 md:-translate-y-5',
+  'md:rotate-12 md:z-10 md:translate-x-32',
+  'md:rotate-28 md:z-20 md:translate-x-80 md:translate-y-20',
 ];
 type Props = { strains: Strain[] | null };
 

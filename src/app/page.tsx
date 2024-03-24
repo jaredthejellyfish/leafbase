@@ -1,3 +1,4 @@
+import { unstable_cache } from 'next/cache';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -7,8 +8,17 @@ import StrainsFan from '@c/StrainsFan';
 
 import { getPaginatedStrains } from '@l/utils/getPaginatedStrains';
 
+const getStrains = unstable_cache(
+  async () => {
+    const { strains } = await getPaginatedStrains('re', 1, 4);
+    return strains;
+  },
+  ['landing-strains'],
+  { revalidate: 60 * 60 * 24 },
+);
+
 export default async function Landing() {
-  const { strains } = await getPaginatedStrains('re', 1, 4);
+  const strains = await getStrains();
 
   return (
     <main className="snap-y snap-mandatory overflow-hidden">

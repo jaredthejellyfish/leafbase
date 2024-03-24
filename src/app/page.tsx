@@ -54,7 +54,7 @@ export default async function Landing() {
         <BsCaretDown className="absolute bottom-2 left-2/4 text-4xl animate-bounce" />
       </section>
       <section className="md:h-screen-bar snap-center relative">
-        <h2 className="text-3xl font-semibold sm:px-8 mb-2 sm:mb-0 px-3">
+        <h2 className="text-3xl md:text-5xl font-semibold sm:px-8 mb-2 sm:mb-0 px-3">
           Top strains
         </h2>
         <StrainsFan strains={strains} />

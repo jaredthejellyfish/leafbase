@@ -3,8 +3,8 @@ import React from 'react';
 import ForYou from '@c/ForYou';
 import WhatToOrder from '@c/WhatToOrder';
 
-import { getServerForYouPage } from '@l/utils/getServerForYouPage';
-import { getServerOrder } from '@l/utils/getServerOrder';
+import { getServerForYouPage } from '@u/getServerForYouPage';
+import { getServerOrder } from '@u/getServerOrder';
 
 async function Home() {
   const { data } = await getServerForYouPage(0, 5);

@@ -7,10 +7,11 @@ import StarRating from '@c/StarRating';
 import StrainSoma from '@c/StrainSoma';
 import StrainSuggestions from '@c/StrainSuggestions';
 
+import { getServerLikedStrains } from '@u/getServerLikedStrains';
+import { getServerStrain } from '@u/getServerStrain';
+import { getStrainsSSG } from '@u/getStrainsSSG';
+
 import { effects, terpenes } from '@l/data/colors';
-import { getServerLikedStrains } from '@l/utils/getServerLikedStrains';
-import { getServerStrain } from '@l/utils/getServerStrain';
-import { getStrainsSSG } from '@l/utils/getStrainsSSG';
 
 type Props = { params: { slug: string } };
 

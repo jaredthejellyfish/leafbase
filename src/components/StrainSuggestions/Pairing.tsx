@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
-import { cn } from '@l/utils/cn';
+import { cn } from '@u/cn';
 
 type Props = {
   pairing: {

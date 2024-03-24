@@ -9,9 +9,10 @@ import { useMediaQuery } from 'usehooks-ts';
 import StrainCard from '@c/StrainCard';
 import StrainCardSkeleton from '@c/StrainCard/skeleton';
 
+import { cn } from '@u/cn';
+import { getForYouPage } from '@u/getForYouPage';
+
 import type { Strain } from '@l/types';
-import { cn } from '@l/utils/cn';
-import { getForYouPage } from '@l/utils/getForYouPage';
 
 type Props = {
   initialData?: Strain[];

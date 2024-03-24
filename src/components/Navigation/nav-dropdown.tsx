@@ -3,8 +3,9 @@
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 
+import { cn } from '@u/cn';
+
 import navDropdownStore from '@l/store/nav-dropdown';
-import { cn } from '@l/utils/cn';
 
 import DropdownSearchbar from './dropdown-search-bar';
 

@@ -7,7 +7,7 @@ import Navigation from '@c/Navigation';
 import QueryProvider from '@c/QueryClientProvider';
 import ThemeProvider from '@c/ThemeProvider';
 
-import { cn } from '@l/utils/cn';
+import { cn } from '@u/cn';
 
 import './globals.css';
 

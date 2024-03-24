@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 import React from 'react';
 import { RiMessage2Line } from 'react-icons/ri';
 
-import getServerUserProfile from '@l/utils/getServerUserProfile';
+import getServerUserProfile from '@u/getServerUserProfile';
 
 const BudtenderModal = dynamic(() => import('@c/Budtender/budtender-modal'), {
   ssr: false,

@@ -14,6 +14,7 @@ const config = {
   importOrder: [
     '<THIRD_PARTY_MODULES>',
     '^@c/(.*)$',
+    '^@u/(.*)$',
     '^@l/(.*)$',
     '^@p/(.*)$',
     '^@/(.*)$',

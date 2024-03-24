@@ -3,8 +3,9 @@
 import dynamic from 'next/dynamic';
 import React, { useState } from 'react';
 
+import { cn } from '@u/cn';
+
 import type { StrainLike } from '@l/types';
-import { cn } from '@l/utils/cn';
 
 import LikedStrain from './LikedStrain';
 

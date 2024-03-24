@@ -11,7 +11,7 @@ import { useLocalStorage } from 'usehooks-ts';
 
 import Modal from '@c/Modal';
 
-import { cn } from '@l/utils/cn';
+import { cn } from '@u/cn';
 
 import { names } from './data';
 import Message from './message';

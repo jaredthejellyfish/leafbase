@@ -7,10 +7,11 @@ import { notFound } from 'next/navigation';
 
 import NavBreadcrumbs from '@c/NavBreadcrumbs';
 
+import { cn } from '@u/cn';
+import getServerLikesByUserID from '@u/getServerLikesByUserID';
+import getServerUserProfileByUsername from '@u/getServerUserProfileByUsername';
+
 import type { Database } from '@l/database';
-import { cn } from '@l/utils/cn';
-import getServerLikesByUserID from '@l/utils/getServerLikesByUserID';
-import getServerUserProfileByUsername from '@l/utils/getServerUserProfileByUsername';
 
 const languages = [
   { label: 'English', value: 'en' },

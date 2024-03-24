@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 
+import { cn } from '@u/cn';
+
 import type { Filter } from '@l/types';
-import { cn } from '@l/utils/cn';
 
 type Props = { filter: Filter };
 

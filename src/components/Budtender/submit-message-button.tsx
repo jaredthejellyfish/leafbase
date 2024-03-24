@@ -3,8 +3,9 @@
 import { Send } from 'lucide-react';
 import React, { useState } from 'react';
 
+import { cn } from '@u/cn';
+
 import budtenderStore from '@l/store/budtender';
-import { cn } from '@l/utils/cn';
 
 function createSystemMessage(name: string) {
   return {

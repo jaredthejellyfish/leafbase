@@ -1,16 +1,29 @@
+import { unstable_cache } from 'next/cache';
 import React from 'react';
 
 import SortBy from '@c/SortBy';
 import StrainCard from '@c/StrainCard';
 import StrainCardLoader from '@c/StrainCardLoader';
 
+import { getPaginatedStrains } from '@u/getPaginatedStrains';
+import { getServerLikedStrains } from '@u/getServerLikedStrains';
+
 import type { Filter } from '@l/types';
-import { getPaginatedStrains } from '@l/utils/getPaginatedStrains';
-import { getServerLikedStrains } from '@l/utils/getServerLikedStrains';
+
+const getFirstPage = unstable_cache(
+  async (filter: Filter) => {
+    const { strains, count } = await getPaginatedStrains(filter, 1);
+
+    return { strains, count };
+  },
+  ['strains-first-page'],
+  { revalidate: 60 * 60 * 3 },
+);
 
 async function StrainsPage(request: { searchParams: { filter?: Filter } }) {
   const filter = request.searchParams.filter ?? 're';
-  const { strains, count } = await getPaginatedStrains(filter, 1);
+
+  const { strains, count } = await getFirstPage(filter);
   const { likes } = await getServerLikedStrains();
 
   return (

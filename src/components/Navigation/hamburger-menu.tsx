@@ -2,8 +2,9 @@
 
 import React from 'react';
 
+import { cn } from '@u/cn';
+
 import navDropdownStore from '@l/store/nav-dropdown';
-import { cn } from '@l/utils/cn';
 
 function HamburgerMenu() {
   const toggle = navDropdownStore((state) => state.toggle);

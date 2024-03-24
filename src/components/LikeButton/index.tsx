@@ -4,7 +4,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
-import { cn } from '@l/utils/cn';
+import { cn } from '@u/cn';
 
 // Define the response type for better type safety
 type LikeResponse = {

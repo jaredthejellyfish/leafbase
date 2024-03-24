@@ -5,8 +5,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
+import { searchStrains } from '@u/searchStrains';
+
 import type { SearchStrain } from '@l/types';
-import { searchStrains } from '@l/utils/searchStrains';
 
 type Props = {
   query?: string;

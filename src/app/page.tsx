@@ -6,7 +6,7 @@ import { BsCaretDown } from 'react-icons/bs';
 
 import StrainsFan from '@c/StrainsFan';
 
-import { getPaginatedStrains } from '@l/utils/getPaginatedStrains';
+import { getPaginatedStrains } from '@u/getPaginatedStrains';
 
 const getStrains = unstable_cache(
   async () => {

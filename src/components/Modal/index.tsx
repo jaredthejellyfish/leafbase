@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { useOnClickOutside } from 'usehooks-ts';
 
-import { cn } from '@l/utils/cn';
+import { cn } from '@u/cn';
 
 type Props = {
   children: React.ReactNode;

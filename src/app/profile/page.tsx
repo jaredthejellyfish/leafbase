@@ -9,11 +9,12 @@ import { notFound } from 'next/navigation';
 import Friend from '@c/Friend';
 import NavBreadcrumbs from '@c/NavBreadcrumbs';
 
+import { cn } from '@u/cn';
+import { getServerFriends } from '@u/getServerFriends';
+import getServerLikes from '@u/getServerLikes';
+import getServerUserProfile from '@u/getServerUserProfile';
+
 import type { Database } from '@l/database';
-import { cn } from '@l/utils/cn';
-import { getServerFriends } from '@l/utils/getServerFriends';
-import getServerLikes from '@l/utils/getServerLikes';
-import getServerUserProfile from '@l/utils/getServerUserProfile';
 
 const languages = [
   { label: 'English', value: 'en' },

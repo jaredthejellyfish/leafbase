@@ -8,7 +8,7 @@ import {
   TooltipTrigger,
 } from '@c/ui/tooltip';
 
-import { cn } from '@l/utils/cn';
+import { cn } from '@u/cn';
 
 const Input = forwardRef<
   HTMLInputElement,

@@ -5,8 +5,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
+import getServerUserProfile from '@u/getServerUserProfile';
+
 import type { Database } from '@l/database';
-import getServerUserProfile from '@l/utils/getServerUserProfile';
 
 import SiteLogo from '@p/site-logo.png';
 import ProfileIcon from '@p/svg/profile-icon.svg';

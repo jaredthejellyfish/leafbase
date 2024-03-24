@@ -22,6 +22,9 @@ const config = {
       height: {
         'screen-bar': 'calc(100vh - 3.5rem)',
       },
+      rotate: {
+        28: '28deg',
+      },
       fontFamily: {
         sans: ['var(--font-sans)', ...fontFamily.sans],
       },

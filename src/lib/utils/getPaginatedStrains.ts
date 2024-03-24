@@ -7,6 +7,7 @@ import type { Strain } from '@l/types';
 export async function getPaginatedStrains(
   filter: 're' | 'az' | 'za' | 'sr',
   page: number,
+  limit = 12
 ) {
   const cookieStore = cookies();
 
@@ -18,7 +19,6 @@ export async function getPaginatedStrains(
 
   const orderByLikes = filter && filter !== 're' ? false : true;
 
-  const limit = 12;
   const from = (page - 1) * limit;
   const to = from + limit;
 

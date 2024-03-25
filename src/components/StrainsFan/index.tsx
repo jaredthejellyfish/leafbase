@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useIntersectionObserver } from 'usehooks-ts';
+
 
 import StrainCard from '@/components/StrainCard';
 import type { Strain } from '@/lib/types';
@@ -12,7 +13,7 @@ const rotations = [
   'md:-rotate-12 md:z-2 md:-translate-x-32',
   'md:rotate-0 md:z-3 md:-translate-y-5',
   'md:rotate-12 md:z-4 md:translate-x-32',
-  'md:rotate-28 md:z-5 md:translate-x-80 md:translate-y-20',
+  'md:rotate-28 md:z-5 md:translate-x-80 md:translate-y-20 hidden md:block',
 ];
 type Props = { strains: Strain[] | null };
 
@@ -25,7 +26,7 @@ function StrainsFan({ strains }: Props) {
 
   return (
     <div
-      className="flex flex-col md:flex-row justify-center h-full relative gap-y-3 px-3 md:px-0"
+      className="flex flex-col md:flex-row justify-center h-full relative gap-y-3 md:px-0 px-3"
       ref={ref}
     >
       {strains?.map((strain, index) => (
@@ -43,4 +44,4 @@ function StrainsFan({ strains }: Props) {
   );
 }
 
-export default StrainsFan;
+export default React.memo(StrainsFan);

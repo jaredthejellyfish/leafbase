@@ -99,11 +99,11 @@ const StrainCard = forwardRef<HTMLAnchorElement, Props>(
             <div className="flex flex-row gap-4 px-1 text-xs text-zinc-500 dark:text-zinc-300">
               <span className="">THC: {strain.thcPercent ?? '?'}%</span>
 
-              {strain.cannabinoids?.cbd?.percentile50 && (
+              {strain.cannabinoids?.cbd?.percentile50 ? (
                 <span className="">
                   CBD: {strain.cannabinoids.cbd.percentile50}%
                 </span>
-              )}
+              ) : null}
             </div>
             <div className="mt-2 flex flex-col px-1 text-xs font-medium capitalize md:flex-row md:items-center md:gap-3">
               {strain.topEffect && (

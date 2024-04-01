@@ -4,10 +4,10 @@ import Link from 'next/link';
 import React from 'react';
 import { BsCaretDown } from 'react-icons/bs';
 
+import HeroSection from '@c/HeroSection';
 import StrainsFan from '@c/StrainsFan';
 
 import { getPaginatedStrains } from '@u/getPaginatedStrains';
-import HeroSection from '@/components/HeroSection';
 
 const getStrains = unstable_cache(
   async () => {
@@ -25,7 +25,7 @@ export default async function Landing() {
     <main className="overflow-hidden max-w-[100vw]">
       <section className="h-screen-bar relative sm:px-10">
         <div className="flex flex-col gap-y-2.5 sm:gap-y-1.5 absolute top-[33vh] sm:top-[36vh] lg:left-32 px-5 sm:px-0 z-30">
-         <HeroSection />
+          <HeroSection />
           <h3 className="text-lg sm:text-xl pl-1 sm:pl-1.5 text-zinc-600 dark:text-zinc-400">
             The most comprehensive database of cannabis{' '}
             <Link
@@ -102,7 +102,7 @@ export default async function Landing() {
           </div>
         </div>
       </section>
-      <section className="h-screen-bar relative sm:px-10 flex items-center lg:mx-16">
+      <section className="h-screen-bar relative sm:px-10 flex items-center lg:mx-16 z-0">
         <div className="flex lg:flex-row flex-col gap-y-10 px-5 sm:px-0 z-50 w-full justify-between gap-x-5">
           <div>
             <h3 className="text-2xl font-semibold mb-1.5">About Leafbase:</h3>

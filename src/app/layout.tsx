@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import { Inter as FontSans } from 'next/font/google';
@@ -8,6 +9,8 @@ import QueryProvider from '@c/QueryClientProvider';
 import ThemeProvider from '@c/ThemeProvider';
 
 import { cn } from '@u/cn';
+
+import { env } from '@/env';
 
 import './globals.css';
 
@@ -41,6 +44,7 @@ export default function RootLayout({
           <Budtender />
         </ThemeProvider>
         <SpeedInsights />
+        <GoogleAnalytics gaId={env.NEXT_PUBLIC_GTM} />
       </body>
     </html>
   );

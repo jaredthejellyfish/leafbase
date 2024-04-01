@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useIntersectionObserver } from 'usehooks-ts';
 
+import StrainCard from '@c/StrainCard';
 
-import StrainCard from '@/components/StrainCard';
 import type { Strain } from '@/lib/types';
 import { cn } from '@/lib/utils/cn';
 

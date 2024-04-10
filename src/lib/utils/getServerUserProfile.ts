@@ -19,25 +19,25 @@ export default async function getServerUserProfile(
     }
 
     const {
-      data: { session },
+      data: { user },
       error,
-    } = await client.auth.getSession();
+    } = await client.auth.getUser();
 
-    if (error ?? !session) {
+    if (error ?? !user) {
       return { user: null, error };
     }
 
     const { data, error: profileError } = await client
       .from('profiles')
       .select('*')
-      .eq('id', session.user.id)
+      .eq('id', user.id)
       .single();
 
     if (profileError) {
       return { user: null, error: profileError };
     }
 
-    return { user: data, session, error };
+    return { user: data, session: user, error };
   } catch (error) {
     return { user: null, error };
   }

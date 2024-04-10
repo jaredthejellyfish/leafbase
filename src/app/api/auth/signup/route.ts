@@ -30,10 +30,10 @@ export async function POST(request: Request) {
     });
 
     const {
-      data: { session },
-    } = await supabase.auth.getSession();
+      data: { user },
+    } = await supabase.auth.getUser();
 
-    if (session)
+    if (user)
       return NextResponse.json(
         { error: 'You are logged in.', success: false },
         { status: 400 },

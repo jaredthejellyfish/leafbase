@@ -15,8 +15,8 @@ const paths = [
     path: '/strains',
   },
   {
-    name: 'Dispensaries',
-    path: '/dispensaries',
+    name: 'Budtender',
+    path: '/budtender',
   },
   {
     name: 'About Us',

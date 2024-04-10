@@ -36,8 +36,8 @@ export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
   const supabase = createMiddlewareClient({ req, res });
   const {
-    data: { session },
-  } = await supabase.auth.getSession();
+    data: { user },
+  } = await supabase.auth.getUser();
   const currentUrl = req.nextUrl.pathname;
 
   const code = req.nextUrl.searchParams.get('code');
@@ -54,12 +54,12 @@ export async function middleware(req: NextRequest) {
       const redirect = authRedirects.find((r) =>
         new RegExp(`^${r.matcher}$`).test(path.matcher),
       );
-      if (redirect && !session && !redirect.isAuth) {
+      if (redirect && !user && !redirect.isAuth) {
         return NextResponse.redirect(
           new URL(redirect.redirect, req.nextUrl.toString()),
         );
       }
-      if (redirect && session && redirect.isAuth) {
+      if (redirect && user && redirect.isAuth) {
         return NextResponse.redirect(
           new URL(redirect.redirect, req.nextUrl.toString()),
         );

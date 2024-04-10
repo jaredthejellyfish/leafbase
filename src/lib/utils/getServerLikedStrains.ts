@@ -33,10 +33,12 @@ export async function getServerLikedStrains(userId?: string): Promise<{
   let user_id = userId;
 
   if (!user_id) {
-    const { data, error } = await supabase.auth.getSession();
-    const session = data.session;
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser();
 
-    if (error ?? !session) {
+    if (error ?? !user) {
       return {
         error: (error as unknown as AuthError | null) ?? 'No session found',
         data: undefined,
@@ -44,7 +46,7 @@ export async function getServerLikedStrains(userId?: string): Promise<{
       };
     }
 
-    user_id = session.user.id;
+    user_id = user.id;
   }
 
   const { data: strainLikes, error: strainLikesError } = await supabase

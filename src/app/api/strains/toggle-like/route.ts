@@ -20,18 +20,18 @@ export async function GET(req: NextRequest) {
     });
 
     const {
-      data: { session },
+      data: { user },
       error: sessionError,
-    } = await supabase.auth.getSession();
+    } = await supabase.auth.getUser();
 
-    if (sessionError ?? !session) {
+    if (sessionError ?? !user) {
       return NextResponse.json('Unauthorized', { status: 401 });
     }
 
     const { data: existingLike, error: existingLikeError } = await supabase
       .from('strain_likes')
       .select('*')
-      .eq('user_id', session.user.id)
+      .eq('user_id', user.id)
       .eq('strain_id', strain_id)
       .maybeSingle();
 
@@ -51,7 +51,7 @@ export async function GET(req: NextRequest) {
     } else {
       const { error: insertError } = await supabase
         .from('strain_likes')
-        .insert([{ user_id: session.user.id, strain_id }]);
+        .insert([{ user_id: user.id, strain_id }]);
       if (insertError) {
         return NextResponse.json(insertError.message, { status: 500 });
       }

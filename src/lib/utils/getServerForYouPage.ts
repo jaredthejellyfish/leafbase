@@ -10,18 +10,18 @@ export async function getServerForYouPage(page: number, limit: number) {
   });
 
   const {
-    data: { session },
+    data: { user },
     error: sessionError,
-  } = await supabase.auth.getSession();
+  } = await supabase.auth.getUser();
 
-  if (sessionError ?? !session) {
+  if (sessionError ?? !user) {
     return { error: sessionError, data: null };
   }
 
   const { data: likedStrains, error: likedStrainsError } = await supabase
     .from('strain_likes')
     .select('strain_id')
-    .eq('user_id', session?.user.id);
+    .eq('user_id', user.id);
 
   if (likedStrainsError) {
     return { error: likedStrainsError, data: null };

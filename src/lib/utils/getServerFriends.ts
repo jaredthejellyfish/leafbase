@@ -1,13 +1,13 @@
-import type { Session, SupabaseClient } from '@supabase/auth-helpers-nextjs';
+import type { SupabaseClient, User } from '@supabase/auth-helpers-nextjs';
 
 import type { Database } from '@l/database';
 import type { FriendExtended } from '@l/types';
 
 export async function getServerFriends(
   supabase: SupabaseClient<Database>,
-  session?: Session,
+  user?: User,
 ) {
-  if (!session) return { friends: null, error: 'No session' };
+  if (!user) return { friends: null, error: 'No session' };
 
   const { data: friendsData, error } = await supabase
     .from('friends')
@@ -26,7 +26,7 @@ export async function getServerFriends(
     image
   )`,
     )
-    .or(`from.eq.${session?.user.id},to.eq.${session?.user.id}`)
+    .or(`from.eq.${user.id},to.eq.${user.id}`)
     .returns<FriendExtended[]>();
 
   if (error) return { friends: null, error };

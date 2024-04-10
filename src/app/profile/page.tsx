@@ -120,10 +120,10 @@ async function ProfilePage() {
               </span>
             )}
 
-            {session?.user.email && (
+            {session?.email && (
               <span className="mt-3 text-sm dark:text-white">
                 Email Address:
-                <p className="text-gray-400">{session?.user.email}</p>
+                <p className="text-gray-400">{session?.email}</p>
               </span>
             )}
             {user.phone && (
@@ -149,13 +149,13 @@ async function ProfilePage() {
                   let status;
                   if (friend.pending) {
                     status =
-                      friend.from.id === session.user.id
+                      friend.from.id === session.id
                         ? 'pending'
                         : 'toAccept';
                   } else {
                     status = 'accepted';
                   }
-                  const useTo = friend.to.id !== session.user.id;
+                  const useTo = friend.to.id !== session.id;
 
                   return (
                     <Friend

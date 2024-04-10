@@ -11,19 +11,19 @@ export async function GET() {
       cookies: () => cookies(),
     });
 
-    const { data: sessionData, error: sessionError } =
-      await supabase.auth.getSession();
+    const { data: {user}, error: sessionError } =
+      await supabase.auth.getUser();
 
-    const { session } = sessionData;
 
-    if (sessionError ?? !session?.user) {
+
+    if (sessionError ?? !user) {
       return NextResponse.json('Error getting session', { status: 400 });
     }
 
     const { data: likedStrains, error: likedStrainsError } = await supabase
       .from('strain_likes')
       .select('strain_id, strain_id:strains (name, id)')
-      .eq('user_id', session.user.id);
+      .eq('user_id', user.id);
 
     if (likedStrainsError) {
       return NextResponse.json('Error getting liked strains', { status: 400 });

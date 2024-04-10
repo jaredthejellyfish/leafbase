@@ -10,15 +10,15 @@ export async function getServerOrder() {
   });
 
   const {
-    data: { session },
+    data: { user },
     error: sessionError,
-  } = await supabase.auth.getSession();
+  } = await supabase.auth.getUser();
 
-  if (sessionError ?? !session) {
+  if (sessionError ?? !user) {
     return { error: sessionError, order: null };
   }
 
-  const order = await kv.get(`what-to-otder-${session.user.id}`);
+  const order = await kv.get(`what-to-otder-${user.id}`);
 
   return { order: (order as string) ?? null, error: null };
 }

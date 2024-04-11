@@ -149,9 +149,7 @@ async function ProfilePage() {
                   let status;
                   if (friend.pending) {
                     status =
-                      friend.from.id === session.id
-                        ? 'pending'
-                        : 'toAccept';
+                      friend.from.id === session.id ? 'pending' : 'toAccept';
                   } else {
                     status = 'accepted';
                   }

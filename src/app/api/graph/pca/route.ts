@@ -11,10 +11,10 @@ export async function GET() {
       cookies: () => cookies(),
     });
 
-    const { data: {user}, error: sessionError } =
-      await supabase.auth.getUser();
-
-
+    const {
+      data: { user },
+      error: sessionError,
+    } = await supabase.auth.getUser();
 
     if (sessionError ?? !user) {
       return NextResponse.json('Error getting session', { status: 400 });

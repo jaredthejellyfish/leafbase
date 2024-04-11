@@ -7,6 +7,18 @@ type Props = {
   order: string | null;
 };
 
+function cleanUpString(str: string) {
+  return str
+    .replace(/0:"/g, '')
+    .replace(/"/g, '')
+    .replace(/(\w)-\s+(\w)/g, '$1$2')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/\s*,\s*/g, ', ')
+    .replace(/\s*\.\s*/g, '. ')
+    .replace(/\s*\'/, "'");
+}
+
 function WhatToOrder({ order }: Props) {
   const [text, setText] = useState(order ?? '');
   const [loading, setLoading] = useState(false);
@@ -28,7 +40,7 @@ function WhatToOrder({ order }: Props) {
           break;
         }
         const decodedChunk = decoder.decode(value, { stream: true });
-        setText((answer) => (answer + decodedChunk).replace('"', ''));
+        setText((answer) => cleanUpString(answer + decodedChunk));
       }
     } catch (error) {
       setText('Error generating recommendation...');

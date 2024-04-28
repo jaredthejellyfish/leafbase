@@ -1,30 +1,61 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">Welcome to leafbase.xyz 👋 </h1> 
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
+  <a href="#" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+  </a>
+  <a href="https://wakatime.com/badge/user/61cabc84-7492-4f6a-b301-5bbbdd324bc5/project/5d1cd45b-d781-442d-838e-f453723d9542"><img src="https://wakatime.com/badge/user/61cabc84-7492-4f6a-b301-5bbbdd324bc5/project/5d1cd45b-d781-442d-838e-f453723d9542.svg" alt="wakatime"></a>
+</p>
 
-## Getting Started
+> The most comprehensive weed strain library on the web.
 
-First, run the development server:
+### 🏠 [Homepage](https://leafbase.xyz/)
+
+## Install
+
+```sh
+bun install
+```
+
+## Usage
+
+Set these variables in the .env file:
+
+```.env
+NEXT_PUBLIC_SUPABASE_URL=""
+NEXT_PUBLIC_SUPABASE_ANON_KEY=""
+
+OPENAI_API_KEY=""
+
+KV_REST_API_READ_ONLY_TOKEN=""
+KV_REST_API_TOKEN=""
+KV_REST_API_URL=""
+KV_URL=""
+
+GROQ_API_KEY=""
+```
+
+Then, run the development server:
 
 ```bash
-npm run dev
+bun run dev
 # or
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Author
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+👤 **Gerard Almenara Hernandez**
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Website: https://www.instagram.com/photoniks_
+- Github: [@jaredthejellyfish](https://github.com/jaredthejellyfish)
 
-## Learn More
+## Show your support
 
-To learn more about Next.js, take a look at the following resources:
+Give a ⭐️ if this project helped you!
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
